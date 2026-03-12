@@ -4,24 +4,25 @@
   "description": "Node.js SDK for the Outseta API",
   "type": "module",
   "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "types": "./src/index.ts",
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./src/index.ts",
       "import": "./dist/index.js"
     }
   },
   "scripts": {
-    "build": "tsc",
-    "typecheck": "tsc --noEmit"
+    "build": "bun build src/index.ts --outdir dist --target node --format esm --packages external",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src"
   },
   "dependencies": {
-    "@outseta/api-client": "workspace:*"
+    "@outseta/api-client": "*"
   },
   "devDependencies": {
     "typescript": "^5.7.0"
   },
-  "files": ["dist"],
+  "files": ["dist", "src"],
   "publishConfig": {
     "access": "public"
   }

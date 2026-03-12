@@ -31,7 +31,7 @@ export default defineConfig({
       client: "react-query",
       override: {
         mutator: {
-          path: "./packages/api-client/src/client.ts",
+          path: "./packages/react/src/mutator.ts",
           name: "customFetch",
         },
       },

@@ -1,0 +1,15 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "FILE=$(node -e \"process.stdout.write(JSON.parse(require('fs').readFileSync('/dev/stdin','utf8')).tool_input.file_path)\"); if [[ \"$FILE\" == *.ts ]] || [[ \"$FILE\" == *.tsx ]]; then npx eslint --fix \"$FILE\" 2>&1; PKG=$(echo \"$FILE\" | grep -o 'packages/[^/]*'); if [ -n \"$PKG\" ] && [ -f \"$PKG/tsconfig.json\" ]; then npx tsc --noEmit -p \"$PKG/tsconfig.json\" 2>&1; fi; fi"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,43 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Generate clients
+        run: npm run generate
+
+      - name: Commit generated code if changed
+        run: |
+          git diff --quiet packages/*/src/generated || {
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add packages/*/src/generated
+            git commit -m "chore: regenerate clients from spec"
+            git push
+          }
+
+      - name: Build
+        run: npm run build
+
+      - name: Test
+        run: npm run test

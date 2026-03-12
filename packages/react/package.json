@@ -4,19 +4,20 @@
   "description": "React hooks and components for the Outseta API",
   "type": "module",
   "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "types": "./src/index.ts",
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./src/index.ts",
       "import": "./dist/index.js"
     }
   },
   "scripts": {
-    "build": "tsc",
-    "typecheck": "tsc --noEmit"
+    "build": "bun build src/index.ts --outdir dist --target browser --format esm --packages external",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src --ignore-pattern generated"
   },
   "dependencies": {
-    "@outseta/api-client": "workspace:*",
+    "@outseta/api-client": "*",
     "@tanstack/react-query": "^5.0.0"
   },
   "peerDependencies": {
@@ -27,7 +28,7 @@
     "typescript": "^5.7.0"
   },
   "sideEffects": false,
-  "files": ["dist"],
+  "files": ["dist", "src"],
   "publishConfig": {
     "access": "public"
   }

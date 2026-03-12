@@ -1,19 +1,31 @@
 {
   "name": "outseta-js",
   "private": true,
-  "workspaces": ["packages/*"],
+  "type": "module",
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
-    "generate": "orval",
-    "generate:check": "orval && git diff --exit-code packages/*/src/generated",
+    "fetch-spec": "curl -sf https://go.outseta.com/swagger/v1/swagger.json -o openapi.json",
+    "generate": "npm run fetch-spec && node scripts/fix-spec.mjs && orval && node scripts/post-generate.mjs",
     "build": "nx run-many -t build",
     "test": "nx run-many -t test",
     "lint": "nx run-many -t lint",
-    "typecheck": "nx run-many -t typecheck"
+    "typecheck": "nx run-many -t typecheck",
+    "prepare": "husky"
   },
   "devDependencies": {
     "@changesets/cli": "^2.27.0",
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.0.3",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.3.3",
     "nx": "^20.0.0",
     "orval": "^7.0.0",
-    "typescript": "^5.7.0"
+    "typescript": "^5.7.0",
+    "typescript-eslint": "^8.57.0"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": "eslint --fix"
   }
 }
