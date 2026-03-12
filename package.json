@@ -1,0 +1,19 @@
+{
+  "name": "outseta-js",
+  "private": true,
+  "workspaces": ["packages/*"],
+  "scripts": {
+    "generate": "orval",
+    "generate:check": "orval && git diff --exit-code packages/*/src/generated",
+    "build": "nx run-many -t build",
+    "test": "nx run-many -t test",
+    "lint": "nx run-many -t lint",
+    "typecheck": "nx run-many -t typecheck"
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.27.0",
+    "nx": "^20.0.0",
+    "orval": "^7.0.0",
+    "typescript": "^5.7.0"
+  }
+}
