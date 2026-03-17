@@ -47,6 +47,7 @@ jobs:
         if: steps.diff.outputs.changed == 'true'
         uses: peter-evans/create-pull-request@v7
         with:
+          token: ${{ secrets.PAT_TOKEN }}
           branch: chore/sync-openapi-spec
           commit-message: "chore: sync OpenAPI spec from upstream"
           title: "chore: sync OpenAPI spec from upstream"
