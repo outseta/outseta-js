@@ -60,6 +60,8 @@ outseta-js/
 
 Skip `npx changeset` for changes that don't warrant a release (CI config, docs, etc.).
 
+**Important**: Always include changesets with commits that change package behavior. Create `.changeset/*.md` files manually (don't run `npx changeset` interactively).
+
 ## Code conventions
 
 - ESM only (`"type": "module"` in all packages)
