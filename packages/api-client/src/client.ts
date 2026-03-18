@@ -1,16 +1,32 @@
 import ky, { HTTPError, type KyInstance } from "ky";
 
-export type OutsetaCredentials = {
+export type OutsetaApiKeyCredentials = {
   subdomain: string;
   apiKey: string;
   apiSecret: string;
 };
 
+export type OutsetaBearerCredentials = {
+  subdomain: string;
+  accessToken: string;
+};
+
+export type OutsetaCredentials =
+  | OutsetaApiKeyCredentials
+  | OutsetaBearerCredentials;
+
+function getAuthorization(creds: OutsetaCredentials): string {
+  if ("accessToken" in creds) {
+    return `Bearer ${creds.accessToken}`;
+  }
+  return `Outseta ${creds.apiKey}:${creds.apiSecret}`;
+}
+
 export function createClient(creds: OutsetaCredentials): KyInstance {
   return ky.create({
     prefixUrl: `https://${creds.subdomain}.outseta.com/api/v1/`,
     headers: {
-      Authorization: `Outseta ${creds.apiKey}:${creds.apiSecret}`,
+      Authorization: getAuthorization(creds),
     },
     retry: { limit: 3, statusCodes: [408, 429, 500, 502, 503, 504] },
   });
