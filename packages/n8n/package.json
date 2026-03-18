@@ -1,0 +1,51 @@
+{
+  "name": "@outseta/n8n-nodes-outseta",
+  "version": "0.0.0",
+  "description": "n8n community node for the Outseta REST API",
+  "keywords": [
+    "n8n-community-node-package",
+    "outseta",
+    "crm",
+    "billing",
+    "subscription",
+    "email-marketing"
+  ],
+  "license": "MIT",
+  "author": "Outseta",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/outseta/outseta-js.git",
+    "directory": "packages/n8n"
+  },
+  "n8n": {
+    "n8nNodesApiVersion": 1,
+    "credentials": [
+      "dist/credentials/OutsetaApi.credentials.js"
+    ],
+    "nodes": [
+      "dist/nodes/Outseta/Outseta.node.js"
+    ]
+  },
+  "scripts": {
+    "build": "bun build src/credentials/OutsetaApi.credentials.ts --outdir dist/credentials --format cjs --target node --external n8n-workflow && bun build src/nodes/Outseta/Outseta.node.ts --outdir dist/nodes/Outseta --format cjs --target node --external n8n-workflow && cp src/nodes/Outseta/outseta.svg dist/nodes/Outseta/",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src"
+  },
+  "dependencies": {
+    "@outseta/api-client": "*"
+  },
+  "devDependencies": {
+    "n8n-workflow": "^1.0.0",
+    "typescript": "^5.7.0"
+  },
+  "peerDependencies": {
+    "n8n-workflow": "*"
+  },
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "provenance": false
+  }
+}
