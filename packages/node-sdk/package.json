@@ -1,6 +1,6 @@
 {
   "name": "@outseta/node-sdk",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Node.js SDK for the Outseta API",
   "type": "module",
   "main": "./dist/index.js",
@@ -22,7 +22,10 @@
   "devDependencies": {
     "typescript": "^5.7.0"
   },
-  "files": ["dist", "src"],
+  "files": [
+    "dist",
+    "src"
+  ],
   "publishConfig": {
     "access": "public"
   }

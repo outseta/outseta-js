@@ -1,6 +1,6 @@
 {
   "name": "@outseta/react",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "React hooks and components for the Outseta API",
   "type": "module",
   "main": "./dist/index.js",
@@ -28,7 +28,10 @@
     "typescript": "^5.7.0"
   },
   "sideEffects": false,
-  "files": ["dist", "src"],
+  "files": [
+    "dist",
+    "src"
+  ],
   "publishConfig": {
     "access": "public"
   }

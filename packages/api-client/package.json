@@ -1,6 +1,6 @@
 {
   "name": "@outseta/api-client",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Generated API client for the Outseta REST API",
   "type": "module",
   "main": "./dist/index.js",
