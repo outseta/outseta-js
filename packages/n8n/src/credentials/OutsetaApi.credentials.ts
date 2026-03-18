@@ -1,5 +1,6 @@
 import {
 	IAuthenticateGeneric,
+	ICredentialTestRequest,
 	ICredentialType,
 	INodeProperties,
 } from 'n8n-workflow';
@@ -7,7 +8,7 @@ import {
 export class OutsetaApi implements ICredentialType {
 	name = 'outsetaApi';
 	displayName = 'Outseta API';
-	documentationUrl = 'https://documenter.getpostman.com/view/3613332/outseta-rest-api-v1/7TNfr6p';
+	documentationUrl = 'https://go.outseta.com/support/kb/categories';
 
 	properties: INodeProperties[] = [
 		{
@@ -43,6 +44,14 @@ export class OutsetaApi implements ICredentialType {
 			headers: {
 				Authorization: '=Outseta {{$credentials.apiKey}}:{{$credentials.apiSecret}}',
 			},
+		},
+	};
+
+	test: ICredentialTestRequest = {
+		request: {
+			baseURL: '=https://{{$credentials.subdomain}}.outseta.com/api/v1',
+			url: '/crm/people',
+			qs: { limit: '1', fields: 'Uid' },
 		},
 	};
 }
