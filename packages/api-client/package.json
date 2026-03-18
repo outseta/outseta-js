@@ -2,6 +2,7 @@
   "name": "@outseta/api-client",
   "version": "0.1.0",
   "description": "Generated API client for the Outseta REST API",
+  "license": "MIT",
   "type": "module",
   "main": "./dist/index.js",
   "types": "./src/index.ts",
