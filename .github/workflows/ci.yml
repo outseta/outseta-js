@@ -17,14 +17,22 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: npm
+
+      - uses: oven-sh/setup-bun@v2
 
       - name: Install dependencies
         run: npm ci
 
       - name: Generate clients
         run: npm run generate
+
+      - name: Build
+        run: npm run build
+
+      - name: Test
+        run: npm run test
 
       - name: Commit generated code if changed
         run: |
@@ -35,9 +43,3 @@ jobs:
             git commit -m "chore: regenerate clients from spec"
             git push
           }
-
-      - name: Build
-        run: npm run build
-
-      - name: Test
-        run: npm run test
