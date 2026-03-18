@@ -12,9 +12,9 @@ jobs:
   release:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
           node-version: 22
           cache: npm
@@ -40,6 +40,14 @@ jobs:
       - name: Version packages
         if: steps.changesets.outputs.has_changesets == 'true'
         run: npx changeset version
+
+      - name: Commit version bumps
+        if: steps.changesets.outputs.has_changesets == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add .
+          git commit -m "chore: version packages"
 
       - name: Publish to npm
         if: steps.changesets.outputs.has_changesets == 'true'
