@@ -1,6 +1,6 @@
 {
   "name": "@outseta/n8n-nodes-outseta",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "n8n community node for the Outseta REST API",
   "keywords": [
     "n8n-community-node-package",
