@@ -1,5 +1,11 @@
 # @outseta/react
 
+## 0.2.0
+
+### Minor Changes
+
+- e7b81df: Add Outseta embed components: OutsetaProvider, useOutseta hook, AuthEmbed, ProfileEmbed, ProtectedRoute, PurchaseAddonButton, and LogoutButton
+
 ## 0.1.1
 
 ### Patch Changes

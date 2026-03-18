@@ -1,5 +1,11 @@
 # @outseta/node-sdk
 
+## 0.2.0
+
+### Minor Changes
+
+- e7b81df: Add server-side utilities: webhook signature verification, JWT verification (JWK Set and profile endpoint), and access token generation
+
 ## 0.1.1
 
 ### Patch Changes
