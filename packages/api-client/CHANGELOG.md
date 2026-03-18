@@ -1,5 +1,11 @@
 # @outseta/api-client
 
+## 0.2.0
+
+### Minor Changes
+
+- 00af9bd: Add Bearer token support to createClient — accepts either API key/secret or access token credentials
+
 ## 0.1.1
 
 ### Patch Changes
