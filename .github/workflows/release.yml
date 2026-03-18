@@ -16,9 +16,8 @@ jobs:
 
       - uses: actions/setup-node@v6
         with:
-          node-version: 22
+          node-version: 24
           cache: npm
-          registry-url: https://registry.npmjs.org
 
       - uses: oven-sh/setup-bun@v2
 
@@ -31,7 +30,7 @@ jobs:
       - name: Check for changesets
         id: changesets
         run: |
-          if npx changeset status 2>/dev/null; then
+          if find .changeset -name '*.md' ! -name 'README.md' | grep -q .; then
             echo "has_changesets=true" >> "$GITHUB_OUTPUT"
           else
             echo "has_changesets=false" >> "$GITHUB_OUTPUT"

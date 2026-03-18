@@ -3,6 +3,11 @@
   "version": "0.1.0",
   "description": "Node.js SDK for the Outseta API",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/outseta/outseta-js.git",
+    "directory": "packages/node-sdk"
+  },
   "type": "module",
   "main": "./dist/index.js",
   "types": "./src/index.ts",

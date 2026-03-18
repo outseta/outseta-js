@@ -3,6 +3,11 @@
   "version": "0.1.0",
   "description": "Generated API client for the Outseta REST API",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/outseta/outseta-js.git",
+    "directory": "packages/api-client"
+  },
   "type": "module",
   "main": "./dist/index.js",
   "types": "./src/index.ts",
