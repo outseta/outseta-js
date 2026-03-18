@@ -14,6 +14,9 @@ Nx monorepo for Outseta JavaScript/TypeScript packages. Auto-generated from the 
 
 ```bash
 npm install
+
+# Recommended for Windows users (symlinks are used in the repo)
+git config core.symlinks true
 ```
 
 ## Development
@@ -27,10 +30,17 @@ npm run build
 
 # Run tests
 npm run test
-
-# Check generated code is in sync with spec
-npm run generate:check
 ```
+
+## Contributing
+
+1. Create a branch and make your changes
+2. Run `npx changeset` — select affected packages, bump type (patch/minor/major), and write a summary (becomes the changelog entry)
+3. Commit the generated `.changeset/*.md` file with your code changes
+4. Open a PR — CI runs build + test
+5. Merge to main — the release workflow bumps versions, publishes to npm, and pushes version commits + tags
+
+Skip `npx changeset` for changes that don't warrant a release (CI config, docs, etc.).
 
 ## Architecture
 
@@ -58,6 +68,8 @@ const client = createClient({
 
 See [docs/architecture.md](docs/architecture.md) for the full design.
 
-## Versioning
+## CI/CD
 
-This repo uses [Changesets](https://github.com/changesets/changesets) for versioning and publishing.
+- **sync-spec** — daily cron fetches the upstream Outseta OpenAPI spec, regenerates clients, and opens a PR if changed
+- **ci** — runs on PRs: regenerates clients, builds, tests, then commits generated code back if changed
+- **release** — runs on push to main: bumps versions and publishes to npm via Changesets + npm trusted publishers
