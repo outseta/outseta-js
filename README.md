@@ -9,6 +9,7 @@ Nx monorepo for Outseta JavaScript/TypeScript packages. Auto-generated from the 
 | [`@outseta/api-client`](packages/api-client/) | Generated API client — typed fetch functions, Zod schemas, TypeScript types |
 | [`@outseta/node-sdk`](packages/node-sdk/) | Public Node.js SDK wrapping the API client |
 | [`@outseta/react`](packages/react/) | React Query hooks generated from the OpenAPI spec |
+| [`@outseta/n8n-nodes-outseta`](packages/n8n/) | n8n community node for the Outseta REST API |
 
 ## Setup
 
