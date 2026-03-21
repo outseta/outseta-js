@@ -219,11 +219,6 @@ For help regarding the Outseta API please email [support@outseta.com](mailto:sup
 
  * OpenAPI spec version: v1
  */
-export interface TagUidList {
-  /** @nullable */
-  TagUids?: string[] | null;
-}
-
 export type TranslationAllOf = {
   /**
    * @minLength 1
@@ -2499,7 +2494,14 @@ export type InvoiceAllOf = {
   AmountRefunded?: number;
   AmountSubtotal?: number;
   AmountTax?: number;
+  AmountTaxRefunded?: number;
   IsTaxable?: boolean;
+  /** @nullable */
+  StripePaymentTransactionIds?: string | null;
+  /** @nullable */
+  StripeRefundTransactionIds?: string | null;
+  /** @nullable */
+  StripeTaxRefundTransactionIds?: string | null;
 };
 
 export type Invoice = AbstractQcountBean & InvoiceAllOf;
@@ -4124,7 +4126,7 @@ export type BroadcastCampaignAllOf = {
 export type BroadcastCampaign = AbstractQcountBean & BroadcastCampaignAllOf;
 
 /**
- * `1` - Draft, `2` - Pending, `3` - Sent, `4` - Queuing, `5` - Queued, `6` - Sending, `7` - Error, `8` - WaitingToResume, `9` - QueuedEmails
+ * `1` - Draft, `2` - Pending, `3` - Sent, `4` - Queuing, `5` - Queued, `6` - Sending, `7` - Error, `8` - WaitingToResume, `9` - QueuedEmails, `10` - Archived
  */
 export type BroadcastCampaignStatus = typeof BroadcastCampaignStatus[keyof typeof BroadcastCampaignStatus];
 
@@ -4140,6 +4142,7 @@ export const BroadcastCampaignStatus = {
   Error: 7,
   WaitingToResume: 8,
   QueuedEmails: 9,
+  Archived: 10,
 } as const;
 
 /**
@@ -4152,6 +4155,11 @@ export interface SendTestEmailRequest2 {
   BroadcastCampaign?: SendTestEmailRequest2BroadcastCampaign;
   /** @nullable */
   AdditionalRecipients?: string[] | null;
+}
+
+export interface TagUidList {
+  /** @nullable */
+  TagUids?: string[] | null;
 }
 
 /**
@@ -4170,7 +4178,7 @@ export interface FlatfileImportData {
 }
 
 /**
- * `1` - UpdateSegmentBackGroundTask, `2` - ImportPeopleTask, `3` - ImportAccountTask, `4` - ImportDealTask, `5` - ImportEmailList, `6` - RescheduleDripCampaignTask, `7` - DeleteSegmentPeopleTask, `8` - StartDripCampaignTask, `9` - WebflowSyncTask, `10` - UpdatePersonSegmentsTask, `11` - ImportDiscountCouponTask, `12` - RemoveDiscordUserFromAllServersTask, `13` - SendInvoiceEmailTask, `14` - UpdateDiscordUserRolesTask, `15` - StripeBillingSyncTask, `16` - UpdateStripeDefaultSourceTask, `17` - DeleteScheduledCampaignMessagesTask, `18` - SendSpamCheckEmailTask, `19` - UpdateDiscordMemberRolesTask
+ * `1` - UpdateSegmentBackGroundTask, `2` - ImportPeopleTask, `3` - ImportAccountTask, `4` - ImportDealTask, `5` - ImportEmailList, `6` - RescheduleDripCampaignTask, `7` - DeleteSegmentPeopleTask, `8` - StartDripCampaignTask, `9` - WebflowSyncTask, `10` - UpdatePersonSegmentsTask, `11` - ImportDiscountCouponTask, `12` - RemoveDiscordUserFromAllServersTask, `13` - SendInvoiceEmailTask, `14` - UpdateDiscordUserRolesTask, `15` - StripeBillingSyncTask, `16` - UpdateStripeDefaultSourceTask, `17` - DeleteScheduledCampaignMessagesTask, `18` - SendSpamCheckEmailTask, `19` - UpdateDiscordMemberRolesTask, `20` - SendInvoicePaidEmailTask
  */
 export type BackGroundTaskType = typeof BackGroundTaskType[keyof typeof BackGroundTaskType];
 
@@ -4196,6 +4204,7 @@ export const BackGroundTaskType = {
   DeleteScheduledCampaignMessagesTask: 17,
   SendSpamCheckEmailTask: 18,
   UpdateDiscordMemberRolesTask: 19,
+  SendInvoicePaidEmailTask: 20,
 } as const;
 
 /**

@@ -252,5 +252,12 @@ export type InvoiceAllOf = {
   AmountRefunded?: number;
   AmountSubtotal?: number;
   AmountTax?: number;
+  AmountTaxRefunded?: number;
   IsTaxable?: boolean;
+  /** @nullable */
+  StripePaymentTransactionIds?: string | null;
+  /** @nullable */
+  StripeRefundTransactionIds?: string | null;
+  /** @nullable */
+  StripeTaxRefundTransactionIds?: string | null;
 };

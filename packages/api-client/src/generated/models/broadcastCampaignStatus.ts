@@ -221,7 +221,7 @@ For help regarding the Outseta API please email [support@outseta.com](mailto:sup
  */
 
 /**
- * `1` - Draft, `2` - Pending, `3` - Sent, `4` - Queuing, `5` - Queued, `6` - Sending, `7` - Error, `8` - WaitingToResume, `9` - QueuedEmails
+ * `1` - Draft, `2` - Pending, `3` - Sent, `4` - Queuing, `5` - Queued, `6` - Sending, `7` - Error, `8` - WaitingToResume, `9` - QueuedEmails, `10` - Archived
  */
 export type BroadcastCampaignStatus = typeof BroadcastCampaignStatus[keyof typeof BroadcastCampaignStatus];
 
@@ -237,4 +237,5 @@ export const BroadcastCampaignStatus = {
   Error: 7,
   WaitingToResume: 8,
   QueuedEmails: 9,
+  Archived: 10,
 } as const;
