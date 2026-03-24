@@ -16,7 +16,7 @@ export default defineConfig({
       },
     },
   },
-outsetaReactQuery: {
+  outsetaReactQuery: {
     input: "./openapi.json",
     output: {
       target: "./packages/react/src/generated",
