@@ -4843,6 +4843,39 @@ q?: string | null;
 tagUid?: string | null;
 };
 
+export type CaseAddCaseParams = {
+/**
+ * Indicates whether an automatic message is sent that the ticket has been created.
+ * @nullable
+ */
+sendautoresponder?: string | null;
+};
+
+/**
+ * @nullable
+ */
+export type CaseAddCaseBody = Case | null;
+
+export type ArticleGetAllArticlesParams = {
+/**
+ * @nullable
+ */
+q?: string | null;
+};
+
+export type EmailListGetAllSubscriptionsParams = {
+/**
+ * Matches person's first name or last name or email address.
+ * @nullable
+ */
+q?: string | null;
+};
+
+/**
+ * @nullable
+ */
+export type EmailListAddSubscriptionBody = EmailListPerson | null;
+
 export type DealGetAllDealsParams = {
 /**
  * Uid of the owner of the deal, or -1 for unassigned deals and -2 for all assigned deals.
