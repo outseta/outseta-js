@@ -220,48 +220,42 @@ For help regarding the Outseta API please email [support@outseta.com](mailto:sup
  * OpenAPI spec version: v1
  */
 import type {
-  Article,
-  ArticleGetAllArticlesParams,
-  Case,
-  CaseAddCaseBody,
-  CaseAddCaseParams,
-  CaseGetAllCasesParams,
-  CaseHistory,
-  Category
+  EmailListAddSubscriptionBody,
+  EmailListGetAllSubscriptionsParams,
+  EmailListPerson
 } from '.././models';
 
 import { customFetch } from '../../client';
 
 /**
- * @summary Returns all cases, optionally filtered by search string, tag, and/or assignment.
-Assigned cases can be filtered by passing in the AssignedToPersonClientIdentifier,
-which is the Uid of the person the case is assigned to.
+ * @summary Retrieves all the people subscribing to an email list.
  */
-export type caseGetAllCasesResponse200 = {
-  data: Case[]
+export type emailListGetAllSubscriptionsResponse200 = {
+  data: EmailListPerson[]
   status: 200
 }
 
-export type caseGetAllCasesResponse400 = {
+export type emailListGetAllSubscriptionsResponse400 = {
   data: void
   status: 400
 }
 
-export type caseGetAllCasesResponse401 = {
+export type emailListGetAllSubscriptionsResponse401 = {
   data: void
   status: 401
 }
     
-export type caseGetAllCasesResponseSuccess = (caseGetAllCasesResponse200) & {
+export type emailListGetAllSubscriptionsResponseSuccess = (emailListGetAllSubscriptionsResponse200) & {
   headers: Headers;
 };
-export type caseGetAllCasesResponseError = (caseGetAllCasesResponse400 | caseGetAllCasesResponse401) & {
+export type emailListGetAllSubscriptionsResponseError = (emailListGetAllSubscriptionsResponse400 | emailListGetAllSubscriptionsResponse401) & {
   headers: Headers;
 };
 
-export type caseGetAllCasesResponse = (caseGetAllCasesResponseSuccess | caseGetAllCasesResponseError)
+export type emailListGetAllSubscriptionsResponse = (emailListGetAllSubscriptionsResponseSuccess | emailListGetAllSubscriptionsResponseError)
 
-export const getCaseGetAllCasesUrl = (params?: CaseGetAllCasesParams,) => {
+export const getEmailListGetAllSubscriptionsUrl = (emailListUid: string | null,
+    params?: EmailListGetAllSubscriptionsParams,) => {
   const normalizedParams = new URLSearchParams();
 
   Object.entries(params || {}).forEach(([key, value]) => {
@@ -273,12 +267,13 @@ export const getCaseGetAllCasesUrl = (params?: CaseGetAllCasesParams,) => {
 
   const stringifiedParams = normalizedParams.toString();
 
-  return stringifiedParams.length > 0 ? `/api/v1/support/cases?${stringifiedParams}` : `/api/v1/support/cases`
+  return stringifiedParams.length > 0 ? `/api/v1/email/lists/${emailListUid}/subscriptions?${stringifiedParams}` : `/api/v1/email/lists/${emailListUid}/subscriptions`
 }
 
-export const caseGetAllCases = async (params?: CaseGetAllCasesParams, options?: RequestInit): Promise<caseGetAllCasesResponse> => {
+export const emailListGetAllSubscriptions = async (emailListUid: string | null,
+    params?: EmailListGetAllSubscriptionsParams, options?: RequestInit): Promise<emailListGetAllSubscriptionsResponse> => {
   
-  return customFetch<caseGetAllCasesResponse>(getCaseGetAllCasesUrl(params),
+  return customFetch<emailListGetAllSubscriptionsResponse>(getEmailListGetAllSubscriptionsUrl(emailListUid,params),
   {      
     ...options,
     method: 'GET'
@@ -289,333 +284,109 @@ export const caseGetAllCases = async (params?: CaseGetAllCasesParams, options?: 
 
 
 /**
- * @summary Adds a case into the support system.
+ * @summary Subscribe a person to an email list. To subscribe a new person, pass a Person object with an
+Email address. To subscribe an existing person, pass a Person object with a Uid. The
+SendWelcomeEmail property determines if the person is sent a welcome email and defaults to false.
  */
-export type caseAddCaseResponse200 = {
-  data: Case
+export type emailListAddSubscriptionResponse200 = {
+  data: EmailListPerson
   status: 200
 }
 
-export type caseAddCaseResponse401 = {
+export type emailListAddSubscriptionResponse400 = {
+  data: void
+  status: 400
+}
+
+export type emailListAddSubscriptionResponse401 = {
   data: void
   status: 401
 }
+
+export type emailListAddSubscriptionResponse404 = {
+  data: void
+  status: 404
+}
     
-export type caseAddCaseResponseSuccess = (caseAddCaseResponse200) & {
+export type emailListAddSubscriptionResponseSuccess = (emailListAddSubscriptionResponse200) & {
   headers: Headers;
 };
-export type caseAddCaseResponseError = (caseAddCaseResponse401) & {
+export type emailListAddSubscriptionResponseError = (emailListAddSubscriptionResponse400 | emailListAddSubscriptionResponse401 | emailListAddSubscriptionResponse404) & {
   headers: Headers;
 };
 
-export type caseAddCaseResponse = (caseAddCaseResponseSuccess | caseAddCaseResponseError)
+export type emailListAddSubscriptionResponse = (emailListAddSubscriptionResponseSuccess | emailListAddSubscriptionResponseError)
 
-export const getCaseAddCaseUrl = (params?: CaseAddCaseParams,) => {
-  const normalizedParams = new URLSearchParams();
+export const getEmailListAddSubscriptionUrl = (emailListUid: string | null,) => {
 
-  Object.entries(params || {}).forEach(([key, value]) => {
-    
-    if (value !== undefined) {
-      normalizedParams.append(key, value === null ? 'null' : value.toString())
-    }
-  });
 
-  const stringifiedParams = normalizedParams.toString();
+  
 
-  return stringifiedParams.length > 0 ? `/api/v1/support/cases?${stringifiedParams}` : `/api/v1/support/cases`
+  return `/api/v1/email/lists/${emailListUid}/subscriptions`
 }
 
-export const caseAddCase = async (caseAddCaseBody: CaseAddCaseBody,
-    params?: CaseAddCaseParams, options?: RequestInit): Promise<caseAddCaseResponse> => {
+export const emailListAddSubscription = async (emailListUid: string | null,
+    emailListAddSubscriptionBody: EmailListAddSubscriptionBody, options?: RequestInit): Promise<emailListAddSubscriptionResponse> => {
   
-  return customFetch<caseAddCaseResponse>(getCaseAddCaseUrl(params),
+  return customFetch<emailListAddSubscriptionResponse>(getEmailListAddSubscriptionUrl(emailListUid),
   {      
     ...options,
     method: 'POST',
     headers: { 'Content-Type': 'application/json', ...options?.headers },
     body: JSON.stringify(
-      caseAddCaseBody,)
+      emailListAddSubscriptionBody,)
   }
 );}
 
 
 /**
- * @summary Retrieve a specific case
+ * @summary Remove a subscriber from an email list.
  */
-export type caseGetCaseResponse200 = {
-  data: Case
-  status: 200
-}
-
-export type caseGetCaseResponse400 = {
-  data: void
-  status: 400
-}
-
-export type caseGetCaseResponse401 = {
-  data: void
-  status: 401
-}
-
-export type caseGetCaseResponse404 = {
-  data: void
-  status: 404
-}
-    
-export type caseGetCaseResponseSuccess = (caseGetCaseResponse200) & {
-  headers: Headers;
-};
-export type caseGetCaseResponseError = (caseGetCaseResponse400 | caseGetCaseResponse401 | caseGetCaseResponse404) & {
-  headers: Headers;
-};
-
-export type caseGetCaseResponse = (caseGetCaseResponseSuccess | caseGetCaseResponseError)
-
-export const getCaseGetCaseUrl = (caseUid: string | null,) => {
-
-
-  
-
-  return `/api/v1/support/cases/${caseUid}`
-}
-
-export const caseGetCase = async (caseUid: string | null, options?: RequestInit): Promise<caseGetCaseResponse> => {
-  
-  return customFetch<caseGetCaseResponse>(getCaseGetCaseUrl(caseUid),
-  {      
-    ...options,
-    method: 'GET'
-    
-    
-  }
-);}
-
-
-/**
- * @summary Adds a reply from an agent to a support case.
- */
-export type caseAddReplyResponse200 = {
+export type emailListDeleteSubscriptionResponse200 = {
   data: Blob
   status: 200
 }
 
-export type caseAddReplyResponse400 = {
+export type emailListDeleteSubscriptionResponse400 = {
   data: void
   status: 400
 }
 
-export type caseAddReplyResponse401 = {
+export type emailListDeleteSubscriptionResponse401 = {
   data: void
   status: 401
 }
 
-export type caseAddReplyResponse404 = {
+export type emailListDeleteSubscriptionResponse404 = {
   data: void
   status: 404
 }
     
-export type caseAddReplyResponseSuccess = (caseAddReplyResponse200) & {
+export type emailListDeleteSubscriptionResponseSuccess = (emailListDeleteSubscriptionResponse200) & {
   headers: Headers;
 };
-export type caseAddReplyResponseError = (caseAddReplyResponse400 | caseAddReplyResponse401 | caseAddReplyResponse404) & {
+export type emailListDeleteSubscriptionResponseError = (emailListDeleteSubscriptionResponse400 | emailListDeleteSubscriptionResponse401 | emailListDeleteSubscriptionResponse404) & {
   headers: Headers;
 };
 
-export type caseAddReplyResponse = (caseAddReplyResponseSuccess | caseAddReplyResponseError)
+export type emailListDeleteSubscriptionResponse = (emailListDeleteSubscriptionResponseSuccess | emailListDeleteSubscriptionResponseError)
 
-export const getCaseAddReplyUrl = (caseUid: string | null,) => {
+export const getEmailListDeleteSubscriptionUrl = (emailListUid: string | null,
+    subscriptionUid: string | null,) => {
 
 
   
 
-  return `/api/v1/support/cases/${caseUid}/replies`
+  return `/api/v1/email/lists/${emailListUid}/subscriptions/${subscriptionUid}`
 }
 
-export const caseAddReply = async (caseUid: string | null, options?: RequestInit): Promise<caseAddReplyResponse> => {
+export const emailListDeleteSubscription = async (emailListUid: string | null,
+    subscriptionUid: string | null, options?: RequestInit): Promise<emailListDeleteSubscriptionResponse> => {
   
-  return customFetch<caseAddReplyResponse>(getCaseAddReplyUrl(caseUid),
+  return customFetch<emailListDeleteSubscriptionResponse>(getEmailListDeleteSubscriptionUrl(emailListUid,subscriptionUid),
   {      
     ...options,
-    method: 'POST'
-    
-    
-  }
-);}
-
-
-/**
- * @summary Adds a response to the case from the person that opened the case.
- */
-export type caseAddClientResponseResponse200 = {
-  data: CaseHistory
-  status: 200
-}
-
-export type caseAddClientResponseResponse400 = {
-  data: void
-  status: 400
-}
-
-export type caseAddClientResponseResponse401 = {
-  data: void
-  status: 401
-}
-
-export type caseAddClientResponseResponse404 = {
-  data: void
-  status: 404
-}
-    
-export type caseAddClientResponseResponseSuccess = (caseAddClientResponseResponse200) & {
-  headers: Headers;
-};
-export type caseAddClientResponseResponseError = (caseAddClientResponseResponse400 | caseAddClientResponseResponse401 | caseAddClientResponseResponse404) & {
-  headers: Headers;
-};
-
-export type caseAddClientResponseResponse = (caseAddClientResponseResponseSuccess | caseAddClientResponseResponseError)
-
-export const getCaseAddClientResponseUrl = (caseUid: string | null,
-    comment: string | null,) => {
-
-
-  
-
-  return `/api/v1/support/cases/${caseUid}/clientresponse/${comment}`
-}
-
-export const caseAddClientResponse = async (caseUid: string | null,
-    comment: string | null, options?: RequestInit): Promise<caseAddClientResponseResponse> => {
-  
-  return customFetch<caseAddClientResponseResponse>(getCaseAddClientResponseUrl(caseUid,comment),
-  {      
-    ...options,
-    method: 'POST'
-    
-    
-  }
-);}
-
-
-/**
- * @summary Retrieves all knowledge base articles.
-Matches on title or body of the article"
- */
-export type articleGetAllArticlesResponse200 = {
-  data: Article[]
-  status: 200
-}
-    
-export type articleGetAllArticlesResponseSuccess = (articleGetAllArticlesResponse200) & {
-  headers: Headers;
-};
-;
-
-export type articleGetAllArticlesResponse = (articleGetAllArticlesResponseSuccess)
-
-export const getArticleGetAllArticlesUrl = (params?: ArticleGetAllArticlesParams,) => {
-  const normalizedParams = new URLSearchParams();
-
-  Object.entries(params || {}).forEach(([key, value]) => {
-    
-    if (value !== undefined) {
-      normalizedParams.append(key, value === null ? 'null' : value.toString())
-    }
-  });
-
-  const stringifiedParams = normalizedParams.toString();
-
-  return stringifiedParams.length > 0 ? `/api/v1/support/articles?${stringifiedParams}` : `/api/v1/support/articles`
-}
-
-export const articleGetAllArticles = async (params?: ArticleGetAllArticlesParams, options?: RequestInit): Promise<articleGetAllArticlesResponse> => {
-  
-  return customFetch<articleGetAllArticlesResponse>(getArticleGetAllArticlesUrl(params),
-  {      
-    ...options,
-    method: 'GET'
-    
-    
-  }
-);}
-
-
-/**
- * @summary Retrieves a knowledge base article.
- */
-export type articleGetArticleResponse200 = {
-  data: Article
-  status: 200
-}
-
-export type articleGetArticleResponse400 = {
-  data: void
-  status: 400
-}
-
-export type articleGetArticleResponse404 = {
-  data: void
-  status: 404
-}
-    
-export type articleGetArticleResponseSuccess = (articleGetArticleResponse200) & {
-  headers: Headers;
-};
-export type articleGetArticleResponseError = (articleGetArticleResponse400 | articleGetArticleResponse404) & {
-  headers: Headers;
-};
-
-export type articleGetArticleResponse = (articleGetArticleResponseSuccess | articleGetArticleResponseError)
-
-export const getArticleGetArticleUrl = (articleUid: string | null,) => {
-
-
-  
-
-  return `/api/v1/support/articles/${articleUid}`
-}
-
-export const articleGetArticle = async (articleUid: string | null, options?: RequestInit): Promise<articleGetArticleResponse> => {
-  
-  return customFetch<articleGetArticleResponse>(getArticleGetArticleUrl(articleUid),
-  {      
-    ...options,
-    method: 'GET'
-    
-    
-  }
-);}
-
-
-/**
- * @summary Retrieves all knowledge base categories.
- */
-export type categoryGetAllCategoriesResponse200 = {
-  data: Category[]
-  status: 200
-}
-    
-export type categoryGetAllCategoriesResponseSuccess = (categoryGetAllCategoriesResponse200) & {
-  headers: Headers;
-};
-;
-
-export type categoryGetAllCategoriesResponse = (categoryGetAllCategoriesResponseSuccess)
-
-export const getCategoryGetAllCategoriesUrl = () => {
-
-
-  
-
-  return `/api/v1/support/categories`
-}
-
-export const categoryGetAllCategories = async ( options?: RequestInit): Promise<categoryGetAllCategoriesResponse> => {
-  
-  return customFetch<categoryGetAllCategoriesResponse>(getCategoryGetAllCategoriesUrl(),
-  {      
-    ...options,
-    method: 'GET'
+    method: 'DELETE'
     
     
   }
