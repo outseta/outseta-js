@@ -27,7 +27,7 @@
     ]
   },
   "scripts": {
-    "build": "bun build src/credentials/OutsetaApi.credentials.ts --outdir dist/credentials --format cjs --target node --external n8n-workflow && bun build src/nodes/Outseta/Outseta.node.ts --outdir dist/nodes/Outseta --format cjs --target node --external n8n-workflow && cp src/nodes/Outseta/outseta.svg dist/nodes/Outseta/",
+    "build": "rimraf dist && bun build src/credentials/OutsetaApi.credentials.ts --outdir dist/credentials --format cjs --target node --external n8n-workflow && bun build src/nodes/Outseta/Outseta.node.ts --outdir dist/nodes/Outseta --format cjs --target node --external n8n-workflow && node -e \"require('fs').cpSync('src/nodes/Outseta/outseta.svg','dist/nodes/Outseta/outseta.svg')\"",
     "typecheck": "tsc --noEmit",
     "lint": "eslint src"
   },
