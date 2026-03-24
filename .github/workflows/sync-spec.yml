@@ -26,7 +26,7 @@ jobs:
         run: npm ci
 
       - name: Fetch spec and regenerate
-        run: npm run generate
+        run: bun run generate
 
       - name: Check for changes
         id: diff
@@ -39,11 +39,11 @@ jobs:
 
       - name: Build
         if: steps.diff.outputs.changed == 'true'
-        run: npm run build
+        run: bun run build
 
       - name: Test
         if: steps.diff.outputs.changed == 'true'
-        run: npm run test
+        run: bun run test
 
       - name: Create PR
         if: steps.diff.outputs.changed == 'true'

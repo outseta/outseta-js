@@ -7,7 +7,7 @@
   ],
   "scripts": {
     "fetch-spec": "curl -sf https://go.outseta.com/swagger/v1/swagger.json -o openapi.json",
-    "generate": "npm run fetch-spec && node scripts/fix-spec.mjs && orval && node scripts/post-generate.mjs",
+    "generate": "bun run fetch-spec && bun scripts/fix-spec.mjs && orval && bun scripts/post-generate.mjs",
     "build": "nx run-many -t build",
     "test": "nx run-many -t test",
     "lint": "nx run-many -t lint",
