@@ -16,14 +16,7 @@ export default defineConfig({
       },
     },
   },
-  outsetaZod: {
-    input: "./openapi.json",
-    output: {
-      target: "./packages/api-client/src/generated/zod.ts",
-      client: "zod",
-    },
-  },
-  outsetaReactQuery: {
+outsetaReactQuery: {
     input: "./openapi.json",
     output: {
       target: "./packages/react/src/generated",
