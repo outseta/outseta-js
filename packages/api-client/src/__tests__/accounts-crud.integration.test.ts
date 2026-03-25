@@ -1,5 +1,14 @@
 import { describe, expect, test, afterAll } from "bun:test";
-import { hasCredentials, getTestClient } from "./setup.js";
+import { hasCredentials, getTestClient, opts, type PaginatedResponse } from "./setup.js";
+import type { Account, AccountAddAccountBody, AccountUpdateAccountBody, Person } from "../generated/models/index.js";
+import {
+  accountAddAccount,
+  accountGetAccount,
+  accountUpdateAccount,
+  accountDeleteAccount,
+  personGetAllPeople,
+  personDeletePerson,
+} from "../generated/crm/crm.js";
 
 const emailsToCleanup: string[] = [];
 const accountUidsToCleanup: string[] = [];
@@ -10,17 +19,17 @@ describe.skipIf(!hasCredentials)("Accounts CRUD (live)", () => {
 
     // Delete any accounts that weren't cleaned up by the test
     for (const uid of accountUidsToCleanup) {
-      await client(`crm/accounts/${uid}`, { method: "DELETE", throwHttpErrors: false });
+      await accountDeleteAccount(uid, opts(client));
     }
 
-    // Delete orphaned people by email (API doesn't embed Person in account responses)
+    // Delete orphaned people by email
     if (emailsToCleanup.length > 0) {
-      const res = await client("crm/people", { throwHttpErrors: false });
-      if (res.ok) {
-        const body = await res.json<{ items: Array<{ Uid: string; Email: string }> }>();
+      const res = await personGetAllPeople(undefined, opts(client));
+      if (res.status === 200) {
+        const body = res.data as unknown as PaginatedResponse<Person>;
         for (const person of body.items) {
-          if (emailsToCleanup.includes(person.Email)) {
-            await client(`crm/people/${person.Uid}`, { method: "DELETE", throwHttpErrors: false });
+          if (person.Email && emailsToCleanup.includes(person.Email)) {
+            await personDeletePerson(person.Uid!, opts(client));
           }
         }
       }
@@ -33,9 +42,8 @@ describe.skipIf(!hasCredentials)("Accounts CRUD (live)", () => {
     emailsToCleanup.push(email);
 
     // CREATE
-    const createRes = await client("crm/accounts", {
-      method: "POST",
-      json: {
+    const createRes = await accountAddAccount(
+      {
         Name: "Lifecycle Test Corp",
         PersonAccount: [
           {
@@ -43,55 +51,49 @@ describe.skipIf(!hasCredentials)("Accounts CRUD (live)", () => {
             IsPrimary: true,
           },
         ],
-      },
-      throwHttpErrors: false,
-    });
+      } as AccountAddAccountBody,
+      undefined,
+      opts(client),
+    );
     expect(createRes.status).toBe(200);
-    const created = await createRes.json<{ Uid: string; Name: string }>();
+    const created = createRes.data as unknown as Account;
     expect(created.Uid).toBeDefined();
     expect(created.Name).toBe("Lifecycle Test Corp");
-    accountUidsToCleanup.push(created.Uid);
+    accountUidsToCleanup.push(created.Uid!);
 
     // READ
-    const getRes = await client(`crm/accounts/${created.Uid}`, {
-      throwHttpErrors: false,
-    });
+    const getRes = await accountGetAccount(created.Uid!, opts(client));
     expect(getRes.status).toBe(200);
-    const fetched = await getRes.json<{ Uid: string; Name: string }>();
+    const fetched = getRes.data as unknown as Account;
     expect(fetched.Uid).toBe(created.Uid);
 
     // UPDATE
-    const updateRes = await client(`crm/accounts/${created.Uid}`, {
-      method: "PUT",
-      json: { Name: "Lifecycle Test Corp (Updated)" },
-      throwHttpErrors: false,
-    });
+    const updateRes = await accountUpdateAccount(
+      created.Uid!,
+      { Name: "Lifecycle Test Corp (Updated)" } as AccountUpdateAccountBody,
+      opts(client),
+    );
     expect(updateRes.status).toBe(200);
-    const updated = await updateRes.json<{ Uid: string; Name: string }>();
+    const updated = updateRes.data as unknown as Account;
     expect(updated.Name).toBe("Lifecycle Test Corp (Updated)");
 
     // DELETE account
-    const deleteRes = await client(`crm/accounts/${created.Uid}`, {
-      method: "DELETE",
-      throwHttpErrors: false,
-    });
+    const deleteRes = await accountDeleteAccount(created.Uid!, opts(client));
     expect(deleteRes.status).toBe(200);
 
     // Verify deleted — should 404
-    const verifyRes = await client(`crm/accounts/${created.Uid}`, {
-      throwHttpErrors: false,
-    });
+    const verifyRes = await accountGetAccount(created.Uid!, opts(client));
     expect(verifyRes.status).toBe(404);
   });
 
   test("create account without required person returns error", async () => {
     const client = getTestClient();
 
-    const res = await client("crm/accounts", {
-      method: "POST",
-      json: { Name: "No Person Corp" },
-      throwHttpErrors: false,
-    });
-    expect(res.ok).toBe(false);
+    const res = await accountAddAccount(
+      { Name: "No Person Corp" } as AccountAddAccountBody,
+      undefined,
+      opts(client),
+    );
+    expect(res.status).not.toBe(200);
   });
 });

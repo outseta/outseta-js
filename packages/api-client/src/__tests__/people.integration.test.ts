@@ -1,5 +1,13 @@
 import { describe, expect, test, afterAll } from "bun:test";
-import { hasCredentials, getTestClient } from "./setup.js";
+import { hasCredentials, getTestClient, opts, type PaginatedResponse } from "./setup.js";
+import type { Person, PersonAddPersonBody, PersonUpdatePersonBody } from "../generated/models/index.js";
+import {
+  personGetAllPeople,
+  personAddPerson,
+  personGetPerson,
+  personUpdatePerson,
+  personDeletePerson,
+} from "../generated/crm/crm.js";
 
 const peopleToCleanup: string[] = [];
 
@@ -7,16 +15,16 @@ describe.skipIf(!hasCredentials)("People (live)", () => {
   afterAll(async () => {
     const client = getTestClient();
     for (const uid of peopleToCleanup) {
-      await client(`crm/people/${uid}`, { method: "DELETE", throwHttpErrors: false });
+      await personDeletePerson(uid, opts(client));
     }
   });
 
   test("list all people", async () => {
     const client = getTestClient();
-    const res = await client("crm/people", { throwHttpErrors: false });
+    const res = await personGetAllPeople(undefined, opts(client));
 
     expect(res.status).toBe(200);
-    const body = await res.json<{ metadata: { total: number }; items: unknown[] }>();
+    const body = res.data as unknown as PaginatedResponse<Person>;
     expect(body.metadata).toBeDefined();
     expect(body.items).toBeInstanceOf(Array);
     expect(body.metadata.total).toBeGreaterThan(0);
@@ -27,52 +35,40 @@ describe.skipIf(!hasCredentials)("People (live)", () => {
     const email = `person-crud-${Date.now()}@test.com`;
 
     // CREATE
-    const createRes = await client("crm/people", {
-      method: "POST",
-      json: {
-        Email: email,
-        FirstName: "CrudTest",
-        LastName: "Person",
-      },
-      throwHttpErrors: false,
-    });
+    const createRes = await personAddPerson(
+      { Email: email, FirstName: "CrudTest", LastName: "Person" } as PersonAddPersonBody,
+      opts(client),
+    );
     expect(createRes.status).toBe(200);
-    const created = await createRes.json<{ Uid: string; Email: string; FirstName: string }>();
+    const created = createRes.data as unknown as Person;
     expect(created.Uid).toBeDefined();
     expect(created.Email).toBe(email);
-    peopleToCleanup.push(created.Uid);
+    peopleToCleanup.push(created.Uid!);
 
     // READ
-    const getRes = await client(`crm/people/${created.Uid}`, {
-      throwHttpErrors: false,
-    });
+    const getRes = await personGetPerson(created.Uid!, opts(client));
     expect(getRes.status).toBe(200);
-    const fetched = await getRes.json<{ Uid: string; Email: string }>();
+    const fetched = getRes.data as unknown as Person;
     expect(fetched.Uid).toBe(created.Uid);
 
     // UPDATE
-    const updateRes = await client(`crm/people/${created.Uid}`, {
-      method: "PUT",
-      json: { FirstName: "UpdatedFirst" },
-      throwHttpErrors: false,
-    });
+    const updateRes = await personUpdatePerson(
+      created.Uid!,
+      { FirstName: "UpdatedFirst" } as PersonUpdatePersonBody,
+      opts(client),
+    );
     expect(updateRes.status).toBe(200);
-    const updated = await updateRes.json<{ FirstName: string }>();
+    const updated = updateRes.data as unknown as Person;
     expect(updated.FirstName).toBe("UpdatedFirst");
 
     // DELETE
-    const deleteRes = await client(`crm/people/${created.Uid}`, {
-      method: "DELETE",
-      throwHttpErrors: false,
-    });
+    const deleteRes = await personDeletePerson(created.Uid!, opts(client));
     expect(deleteRes.status).toBe(200);
   });
 
   test("get non-existent person returns 404", async () => {
     const client = getTestClient();
-    const res = await client("crm/people/nonexistent-uid-000", {
-      throwHttpErrors: false,
-    });
+    const res = await personGetPerson("nonexistent-uid-000", opts(client));
     expect(res.status).toBe(404);
   });
 });

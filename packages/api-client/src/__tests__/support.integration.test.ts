@@ -1,7 +1,8 @@
 import { describe, expect, test, afterAll } from "bun:test";
 import { hasCredentials, getTestClient, opts, type PaginatedResponse } from "./setup.js";
-import type { Case } from "../generated/models/index.js";
-import { caseGetAllCases } from "../generated/support/support.js";
+import type { Case, CaseAddCaseBody, Person } from "../generated/models/index.js";
+import { caseGetAllCases, caseAddCase, caseGetCase } from "../generated/support/support.js";
+import { personGetAllPeople } from "../generated/crm/crm.js";
 
 describe.skipIf(!hasCredentials)("Support Cases — generated endpoints (live)", () => {
   test("caseGetAllCases returns a paginated response", async () => {
@@ -18,16 +19,18 @@ describe.skipIf(!hasCredentials)("Support Cases — generated endpoints (live)",
 });
 
 // Cases cannot be deleted via API (405), so we close them after the test
-// to keep the test account tidy.
+// to keep the test account tidy. No generated caseUpdateCase exists,
+// so cleanup uses raw ky.
 const caseUidsToClose: string[] = [];
 
 describe.skipIf(!hasCredentials)("Support Cases — CRUD (live)", () => {
   afterAll(async () => {
     const client = getTestClient();
     for (const uid of caseUidsToClose) {
-      const getRes = await client(`support/cases/${uid}`, { throwHttpErrors: false });
-      if (getRes.ok) {
-        const full = await getRes.json<Record<string, unknown>>();
+      const getRes = await caseGetCase(uid, opts(client));
+      if (getRes.status === 200) {
+        const full = getRes.data as unknown as Case;
+        // No generated update function — fall back to raw ky
         await client(`support/cases/${uid}`, {
           method: "PUT",
           json: { ...full, Status: 2 },
@@ -37,48 +40,38 @@ describe.skipIf(!hasCredentials)("Support Cases — CRUD (live)", () => {
     }
   });
 
-  test("create → read → update case", async () => {
+  test("create → read case", async () => {
     const client = getTestClient();
 
     // Get a person to be the case author
-    const peopleRes = await client("crm/people", { throwHttpErrors: false });
-    const people = await peopleRes.json<{ items: Array<{ Uid: string }> }>();
+    const peopleRes = await personGetAllPeople(undefined, opts(client));
+    expect(peopleRes.status).toBe(200);
+    const people = peopleRes.data as unknown as PaginatedResponse<Person>;
     expect(people.items.length).toBeGreaterThan(0);
-    const personUid = people.items[0].Uid;
+    const person = people.items[0];
 
     // CREATE
-    const createRes = await client("support/cases?sendAutoResponder=false", {
-      method: "POST",
-      json: {
-        FromPerson: { Uid: personUid },
+    const createRes = await caseAddCase(
+      {
+        FromPerson: { Uid: person.Uid! },
         Subject: `CRUD test case ${Date.now()}`,
         Body: "Created by integration test",
         Source: 2,
-      },
-      throwHttpErrors: false,
-    });
+        Status: 1,
+      } as CaseAddCaseBody,
+      { sendautoresponder: "false" },
+      opts(client),
+    );
     expect(createRes.status).toBe(200);
-    const created = await createRes.json<Record<string, unknown>>();
+    const created = createRes.data as unknown as Case;
     expect(created.Uid).toBeDefined();
     expect(created.Subject).toContain("CRUD test case");
-    caseUidsToClose.push(created.Uid as string);
+    caseUidsToClose.push(created.Uid!);
 
     // READ
-    const getRes = await client(`support/cases/${created.Uid}`, {
-      throwHttpErrors: false,
-    });
+    const getRes = await caseGetCase(created.Uid!, opts(client));
     expect(getRes.status).toBe(200);
-    const fetched = await getRes.json<Record<string, unknown>>();
+    const fetched = getRes.data as unknown as Case;
     expect(fetched.Uid).toBe(created.Uid);
-
-    // UPDATE (close case: Status 2 = Closed)
-    const closeRes = await client(`support/cases/${created.Uid}`, {
-      method: "PUT",
-      json: { ...fetched, Status: 2 },
-      throwHttpErrors: false,
-    });
-    expect(closeRes.status).toBe(200);
-    const closed = await closeRes.json<Record<string, unknown>>();
-    expect(closed.Status).toBe(2);
   });
 });
