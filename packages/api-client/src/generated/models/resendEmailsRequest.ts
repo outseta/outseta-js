@@ -219,32 +219,8 @@ For help regarding the Outseta API please email [support@outseta.com](mailto:sup
 
  * OpenAPI spec version: v1
  */
-import type { BroadcastCampaignAllOfCampaign } from './broadcastCampaignAllOfCampaign';
-import type { BroadcastCampaignAllOfMessage } from './broadcastCampaignAllOfMessage';
-import type { BroadcastCampaignStatus } from './broadcastCampaignStatus';
-import type { Tag } from './tag';
 
-export type BroadcastCampaignAllOf = {
+export interface ResendEmailsRequest {
   /** @nullable */
-  SendDateTime?: string | null;
-  /** @nullable */
-  NextRunDateTime?: string | null;
-  /** @nullable */
-  Campaign?: BroadcastCampaignAllOfCampaign;
-  /** @nullable */
-  Message?: BroadcastCampaignAllOfMessage;
-  /** @nullable */
-  RecipientData?: string | null;
-  /** @nullable */
-  EmailListUids?: string[] | null;
-  /** @nullable */
-  SegmentUids?: string[] | null;
-  Status?: BroadcastCampaignStatus;
-  /**
-   * @maxLength 500
-   * @nullable
-   */
-  ErrorMessage?: string | null;
-  /** @nullable */
-  Tags?: Tag[] | null;
-};
+  EmailLogUids?: string[] | null;
+}

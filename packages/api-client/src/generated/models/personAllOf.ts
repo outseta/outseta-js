@@ -223,8 +223,8 @@ import type { PersonAllOfMailingAddress } from './personAllOfMailingAddress';
 import type { PersonAccount } from './personAccount';
 import type { DealPerson } from './dealPerson';
 import type { LeadFormSubmission } from './leadFormSubmission';
-import type { EmailListPerson } from './emailListPerson';
 import type { PersonAllOfAccount } from './personAllOfAccount';
+import type { EmailListPerson } from './emailListPerson';
 import type { OAuthService } from './oAuthService';
 import type { PersonAllOfDiscordUser } from './personAllOfDiscordUser';
 
@@ -318,11 +318,11 @@ export type PersonAllOf = {
   /** @nullable */
   LeadFormSubmissions?: LeadFormSubmission[] | null;
   /** @nullable */
-  EmailListPerson?: EmailListPerson[] | null;
-  /** @nullable */
   Account?: PersonAllOfAccount;
   /** @nullable */
   AccountUids?: string | null;
+  /** @nullable */
+  EmailListPerson?: EmailListPerson[] | null;
   /** @nullable */
   FullName?: string | null;
   HasLoggedIn?: boolean;

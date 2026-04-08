@@ -239,6 +239,8 @@ export type StripeInvoiceAllOf = {
   Currency?: string | null;
   /** @nullable */
   Description?: string | null;
+  /** @nullable */
+  FinalizedAt?: string | null;
   /**
    * @maxLength 500
    * @nullable

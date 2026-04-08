@@ -570,11 +570,11 @@ export type PersonAllOf = {
   /** @nullable */
   LeadFormSubmissions?: LeadFormSubmission[] | null;
   /** @nullable */
-  EmailListPerson?: EmailListPerson[] | null;
-  /** @nullable */
   Account?: PersonAllOfAccount;
   /** @nullable */
   AccountUids?: string | null;
+  /** @nullable */
+  EmailListPerson?: EmailListPerson[] | null;
   /** @nullable */
   FullName?: string | null;
   HasLoggedIn?: boolean;
@@ -952,6 +952,8 @@ export type StripeInvoiceAllOf = {
   Currency?: string | null;
   /** @nullable */
   Description?: string | null;
+  /** @nullable */
+  FinalizedAt?: string | null;
   /**
    * @maxLength 500
    * @nullable
@@ -1147,6 +1149,11 @@ export type StripeProductAllOf = {
    * @nullable
    */
   Name?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  DefaultPriceId?: string | null;
   /** @nullable */
   Description?: string | null;
   IsActive?: boolean;
@@ -1496,6 +1503,8 @@ export type StripePriceAllOf = {
   CurrencyUnitAmount?: number | null;
   /** @nullable */
   CurrencyUnitAmountDecimal?: number | null;
+  /** @nullable */
+  Recurring_IntervalDays?: number | null;
   /** @nullable */
   Recurring_Description?: string | null;
   /** @nullable */
@@ -3640,6 +3649,11 @@ export interface DnsEntry {
   Reason?: string | null;
 }
 
+export interface ResendEmailsRequest {
+  /** @nullable */
+  EmailLogUids?: string[] | null;
+}
+
 /**
  * @nullable
  */
@@ -4113,6 +4127,10 @@ export type BroadcastCampaignAllOf = {
   Message?: BroadcastCampaignAllOfMessage;
   /** @nullable */
   RecipientData?: string | null;
+  /** @nullable */
+  EmailListUids?: string[] | null;
+  /** @nullable */
+  SegmentUids?: string[] | null;
   Status?: BroadcastCampaignStatus;
   /**
    * @maxLength 500
@@ -4178,7 +4196,7 @@ export interface FlatfileImportData {
 }
 
 /**
- * `1` - UpdateSegmentBackGroundTask, `2` - ImportPeopleTask, `3` - ImportAccountTask, `4` - ImportDealTask, `5` - ImportEmailList, `6` - RescheduleDripCampaignTask, `7` - DeleteSegmentPeopleTask, `8` - StartDripCampaignTask, `9` - WebflowSyncTask, `10` - UpdatePersonSegmentsTask, `11` - ImportDiscountCouponTask, `12` - RemoveDiscordUserFromAllServersTask, `13` - SendInvoiceEmailTask, `14` - UpdateDiscordUserRolesTask, `15` - StripeBillingSyncTask, `16` - UpdateStripeDefaultSourceTask, `17` - DeleteScheduledCampaignMessagesTask, `18` - SendSpamCheckEmailTask, `19` - UpdateDiscordMemberRolesTask, `20` - SendInvoicePaidEmailTask
+ * `1` - UpdateSegmentBackGroundTask, `2` - ImportPeopleTask, `3` - ImportAccountTask, `4` - ImportDealTask, `5` - ImportEmailList, `6` - RescheduleDripCampaignTask, `7` - DeleteSegmentPeopleTask, `8` - StartDripCampaignTask, `9` - WebflowSyncTask, `10` - UpdatePersonSegmentsTask, `11` - ImportDiscountCouponTask, `12` - RemoveDiscordUserFromAllServersTask, `13` - SendInvoiceEmailTask, `14` - UpdateDiscordUserRolesTask, `15` - StripeBillingSyncTask, `16` - UpdateStripeDefaultSourceTask, `17` - DeleteScheduledCampaignMessagesTask, `18` - SendSpamCheckEmailTask, `19` - UpdateDiscordMemberRolesTask, `20` - SendInvoicePaidEmailTask, `21` - ResendTrialLimitEmailTask
  */
 export type BackGroundTaskType = typeof BackGroundTaskType[keyof typeof BackGroundTaskType];
 
@@ -4205,6 +4223,7 @@ export const BackGroundTaskType = {
   SendSpamCheckEmailTask: 18,
   UpdateDiscordMemberRolesTask: 19,
   SendInvoicePaidEmailTask: 20,
+  ResendTrialLimitEmailTask: 21,
 } as const;
 
 /**
@@ -4223,6 +4242,7 @@ export type AccountCancelationAllOf = {
   CancelationReason?: string | null;
   /** @nullable */
   Comment?: string | null;
+  CancelationStatus?: CancelationStatus;
   /** @nullable */
   Account?: AccountCancelationAllOfAccount;
   /** @nullable */
@@ -4232,6 +4252,21 @@ export type AccountCancelationAllOf = {
 };
 
 export type AccountCancelation = AbstractQcountBean & AccountCancelationAllOf;
+
+/**
+ * `0` - Pending, `1` - Unknown, `2` - Completed, `3` - Removed, `4` - Deleted
+ */
+export type CancelationStatus = typeof CancelationStatus[keyof typeof CancelationStatus];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const CancelationStatus = {
+  Pending: 0,
+  Unknown: 1,
+  Completed: 2,
+  Removed: 3,
+  Deleted: 4,
+} as const;
 
 export interface PasswordChangeModel {
   /** @nullable */
@@ -4759,6 +4794,8 @@ export interface SetupIntent {
   PaymentToken?: string | null;
   /** @nullable */
   PlanUid?: string | null;
+  /** @nullable */
+  ToltReferralId?: string | null;
 }
 
 /**
@@ -4862,6 +4899,21 @@ export type ArticleGetAllArticlesParams = {
  */
 q?: string | null;
 };
+
+/**
+ * @nullable
+ */
+export type CampaignAddBroadcastEmailBody = BroadcastCampaign | null;
+
+/**
+ * @nullable
+ */
+export type CampaignUpdateBroadcastEmailBody = BroadcastCampaign | null;
+
+/**
+ * @nullable
+ */
+export type CampaignSendTestCampaignEmailBody = SendTestEmailRequest2 | null;
 
 export type EmailListGetAllSubscriptionsParams = {
 /**
@@ -4973,6 +5025,85 @@ export type PersonSetTemporaryPasswordBody = TemporaryPasswordModel | null;
  * @nullable
  */
 export type PersonForgotPasswordBody = Person | null;
+
+/**
+ * @nullable
+ */
+export type DiscountCouponAddDiscountCouponBody = DiscountCoupon | null;
+
+/**
+ * @nullable
+ */
+export type UsageAddUsageBody = Usage | null;
+
+/**
+ * @nullable
+ */
+export type TransactionsAddPaymentTransactionBody = Transaction | null;
+
+/**
+ * @nullable
+ */
+export type PaymentInformationSavePaymentInformationBody = PaymentInformation | null;
+
+/**
+ * @nullable
+ */
+export type SubscriptionAddOnAddSubscriptionAddOnBody = SubscriptionAddOn | null;
+
+/**
+ * @nullable
+ */
+export type InvoiceAddInvoiceBody = Invoice | null;
+
+/**
+ * @nullable
+ */
+export type SubscriptionSetSubscriptionUpgradeRequiredBody = Subscription | null;
+
+export type SubscriptionFirstTimeSubscriptionPreviewParams = {
+/**
+ * Set to "renewal" to see the renewal invoice. Defaults to "now".
+ * @nullable
+ */
+asOf?: string | null;
+};
+
+/**
+ * @nullable
+ */
+export type SubscriptionFirstTimeSubscriptionPreviewBody = Subscription | null;
+
+/**
+ * @nullable
+ */
+export type SubscriptionFirstTimeSubscriptionBody = Subscription | null;
+
+export type SubscriptionChangeSubscriptionPreviewParams = {
+/**
+ * If true, the subscription change takes effect immediately
+ * @nullable
+ */
+startImmediately?: string | null;
+};
+
+/**
+ * @nullable
+ */
+export type SubscriptionChangeSubscriptionPreviewBody = Subscription | null;
+
+export type SubscriptionChangeSubscriptionParams = {
+/**
+ * If true, the subscription change takes effect immediately
+ * @nullable
+ */
+startImmediately?: string | null;
+};
+
+/**
+ * @nullable
+ */
+export type SubscriptionChangeSubscriptionBody = Subscription | null;
 
 export type ActivityGetAllParams = {
 /**

@@ -278,6 +278,8 @@ export type StripePriceAllOf = {
   /** @nullable */
   CurrencyUnitAmountDecimal?: number | null;
   /** @nullable */
+  Recurring_IntervalDays?: number | null;
+  /** @nullable */
   Recurring_Description?: string | null;
   /** @nullable */
   StripeMeterId?: string | null;
