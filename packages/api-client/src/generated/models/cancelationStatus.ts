@@ -219,32 +219,18 @@ For help regarding the Outseta API please email [support@outseta.com](mailto:sup
 
  * OpenAPI spec version: v1
  */
-import type { BroadcastCampaignAllOfCampaign } from './broadcastCampaignAllOfCampaign';
-import type { BroadcastCampaignAllOfMessage } from './broadcastCampaignAllOfMessage';
-import type { BroadcastCampaignStatus } from './broadcastCampaignStatus';
-import type { Tag } from './tag';
 
-export type BroadcastCampaignAllOf = {
-  /** @nullable */
-  SendDateTime?: string | null;
-  /** @nullable */
-  NextRunDateTime?: string | null;
-  /** @nullable */
-  Campaign?: BroadcastCampaignAllOfCampaign;
-  /** @nullable */
-  Message?: BroadcastCampaignAllOfMessage;
-  /** @nullable */
-  RecipientData?: string | null;
-  /** @nullable */
-  EmailListUids?: string[] | null;
-  /** @nullable */
-  SegmentUids?: string[] | null;
-  Status?: BroadcastCampaignStatus;
-  /**
-   * @maxLength 500
-   * @nullable
-   */
-  ErrorMessage?: string | null;
-  /** @nullable */
-  Tags?: Tag[] | null;
-};
+/**
+ * `0` - Pending, `1` - Unknown, `2` - Completed, `3` - Removed, `4` - Deleted
+ */
+export type CancelationStatus = typeof CancelationStatus[keyof typeof CancelationStatus];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const CancelationStatus = {
+  Pending: 0,
+  Unknown: 1,
+  Completed: 2,
+  Removed: 3,
+  Deleted: 4,
+} as const;

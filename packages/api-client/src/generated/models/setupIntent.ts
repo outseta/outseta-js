@@ -248,4 +248,6 @@ export interface SetupIntent {
   PaymentToken?: string | null;
   /** @nullable */
   PlanUid?: string | null;
+  /** @nullable */
+  ToltReferralId?: string | null;
 }

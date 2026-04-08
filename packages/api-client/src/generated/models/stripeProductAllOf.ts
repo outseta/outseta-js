@@ -231,6 +231,11 @@ export type StripeProductAllOf = {
    * @nullable
    */
   Name?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  DefaultPriceId?: string | null;
   /** @nullable */
   Description?: string | null;
   IsActive?: boolean;

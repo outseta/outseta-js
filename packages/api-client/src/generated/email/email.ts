@@ -220,12 +220,415 @@ For help regarding the Outseta API please email [support@outseta.com](mailto:sup
  * OpenAPI spec version: v1
  */
 import type {
+  BroadcastCampaign,
+  CampaignAddBroadcastEmailBody,
+  CampaignSendTestCampaignEmailBody,
+  CampaignUpdateBroadcastEmailBody,
   EmailListAddSubscriptionBody,
   EmailListGetAllSubscriptionsParams,
   EmailListPerson
 } from '.././models';
 
 import { customFetch } from '../../client';
+
+/**
+ * @summary Retrieves all non-archived broadcast campaigns.
+ */
+export type campaignGetAllBroadcastEmailsResponse200 = {
+  data: BroadcastCampaign[]
+  status: 200
+}
+
+export type campaignGetAllBroadcastEmailsResponse401 = {
+  data: void
+  status: 401
+}
+    
+export type campaignGetAllBroadcastEmailsResponseSuccess = (campaignGetAllBroadcastEmailsResponse200) & {
+  headers: Headers;
+};
+export type campaignGetAllBroadcastEmailsResponseError = (campaignGetAllBroadcastEmailsResponse401) & {
+  headers: Headers;
+};
+
+export type campaignGetAllBroadcastEmailsResponse = (campaignGetAllBroadcastEmailsResponseSuccess | campaignGetAllBroadcastEmailsResponseError)
+
+export const getCampaignGetAllBroadcastEmailsUrl = () => {
+
+
+  
+
+  return `/api/v1/email/campaigns/broadcasts`
+}
+
+export const campaignGetAllBroadcastEmails = async ( options?: RequestInit): Promise<campaignGetAllBroadcastEmailsResponse> => {
+  
+  return customFetch<campaignGetAllBroadcastEmailsResponse>(getCampaignGetAllBroadcastEmailsUrl(),
+  {      
+    ...options,
+    method: 'GET'
+    
+    
+  }
+);}
+
+
+/**
+ * @summary Creates a new broadcast campaign. To copy an existing broadcast, retrieve it and pass its
+data as the request body — the Uid, SendDateTime, and message counts are automatically reset.
+Recipients can be specified using EmailListUids and SegmentUids instead of populating
+RecipientData directly. If both are provided, they are merged.
+ */
+export type campaignAddBroadcastEmailResponse200 = {
+  data: BroadcastCampaign
+  status: 200
+}
+
+export type campaignAddBroadcastEmailResponse401 = {
+  data: void
+  status: 401
+}
+    
+export type campaignAddBroadcastEmailResponseSuccess = (campaignAddBroadcastEmailResponse200) & {
+  headers: Headers;
+};
+export type campaignAddBroadcastEmailResponseError = (campaignAddBroadcastEmailResponse401) & {
+  headers: Headers;
+};
+
+export type campaignAddBroadcastEmailResponse = (campaignAddBroadcastEmailResponseSuccess | campaignAddBroadcastEmailResponseError)
+
+export const getCampaignAddBroadcastEmailUrl = () => {
+
+
+  
+
+  return `/api/v1/email/campaigns/broadcasts`
+}
+
+export const campaignAddBroadcastEmail = async (campaignAddBroadcastEmailBody: CampaignAddBroadcastEmailBody, options?: RequestInit): Promise<campaignAddBroadcastEmailResponse> => {
+  
+  return customFetch<campaignAddBroadcastEmailResponse>(getCampaignAddBroadcastEmailUrl(),
+  {      
+    ...options,
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', ...options?.headers },
+    body: JSON.stringify(
+      campaignAddBroadcastEmailBody,)
+  }
+);}
+
+
+/**
+ * @summary Retrieves a single broadcast campaign by its Uid.
+ */
+export type campaignGetBroadcastEmailResponse200 = {
+  data: BroadcastCampaign
+  status: 200
+}
+
+export type campaignGetBroadcastEmailResponse400 = {
+  data: void
+  status: 400
+}
+
+export type campaignGetBroadcastEmailResponse401 = {
+  data: void
+  status: 401
+}
+
+export type campaignGetBroadcastEmailResponse404 = {
+  data: void
+  status: 404
+}
+    
+export type campaignGetBroadcastEmailResponseSuccess = (campaignGetBroadcastEmailResponse200) & {
+  headers: Headers;
+};
+export type campaignGetBroadcastEmailResponseError = (campaignGetBroadcastEmailResponse400 | campaignGetBroadcastEmailResponse401 | campaignGetBroadcastEmailResponse404) & {
+  headers: Headers;
+};
+
+export type campaignGetBroadcastEmailResponse = (campaignGetBroadcastEmailResponseSuccess | campaignGetBroadcastEmailResponseError)
+
+export const getCampaignGetBroadcastEmailUrl = (broadcastCampaignUid: string | null,) => {
+
+
+  
+
+  return `/api/v1/email/campaigns/broadcasts/${broadcastCampaignUid}`
+}
+
+export const campaignGetBroadcastEmail = async (broadcastCampaignUid: string | null, options?: RequestInit): Promise<campaignGetBroadcastEmailResponse> => {
+  
+  return customFetch<campaignGetBroadcastEmailResponse>(getCampaignGetBroadcastEmailUrl(broadcastCampaignUid),
+  {      
+    ...options,
+    method: 'GET'
+    
+    
+  }
+);}
+
+
+/**
+ * @summary Updates a broadcast campaign. Setting SendDateTime to a future date schedules the broadcast
+for sending and its status changes to Pending. Clearing SendDateTime unschedules the broadcast.
+Recipients can be specified using EmailListUids and SegmentUids instead of populating
+RecipientData directly. If both are provided, they are merged.
+ */
+export type campaignUpdateBroadcastEmailResponse200 = {
+  data: BroadcastCampaign
+  status: 200
+}
+
+export type campaignUpdateBroadcastEmailResponse400 = {
+  data: void
+  status: 400
+}
+
+export type campaignUpdateBroadcastEmailResponse401 = {
+  data: void
+  status: 401
+}
+
+export type campaignUpdateBroadcastEmailResponse404 = {
+  data: void
+  status: 404
+}
+    
+export type campaignUpdateBroadcastEmailResponseSuccess = (campaignUpdateBroadcastEmailResponse200) & {
+  headers: Headers;
+};
+export type campaignUpdateBroadcastEmailResponseError = (campaignUpdateBroadcastEmailResponse400 | campaignUpdateBroadcastEmailResponse401 | campaignUpdateBroadcastEmailResponse404) & {
+  headers: Headers;
+};
+
+export type campaignUpdateBroadcastEmailResponse = (campaignUpdateBroadcastEmailResponseSuccess | campaignUpdateBroadcastEmailResponseError)
+
+export const getCampaignUpdateBroadcastEmailUrl = (broadcastCampaignUid: string | null,) => {
+
+
+  
+
+  return `/api/v1/email/campaigns/broadcasts/${broadcastCampaignUid}`
+}
+
+export const campaignUpdateBroadcastEmail = async (broadcastCampaignUid: string | null,
+    campaignUpdateBroadcastEmailBody: CampaignUpdateBroadcastEmailBody, options?: RequestInit): Promise<campaignUpdateBroadcastEmailResponse> => {
+  
+  return customFetch<campaignUpdateBroadcastEmailResponse>(getCampaignUpdateBroadcastEmailUrl(broadcastCampaignUid),
+  {      
+    ...options,
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json', ...options?.headers },
+    body: JSON.stringify(
+      campaignUpdateBroadcastEmailBody,)
+  }
+);}
+
+
+/**
+ * @summary Deletes a broadcast campaign. Only campaigns in Draft or Pending status can be deleted.
+Campaigns that have been processed should be archived instead.
+ */
+export type campaignDeleteBroadcastCampaignResponse200 = {
+  data: Blob
+  status: 200
+}
+
+export type campaignDeleteBroadcastCampaignResponse400 = {
+  data: void
+  status: 400
+}
+
+export type campaignDeleteBroadcastCampaignResponse401 = {
+  data: void
+  status: 401
+}
+
+export type campaignDeleteBroadcastCampaignResponse404 = {
+  data: void
+  status: 404
+}
+    
+export type campaignDeleteBroadcastCampaignResponseSuccess = (campaignDeleteBroadcastCampaignResponse200) & {
+  headers: Headers;
+};
+export type campaignDeleteBroadcastCampaignResponseError = (campaignDeleteBroadcastCampaignResponse400 | campaignDeleteBroadcastCampaignResponse401 | campaignDeleteBroadcastCampaignResponse404) & {
+  headers: Headers;
+};
+
+export type campaignDeleteBroadcastCampaignResponse = (campaignDeleteBroadcastCampaignResponseSuccess | campaignDeleteBroadcastCampaignResponseError)
+
+export const getCampaignDeleteBroadcastCampaignUrl = (broadcastCampaignUid: string | null,) => {
+
+
+  
+
+  return `/api/v1/email/campaigns/broadcasts/${broadcastCampaignUid}`
+}
+
+export const campaignDeleteBroadcastCampaign = async (broadcastCampaignUid: string | null, options?: RequestInit): Promise<campaignDeleteBroadcastCampaignResponse> => {
+  
+  return customFetch<campaignDeleteBroadcastCampaignResponse>(getCampaignDeleteBroadcastCampaignUrl(broadcastCampaignUid),
+  {      
+    ...options,
+    method: 'DELETE'
+    
+    
+  }
+);}
+
+
+/**
+ * @summary Unschedules a pending broadcast campaign, reverting its status to Draft.
+ */
+export type campaignUnscheduleBroadcastEmailResponse200 = {
+  data: BroadcastCampaign
+  status: 200
+}
+
+export type campaignUnscheduleBroadcastEmailResponse400 = {
+  data: void
+  status: 400
+}
+
+export type campaignUnscheduleBroadcastEmailResponse401 = {
+  data: void
+  status: 401
+}
+
+export type campaignUnscheduleBroadcastEmailResponse404 = {
+  data: void
+  status: 404
+}
+    
+export type campaignUnscheduleBroadcastEmailResponseSuccess = (campaignUnscheduleBroadcastEmailResponse200) & {
+  headers: Headers;
+};
+export type campaignUnscheduleBroadcastEmailResponseError = (campaignUnscheduleBroadcastEmailResponse400 | campaignUnscheduleBroadcastEmailResponse401 | campaignUnscheduleBroadcastEmailResponse404) & {
+  headers: Headers;
+};
+
+export type campaignUnscheduleBroadcastEmailResponse = (campaignUnscheduleBroadcastEmailResponseSuccess | campaignUnscheduleBroadcastEmailResponseError)
+
+export const getCampaignUnscheduleBroadcastEmailUrl = (broadcastCampaignUid: string | null,) => {
+
+
+  
+
+  return `/api/v1/email/campaigns/broadcasts/${broadcastCampaignUid}/unschedule`
+}
+
+export const campaignUnscheduleBroadcastEmail = async (broadcastCampaignUid: string | null, options?: RequestInit): Promise<campaignUnscheduleBroadcastEmailResponse> => {
+  
+  return customFetch<campaignUnscheduleBroadcastEmailResponse>(getCampaignUnscheduleBroadcastEmailUrl(broadcastCampaignUid),
+  {      
+    ...options,
+    method: 'POST'
+    
+    
+  }
+);}
+
+
+/**
+ * @summary Archives a broadcast campaign. Archived campaigns are excluded from the default list results.
+ */
+export type campaignArchiveBroadcastCampaignResponse200 = {
+  data: Blob
+  status: 200
+}
+
+export type campaignArchiveBroadcastCampaignResponse400 = {
+  data: void
+  status: 400
+}
+
+export type campaignArchiveBroadcastCampaignResponse401 = {
+  data: void
+  status: 401
+}
+
+export type campaignArchiveBroadcastCampaignResponse404 = {
+  data: void
+  status: 404
+}
+    
+export type campaignArchiveBroadcastCampaignResponseSuccess = (campaignArchiveBroadcastCampaignResponse200) & {
+  headers: Headers;
+};
+export type campaignArchiveBroadcastCampaignResponseError = (campaignArchiveBroadcastCampaignResponse400 | campaignArchiveBroadcastCampaignResponse401 | campaignArchiveBroadcastCampaignResponse404) & {
+  headers: Headers;
+};
+
+export type campaignArchiveBroadcastCampaignResponse = (campaignArchiveBroadcastCampaignResponseSuccess | campaignArchiveBroadcastCampaignResponseError)
+
+export const getCampaignArchiveBroadcastCampaignUrl = (broadcastCampaignUid: string | null,) => {
+
+
+  
+
+  return `/api/v1/email/campaigns/broadcasts/${broadcastCampaignUid}/archive`
+}
+
+export const campaignArchiveBroadcastCampaign = async (broadcastCampaignUid: string | null, options?: RequestInit): Promise<campaignArchiveBroadcastCampaignResponse> => {
+  
+  return customFetch<campaignArchiveBroadcastCampaignResponse>(getCampaignArchiveBroadcastCampaignUrl(broadcastCampaignUid),
+  {      
+    ...options,
+    method: 'POST'
+    
+    
+  }
+);}
+
+
+/**
+ * @summary Sends a test email for a broadcast campaign to the logged-in user and optionally to additional
+recipients. Additional recipients are specified as a list of person Uids and must belong to the
+same account as the logged-in user.
+ */
+export type campaignSendTestCampaignEmailResponse200 = {
+  data: Blob
+  status: 200
+}
+
+export type campaignSendTestCampaignEmailResponse401 = {
+  data: void
+  status: 401
+}
+    
+export type campaignSendTestCampaignEmailResponseSuccess = (campaignSendTestCampaignEmailResponse200) & {
+  headers: Headers;
+};
+export type campaignSendTestCampaignEmailResponseError = (campaignSendTestCampaignEmailResponse401) & {
+  headers: Headers;
+};
+
+export type campaignSendTestCampaignEmailResponse = (campaignSendTestCampaignEmailResponseSuccess | campaignSendTestCampaignEmailResponseError)
+
+export const getCampaignSendTestCampaignEmailUrl = () => {
+
+
+  
+
+  return `/api/v1/email/campaigns/broadcasts/sendtestemail`
+}
+
+export const campaignSendTestCampaignEmail = async (campaignSendTestCampaignEmailBody: CampaignSendTestCampaignEmailBody, options?: RequestInit): Promise<campaignSendTestCampaignEmailResponse> => {
+  
+  return customFetch<campaignSendTestCampaignEmailResponse>(getCampaignSendTestCampaignEmailUrl(),
+  {      
+    ...options,
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', ...options?.headers },
+    body: JSON.stringify(
+      campaignSendTestCampaignEmailBody,)
+  }
+);}
+
 
 /**
  * @summary Retrieves all the people subscribing to an email list.
