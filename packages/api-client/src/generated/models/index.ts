@@ -433,6 +433,7 @@ export * from './emailListSubscriberStatus';
 export * from './emailSubscriptionsPayload';
 export * from './entityType';
 export * from './extendRenewalParams';
+export * from './extendSubscriptionOptions';
 export * from './extendTrialParams';
 export * from './flatfileImportData';
 export * from './flatfileImportDataSchemalessData';

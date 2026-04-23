@@ -276,6 +276,11 @@ export type StripeInvoiceAllOf = {
   SubTotal?: number;
   /** @nullable */
   SubTotalExcludingTax?: number | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  SubscriptionId?: string | null;
   /** @nullable */
   Tax?: number | null;
   Total?: number;
@@ -284,6 +289,8 @@ export type StripeInvoiceAllOf = {
   /** @nullable */
   Account?: StripeInvoiceAllOfAccount;
   IsRefunded?: boolean;
+  CurrencyAmountCreditedPostPayment?: number;
+  CurrencyAmountCreditedPrePayment?: number;
   CurrencyAmountDue?: number;
   CurrencyAmountPaid?: number;
   /** @nullable */

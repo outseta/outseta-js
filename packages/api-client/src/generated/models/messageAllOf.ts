@@ -250,6 +250,7 @@ export type MessageAllOf = {
   CountTotalOpen?: number;
   CountTotalClick?: number;
   IgnoredSpamBounce?: number;
+  IsBounceRatePaused?: boolean;
   /** @nullable */
   EmailLinks?: EmailLink[] | null;
   SpamAssassinScore?: number;

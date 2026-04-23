@@ -236,6 +236,10 @@ export type StripeCreditNoteAllOf = {
    * @nullable
    */
   InvoiceId?: string | null;
+  /** @nullable */
+  OutOfBandAmount?: number | null;
+  PostPaymentAmount?: number;
+  PrePaymentAmount?: number;
   /**
    * @maxLength 30
    * @nullable
@@ -247,6 +251,11 @@ export type StripeCreditNoteAllOf = {
    */
   Status?: string | null;
   Total?: number;
+  /**
+   * @maxLength 30
+   * @nullable
+   */
+  Type?: string | null;
   /** @nullable */
   CurrencySymbol?: string | null;
   CurrencyTotal?: number;

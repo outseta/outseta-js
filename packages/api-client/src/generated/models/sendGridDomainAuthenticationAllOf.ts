@@ -228,6 +228,7 @@ export type SendGridDomainAuthenticationAllOf = {
    */
   DomainName: string;
   IsValid?: boolean;
+  IsBrandedLinksDisabled?: boolean;
   /** @nullable */
   LastValidationAttempt?: string | null;
   /** @nullable */

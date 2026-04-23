@@ -254,6 +254,7 @@ export type InvoiceAllOf = {
   AmountTax?: number;
   AmountTaxRefunded?: number;
   IsTaxable?: boolean;
+  HasPaymentGatewayTransactions?: boolean;
   /** @nullable */
   StripePaymentTransactionIds?: string | null;
   /** @nullable */
