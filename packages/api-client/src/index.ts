@@ -3,6 +3,8 @@ export type {
   OutsetaCredentials,
   OutsetaApiKeyCredentials,
   OutsetaBearerCredentials,
+  OutsetaClient,
+  OutsetaRequestInit,
 } from "./client.js";
 
 // Re-export generated types and functions once generated

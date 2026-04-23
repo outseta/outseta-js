@@ -6,8 +6,7 @@ import {
 	NodeConnectionTypes,
 	IDataObject,
 } from 'n8n-workflow';
-import { createClient } from '@outseta/api-client';
-import type { KyInstance } from 'ky';
+import { createClient, type OutsetaClient } from '@outseta/api-client';
 
 export class Outseta implements INodeType {
 	description: INodeTypeDescription = {
@@ -811,21 +810,36 @@ export class Outseta implements INodeType {
 // ---- Helper functions ----
 
 async function request(
-	client: KyInstance,
+	client: OutsetaClient,
 	method: 'get' | 'post' | 'put',
 	endpoint: string,
 	body?: IDataObject,
 	searchParams?: Record<string, string>,
 ): Promise<IDataObject> {
-	const options: Record<string, unknown> = {};
-	if (body) options.json = body;
-	if (searchParams) options.searchParams = searchParams;
+	const query = searchParams ? new URLSearchParams(searchParams).toString() : '';
+	const response = await client(
+		query ? `${endpoint}?${query}` : endpoint,
+		{
+			method: method.toUpperCase(),
+			headers: body ? { 'Content-Type': 'application/json' } : undefined,
+			body: body ? JSON.stringify(body) : undefined,
+		},
+	);
 
-	return await client[method](endpoint, options).json<IDataObject>();
+	if (!response.ok) {
+		const message = await response.text();
+		throw new Error(message || `Outseta request failed with status ${response.status}`);
+	}
+
+	if (response.status === 204) {
+		return {};
+	}
+
+	return (await response.json()) as IDataObject;
 }
 
 async function makeListRequest(
-	client: KyInstance,
+	client: OutsetaClient,
 	ctx: IExecuteFunctions,
 	itemIndex: number,
 	endpoint: string,

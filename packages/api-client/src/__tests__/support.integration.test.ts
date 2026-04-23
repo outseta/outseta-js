@@ -20,7 +20,7 @@ describe.skipIf(!hasCredentials)("Support Cases — generated endpoints (live)",
 
 // Cases cannot be deleted via API (405), so we close them after the test
 // to keep the test account tidy. No generated caseUpdateCase exists,
-// so cleanup uses raw ky.
+// so cleanup uses the low-level client.
 const caseUidsToClose: string[] = [];
 
 describe.skipIf(!hasCredentials)("Support Cases — CRUD (live)", () => {
@@ -30,11 +30,11 @@ describe.skipIf(!hasCredentials)("Support Cases — CRUD (live)", () => {
       const getRes = await caseGetCase(uid, opts(client));
       if (getRes.status === 200) {
         const full = getRes.data as unknown as Case;
-        // No generated update function — fall back to raw ky
+        // No generated update function — fall back to the low-level client
         await client(`support/cases/${uid}`, {
           method: "PUT",
-          json: { ...full, Status: 2 },
-          throwHttpErrors: false,
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ ...full, Status: 2 }),
         });
       }
     }

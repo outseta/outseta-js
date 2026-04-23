@@ -1,4 +1,4 @@
-import type { KyInstance } from "ky";
+import type { OutsetaClient } from "@outseta/api-client";
 
 type RequestConfig<T = unknown> = {
   url: string;
@@ -12,15 +12,16 @@ type RequestConfig<T = unknown> = {
  * Orval react-query mutator.
  *
  * First arg is a request config object `{ url, method, params, signal }`.
- * Second arg is a ky instance (provided via the React context/provider).
+ * Second arg is a client from `createClient()` (provided via the React
+ * context/provider).
  */
-export const customFetch = <T>(
+export const customFetch = async <T>(
   config: RequestConfig,
-  client?: KyInstance,
+  client?: OutsetaClient,
 ): Promise<T> => {
   if (!client) {
     throw new Error(
-      "@outseta/react: No client provided. Pass a ky instance from createClient() via the request option.",
+      "@outseta/react: No client provided. Pass a client from createClient() via the request option.",
     );
   }
 
@@ -29,17 +30,37 @@ export const customFetch = <T>(
   const searchParams = params
     ? new URLSearchParams(
         Object.entries(params)
-          .filter(([, v]) => v !== undefined)
-          .map(([k, v]) => [k, String(v)]),
+          .filter(([, value]) => value !== undefined)
+          .map(([key, value]) => [key, String(value)]),
       )
     : undefined;
 
-  return client(url.replace(/^\//, ""), {
+  const requestUrl = searchParams?.size
+    ? `${url}${url.includes("?") ? "&" : "?"}${searchParams.toString()}`
+    : url;
+
+  const response = await client(requestUrl, {
     method,
-    searchParams,
-    json: data,
+    headers: data === undefined
+      ? undefined
+      : { "Content-Type": "application/json" },
+    body: data === undefined ? undefined : JSON.stringify(data),
     signal,
-  }).json<T>();
+  });
+
+  if (!response.ok) {
+    throw new Error(
+      `@outseta/react: Request failed with status ${response.status}`,
+    );
+  }
+
+  if (response.status === 204) {
+    return undefined as T;
+  }
+
+  return response.headers.get("content-type")?.includes("application/json")
+    ? await response.json() as T
+    : undefined as T;
 };
 
 export default customFetch;

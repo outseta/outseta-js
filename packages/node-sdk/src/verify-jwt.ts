@@ -1,4 +1,4 @@
-import type { KyInstance } from "ky";
+import type { OutsetaClient } from "@outseta/api-client";
 import { jwtVerify, createRemoteJWKSet, decodeJwt } from "jose";
 export type { JWTPayload } from "jose";
 
@@ -33,12 +33,18 @@ export async function verifyJwt(
  * to Outseta on every call.
  */
 export async function verifyJwtWithProfile(
-  client: KyInstance,
+  client: OutsetaClient,
   token: string,
 ) {
-  const profile = await client
-    .get("profile", { searchParams: { fields: "*" } })
-    .json<Record<string, unknown>>();
+  const response = await client(`profile?${new URLSearchParams({ fields: "*" }).toString()}`);
+
+  if (!response.ok) {
+    throw new Error(
+      `Failed to fetch profile: ${response.status} ${response.statusText}`,
+    );
+  }
+
+  const profile = await response.json() as Record<string, unknown>;
   const payload = decodeJwt(token);
 
   return { payload, profile };

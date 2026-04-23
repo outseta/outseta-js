@@ -3,6 +3,7 @@ export type {
   OutsetaCredentials,
   OutsetaApiKeyCredentials,
   OutsetaBearerCredentials,
+  OutsetaClient,
 } from "@outseta/api-client";
 
 export { verifyWebhookSignature } from "./verify-webhook.js";

@@ -3,7 +3,7 @@ import { createClient, customFetch } from "../client.js";
 import { hasCredentials, getTestClient } from "./setup.js";
 
 describe("createClient", () => {
-  test("returns a ky instance (callable function)", () => {
+  test("returns a callable fetch client", () => {
     const client = createClient({
       subdomain: "test",
       apiKey: "key",
@@ -43,7 +43,7 @@ describe("customFetch", () => {
 describe.skipIf(!hasCredentials)("Auth (live)", () => {
   test("valid credentials return 200", async () => {
     const client = getTestClient();
-    const res = await client("crm/accounts", { throwHttpErrors: false });
+    const res = await client("crm/accounts");
     expect(res.status).toBe(200);
   });
 
@@ -53,7 +53,7 @@ describe.skipIf(!hasCredentials)("Auth (live)", () => {
       apiKey: "bad-key",
       apiSecret: "bad-secret",
     });
-    const res = await badClient("crm/accounts", { throwHttpErrors: false });
+    const res = await badClient("crm/accounts");
     expect(res.status).toBe(401);
   });
 });
