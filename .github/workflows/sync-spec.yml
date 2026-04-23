@@ -45,6 +45,30 @@ jobs:
         if: steps.diff.outputs.changed == 'true'
         run: bun run test
 
+      - name: Create changeset
+        if: steps.diff.outputs.changed == 'true'
+        run: |
+          packages=""
+
+          if git diff --quiet -- packages/api-client/src/generated; then
+            :
+          else
+            packages="$packages\"@outseta/api-client\": patch\n"
+          fi
+
+          if git diff --quiet -- packages/react/src/generated; then
+            :
+          else
+            packages="$packages\"@outseta/react\": patch\n"
+          fi
+
+          if [ -z "$packages" ]; then
+            echo "No publishable package changes detected; skipping changeset creation."
+            exit 0
+          fi
+
+          printf -- '---\n%b---\n\nUpdate API spec.\n' "$packages" > .changeset/updated-api-spec.md
+
       - name: Create PR
         if: steps.diff.outputs.changed == 'true'
         uses: peter-evans/create-pull-request@v7
@@ -58,4 +82,4 @@ jobs:
 
             This PR regenerates all client code from the latest spec.
           labels: automated
-          assignees: ${{ github.repository_owner }}
+          assignees: pierreh
