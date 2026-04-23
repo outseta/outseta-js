@@ -1,5 +1,13 @@
 # @outseta/node-sdk
 
+## 0.2.1
+
+### Patch Changes
+
+- dd74961: Replace the ky-based client with a small fetch-based client abstraction and update dependent packages to use it.
+- Updated dependencies [dd74961]
+  - @outseta/api-client@0.2.1
+
 ## 0.2.0
 
 ### Minor Changes

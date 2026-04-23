@@ -1,5 +1,11 @@
 # @outseta/api-client
 
+## 0.2.1
+
+### Patch Changes
+
+- dd74961: Replace the ky-based client with a small fetch-based client abstraction and update dependent packages to use it.
+
 ## 0.2.0
 
 ### Minor Changes
