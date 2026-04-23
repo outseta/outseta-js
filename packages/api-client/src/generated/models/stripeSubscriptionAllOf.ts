@@ -265,7 +265,11 @@ export type StripeSubscriptionAllOf = {
   /** @nullable */
   AccountUid?: string | null;
   /** @nullable */
+  CollectionMethod?: string | null;
+  /** @nullable */
   CustomerId?: string | null;
+  /** @nullable */
+  DaysUntilDue?: number | null;
   /** @nullable */
   ScheduleId?: string | null;
   /** @nullable */

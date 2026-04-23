@@ -851,7 +851,7 @@ export type AccountAllOf = {
 export type Account = AbstractStripeBeanOfCustomer & AccountAllOf;
 
 /**
- * `2` - Trialing, `3` - Subscribing, `4` - Cancelling, `5` - Expired, `6` - Trial Expired, `7` - Past Due, `8` - Cancelling Trial, `9` - Paused
+ * `2` - Trialing, `3` - Subscribing, `4` - Cancelling, `5` - Expired, `6` - Trial Expired, `7` - Past Due, `8` - Cancelling Trial, `9` - Paused, `10` - Created
  */
 export type AccountStage = typeof AccountStage[keyof typeof AccountStage];
 
@@ -869,6 +869,7 @@ export const AccountStage = {
   /** Cancelling Trial */
   CancellingTrial: 8,
   Paused: 9,
+  Created: 10,
 } as const;
 
 export type PaymentInformationAllOf = {
@@ -989,6 +990,11 @@ export type StripeInvoiceAllOf = {
   SubTotal?: number;
   /** @nullable */
   SubTotalExcludingTax?: number | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  SubscriptionId?: string | null;
   /** @nullable */
   Tax?: number | null;
   Total?: number;
@@ -997,6 +1003,8 @@ export type StripeInvoiceAllOf = {
   /** @nullable */
   Account?: StripeInvoiceAllOfAccount;
   IsRefunded?: boolean;
+  CurrencyAmountCreditedPostPayment?: number;
+  CurrencyAmountCreditedPrePayment?: number;
   CurrencyAmountDue?: number;
   CurrencyAmountPaid?: number;
   /** @nullable */
@@ -1723,7 +1731,11 @@ export type StripeSubscriptionAllOf = {
   /** @nullable */
   AccountUid?: string | null;
   /** @nullable */
+  CollectionMethod?: string | null;
+  /** @nullable */
   CustomerId?: string | null;
+  /** @nullable */
+  DaysUntilDue?: number | null;
   /** @nullable */
   ScheduleId?: string | null;
   /** @nullable */
@@ -2233,6 +2245,10 @@ export type StripeCreditNoteAllOf = {
    * @nullable
    */
   InvoiceId?: string | null;
+  /** @nullable */
+  OutOfBandAmount?: number | null;
+  PostPaymentAmount?: number;
+  PrePaymentAmount?: number;
   /**
    * @maxLength 30
    * @nullable
@@ -2244,6 +2260,11 @@ export type StripeCreditNoteAllOf = {
    */
   Status?: string | null;
   Total?: number;
+  /**
+   * @maxLength 30
+   * @nullable
+   */
+  Type?: string | null;
   /** @nullable */
   CurrencySymbol?: string | null;
   CurrencyTotal?: number;
@@ -2505,6 +2526,7 @@ export type InvoiceAllOf = {
   AmountTax?: number;
   AmountTaxRefunded?: number;
   IsTaxable?: boolean;
+  HasPaymentGatewayTransactions?: boolean;
   /** @nullable */
   StripePaymentTransactionIds?: string | null;
   /** @nullable */
@@ -3352,7 +3374,7 @@ export type QcountConfigAllOf = {
 export type QcountConfig = AbstractQcountBean & QcountConfigAllOf;
 
 /**
- * `100` - Slack, `102` - MagicLinkApiKey, `103` - MagicLinkApiKeySecret, `104` - OAuth_HideCreateAccountLink, `105` - Chat_IsOffline, `106` - HostedPageCustomCode, `107` - RegistrationConfirmationEmailDelaySeconds, `108` - AccountCancellationReasons, `110` - WebhookSignatureKey, `111` - HostedProfileBackLink, `112` - AccountCancellationReasonRequired, `114` - Email_OutsetaBrandingDisabled, `115` - Email_MarketingIpPool, `116` - Email_TransactionalIpPool, `117` - Email_LifecycleIpPool, `118` - Email_DomainAuthenticationConfigured, `119` - Email_BlacklistedInboundEmails, `120` - CRM_TeamMemberInviteEmailDisabled, `121` - PasswordPolicy, `123` - CRM_FieldSortingEnabled, `125` - KnowledgeBaseVersion, `126` - Support_SpamThreshold, `127` - Email_RestrictedPhrases, `128` - KnowledgeBaseLanguage, `130` - Billing_System, `131` - Billing_RestrictSubscriptionActions, `190` - Stripe_TaxEnabled, `192` - Stripe_TaxIdTypes, `193` - Stripe_ApplePayMerchantIdDomainAssociation, `194` - Stripe_WebhookSecret, `200` - Webflow_AccessToken, `201` - Webflow_SyncEnabled, `202` - Webflow_SyncConfiguration, `203` - Webflow_ApiVersion, `300` - SqsQueueEnabled, `301` - PersonSegmentationStatusEnabled, `304` - SqsCampaignEmailQueueEnabled, `310` - Account_AutoIncrementClientIdentifier, `402` - SqsEmailLogQueueUrlOverride, `500` - Logging_Webhook_Enabled, `501` - Logging_Activty_Enabled, `550` - CopyQcount_AddOnMap, `551` - CopyQcount_AccountMap, `552` - CopyQcount_DiscountCouponMap, `553` - CopyQcount_InvoiceMap, `554` - CopyQcount_PersonMap, `555` - CopyQcount_PlanMap, `556` - CopyQcount_PlanFamilyMap, `557` - CopyQcount_SubscriptionMap, `558` - CopyQcount_TransactionMap, `570` - StripeMigration_LastAccountId, `571` - StripeMigration_LastInvoiceId, `572` - StripeMigration_LastExpiredSubscriptionId, `573` - StripeMigration_LastPostExportSubscriptionId, `574` - StripeMigration_LastUsageId, `575` - StripeMigration_SubscriptionExportDate, `576` - StripeMigration_SubscriptionExportIds, `577` - StripeMigration_SubscriptionAddOnExportIds, `578` - StripeMigration_SubscriptionCutoverDate, `579` - StripeMigration_LastPreCutoverExportSubscriptionId, `601` - SqsSendGridWebHookEventQueueUrlOverride
+ * `100` - Slack, `102` - MagicLinkApiKey, `103` - MagicLinkApiKeySecret, `104` - OAuth_HideCreateAccountLink, `105` - Chat_IsOffline, `106` - HostedPageCustomCode, `107` - RegistrationConfirmationEmailDelaySeconds, `108` - AccountCancellationReasons, `110` - WebhookSignatureKey, `111` - HostedProfileBackLink, `112` - AccountCancellationReasonRequired, `114` - Email_OutsetaBrandingDisabled, `115` - Email_MarketingIpPool, `116` - Email_TransactionalIpPool, `117` - Email_LifecycleIpPool, `118` - Email_DomainAuthenticationConfigured, `119` - Email_BlacklistedInboundEmails, `120` - CRM_TeamMemberInviteEmailDisabled, `121` - PasswordPolicy, `123` - CRM_FieldSortingEnabled, `124` - CRM_RegistrationCallbackLocations, `125` - KnowledgeBaseVersion, `126` - Support_SpamThreshold, `127` - Email_RestrictedPhrases, `128` - KnowledgeBaseLanguage, `129` - Email_BroadcastGroupSendEnabled, `130` - Billing_System, `131` - Billing_RestrictSubscriptionActions, `190` - Stripe_TaxEnabled, `192` - Stripe_TaxIdTypes, `193` - Stripe_ApplePayMerchantIdDomainAssociation, `194` - Stripe_WebhookSecret, `200` - Webflow_AccessToken, `201` - Webflow_SyncEnabled, `202` - Webflow_SyncConfiguration, `203` - Webflow_ApiVersion, `300` - SqsQueueEnabled, `301` - PersonSegmentationStatusEnabled, `304` - SqsCampaignEmailQueueEnabled, `310` - Account_AutoIncrementClientIdentifier, `402` - SqsEmailLogQueueUrlOverride, `500` - Logging_Webhook_Enabled, `501` - Logging_Activty_Enabled, `550` - CopyQcount_AddOnMap, `551` - CopyQcount_AccountMap, `552` - CopyQcount_DiscountCouponMap, `553` - CopyQcount_InvoiceMap, `554` - CopyQcount_PersonMap, `555` - CopyQcount_PlanMap, `556` - CopyQcount_PlanFamilyMap, `557` - CopyQcount_SubscriptionMap, `558` - CopyQcount_TransactionMap, `570` - StripeMigration_LastAccountId, `571` - StripeMigration_LastInvoiceId, `572` - StripeMigration_LastExpiredSubscriptionId, `573` - StripeMigration_LastPostExportSubscriptionId, `574` - StripeMigration_LastUsageId, `575` - StripeMigration_SubscriptionExportDate, `576` - StripeMigration_SubscriptionExportIds, `577` - StripeMigration_SubscriptionAddOnExportIds, `578` - StripeMigration_SubscriptionCutoverDate, `579` - StripeMigration_LastPreCutoverExportSubscriptionId, `601` - SqsSendGridWebHookEventQueueUrlOverride
  */
 export type QcountConfigSettingType = typeof QcountConfigSettingType[keyof typeof QcountConfigSettingType];
 
@@ -3379,10 +3401,12 @@ export const QcountConfigSettingType = {
   CRM_TeamMemberInviteEmailDisabled: 120,
   PasswordPolicy: 121,
   CRM_FieldSortingEnabled: 123,
+  CRM_RegistrationCallbackLocations: 124,
   KnowledgeBaseVersion: 125,
   Support_SpamThreshold: 126,
   Email_RestrictedPhrases: 127,
   KnowledgeBaseLanguage: 128,
+  Email_BroadcastGroupSendEnabled: 129,
   Billing_System: 130,
   Billing_RestrictSubscriptionActions: 131,
   Stripe_TaxEnabled: 190,
@@ -3629,6 +3653,7 @@ export type SendGridDomainAuthenticationAllOf = {
    */
   DomainName: string;
   IsValid?: boolean;
+  IsBrandedLinksDisabled?: boolean;
   /** @nullable */
   LastValidationAttempt?: string | null;
   /** @nullable */
@@ -3638,6 +3663,8 @@ export type SendGridDomainAuthenticationAllOf = {
 export type SendGridDomainAuthentication = AbstractQcountBean & SendGridDomainAuthenticationAllOf;
 
 export interface DnsEntry {
+  /** @nullable */
+  Name?: string | null;
   Valid?: boolean;
   /** @nullable */
   Type?: string | null;
@@ -3767,6 +3794,7 @@ export type MessageAllOf = {
   CountTotalOpen?: number;
   CountTotalClick?: number;
   IgnoredSpamBounce?: number;
+  IsBounceRatePaused?: boolean;
   /** @nullable */
   EmailLinks?: EmailLink[] | null;
   SpamAssassinScore?: number;
@@ -4384,6 +4412,8 @@ export type CrmSettingsAllOf = {
   /** @nullable */
   SummaryDisplayFieldConfiguration?: string | null;
   RegistrationConfirmationEmailDelaySeconds?: number;
+  /** @nullable */
+  RegistrationCallbackUrlLocations?: string | null;
 };
 
 export type CrmSettings = AbstractQcountBean & CrmSettingsAllOf;
@@ -4664,6 +4694,10 @@ export interface PauseCollectionOptions {
   Behavior?: string | null;
   /** @nullable */
   ResumesAt?: string | null;
+}
+
+export interface ExtendSubscriptionOptions {
+  ToDate?: string;
 }
 
 export type BillSettingsAllOf = {

@@ -221,7 +221,7 @@ For help regarding the Outseta API please email [support@outseta.com](mailto:sup
  */
 
 /**
- * `2` - Trialing, `3` - Subscribing, `4` - Cancelling, `5` - Expired, `6` - Trial Expired, `7` - Past Due, `8` - Cancelling Trial, `9` - Paused
+ * `2` - Trialing, `3` - Subscribing, `4` - Cancelling, `5` - Expired, `6` - Trial Expired, `7` - Past Due, `8` - Cancelling Trial, `9` - Paused, `10` - Created
  */
 export type AccountStage = typeof AccountStage[keyof typeof AccountStage];
 
@@ -239,4 +239,5 @@ export const AccountStage = {
   /** Cancelling Trial */
   CancellingTrial: 8,
   Paused: 9,
+  Created: 10,
 } as const;

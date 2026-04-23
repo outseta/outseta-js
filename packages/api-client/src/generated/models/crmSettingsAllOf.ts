@@ -281,4 +281,6 @@ export type CrmSettingsAllOf = {
   /** @nullable */
   SummaryDisplayFieldConfiguration?: string | null;
   RegistrationConfirmationEmailDelaySeconds?: number;
+  /** @nullable */
+  RegistrationCallbackUrlLocations?: string | null;
 };

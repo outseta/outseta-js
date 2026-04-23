@@ -221,6 +221,8 @@ For help regarding the Outseta API please email [support@outseta.com](mailto:sup
  */
 
 export interface DnsEntry {
+  /** @nullable */
+  Name?: string | null;
   Valid?: boolean;
   /** @nullable */
   Type?: string | null;
