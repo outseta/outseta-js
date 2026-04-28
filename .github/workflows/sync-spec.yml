@@ -83,3 +83,4 @@ jobs:
             This PR regenerates all client code from the latest spec.
           labels: automated
           assignees: pierreh
+          reviewers: pierreh
