@@ -35,4 +35,9 @@ export type MessageAllOf = {
   EmailLinks?: EmailLink[] | null;
   SpamAssassinScore?: number;
   SpamStatus?: SpamStatus;
+  /**
+   * @maxLength 1024
+   * @nullable
+   */
+  SpamReason?: string | null;
 };
