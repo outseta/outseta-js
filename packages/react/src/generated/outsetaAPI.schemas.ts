@@ -1277,6 +1277,7 @@ export type StripePriceAllOf = {
   UnitAmount?: number | null;
   /** @nullable */
   UnitAmountDecimal?: number | null;
+  ShowInSignUpForm?: boolean;
   /** @nullable */
   CurrencySymbol?: string | null;
   /** @nullable */
@@ -3557,6 +3558,11 @@ export type MessageAllOf = {
   EmailLinks?: EmailLink[] | null;
   SpamAssassinScore?: number;
   SpamStatus?: SpamStatus;
+  /**
+   * @maxLength 1024
+   * @nullable
+   */
+  SpamReason?: string | null;
 };
 
 export type Message = AbstractQcountBean & MessageAllOf;

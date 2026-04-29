@@ -51,6 +51,7 @@ export type StripePriceAllOf = {
   UnitAmount?: number | null;
   /** @nullable */
   UnitAmountDecimal?: number | null;
+  ShowInSignUpForm?: boolean;
   /** @nullable */
   CurrencySymbol?: string | null;
   /** @nullable */
