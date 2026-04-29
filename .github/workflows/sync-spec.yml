@@ -8,6 +8,7 @@ on:
 permissions:
   contents: write
   pull-requests: write
+  issues: write
 
 jobs:
   sync:
@@ -70,10 +71,11 @@ jobs:
           printf -- '---\n%b---\n\nUpdate API spec.\n' "$packages" > .changeset/updated-api-spec.md
 
       - name: Create PR
+        id: cpr
         if: steps.diff.outputs.changed == 'true'
         uses: peter-evans/create-pull-request@v7
         with:
-          token: ${{ github.token }}
+          token: ${{ secrets.PAT_TOKEN }}
           branch: chore/sync-openapi-spec
           commit-message: "chore: sync OpenAPI spec from upstream"
           title: "chore: sync OpenAPI spec from upstream"
@@ -83,4 +85,10 @@ jobs:
             This PR regenerates all client code from the latest spec.
           labels: automated
           assignees: pierreh
-          reviewers: pierreh
+
+      - name: Notify assignee
+        if: steps.cpr.outputs.pull-request-operation == 'created'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_URL: ${{ steps.cpr.outputs.pull-request-url }}
+        run: gh pr comment "$PR_URL" --body "@pierreh automated OpenAPI sync PR created: $PR_URL"
