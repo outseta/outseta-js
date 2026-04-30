@@ -14,15 +14,20 @@ jobs:
     steps:
       - uses: actions/checkout@v6
 
+      - uses: pnpm/action-setup@v5
+        with:
+          version: 10.33.2
+          run_install: false
+
       - uses: actions/setup-node@v6
         with:
           node-version: 24
-          cache: npm
+          cache: pnpm
 
       - uses: oven-sh/setup-bun@v2
 
       - name: Install dependencies
-        run: npm ci
+        run: pnpm install --frozen-lockfile
 
       - name: Build
         run: bun run build
@@ -38,7 +43,7 @@ jobs:
 
       - name: Version packages
         if: steps.changesets.outputs.has_changesets == 'true'
-        run: npx changeset version
+        run: pnpm exec changeset version
 
       - name: Commit version bumps
         if: steps.changesets.outputs.has_changesets == 'true'
@@ -50,7 +55,7 @@ jobs:
 
       - name: Publish to npm
         if: steps.changesets.outputs.has_changesets == 'true'
-        run: npx changeset publish
+        run: pnpm exec changeset publish
         env:
           NPM_CONFIG_PROVENANCE: true
 

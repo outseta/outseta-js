@@ -32,7 +32,7 @@
     "lint": "eslint src"
   },
   "dependencies": {
-    "@outseta/api-client": "*"
+    "@outseta/api-client": "workspace:*"
   },
   "devDependencies": {
     "n8n-workflow": "^1.0.0",

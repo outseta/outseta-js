@@ -14,7 +14,7 @@ Nx monorepo for Outseta JavaScript/TypeScript packages. Auto-generated from the 
 ## Setup
 
 ```bash
-npm install
+pnpm install
 
 # Recommended for Windows users (symlinks are used in the repo)
 git config core.symlinks true
@@ -24,24 +24,24 @@ git config core.symlinks true
 
 ```bash
 # Regenerate all clients from openapi.json
-npm run generate
+pnpm run generate
 
 # Build all packages
-npm run build
+pnpm run build
 
 # Run tests
-npm run test
+pnpm run test
 ```
 
 ## Contributing
 
 1. Create a branch and make your changes
-2. Run `npx changeset` — select affected packages, bump type (patch/minor/major), and write a summary (becomes the changelog entry)
+2. Run `pnpm exec changeset` — select affected packages, bump type (patch/minor/major), and write a summary (becomes the changelog entry)
 3. Commit the generated `.changeset/*.md` file with your code changes
 4. Open a PR — CI runs build + test
 5. Merge to main — the release workflow bumps versions, publishes to npm, and pushes version commits + tags
 
-Skip `npx changeset` for changes that don't warrant a release (CI config, docs, etc.).
+Skip `pnpm exec changeset` for changes that don't warrant a release (CI config, docs, etc.).
 
 ## Architecture
 

@@ -14,7 +14,7 @@ The monorepo contains only the public npm packages. The MCP server stays in its 
 
 ### Monorepo (new repo)
 
-Nx in package-based mode — each package has its own `package.json`, Nx handles task orchestration, caching, and affected detection on top of npm workspaces.
+Nx in package-based mode — each package has its own `package.json`, Nx handles task orchestration, caching, and affected detection on top of pnpm workspaces.
 
 ```
 outseta-js/
@@ -83,13 +83,13 @@ Orval's custom mutator accepts the instance, so generated functions take a clien
 ### Monorepo CI (GitHub Actions):
 
 **On `openapi.json` change:**
-1. `npm run generate` (orval)
-2. `npm run build` + `npm run test`
+1. `pnpm run generate` (orval)
+2. `pnpm run build` + `pnpm run test`
 3. Auto-commit regenerated code if changed
 4. **Changesets** for versioning — `changeset version` bumps affected packages, `changeset publish` pushes to npm
 
 **On every PR:**
-- `npm run generate:check` — fails if generated code is out of sync with spec
+- `pnpm run generate:check` — fails if generated code is out of sync with spec
 - Build + test all packages
 
 ### MCP Server CI:
@@ -99,7 +99,7 @@ Orval's custom mutator accepts the instance, so generated functions take a clien
 
 ## Migration Steps
 
-1. **Create the monorepo** (`outseta-js/`) — Nx, npm workspaces, Orval config
+1. **Create the monorepo** (`outseta-js/`) — Nx, pnpm workspaces, Orval config
 2. **Add `openapi.json`** and run Orval to generate the api-client
 3. **Build the custom mutator** (`packages/api-client/src/client.ts`) — instance factory, no global state
 4. **Publish `@outseta/api-client`** to npm
@@ -112,8 +112,8 @@ Orval's custom mutator accepts the instance, so generated functions take a clien
 
 ## Verification
 
-- Run `npm run generate` in monorepo — confirm Orval produces valid TypeScript
-- Run `npm run build` — all packages compile
+- Run `pnpm run generate` in monorepo — confirm Orval produces valid TypeScript
+- Run `pnpm run build` — all packages compile
 - In MCP server: `npm install @outseta/api-client`, migrate one module, test manually
 - Test `generate:check` in CI — modify spec, confirm CI catches stale generated code
 - Test Dependabot flow — publish api-client, verify MCP server gets a PR
