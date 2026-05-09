@@ -27,10 +27,12 @@ type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
 
 
 /**
- * @summary Retrieves all the activities. One or multiple parameters can be defined to filter the results.
-ActivityType=[100,101] where ActivityUpdated = 100 and AcccountUpdated = 101
+ * One or multiple parameters can be defined to filter the results.
+ActivityType=[100,101] where ActivityUpdated = 100 and AcccountUpdated = 101.
 Results will be limited to the last year unless ActivityDateTime is specified,
-possibly with ActivityDateTime__gt/ActivityDateTime__gte and ActivityDateTime__lt/ActivityDateTime__lte
+possibly with ActivityDateTime__gt/ActivityDateTime__gte and
+ActivityDateTime__lt/ActivityDateTime__lte.
+ * @summary Retrieve all activities, optionally filtered.
  */
 export const activityGetAll = (
     params?: ActivityGetAllParams,
@@ -78,10 +80,7 @@ export type ActivityGetAllQueryError = void
 
 
 /**
- * @summary Retrieves all the activities. One or multiple parameters can be defined to filter the results.
-ActivityType=[100,101] where ActivityUpdated = 100 and AcccountUpdated = 101
-Results will be limited to the last year unless ActivityDateTime is specified,
-possibly with ActivityDateTime__gt/ActivityDateTime__gte and ActivityDateTime__lt/ActivityDateTime__lte
+ * @summary Retrieve all activities, optionally filtered.
  */
 
 export function useActivityGetAll<TData = Awaited<ReturnType<typeof activityGetAll>>, TError = void>(
@@ -102,10 +101,11 @@ export function useActivityGetAll<TData = Awaited<ReturnType<typeof activityGetA
 
 
 /**
- * @summary Record custom events associated to an account, person or deal. These activities show up
-on the activity feed of the corresponding entity and can be leveraged to trigger drip
-campaigns and other automation. For integration with drip campaigns make sure that what
-you pass in the Title property matches the start / stop value specified for the campaign.
+ * These activities show up on the activity feed of the corresponding entity and can be
+leveraged to trigger drip campaigns and other automation. For integration with drip
+campaigns make sure that what you pass in the Title property matches the start / stop
+value specified for the campaign.
+ * @summary Record a custom event associated to an account, person or deal.
  */
 export const activityAddCustomActivity = (
     activityAddCustomActivityBody: ActivityAddCustomActivityBody,
@@ -154,10 +154,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
     export type ActivityAddCustomActivityMutationError = void
 
     /**
- * @summary Record custom events associated to an account, person or deal. These activities show up
-on the activity feed of the corresponding entity and can be leveraged to trigger drip
-campaigns and other automation. For integration with drip campaigns make sure that what
-you pass in the Title property matches the start / stop value specified for the campaign.
+ * @summary Record a custom event associated to an account, person or deal.
  */
 export const useActivityAddCustomActivity = <TError = void,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof activityAddCustomActivity>>, TError,{data: ActivityAddCustomActivityBody}, TContext>, request?: SecondParameter<typeof customFetch>}

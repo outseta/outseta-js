@@ -371,11 +371,13 @@ export const useDealDeleteDeal = <TError = void,
       return useMutation(mutationOptions);
     }
     /**
- * @summary Register a new account. This is the same endpoint the sign up embed uses to create accounts.
-At a minimum you must pass one Primary Contact with an Email address and one Subscription
-record with a reference to a Plan. Other fields (e.g. Account Name, Billing Address,
-Payment Information, etc.) can be passed as desired. A confirmation email will be sent
-to the user unless you've specifically toggled this option off on the AUTH > SIGN UP AND LOGIN page.
+ * This is the same endpoint the sign up embed uses to create accounts. At a minimum you
+must pass one Primary Contact with an Email address and one Subscription record with a
+reference to a Plan. Other fields (e.g. Account Name, Billing Address, Payment
+Information, etc.) can be passed as desired. A confirmation email will be sent to the
+user unless you've specifically toggled this option off on the AUTH > SIGN UP AND LOGIN
+page.
+ * @summary Register a new account.
  */
 export const registrationRegisterAccount = (
     
@@ -421,11 +423,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
     export type RegistrationRegisterAccountMutationError = unknown
 
     /**
- * @summary Register a new account. This is the same endpoint the sign up embed uses to create accounts.
-At a minimum you must pass one Primary Contact with an Email address and one Subscription
-record with a reference to a Plan. Other fields (e.g. Account Name, Billing Address,
-Payment Information, etc.) can be passed as desired. A confirmation email will be sent
-to the user unless you've specifically toggled this option off on the AUTH > SIGN UP AND LOGIN page.
+ * @summary Register a new account.
  */
 export const useRegistrationRegisterAccount = <TError = unknown,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof registrationRegisterAccount>>, TError,void, TContext>, request?: SecondParameter<typeof customFetch>}
@@ -510,9 +508,9 @@ export function useAccountGetAllAccounts<TData = Awaited<ReturnType<typeof accou
 
 
 /**
- * @summary Add a new account.
-To add an account with an existing person, the Account payload include something like this:
+ * To add an account with an existing person, the Account payload include something like this:
 { ... other Account properties ..., "PersonAccount": [ { "Person": { "Uid": [personUid] }, "IsPrimary": "true" } ] }
+ * @summary Add a new account.
  */
 export const accountAddAccount = (
     accountAddAccountBody: AccountAddAccountBody,
@@ -564,8 +562,6 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
 
     /**
  * @summary Add a new account.
-To add an account with an existing person, the Account payload include something like this:
-{ ... other Account properties ..., "PersonAccount": [ { "Person": { "Uid": [personUid] }, "IsPrimary": "true" } ] }
  */
 export const useAccountAddAccount = <TError = void,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof accountAddAccount>>, TError,{data: AccountAddAccountBody;params?: AccountAddAccountParams}, TContext>, request?: SecondParameter<typeof customFetch>}
@@ -711,9 +707,10 @@ export const useAccountDeleteAccount = <TError = void,
       return useMutation(mutationOptions);
     }
     /**
- * @summary Update account information. You can update one or multiple properties on the object.
-Any property that you include in the json schema will be updated.
-To update custom properties just include them in the same way that they are included when you do a get on the object.
+ * You can update one or multiple properties on the object. Any property that you
+include in the json schema will be updated. To update custom properties just
+include them in the same way that they are included when you do a get on the object.
+ * @summary Update account information.
  */
 export const accountUpdateAccount = (
     accountUid: string | null,
@@ -761,9 +758,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
     export type AccountUpdateAccountMutationError = void
 
     /**
- * @summary Update account information. You can update one or multiple properties on the object.
-Any property that you include in the json schema will be updated.
-To update custom properties just include them in the same way that they are included when you do a get on the object.
+ * @summary Update account information.
  */
 export const useAccountUpdateAccount = <TError = void,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof accountUpdateAccount>>, TError,{accountUid: string | null;data: AccountUpdateAccountBody}, TContext>, request?: SecondParameter<typeof customFetch>}
@@ -973,10 +968,10 @@ export const useAccountDeleteMembership = <TError = void,
       return useMutation(mutationOptions);
     }
     /**
- * @summary Add a cancellation request to an account. The account needs to be in subscribing stage.
-The stage will automatically change over to cancelling. If the account has a subscription
-attached to it then at the subscription renewal the subscription will end and the account
-will be automatically set to expired.
+ * The account needs to be in subscribing stage. The stage will automatically change over to
+cancelling. If the account has a subscription attached to it then at the subscription
+renewal the subscription will end and the account will be automatically set to expired.
+ * @summary Add a cancellation request to an account.
  */
 export const accountCancelAccount = (
     accountUid: string | null,
@@ -1025,10 +1020,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
     export type AccountCancelAccountMutationError = void
 
     /**
- * @summary Add a cancellation request to an account. The account needs to be in subscribing stage.
-The stage will automatically change over to cancelling. If the account has a subscription
-attached to it then at the subscription renewal the subscription will end and the account
-will be automatically set to expired.
+ * @summary Add a cancellation request to an account.
  */
 export const useAccountCancelAccount = <TError = void,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof accountCancelAccount>>, TError,{accountUid: string | null;data: AccountCancelAccountBody}, TContext>, request?: SecondParameter<typeof customFetch>}
@@ -1171,9 +1163,10 @@ export const useAccountExtendTrial = <TError = void,
       return useMutation(mutationOptions);
     }
     /**
- * @summary Send a confirmation email to people on an account. Pass personUid as a query parameter
-to send to a specific person, or personUid=* to send to all people on the account.
-If no personUid is provided, the email is sent to the primary contact.
+ * Pass personUid as a query parameter to send to a specific person, or personUid=* to send
+to all people on the account. If no personUid is provided, the email is sent to the
+primary contact.
+ * @summary Send a confirmation email to people on an account.
  */
 export const accountSendConfirmationEmail = (
     accountUid: string | null,
@@ -1219,9 +1212,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
     export type AccountSendConfirmationEmailMutationError = void
 
     /**
- * @summary Send a confirmation email to people on an account. Pass personUid as a query parameter
-to send to a specific person, or personUid=* to send to all people on the account.
-If no personUid is provided, the email is sent to the primary contact.
+ * @summary Send a confirmation email to people on an account.
  */
 export const useAccountSendConfirmationEmail = <TError = void,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof accountSendConfirmationEmail>>, TError,{accountUid: string | null}, TContext>, request?: SecondParameter<typeof customFetch>}
@@ -1438,9 +1429,10 @@ export function usePersonGetPerson<TData = Awaited<ReturnType<typeof personGetPe
 
 
 /**
- * @summary Update a person record. You can update one or multiple properties on the object.
-Any property that you include in the json schema will be updated.
-To update custom properties just include them in the same way that they are included when you do a get on the object.
+ * You can update one or multiple properties on the object. Any property that you
+include in the json schema will be updated. To update custom properties just
+include them in the same way that they are included when you do a get on the object.
+ * @summary Update a person record.
  */
 export const personUpdatePerson = (
     personUid: string | null,
@@ -1488,9 +1480,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
     export type PersonUpdatePersonMutationError = void
 
     /**
- * @summary Update a person record. You can update one or multiple properties on the object.
-Any property that you include in the json schema will be updated.
-To update custom properties just include them in the same way that they are included when you do a get on the object.
+ * @summary Update a person record.
  */
 export const usePersonUpdatePerson = <TError = void,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof personUpdatePerson>>, TError,{personUid: string | null;data: PersonUpdatePersonBody}, TContext>, request?: SecondParameter<typeof customFetch>}
@@ -1633,8 +1623,75 @@ export const usePersonSetTemporaryPassword = <TError = void,
       return useMutation(mutationOptions);
     }
     /**
- * @summary Initiate the forgot password flow by sending an email to the user with a link to a page
-where they can reset their password. The reset password token in the link is valid for 30 minutes.
+ * All prior recovery codes are invalidated. Existing TOTP/Email mechanisms are intentionally
+left in place — the admin returns the new codes to the user out of band, the user logs in
+with one, then re-enrolls their device. Mirrors the temporary-password flow at
+SetTemporaryPassword.
+ * @summary Regenerate 2FA recovery codes for a user locked out of their authenticator.
+ */
+export const personRegenerateTwoFactorRecoveryCodes = (
+    personUid: string | null,
+ options?: SecondParameter<typeof customFetch>,) => {
+      
+      
+      return customFetch<Blob>(
+      {url: `/api/v1/crm/people/${personUid}/regenerateTwoFactorRecoveryCodes`, method: 'PUT',
+        responseType: 'blob'
+    },
+      options);
+    }
+  
+
+
+export const getPersonRegenerateTwoFactorRecoveryCodesMutationOptions = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof personRegenerateTwoFactorRecoveryCodes>>, TError,{personUid: string | null}, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof personRegenerateTwoFactorRecoveryCodes>>, TError,{personUid: string | null}, TContext> => {
+
+const mutationKey = ['personRegenerateTwoFactorRecoveryCodes'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof personRegenerateTwoFactorRecoveryCodes>>, {personUid: string | null}> = (props) => {
+          const {personUid} = props ?? {};
+
+          return  personRegenerateTwoFactorRecoveryCodes(personUid,requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type PersonRegenerateTwoFactorRecoveryCodesMutationResult = NonNullable<Awaited<ReturnType<typeof personRegenerateTwoFactorRecoveryCodes>>>
+    
+    export type PersonRegenerateTwoFactorRecoveryCodesMutationError = void
+
+    /**
+ * @summary Regenerate 2FA recovery codes for a user locked out of their authenticator.
+ */
+export const usePersonRegenerateTwoFactorRecoveryCodes = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof personRegenerateTwoFactorRecoveryCodes>>, TError,{personUid: string | null}, TContext>, request?: SecondParameter<typeof customFetch>}
+ ): UseMutationResult<
+        Awaited<ReturnType<typeof personRegenerateTwoFactorRecoveryCodes>>,
+        TError,
+        {personUid: string | null},
+        TContext
+      > => {
+
+      const mutationOptions = getPersonRegenerateTwoFactorRecoveryCodesMutationOptions(options);
+
+      return useMutation(mutationOptions);
+    }
+    /**
+ * Sends an email to the user with a link to a page where they can reset their password.
+The reset password token in the link is valid for 30 minutes.
+ * @summary Initiate the forgot password flow.
  */
 export const personForgotPassword = (
     personForgotPasswordBody: PersonForgotPasswordBody,
@@ -1683,8 +1740,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
     export type PersonForgotPasswordMutationError = unknown
 
     /**
- * @summary Initiate the forgot password flow by sending an email to the user with a link to a page
-where they can reset their password. The reset password token in the link is valid for 30 minutes.
+ * @summary Initiate the forgot password flow.
  */
 export const usePersonForgotPassword = <TError = unknown,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof personForgotPassword>>, TError,{data: PersonForgotPasswordBody}, TContext>, request?: SecondParameter<typeof customFetch>}
