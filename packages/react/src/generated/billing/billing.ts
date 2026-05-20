@@ -18,6 +18,7 @@ import type {
   DiscountCouponAddDiscountCouponBody,
   Invoice,
   InvoiceAddInvoiceBody,
+  InvoiceUpdateInvoiceBody,
   PaymentInformation,
   PaymentInformationSavePaymentInformationBody,
   Plan,
@@ -46,8 +47,9 @@ type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
 
 
 /**
- * @summary Add a new discount coupon. Only one of AmountOff or PercentOff should be set.
+ * Only one of AmountOff or PercentOff should be set.
 Duration values: 1 = Forever, 2 = Once, 3 = Repeating (DurationInMonths must be set).
+ * @summary Add a new discount coupon.
  */
 export const discountCouponAddDiscountCoupon = (
     discountCouponAddDiscountCouponBody: DiscountCouponAddDiscountCouponBody,
@@ -95,8 +97,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
     export type DiscountCouponAddDiscountCouponMutationError = void
 
     /**
- * @summary Add a new discount coupon. Only one of AmountOff or PercentOff should be set.
-Duration values: 1 = Forever, 2 = Once, 3 = Repeating (DurationInMonths must be set).
+ * @summary Add a new discount coupon.
  */
 export const useDiscountCouponAddDiscountCoupon = <TError = void,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof discountCouponAddDiscountCoupon>>, TError,{data: DiscountCouponAddDiscountCouponBody}, TContext>, request?: SecondParameter<typeof customFetch>}
@@ -176,8 +177,9 @@ export const useUsageAddUsage = <TError = void,
       return useMutation(mutationOptions);
     }
     /**
- * @summary Retrieves all transactions for a given account. Transactions are tied to accounts and invoices.
+ * Transactions are tied to accounts and invoices.
 BillingTransactionType: Invoice = 1, Payment = 2, Credit = 3, Refund = 4, Chargeback = 5.
+ * @summary Retrieve all transactions for a given account.
  */
 export const transactionsGetAllTransactionsByAccountId = (
     accountUid: string | null,
@@ -224,8 +226,7 @@ export type TransactionsGetAllTransactionsByAccountIdQueryError = void
 
 
 /**
- * @summary Retrieves all transactions for a given account. Transactions are tied to accounts and invoices.
-BillingTransactionType: Invoice = 1, Payment = 2, Credit = 3, Refund = 4, Chargeback = 5.
+ * @summary Retrieve all transactions for a given account.
  */
 
 export function useTransactionsGetAllTransactionsByAccountId<TData = Awaited<ReturnType<typeof transactionsGetAllTransactionsByAccountId>>, TError = void>(
@@ -246,8 +247,9 @@ export function useTransactionsGetAllTransactionsByAccountId<TData = Awaited<Ret
 
 
 /**
- * @summary Adds a payment to an invoice. If the amount matches the outstanding amount of the invoice,
-the invoice will be marked as Paid.
+ * If the amount matches the outstanding amount of the invoice, the invoice will be marked
+as Paid.
+ * @summary Add a payment to an invoice.
  */
 export const transactionsAddPaymentTransaction = (
     transactionsAddPaymentTransactionBody: TransactionsAddPaymentTransactionBody,
@@ -295,8 +297,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
     export type TransactionsAddPaymentTransactionMutationError = void
 
     /**
- * @summary Adds a payment to an invoice. If the amount matches the outstanding amount of the invoice,
-the invoice will be marked as Paid.
+ * @summary Add a payment to an invoice.
  */
 export const useTransactionsAddPaymentTransaction = <TError = void,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof transactionsAddPaymentTransaction>>, TError,{data: TransactionsAddPaymentTransactionBody}, TContext>, request?: SecondParameter<typeof customFetch>}
@@ -441,6 +442,77 @@ export const useSubscriptionAddOnAddSubscriptionAddOn = <TError = void,
       return useMutation(mutationOptions);
     }
     /**
+ * Admins and API key callers see every invoice. Non-admin users see only invoices
+belonging to the account they are the primary contact of.
+Pass excludeInvoiceUid as a query parameter to omit a specific invoice from the result set.
+ * @summary Returns all invoices, optionally restricted to the requester's account.
+ */
+export const invoiceGetAllInvoices = (
+    
+ options?: SecondParameter<typeof customFetch>,signal?: AbortSignal
+) => {
+      
+      
+      return customFetch<Invoice[]>(
+      {url: `/api/v1/billing/invoices`, method: 'GET', signal
+    },
+      options);
+    }
+  
+
+
+
+export const getInvoiceGetAllInvoicesQueryKey = () => {
+    return [
+    `/api/v1/billing/invoices`
+    ] as const;
+    }
+
+    
+export const getInvoiceGetAllInvoicesQueryOptions = <TData = Awaited<ReturnType<typeof invoiceGetAllInvoices>>, TError = void>( options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof invoiceGetAllInvoices>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getInvoiceGetAllInvoicesQueryKey();
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof invoiceGetAllInvoices>>> = ({ signal }) => invoiceGetAllInvoices(requestOptions, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof invoiceGetAllInvoices>>, TError, TData> & { queryKey: QueryKey }
+}
+
+export type InvoiceGetAllInvoicesQueryResult = NonNullable<Awaited<ReturnType<typeof invoiceGetAllInvoices>>>
+export type InvoiceGetAllInvoicesQueryError = void
+
+
+/**
+ * @summary Returns all invoices, optionally restricted to the requester's account.
+ */
+
+export function useInvoiceGetAllInvoices<TData = Awaited<ReturnType<typeof invoiceGetAllInvoices>>, TError = void>(
+  options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof invoiceGetAllInvoices>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
+  
+ ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } {
+
+  const queryOptions = getInvoiceGetAllInvoicesQueryOptions(options)
+
+  const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: QueryKey };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+
+/**
  * @summary Create an ad-hoc invoice for a given account.
  */
 export const invoiceAddInvoice = (
@@ -501,6 +573,404 @@ export const useInvoiceAddInvoice = <TError = void,
       > => {
 
       const mutationOptions = getInvoiceAddInvoiceMutationOptions(options);
+
+      return useMutation(mutationOptions);
+    }
+    /**
+ * @summary Returns a single invoice by UID.
+ */
+export const invoiceGetInvoice = (
+    invoiceUid: string | null,
+ options?: SecondParameter<typeof customFetch>,signal?: AbortSignal
+) => {
+      
+      
+      return customFetch<Invoice>(
+      {url: `/api/v1/billing/invoices/${invoiceUid}`, method: 'GET', signal
+    },
+      options);
+    }
+  
+
+
+
+export const getInvoiceGetInvoiceQueryKey = (invoiceUid?: string | null,) => {
+    return [
+    `/api/v1/billing/invoices/${invoiceUid}`
+    ] as const;
+    }
+
+    
+export const getInvoiceGetInvoiceQueryOptions = <TData = Awaited<ReturnType<typeof invoiceGetInvoice>>, TError = void>(invoiceUid: string | null, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof invoiceGetInvoice>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getInvoiceGetInvoiceQueryKey(invoiceUid);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof invoiceGetInvoice>>> = ({ signal }) => invoiceGetInvoice(invoiceUid, requestOptions, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, enabled: !!(invoiceUid), ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof invoiceGetInvoice>>, TError, TData> & { queryKey: QueryKey }
+}
+
+export type InvoiceGetInvoiceQueryResult = NonNullable<Awaited<ReturnType<typeof invoiceGetInvoice>>>
+export type InvoiceGetInvoiceQueryError = void
+
+
+/**
+ * @summary Returns a single invoice by UID.
+ */
+
+export function useInvoiceGetInvoice<TData = Awaited<ReturnType<typeof invoiceGetInvoice>>, TError = void>(
+ invoiceUid: string | null, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof invoiceGetInvoice>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
+  
+ ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } {
+
+  const queryOptions = getInvoiceGetInvoiceQueryOptions(invoiceUid,options)
+
+  const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: QueryKey };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+
+/**
+ * Only invoices created manually via the API or admin UI can be updated; invoices
+generated by a subscription's billing cycle are immutable and will return a
+validation error.
+ * @summary Update an ad-hoc (manually created) invoice.
+ */
+export const invoiceUpdateInvoice = (
+    invoiceUid: string | null,
+    invoiceUpdateInvoiceBody: InvoiceUpdateInvoiceBody,
+ options?: SecondParameter<typeof customFetch>,) => {
+      
+      
+      return customFetch<Invoice>(
+      {url: `/api/v1/billing/invoices/${invoiceUid}`, method: 'PUT',
+      headers: {'Content-Type': 'application/json', },
+      data: invoiceUpdateInvoiceBody
+    },
+      options);
+    }
+  
+
+
+export const getInvoiceUpdateInvoiceMutationOptions = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof invoiceUpdateInvoice>>, TError,{invoiceUid: string | null;data: InvoiceUpdateInvoiceBody}, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof invoiceUpdateInvoice>>, TError,{invoiceUid: string | null;data: InvoiceUpdateInvoiceBody}, TContext> => {
+
+const mutationKey = ['invoiceUpdateInvoice'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof invoiceUpdateInvoice>>, {invoiceUid: string | null;data: InvoiceUpdateInvoiceBody}> = (props) => {
+          const {invoiceUid,data} = props ?? {};
+
+          return  invoiceUpdateInvoice(invoiceUid,data,requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type InvoiceUpdateInvoiceMutationResult = NonNullable<Awaited<ReturnType<typeof invoiceUpdateInvoice>>>
+    export type InvoiceUpdateInvoiceMutationBody = InvoiceUpdateInvoiceBody
+    export type InvoiceUpdateInvoiceMutationError = void
+
+    /**
+ * @summary Update an ad-hoc (manually created) invoice.
+ */
+export const useInvoiceUpdateInvoice = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof invoiceUpdateInvoice>>, TError,{invoiceUid: string | null;data: InvoiceUpdateInvoiceBody}, TContext>, request?: SecondParameter<typeof customFetch>}
+ ): UseMutationResult<
+        Awaited<ReturnType<typeof invoiceUpdateInvoice>>,
+        TError,
+        {invoiceUid: string | null;data: InvoiceUpdateInvoiceBody},
+        TContext
+      > => {
+
+      const mutationOptions = getInvoiceUpdateInvoiceMutationOptions(options);
+
+      return useMutation(mutationOptions);
+    }
+    /**
+ * @summary Delete an invoice.
+ */
+export const invoiceDeleteInvoice = (
+    invoiceUid: string | null,
+ options?: SecondParameter<typeof customFetch>,) => {
+      
+      
+      return customFetch<Blob>(
+      {url: `/api/v1/billing/invoices/${invoiceUid}`, method: 'DELETE',
+        responseType: 'blob'
+    },
+      options);
+    }
+  
+
+
+export const getInvoiceDeleteInvoiceMutationOptions = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof invoiceDeleteInvoice>>, TError,{invoiceUid: string | null}, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof invoiceDeleteInvoice>>, TError,{invoiceUid: string | null}, TContext> => {
+
+const mutationKey = ['invoiceDeleteInvoice'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof invoiceDeleteInvoice>>, {invoiceUid: string | null}> = (props) => {
+          const {invoiceUid} = props ?? {};
+
+          return  invoiceDeleteInvoice(invoiceUid,requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type InvoiceDeleteInvoiceMutationResult = NonNullable<Awaited<ReturnType<typeof invoiceDeleteInvoice>>>
+    
+    export type InvoiceDeleteInvoiceMutationError = void
+
+    /**
+ * @summary Delete an invoice.
+ */
+export const useInvoiceDeleteInvoice = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof invoiceDeleteInvoice>>, TError,{invoiceUid: string | null}, TContext>, request?: SecondParameter<typeof customFetch>}
+ ): UseMutationResult<
+        Awaited<ReturnType<typeof invoiceDeleteInvoice>>,
+        TError,
+        {invoiceUid: string | null},
+        TContext
+      > => {
+
+      const mutationOptions = getInvoiceDeleteInvoiceMutationOptions(options);
+
+      return useMutation(mutationOptions);
+    }
+    /**
+ * Response body is a binary PDF (Content-Type: application/pdf) served as an
+attachment named invoice-{Number}-{InvoiceDate}-{AccountName}.pdf.
+ * @summary Returns a rendered PDF copy of an invoice.
+ */
+export const invoiceGetInvoiceAsPdf = (
+    invoiceUid: string | null,
+ options?: SecondParameter<typeof customFetch>,signal?: AbortSignal
+) => {
+      
+      
+      return customFetch<Blob>(
+      {url: `/api/v1/billing/invoices/${invoiceUid}/pdf`, method: 'GET',
+        responseType: 'blob', signal
+    },
+      options);
+    }
+  
+
+
+
+export const getInvoiceGetInvoiceAsPdfQueryKey = (invoiceUid?: string | null,) => {
+    return [
+    `/api/v1/billing/invoices/${invoiceUid}/pdf`
+    ] as const;
+    }
+
+    
+export const getInvoiceGetInvoiceAsPdfQueryOptions = <TData = Awaited<ReturnType<typeof invoiceGetInvoiceAsPdf>>, TError = void>(invoiceUid: string | null, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof invoiceGetInvoiceAsPdf>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getInvoiceGetInvoiceAsPdfQueryKey(invoiceUid);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof invoiceGetInvoiceAsPdf>>> = ({ signal }) => invoiceGetInvoiceAsPdf(invoiceUid, requestOptions, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, enabled: !!(invoiceUid), ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof invoiceGetInvoiceAsPdf>>, TError, TData> & { queryKey: QueryKey }
+}
+
+export type InvoiceGetInvoiceAsPdfQueryResult = NonNullable<Awaited<ReturnType<typeof invoiceGetInvoiceAsPdf>>>
+export type InvoiceGetInvoiceAsPdfQueryError = void
+
+
+/**
+ * @summary Returns a rendered PDF copy of an invoice.
+ */
+
+export function useInvoiceGetInvoiceAsPdf<TData = Awaited<ReturnType<typeof invoiceGetInvoiceAsPdf>>, TError = void>(
+ invoiceUid: string | null, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof invoiceGetInvoiceAsPdf>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
+  
+ ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } {
+
+  const queryOptions = getInvoiceGetInvoiceAsPdfQueryOptions(invoiceUid,options)
+
+  const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: QueryKey };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+
+/**
+ * Optional query parameters:
+  note - free-text note to include in the email body.
+  bcc  - comma-separated list of email addresses to BCC.
+ * @summary Email an invoice to the account's billing contact.
+ */
+export const invoiceSendInvoiceEmail = (
+    invoiceUid: string | null,
+ options?: SecondParameter<typeof customFetch>,signal?: AbortSignal
+) => {
+      
+      
+      return customFetch<Blob>(
+      {url: `/api/v1/billing/invoices/${invoiceUid}/sendinvoiceemail`, method: 'POST',
+        responseType: 'blob', signal
+    },
+      options);
+    }
+  
+
+
+export const getInvoiceSendInvoiceEmailMutationOptions = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof invoiceSendInvoiceEmail>>, TError,{invoiceUid: string | null}, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof invoiceSendInvoiceEmail>>, TError,{invoiceUid: string | null}, TContext> => {
+
+const mutationKey = ['invoiceSendInvoiceEmail'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof invoiceSendInvoiceEmail>>, {invoiceUid: string | null}> = (props) => {
+          const {invoiceUid} = props ?? {};
+
+          return  invoiceSendInvoiceEmail(invoiceUid,requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type InvoiceSendInvoiceEmailMutationResult = NonNullable<Awaited<ReturnType<typeof invoiceSendInvoiceEmail>>>
+    
+    export type InvoiceSendInvoiceEmailMutationError = void
+
+    /**
+ * @summary Email an invoice to the account's billing contact.
+ */
+export const useInvoiceSendInvoiceEmail = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof invoiceSendInvoiceEmail>>, TError,{invoiceUid: string | null}, TContext>, request?: SecondParameter<typeof customFetch>}
+ ): UseMutationResult<
+        Awaited<ReturnType<typeof invoiceSendInvoiceEmail>>,
+        TError,
+        {invoiceUid: string | null},
+        TContext
+      > => {
+
+      const mutationOptions = getInvoiceSendInvoiceEmailMutationOptions(options);
+
+      return useMutation(mutationOptions);
+    }
+    /**
+ * Returns 400 Bad Request if the invoice is not in the Paid status.
+ * @summary Send the "invoice paid" receipt email to the account's billing contact.
+ */
+export const invoiceSendInvoicePaidEmail = (
+    invoiceUid: string | null,
+ options?: SecondParameter<typeof customFetch>,signal?: AbortSignal
+) => {
+      
+      
+      return customFetch<Blob>(
+      {url: `/api/v1/billing/invoices/${invoiceUid}/sendinvoicepaidemail`, method: 'POST',
+        responseType: 'blob', signal
+    },
+      options);
+    }
+  
+
+
+export const getInvoiceSendInvoicePaidEmailMutationOptions = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof invoiceSendInvoicePaidEmail>>, TError,{invoiceUid: string | null}, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof invoiceSendInvoicePaidEmail>>, TError,{invoiceUid: string | null}, TContext> => {
+
+const mutationKey = ['invoiceSendInvoicePaidEmail'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof invoiceSendInvoicePaidEmail>>, {invoiceUid: string | null}> = (props) => {
+          const {invoiceUid} = props ?? {};
+
+          return  invoiceSendInvoicePaidEmail(invoiceUid,requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type InvoiceSendInvoicePaidEmailMutationResult = NonNullable<Awaited<ReturnType<typeof invoiceSendInvoicePaidEmail>>>
+    
+    export type InvoiceSendInvoicePaidEmailMutationError = void
+
+    /**
+ * @summary Send the "invoice paid" receipt email to the account's billing contact.
+ */
+export const useInvoiceSendInvoicePaidEmail = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof invoiceSendInvoicePaidEmail>>, TError,{invoiceUid: string | null}, TContext>, request?: SecondParameter<typeof customFetch>}
+ ): UseMutationResult<
+        Awaited<ReturnType<typeof invoiceSendInvoicePaidEmail>>,
+        TError,
+        {invoiceUid: string | null},
+        TContext
+      > => {
+
+      const mutationOptions = getInvoiceSendInvoicePaidEmailMutationOptions(options);
 
       return useMutation(mutationOptions);
     }
@@ -637,8 +1107,9 @@ export const useSubscriptionAddDiscountToSubscription = <TError = void,
       return useMutation(mutationOptions);
     }
     /**
- * @summary Indicate that an upgrade of plan is required. When a subscription is flagged, next time
-the user authenticates the authentication widget will prompt the user to change plan.
+ * When a subscription is flagged, next time the user authenticates the authentication
+widget will prompt the user to change plan.
+ * @summary Indicate that an upgrade of plan is required.
  */
 export const subscriptionSetSubscriptionUpgradeRequired = (
     subscriptionUid: string | null,
@@ -686,8 +1157,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
     export type SubscriptionSetSubscriptionUpgradeRequiredMutationError = void
 
     /**
- * @summary Indicate that an upgrade of plan is required. When a subscription is flagged, next time
-the user authenticates the authentication widget will prompt the user to change plan.
+ * @summary Indicate that an upgrade of plan is required.
  */
 export const useSubscriptionSetSubscriptionUpgradeRequired = <TError = void,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof subscriptionSetSubscriptionUpgradeRequired>>, TError,{subscriptionUid: string | null;data: SubscriptionSetSubscriptionUpgradeRequiredBody}, TContext>, request?: SecondParameter<typeof customFetch>}
@@ -703,10 +1173,11 @@ export const useSubscriptionSetSubscriptionUpgradeRequired = <TError = void,
       return useMutation(mutationOptions);
     }
     /**
- * @summary Preview what the initial or renewal invoice would look like if an account were to register
-with this subscription. Returns an invoice object with information about the amount outstanding.
-BillingRenewalTerm values: 1 = Monthly, 2 = Yearly, 3 = Quarterly, 4 = OneTime.
-Pass asOf=renewal to see the renewal invoice instead of the initial invoice.
+ * Returns an invoice object with information about the amount outstanding if an account
+were to register with this subscription. BillingRenewalTerm values: 1 = Monthly,
+2 = Yearly, 3 = Quarterly, 4 = OneTime. Pass asOf=renewal to see the renewal invoice
+instead of the initial invoice.
+ * @summary Preview the initial or renewal invoice for a hypothetical subscription.
  */
 export const subscriptionFirstTimeSubscriptionPreview = (
     subscriptionFirstTimeSubscriptionPreviewBody: SubscriptionFirstTimeSubscriptionPreviewBody,
@@ -756,10 +1227,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
     export type SubscriptionFirstTimeSubscriptionPreviewMutationError = unknown
 
     /**
- * @summary Preview what the initial or renewal invoice would look like if an account were to register
-with this subscription. Returns an invoice object with information about the amount outstanding.
-BillingRenewalTerm values: 1 = Monthly, 2 = Yearly, 3 = Quarterly, 4 = OneTime.
-Pass asOf=renewal to see the renewal invoice instead of the initial invoice.
+ * @summary Preview the initial or renewal invoice for a hypothetical subscription.
  */
 export const useSubscriptionFirstTimeSubscriptionPreview = <TError = unknown,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof subscriptionFirstTimeSubscriptionPreview>>, TError,{data: SubscriptionFirstTimeSubscriptionPreviewBody;params?: SubscriptionFirstTimeSubscriptionPreviewParams}, TContext>, request?: SecondParameter<typeof customFetch>}
@@ -775,8 +1243,8 @@ export const useSubscriptionFirstTimeSubscriptionPreview = <TError = unknown,
       return useMutation(mutationOptions);
     }
     /**
- * @summary Add a subscription to an account for the first time. Returns an invoice object
-with information about the amount outstanding.
+ * Returns an invoice object with information about the amount outstanding.
+ * @summary Add a subscription to an account for the first time.
  */
 export const subscriptionFirstTimeSubscription = (
     subscriptionFirstTimeSubscriptionBody: SubscriptionFirstTimeSubscriptionBody,
@@ -823,8 +1291,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
     export type SubscriptionFirstTimeSubscriptionMutationError = void
 
     /**
- * @summary Add a subscription to an account for the first time. Returns an invoice object
-with information about the amount outstanding.
+ * @summary Add a subscription to an account for the first time.
  */
 export const useSubscriptionFirstTimeSubscription = <TError = void,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof subscriptionFirstTimeSubscription>>, TError,{data: SubscriptionFirstTimeSubscriptionBody}, TContext>, request?: SecondParameter<typeof customFetch>}
@@ -840,8 +1307,9 @@ export const useSubscriptionFirstTimeSubscription = <TError = void,
       return useMutation(mutationOptions);
     }
     /**
- * @summary Preview what the invoice would look like when changing a subscription. Returns an invoice object
-with information about the amount outstanding. This method does not commit the subscription change.
+ * Returns an invoice object with information about the amount outstanding. This method
+does not commit the subscription change.
+ * @summary Preview the invoice for a subscription change.
  */
 export const subscriptionChangeSubscriptionPreview = (
     subscriptionUid: string | null,
@@ -891,8 +1359,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
     export type SubscriptionChangeSubscriptionPreviewMutationError = void
 
     /**
- * @summary Preview what the invoice would look like when changing a subscription. Returns an invoice object
-with information about the amount outstanding. This method does not commit the subscription change.
+ * @summary Preview the invoice for a subscription change.
  */
 export const useSubscriptionChangeSubscriptionPreview = <TError = void,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof subscriptionChangeSubscriptionPreview>>, TError,{subscriptionUid: string | null;data: SubscriptionChangeSubscriptionPreviewBody;params?: SubscriptionChangeSubscriptionPreviewParams}, TContext>, request?: SecondParameter<typeof customFetch>}
@@ -908,8 +1375,8 @@ export const useSubscriptionChangeSubscriptionPreview = <TError = void,
       return useMutation(mutationOptions);
     }
     /**
- * @summary Change a subscription on an account. Returns an invoice object with information about
-the amount outstanding.
+ * Returns an invoice object with information about the amount outstanding.
+ * @summary Change a subscription on an account.
  */
 export const subscriptionChangeSubscription = (
     subscriptionUid: string | null,
@@ -959,8 +1426,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
     export type SubscriptionChangeSubscriptionMutationError = void
 
     /**
- * @summary Change a subscription on an account. Returns an invoice object with information about
-the amount outstanding.
+ * @summary Change a subscription on an account.
  */
 export const useSubscriptionChangeSubscription = <TError = void,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof subscriptionChangeSubscription>>, TError,{subscriptionUid: string | null;data: SubscriptionChangeSubscriptionBody;params?: SubscriptionChangeSubscriptionParams}, TContext>, request?: SecondParameter<typeof customFetch>}

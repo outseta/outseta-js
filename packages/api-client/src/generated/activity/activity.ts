@@ -8,10 +8,12 @@ import type {
 import { customFetch } from '../../client';
 
 /**
- * @summary Retrieves all the activities. One or multiple parameters can be defined to filter the results.
-ActivityType=[100,101] where ActivityUpdated = 100 and AcccountUpdated = 101
+ * One or multiple parameters can be defined to filter the results.
+ActivityType=[100,101] where ActivityUpdated = 100 and AcccountUpdated = 101.
 Results will be limited to the last year unless ActivityDateTime is specified,
-possibly with ActivityDateTime__gt/ActivityDateTime__gte and ActivityDateTime__lt/ActivityDateTime__lte
+possibly with ActivityDateTime__gt/ActivityDateTime__gte and
+ActivityDateTime__lt/ActivityDateTime__lte.
+ * @summary Retrieve all activities, optionally filtered.
  */
 export type activityGetAllResponse200 = {
   data: Activity[]
@@ -68,10 +70,11 @@ export const activityGetAll = async (params?: ActivityGetAllParams, options?: Re
 
 
 /**
- * @summary Record custom events associated to an account, person or deal. These activities show up
-on the activity feed of the corresponding entity and can be leveraged to trigger drip
-campaigns and other automation. For integration with drip campaigns make sure that what
-you pass in the Title property matches the start / stop value specified for the campaign.
+ * These activities show up on the activity feed of the corresponding entity and can be
+leveraged to trigger drip campaigns and other automation. For integration with drip
+campaigns make sure that what you pass in the Title property matches the start / stop
+value specified for the campaign.
+ * @summary Record a custom event associated to an account, person or deal.
  */
 export type activityAddCustomActivityResponse200 = {
   data: Blob

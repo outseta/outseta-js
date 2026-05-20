@@ -227,6 +227,7 @@ export * from './invoiceLineItemAllOf';
 export * from './invoiceLineItemAllOfInvoice';
 export * from './invoiceLineItemAllOfLineItemType';
 export * from './invoiceStatusChangeOptions';
+export * from './invoiceUpdateInvoiceBody';
 export * from './jwtKey';
 export * from './jwtKeyAllOf';
 export * from './jwtKeyAllOfQcount';

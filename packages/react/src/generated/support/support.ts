@@ -32,9 +32,9 @@ type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
 
 
 /**
- * @summary Returns all cases, optionally filtered by search string, tag, and/or assignment.
-Assigned cases can be filtered by passing in the AssignedToPersonClientIdentifier,
+ * Assigned cases can be filtered by passing in the AssignedToPersonClientIdentifier,
 which is the Uid of the person the case is assigned to.
+ * @summary Returns all cases, optionally filtered by search string, tag, and/or assignment.
  */
 export const caseGetAllCases = (
     params?: CaseGetAllCasesParams,
@@ -83,8 +83,6 @@ export type CaseGetAllCasesQueryError = void
 
 /**
  * @summary Returns all cases, optionally filtered by search string, tag, and/or assignment.
-Assigned cases can be filtered by passing in the AssignedToPersonClientIdentifier,
-which is the Uid of the person the case is assigned to.
  */
 
 export function useCaseGetAllCases<TData = Awaited<ReturnType<typeof caseGetAllCases>>, TError = void>(
@@ -365,8 +363,7 @@ export const useCaseAddClientResponse = <TError = void,
       return useMutation(mutationOptions);
     }
     /**
- * @summary Retrieves all knowledge base articles.
-Matches on title or body of the article"
+ * @summary Retrieve all knowledge base articles.
  */
 export const articleGetAllArticles = (
     params?: ArticleGetAllArticlesParams,
@@ -414,8 +411,7 @@ export type ArticleGetAllArticlesQueryError = unknown
 
 
 /**
- * @summary Retrieves all knowledge base articles.
-Matches on title or body of the article"
+ * @summary Retrieve all knowledge base articles.
  */
 
 export function useArticleGetAllArticles<TData = Awaited<ReturnType<typeof articleGetAllArticles>>, TError = unknown>(

@@ -54,10 +54,11 @@ export const campaignGetAllBroadcastEmails = async ( options?: RequestInit): Pro
 
 
 /**
- * @summary Creates a new broadcast campaign. To copy an existing broadcast, retrieve it and pass its
-data as the request body — the Uid, SendDateTime, and message counts are automatically reset.
-Recipients can be specified using EmailListUids and SegmentUids instead of populating
-RecipientData directly. If both are provided, they are merged.
+ * To copy an existing broadcast, retrieve it and pass its data as the request body — the
+Uid, SendDateTime, and message counts are automatically reset. Recipients can be
+specified using EmailListUids and SegmentUids instead of populating RecipientData
+directly. If both are provided, they are merged.
+ * @summary Create a new broadcast campaign.
  */
 export type campaignAddBroadcastEmailResponse200 = {
   data: BroadcastCampaign
@@ -152,10 +153,11 @@ export const campaignGetBroadcastEmail = async (broadcastCampaignUid: string | n
 
 
 /**
- * @summary Updates a broadcast campaign. Setting SendDateTime to a future date schedules the broadcast
-for sending and its status changes to Pending. Clearing SendDateTime unschedules the broadcast.
-Recipients can be specified using EmailListUids and SegmentUids instead of populating
-RecipientData directly. If both are provided, they are merged.
+ * Setting SendDateTime to a future date schedules the broadcast for sending and its status
+changes to Pending. Clearing SendDateTime unschedules the broadcast. Recipients can be
+specified using EmailListUids and SegmentUids instead of populating RecipientData
+directly. If both are provided, they are merged.
+ * @summary Update a broadcast campaign.
  */
 export type campaignUpdateBroadcastEmailResponse200 = {
   data: BroadcastCampaign
@@ -209,8 +211,9 @@ export const campaignUpdateBroadcastEmail = async (broadcastCampaignUid: string 
 
 
 /**
- * @summary Deletes a broadcast campaign. Only campaigns in Draft or Pending status can be deleted.
-Campaigns that have been processed should be archived instead.
+ * Only campaigns in Draft or Pending status can be deleted. Campaigns that have been
+processed should be archived instead.
+ * @summary Delete a broadcast campaign.
  */
 export type campaignDeleteBroadcastCampaignResponse200 = {
   data: Blob
@@ -366,9 +369,10 @@ export const campaignArchiveBroadcastCampaign = async (broadcastCampaignUid: str
 
 
 /**
- * @summary Sends a test email for a broadcast campaign to the logged-in user and optionally to additional
-recipients. Additional recipients are specified as a list of person Uids and must belong to the
-same account as the logged-in user.
+ * Sends to the logged-in user and optionally to additional recipients. Additional
+recipients are specified as a list of person Uids and must belong to the same account
+as the logged-in user.
+ * @summary Send a test email for a broadcast campaign.
  */
 export type campaignSendTestCampaignEmailResponse200 = {
   data: Blob
@@ -467,9 +471,10 @@ export const emailListGetAllSubscriptions = async (emailListUid: string | null,
 
 
 /**
- * @summary Subscribe a person to an email list. To subscribe a new person, pass a Person object with an
-Email address. To subscribe an existing person, pass a Person object with a Uid. The
-SendWelcomeEmail property determines if the person is sent a welcome email and defaults to false.
+ * To subscribe a new person, pass a Person object with an Email address. To subscribe an
+existing person, pass a Person object with a Uid. The SendWelcomeEmail property
+determines if the person is sent a welcome email and defaults to false.
+ * @summary Subscribe a person to an email list.
  */
 export type emailListAddSubscriptionResponse200 = {
   data: EmailListPerson

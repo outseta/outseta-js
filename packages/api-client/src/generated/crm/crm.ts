@@ -280,11 +280,13 @@ export const dealDeleteDeal = async (dealUid: string | null, options?: RequestIn
 
 
 /**
- * @summary Register a new account. This is the same endpoint the sign up embed uses to create accounts.
-At a minimum you must pass one Primary Contact with an Email address and one Subscription
-record with a reference to a Plan. Other fields (e.g. Account Name, Billing Address,
-Payment Information, etc.) can be passed as desired. A confirmation email will be sent
-to the user unless you've specifically toggled this option off on the AUTH > SIGN UP AND LOGIN page.
+ * This is the same endpoint the sign up embed uses to create accounts. At a minimum you
+must pass one Primary Contact with an Email address and one Subscription record with a
+reference to a Plan. Other fields (e.g. Account Name, Billing Address, Payment
+Information, etc.) can be passed as desired. A confirmation email will be sent to the
+user unless you've specifically toggled this option off on the AUTH > SIGN UP AND LOGIN
+page.
+ * @summary Register a new account.
  */
 export type registrationRegisterAccountResponse200 = {
   data: Account
@@ -373,9 +375,9 @@ export const accountGetAllAccounts = async (params?: AccountGetAllAccountsParams
 
 
 /**
- * @summary Add a new account.
-To add an account with an existing person, the Account payload include something like this:
+ * To add an account with an existing person, the Account payload include something like this:
 { ... other Account properties ..., "PersonAccount": [ { "Person": { "Uid": [personUid] }, "IsPrimary": "true" } ] }
+ * @summary Add a new account.
  */
 export type accountAddAccountResponse200 = {
   data: Blob
@@ -530,9 +532,10 @@ export const accountDeleteAccount = async (accountUid: string | null, options?: 
 
 
 /**
- * @summary Update account information. You can update one or multiple properties on the object.
-Any property that you include in the json schema will be updated.
-To update custom properties just include them in the same way that they are included when you do a get on the object.
+ * You can update one or multiple properties on the object. Any property that you
+include in the json schema will be updated. To update custom properties just
+include them in the same way that they are included when you do a get on the object.
+ * @summary Update account information.
  */
 export type accountUpdateAccountResponse200 = {
   data: Account
@@ -750,10 +753,10 @@ export const accountDeleteMembership = async (accountUid: string | null,
 
 
 /**
- * @summary Add a cancellation request to an account. The account needs to be in subscribing stage.
-The stage will automatically change over to cancelling. If the account has a subscription
-attached to it then at the subscription renewal the subscription will end and the account
-will be automatically set to expired.
+ * The account needs to be in subscribing stage. The stage will automatically change over to
+cancelling. If the account has a subscription attached to it then at the subscription
+renewal the subscription will end and the account will be automatically set to expired.
+ * @summary Add a cancellation request to an account.
  */
 export type accountCancelAccountResponse200 = {
   data: Blob
@@ -913,9 +916,10 @@ export const accountExtendTrial = async (accountUid: string | null,
 
 
 /**
- * @summary Send a confirmation email to people on an account. Pass personUid as a query parameter
-to send to a specific person, or personUid=* to send to all people on the account.
-If no personUid is provided, the email is sent to the primary contact.
+ * Pass personUid as a query parameter to send to a specific person, or personUid=* to send
+to all people on the account. If no personUid is provided, the email is sent to the
+primary contact.
+ * @summary Send a confirmation email to people on an account.
  */
 export type accountSendConfirmationEmailResponse200 = {
   data: Blob
@@ -1111,9 +1115,10 @@ export const personGetPerson = async (personUid: string | null, options?: Reques
 
 
 /**
- * @summary Update a person record. You can update one or multiple properties on the object.
-Any property that you include in the json schema will be updated.
-To update custom properties just include them in the same way that they are included when you do a get on the object.
+ * You can update one or multiple properties on the object. Any property that you
+include in the json schema will be updated. To update custom properties just
+include them in the same way that they are included when you do a get on the object.
+ * @summary Update a person record.
  */
 export type personUpdatePersonResponse200 = {
   data: Person
@@ -1273,8 +1278,65 @@ export const personSetTemporaryPassword = async (personUid: string | null,
 
 
 /**
- * @summary Initiate the forgot password flow by sending an email to the user with a link to a page
-where they can reset their password. The reset password token in the link is valid for 30 minutes.
+ * All prior recovery codes are invalidated. Existing TOTP/Email mechanisms are intentionally
+left in place — the admin returns the new codes to the user out of band, the user logs in
+with one, then re-enrolls their device. Mirrors the temporary-password flow at
+SetTemporaryPassword.
+ * @summary Regenerate 2FA recovery codes for a user locked out of their authenticator.
+ */
+export type personRegenerateTwoFactorRecoveryCodesResponse200 = {
+  data: Blob
+  status: 200
+}
+
+export type personRegenerateTwoFactorRecoveryCodesResponse400 = {
+  data: void
+  status: 400
+}
+
+export type personRegenerateTwoFactorRecoveryCodesResponse401 = {
+  data: void
+  status: 401
+}
+
+export type personRegenerateTwoFactorRecoveryCodesResponse404 = {
+  data: void
+  status: 404
+}
+    
+export type personRegenerateTwoFactorRecoveryCodesResponseSuccess = (personRegenerateTwoFactorRecoveryCodesResponse200) & {
+  headers: Headers;
+};
+export type personRegenerateTwoFactorRecoveryCodesResponseError = (personRegenerateTwoFactorRecoveryCodesResponse400 | personRegenerateTwoFactorRecoveryCodesResponse401 | personRegenerateTwoFactorRecoveryCodesResponse404) & {
+  headers: Headers;
+};
+
+export type personRegenerateTwoFactorRecoveryCodesResponse = (personRegenerateTwoFactorRecoveryCodesResponseSuccess | personRegenerateTwoFactorRecoveryCodesResponseError)
+
+export const getPersonRegenerateTwoFactorRecoveryCodesUrl = (personUid: string | null,) => {
+
+
+  
+
+  return `/api/v1/crm/people/${personUid}/regenerateTwoFactorRecoveryCodes`
+}
+
+export const personRegenerateTwoFactorRecoveryCodes = async (personUid: string | null, options?: RequestInit): Promise<personRegenerateTwoFactorRecoveryCodesResponse> => {
+  
+  return customFetch<personRegenerateTwoFactorRecoveryCodesResponse>(getPersonRegenerateTwoFactorRecoveryCodesUrl(personUid),
+  {      
+    ...options,
+    method: 'PUT'
+    
+    
+  }
+);}
+
+
+/**
+ * Sends an email to the user with a link to a page where they can reset their password.
+The reset password token in the link is valid for 30 minutes.
+ * @summary Initiate the forgot password flow.
  */
 export type personForgotPasswordResponse200 = {
   data: Blob

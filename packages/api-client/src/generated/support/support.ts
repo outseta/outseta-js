@@ -13,9 +13,9 @@ import type {
 import { customFetch } from '../../client';
 
 /**
- * @summary Returns all cases, optionally filtered by search string, tag, and/or assignment.
-Assigned cases can be filtered by passing in the AssignedToPersonClientIdentifier,
+ * Assigned cases can be filtered by passing in the AssignedToPersonClientIdentifier,
 which is the Uid of the person the case is assigned to.
+ * @summary Returns all cases, optionally filtered by search string, tag, and/or assignment.
  */
 export type caseGetAllCasesResponse200 = {
   data: Case[]
@@ -278,8 +278,7 @@ export const caseAddClientResponse = async (caseUid: string | null,
 
 
 /**
- * @summary Retrieves all knowledge base articles.
-Matches on title or body of the article"
+ * @summary Retrieve all knowledge base articles.
  */
 export type articleGetAllArticlesResponse200 = {
   data: Article[]
