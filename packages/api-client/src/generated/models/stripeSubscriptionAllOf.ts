@@ -45,6 +45,8 @@ export type StripeSubscriptionAllOf = {
   /** @nullable */
   AccountUid?: string | null;
   /** @nullable */
+  BillingCycleAnchor?: string | null;
+  /** @nullable */
   CollectionMethod?: string | null;
   /** @nullable */
   CustomerId?: string | null;
