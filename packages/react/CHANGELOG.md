@@ -1,5 +1,16 @@
 # @outseta/react
 
+## 0.3.0
+
+### Minor Changes
+
+- 2026b16: Export generated API functions and React Query hooks, add node usage tracking and Express webhook helpers, and add reusable React CTA components for protected content.
+
+### Patch Changes
+
+- Updated dependencies [2026b16]
+  - @outseta/api-client@0.3.0
+
 ## 0.2.5
 
 ### Patch Changes
