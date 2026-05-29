@@ -1,25 +1,31 @@
 # @outseta/node-sdk
 
-Node.js SDK for the [Outseta](https://www.outseta.com) API. A thin wrapper around [`@outseta/api-client`](https://www.npmjs.com/package/@outseta/api-client) designed for server-side usage.
+Node.js SDK helpers for the Outseta API.
 
-## Install
+## Notes
 
-```bash
-npm install @outseta/node-sdk
-```
+- Use API key credentials only on the server. For user-scoped requests, create a client with an Outseta bearer `accessToken`.
+- `trackUsage` is intentionally higher-level than the generated API call: it fetches the account, finds the matching subscription add-on, verifies it is usage-based, then creates the usage record.
+- Webhook verification must use the exact raw request body. In Express, mount the webhook route with `express.text(outsetaWebhookTextParserOptions)` before `createOutsetaWebhookHandler`.
+- Generated REST API functions are exported from `@outseta/api-client`; pass SDK clients to them with `withClient(client)`.
 
-## Usage
+## Express webhook route
 
 ```ts
-import { createClient } from "@outseta/node-sdk";
+import express from "express";
+import {
+  createOutsetaWebhookHandler,
+  outsetaWebhookTextParserOptions,
+} from "@outseta/node-sdk";
 
-const client = createClient({
-  subdomain: "your-company",
-  apiKey: "your-api-key",
-  apiSecret: "your-api-secret",
-});
+app.post(
+  "/outseta/webhook",
+  express.text(outsetaWebhookTextParserOptions),
+  createOutsetaWebhookHandler({
+    signingKey: process.env.OUTSETA_WEBHOOK_SIGNING_KEY!,
+    async onWebhook(payload) {
+      // Handle Activity Notification payload.
+    },
+  }),
+);
 ```
-
-## License
-
-[MIT](../../LICENSE)

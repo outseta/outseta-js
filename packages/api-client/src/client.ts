@@ -60,6 +60,13 @@ export function createClient(creds: OutsetaCredentials): OutsetaClient {
  * Consumers pass `{ client }` in the options to inject a client from
  * `createClient()`.
  */
+export function withClient(
+  client: OutsetaClient,
+  init: RequestInit = {},
+): RequestInit {
+  return { ...init, client } as OutsetaRequestInit as RequestInit;
+}
+
 export const customFetch = async <T>(
   url: string,
   options: OutsetaRequestInit,

@@ -1,29 +1,37 @@
 # @outseta/react
 
-React hooks and components for the [Outseta](https://www.outseta.com) API. Built on [TanStack Query](https://tanstack.com/query) with auto-generated hooks from the Outseta OpenAPI spec.
+React components plus generated TanStack Query hooks for Outseta.
 
-## Install
+## Notes
 
-```bash
-npm install @outseta/react
+- The embed components depend on `window.Outseta`; load Outseta's script in your app shell before using `OutsetaProvider`.
+- In browser apps, create API clients with a user bearer `accessToken`, not API key credentials.
+- Generated hooks require a TanStack `QueryClientProvider` and an Outseta client passed through each hook's `request` option.
+- `ProtectedRoute` renders generic login/signup and manage-subscription CTAs by default. Replace them with `unauthenticated` and `accessDenied` props when your app needs custom UX.
+
+## Outseta script
+
+```html
+<script>
+  var o_options = {
+    domain: "your-company.outseta.com",
+    load: "auth,nocode",
+  };
+</script>
+<script src="https://cdn.outseta.com/outseta.min.js" data-options="o_options"></script>
 ```
 
-### Peer dependencies
+## Generated hook request client
 
-- `react` ^18.0.0 || ^19.0.0
-
-## Usage
-
-```ts
-import { createClient } from "@outseta/react";
+```tsx
+import { createClient, useAccountGetAllAccounts } from "@outseta/react";
 
 const client = createClient({
   subdomain: "your-company",
-  apiKey: "your-api-key",
-  apiSecret: "your-api-secret",
+  accessToken,
+});
+
+const accounts = useAccountGetAllAccounts(undefined, {
+  request: client,
 });
 ```
-
-## License
-
-[MIT](../../LICENSE)
