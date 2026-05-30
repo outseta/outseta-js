@@ -2633,9 +2633,161 @@ export const EmailListSubscriberStatus = {
   Confirmed: 4,
 } as const;
 
+export interface TokenPayload {
+  /** @nullable */
+  access_token?: string | null;
+  /** @nullable */
+  authentication_callback_url?: string | null;
+  expires_in?: number;
+  /** @nullable */
+  id_token?: string | null;
+  /** @nullable */
+  token_type?: string | null;
+}
+
+/**
+ * Returned when a login cannot complete with a password alone because the
+user has two-factor authentication enabled. Carries the opaque challenge
+token that must be echoed back to POST /api/v1/tokens/two-factor
+(or the recovery / resend / switch-mechanism endpoints) along with enough
+metadata for a client to render the verification step without a second
+round-trip. The property names are snake_case to match the wire format of
+the other token endpoints (see TokenPayload).
+ */
+export interface TwoFactorChallengePayload {
+  /**
+   * Present and true on the 202 response from POST /api/v1/tokens
+when the user has at least one verified 2FA method. Absent on the
+resend / switch-mechanism responses, which only ever follow an
+already-issued login challenge.
+   * @nullable
+   */
+  two_factor_required?: boolean | null;
+  /**
+   * Present and true instead of two_factor_required
+when the tenant forces 2FA but the user has not yet enrolled any
+method. In that case only challenge_token and
+expires_in are populated and the client must route the
+user through the mid-login enrollment endpoints
+(/api/v1/tokens/two-factor/enroll/...) before a token can be issued.
+   * @nullable
+   */
+  two_factor_enrollment_required?: boolean | null;
+  /**
+   * Short-lived signed JWT (audience outseta:2fa-challenge) that
+identifies this challenge. Echo it back verbatim to complete the login.
+   * @nullable
+   */
+  challenge_token?: string | null;
+  /**
+   * The mechanism this challenge was issued against: Email or
+Totp (authenticator app). For Email a code has already
+been sent to the user; for Totp the user reads the current
+code from their authenticator app and nothing is sent.
+   * @nullable
+   */
+  mechanism?: string | null;
+  /**
+   * A masked view of where an emailed code was sent (e.g. b***@outseta.com),
+suitable for display. Empty when mechanism is Totp.
+   * @nullable
+   */
+  masked_destination?: string | null;
+  /** Seconds until the challenge expires (600). After this the
+challenge_token can no longer be verified and the login must restart. */
+  expires_in?: number;
+  /**
+   * Every verified mechanism enrolled for this user (excluding recovery
+codes), e.g. ["Totp", "Email"]. A client can offer a
+"use a different method" option for any value other than the current
+mechanism via POST /api/v1/tokens/two-factor/switch-mechanism.
+   * @nullable
+   */
+  available_mechanisms?: string[] | null;
+  /**
+   * true when the user has a batch of recovery codes on file, in
+which case POST /api/v1/tokens/two-factor/recovery can be used
+as a fallback if they cannot produce a primary code.
+   * @nullable
+   */
+  recovery_codes_available?: boolean | null;
+}
+
 export interface PasswordPayload {
   /** @nullable */
   Password?: string | null;
+}
+
+/**
+ * Returned from POST /api/v1/tokens/two-factor/enroll/totp/begin when a
+user forced into 2FA chooses to enroll an authenticator app. Carries the
+shared secret in the three forms a client may need to present it, plus the
+challenge token the user's first generated code is confirmed against. The
+property names are snake_case to match the wire format of the other token
+endpoints (see TokenPayload).
+ */
+export interface TwoFactorTotpEnrollmentPayload {
+  /**
+   * Short-lived signed JWT identifying the enrollment-test challenge.
+Echo it back to POST /api/v1/tokens/two-factor/enroll/totp/confirm
+along with the first code from the authenticator app.
+   * @nullable
+   */
+  challenge_token?: string | null;
+  /**
+   * The Base32-encoded shared secret. Offer this for manual entry by users
+who cannot scan the QR code.
+   * @nullable
+   */
+  secret?: string | null;
+  /**
+   * The full otpauth://totp/... URI encoding the secret, issuer and
+parameters. Most authenticator apps add an account directly from this.
+   * @nullable
+   */
+  otpauth_uri?: string | null;
+  /**
+   * A QR code rendering of otpauth_uri as a PNG, Base64
+encoded — render it as an <img> for the user to scan.
+   * @nullable
+   */
+  qr_code_png_base64?: string | null;
+  /** Seconds until the enrollment-test challenge expires (600). */
+  expires_in?: number;
+}
+
+/**
+ * Returned from the mid-login enrollment confirm endpoints
+(POST /api/v1/tokens/two-factor/enroll/{email|totp}/confirm) once the
+user has proven control of the new mechanism. Completes a forced-enrollment
+login: it both finalizes the JWT access token and surfaces the freshly
+generated recovery codes. The property names are snake_case to match the
+wire format of the other token endpoints (see TokenPayload).
+ */
+export interface TwoFactorEnrollmentConfirmationPayload {
+  /** Always true on a success response; the enrollment is now active. */
+  confirmed?: boolean;
+  /**
+   * The user's recovery codes, generated as part of first-time enrollment.
+These are shown once and never returned again — prompt the user
+to store them somewhere safe. Each code is single-use at
+POST /api/v1/tokens/two-factor/recovery.
+   * @nullable
+   */
+  recovery_codes?: string[] | null;
+  /**
+   * The JWT access token. Use it as Authorization: bearer {access_token}
+for subsequent API calls — login is complete.
+   * @nullable
+   */
+  access_token?: string | null;
+  /**
+   * Always Bearer.
+   * @nullable
+   */
+  token_type?: string | null;
+  /** Seconds until the access token expires. */
+  expires_in?: number;
 }
 
 /**
@@ -5657,6 +5809,69 @@ export interface PersonSegmentRemovedWebhookPayload {
   IsConnectedToDiscord?: boolean;
   ActivityEventData?: PersonSegmentRemovedActivityData;
 }
+
+export type AuthGetTokenParams = {
+/**
+ * @nullable
+ */
+data: unknown | null;
+};
+
+export type AuthVerifyTwoFactorTokenParams = {
+/**
+ * @nullable
+ */
+data: unknown | null;
+};
+
+export type AuthResendTwoFactorParams = {
+/**
+ * @nullable
+ */
+data: unknown | null;
+};
+
+export type AuthSwitchTwoFactorMechanismParams = {
+/**
+ * @nullable
+ */
+data: unknown | null;
+};
+
+export type AuthVerifyTwoFactorRecoveryParams = {
+/**
+ * @nullable
+ */
+data: unknown | null;
+};
+
+export type TokenTwoFactorEnrollmentBeginEmailParams = {
+/**
+ * @nullable
+ */
+data: unknown | null;
+};
+
+export type TokenTwoFactorEnrollmentBeginTotpParams = {
+/**
+ * @nullable
+ */
+data: unknown | null;
+};
+
+export type TokenTwoFactorEnrollmentConfirmEmailParams = {
+/**
+ * @nullable
+ */
+data: unknown | null;
+};
+
+export type TokenTwoFactorEnrollmentConfirmTotpParams = {
+/**
+ * @nullable
+ */
+data: unknown | null;
+};
 
 export type CaseGetAllCasesParams = {
 /**
