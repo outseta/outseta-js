@@ -24,6 +24,33 @@ import type {
 
 import { customFetch } from '../../client';
 
+// https://stackoverflow.com/questions/49579094/typescript-conditional-types-filter-out-readonly-properties-pick-only-requir/49579497#49579497
+type IfEquals<X, Y, A = X, B = never> = (<T>() => T extends X ? 1 : 2) extends <
+T,
+>() => T extends Y ? 1 : 2
+? A
+: B;
+
+type WritableKeys<T> = {
+[P in keyof T]-?: IfEquals<
+  { [Q in P]: T[P] },
+  { -readonly [Q in P]: T[P] },
+  P
+>;
+}[keyof T];
+
+type UnionToIntersection<U> =
+  (U extends any ? (k: U)=>void : never) extends ((k: infer I)=>void) ? I : never;
+type DistributeReadOnlyOverUnions<T> = T extends any ? NonReadonly<T> : never;
+
+type Writable<T> = Pick<T, WritableKeys<T>>;
+type NonReadonly<T> = [T] extends [UnionToIntersection<T>] ? {
+  [P in keyof Writable<T>]: T[P] extends object
+    ? NonReadonly<NonNullable<T[P]>>
+    : T[P];
+} : DistributeReadOnlyOverUnions<T>;
+
+
 /**
  * @summary Retrieves all the deals associated with your account.
  */
@@ -108,7 +135,7 @@ export const getDealAddDealUrl = () => {
   return `/api/v1/crm/deals`
 }
 
-export const dealAddDeal = async (dealAddDealBody: DealAddDealBody, options?: RequestInit): Promise<dealAddDealResponse> => {
+export const dealAddDeal = async (dealAddDealBody: NonReadonly<DealAddDealBody>, options?: RequestInit): Promise<dealAddDealResponse> => {
   
   return customFetch<dealAddDealResponse>(getDealAddDealUrl(),
   {      
@@ -214,7 +241,7 @@ export const getDealUpdateDealUrl = (dealUid: string | null,) => {
 }
 
 export const dealUpdateDeal = async (dealUid: string | null,
-    dealUpdateDealBody: DealUpdateDealBody, options?: RequestInit): Promise<dealUpdateDealResponse> => {
+    dealUpdateDealBody: NonReadonly<DealUpdateDealBody>, options?: RequestInit): Promise<dealUpdateDealResponse> => {
   
   return customFetch<dealUpdateDealResponse>(getDealUpdateDealUrl(dealUid),
   {      
@@ -308,14 +335,15 @@ export const getRegistrationRegisterAccountUrl = () => {
   return `/api/v1/crm/registrations`
 }
 
-export const registrationRegisterAccount = async ( options?: RequestInit): Promise<registrationRegisterAccountResponse> => {
+export const registrationRegisterAccount = async (account: NonReadonly<Account>, options?: RequestInit): Promise<registrationRegisterAccountResponse> => {
   
   return customFetch<registrationRegisterAccountResponse>(getRegistrationRegisterAccountUrl(),
   {      
     ...options,
-    method: 'POST'
-    
-    
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', ...options?.headers },
+    body: JSON.stringify(
+      account,)
   }
 );}
 
@@ -413,7 +441,7 @@ export const getAccountAddAccountUrl = (params?: AccountAddAccountParams,) => {
   return stringifiedParams.length > 0 ? `/api/v1/crm/accounts?${stringifiedParams}` : `/api/v1/crm/accounts`
 }
 
-export const accountAddAccount = async (accountAddAccountBody: AccountAddAccountBody,
+export const accountAddAccount = async (accountAddAccountBody: NonReadonly<AccountAddAccountBody>,
     params?: AccountAddAccountParams, options?: RequestInit): Promise<accountAddAccountResponse> => {
   
   return customFetch<accountAddAccountResponse>(getAccountAddAccountUrl(params),
@@ -575,7 +603,7 @@ export const getAccountUpdateAccountUrl = (accountUid: string | null,) => {
 }
 
 export const accountUpdateAccount = async (accountUid: string | null,
-    accountUpdateAccountBody: AccountUpdateAccountBody, options?: RequestInit): Promise<accountUpdateAccountResponse> => {
+    accountUpdateAccountBody: NonReadonly<AccountUpdateAccountBody>, options?: RequestInit): Promise<accountUpdateAccountResponse> => {
   
   return customFetch<accountUpdateAccountResponse>(getAccountUpdateAccountUrl(accountUid),
   {      
@@ -629,7 +657,7 @@ export const getAccountAddPersonToAccountUrl = (accountUid: string | null,) => {
 }
 
 export const accountAddPersonToAccount = async (accountUid: string | null,
-    accountAddPersonToAccountBody: AccountAddPersonToAccountBody, options?: RequestInit): Promise<accountAddPersonToAccountResponse> => {
+    accountAddPersonToAccountBody: NonReadonly<AccountAddPersonToAccountBody>, options?: RequestInit): Promise<accountAddPersonToAccountResponse> => {
   
   return customFetch<accountAddPersonToAccountResponse>(getAccountAddPersonToAccountUrl(accountUid),
   {      
@@ -685,7 +713,7 @@ export const getAccountUpdateMembershipUrl = (accountUid: string | null,
 
 export const accountUpdateMembership = async (accountUid: string | null,
     membershipUid: string | null,
-    accountUpdateMembershipBody: AccountUpdateMembershipBody, options?: RequestInit): Promise<accountUpdateMembershipResponse> => {
+    accountUpdateMembershipBody: NonReadonly<AccountUpdateMembershipBody>, options?: RequestInit): Promise<accountUpdateMembershipResponse> => {
   
   return customFetch<accountUpdateMembershipResponse>(getAccountUpdateMembershipUrl(accountUid,membershipUid),
   {      
@@ -796,7 +824,7 @@ export const getAccountCancelAccountUrl = (accountUid: string | null,) => {
 }
 
 export const accountCancelAccount = async (accountUid: string | null,
-    accountCancelAccountBody: AccountCancelAccountBody, options?: RequestInit): Promise<accountCancelAccountResponse> => {
+    accountCancelAccountBody: NonReadonly<AccountCancelAccountBody>, options?: RequestInit): Promise<accountCancelAccountResponse> => {
   
   return customFetch<accountCancelAccountResponse>(getAccountCancelAccountUrl(accountUid),
   {      
@@ -1049,7 +1077,7 @@ export const getPersonAddPersonUrl = () => {
   return `/api/v1/crm/people`
 }
 
-export const personAddPerson = async (personAddPersonBody: PersonAddPersonBody, options?: RequestInit): Promise<personAddPersonResponse> => {
+export const personAddPerson = async (personAddPersonBody: NonReadonly<PersonAddPersonBody>, options?: RequestInit): Promise<personAddPersonResponse> => {
   
   return customFetch<personAddPersonResponse>(getPersonAddPersonUrl(),
   {      
@@ -1158,7 +1186,7 @@ export const getPersonUpdatePersonUrl = (personUid: string | null,) => {
 }
 
 export const personUpdatePerson = async (personUid: string | null,
-    personUpdatePersonBody: PersonUpdatePersonBody, options?: RequestInit): Promise<personUpdatePersonResponse> => {
+    personUpdatePersonBody: NonReadonly<PersonUpdatePersonBody>, options?: RequestInit): Promise<personUpdatePersonResponse> => {
   
   return customFetch<personUpdatePersonResponse>(getPersonUpdatePersonUrl(personUid),
   {      
@@ -1358,7 +1386,7 @@ export const getPersonForgotPasswordUrl = () => {
   return `/api/v1/crm/people/forgotPassword`
 }
 
-export const personForgotPassword = async (personForgotPasswordBody: PersonForgotPasswordBody, options?: RequestInit): Promise<personForgotPasswordResponse> => {
+export const personForgotPassword = async (personForgotPasswordBody: NonReadonly<PersonForgotPasswordBody>, options?: RequestInit): Promise<personForgotPasswordResponse> => {
   
   return customFetch<personForgotPasswordResponse>(getPersonForgotPasswordUrl(),
   {      

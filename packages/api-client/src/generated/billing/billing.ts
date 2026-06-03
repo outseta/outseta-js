@@ -27,6 +27,33 @@ import type {
 
 import { customFetch } from '../../client';
 
+// https://stackoverflow.com/questions/49579094/typescript-conditional-types-filter-out-readonly-properties-pick-only-requir/49579497#49579497
+type IfEquals<X, Y, A = X, B = never> = (<T>() => T extends X ? 1 : 2) extends <
+T,
+>() => T extends Y ? 1 : 2
+? A
+: B;
+
+type WritableKeys<T> = {
+[P in keyof T]-?: IfEquals<
+  { [Q in P]: T[P] },
+  { -readonly [Q in P]: T[P] },
+  P
+>;
+}[keyof T];
+
+type UnionToIntersection<U> =
+  (U extends any ? (k: U)=>void : never) extends ((k: infer I)=>void) ? I : never;
+type DistributeReadOnlyOverUnions<T> = T extends any ? NonReadonly<T> : never;
+
+type Writable<T> = Pick<T, WritableKeys<T>>;
+type NonReadonly<T> = [T] extends [UnionToIntersection<T>] ? {
+  [P in keyof Writable<T>]: T[P] extends object
+    ? NonReadonly<NonNullable<T[P]>>
+    : T[P];
+} : DistributeReadOnlyOverUnions<T>;
+
+
 /**
  * Only one of AmountOff or PercentOff should be set.
 Duration values: 1 = Forever, 2 = Once, 3 = Repeating (DurationInMonths must be set).
@@ -59,7 +86,7 @@ export const getDiscountCouponAddDiscountCouponUrl = () => {
   return `/api/v1/billing/discountcoupons`
 }
 
-export const discountCouponAddDiscountCoupon = async (discountCouponAddDiscountCouponBody: DiscountCouponAddDiscountCouponBody, options?: RequestInit): Promise<discountCouponAddDiscountCouponResponse> => {
+export const discountCouponAddDiscountCoupon = async (discountCouponAddDiscountCouponBody: NonReadonly<DiscountCouponAddDiscountCouponBody>, options?: RequestInit): Promise<discountCouponAddDiscountCouponResponse> => {
   
   return customFetch<discountCouponAddDiscountCouponResponse>(getDiscountCouponAddDiscountCouponUrl(),
   {      
@@ -102,7 +129,7 @@ export const getUsageAddUsageUrl = () => {
   return `/api/v1/billing/usage`
 }
 
-export const usageAddUsage = async (usageAddUsageBody: UsageAddUsageBody, options?: RequestInit): Promise<usageAddUsageResponse> => {
+export const usageAddUsage = async (usageAddUsageBody: NonReadonly<UsageAddUsageBody>, options?: RequestInit): Promise<usageAddUsageResponse> => {
   
   return customFetch<usageAddUsageResponse>(getUsageAddUsageUrl(),
   {      
@@ -196,7 +223,7 @@ export const getTransactionsAddPaymentTransactionUrl = () => {
   return `/api/v1/billing/transactions/payment`
 }
 
-export const transactionsAddPaymentTransaction = async (transactionsAddPaymentTransactionBody: TransactionsAddPaymentTransactionBody, options?: RequestInit): Promise<transactionsAddPaymentTransactionResponse> => {
+export const transactionsAddPaymentTransaction = async (transactionsAddPaymentTransactionBody: NonReadonly<TransactionsAddPaymentTransactionBody>, options?: RequestInit): Promise<transactionsAddPaymentTransactionResponse> => {
   
   return customFetch<transactionsAddPaymentTransactionResponse>(getTransactionsAddPaymentTransactionUrl(),
   {      
@@ -239,7 +266,7 @@ export const getPaymentInformationSavePaymentInformationUrl = () => {
   return `/api/v1/billing/paymentinformation`
 }
 
-export const paymentInformationSavePaymentInformation = async (paymentInformationSavePaymentInformationBody: PaymentInformationSavePaymentInformationBody, options?: RequestInit): Promise<paymentInformationSavePaymentInformationResponse> => {
+export const paymentInformationSavePaymentInformation = async (paymentInformationSavePaymentInformationBody: NonReadonly<PaymentInformationSavePaymentInformationBody>, options?: RequestInit): Promise<paymentInformationSavePaymentInformationResponse> => {
   
   return customFetch<paymentInformationSavePaymentInformationResponse>(getPaymentInformationSavePaymentInformationUrl(),
   {      
@@ -282,7 +309,7 @@ export const getSubscriptionAddOnAddSubscriptionAddOnUrl = () => {
   return `/api/v1/billing/subscriptionaddons`
 }
 
-export const subscriptionAddOnAddSubscriptionAddOn = async (subscriptionAddOnAddSubscriptionAddOnBody: SubscriptionAddOnAddSubscriptionAddOnBody, options?: RequestInit): Promise<subscriptionAddOnAddSubscriptionAddOnResponse> => {
+export const subscriptionAddOnAddSubscriptionAddOn = async (subscriptionAddOnAddSubscriptionAddOnBody: NonReadonly<SubscriptionAddOnAddSubscriptionAddOnBody>, options?: RequestInit): Promise<subscriptionAddOnAddSubscriptionAddOnResponse> => {
   
   return customFetch<subscriptionAddOnAddSubscriptionAddOnResponse>(getSubscriptionAddOnAddSubscriptionAddOnUrl(),
   {      
@@ -370,7 +397,7 @@ export const getInvoiceAddInvoiceUrl = () => {
   return `/api/v1/billing/invoices`
 }
 
-export const invoiceAddInvoice = async (invoiceAddInvoiceBody: InvoiceAddInvoiceBody, options?: RequestInit): Promise<invoiceAddInvoiceResponse> => {
+export const invoiceAddInvoice = async (invoiceAddInvoiceBody: NonReadonly<InvoiceAddInvoiceBody>, options?: RequestInit): Promise<invoiceAddInvoiceResponse> => {
   
   return customFetch<invoiceAddInvoiceResponse>(getInvoiceAddInvoiceUrl(),
   {      
@@ -479,7 +506,7 @@ export const getInvoiceUpdateInvoiceUrl = (invoiceUid: string | null,) => {
 }
 
 export const invoiceUpdateInvoice = async (invoiceUid: string | null,
-    invoiceUpdateInvoiceBody: InvoiceUpdateInvoiceBody, options?: RequestInit): Promise<invoiceUpdateInvoiceResponse> => {
+    invoiceUpdateInvoiceBody: NonReadonly<InvoiceUpdateInvoiceBody>, options?: RequestInit): Promise<invoiceUpdateInvoiceResponse> => {
   
   return customFetch<invoiceUpdateInvoiceResponse>(getInvoiceUpdateInvoiceUrl(invoiceUid),
   {      
@@ -855,7 +882,7 @@ export const getSubscriptionSetSubscriptionUpgradeRequiredUrl = (subscriptionUid
 }
 
 export const subscriptionSetSubscriptionUpgradeRequired = async (subscriptionUid: string | null,
-    subscriptionSetSubscriptionUpgradeRequiredBody: SubscriptionSetSubscriptionUpgradeRequiredBody, options?: RequestInit): Promise<subscriptionSetSubscriptionUpgradeRequiredResponse> => {
+    subscriptionSetSubscriptionUpgradeRequiredBody: NonReadonly<SubscriptionSetSubscriptionUpgradeRequiredBody>, options?: RequestInit): Promise<subscriptionSetSubscriptionUpgradeRequiredResponse> => {
   
   return customFetch<subscriptionSetSubscriptionUpgradeRequiredResponse>(getSubscriptionSetSubscriptionUpgradeRequiredUrl(subscriptionUid),
   {      
@@ -902,7 +929,7 @@ export const getSubscriptionFirstTimeSubscriptionPreviewUrl = (params?: Subscrip
   return stringifiedParams.length > 0 ? `/api/v1/billing/subscriptions/compute-charge-summary?${stringifiedParams}` : `/api/v1/billing/subscriptions/compute-charge-summary`
 }
 
-export const subscriptionFirstTimeSubscriptionPreview = async (subscriptionFirstTimeSubscriptionPreviewBody: SubscriptionFirstTimeSubscriptionPreviewBody,
+export const subscriptionFirstTimeSubscriptionPreview = async (subscriptionFirstTimeSubscriptionPreviewBody: NonReadonly<SubscriptionFirstTimeSubscriptionPreviewBody>,
     params?: SubscriptionFirstTimeSubscriptionPreviewParams, options?: RequestInit): Promise<subscriptionFirstTimeSubscriptionPreviewResponse> => {
   
   return customFetch<subscriptionFirstTimeSubscriptionPreviewResponse>(getSubscriptionFirstTimeSubscriptionPreviewUrl(params),
@@ -947,7 +974,7 @@ export const getSubscriptionFirstTimeSubscriptionUrl = () => {
   return `/api/v1/billing/subscriptions/firsttimesubscription`
 }
 
-export const subscriptionFirstTimeSubscription = async (subscriptionFirstTimeSubscriptionBody: SubscriptionFirstTimeSubscriptionBody, options?: RequestInit): Promise<subscriptionFirstTimeSubscriptionResponse> => {
+export const subscriptionFirstTimeSubscription = async (subscriptionFirstTimeSubscriptionBody: NonReadonly<SubscriptionFirstTimeSubscriptionBody>, options?: RequestInit): Promise<subscriptionFirstTimeSubscriptionResponse> => {
   
   return customFetch<subscriptionFirstTimeSubscriptionResponse>(getSubscriptionFirstTimeSubscriptionUrl(),
   {      
@@ -1011,7 +1038,7 @@ export const getSubscriptionChangeSubscriptionPreviewUrl = (subscriptionUid: str
 }
 
 export const subscriptionChangeSubscriptionPreview = async (subscriptionUid: string | null,
-    subscriptionChangeSubscriptionPreviewBody: SubscriptionChangeSubscriptionPreviewBody,
+    subscriptionChangeSubscriptionPreviewBody: NonReadonly<SubscriptionChangeSubscriptionPreviewBody>,
     params?: SubscriptionChangeSubscriptionPreviewParams, options?: RequestInit): Promise<subscriptionChangeSubscriptionPreviewResponse> => {
   
   return customFetch<subscriptionChangeSubscriptionPreviewResponse>(getSubscriptionChangeSubscriptionPreviewUrl(subscriptionUid,params),
@@ -1075,7 +1102,7 @@ export const getSubscriptionChangeSubscriptionUrl = (subscriptionUid: string | n
 }
 
 export const subscriptionChangeSubscription = async (subscriptionUid: string | null,
-    subscriptionChangeSubscriptionBody: SubscriptionChangeSubscriptionBody,
+    subscriptionChangeSubscriptionBody: NonReadonly<SubscriptionChangeSubscriptionBody>,
     params?: SubscriptionChangeSubscriptionParams, options?: RequestInit): Promise<subscriptionChangeSubscriptionResponse> => {
   
   return customFetch<subscriptionChangeSubscriptionResponse>(getSubscriptionChangeSubscriptionUrl(subscriptionUid,params),

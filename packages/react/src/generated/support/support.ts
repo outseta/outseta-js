@@ -26,6 +26,33 @@ import type {
 
 import { customFetch } from '../../mutator';
 
+// https://stackoverflow.com/questions/49579094/typescript-conditional-types-filter-out-readonly-properties-pick-only-requir/49579497#49579497
+type IfEquals<X, Y, A = X, B = never> = (<T>() => T extends X ? 1 : 2) extends <
+T,
+>() => T extends Y ? 1 : 2
+? A
+: B;
+
+type WritableKeys<T> = {
+[P in keyof T]-?: IfEquals<
+  { [Q in P]: T[P] },
+  { -readonly [Q in P]: T[P] },
+  P
+>;
+}[keyof T];
+
+type UnionToIntersection<U> =
+  (U extends any ? (k: U)=>void : never) extends ((k: infer I)=>void) ? I : never;
+type DistributeReadOnlyOverUnions<T> = T extends any ? NonReadonly<T> : never;
+
+type Writable<T> = Pick<T, WritableKeys<T>>;
+type NonReadonly<T> = [T] extends [UnionToIntersection<T>] ? {
+  [P in keyof Writable<T>]: T[P] extends object
+    ? NonReadonly<NonNullable<T[P]>>
+    : T[P];
+} : DistributeReadOnlyOverUnions<T>;
+
+
 
 type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
 
@@ -106,7 +133,7 @@ export function useCaseGetAllCases<TData = Awaited<ReturnType<typeof caseGetAllC
  * @summary Adds a case into the support system.
  */
 export const caseAddCase = (
-    caseAddCaseBody: CaseAddCaseBody,
+    caseAddCaseBody: NonReadonly<CaseAddCaseBody>,
     params?: CaseAddCaseParams,
  options?: SecondParameter<typeof customFetch>,signal?: AbortSignal
 ) => {
@@ -124,8 +151,8 @@ export const caseAddCase = (
 
 
 export const getCaseAddCaseMutationOptions = <TError = void,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof caseAddCase>>, TError,{data: CaseAddCaseBody;params?: CaseAddCaseParams}, TContext>, request?: SecondParameter<typeof customFetch>}
-): UseMutationOptions<Awaited<ReturnType<typeof caseAddCase>>, TError,{data: CaseAddCaseBody;params?: CaseAddCaseParams}, TContext> => {
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof caseAddCase>>, TError,{data: NonReadonly<CaseAddCaseBody>;params?: CaseAddCaseParams}, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof caseAddCase>>, TError,{data: NonReadonly<CaseAddCaseBody>;params?: CaseAddCaseParams}, TContext> => {
 
 const mutationKey = ['caseAddCase'];
 const {mutation: mutationOptions, request: requestOptions} = options ?
@@ -137,7 +164,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof caseAddCase>>, {data: CaseAddCaseBody;params?: CaseAddCaseParams}> = (props) => {
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof caseAddCase>>, {data: NonReadonly<CaseAddCaseBody>;params?: CaseAddCaseParams}> = (props) => {
           const {data,params} = props ?? {};
 
           return  caseAddCase(data,params,requestOptions)
@@ -149,18 +176,18 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
   return  { mutationFn, ...mutationOptions }}
 
     export type CaseAddCaseMutationResult = NonNullable<Awaited<ReturnType<typeof caseAddCase>>>
-    export type CaseAddCaseMutationBody = CaseAddCaseBody
+    export type CaseAddCaseMutationBody = NonReadonly<CaseAddCaseBody>
     export type CaseAddCaseMutationError = void
 
     /**
  * @summary Adds a case into the support system.
  */
 export const useCaseAddCase = <TError = void,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof caseAddCase>>, TError,{data: CaseAddCaseBody;params?: CaseAddCaseParams}, TContext>, request?: SecondParameter<typeof customFetch>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof caseAddCase>>, TError,{data: NonReadonly<CaseAddCaseBody>;params?: CaseAddCaseParams}, TContext>, request?: SecondParameter<typeof customFetch>}
  ): UseMutationResult<
         Awaited<ReturnType<typeof caseAddCase>>,
         TError,
-        {data: CaseAddCaseBody;params?: CaseAddCaseParams},
+        {data: NonReadonly<CaseAddCaseBody>;params?: CaseAddCaseParams},
         TContext
       > => {
 

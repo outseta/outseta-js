@@ -21,6 +21,33 @@ import type {
 
 import { customFetch } from '../../mutator';
 
+// https://stackoverflow.com/questions/49579094/typescript-conditional-types-filter-out-readonly-properties-pick-only-requir/49579497#49579497
+type IfEquals<X, Y, A = X, B = never> = (<T>() => T extends X ? 1 : 2) extends <
+T,
+>() => T extends Y ? 1 : 2
+? A
+: B;
+
+type WritableKeys<T> = {
+[P in keyof T]-?: IfEquals<
+  { [Q in P]: T[P] },
+  { -readonly [Q in P]: T[P] },
+  P
+>;
+}[keyof T];
+
+type UnionToIntersection<U> =
+  (U extends any ? (k: U)=>void : never) extends ((k: infer I)=>void) ? I : never;
+type DistributeReadOnlyOverUnions<T> = T extends any ? NonReadonly<T> : never;
+
+type Writable<T> = Pick<T, WritableKeys<T>>;
+type NonReadonly<T> = [T] extends [UnionToIntersection<T>] ? {
+  [P in keyof Writable<T>]: T[P] extends object
+    ? NonReadonly<NonNullable<T[P]>>
+    : T[P];
+} : DistributeReadOnlyOverUnions<T>;
+
+
 
 type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
 
@@ -108,7 +135,7 @@ value specified for the campaign.
  * @summary Record a custom event associated to an account, person or deal.
  */
 export const activityAddCustomActivity = (
-    activityAddCustomActivityBody: ActivityAddCustomActivityBody,
+    activityAddCustomActivityBody: NonReadonly<ActivityAddCustomActivityBody>,
  options?: SecondParameter<typeof customFetch>,signal?: AbortSignal
 ) => {
       
@@ -125,8 +152,8 @@ export const activityAddCustomActivity = (
 
 
 export const getActivityAddCustomActivityMutationOptions = <TError = void,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof activityAddCustomActivity>>, TError,{data: ActivityAddCustomActivityBody}, TContext>, request?: SecondParameter<typeof customFetch>}
-): UseMutationOptions<Awaited<ReturnType<typeof activityAddCustomActivity>>, TError,{data: ActivityAddCustomActivityBody}, TContext> => {
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof activityAddCustomActivity>>, TError,{data: NonReadonly<ActivityAddCustomActivityBody>}, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof activityAddCustomActivity>>, TError,{data: NonReadonly<ActivityAddCustomActivityBody>}, TContext> => {
 
 const mutationKey = ['activityAddCustomActivity'];
 const {mutation: mutationOptions, request: requestOptions} = options ?
@@ -138,7 +165,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof activityAddCustomActivity>>, {data: ActivityAddCustomActivityBody}> = (props) => {
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof activityAddCustomActivity>>, {data: NonReadonly<ActivityAddCustomActivityBody>}> = (props) => {
           const {data} = props ?? {};
 
           return  activityAddCustomActivity(data,requestOptions)
@@ -150,18 +177,18 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
   return  { mutationFn, ...mutationOptions }}
 
     export type ActivityAddCustomActivityMutationResult = NonNullable<Awaited<ReturnType<typeof activityAddCustomActivity>>>
-    export type ActivityAddCustomActivityMutationBody = ActivityAddCustomActivityBody
+    export type ActivityAddCustomActivityMutationBody = NonReadonly<ActivityAddCustomActivityBody>
     export type ActivityAddCustomActivityMutationError = void
 
     /**
  * @summary Record a custom event associated to an account, person or deal.
  */
 export const useActivityAddCustomActivity = <TError = void,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof activityAddCustomActivity>>, TError,{data: ActivityAddCustomActivityBody}, TContext>, request?: SecondParameter<typeof customFetch>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof activityAddCustomActivity>>, TError,{data: NonReadonly<ActivityAddCustomActivityBody>}, TContext>, request?: SecondParameter<typeof customFetch>}
  ): UseMutationResult<
         Awaited<ReturnType<typeof activityAddCustomActivity>>,
         TError,
-        {data: ActivityAddCustomActivityBody},
+        {data: NonReadonly<ActivityAddCustomActivityBody>},
         TContext
       > => {
 

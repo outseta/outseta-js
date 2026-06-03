@@ -25,6 +25,33 @@ import type {
 
 import { customFetch } from '../../mutator';
 
+// https://stackoverflow.com/questions/49579094/typescript-conditional-types-filter-out-readonly-properties-pick-only-requir/49579497#49579497
+type IfEquals<X, Y, A = X, B = never> = (<T>() => T extends X ? 1 : 2) extends <
+T,
+>() => T extends Y ? 1 : 2
+? A
+: B;
+
+type WritableKeys<T> = {
+[P in keyof T]-?: IfEquals<
+  { [Q in P]: T[P] },
+  { -readonly [Q in P]: T[P] },
+  P
+>;
+}[keyof T];
+
+type UnionToIntersection<U> =
+  (U extends any ? (k: U)=>void : never) extends ((k: infer I)=>void) ? I : never;
+type DistributeReadOnlyOverUnions<T> = T extends any ? NonReadonly<T> : never;
+
+type Writable<T> = Pick<T, WritableKeys<T>>;
+type NonReadonly<T> = [T] extends [UnionToIntersection<T>] ? {
+  [P in keyof Writable<T>]: T[P] extends object
+    ? NonReadonly<NonNullable<T[P]>>
+    : T[P];
+} : DistributeReadOnlyOverUnions<T>;
+
+
 
 type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
 
@@ -106,7 +133,7 @@ directly. If both are provided, they are merged.
  * @summary Create a new broadcast campaign.
  */
 export const campaignAddBroadcastEmail = (
-    campaignAddBroadcastEmailBody: CampaignAddBroadcastEmailBody,
+    campaignAddBroadcastEmailBody: NonReadonly<CampaignAddBroadcastEmailBody>,
  options?: SecondParameter<typeof customFetch>,signal?: AbortSignal
 ) => {
       
@@ -122,8 +149,8 @@ export const campaignAddBroadcastEmail = (
 
 
 export const getCampaignAddBroadcastEmailMutationOptions = <TError = void,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof campaignAddBroadcastEmail>>, TError,{data: CampaignAddBroadcastEmailBody}, TContext>, request?: SecondParameter<typeof customFetch>}
-): UseMutationOptions<Awaited<ReturnType<typeof campaignAddBroadcastEmail>>, TError,{data: CampaignAddBroadcastEmailBody}, TContext> => {
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof campaignAddBroadcastEmail>>, TError,{data: NonReadonly<CampaignAddBroadcastEmailBody>}, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof campaignAddBroadcastEmail>>, TError,{data: NonReadonly<CampaignAddBroadcastEmailBody>}, TContext> => {
 
 const mutationKey = ['campaignAddBroadcastEmail'];
 const {mutation: mutationOptions, request: requestOptions} = options ?
@@ -135,7 +162,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof campaignAddBroadcastEmail>>, {data: CampaignAddBroadcastEmailBody}> = (props) => {
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof campaignAddBroadcastEmail>>, {data: NonReadonly<CampaignAddBroadcastEmailBody>}> = (props) => {
           const {data} = props ?? {};
 
           return  campaignAddBroadcastEmail(data,requestOptions)
@@ -147,18 +174,18 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
   return  { mutationFn, ...mutationOptions }}
 
     export type CampaignAddBroadcastEmailMutationResult = NonNullable<Awaited<ReturnType<typeof campaignAddBroadcastEmail>>>
-    export type CampaignAddBroadcastEmailMutationBody = CampaignAddBroadcastEmailBody
+    export type CampaignAddBroadcastEmailMutationBody = NonReadonly<CampaignAddBroadcastEmailBody>
     export type CampaignAddBroadcastEmailMutationError = void
 
     /**
  * @summary Create a new broadcast campaign.
  */
 export const useCampaignAddBroadcastEmail = <TError = void,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof campaignAddBroadcastEmail>>, TError,{data: CampaignAddBroadcastEmailBody}, TContext>, request?: SecondParameter<typeof customFetch>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof campaignAddBroadcastEmail>>, TError,{data: NonReadonly<CampaignAddBroadcastEmailBody>}, TContext>, request?: SecondParameter<typeof customFetch>}
  ): UseMutationResult<
         Awaited<ReturnType<typeof campaignAddBroadcastEmail>>,
         TError,
-        {data: CampaignAddBroadcastEmailBody},
+        {data: NonReadonly<CampaignAddBroadcastEmailBody>},
         TContext
       > => {
 
@@ -243,7 +270,7 @@ directly. If both are provided, they are merged.
  */
 export const campaignUpdateBroadcastEmail = (
     broadcastCampaignUid: string | null,
-    campaignUpdateBroadcastEmailBody: CampaignUpdateBroadcastEmailBody,
+    campaignUpdateBroadcastEmailBody: NonReadonly<CampaignUpdateBroadcastEmailBody>,
  options?: SecondParameter<typeof customFetch>,) => {
       
       
@@ -258,8 +285,8 @@ export const campaignUpdateBroadcastEmail = (
 
 
 export const getCampaignUpdateBroadcastEmailMutationOptions = <TError = void,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof campaignUpdateBroadcastEmail>>, TError,{broadcastCampaignUid: string | null;data: CampaignUpdateBroadcastEmailBody}, TContext>, request?: SecondParameter<typeof customFetch>}
-): UseMutationOptions<Awaited<ReturnType<typeof campaignUpdateBroadcastEmail>>, TError,{broadcastCampaignUid: string | null;data: CampaignUpdateBroadcastEmailBody}, TContext> => {
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof campaignUpdateBroadcastEmail>>, TError,{broadcastCampaignUid: string | null;data: NonReadonly<CampaignUpdateBroadcastEmailBody>}, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof campaignUpdateBroadcastEmail>>, TError,{broadcastCampaignUid: string | null;data: NonReadonly<CampaignUpdateBroadcastEmailBody>}, TContext> => {
 
 const mutationKey = ['campaignUpdateBroadcastEmail'];
 const {mutation: mutationOptions, request: requestOptions} = options ?
@@ -271,7 +298,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof campaignUpdateBroadcastEmail>>, {broadcastCampaignUid: string | null;data: CampaignUpdateBroadcastEmailBody}> = (props) => {
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof campaignUpdateBroadcastEmail>>, {broadcastCampaignUid: string | null;data: NonReadonly<CampaignUpdateBroadcastEmailBody>}> = (props) => {
           const {broadcastCampaignUid,data} = props ?? {};
 
           return  campaignUpdateBroadcastEmail(broadcastCampaignUid,data,requestOptions)
@@ -283,18 +310,18 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
   return  { mutationFn, ...mutationOptions }}
 
     export type CampaignUpdateBroadcastEmailMutationResult = NonNullable<Awaited<ReturnType<typeof campaignUpdateBroadcastEmail>>>
-    export type CampaignUpdateBroadcastEmailMutationBody = CampaignUpdateBroadcastEmailBody
+    export type CampaignUpdateBroadcastEmailMutationBody = NonReadonly<CampaignUpdateBroadcastEmailBody>
     export type CampaignUpdateBroadcastEmailMutationError = void
 
     /**
  * @summary Update a broadcast campaign.
  */
 export const useCampaignUpdateBroadcastEmail = <TError = void,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof campaignUpdateBroadcastEmail>>, TError,{broadcastCampaignUid: string | null;data: CampaignUpdateBroadcastEmailBody}, TContext>, request?: SecondParameter<typeof customFetch>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof campaignUpdateBroadcastEmail>>, TError,{broadcastCampaignUid: string | null;data: NonReadonly<CampaignUpdateBroadcastEmailBody>}, TContext>, request?: SecondParameter<typeof customFetch>}
  ): UseMutationResult<
         Awaited<ReturnType<typeof campaignUpdateBroadcastEmail>>,
         TError,
-        {broadcastCampaignUid: string | null;data: CampaignUpdateBroadcastEmailBody},
+        {broadcastCampaignUid: string | null;data: NonReadonly<CampaignUpdateBroadcastEmailBody>},
         TContext
       > => {
 
@@ -640,7 +667,7 @@ determines if the person is sent a welcome email and defaults to false.
  */
 export const emailListAddSubscription = (
     emailListUid: string | null,
-    emailListAddSubscriptionBody: EmailListAddSubscriptionBody,
+    emailListAddSubscriptionBody: NonReadonly<EmailListAddSubscriptionBody>,
  options?: SecondParameter<typeof customFetch>,signal?: AbortSignal
 ) => {
       
@@ -656,8 +683,8 @@ export const emailListAddSubscription = (
 
 
 export const getEmailListAddSubscriptionMutationOptions = <TError = void,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof emailListAddSubscription>>, TError,{emailListUid: string | null;data: EmailListAddSubscriptionBody}, TContext>, request?: SecondParameter<typeof customFetch>}
-): UseMutationOptions<Awaited<ReturnType<typeof emailListAddSubscription>>, TError,{emailListUid: string | null;data: EmailListAddSubscriptionBody}, TContext> => {
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof emailListAddSubscription>>, TError,{emailListUid: string | null;data: NonReadonly<EmailListAddSubscriptionBody>}, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof emailListAddSubscription>>, TError,{emailListUid: string | null;data: NonReadonly<EmailListAddSubscriptionBody>}, TContext> => {
 
 const mutationKey = ['emailListAddSubscription'];
 const {mutation: mutationOptions, request: requestOptions} = options ?
@@ -669,7 +696,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof emailListAddSubscription>>, {emailListUid: string | null;data: EmailListAddSubscriptionBody}> = (props) => {
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof emailListAddSubscription>>, {emailListUid: string | null;data: NonReadonly<EmailListAddSubscriptionBody>}> = (props) => {
           const {emailListUid,data} = props ?? {};
 
           return  emailListAddSubscription(emailListUid,data,requestOptions)
@@ -681,18 +708,18 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
   return  { mutationFn, ...mutationOptions }}
 
     export type EmailListAddSubscriptionMutationResult = NonNullable<Awaited<ReturnType<typeof emailListAddSubscription>>>
-    export type EmailListAddSubscriptionMutationBody = EmailListAddSubscriptionBody
+    export type EmailListAddSubscriptionMutationBody = NonReadonly<EmailListAddSubscriptionBody>
     export type EmailListAddSubscriptionMutationError = void
 
     /**
  * @summary Subscribe a person to an email list.
  */
 export const useEmailListAddSubscription = <TError = void,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof emailListAddSubscription>>, TError,{emailListUid: string | null;data: EmailListAddSubscriptionBody}, TContext>, request?: SecondParameter<typeof customFetch>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof emailListAddSubscription>>, TError,{emailListUid: string | null;data: NonReadonly<EmailListAddSubscriptionBody>}, TContext>, request?: SecondParameter<typeof customFetch>}
  ): UseMutationResult<
         Awaited<ReturnType<typeof emailListAddSubscription>>,
         TError,
-        {emailListUid: string | null;data: EmailListAddSubscriptionBody},
+        {emailListUid: string | null;data: NonReadonly<EmailListAddSubscriptionBody>},
         TContext
       > => {
 

@@ -38,6 +38,33 @@ import type {
 
 import { customFetch } from '../../mutator';
 
+// https://stackoverflow.com/questions/49579094/typescript-conditional-types-filter-out-readonly-properties-pick-only-requir/49579497#49579497
+type IfEquals<X, Y, A = X, B = never> = (<T>() => T extends X ? 1 : 2) extends <
+T,
+>() => T extends Y ? 1 : 2
+? A
+: B;
+
+type WritableKeys<T> = {
+[P in keyof T]-?: IfEquals<
+  { [Q in P]: T[P] },
+  { -readonly [Q in P]: T[P] },
+  P
+>;
+}[keyof T];
+
+type UnionToIntersection<U> =
+  (U extends any ? (k: U)=>void : never) extends ((k: infer I)=>void) ? I : never;
+type DistributeReadOnlyOverUnions<T> = T extends any ? NonReadonly<T> : never;
+
+type Writable<T> = Pick<T, WritableKeys<T>>;
+type NonReadonly<T> = [T] extends [UnionToIntersection<T>] ? {
+  [P in keyof Writable<T>]: T[P] extends object
+    ? NonReadonly<NonNullable<T[P]>>
+    : T[P];
+} : DistributeReadOnlyOverUnions<T>;
+
+
 
 type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
 
@@ -116,7 +143,7 @@ export function useDealGetAllDeals<TData = Awaited<ReturnType<typeof dealGetAllD
  * @summary Add a new deal.
  */
 export const dealAddDeal = (
-    dealAddDealBody: DealAddDealBody,
+    dealAddDealBody: NonReadonly<DealAddDealBody>,
  options?: SecondParameter<typeof customFetch>,signal?: AbortSignal
 ) => {
       
@@ -132,8 +159,8 @@ export const dealAddDeal = (
 
 
 export const getDealAddDealMutationOptions = <TError = void,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof dealAddDeal>>, TError,{data: DealAddDealBody}, TContext>, request?: SecondParameter<typeof customFetch>}
-): UseMutationOptions<Awaited<ReturnType<typeof dealAddDeal>>, TError,{data: DealAddDealBody}, TContext> => {
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof dealAddDeal>>, TError,{data: NonReadonly<DealAddDealBody>}, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof dealAddDeal>>, TError,{data: NonReadonly<DealAddDealBody>}, TContext> => {
 
 const mutationKey = ['dealAddDeal'];
 const {mutation: mutationOptions, request: requestOptions} = options ?
@@ -145,7 +172,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof dealAddDeal>>, {data: DealAddDealBody}> = (props) => {
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof dealAddDeal>>, {data: NonReadonly<DealAddDealBody>}> = (props) => {
           const {data} = props ?? {};
 
           return  dealAddDeal(data,requestOptions)
@@ -157,18 +184,18 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
   return  { mutationFn, ...mutationOptions }}
 
     export type DealAddDealMutationResult = NonNullable<Awaited<ReturnType<typeof dealAddDeal>>>
-    export type DealAddDealMutationBody = DealAddDealBody
+    export type DealAddDealMutationBody = NonReadonly<DealAddDealBody>
     export type DealAddDealMutationError = void
 
     /**
  * @summary Add a new deal.
  */
 export const useDealAddDeal = <TError = void,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof dealAddDeal>>, TError,{data: DealAddDealBody}, TContext>, request?: SecondParameter<typeof customFetch>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof dealAddDeal>>, TError,{data: NonReadonly<DealAddDealBody>}, TContext>, request?: SecondParameter<typeof customFetch>}
  ): UseMutationResult<
         Awaited<ReturnType<typeof dealAddDeal>>,
         TError,
-        {data: DealAddDealBody},
+        {data: NonReadonly<DealAddDealBody>},
         TContext
       > => {
 
@@ -249,7 +276,7 @@ export function useDealGetDeal<TData = Awaited<ReturnType<typeof dealGetDeal>>, 
  */
 export const dealUpdateDeal = (
     dealUid: string | null,
-    dealUpdateDealBody: DealUpdateDealBody,
+    dealUpdateDealBody: NonReadonly<DealUpdateDealBody>,
  options?: SecondParameter<typeof customFetch>,) => {
       
       
@@ -264,8 +291,8 @@ export const dealUpdateDeal = (
 
 
 export const getDealUpdateDealMutationOptions = <TError = void,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof dealUpdateDeal>>, TError,{dealUid: string | null;data: DealUpdateDealBody}, TContext>, request?: SecondParameter<typeof customFetch>}
-): UseMutationOptions<Awaited<ReturnType<typeof dealUpdateDeal>>, TError,{dealUid: string | null;data: DealUpdateDealBody}, TContext> => {
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof dealUpdateDeal>>, TError,{dealUid: string | null;data: NonReadonly<DealUpdateDealBody>}, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof dealUpdateDeal>>, TError,{dealUid: string | null;data: NonReadonly<DealUpdateDealBody>}, TContext> => {
 
 const mutationKey = ['dealUpdateDeal'];
 const {mutation: mutationOptions, request: requestOptions} = options ?
@@ -277,7 +304,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof dealUpdateDeal>>, {dealUid: string | null;data: DealUpdateDealBody}> = (props) => {
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof dealUpdateDeal>>, {dealUid: string | null;data: NonReadonly<DealUpdateDealBody>}> = (props) => {
           const {dealUid,data} = props ?? {};
 
           return  dealUpdateDeal(dealUid,data,requestOptions)
@@ -289,18 +316,18 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
   return  { mutationFn, ...mutationOptions }}
 
     export type DealUpdateDealMutationResult = NonNullable<Awaited<ReturnType<typeof dealUpdateDeal>>>
-    export type DealUpdateDealMutationBody = DealUpdateDealBody
+    export type DealUpdateDealMutationBody = NonReadonly<DealUpdateDealBody>
     export type DealUpdateDealMutationError = void
 
     /**
  * @summary Update a deal.
  */
 export const useDealUpdateDeal = <TError = void,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof dealUpdateDeal>>, TError,{dealUid: string | null;data: DealUpdateDealBody}, TContext>, request?: SecondParameter<typeof customFetch>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof dealUpdateDeal>>, TError,{dealUid: string | null;data: NonReadonly<DealUpdateDealBody>}, TContext>, request?: SecondParameter<typeof customFetch>}
  ): UseMutationResult<
         Awaited<ReturnType<typeof dealUpdateDeal>>,
         TError,
-        {dealUid: string | null;data: DealUpdateDealBody},
+        {dealUid: string | null;data: NonReadonly<DealUpdateDealBody>},
         TContext
       > => {
 
@@ -380,13 +407,15 @@ page.
  * @summary Register a new account.
  */
 export const registrationRegisterAccount = (
-    
+    account: NonReadonly<Account>,
  options?: SecondParameter<typeof customFetch>,signal?: AbortSignal
 ) => {
       
       
       return customFetch<Account>(
-      {url: `/api/v1/crm/registrations`, method: 'POST', signal
+      {url: `/api/v1/crm/registrations`, method: 'POST',
+      headers: {'Content-Type': 'application/json', },
+      data: account, signal
     },
       options);
     }
@@ -394,8 +423,8 @@ export const registrationRegisterAccount = (
 
 
 export const getRegistrationRegisterAccountMutationOptions = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof registrationRegisterAccount>>, TError,void, TContext>, request?: SecondParameter<typeof customFetch>}
-): UseMutationOptions<Awaited<ReturnType<typeof registrationRegisterAccount>>, TError,void, TContext> => {
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof registrationRegisterAccount>>, TError,{data: NonReadonly<Account>}, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof registrationRegisterAccount>>, TError,{data: NonReadonly<Account>}, TContext> => {
 
 const mutationKey = ['registrationRegisterAccount'];
 const {mutation: mutationOptions, request: requestOptions} = options ?
@@ -407,10 +436,10 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof registrationRegisterAccount>>, void> = () => {
-          
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof registrationRegisterAccount>>, {data: NonReadonly<Account>}> = (props) => {
+          const {data} = props ?? {};
 
-          return  registrationRegisterAccount(requestOptions)
+          return  registrationRegisterAccount(data,requestOptions)
         }
 
         
@@ -419,18 +448,18 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
   return  { mutationFn, ...mutationOptions }}
 
     export type RegistrationRegisterAccountMutationResult = NonNullable<Awaited<ReturnType<typeof registrationRegisterAccount>>>
-    
+    export type RegistrationRegisterAccountMutationBody = NonReadonly<Account>
     export type RegistrationRegisterAccountMutationError = unknown
 
     /**
  * @summary Register a new account.
  */
 export const useRegistrationRegisterAccount = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof registrationRegisterAccount>>, TError,void, TContext>, request?: SecondParameter<typeof customFetch>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof registrationRegisterAccount>>, TError,{data: NonReadonly<Account>}, TContext>, request?: SecondParameter<typeof customFetch>}
  ): UseMutationResult<
         Awaited<ReturnType<typeof registrationRegisterAccount>>,
         TError,
-        void,
+        {data: NonReadonly<Account>},
         TContext
       > => {
 
@@ -513,7 +542,7 @@ export function useAccountGetAllAccounts<TData = Awaited<ReturnType<typeof accou
  * @summary Add a new account.
  */
 export const accountAddAccount = (
-    accountAddAccountBody: AccountAddAccountBody,
+    accountAddAccountBody: NonReadonly<AccountAddAccountBody>,
     params?: AccountAddAccountParams,
  options?: SecondParameter<typeof customFetch>,signal?: AbortSignal
 ) => {
@@ -532,8 +561,8 @@ export const accountAddAccount = (
 
 
 export const getAccountAddAccountMutationOptions = <TError = void,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof accountAddAccount>>, TError,{data: AccountAddAccountBody;params?: AccountAddAccountParams}, TContext>, request?: SecondParameter<typeof customFetch>}
-): UseMutationOptions<Awaited<ReturnType<typeof accountAddAccount>>, TError,{data: AccountAddAccountBody;params?: AccountAddAccountParams}, TContext> => {
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof accountAddAccount>>, TError,{data: NonReadonly<AccountAddAccountBody>;params?: AccountAddAccountParams}, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof accountAddAccount>>, TError,{data: NonReadonly<AccountAddAccountBody>;params?: AccountAddAccountParams}, TContext> => {
 
 const mutationKey = ['accountAddAccount'];
 const {mutation: mutationOptions, request: requestOptions} = options ?
@@ -545,7 +574,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof accountAddAccount>>, {data: AccountAddAccountBody;params?: AccountAddAccountParams}> = (props) => {
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof accountAddAccount>>, {data: NonReadonly<AccountAddAccountBody>;params?: AccountAddAccountParams}> = (props) => {
           const {data,params} = props ?? {};
 
           return  accountAddAccount(data,params,requestOptions)
@@ -557,18 +586,18 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
   return  { mutationFn, ...mutationOptions }}
 
     export type AccountAddAccountMutationResult = NonNullable<Awaited<ReturnType<typeof accountAddAccount>>>
-    export type AccountAddAccountMutationBody = AccountAddAccountBody
+    export type AccountAddAccountMutationBody = NonReadonly<AccountAddAccountBody>
     export type AccountAddAccountMutationError = void
 
     /**
  * @summary Add a new account.
  */
 export const useAccountAddAccount = <TError = void,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof accountAddAccount>>, TError,{data: AccountAddAccountBody;params?: AccountAddAccountParams}, TContext>, request?: SecondParameter<typeof customFetch>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof accountAddAccount>>, TError,{data: NonReadonly<AccountAddAccountBody>;params?: AccountAddAccountParams}, TContext>, request?: SecondParameter<typeof customFetch>}
  ): UseMutationResult<
         Awaited<ReturnType<typeof accountAddAccount>>,
         TError,
-        {data: AccountAddAccountBody;params?: AccountAddAccountParams},
+        {data: NonReadonly<AccountAddAccountBody>;params?: AccountAddAccountParams},
         TContext
       > => {
 
@@ -714,7 +743,7 @@ include them in the same way that they are included when you do a get on the obj
  */
 export const accountUpdateAccount = (
     accountUid: string | null,
-    accountUpdateAccountBody: AccountUpdateAccountBody,
+    accountUpdateAccountBody: NonReadonly<AccountUpdateAccountBody>,
  options?: SecondParameter<typeof customFetch>,) => {
       
       
@@ -729,8 +758,8 @@ export const accountUpdateAccount = (
 
 
 export const getAccountUpdateAccountMutationOptions = <TError = void,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof accountUpdateAccount>>, TError,{accountUid: string | null;data: AccountUpdateAccountBody}, TContext>, request?: SecondParameter<typeof customFetch>}
-): UseMutationOptions<Awaited<ReturnType<typeof accountUpdateAccount>>, TError,{accountUid: string | null;data: AccountUpdateAccountBody}, TContext> => {
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof accountUpdateAccount>>, TError,{accountUid: string | null;data: NonReadonly<AccountUpdateAccountBody>}, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof accountUpdateAccount>>, TError,{accountUid: string | null;data: NonReadonly<AccountUpdateAccountBody>}, TContext> => {
 
 const mutationKey = ['accountUpdateAccount'];
 const {mutation: mutationOptions, request: requestOptions} = options ?
@@ -742,7 +771,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof accountUpdateAccount>>, {accountUid: string | null;data: AccountUpdateAccountBody}> = (props) => {
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof accountUpdateAccount>>, {accountUid: string | null;data: NonReadonly<AccountUpdateAccountBody>}> = (props) => {
           const {accountUid,data} = props ?? {};
 
           return  accountUpdateAccount(accountUid,data,requestOptions)
@@ -754,18 +783,18 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
   return  { mutationFn, ...mutationOptions }}
 
     export type AccountUpdateAccountMutationResult = NonNullable<Awaited<ReturnType<typeof accountUpdateAccount>>>
-    export type AccountUpdateAccountMutationBody = AccountUpdateAccountBody
+    export type AccountUpdateAccountMutationBody = NonReadonly<AccountUpdateAccountBody>
     export type AccountUpdateAccountMutationError = void
 
     /**
  * @summary Update account information.
  */
 export const useAccountUpdateAccount = <TError = void,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof accountUpdateAccount>>, TError,{accountUid: string | null;data: AccountUpdateAccountBody}, TContext>, request?: SecondParameter<typeof customFetch>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof accountUpdateAccount>>, TError,{accountUid: string | null;data: NonReadonly<AccountUpdateAccountBody>}, TContext>, request?: SecondParameter<typeof customFetch>}
  ): UseMutationResult<
         Awaited<ReturnType<typeof accountUpdateAccount>>,
         TError,
-        {accountUid: string | null;data: AccountUpdateAccountBody},
+        {accountUid: string | null;data: NonReadonly<AccountUpdateAccountBody>},
         TContext
       > => {
 
@@ -778,7 +807,7 @@ export const useAccountUpdateAccount = <TError = void,
  */
 export const accountAddPersonToAccount = (
     accountUid: string | null,
-    accountAddPersonToAccountBody: AccountAddPersonToAccountBody,
+    accountAddPersonToAccountBody: NonReadonly<AccountAddPersonToAccountBody>,
  options?: SecondParameter<typeof customFetch>,signal?: AbortSignal
 ) => {
       
@@ -794,8 +823,8 @@ export const accountAddPersonToAccount = (
 
 
 export const getAccountAddPersonToAccountMutationOptions = <TError = void,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof accountAddPersonToAccount>>, TError,{accountUid: string | null;data: AccountAddPersonToAccountBody}, TContext>, request?: SecondParameter<typeof customFetch>}
-): UseMutationOptions<Awaited<ReturnType<typeof accountAddPersonToAccount>>, TError,{accountUid: string | null;data: AccountAddPersonToAccountBody}, TContext> => {
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof accountAddPersonToAccount>>, TError,{accountUid: string | null;data: NonReadonly<AccountAddPersonToAccountBody>}, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof accountAddPersonToAccount>>, TError,{accountUid: string | null;data: NonReadonly<AccountAddPersonToAccountBody>}, TContext> => {
 
 const mutationKey = ['accountAddPersonToAccount'];
 const {mutation: mutationOptions, request: requestOptions} = options ?
@@ -807,7 +836,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof accountAddPersonToAccount>>, {accountUid: string | null;data: AccountAddPersonToAccountBody}> = (props) => {
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof accountAddPersonToAccount>>, {accountUid: string | null;data: NonReadonly<AccountAddPersonToAccountBody>}> = (props) => {
           const {accountUid,data} = props ?? {};
 
           return  accountAddPersonToAccount(accountUid,data,requestOptions)
@@ -819,18 +848,18 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
   return  { mutationFn, ...mutationOptions }}
 
     export type AccountAddPersonToAccountMutationResult = NonNullable<Awaited<ReturnType<typeof accountAddPersonToAccount>>>
-    export type AccountAddPersonToAccountMutationBody = AccountAddPersonToAccountBody
+    export type AccountAddPersonToAccountMutationBody = NonReadonly<AccountAddPersonToAccountBody>
     export type AccountAddPersonToAccountMutationError = void
 
     /**
  * @summary Add a person to an existing account. Set sendWelcomeEmail=true to send a welcome email to the person added.
  */
 export const useAccountAddPersonToAccount = <TError = void,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof accountAddPersonToAccount>>, TError,{accountUid: string | null;data: AccountAddPersonToAccountBody}, TContext>, request?: SecondParameter<typeof customFetch>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof accountAddPersonToAccount>>, TError,{accountUid: string | null;data: NonReadonly<AccountAddPersonToAccountBody>}, TContext>, request?: SecondParameter<typeof customFetch>}
  ): UseMutationResult<
         Awaited<ReturnType<typeof accountAddPersonToAccount>>,
         TError,
-        {accountUid: string | null;data: AccountAddPersonToAccountBody},
+        {accountUid: string | null;data: NonReadonly<AccountAddPersonToAccountBody>},
         TContext
       > => {
 
@@ -844,7 +873,7 @@ export const useAccountAddPersonToAccount = <TError = void,
 export const accountUpdateMembership = (
     accountUid: string | null,
     membershipUid: string | null,
-    accountUpdateMembershipBody: AccountUpdateMembershipBody,
+    accountUpdateMembershipBody: NonReadonly<AccountUpdateMembershipBody>,
  options?: SecondParameter<typeof customFetch>,) => {
       
       
@@ -860,8 +889,8 @@ export const accountUpdateMembership = (
 
 
 export const getAccountUpdateMembershipMutationOptions = <TError = void,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof accountUpdateMembership>>, TError,{accountUid: string | null;membershipUid: string | null;data: AccountUpdateMembershipBody}, TContext>, request?: SecondParameter<typeof customFetch>}
-): UseMutationOptions<Awaited<ReturnType<typeof accountUpdateMembership>>, TError,{accountUid: string | null;membershipUid: string | null;data: AccountUpdateMembershipBody}, TContext> => {
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof accountUpdateMembership>>, TError,{accountUid: string | null;membershipUid: string | null;data: NonReadonly<AccountUpdateMembershipBody>}, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof accountUpdateMembership>>, TError,{accountUid: string | null;membershipUid: string | null;data: NonReadonly<AccountUpdateMembershipBody>}, TContext> => {
 
 const mutationKey = ['accountUpdateMembership'];
 const {mutation: mutationOptions, request: requestOptions} = options ?
@@ -873,7 +902,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof accountUpdateMembership>>, {accountUid: string | null;membershipUid: string | null;data: AccountUpdateMembershipBody}> = (props) => {
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof accountUpdateMembership>>, {accountUid: string | null;membershipUid: string | null;data: NonReadonly<AccountUpdateMembershipBody>}> = (props) => {
           const {accountUid,membershipUid,data} = props ?? {};
 
           return  accountUpdateMembership(accountUid,membershipUid,data,requestOptions)
@@ -885,18 +914,18 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
   return  { mutationFn, ...mutationOptions }}
 
     export type AccountUpdateMembershipMutationResult = NonNullable<Awaited<ReturnType<typeof accountUpdateMembership>>>
-    export type AccountUpdateMembershipMutationBody = AccountUpdateMembershipBody
+    export type AccountUpdateMembershipMutationBody = NonReadonly<AccountUpdateMembershipBody>
     export type AccountUpdateMembershipMutationError = void
 
     /**
  * @summary Update an account membership. This is the method by which you can change the primary contact of an account.
  */
 export const useAccountUpdateMembership = <TError = void,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof accountUpdateMembership>>, TError,{accountUid: string | null;membershipUid: string | null;data: AccountUpdateMembershipBody}, TContext>, request?: SecondParameter<typeof customFetch>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof accountUpdateMembership>>, TError,{accountUid: string | null;membershipUid: string | null;data: NonReadonly<AccountUpdateMembershipBody>}, TContext>, request?: SecondParameter<typeof customFetch>}
  ): UseMutationResult<
         Awaited<ReturnType<typeof accountUpdateMembership>>,
         TError,
-        {accountUid: string | null;membershipUid: string | null;data: AccountUpdateMembershipBody},
+        {accountUid: string | null;membershipUid: string | null;data: NonReadonly<AccountUpdateMembershipBody>},
         TContext
       > => {
 
@@ -975,7 +1004,7 @@ renewal the subscription will end and the account will be automatically set to e
  */
 export const accountCancelAccount = (
     accountUid: string | null,
-    accountCancelAccountBody: AccountCancelAccountBody,
+    accountCancelAccountBody: NonReadonly<AccountCancelAccountBody>,
  options?: SecondParameter<typeof customFetch>,) => {
       
       
@@ -991,8 +1020,8 @@ export const accountCancelAccount = (
 
 
 export const getAccountCancelAccountMutationOptions = <TError = void,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof accountCancelAccount>>, TError,{accountUid: string | null;data: AccountCancelAccountBody}, TContext>, request?: SecondParameter<typeof customFetch>}
-): UseMutationOptions<Awaited<ReturnType<typeof accountCancelAccount>>, TError,{accountUid: string | null;data: AccountCancelAccountBody}, TContext> => {
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof accountCancelAccount>>, TError,{accountUid: string | null;data: NonReadonly<AccountCancelAccountBody>}, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof accountCancelAccount>>, TError,{accountUid: string | null;data: NonReadonly<AccountCancelAccountBody>}, TContext> => {
 
 const mutationKey = ['accountCancelAccount'];
 const {mutation: mutationOptions, request: requestOptions} = options ?
@@ -1004,7 +1033,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof accountCancelAccount>>, {accountUid: string | null;data: AccountCancelAccountBody}> = (props) => {
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof accountCancelAccount>>, {accountUid: string | null;data: NonReadonly<AccountCancelAccountBody>}> = (props) => {
           const {accountUid,data} = props ?? {};
 
           return  accountCancelAccount(accountUid,data,requestOptions)
@@ -1016,18 +1045,18 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
   return  { mutationFn, ...mutationOptions }}
 
     export type AccountCancelAccountMutationResult = NonNullable<Awaited<ReturnType<typeof accountCancelAccount>>>
-    export type AccountCancelAccountMutationBody = AccountCancelAccountBody
+    export type AccountCancelAccountMutationBody = NonReadonly<AccountCancelAccountBody>
     export type AccountCancelAccountMutationError = void
 
     /**
  * @summary Add a cancellation request to an account.
  */
 export const useAccountCancelAccount = <TError = void,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof accountCancelAccount>>, TError,{accountUid: string | null;data: AccountCancelAccountBody}, TContext>, request?: SecondParameter<typeof customFetch>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof accountCancelAccount>>, TError,{accountUid: string | null;data: NonReadonly<AccountCancelAccountBody>}, TContext>, request?: SecondParameter<typeof customFetch>}
  ): UseMutationResult<
         Awaited<ReturnType<typeof accountCancelAccount>>,
         TError,
-        {accountUid: string | null;data: AccountCancelAccountBody},
+        {accountUid: string | null;data: NonReadonly<AccountCancelAccountBody>},
         TContext
       > => {
 
@@ -1300,7 +1329,7 @@ export function usePersonGetAllPeople<TData = Awaited<ReturnType<typeof personGe
  * @summary Add a new person.
  */
 export const personAddPerson = (
-    personAddPersonBody: PersonAddPersonBody,
+    personAddPersonBody: NonReadonly<PersonAddPersonBody>,
  options?: SecondParameter<typeof customFetch>,signal?: AbortSignal
 ) => {
       
@@ -1316,8 +1345,8 @@ export const personAddPerson = (
 
 
 export const getPersonAddPersonMutationOptions = <TError = void,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof personAddPerson>>, TError,{data: PersonAddPersonBody}, TContext>, request?: SecondParameter<typeof customFetch>}
-): UseMutationOptions<Awaited<ReturnType<typeof personAddPerson>>, TError,{data: PersonAddPersonBody}, TContext> => {
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof personAddPerson>>, TError,{data: NonReadonly<PersonAddPersonBody>}, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof personAddPerson>>, TError,{data: NonReadonly<PersonAddPersonBody>}, TContext> => {
 
 const mutationKey = ['personAddPerson'];
 const {mutation: mutationOptions, request: requestOptions} = options ?
@@ -1329,7 +1358,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof personAddPerson>>, {data: PersonAddPersonBody}> = (props) => {
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof personAddPerson>>, {data: NonReadonly<PersonAddPersonBody>}> = (props) => {
           const {data} = props ?? {};
 
           return  personAddPerson(data,requestOptions)
@@ -1341,18 +1370,18 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
   return  { mutationFn, ...mutationOptions }}
 
     export type PersonAddPersonMutationResult = NonNullable<Awaited<ReturnType<typeof personAddPerson>>>
-    export type PersonAddPersonMutationBody = PersonAddPersonBody
+    export type PersonAddPersonMutationBody = NonReadonly<PersonAddPersonBody>
     export type PersonAddPersonMutationError = void
 
     /**
  * @summary Add a new person.
  */
 export const usePersonAddPerson = <TError = void,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof personAddPerson>>, TError,{data: PersonAddPersonBody}, TContext>, request?: SecondParameter<typeof customFetch>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof personAddPerson>>, TError,{data: NonReadonly<PersonAddPersonBody>}, TContext>, request?: SecondParameter<typeof customFetch>}
  ): UseMutationResult<
         Awaited<ReturnType<typeof personAddPerson>>,
         TError,
-        {data: PersonAddPersonBody},
+        {data: NonReadonly<PersonAddPersonBody>},
         TContext
       > => {
 
@@ -1436,7 +1465,7 @@ include them in the same way that they are included when you do a get on the obj
  */
 export const personUpdatePerson = (
     personUid: string | null,
-    personUpdatePersonBody: PersonUpdatePersonBody,
+    personUpdatePersonBody: NonReadonly<PersonUpdatePersonBody>,
  options?: SecondParameter<typeof customFetch>,) => {
       
       
@@ -1451,8 +1480,8 @@ export const personUpdatePerson = (
 
 
 export const getPersonUpdatePersonMutationOptions = <TError = void,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof personUpdatePerson>>, TError,{personUid: string | null;data: PersonUpdatePersonBody}, TContext>, request?: SecondParameter<typeof customFetch>}
-): UseMutationOptions<Awaited<ReturnType<typeof personUpdatePerson>>, TError,{personUid: string | null;data: PersonUpdatePersonBody}, TContext> => {
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof personUpdatePerson>>, TError,{personUid: string | null;data: NonReadonly<PersonUpdatePersonBody>}, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof personUpdatePerson>>, TError,{personUid: string | null;data: NonReadonly<PersonUpdatePersonBody>}, TContext> => {
 
 const mutationKey = ['personUpdatePerson'];
 const {mutation: mutationOptions, request: requestOptions} = options ?
@@ -1464,7 +1493,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof personUpdatePerson>>, {personUid: string | null;data: PersonUpdatePersonBody}> = (props) => {
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof personUpdatePerson>>, {personUid: string | null;data: NonReadonly<PersonUpdatePersonBody>}> = (props) => {
           const {personUid,data} = props ?? {};
 
           return  personUpdatePerson(personUid,data,requestOptions)
@@ -1476,18 +1505,18 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
   return  { mutationFn, ...mutationOptions }}
 
     export type PersonUpdatePersonMutationResult = NonNullable<Awaited<ReturnType<typeof personUpdatePerson>>>
-    export type PersonUpdatePersonMutationBody = PersonUpdatePersonBody
+    export type PersonUpdatePersonMutationBody = NonReadonly<PersonUpdatePersonBody>
     export type PersonUpdatePersonMutationError = void
 
     /**
  * @summary Update a person record.
  */
 export const usePersonUpdatePerson = <TError = void,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof personUpdatePerson>>, TError,{personUid: string | null;data: PersonUpdatePersonBody}, TContext>, request?: SecondParameter<typeof customFetch>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof personUpdatePerson>>, TError,{personUid: string | null;data: NonReadonly<PersonUpdatePersonBody>}, TContext>, request?: SecondParameter<typeof customFetch>}
  ): UseMutationResult<
         Awaited<ReturnType<typeof personUpdatePerson>>,
         TError,
-        {personUid: string | null;data: PersonUpdatePersonBody},
+        {personUid: string | null;data: NonReadonly<PersonUpdatePersonBody>},
         TContext
       > => {
 
@@ -1694,7 +1723,7 @@ The reset password token in the link is valid for 30 minutes.
  * @summary Initiate the forgot password flow.
  */
 export const personForgotPassword = (
-    personForgotPasswordBody: PersonForgotPasswordBody,
+    personForgotPasswordBody: NonReadonly<PersonForgotPasswordBody>,
  options?: SecondParameter<typeof customFetch>,signal?: AbortSignal
 ) => {
       
@@ -1711,8 +1740,8 @@ export const personForgotPassword = (
 
 
 export const getPersonForgotPasswordMutationOptions = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof personForgotPassword>>, TError,{data: PersonForgotPasswordBody}, TContext>, request?: SecondParameter<typeof customFetch>}
-): UseMutationOptions<Awaited<ReturnType<typeof personForgotPassword>>, TError,{data: PersonForgotPasswordBody}, TContext> => {
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof personForgotPassword>>, TError,{data: NonReadonly<PersonForgotPasswordBody>}, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof personForgotPassword>>, TError,{data: NonReadonly<PersonForgotPasswordBody>}, TContext> => {
 
 const mutationKey = ['personForgotPassword'];
 const {mutation: mutationOptions, request: requestOptions} = options ?
@@ -1724,7 +1753,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof personForgotPassword>>, {data: PersonForgotPasswordBody}> = (props) => {
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof personForgotPassword>>, {data: NonReadonly<PersonForgotPasswordBody>}> = (props) => {
           const {data} = props ?? {};
 
           return  personForgotPassword(data,requestOptions)
@@ -1736,18 +1765,18 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
   return  { mutationFn, ...mutationOptions }}
 
     export type PersonForgotPasswordMutationResult = NonNullable<Awaited<ReturnType<typeof personForgotPassword>>>
-    export type PersonForgotPasswordMutationBody = PersonForgotPasswordBody
+    export type PersonForgotPasswordMutationBody = NonReadonly<PersonForgotPasswordBody>
     export type PersonForgotPasswordMutationError = unknown
 
     /**
  * @summary Initiate the forgot password flow.
  */
 export const usePersonForgotPassword = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof personForgotPassword>>, TError,{data: PersonForgotPasswordBody}, TContext>, request?: SecondParameter<typeof customFetch>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof personForgotPassword>>, TError,{data: NonReadonly<PersonForgotPasswordBody>}, TContext>, request?: SecondParameter<typeof customFetch>}
  ): UseMutationResult<
         Awaited<ReturnType<typeof personForgotPassword>>,
         TError,
-        {data: PersonForgotPasswordBody},
+        {data: NonReadonly<PersonForgotPasswordBody>},
         TContext
       > => {
 
