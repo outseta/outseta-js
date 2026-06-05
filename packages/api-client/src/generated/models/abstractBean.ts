@@ -9,7 +9,7 @@ export interface AbstractBean {
   /** @nullable */
   _objectType?: string | null;
   /** @minLength 1 */
-  Created: string;
+  readonly Created: string;
   /** @minLength 1 */
-  Updated: string;
+  readonly Updated: string;
 }

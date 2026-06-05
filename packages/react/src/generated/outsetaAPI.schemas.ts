@@ -40,9 +40,9 @@ export interface AbstractBean {
   /** @nullable */
   _objectType?: string | null;
   /** @minLength 1 */
-  Created: string;
+  readonly Created: string;
   /** @minLength 1 */
-  Updated: string;
+  readonly Updated: string;
 }
 
 /**
@@ -3568,8 +3568,27 @@ export type SendGridDomainAuthenticationAllOf = {
    * @maxLength 250
    */
   DomainName: string;
+  /**
+   * @maxLength 100
+   * @nullable
+   */
+  SendGridSubuser?: string | null;
   IsValid?: boolean;
   IsBrandedLinksDisabled?: boolean;
+  IsLinkTrackingDnsValid?: boolean;
+  /**
+   * @maxLength 100
+   * @nullable
+   */
+  CloudflareCustomHostnameId?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  CloudflareSslStatus?: string | null;
+  /** @nullable */
+  CloudflareCustomHostnameCreatedAt?: string | null;
+  IsHttpsUpgradeAvailable?: boolean;
   /** @nullable */
   LastValidationAttempt?: string | null;
   /** @nullable */

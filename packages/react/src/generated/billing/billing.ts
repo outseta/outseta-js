@@ -41,6 +41,33 @@ import type {
 
 import { customFetch } from '../../mutator';
 
+// https://stackoverflow.com/questions/49579094/typescript-conditional-types-filter-out-readonly-properties-pick-only-requir/49579497#49579497
+type IfEquals<X, Y, A = X, B = never> = (<T>() => T extends X ? 1 : 2) extends <
+T,
+>() => T extends Y ? 1 : 2
+? A
+: B;
+
+type WritableKeys<T> = {
+[P in keyof T]-?: IfEquals<
+  { [Q in P]: T[P] },
+  { -readonly [Q in P]: T[P] },
+  P
+>;
+}[keyof T];
+
+type UnionToIntersection<U> =
+  (U extends any ? (k: U)=>void : never) extends ((k: infer I)=>void) ? I : never;
+type DistributeReadOnlyOverUnions<T> = T extends any ? NonReadonly<T> : never;
+
+type Writable<T> = Pick<T, WritableKeys<T>>;
+type NonReadonly<T> = [T] extends [UnionToIntersection<T>] ? {
+  [P in keyof Writable<T>]: T[P] extends object
+    ? NonReadonly<NonNullable<T[P]>>
+    : T[P];
+} : DistributeReadOnlyOverUnions<T>;
+
+
 
 type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
 
@@ -52,7 +79,7 @@ Duration values: 1 = Forever, 2 = Once, 3 = Repeating (DurationInMonths must be 
  * @summary Add a new discount coupon.
  */
 export const discountCouponAddDiscountCoupon = (
-    discountCouponAddDiscountCouponBody: DiscountCouponAddDiscountCouponBody,
+    discountCouponAddDiscountCouponBody: NonReadonly<DiscountCouponAddDiscountCouponBody>,
  options?: SecondParameter<typeof customFetch>,signal?: AbortSignal
 ) => {
       
@@ -68,8 +95,8 @@ export const discountCouponAddDiscountCoupon = (
 
 
 export const getDiscountCouponAddDiscountCouponMutationOptions = <TError = void,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof discountCouponAddDiscountCoupon>>, TError,{data: DiscountCouponAddDiscountCouponBody}, TContext>, request?: SecondParameter<typeof customFetch>}
-): UseMutationOptions<Awaited<ReturnType<typeof discountCouponAddDiscountCoupon>>, TError,{data: DiscountCouponAddDiscountCouponBody}, TContext> => {
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof discountCouponAddDiscountCoupon>>, TError,{data: NonReadonly<DiscountCouponAddDiscountCouponBody>}, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof discountCouponAddDiscountCoupon>>, TError,{data: NonReadonly<DiscountCouponAddDiscountCouponBody>}, TContext> => {
 
 const mutationKey = ['discountCouponAddDiscountCoupon'];
 const {mutation: mutationOptions, request: requestOptions} = options ?
@@ -81,7 +108,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof discountCouponAddDiscountCoupon>>, {data: DiscountCouponAddDiscountCouponBody}> = (props) => {
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof discountCouponAddDiscountCoupon>>, {data: NonReadonly<DiscountCouponAddDiscountCouponBody>}> = (props) => {
           const {data} = props ?? {};
 
           return  discountCouponAddDiscountCoupon(data,requestOptions)
@@ -93,18 +120,18 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
   return  { mutationFn, ...mutationOptions }}
 
     export type DiscountCouponAddDiscountCouponMutationResult = NonNullable<Awaited<ReturnType<typeof discountCouponAddDiscountCoupon>>>
-    export type DiscountCouponAddDiscountCouponMutationBody = DiscountCouponAddDiscountCouponBody
+    export type DiscountCouponAddDiscountCouponMutationBody = NonReadonly<DiscountCouponAddDiscountCouponBody>
     export type DiscountCouponAddDiscountCouponMutationError = void
 
     /**
  * @summary Add a new discount coupon.
  */
 export const useDiscountCouponAddDiscountCoupon = <TError = void,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof discountCouponAddDiscountCoupon>>, TError,{data: DiscountCouponAddDiscountCouponBody}, TContext>, request?: SecondParameter<typeof customFetch>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof discountCouponAddDiscountCoupon>>, TError,{data: NonReadonly<DiscountCouponAddDiscountCouponBody>}, TContext>, request?: SecondParameter<typeof customFetch>}
  ): UseMutationResult<
         Awaited<ReturnType<typeof discountCouponAddDiscountCoupon>>,
         TError,
-        {data: DiscountCouponAddDiscountCouponBody},
+        {data: NonReadonly<DiscountCouponAddDiscountCouponBody>},
         TContext
       > => {
 
@@ -116,7 +143,7 @@ export const useDiscountCouponAddDiscountCoupon = <TError = void,
  * @summary Add a usage entry for an add-on that bills for usage at the end of the month.
  */
 export const usageAddUsage = (
-    usageAddUsageBody: UsageAddUsageBody,
+    usageAddUsageBody: NonReadonly<UsageAddUsageBody>,
  options?: SecondParameter<typeof customFetch>,signal?: AbortSignal
 ) => {
       
@@ -132,8 +159,8 @@ export const usageAddUsage = (
 
 
 export const getUsageAddUsageMutationOptions = <TError = void,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof usageAddUsage>>, TError,{data: UsageAddUsageBody}, TContext>, request?: SecondParameter<typeof customFetch>}
-): UseMutationOptions<Awaited<ReturnType<typeof usageAddUsage>>, TError,{data: UsageAddUsageBody}, TContext> => {
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof usageAddUsage>>, TError,{data: NonReadonly<UsageAddUsageBody>}, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof usageAddUsage>>, TError,{data: NonReadonly<UsageAddUsageBody>}, TContext> => {
 
 const mutationKey = ['usageAddUsage'];
 const {mutation: mutationOptions, request: requestOptions} = options ?
@@ -145,7 +172,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof usageAddUsage>>, {data: UsageAddUsageBody}> = (props) => {
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof usageAddUsage>>, {data: NonReadonly<UsageAddUsageBody>}> = (props) => {
           const {data} = props ?? {};
 
           return  usageAddUsage(data,requestOptions)
@@ -157,18 +184,18 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
   return  { mutationFn, ...mutationOptions }}
 
     export type UsageAddUsageMutationResult = NonNullable<Awaited<ReturnType<typeof usageAddUsage>>>
-    export type UsageAddUsageMutationBody = UsageAddUsageBody
+    export type UsageAddUsageMutationBody = NonReadonly<UsageAddUsageBody>
     export type UsageAddUsageMutationError = void
 
     /**
  * @summary Add a usage entry for an add-on that bills for usage at the end of the month.
  */
 export const useUsageAddUsage = <TError = void,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof usageAddUsage>>, TError,{data: UsageAddUsageBody}, TContext>, request?: SecondParameter<typeof customFetch>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof usageAddUsage>>, TError,{data: NonReadonly<UsageAddUsageBody>}, TContext>, request?: SecondParameter<typeof customFetch>}
  ): UseMutationResult<
         Awaited<ReturnType<typeof usageAddUsage>>,
         TError,
-        {data: UsageAddUsageBody},
+        {data: NonReadonly<UsageAddUsageBody>},
         TContext
       > => {
 
@@ -252,7 +279,7 @@ as Paid.
  * @summary Add a payment to an invoice.
  */
 export const transactionsAddPaymentTransaction = (
-    transactionsAddPaymentTransactionBody: TransactionsAddPaymentTransactionBody,
+    transactionsAddPaymentTransactionBody: NonReadonly<TransactionsAddPaymentTransactionBody>,
  options?: SecondParameter<typeof customFetch>,signal?: AbortSignal
 ) => {
       
@@ -268,8 +295,8 @@ export const transactionsAddPaymentTransaction = (
 
 
 export const getTransactionsAddPaymentTransactionMutationOptions = <TError = void,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof transactionsAddPaymentTransaction>>, TError,{data: TransactionsAddPaymentTransactionBody}, TContext>, request?: SecondParameter<typeof customFetch>}
-): UseMutationOptions<Awaited<ReturnType<typeof transactionsAddPaymentTransaction>>, TError,{data: TransactionsAddPaymentTransactionBody}, TContext> => {
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof transactionsAddPaymentTransaction>>, TError,{data: NonReadonly<TransactionsAddPaymentTransactionBody>}, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof transactionsAddPaymentTransaction>>, TError,{data: NonReadonly<TransactionsAddPaymentTransactionBody>}, TContext> => {
 
 const mutationKey = ['transactionsAddPaymentTransaction'];
 const {mutation: mutationOptions, request: requestOptions} = options ?
@@ -281,7 +308,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof transactionsAddPaymentTransaction>>, {data: TransactionsAddPaymentTransactionBody}> = (props) => {
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof transactionsAddPaymentTransaction>>, {data: NonReadonly<TransactionsAddPaymentTransactionBody>}> = (props) => {
           const {data} = props ?? {};
 
           return  transactionsAddPaymentTransaction(data,requestOptions)
@@ -293,18 +320,18 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
   return  { mutationFn, ...mutationOptions }}
 
     export type TransactionsAddPaymentTransactionMutationResult = NonNullable<Awaited<ReturnType<typeof transactionsAddPaymentTransaction>>>
-    export type TransactionsAddPaymentTransactionMutationBody = TransactionsAddPaymentTransactionBody
+    export type TransactionsAddPaymentTransactionMutationBody = NonReadonly<TransactionsAddPaymentTransactionBody>
     export type TransactionsAddPaymentTransactionMutationError = void
 
     /**
  * @summary Add a payment to an invoice.
  */
 export const useTransactionsAddPaymentTransaction = <TError = void,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof transactionsAddPaymentTransaction>>, TError,{data: TransactionsAddPaymentTransactionBody}, TContext>, request?: SecondParameter<typeof customFetch>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof transactionsAddPaymentTransaction>>, TError,{data: NonReadonly<TransactionsAddPaymentTransactionBody>}, TContext>, request?: SecondParameter<typeof customFetch>}
  ): UseMutationResult<
         Awaited<ReturnType<typeof transactionsAddPaymentTransaction>>,
         TError,
-        {data: TransactionsAddPaymentTransactionBody},
+        {data: NonReadonly<TransactionsAddPaymentTransactionBody>},
         TContext
       > => {
 
@@ -316,7 +343,7 @@ export const useTransactionsAddPaymentTransaction = <TError = void,
  * @summary Update payment information for an account.
  */
 export const paymentInformationSavePaymentInformation = (
-    paymentInformationSavePaymentInformationBody: PaymentInformationSavePaymentInformationBody,
+    paymentInformationSavePaymentInformationBody: NonReadonly<PaymentInformationSavePaymentInformationBody>,
  options?: SecondParameter<typeof customFetch>,signal?: AbortSignal
 ) => {
       
@@ -332,8 +359,8 @@ export const paymentInformationSavePaymentInformation = (
 
 
 export const getPaymentInformationSavePaymentInformationMutationOptions = <TError = void,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof paymentInformationSavePaymentInformation>>, TError,{data: PaymentInformationSavePaymentInformationBody}, TContext>, request?: SecondParameter<typeof customFetch>}
-): UseMutationOptions<Awaited<ReturnType<typeof paymentInformationSavePaymentInformation>>, TError,{data: PaymentInformationSavePaymentInformationBody}, TContext> => {
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof paymentInformationSavePaymentInformation>>, TError,{data: NonReadonly<PaymentInformationSavePaymentInformationBody>}, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof paymentInformationSavePaymentInformation>>, TError,{data: NonReadonly<PaymentInformationSavePaymentInformationBody>}, TContext> => {
 
 const mutationKey = ['paymentInformationSavePaymentInformation'];
 const {mutation: mutationOptions, request: requestOptions} = options ?
@@ -345,7 +372,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof paymentInformationSavePaymentInformation>>, {data: PaymentInformationSavePaymentInformationBody}> = (props) => {
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof paymentInformationSavePaymentInformation>>, {data: NonReadonly<PaymentInformationSavePaymentInformationBody>}> = (props) => {
           const {data} = props ?? {};
 
           return  paymentInformationSavePaymentInformation(data,requestOptions)
@@ -357,18 +384,18 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
   return  { mutationFn, ...mutationOptions }}
 
     export type PaymentInformationSavePaymentInformationMutationResult = NonNullable<Awaited<ReturnType<typeof paymentInformationSavePaymentInformation>>>
-    export type PaymentInformationSavePaymentInformationMutationBody = PaymentInformationSavePaymentInformationBody
+    export type PaymentInformationSavePaymentInformationMutationBody = NonReadonly<PaymentInformationSavePaymentInformationBody>
     export type PaymentInformationSavePaymentInformationMutationError = void
 
     /**
  * @summary Update payment information for an account.
  */
 export const usePaymentInformationSavePaymentInformation = <TError = void,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof paymentInformationSavePaymentInformation>>, TError,{data: PaymentInformationSavePaymentInformationBody}, TContext>, request?: SecondParameter<typeof customFetch>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof paymentInformationSavePaymentInformation>>, TError,{data: NonReadonly<PaymentInformationSavePaymentInformationBody>}, TContext>, request?: SecondParameter<typeof customFetch>}
  ): UseMutationResult<
         Awaited<ReturnType<typeof paymentInformationSavePaymentInformation>>,
         TError,
-        {data: PaymentInformationSavePaymentInformationBody},
+        {data: NonReadonly<PaymentInformationSavePaymentInformationBody>},
         TContext
       > => {
 
@@ -380,7 +407,7 @@ export const usePaymentInformationSavePaymentInformation = <TError = void,
  * @summary Add an add-on to a subscription.
  */
 export const subscriptionAddOnAddSubscriptionAddOn = (
-    subscriptionAddOnAddSubscriptionAddOnBody: SubscriptionAddOnAddSubscriptionAddOnBody,
+    subscriptionAddOnAddSubscriptionAddOnBody: NonReadonly<SubscriptionAddOnAddSubscriptionAddOnBody>,
  options?: SecondParameter<typeof customFetch>,signal?: AbortSignal
 ) => {
       
@@ -397,8 +424,8 @@ export const subscriptionAddOnAddSubscriptionAddOn = (
 
 
 export const getSubscriptionAddOnAddSubscriptionAddOnMutationOptions = <TError = void,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof subscriptionAddOnAddSubscriptionAddOn>>, TError,{data: SubscriptionAddOnAddSubscriptionAddOnBody}, TContext>, request?: SecondParameter<typeof customFetch>}
-): UseMutationOptions<Awaited<ReturnType<typeof subscriptionAddOnAddSubscriptionAddOn>>, TError,{data: SubscriptionAddOnAddSubscriptionAddOnBody}, TContext> => {
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof subscriptionAddOnAddSubscriptionAddOn>>, TError,{data: NonReadonly<SubscriptionAddOnAddSubscriptionAddOnBody>}, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof subscriptionAddOnAddSubscriptionAddOn>>, TError,{data: NonReadonly<SubscriptionAddOnAddSubscriptionAddOnBody>}, TContext> => {
 
 const mutationKey = ['subscriptionAddOnAddSubscriptionAddOn'];
 const {mutation: mutationOptions, request: requestOptions} = options ?
@@ -410,7 +437,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof subscriptionAddOnAddSubscriptionAddOn>>, {data: SubscriptionAddOnAddSubscriptionAddOnBody}> = (props) => {
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof subscriptionAddOnAddSubscriptionAddOn>>, {data: NonReadonly<SubscriptionAddOnAddSubscriptionAddOnBody>}> = (props) => {
           const {data} = props ?? {};
 
           return  subscriptionAddOnAddSubscriptionAddOn(data,requestOptions)
@@ -422,18 +449,18 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
   return  { mutationFn, ...mutationOptions }}
 
     export type SubscriptionAddOnAddSubscriptionAddOnMutationResult = NonNullable<Awaited<ReturnType<typeof subscriptionAddOnAddSubscriptionAddOn>>>
-    export type SubscriptionAddOnAddSubscriptionAddOnMutationBody = SubscriptionAddOnAddSubscriptionAddOnBody
+    export type SubscriptionAddOnAddSubscriptionAddOnMutationBody = NonReadonly<SubscriptionAddOnAddSubscriptionAddOnBody>
     export type SubscriptionAddOnAddSubscriptionAddOnMutationError = void
 
     /**
  * @summary Add an add-on to a subscription.
  */
 export const useSubscriptionAddOnAddSubscriptionAddOn = <TError = void,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof subscriptionAddOnAddSubscriptionAddOn>>, TError,{data: SubscriptionAddOnAddSubscriptionAddOnBody}, TContext>, request?: SecondParameter<typeof customFetch>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof subscriptionAddOnAddSubscriptionAddOn>>, TError,{data: NonReadonly<SubscriptionAddOnAddSubscriptionAddOnBody>}, TContext>, request?: SecondParameter<typeof customFetch>}
  ): UseMutationResult<
         Awaited<ReturnType<typeof subscriptionAddOnAddSubscriptionAddOn>>,
         TError,
-        {data: SubscriptionAddOnAddSubscriptionAddOnBody},
+        {data: NonReadonly<SubscriptionAddOnAddSubscriptionAddOnBody>},
         TContext
       > => {
 
@@ -516,7 +543,7 @@ export function useInvoiceGetAllInvoices<TData = Awaited<ReturnType<typeof invoi
  * @summary Create an ad-hoc invoice for a given account.
  */
 export const invoiceAddInvoice = (
-    invoiceAddInvoiceBody: InvoiceAddInvoiceBody,
+    invoiceAddInvoiceBody: NonReadonly<InvoiceAddInvoiceBody>,
  options?: SecondParameter<typeof customFetch>,signal?: AbortSignal
 ) => {
       
@@ -532,8 +559,8 @@ export const invoiceAddInvoice = (
 
 
 export const getInvoiceAddInvoiceMutationOptions = <TError = void,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof invoiceAddInvoice>>, TError,{data: InvoiceAddInvoiceBody}, TContext>, request?: SecondParameter<typeof customFetch>}
-): UseMutationOptions<Awaited<ReturnType<typeof invoiceAddInvoice>>, TError,{data: InvoiceAddInvoiceBody}, TContext> => {
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof invoiceAddInvoice>>, TError,{data: NonReadonly<InvoiceAddInvoiceBody>}, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof invoiceAddInvoice>>, TError,{data: NonReadonly<InvoiceAddInvoiceBody>}, TContext> => {
 
 const mutationKey = ['invoiceAddInvoice'];
 const {mutation: mutationOptions, request: requestOptions} = options ?
@@ -545,7 +572,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof invoiceAddInvoice>>, {data: InvoiceAddInvoiceBody}> = (props) => {
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof invoiceAddInvoice>>, {data: NonReadonly<InvoiceAddInvoiceBody>}> = (props) => {
           const {data} = props ?? {};
 
           return  invoiceAddInvoice(data,requestOptions)
@@ -557,18 +584,18 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
   return  { mutationFn, ...mutationOptions }}
 
     export type InvoiceAddInvoiceMutationResult = NonNullable<Awaited<ReturnType<typeof invoiceAddInvoice>>>
-    export type InvoiceAddInvoiceMutationBody = InvoiceAddInvoiceBody
+    export type InvoiceAddInvoiceMutationBody = NonReadonly<InvoiceAddInvoiceBody>
     export type InvoiceAddInvoiceMutationError = void
 
     /**
  * @summary Create an ad-hoc invoice for a given account.
  */
 export const useInvoiceAddInvoice = <TError = void,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof invoiceAddInvoice>>, TError,{data: InvoiceAddInvoiceBody}, TContext>, request?: SecondParameter<typeof customFetch>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof invoiceAddInvoice>>, TError,{data: NonReadonly<InvoiceAddInvoiceBody>}, TContext>, request?: SecondParameter<typeof customFetch>}
  ): UseMutationResult<
         Awaited<ReturnType<typeof invoiceAddInvoice>>,
         TError,
-        {data: InvoiceAddInvoiceBody},
+        {data: NonReadonly<InvoiceAddInvoiceBody>},
         TContext
       > => {
 
@@ -652,7 +679,7 @@ validation error.
  */
 export const invoiceUpdateInvoice = (
     invoiceUid: string | null,
-    invoiceUpdateInvoiceBody: InvoiceUpdateInvoiceBody,
+    invoiceUpdateInvoiceBody: NonReadonly<InvoiceUpdateInvoiceBody>,
  options?: SecondParameter<typeof customFetch>,) => {
       
       
@@ -667,8 +694,8 @@ export const invoiceUpdateInvoice = (
 
 
 export const getInvoiceUpdateInvoiceMutationOptions = <TError = void,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof invoiceUpdateInvoice>>, TError,{invoiceUid: string | null;data: InvoiceUpdateInvoiceBody}, TContext>, request?: SecondParameter<typeof customFetch>}
-): UseMutationOptions<Awaited<ReturnType<typeof invoiceUpdateInvoice>>, TError,{invoiceUid: string | null;data: InvoiceUpdateInvoiceBody}, TContext> => {
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof invoiceUpdateInvoice>>, TError,{invoiceUid: string | null;data: NonReadonly<InvoiceUpdateInvoiceBody>}, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof invoiceUpdateInvoice>>, TError,{invoiceUid: string | null;data: NonReadonly<InvoiceUpdateInvoiceBody>}, TContext> => {
 
 const mutationKey = ['invoiceUpdateInvoice'];
 const {mutation: mutationOptions, request: requestOptions} = options ?
@@ -680,7 +707,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof invoiceUpdateInvoice>>, {invoiceUid: string | null;data: InvoiceUpdateInvoiceBody}> = (props) => {
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof invoiceUpdateInvoice>>, {invoiceUid: string | null;data: NonReadonly<InvoiceUpdateInvoiceBody>}> = (props) => {
           const {invoiceUid,data} = props ?? {};
 
           return  invoiceUpdateInvoice(invoiceUid,data,requestOptions)
@@ -692,18 +719,18 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
   return  { mutationFn, ...mutationOptions }}
 
     export type InvoiceUpdateInvoiceMutationResult = NonNullable<Awaited<ReturnType<typeof invoiceUpdateInvoice>>>
-    export type InvoiceUpdateInvoiceMutationBody = InvoiceUpdateInvoiceBody
+    export type InvoiceUpdateInvoiceMutationBody = NonReadonly<InvoiceUpdateInvoiceBody>
     export type InvoiceUpdateInvoiceMutationError = void
 
     /**
  * @summary Update an ad-hoc (manually created) invoice.
  */
 export const useInvoiceUpdateInvoice = <TError = void,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof invoiceUpdateInvoice>>, TError,{invoiceUid: string | null;data: InvoiceUpdateInvoiceBody}, TContext>, request?: SecondParameter<typeof customFetch>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof invoiceUpdateInvoice>>, TError,{invoiceUid: string | null;data: NonReadonly<InvoiceUpdateInvoiceBody>}, TContext>, request?: SecondParameter<typeof customFetch>}
  ): UseMutationResult<
         Awaited<ReturnType<typeof invoiceUpdateInvoice>>,
         TError,
-        {invoiceUid: string | null;data: InvoiceUpdateInvoiceBody},
+        {invoiceUid: string | null;data: NonReadonly<InvoiceUpdateInvoiceBody>},
         TContext
       > => {
 
@@ -1113,7 +1140,7 @@ widget will prompt the user to change plan.
  */
 export const subscriptionSetSubscriptionUpgradeRequired = (
     subscriptionUid: string | null,
-    subscriptionSetSubscriptionUpgradeRequiredBody: SubscriptionSetSubscriptionUpgradeRequiredBody,
+    subscriptionSetSubscriptionUpgradeRequiredBody: NonReadonly<SubscriptionSetSubscriptionUpgradeRequiredBody>,
  options?: SecondParameter<typeof customFetch>,) => {
       
       
@@ -1128,8 +1155,8 @@ export const subscriptionSetSubscriptionUpgradeRequired = (
 
 
 export const getSubscriptionSetSubscriptionUpgradeRequiredMutationOptions = <TError = void,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof subscriptionSetSubscriptionUpgradeRequired>>, TError,{subscriptionUid: string | null;data: SubscriptionSetSubscriptionUpgradeRequiredBody}, TContext>, request?: SecondParameter<typeof customFetch>}
-): UseMutationOptions<Awaited<ReturnType<typeof subscriptionSetSubscriptionUpgradeRequired>>, TError,{subscriptionUid: string | null;data: SubscriptionSetSubscriptionUpgradeRequiredBody}, TContext> => {
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof subscriptionSetSubscriptionUpgradeRequired>>, TError,{subscriptionUid: string | null;data: NonReadonly<SubscriptionSetSubscriptionUpgradeRequiredBody>}, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof subscriptionSetSubscriptionUpgradeRequired>>, TError,{subscriptionUid: string | null;data: NonReadonly<SubscriptionSetSubscriptionUpgradeRequiredBody>}, TContext> => {
 
 const mutationKey = ['subscriptionSetSubscriptionUpgradeRequired'];
 const {mutation: mutationOptions, request: requestOptions} = options ?
@@ -1141,7 +1168,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof subscriptionSetSubscriptionUpgradeRequired>>, {subscriptionUid: string | null;data: SubscriptionSetSubscriptionUpgradeRequiredBody}> = (props) => {
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof subscriptionSetSubscriptionUpgradeRequired>>, {subscriptionUid: string | null;data: NonReadonly<SubscriptionSetSubscriptionUpgradeRequiredBody>}> = (props) => {
           const {subscriptionUid,data} = props ?? {};
 
           return  subscriptionSetSubscriptionUpgradeRequired(subscriptionUid,data,requestOptions)
@@ -1153,18 +1180,18 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
   return  { mutationFn, ...mutationOptions }}
 
     export type SubscriptionSetSubscriptionUpgradeRequiredMutationResult = NonNullable<Awaited<ReturnType<typeof subscriptionSetSubscriptionUpgradeRequired>>>
-    export type SubscriptionSetSubscriptionUpgradeRequiredMutationBody = SubscriptionSetSubscriptionUpgradeRequiredBody
+    export type SubscriptionSetSubscriptionUpgradeRequiredMutationBody = NonReadonly<SubscriptionSetSubscriptionUpgradeRequiredBody>
     export type SubscriptionSetSubscriptionUpgradeRequiredMutationError = void
 
     /**
  * @summary Indicate that an upgrade of plan is required.
  */
 export const useSubscriptionSetSubscriptionUpgradeRequired = <TError = void,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof subscriptionSetSubscriptionUpgradeRequired>>, TError,{subscriptionUid: string | null;data: SubscriptionSetSubscriptionUpgradeRequiredBody}, TContext>, request?: SecondParameter<typeof customFetch>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof subscriptionSetSubscriptionUpgradeRequired>>, TError,{subscriptionUid: string | null;data: NonReadonly<SubscriptionSetSubscriptionUpgradeRequiredBody>}, TContext>, request?: SecondParameter<typeof customFetch>}
  ): UseMutationResult<
         Awaited<ReturnType<typeof subscriptionSetSubscriptionUpgradeRequired>>,
         TError,
-        {subscriptionUid: string | null;data: SubscriptionSetSubscriptionUpgradeRequiredBody},
+        {subscriptionUid: string | null;data: NonReadonly<SubscriptionSetSubscriptionUpgradeRequiredBody>},
         TContext
       > => {
 
@@ -1180,7 +1207,7 @@ instead of the initial invoice.
  * @summary Preview the initial or renewal invoice for a hypothetical subscription.
  */
 export const subscriptionFirstTimeSubscriptionPreview = (
-    subscriptionFirstTimeSubscriptionPreviewBody: SubscriptionFirstTimeSubscriptionPreviewBody,
+    subscriptionFirstTimeSubscriptionPreviewBody: NonReadonly<SubscriptionFirstTimeSubscriptionPreviewBody>,
     params?: SubscriptionFirstTimeSubscriptionPreviewParams,
  options?: SecondParameter<typeof customFetch>,signal?: AbortSignal
 ) => {
@@ -1198,8 +1225,8 @@ export const subscriptionFirstTimeSubscriptionPreview = (
 
 
 export const getSubscriptionFirstTimeSubscriptionPreviewMutationOptions = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof subscriptionFirstTimeSubscriptionPreview>>, TError,{data: SubscriptionFirstTimeSubscriptionPreviewBody;params?: SubscriptionFirstTimeSubscriptionPreviewParams}, TContext>, request?: SecondParameter<typeof customFetch>}
-): UseMutationOptions<Awaited<ReturnType<typeof subscriptionFirstTimeSubscriptionPreview>>, TError,{data: SubscriptionFirstTimeSubscriptionPreviewBody;params?: SubscriptionFirstTimeSubscriptionPreviewParams}, TContext> => {
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof subscriptionFirstTimeSubscriptionPreview>>, TError,{data: NonReadonly<SubscriptionFirstTimeSubscriptionPreviewBody>;params?: SubscriptionFirstTimeSubscriptionPreviewParams}, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof subscriptionFirstTimeSubscriptionPreview>>, TError,{data: NonReadonly<SubscriptionFirstTimeSubscriptionPreviewBody>;params?: SubscriptionFirstTimeSubscriptionPreviewParams}, TContext> => {
 
 const mutationKey = ['subscriptionFirstTimeSubscriptionPreview'];
 const {mutation: mutationOptions, request: requestOptions} = options ?
@@ -1211,7 +1238,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof subscriptionFirstTimeSubscriptionPreview>>, {data: SubscriptionFirstTimeSubscriptionPreviewBody;params?: SubscriptionFirstTimeSubscriptionPreviewParams}> = (props) => {
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof subscriptionFirstTimeSubscriptionPreview>>, {data: NonReadonly<SubscriptionFirstTimeSubscriptionPreviewBody>;params?: SubscriptionFirstTimeSubscriptionPreviewParams}> = (props) => {
           const {data,params} = props ?? {};
 
           return  subscriptionFirstTimeSubscriptionPreview(data,params,requestOptions)
@@ -1223,18 +1250,18 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
   return  { mutationFn, ...mutationOptions }}
 
     export type SubscriptionFirstTimeSubscriptionPreviewMutationResult = NonNullable<Awaited<ReturnType<typeof subscriptionFirstTimeSubscriptionPreview>>>
-    export type SubscriptionFirstTimeSubscriptionPreviewMutationBody = SubscriptionFirstTimeSubscriptionPreviewBody
+    export type SubscriptionFirstTimeSubscriptionPreviewMutationBody = NonReadonly<SubscriptionFirstTimeSubscriptionPreviewBody>
     export type SubscriptionFirstTimeSubscriptionPreviewMutationError = unknown
 
     /**
  * @summary Preview the initial or renewal invoice for a hypothetical subscription.
  */
 export const useSubscriptionFirstTimeSubscriptionPreview = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof subscriptionFirstTimeSubscriptionPreview>>, TError,{data: SubscriptionFirstTimeSubscriptionPreviewBody;params?: SubscriptionFirstTimeSubscriptionPreviewParams}, TContext>, request?: SecondParameter<typeof customFetch>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof subscriptionFirstTimeSubscriptionPreview>>, TError,{data: NonReadonly<SubscriptionFirstTimeSubscriptionPreviewBody>;params?: SubscriptionFirstTimeSubscriptionPreviewParams}, TContext>, request?: SecondParameter<typeof customFetch>}
  ): UseMutationResult<
         Awaited<ReturnType<typeof subscriptionFirstTimeSubscriptionPreview>>,
         TError,
-        {data: SubscriptionFirstTimeSubscriptionPreviewBody;params?: SubscriptionFirstTimeSubscriptionPreviewParams},
+        {data: NonReadonly<SubscriptionFirstTimeSubscriptionPreviewBody>;params?: SubscriptionFirstTimeSubscriptionPreviewParams},
         TContext
       > => {
 
@@ -1247,7 +1274,7 @@ export const useSubscriptionFirstTimeSubscriptionPreview = <TError = unknown,
  * @summary Add a subscription to an account for the first time.
  */
 export const subscriptionFirstTimeSubscription = (
-    subscriptionFirstTimeSubscriptionBody: SubscriptionFirstTimeSubscriptionBody,
+    subscriptionFirstTimeSubscriptionBody: NonReadonly<SubscriptionFirstTimeSubscriptionBody>,
  options?: SecondParameter<typeof customFetch>,) => {
       
       
@@ -1262,8 +1289,8 @@ export const subscriptionFirstTimeSubscription = (
 
 
 export const getSubscriptionFirstTimeSubscriptionMutationOptions = <TError = void,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof subscriptionFirstTimeSubscription>>, TError,{data: SubscriptionFirstTimeSubscriptionBody}, TContext>, request?: SecondParameter<typeof customFetch>}
-): UseMutationOptions<Awaited<ReturnType<typeof subscriptionFirstTimeSubscription>>, TError,{data: SubscriptionFirstTimeSubscriptionBody}, TContext> => {
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof subscriptionFirstTimeSubscription>>, TError,{data: NonReadonly<SubscriptionFirstTimeSubscriptionBody>}, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof subscriptionFirstTimeSubscription>>, TError,{data: NonReadonly<SubscriptionFirstTimeSubscriptionBody>}, TContext> => {
 
 const mutationKey = ['subscriptionFirstTimeSubscription'];
 const {mutation: mutationOptions, request: requestOptions} = options ?
@@ -1275,7 +1302,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof subscriptionFirstTimeSubscription>>, {data: SubscriptionFirstTimeSubscriptionBody}> = (props) => {
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof subscriptionFirstTimeSubscription>>, {data: NonReadonly<SubscriptionFirstTimeSubscriptionBody>}> = (props) => {
           const {data} = props ?? {};
 
           return  subscriptionFirstTimeSubscription(data,requestOptions)
@@ -1287,18 +1314,18 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
   return  { mutationFn, ...mutationOptions }}
 
     export type SubscriptionFirstTimeSubscriptionMutationResult = NonNullable<Awaited<ReturnType<typeof subscriptionFirstTimeSubscription>>>
-    export type SubscriptionFirstTimeSubscriptionMutationBody = SubscriptionFirstTimeSubscriptionBody
+    export type SubscriptionFirstTimeSubscriptionMutationBody = NonReadonly<SubscriptionFirstTimeSubscriptionBody>
     export type SubscriptionFirstTimeSubscriptionMutationError = void
 
     /**
  * @summary Add a subscription to an account for the first time.
  */
 export const useSubscriptionFirstTimeSubscription = <TError = void,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof subscriptionFirstTimeSubscription>>, TError,{data: SubscriptionFirstTimeSubscriptionBody}, TContext>, request?: SecondParameter<typeof customFetch>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof subscriptionFirstTimeSubscription>>, TError,{data: NonReadonly<SubscriptionFirstTimeSubscriptionBody>}, TContext>, request?: SecondParameter<typeof customFetch>}
  ): UseMutationResult<
         Awaited<ReturnType<typeof subscriptionFirstTimeSubscription>>,
         TError,
-        {data: SubscriptionFirstTimeSubscriptionBody},
+        {data: NonReadonly<SubscriptionFirstTimeSubscriptionBody>},
         TContext
       > => {
 
@@ -1313,7 +1340,7 @@ does not commit the subscription change.
  */
 export const subscriptionChangeSubscriptionPreview = (
     subscriptionUid: string | null,
-    subscriptionChangeSubscriptionPreviewBody: SubscriptionChangeSubscriptionPreviewBody,
+    subscriptionChangeSubscriptionPreviewBody: NonReadonly<SubscriptionChangeSubscriptionPreviewBody>,
     params?: SubscriptionChangeSubscriptionPreviewParams,
  options?: SecondParameter<typeof customFetch>,) => {
       
@@ -1330,8 +1357,8 @@ export const subscriptionChangeSubscriptionPreview = (
 
 
 export const getSubscriptionChangeSubscriptionPreviewMutationOptions = <TError = void,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof subscriptionChangeSubscriptionPreview>>, TError,{subscriptionUid: string | null;data: SubscriptionChangeSubscriptionPreviewBody;params?: SubscriptionChangeSubscriptionPreviewParams}, TContext>, request?: SecondParameter<typeof customFetch>}
-): UseMutationOptions<Awaited<ReturnType<typeof subscriptionChangeSubscriptionPreview>>, TError,{subscriptionUid: string | null;data: SubscriptionChangeSubscriptionPreviewBody;params?: SubscriptionChangeSubscriptionPreviewParams}, TContext> => {
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof subscriptionChangeSubscriptionPreview>>, TError,{subscriptionUid: string | null;data: NonReadonly<SubscriptionChangeSubscriptionPreviewBody>;params?: SubscriptionChangeSubscriptionPreviewParams}, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof subscriptionChangeSubscriptionPreview>>, TError,{subscriptionUid: string | null;data: NonReadonly<SubscriptionChangeSubscriptionPreviewBody>;params?: SubscriptionChangeSubscriptionPreviewParams}, TContext> => {
 
 const mutationKey = ['subscriptionChangeSubscriptionPreview'];
 const {mutation: mutationOptions, request: requestOptions} = options ?
@@ -1343,7 +1370,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof subscriptionChangeSubscriptionPreview>>, {subscriptionUid: string | null;data: SubscriptionChangeSubscriptionPreviewBody;params?: SubscriptionChangeSubscriptionPreviewParams}> = (props) => {
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof subscriptionChangeSubscriptionPreview>>, {subscriptionUid: string | null;data: NonReadonly<SubscriptionChangeSubscriptionPreviewBody>;params?: SubscriptionChangeSubscriptionPreviewParams}> = (props) => {
           const {subscriptionUid,data,params} = props ?? {};
 
           return  subscriptionChangeSubscriptionPreview(subscriptionUid,data,params,requestOptions)
@@ -1355,18 +1382,18 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
   return  { mutationFn, ...mutationOptions }}
 
     export type SubscriptionChangeSubscriptionPreviewMutationResult = NonNullable<Awaited<ReturnType<typeof subscriptionChangeSubscriptionPreview>>>
-    export type SubscriptionChangeSubscriptionPreviewMutationBody = SubscriptionChangeSubscriptionPreviewBody
+    export type SubscriptionChangeSubscriptionPreviewMutationBody = NonReadonly<SubscriptionChangeSubscriptionPreviewBody>
     export type SubscriptionChangeSubscriptionPreviewMutationError = void
 
     /**
  * @summary Preview the invoice for a subscription change.
  */
 export const useSubscriptionChangeSubscriptionPreview = <TError = void,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof subscriptionChangeSubscriptionPreview>>, TError,{subscriptionUid: string | null;data: SubscriptionChangeSubscriptionPreviewBody;params?: SubscriptionChangeSubscriptionPreviewParams}, TContext>, request?: SecondParameter<typeof customFetch>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof subscriptionChangeSubscriptionPreview>>, TError,{subscriptionUid: string | null;data: NonReadonly<SubscriptionChangeSubscriptionPreviewBody>;params?: SubscriptionChangeSubscriptionPreviewParams}, TContext>, request?: SecondParameter<typeof customFetch>}
  ): UseMutationResult<
         Awaited<ReturnType<typeof subscriptionChangeSubscriptionPreview>>,
         TError,
-        {subscriptionUid: string | null;data: SubscriptionChangeSubscriptionPreviewBody;params?: SubscriptionChangeSubscriptionPreviewParams},
+        {subscriptionUid: string | null;data: NonReadonly<SubscriptionChangeSubscriptionPreviewBody>;params?: SubscriptionChangeSubscriptionPreviewParams},
         TContext
       > => {
 
@@ -1380,7 +1407,7 @@ export const useSubscriptionChangeSubscriptionPreview = <TError = void,
  */
 export const subscriptionChangeSubscription = (
     subscriptionUid: string | null,
-    subscriptionChangeSubscriptionBody: SubscriptionChangeSubscriptionBody,
+    subscriptionChangeSubscriptionBody: NonReadonly<SubscriptionChangeSubscriptionBody>,
     params?: SubscriptionChangeSubscriptionParams,
  options?: SecondParameter<typeof customFetch>,) => {
       
@@ -1397,8 +1424,8 @@ export const subscriptionChangeSubscription = (
 
 
 export const getSubscriptionChangeSubscriptionMutationOptions = <TError = void,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof subscriptionChangeSubscription>>, TError,{subscriptionUid: string | null;data: SubscriptionChangeSubscriptionBody;params?: SubscriptionChangeSubscriptionParams}, TContext>, request?: SecondParameter<typeof customFetch>}
-): UseMutationOptions<Awaited<ReturnType<typeof subscriptionChangeSubscription>>, TError,{subscriptionUid: string | null;data: SubscriptionChangeSubscriptionBody;params?: SubscriptionChangeSubscriptionParams}, TContext> => {
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof subscriptionChangeSubscription>>, TError,{subscriptionUid: string | null;data: NonReadonly<SubscriptionChangeSubscriptionBody>;params?: SubscriptionChangeSubscriptionParams}, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof subscriptionChangeSubscription>>, TError,{subscriptionUid: string | null;data: NonReadonly<SubscriptionChangeSubscriptionBody>;params?: SubscriptionChangeSubscriptionParams}, TContext> => {
 
 const mutationKey = ['subscriptionChangeSubscription'];
 const {mutation: mutationOptions, request: requestOptions} = options ?
@@ -1410,7 +1437,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof subscriptionChangeSubscription>>, {subscriptionUid: string | null;data: SubscriptionChangeSubscriptionBody;params?: SubscriptionChangeSubscriptionParams}> = (props) => {
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof subscriptionChangeSubscription>>, {subscriptionUid: string | null;data: NonReadonly<SubscriptionChangeSubscriptionBody>;params?: SubscriptionChangeSubscriptionParams}> = (props) => {
           const {subscriptionUid,data,params} = props ?? {};
 
           return  subscriptionChangeSubscription(subscriptionUid,data,params,requestOptions)
@@ -1422,18 +1449,18 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
   return  { mutationFn, ...mutationOptions }}
 
     export type SubscriptionChangeSubscriptionMutationResult = NonNullable<Awaited<ReturnType<typeof subscriptionChangeSubscription>>>
-    export type SubscriptionChangeSubscriptionMutationBody = SubscriptionChangeSubscriptionBody
+    export type SubscriptionChangeSubscriptionMutationBody = NonReadonly<SubscriptionChangeSubscriptionBody>
     export type SubscriptionChangeSubscriptionMutationError = void
 
     /**
  * @summary Change a subscription on an account.
  */
 export const useSubscriptionChangeSubscription = <TError = void,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof subscriptionChangeSubscription>>, TError,{subscriptionUid: string | null;data: SubscriptionChangeSubscriptionBody;params?: SubscriptionChangeSubscriptionParams}, TContext>, request?: SecondParameter<typeof customFetch>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof subscriptionChangeSubscription>>, TError,{subscriptionUid: string | null;data: NonReadonly<SubscriptionChangeSubscriptionBody>;params?: SubscriptionChangeSubscriptionParams}, TContext>, request?: SecondParameter<typeof customFetch>}
  ): UseMutationResult<
         Awaited<ReturnType<typeof subscriptionChangeSubscription>>,
         TError,
-        {subscriptionUid: string | null;data: SubscriptionChangeSubscriptionBody;params?: SubscriptionChangeSubscriptionParams},
+        {subscriptionUid: string | null;data: NonReadonly<SubscriptionChangeSubscriptionBody>;params?: SubscriptionChangeSubscriptionParams},
         TContext
       > => {
 
