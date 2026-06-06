@@ -2642,6 +2642,8 @@ export interface TokenPayload {
   /** @nullable */
   id_token?: string | null;
   /** @nullable */
+  refresh_token?: string | null;
+  /** @nullable */
   token_type?: string | null;
 }
 
@@ -3593,6 +3595,8 @@ export type SendGridDomainAuthenticationAllOf = {
   LastValidationAttempt?: string | null;
   /** @nullable */
   DnsEntries?: DnsEntry[] | null;
+  /** @nullable */
+  LegacyDnsEntries?: DnsEntry[] | null;
 };
 
 export type SendGridDomainAuthentication = AbstractQcountBean & SendGridDomainAuthenticationAllOf;
@@ -5858,6 +5862,13 @@ data: unknown | null;
 };
 
 export type AuthVerifyTwoFactorRecoveryParams = {
+/**
+ * @nullable
+ */
+data: unknown | null;
+};
+
+export type AuthRefreshTokenParams = {
 /**
  * @nullable
  */

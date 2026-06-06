@@ -1,6 +1,7 @@
 // @ts-nocheck
 import type {
   AuthGetTokenParams,
+  AuthRefreshTokenParams,
   AuthResendTwoFactorParams,
   AuthSwitchTwoFactorMechanismParams,
   AuthVerifyTwoFactorRecoveryParams,
@@ -22,9 +23,9 @@ import { customFetch } from '../../client';
             
     { "username": "user@example.com", "password": "their-password" }
             
-On success the response is `200` with an access token:
+On success the response is `200` with an access token and refresh token:
             
-    { "access_token": "eyJ...", "token_type": "Bearer", "expires_in": 31536000 }
+    { "access_token": "eyJ...", "refresh_token": "...", "token_type": "Bearer", "expires_in": 31536000 }
             
 **Two-factor authentication.** If the user has a verified 2FA method,
 the password alone is not enough. After verifying the password this
@@ -117,7 +118,7 @@ authenticator app):
 On success the response is `200` with the final access token, in the
 same shape as `POST /api/v1/tokens`:
             
-    { "access_token": "eyJ...", "token_type": "Bearer", "expires_in": 31536000 }
+    { "access_token": "eyJ...", "refresh_token": "...", "token_type": "Bearer", "expires_in": 31536000 }
             
 An incorrect code returns `400` (`invalid_grant`). A code has at most
 five attempts before the challenge locks. An expired challenge returns
@@ -364,6 +365,65 @@ export const getAuthVerifyTwoFactorRecoveryUrl = (params: AuthVerifyTwoFactorRec
 export const authVerifyTwoFactorRecovery = async (params: AuthVerifyTwoFactorRecoveryParams, options?: RequestInit): Promise<authVerifyTwoFactorRecoveryResponse> => {
   
   return customFetch<authVerifyTwoFactorRecoveryResponse>(getAuthVerifyTwoFactorRecoveryUrl(params),
+  {      
+    ...options,
+    method: 'POST'
+    
+    
+  }
+);}
+
+
+/**
+ * Post the refresh token returned from `POST /api/v1/tokens` or the
+two-factor completion endpoints:
+            
+    { "refresh_token": "..." }
+            
+On success the response is `200` with a new access token and refresh token:
+            
+    { "access_token": "eyJ...", "refresh_token": "...", "token_type": "Bearer", "expires_in": 31536000 }
+            
+An invalid or expired refresh token returns `400` with a body of `invalid_grant`.
+ * @summary Exchange a refresh token for a new access token.
+ */
+export type authRefreshTokenResponse200 = {
+  data: TokenPayload
+  status: 200
+}
+
+export type authRefreshTokenResponse400 = {
+  data: string
+  status: 400
+}
+    
+export type authRefreshTokenResponseSuccess = (authRefreshTokenResponse200) & {
+  headers: Headers;
+};
+export type authRefreshTokenResponseError = (authRefreshTokenResponse400) & {
+  headers: Headers;
+};
+
+export type authRefreshTokenResponse = (authRefreshTokenResponseSuccess | authRefreshTokenResponseError)
+
+export const getAuthRefreshTokenUrl = (params: AuthRefreshTokenParams,) => {
+  const normalizedParams = new URLSearchParams();
+
+  Object.entries(params || {}).forEach(([key, value]) => {
+    
+    if (value !== undefined) {
+      normalizedParams.append(key, value === null ? 'null' : value.toString())
+    }
+  });
+
+  const stringifiedParams = normalizedParams.toString();
+
+  return stringifiedParams.length > 0 ? `/api/v1/tokens/refresh-token?${stringifiedParams}` : `/api/v1/tokens/refresh-token`
+}
+
+export const authRefreshToken = async (params: AuthRefreshTokenParams, options?: RequestInit): Promise<authRefreshTokenResponse> => {
+  
+  return customFetch<authRefreshTokenResponse>(getAuthRefreshTokenUrl(params),
   {      
     ...options,
     method: 'POST'

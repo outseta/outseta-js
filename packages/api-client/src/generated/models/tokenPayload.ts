@@ -9,5 +9,7 @@ export interface TokenPayload {
   /** @nullable */
   id_token?: string | null;
   /** @nullable */
+  refresh_token?: string | null;
+  /** @nullable */
   token_type?: string | null;
 }
