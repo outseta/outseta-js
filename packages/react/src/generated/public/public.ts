@@ -10,6 +10,7 @@ import type {
 
 import type {
   AuthGetTokenParams,
+  AuthRefreshTokenParams,
   AuthResendTwoFactorParams,
   AuthSwitchTwoFactorMechanismParams,
   AuthVerifyTwoFactorRecoveryParams,
@@ -36,9 +37,9 @@ type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
             
     { "username": "user@example.com", "password": "their-password" }
             
-On success the response is `200` with an access token:
+On success the response is `200` with an access token and refresh token:
             
-    { "access_token": "eyJ...", "token_type": "Bearer", "expires_in": 31536000 }
+    { "access_token": "eyJ...", "refresh_token": "...", "token_type": "Bearer", "expires_in": 31536000 }
             
 **Two-factor authentication.** If the user has a verified 2FA method,
 the password alone is not enough. After verifying the password this
@@ -140,7 +141,7 @@ authenticator app):
 On success the response is `200` with the final access token, in the
 same shape as `POST /api/v1/tokens`:
             
-    { "access_token": "eyJ...", "token_type": "Bearer", "expires_in": 31536000 }
+    { "access_token": "eyJ...", "refresh_token": "...", "token_type": "Bearer", "expires_in": 31536000 }
             
 An incorrect code returns `400` (`invalid_grant`). A code has at most
 five attempts before the challenge locks. An expired challenge returns
@@ -435,6 +436,79 @@ export const useAuthVerifyTwoFactorRecovery = <TError = string,
       > => {
 
       const mutationOptions = getAuthVerifyTwoFactorRecoveryMutationOptions(options);
+
+      return useMutation(mutationOptions);
+    }
+    /**
+ * Post the refresh token returned from `POST /api/v1/tokens` or the
+two-factor completion endpoints:
+            
+    { "refresh_token": "..." }
+            
+On success the response is `200` with a new access token and refresh token:
+            
+    { "access_token": "eyJ...", "refresh_token": "...", "token_type": "Bearer", "expires_in": 31536000 }
+            
+An invalid or expired refresh token returns `400` with a body of `invalid_grant`.
+ * @summary Exchange a refresh token for a new access token.
+ */
+export const authRefreshToken = (
+    params: AuthRefreshTokenParams,
+ options?: SecondParameter<typeof customFetch>,signal?: AbortSignal
+) => {
+      
+      
+      return customFetch<TokenPayload>(
+      {url: `/api/v1/tokens/refresh-token`, method: 'POST',
+        params, signal
+    },
+      options);
+    }
+  
+
+
+export const getAuthRefreshTokenMutationOptions = <TError = string,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof authRefreshToken>>, TError,{params: AuthRefreshTokenParams}, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof authRefreshToken>>, TError,{params: AuthRefreshTokenParams}, TContext> => {
+
+const mutationKey = ['authRefreshToken'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof authRefreshToken>>, {params: AuthRefreshTokenParams}> = (props) => {
+          const {params} = props ?? {};
+
+          return  authRefreshToken(params,requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type AuthRefreshTokenMutationResult = NonNullable<Awaited<ReturnType<typeof authRefreshToken>>>
+    
+    export type AuthRefreshTokenMutationError = string
+
+    /**
+ * @summary Exchange a refresh token for a new access token.
+ */
+export const useAuthRefreshToken = <TError = string,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof authRefreshToken>>, TError,{params: AuthRefreshTokenParams}, TContext>, request?: SecondParameter<typeof customFetch>}
+ ): UseMutationResult<
+        Awaited<ReturnType<typeof authRefreshToken>>,
+        TError,
+        {params: AuthRefreshTokenParams},
+        TContext
+      > => {
+
+      const mutationOptions = getAuthRefreshTokenMutationOptions(options);
 
       return useMutation(mutationOptions);
     }

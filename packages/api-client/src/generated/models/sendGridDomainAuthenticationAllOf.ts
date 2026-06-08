@@ -32,4 +32,6 @@ export type SendGridDomainAuthenticationAllOf = {
   LastValidationAttempt?: string | null;
   /** @nullable */
   DnsEntries?: DnsEntry[] | null;
+  /** @nullable */
+  LegacyDnsEntries?: DnsEntry[] | null;
 };

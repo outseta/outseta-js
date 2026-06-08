@@ -100,6 +100,7 @@ export * from './articleAllOf';
 export * from './articleAllOfCategory';
 export * from './articleGetAllArticlesParams';
 export * from './authGetTokenParams';
+export * from './authRefreshTokenParams';
 export * from './authResendTwoFactorParams';
 export * from './authSwitchTwoFactorMechanismParams';
 export * from './authVerifyTwoFactorRecoveryParams';
