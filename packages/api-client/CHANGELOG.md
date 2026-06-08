@@ -1,5 +1,11 @@
 # @outseta/api-client
 
+## 0.3.3
+
+### Patch Changes
+
+- dbb53cc: Update API spec.
+
 ## 0.3.2
 
 ### Patch Changes

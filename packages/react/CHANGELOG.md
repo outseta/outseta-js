@@ -1,5 +1,13 @@
 # @outseta/react
 
+## 0.3.3
+
+### Patch Changes
+
+- dbb53cc: Update API spec.
+- Updated dependencies [dbb53cc]
+  - @outseta/api-client@0.3.3
+
 ## 0.3.2
 
 ### Patch Changes
