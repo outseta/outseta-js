@@ -1,11 +1,9 @@
 // @ts-nocheck
 import type {
   AuthGetTokenParams,
-  AuthRefreshTokenParams,
   AuthResendTwoFactorParams,
   AuthSwitchTwoFactorMechanismParams,
   AuthVerifyTwoFactorRecoveryParams,
-  AuthVerifyTwoFactorTokenParams,
   TokenPayload,
   TokenTwoFactorEnrollmentBeginEmailParams,
   TokenTwoFactorEnrollmentBeginTotpParams,
@@ -13,7 +11,8 @@ import type {
   TokenTwoFactorEnrollmentConfirmTotpParams,
   TwoFactorChallengePayload,
   TwoFactorEnrollmentConfirmationPayload,
-  TwoFactorTotpEnrollmentPayload
+  TwoFactorTotpEnrollmentPayload,
+  TwoFactorVerifyRequest
 } from '.././models';
 
 import { customFetch } from '../../client';
@@ -124,7 +123,7 @@ An incorrect code returns `400` (`invalid_grant`). A code has at most
 five attempts before the challenge locks. An expired challenge returns
 `410` (`challenge_expired`) — restart at `POST /api/v1/tokens`. The
 endpoint is rate limited to 10 requests per minute (`429`).
- * @summary Complete a two-factor login challenge and obtain a JWT access token.
+ * @summary Complete login when user has two-factor authentication enabled.
  */
 export type authVerifyTwoFactorTokenResponse200 = {
   data: TokenPayload
@@ -150,29 +149,23 @@ export type authVerifyTwoFactorTokenResponseError = (authVerifyTwoFactorTokenRes
 
 export type authVerifyTwoFactorTokenResponse = (authVerifyTwoFactorTokenResponseSuccess | authVerifyTwoFactorTokenResponseError)
 
-export const getAuthVerifyTwoFactorTokenUrl = (params: AuthVerifyTwoFactorTokenParams,) => {
-  const normalizedParams = new URLSearchParams();
+export const getAuthVerifyTwoFactorTokenUrl = () => {
 
-  Object.entries(params || {}).forEach(([key, value]) => {
-    
-    if (value !== undefined) {
-      normalizedParams.append(key, value === null ? 'null' : value.toString())
-    }
-  });
 
-  const stringifiedParams = normalizedParams.toString();
+  
 
-  return stringifiedParams.length > 0 ? `/api/v1/tokens/two-factor?${stringifiedParams}` : `/api/v1/tokens/two-factor`
+  return `/api/v1/tokens/two-factor`
 }
 
-export const authVerifyTwoFactorToken = async (params: AuthVerifyTwoFactorTokenParams, options?: RequestInit): Promise<authVerifyTwoFactorTokenResponse> => {
+export const authVerifyTwoFactorToken = async (twoFactorVerifyRequest: TwoFactorVerifyRequest, options?: RequestInit): Promise<authVerifyTwoFactorTokenResponse> => {
   
-  return customFetch<authVerifyTwoFactorTokenResponse>(getAuthVerifyTwoFactorTokenUrl(params),
+  return customFetch<authVerifyTwoFactorTokenResponse>(getAuthVerifyTwoFactorTokenUrl(),
   {      
     ...options,
-    method: 'POST'
-    
-    
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', ...options?.headers },
+    body: JSON.stringify(
+      twoFactorVerifyRequest,)
   }
 );}
 
@@ -320,8 +313,7 @@ requests per minute (`429`).
             
 Used by the embed login widget; the hosted Razor flow has its own
 equivalent action on the AuthenticationController.
- * @summary Complete a two-factor login challenge with a recovery code instead of
-the primary one-time code, and obtain a JWT access token.
+ * @summary Complete login with a two-factor recovery code.
  */
 export type authVerifyTwoFactorRecoveryResponse200 = {
   data: TokenPayload
@@ -365,65 +357,6 @@ export const getAuthVerifyTwoFactorRecoveryUrl = (params: AuthVerifyTwoFactorRec
 export const authVerifyTwoFactorRecovery = async (params: AuthVerifyTwoFactorRecoveryParams, options?: RequestInit): Promise<authVerifyTwoFactorRecoveryResponse> => {
   
   return customFetch<authVerifyTwoFactorRecoveryResponse>(getAuthVerifyTwoFactorRecoveryUrl(params),
-  {      
-    ...options,
-    method: 'POST'
-    
-    
-  }
-);}
-
-
-/**
- * Post the refresh token returned from `POST /api/v1/tokens` or the
-two-factor completion endpoints:
-            
-    { "refresh_token": "..." }
-            
-On success the response is `200` with a new access token and refresh token:
-            
-    { "access_token": "eyJ...", "refresh_token": "...", "token_type": "Bearer", "expires_in": 31536000 }
-            
-An invalid or expired refresh token returns `400` with a body of `invalid_grant`.
- * @summary Exchange a refresh token for a new access token.
- */
-export type authRefreshTokenResponse200 = {
-  data: TokenPayload
-  status: 200
-}
-
-export type authRefreshTokenResponse400 = {
-  data: string
-  status: 400
-}
-    
-export type authRefreshTokenResponseSuccess = (authRefreshTokenResponse200) & {
-  headers: Headers;
-};
-export type authRefreshTokenResponseError = (authRefreshTokenResponse400) & {
-  headers: Headers;
-};
-
-export type authRefreshTokenResponse = (authRefreshTokenResponseSuccess | authRefreshTokenResponseError)
-
-export const getAuthRefreshTokenUrl = (params: AuthRefreshTokenParams,) => {
-  const normalizedParams = new URLSearchParams();
-
-  Object.entries(params || {}).forEach(([key, value]) => {
-    
-    if (value !== undefined) {
-      normalizedParams.append(key, value === null ? 'null' : value.toString())
-    }
-  });
-
-  const stringifiedParams = normalizedParams.toString();
-
-  return stringifiedParams.length > 0 ? `/api/v1/tokens/refresh-token?${stringifiedParams}` : `/api/v1/tokens/refresh-token`
-}
-
-export const authRefreshToken = async (params: AuthRefreshTokenParams, options?: RequestInit): Promise<authRefreshTokenResponse> => {
-  
-  return customFetch<authRefreshTokenResponse>(getAuthRefreshTokenUrl(params),
   {      
     ...options,
     method: 'POST'
