@@ -1,5 +1,11 @@
 # @outseta/api-client
 
+## 0.3.4
+
+### Patch Changes
+
+- e3e82a8: Update API spec.
+
 ## 0.3.3
 
 ### Patch Changes
