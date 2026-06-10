@@ -10,11 +10,9 @@ import type {
 
 import type {
   AuthGetTokenParams,
-  AuthRefreshTokenParams,
   AuthResendTwoFactorParams,
   AuthSwitchTwoFactorMechanismParams,
   AuthVerifyTwoFactorRecoveryParams,
-  AuthVerifyTwoFactorTokenParams,
   TokenPayload,
   TokenTwoFactorEnrollmentBeginEmailParams,
   TokenTwoFactorEnrollmentBeginTotpParams,
@@ -22,7 +20,8 @@ import type {
   TokenTwoFactorEnrollmentConfirmTotpParams,
   TwoFactorChallengePayload,
   TwoFactorEnrollmentConfirmationPayload,
-  TwoFactorTotpEnrollmentPayload
+  TwoFactorTotpEnrollmentPayload,
+  TwoFactorVerifyRequest
 } from '../outsetaAPI.schemas';
 
 import { customFetch } from '../../mutator';
@@ -147,17 +146,18 @@ An incorrect code returns `400` (`invalid_grant`). A code has at most
 five attempts before the challenge locks. An expired challenge returns
 `410` (`challenge_expired`) — restart at `POST /api/v1/tokens`. The
 endpoint is rate limited to 10 requests per minute (`429`).
- * @summary Complete a two-factor login challenge and obtain a JWT access token.
+ * @summary Complete login when user has two-factor authentication enabled.
  */
 export const authVerifyTwoFactorToken = (
-    params: AuthVerifyTwoFactorTokenParams,
+    twoFactorVerifyRequest: TwoFactorVerifyRequest,
  options?: SecondParameter<typeof customFetch>,signal?: AbortSignal
 ) => {
       
       
       return customFetch<TokenPayload>(
       {url: `/api/v1/tokens/two-factor`, method: 'POST',
-        params, signal
+      headers: {'Content-Type': 'application/json', },
+      data: twoFactorVerifyRequest, signal
     },
       options);
     }
@@ -165,8 +165,8 @@ export const authVerifyTwoFactorToken = (
 
 
 export const getAuthVerifyTwoFactorTokenMutationOptions = <TError = string,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof authVerifyTwoFactorToken>>, TError,{params: AuthVerifyTwoFactorTokenParams}, TContext>, request?: SecondParameter<typeof customFetch>}
-): UseMutationOptions<Awaited<ReturnType<typeof authVerifyTwoFactorToken>>, TError,{params: AuthVerifyTwoFactorTokenParams}, TContext> => {
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof authVerifyTwoFactorToken>>, TError,{data: TwoFactorVerifyRequest}, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof authVerifyTwoFactorToken>>, TError,{data: TwoFactorVerifyRequest}, TContext> => {
 
 const mutationKey = ['authVerifyTwoFactorToken'];
 const {mutation: mutationOptions, request: requestOptions} = options ?
@@ -178,10 +178,10 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof authVerifyTwoFactorToken>>, {params: AuthVerifyTwoFactorTokenParams}> = (props) => {
-          const {params} = props ?? {};
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof authVerifyTwoFactorToken>>, {data: TwoFactorVerifyRequest}> = (props) => {
+          const {data} = props ?? {};
 
-          return  authVerifyTwoFactorToken(params,requestOptions)
+          return  authVerifyTwoFactorToken(data,requestOptions)
         }
 
         
@@ -190,18 +190,18 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
   return  { mutationFn, ...mutationOptions }}
 
     export type AuthVerifyTwoFactorTokenMutationResult = NonNullable<Awaited<ReturnType<typeof authVerifyTwoFactorToken>>>
-    
+    export type AuthVerifyTwoFactorTokenMutationBody = TwoFactorVerifyRequest
     export type AuthVerifyTwoFactorTokenMutationError = string
 
     /**
- * @summary Complete a two-factor login challenge and obtain a JWT access token.
+ * @summary Complete login when user has two-factor authentication enabled.
  */
 export const useAuthVerifyTwoFactorToken = <TError = string,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof authVerifyTwoFactorToken>>, TError,{params: AuthVerifyTwoFactorTokenParams}, TContext>, request?: SecondParameter<typeof customFetch>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof authVerifyTwoFactorToken>>, TError,{data: TwoFactorVerifyRequest}, TContext>, request?: SecondParameter<typeof customFetch>}
  ): UseMutationResult<
         Awaited<ReturnType<typeof authVerifyTwoFactorToken>>,
         TError,
-        {params: AuthVerifyTwoFactorTokenParams},
+        {data: TwoFactorVerifyRequest},
         TContext
       > => {
 
@@ -375,8 +375,7 @@ requests per minute (`429`).
             
 Used by the embed login widget; the hosted Razor flow has its own
 equivalent action on the AuthenticationController.
- * @summary Complete a two-factor login challenge with a recovery code instead of
-the primary one-time code, and obtain a JWT access token.
+ * @summary Complete login with a two-factor recovery code.
  */
 export const authVerifyTwoFactorRecovery = (
     params: AuthVerifyTwoFactorRecoveryParams,
@@ -423,8 +422,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
     export type AuthVerifyTwoFactorRecoveryMutationError = string
 
     /**
- * @summary Complete a two-factor login challenge with a recovery code instead of
-the primary one-time code, and obtain a JWT access token.
+ * @summary Complete login with a two-factor recovery code.
  */
 export const useAuthVerifyTwoFactorRecovery = <TError = string,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof authVerifyTwoFactorRecovery>>, TError,{params: AuthVerifyTwoFactorRecoveryParams}, TContext>, request?: SecondParameter<typeof customFetch>}
@@ -436,79 +434,6 @@ export const useAuthVerifyTwoFactorRecovery = <TError = string,
       > => {
 
       const mutationOptions = getAuthVerifyTwoFactorRecoveryMutationOptions(options);
-
-      return useMutation(mutationOptions);
-    }
-    /**
- * Post the refresh token returned from `POST /api/v1/tokens` or the
-two-factor completion endpoints:
-            
-    { "refresh_token": "..." }
-            
-On success the response is `200` with a new access token and refresh token:
-            
-    { "access_token": "eyJ...", "refresh_token": "...", "token_type": "Bearer", "expires_in": 31536000 }
-            
-An invalid or expired refresh token returns `400` with a body of `invalid_grant`.
- * @summary Exchange a refresh token for a new access token.
- */
-export const authRefreshToken = (
-    params: AuthRefreshTokenParams,
- options?: SecondParameter<typeof customFetch>,signal?: AbortSignal
-) => {
-      
-      
-      return customFetch<TokenPayload>(
-      {url: `/api/v1/tokens/refresh-token`, method: 'POST',
-        params, signal
-    },
-      options);
-    }
-  
-
-
-export const getAuthRefreshTokenMutationOptions = <TError = string,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof authRefreshToken>>, TError,{params: AuthRefreshTokenParams}, TContext>, request?: SecondParameter<typeof customFetch>}
-): UseMutationOptions<Awaited<ReturnType<typeof authRefreshToken>>, TError,{params: AuthRefreshTokenParams}, TContext> => {
-
-const mutationKey = ['authRefreshToken'];
-const {mutation: mutationOptions, request: requestOptions} = options ?
-      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
-      options
-      : {...options, mutation: {...options.mutation, mutationKey}}
-      : {mutation: { mutationKey, }, request: undefined};
-
-      
-
-
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof authRefreshToken>>, {params: AuthRefreshTokenParams}> = (props) => {
-          const {params} = props ?? {};
-
-          return  authRefreshToken(params,requestOptions)
-        }
-
-        
-
-
-  return  { mutationFn, ...mutationOptions }}
-
-    export type AuthRefreshTokenMutationResult = NonNullable<Awaited<ReturnType<typeof authRefreshToken>>>
-    
-    export type AuthRefreshTokenMutationError = string
-
-    /**
- * @summary Exchange a refresh token for a new access token.
- */
-export const useAuthRefreshToken = <TError = string,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof authRefreshToken>>, TError,{params: AuthRefreshTokenParams}, TContext>, request?: SecondParameter<typeof customFetch>}
- ): UseMutationResult<
-        Awaited<ReturnType<typeof authRefreshToken>>,
-        TError,
-        {params: AuthRefreshTokenParams},
-        TContext
-      > => {
-
-      const mutationOptions = getAuthRefreshTokenMutationOptions(options);
 
       return useMutation(mutationOptions);
     }
