@@ -2399,6 +2399,48 @@ export const LineItemType = {
 /**
  * @nullable
  */
+export type AccountCancelationAllOfAccount = Account | null;
+
+/**
+ * @nullable
+ */
+export type AccountCancelationAllOfLastPlan = Plan | null;
+
+export type AccountCancelationAllOf = {
+  SubmittedDateTime?: string;
+  /** @nullable */
+  CancelationReason?: string | null;
+  /** @nullable */
+  Comment?: string | null;
+  CancelationStatus?: CancelationStatus;
+  /** @nullable */
+  Account?: AccountCancelationAllOfAccount;
+  /** @nullable */
+  LastPlan?: AccountCancelationAllOfLastPlan;
+  /** @nullable */
+  SubscribingStartDate?: string | null;
+};
+
+export type AccountCancelation = AbstractQcountBean & AccountCancelationAllOf;
+
+/**
+ * `0` - Pending, `1` - Unknown, `2` - Completed, `3` - Removed, `4` - Deleted
+ */
+export type CancelationStatus = typeof CancelationStatus[keyof typeof CancelationStatus];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const CancelationStatus = {
+  Pending: 0,
+  Unknown: 1,
+  Completed: 2,
+  Removed: 3,
+  Deleted: 4,
+} as const;
+
+/**
+ * @nullable
+ */
 export type DealAllOfDealPipelineStage = DealPipelineStage | null;
 
 /**
@@ -4188,48 +4230,6 @@ export const BackGroundTaskType = {
   UpdateDiscordMemberRolesTask: 19,
   SendInvoicePaidEmailTask: 20,
   ResendTrialLimitEmailTask: 21,
-} as const;
-
-/**
- * @nullable
- */
-export type AccountCancelationAllOfAccount = Account | null;
-
-/**
- * @nullable
- */
-export type AccountCancelationAllOfLastPlan = Plan | null;
-
-export type AccountCancelationAllOf = {
-  SubmittedDateTime?: string;
-  /** @nullable */
-  CancelationReason?: string | null;
-  /** @nullable */
-  Comment?: string | null;
-  CancelationStatus?: CancelationStatus;
-  /** @nullable */
-  Account?: AccountCancelationAllOfAccount;
-  /** @nullable */
-  LastPlan?: AccountCancelationAllOfLastPlan;
-  /** @nullable */
-  SubscribingStartDate?: string | null;
-};
-
-export type AccountCancelation = AbstractQcountBean & AccountCancelationAllOf;
-
-/**
- * `0` - Pending, `1` - Unknown, `2` - Completed, `3` - Removed, `4` - Deleted
- */
-export type CancelationStatus = typeof CancelationStatus[keyof typeof CancelationStatus];
-
-
-// eslint-disable-next-line @typescript-eslint/no-redeclare
-export const CancelationStatus = {
-  Pending: 0,
-  Unknown: 1,
-  Completed: 2,
-  Removed: 3,
-  Deleted: 4,
 } as const;
 
 export interface PasswordChangeModel {
