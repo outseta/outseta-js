@@ -1,5 +1,11 @@
 # @outseta/react
 
+## 0.3.5
+
+### Patch Changes
+
+- 4e7696f: Update API spec.
+
 ## 0.3.4
 
 ### Patch Changes
