@@ -24,7 +24,7 @@ type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
  * entityType is the name of an EntityType enum value, for example: Account, Person,
 Deal. Definitions describe the labels, system names, and control types of
 the custom attributes that have been added to that entity.
- * @summary Returns all custom attribute definitions for the given entity type.
+ * @summary Retrieve all custom attribute definitions.
  */
 export const definitionGetAllDefinitions = (
     entityType: string | null,
@@ -71,7 +71,7 @@ export type DefinitionGetAllDefinitionsQueryError = unknown
 
 
 /**
- * @summary Returns all custom attribute definitions for the given entity type.
+ * @summary Retrieve all custom attribute definitions.
  */
 
 export function useDefinitionGetAllDefinitions<TData = Awaited<ReturnType<typeof definitionGetAllDefinitions>>, TError = unknown>(
@@ -94,7 +94,7 @@ export function useDefinitionGetAllDefinitions<TData = Awaited<ReturnType<typeof
 /**
  * The entityType segment of the URL must match the type the definition belongs to
 (e.g. Account, Person, Deal).
- * @summary Returns a single custom attribute definition by UID.
+ * @summary Retrieve a custom attribute definition.
  */
 export const definitionGetDefinition = (
     definitionUid: string | null,
@@ -141,7 +141,7 @@ export type DefinitionGetDefinitionQueryError = void
 
 
 /**
- * @summary Returns a single custom attribute definition by UID.
+ * @summary Retrieve a custom attribute definition.
  */
 
 export function useDefinitionGetDefinition<TData = Awaited<ReturnType<typeof definitionGetDefinition>>, TError = void>(

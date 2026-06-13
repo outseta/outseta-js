@@ -16,15 +16,28 @@ import type {
 import type {
   DiscountCoupon,
   DiscountCouponAddDiscountCouponBody,
+  DiscountCouponGetAllDiscountCouponsParams,
+  DiscountCouponGetDiscountCouponByCodeParams,
+  DiscountCouponGetDiscountCouponRedemptionsParams,
+  DiscountCouponSubscription,
+  DiscountCouponUpdateDiscountCouponBody,
   Invoice,
   InvoiceAddInvoiceBody,
   InvoiceUpdateInvoiceBody,
   PaymentInformation,
   PaymentInformationSavePaymentInformationBody,
   Plan,
+  PlanAddPlanBody,
   PlanFamily,
+  PlanFamilyAddPlanFamilyBody,
+  PlanFamilyUpdatePlanFamilyBody,
+  PlanUpdatePlanBody,
   Subscription,
+  SubscriptionAddOn,
   SubscriptionAddOnAddSubscriptionAddOnBody,
+  SubscriptionAddOnAddSubscriptionAddOnPreviewBody,
+  SubscriptionAddOnGetAllSubscriptionsAddOnsParams,
+  SubscriptionAddOnSetAddOnUpgradeRequiredBody,
   SubscriptionChangeSubscriptionBody,
   SubscriptionChangeSubscriptionParams,
   SubscriptionChangeSubscriptionPreviewBody,
@@ -32,6 +45,7 @@ import type {
   SubscriptionFirstTimeSubscriptionBody,
   SubscriptionFirstTimeSubscriptionPreviewBody,
   SubscriptionFirstTimeSubscriptionPreviewParams,
+  SubscriptionGetAllSubscriptionsParams,
   SubscriptionSetSubscriptionUpgradeRequiredBody,
   Transaction,
   TransactionsAddPaymentTransactionBody,
@@ -70,6 +84,151 @@ type NonReadonly<T> = [T] extends [UnionToIntersection<T>] ? {
 
 
 type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
+
+
+
+/**
+ * Used during registration to confirm that a coupon code can still be applied to a plan.
+Returns the coupon when valid, 404 when no coupon matches the code, or a validation
+error when the coupon cannot be applied.
+ * @summary Retrieve a discount coupon by code.
+ */
+export const discountCouponGetDiscountCouponByCode = (
+    code: string | null,
+    params: DiscountCouponGetDiscountCouponByCodeParams,
+ options?: SecondParameter<typeof customFetch>,signal?: AbortSignal
+) => {
+      
+      
+      return customFetch<DiscountCoupon>(
+      {url: `/api/v1/public/billing/discountcoupons/${code}`, method: 'GET',
+        params, signal
+    },
+      options);
+    }
+  
+
+
+
+export const getDiscountCouponGetDiscountCouponByCodeQueryKey = (code?: string | null,
+    params?: DiscountCouponGetDiscountCouponByCodeParams,) => {
+    return [
+    `/api/v1/public/billing/discountcoupons/${code}`, ...(params ? [params]: [])
+    ] as const;
+    }
+
+    
+export const getDiscountCouponGetDiscountCouponByCodeQueryOptions = <TData = Awaited<ReturnType<typeof discountCouponGetDiscountCouponByCode>>, TError = void>(code: string | null,
+    params: DiscountCouponGetDiscountCouponByCodeParams, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof discountCouponGetDiscountCouponByCode>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getDiscountCouponGetDiscountCouponByCodeQueryKey(code,params);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof discountCouponGetDiscountCouponByCode>>> = ({ signal }) => discountCouponGetDiscountCouponByCode(code,params, requestOptions, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, enabled: !!(code), ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof discountCouponGetDiscountCouponByCode>>, TError, TData> & { queryKey: QueryKey }
+}
+
+export type DiscountCouponGetDiscountCouponByCodeQueryResult = NonNullable<Awaited<ReturnType<typeof discountCouponGetDiscountCouponByCode>>>
+export type DiscountCouponGetDiscountCouponByCodeQueryError = void
+
+
+/**
+ * @summary Retrieve a discount coupon by code.
+ */
+
+export function useDiscountCouponGetDiscountCouponByCode<TData = Awaited<ReturnType<typeof discountCouponGetDiscountCouponByCode>>, TError = void>(
+ code: string | null,
+    params: DiscountCouponGetDiscountCouponByCodeParams, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof discountCouponGetDiscountCouponByCode>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
+  
+ ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } {
+
+  const queryOptions = getDiscountCouponGetDiscountCouponByCodeQueryOptions(code,params,options)
+
+  const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: QueryKey };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+
+/**
+ * @summary Retrieve all discount coupons.
+ */
+export const discountCouponGetAllDiscountCoupons = (
+    params?: DiscountCouponGetAllDiscountCouponsParams,
+ options?: SecondParameter<typeof customFetch>,signal?: AbortSignal
+) => {
+      
+      
+      return customFetch<DiscountCoupon[]>(
+      {url: `/api/v1/billing/discountcoupons`, method: 'GET',
+        params, signal
+    },
+      options);
+    }
+  
+
+
+
+export const getDiscountCouponGetAllDiscountCouponsQueryKey = (params?: DiscountCouponGetAllDiscountCouponsParams,) => {
+    return [
+    `/api/v1/billing/discountcoupons`, ...(params ? [params]: [])
+    ] as const;
+    }
+
+    
+export const getDiscountCouponGetAllDiscountCouponsQueryOptions = <TData = Awaited<ReturnType<typeof discountCouponGetAllDiscountCoupons>>, TError = void>(params?: DiscountCouponGetAllDiscountCouponsParams, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof discountCouponGetAllDiscountCoupons>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getDiscountCouponGetAllDiscountCouponsQueryKey(params);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof discountCouponGetAllDiscountCoupons>>> = ({ signal }) => discountCouponGetAllDiscountCoupons(params, requestOptions, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof discountCouponGetAllDiscountCoupons>>, TError, TData> & { queryKey: QueryKey }
+}
+
+export type DiscountCouponGetAllDiscountCouponsQueryResult = NonNullable<Awaited<ReturnType<typeof discountCouponGetAllDiscountCoupons>>>
+export type DiscountCouponGetAllDiscountCouponsQueryError = void
+
+
+/**
+ * @summary Retrieve all discount coupons.
+ */
+
+export function useDiscountCouponGetAllDiscountCoupons<TData = Awaited<ReturnType<typeof discountCouponGetAllDiscountCoupons>>, TError = void>(
+ params?: DiscountCouponGetAllDiscountCouponsParams, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof discountCouponGetAllDiscountCoupons>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
+  
+ ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } {
+
+  const queryOptions = getDiscountCouponGetAllDiscountCouponsQueryOptions(params,options)
+
+  const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: QueryKey };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
 
 
 
@@ -140,6 +299,273 @@ export const useDiscountCouponAddDiscountCoupon = <TError = void,
       return useMutation(mutationOptions);
     }
     /**
+ * @summary Retrieve a discount coupon.
+ */
+export const discountCouponGetDiscountCoupon = (
+    discountCouponUid: string | null,
+ options?: SecondParameter<typeof customFetch>,signal?: AbortSignal
+) => {
+      
+      
+      return customFetch<DiscountCoupon>(
+      {url: `/api/v1/billing/discountcoupons/${discountCouponUid}`, method: 'GET', signal
+    },
+      options);
+    }
+  
+
+
+
+export const getDiscountCouponGetDiscountCouponQueryKey = (discountCouponUid?: string | null,) => {
+    return [
+    `/api/v1/billing/discountcoupons/${discountCouponUid}`
+    ] as const;
+    }
+
+    
+export const getDiscountCouponGetDiscountCouponQueryOptions = <TData = Awaited<ReturnType<typeof discountCouponGetDiscountCoupon>>, TError = void>(discountCouponUid: string | null, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof discountCouponGetDiscountCoupon>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getDiscountCouponGetDiscountCouponQueryKey(discountCouponUid);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof discountCouponGetDiscountCoupon>>> = ({ signal }) => discountCouponGetDiscountCoupon(discountCouponUid, requestOptions, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, enabled: !!(discountCouponUid), ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof discountCouponGetDiscountCoupon>>, TError, TData> & { queryKey: QueryKey }
+}
+
+export type DiscountCouponGetDiscountCouponQueryResult = NonNullable<Awaited<ReturnType<typeof discountCouponGetDiscountCoupon>>>
+export type DiscountCouponGetDiscountCouponQueryError = void
+
+
+/**
+ * @summary Retrieve a discount coupon.
+ */
+
+export function useDiscountCouponGetDiscountCoupon<TData = Awaited<ReturnType<typeof discountCouponGetDiscountCoupon>>, TError = void>(
+ discountCouponUid: string | null, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof discountCouponGetDiscountCoupon>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
+  
+ ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } {
+
+  const queryOptions = getDiscountCouponGetDiscountCouponQueryOptions(discountCouponUid,options)
+
+  const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: QueryKey };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+
+/**
+ * @summary Update a discount coupon.
+ */
+export const discountCouponUpdateDiscountCoupon = (
+    discountCouponUid: string | null,
+    discountCouponUpdateDiscountCouponBody: NonReadonly<DiscountCouponUpdateDiscountCouponBody>,
+ options?: SecondParameter<typeof customFetch>,) => {
+      
+      
+      return customFetch<DiscountCoupon>(
+      {url: `/api/v1/billing/discountcoupons/${discountCouponUid}`, method: 'PUT',
+      headers: {'Content-Type': 'application/json', },
+      data: discountCouponUpdateDiscountCouponBody
+    },
+      options);
+    }
+  
+
+
+export const getDiscountCouponUpdateDiscountCouponMutationOptions = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof discountCouponUpdateDiscountCoupon>>, TError,{discountCouponUid: string | null;data: NonReadonly<DiscountCouponUpdateDiscountCouponBody>}, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof discountCouponUpdateDiscountCoupon>>, TError,{discountCouponUid: string | null;data: NonReadonly<DiscountCouponUpdateDiscountCouponBody>}, TContext> => {
+
+const mutationKey = ['discountCouponUpdateDiscountCoupon'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof discountCouponUpdateDiscountCoupon>>, {discountCouponUid: string | null;data: NonReadonly<DiscountCouponUpdateDiscountCouponBody>}> = (props) => {
+          const {discountCouponUid,data} = props ?? {};
+
+          return  discountCouponUpdateDiscountCoupon(discountCouponUid,data,requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type DiscountCouponUpdateDiscountCouponMutationResult = NonNullable<Awaited<ReturnType<typeof discountCouponUpdateDiscountCoupon>>>
+    export type DiscountCouponUpdateDiscountCouponMutationBody = NonReadonly<DiscountCouponUpdateDiscountCouponBody>
+    export type DiscountCouponUpdateDiscountCouponMutationError = void
+
+    /**
+ * @summary Update a discount coupon.
+ */
+export const useDiscountCouponUpdateDiscountCoupon = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof discountCouponUpdateDiscountCoupon>>, TError,{discountCouponUid: string | null;data: NonReadonly<DiscountCouponUpdateDiscountCouponBody>}, TContext>, request?: SecondParameter<typeof customFetch>}
+ ): UseMutationResult<
+        Awaited<ReturnType<typeof discountCouponUpdateDiscountCoupon>>,
+        TError,
+        {discountCouponUid: string | null;data: NonReadonly<DiscountCouponUpdateDiscountCouponBody>},
+        TContext
+      > => {
+
+      const mutationOptions = getDiscountCouponUpdateDiscountCouponMutationOptions(options);
+
+      return useMutation(mutationOptions);
+    }
+    /**
+ * @summary Delete a discount coupon.
+ */
+export const discountCouponDeleteDiscountCoupon = (
+    discountCouponUid: string | null,
+ options?: SecondParameter<typeof customFetch>,) => {
+      
+      
+      return customFetch<Blob>(
+      {url: `/api/v1/billing/discountcoupons/${discountCouponUid}`, method: 'DELETE',
+        responseType: 'blob'
+    },
+      options);
+    }
+  
+
+
+export const getDiscountCouponDeleteDiscountCouponMutationOptions = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof discountCouponDeleteDiscountCoupon>>, TError,{discountCouponUid: string | null}, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof discountCouponDeleteDiscountCoupon>>, TError,{discountCouponUid: string | null}, TContext> => {
+
+const mutationKey = ['discountCouponDeleteDiscountCoupon'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof discountCouponDeleteDiscountCoupon>>, {discountCouponUid: string | null}> = (props) => {
+          const {discountCouponUid} = props ?? {};
+
+          return  discountCouponDeleteDiscountCoupon(discountCouponUid,requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type DiscountCouponDeleteDiscountCouponMutationResult = NonNullable<Awaited<ReturnType<typeof discountCouponDeleteDiscountCoupon>>>
+    
+    export type DiscountCouponDeleteDiscountCouponMutationError = void
+
+    /**
+ * @summary Delete a discount coupon.
+ */
+export const useDiscountCouponDeleteDiscountCoupon = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof discountCouponDeleteDiscountCoupon>>, TError,{discountCouponUid: string | null}, TContext>, request?: SecondParameter<typeof customFetch>}
+ ): UseMutationResult<
+        Awaited<ReturnType<typeof discountCouponDeleteDiscountCoupon>>,
+        TError,
+        {discountCouponUid: string | null},
+        TContext
+      > => {
+
+      const mutationOptions = getDiscountCouponDeleteDiscountCouponMutationOptions(options);
+
+      return useMutation(mutationOptions);
+    }
+    /**
+ * @summary Retrieve the redemptions of a discount coupon.
+ */
+export const discountCouponGetDiscountCouponRedemptions = (
+    discountCouponUid: string | null,
+    params?: DiscountCouponGetDiscountCouponRedemptionsParams,
+ options?: SecondParameter<typeof customFetch>,signal?: AbortSignal
+) => {
+      
+      
+      return customFetch<DiscountCouponSubscription[]>(
+      {url: `/api/v1/billing/discountcoupons/${discountCouponUid}/redemptions`, method: 'GET',
+        params, signal
+    },
+      options);
+    }
+  
+
+
+
+export const getDiscountCouponGetDiscountCouponRedemptionsQueryKey = (discountCouponUid?: string | null,
+    params?: DiscountCouponGetDiscountCouponRedemptionsParams,) => {
+    return [
+    `/api/v1/billing/discountcoupons/${discountCouponUid}/redemptions`, ...(params ? [params]: [])
+    ] as const;
+    }
+
+    
+export const getDiscountCouponGetDiscountCouponRedemptionsQueryOptions = <TData = Awaited<ReturnType<typeof discountCouponGetDiscountCouponRedemptions>>, TError = void>(discountCouponUid: string | null,
+    params?: DiscountCouponGetDiscountCouponRedemptionsParams, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof discountCouponGetDiscountCouponRedemptions>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getDiscountCouponGetDiscountCouponRedemptionsQueryKey(discountCouponUid,params);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof discountCouponGetDiscountCouponRedemptions>>> = ({ signal }) => discountCouponGetDiscountCouponRedemptions(discountCouponUid,params, requestOptions, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, enabled: !!(discountCouponUid), ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof discountCouponGetDiscountCouponRedemptions>>, TError, TData> & { queryKey: QueryKey }
+}
+
+export type DiscountCouponGetDiscountCouponRedemptionsQueryResult = NonNullable<Awaited<ReturnType<typeof discountCouponGetDiscountCouponRedemptions>>>
+export type DiscountCouponGetDiscountCouponRedemptionsQueryError = void
+
+
+/**
+ * @summary Retrieve the redemptions of a discount coupon.
+ */
+
+export function useDiscountCouponGetDiscountCouponRedemptions<TData = Awaited<ReturnType<typeof discountCouponGetDiscountCouponRedemptions>>, TError = void>(
+ discountCouponUid: string | null,
+    params?: DiscountCouponGetDiscountCouponRedemptionsParams, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof discountCouponGetDiscountCouponRedemptions>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
+  
+ ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } {
+
+  const queryOptions = getDiscountCouponGetDiscountCouponRedemptionsQueryOptions(discountCouponUid,params,options)
+
+  const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: QueryKey };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+
+/**
  * @summary Add a usage entry for an add-on that bills for usage at the end of the month.
  */
 export const usageAddUsage = (
@@ -204,9 +630,9 @@ export const useUsageAddUsage = <TError = void,
       return useMutation(mutationOptions);
     }
     /**
- * Transactions are tied to accounts and invoices.
+ * Transactions for a given account, tied to accounts and invoices.
 BillingTransactionType: Invoice = 1, Payment = 2, Credit = 3, Refund = 4, Chargeback = 5.
- * @summary Retrieve all transactions for a given account.
+ * @summary Retrieve all transactions.
  */
 export const transactionsGetAllTransactionsByAccountId = (
     accountUid: string | null,
@@ -253,7 +679,7 @@ export type TransactionsGetAllTransactionsByAccountIdQueryError = void
 
 
 /**
- * @summary Retrieve all transactions for a given account.
+ * @summary Retrieve all transactions.
  */
 
 export function useTransactionsGetAllTransactionsByAccountId<TData = Awaited<ReturnType<typeof transactionsGetAllTransactionsByAccountId>>, TError = void>(
@@ -404,6 +830,75 @@ export const usePaymentInformationSavePaymentInformation = <TError = void,
       return useMutation(mutationOptions);
     }
     /**
+ * @summary Retrieve all subscription add-ons.
+ */
+export const subscriptionAddOnGetAllSubscriptionsAddOns = (
+    params?: SubscriptionAddOnGetAllSubscriptionsAddOnsParams,
+ options?: SecondParameter<typeof customFetch>,signal?: AbortSignal
+) => {
+      
+      
+      return customFetch<SubscriptionAddOn[]>(
+      {url: `/api/v1/billing/subscriptionaddons`, method: 'GET',
+        params, signal
+    },
+      options);
+    }
+  
+
+
+
+export const getSubscriptionAddOnGetAllSubscriptionsAddOnsQueryKey = (params?: SubscriptionAddOnGetAllSubscriptionsAddOnsParams,) => {
+    return [
+    `/api/v1/billing/subscriptionaddons`, ...(params ? [params]: [])
+    ] as const;
+    }
+
+    
+export const getSubscriptionAddOnGetAllSubscriptionsAddOnsQueryOptions = <TData = Awaited<ReturnType<typeof subscriptionAddOnGetAllSubscriptionsAddOns>>, TError = void>(params?: SubscriptionAddOnGetAllSubscriptionsAddOnsParams, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof subscriptionAddOnGetAllSubscriptionsAddOns>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getSubscriptionAddOnGetAllSubscriptionsAddOnsQueryKey(params);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof subscriptionAddOnGetAllSubscriptionsAddOns>>> = ({ signal }) => subscriptionAddOnGetAllSubscriptionsAddOns(params, requestOptions, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof subscriptionAddOnGetAllSubscriptionsAddOns>>, TError, TData> & { queryKey: QueryKey }
+}
+
+export type SubscriptionAddOnGetAllSubscriptionsAddOnsQueryResult = NonNullable<Awaited<ReturnType<typeof subscriptionAddOnGetAllSubscriptionsAddOns>>>
+export type SubscriptionAddOnGetAllSubscriptionsAddOnsQueryError = void
+
+
+/**
+ * @summary Retrieve all subscription add-ons.
+ */
+
+export function useSubscriptionAddOnGetAllSubscriptionsAddOns<TData = Awaited<ReturnType<typeof subscriptionAddOnGetAllSubscriptionsAddOns>>, TError = void>(
+ params?: SubscriptionAddOnGetAllSubscriptionsAddOnsParams, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof subscriptionAddOnGetAllSubscriptionsAddOns>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
+  
+ ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } {
+
+  const queryOptions = getSubscriptionAddOnGetAllSubscriptionsAddOnsQueryOptions(params,options)
+
+  const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: QueryKey };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+
+/**
  * @summary Add an add-on to a subscription.
  */
 export const subscriptionAddOnAddSubscriptionAddOn = (
@@ -469,10 +964,335 @@ export const useSubscriptionAddOnAddSubscriptionAddOn = <TError = void,
       return useMutation(mutationOptions);
     }
     /**
+ * @summary Retrieve a subscription add-on.
+ */
+export const subscriptionAddOnGetSubscriptionAddOn = (
+    subscriptionAddOnUid: string | null,
+ options?: SecondParameter<typeof customFetch>,signal?: AbortSignal
+) => {
+      
+      
+      return customFetch<SubscriptionAddOn>(
+      {url: `/api/v1/billing/subscriptionaddons/${subscriptionAddOnUid}`, method: 'GET', signal
+    },
+      options);
+    }
+  
+
+
+
+export const getSubscriptionAddOnGetSubscriptionAddOnQueryKey = (subscriptionAddOnUid?: string | null,) => {
+    return [
+    `/api/v1/billing/subscriptionaddons/${subscriptionAddOnUid}`
+    ] as const;
+    }
+
+    
+export const getSubscriptionAddOnGetSubscriptionAddOnQueryOptions = <TData = Awaited<ReturnType<typeof subscriptionAddOnGetSubscriptionAddOn>>, TError = void>(subscriptionAddOnUid: string | null, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof subscriptionAddOnGetSubscriptionAddOn>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getSubscriptionAddOnGetSubscriptionAddOnQueryKey(subscriptionAddOnUid);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof subscriptionAddOnGetSubscriptionAddOn>>> = ({ signal }) => subscriptionAddOnGetSubscriptionAddOn(subscriptionAddOnUid, requestOptions, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, enabled: !!(subscriptionAddOnUid), ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof subscriptionAddOnGetSubscriptionAddOn>>, TError, TData> & { queryKey: QueryKey }
+}
+
+export type SubscriptionAddOnGetSubscriptionAddOnQueryResult = NonNullable<Awaited<ReturnType<typeof subscriptionAddOnGetSubscriptionAddOn>>>
+export type SubscriptionAddOnGetSubscriptionAddOnQueryError = void
+
+
+/**
+ * @summary Retrieve a subscription add-on.
+ */
+
+export function useSubscriptionAddOnGetSubscriptionAddOn<TData = Awaited<ReturnType<typeof subscriptionAddOnGetSubscriptionAddOn>>, TError = void>(
+ subscriptionAddOnUid: string | null, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof subscriptionAddOnGetSubscriptionAddOn>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
+  
+ ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } {
+
+  const queryOptions = getSubscriptionAddOnGetSubscriptionAddOnQueryOptions(subscriptionAddOnUid,options)
+
+  const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: QueryKey };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+
+/**
+ * Returns an invoice object with information about the amount outstanding. This method
+does not commit the change.
+ * @summary Preview the invoice for adding an add-on to a subscription.
+ */
+export const subscriptionAddOnAddSubscriptionAddOnPreview = (
+    subscriptionAddOnAddSubscriptionAddOnPreviewBody: NonReadonly<SubscriptionAddOnAddSubscriptionAddOnPreviewBody>,
+ options?: SecondParameter<typeof customFetch>,signal?: AbortSignal
+) => {
+      
+      
+      return customFetch<Invoice>(
+      {url: `/api/v1/billing/subscriptionaddons/addsubscriptionaddonpreview`, method: 'POST',
+      headers: {'Content-Type': 'application/json', },
+      data: subscriptionAddOnAddSubscriptionAddOnPreviewBody, signal
+    },
+      options);
+    }
+  
+
+
+export const getSubscriptionAddOnAddSubscriptionAddOnPreviewMutationOptions = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof subscriptionAddOnAddSubscriptionAddOnPreview>>, TError,{data: NonReadonly<SubscriptionAddOnAddSubscriptionAddOnPreviewBody>}, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof subscriptionAddOnAddSubscriptionAddOnPreview>>, TError,{data: NonReadonly<SubscriptionAddOnAddSubscriptionAddOnPreviewBody>}, TContext> => {
+
+const mutationKey = ['subscriptionAddOnAddSubscriptionAddOnPreview'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof subscriptionAddOnAddSubscriptionAddOnPreview>>, {data: NonReadonly<SubscriptionAddOnAddSubscriptionAddOnPreviewBody>}> = (props) => {
+          const {data} = props ?? {};
+
+          return  subscriptionAddOnAddSubscriptionAddOnPreview(data,requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type SubscriptionAddOnAddSubscriptionAddOnPreviewMutationResult = NonNullable<Awaited<ReturnType<typeof subscriptionAddOnAddSubscriptionAddOnPreview>>>
+    export type SubscriptionAddOnAddSubscriptionAddOnPreviewMutationBody = NonReadonly<SubscriptionAddOnAddSubscriptionAddOnPreviewBody>
+    export type SubscriptionAddOnAddSubscriptionAddOnPreviewMutationError = void
+
+    /**
+ * @summary Preview the invoice for adding an add-on to a subscription.
+ */
+export const useSubscriptionAddOnAddSubscriptionAddOnPreview = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof subscriptionAddOnAddSubscriptionAddOnPreview>>, TError,{data: NonReadonly<SubscriptionAddOnAddSubscriptionAddOnPreviewBody>}, TContext>, request?: SecondParameter<typeof customFetch>}
+ ): UseMutationResult<
+        Awaited<ReturnType<typeof subscriptionAddOnAddSubscriptionAddOnPreview>>,
+        TError,
+        {data: NonReadonly<SubscriptionAddOnAddSubscriptionAddOnPreviewBody>},
+        TContext
+      > => {
+
+      const mutationOptions = getSubscriptionAddOnAddSubscriptionAddOnPreviewMutationOptions(options);
+
+      return useMutation(mutationOptions);
+    }
+    /**
+ * When a subscription add-on is flagged, the next time the user authenticates the
+authentication widget will prompt the user to change their add-on.
+ * @summary Indicate that an upgrade of an add-on is required.
+ */
+export const subscriptionAddOnSetAddOnUpgradeRequired = (
+    subscriptionAddOnUid: string | null,
+    subscriptionAddOnSetAddOnUpgradeRequiredBody: NonReadonly<SubscriptionAddOnSetAddOnUpgradeRequiredBody>,
+ options?: SecondParameter<typeof customFetch>,) => {
+      
+      
+      return customFetch<SubscriptionAddOn>(
+      {url: `/api/v1/billing/subscriptionaddons/${subscriptionAddOnUid}/setaddonupgraderequired`, method: 'PUT',
+      headers: {'Content-Type': 'application/json', },
+      data: subscriptionAddOnSetAddOnUpgradeRequiredBody
+    },
+      options);
+    }
+  
+
+
+export const getSubscriptionAddOnSetAddOnUpgradeRequiredMutationOptions = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof subscriptionAddOnSetAddOnUpgradeRequired>>, TError,{subscriptionAddOnUid: string | null;data: NonReadonly<SubscriptionAddOnSetAddOnUpgradeRequiredBody>}, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof subscriptionAddOnSetAddOnUpgradeRequired>>, TError,{subscriptionAddOnUid: string | null;data: NonReadonly<SubscriptionAddOnSetAddOnUpgradeRequiredBody>}, TContext> => {
+
+const mutationKey = ['subscriptionAddOnSetAddOnUpgradeRequired'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof subscriptionAddOnSetAddOnUpgradeRequired>>, {subscriptionAddOnUid: string | null;data: NonReadonly<SubscriptionAddOnSetAddOnUpgradeRequiredBody>}> = (props) => {
+          const {subscriptionAddOnUid,data} = props ?? {};
+
+          return  subscriptionAddOnSetAddOnUpgradeRequired(subscriptionAddOnUid,data,requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type SubscriptionAddOnSetAddOnUpgradeRequiredMutationResult = NonNullable<Awaited<ReturnType<typeof subscriptionAddOnSetAddOnUpgradeRequired>>>
+    export type SubscriptionAddOnSetAddOnUpgradeRequiredMutationBody = NonReadonly<SubscriptionAddOnSetAddOnUpgradeRequiredBody>
+    export type SubscriptionAddOnSetAddOnUpgradeRequiredMutationError = void
+
+    /**
+ * @summary Indicate that an upgrade of an add-on is required.
+ */
+export const useSubscriptionAddOnSetAddOnUpgradeRequired = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof subscriptionAddOnSetAddOnUpgradeRequired>>, TError,{subscriptionAddOnUid: string | null;data: NonReadonly<SubscriptionAddOnSetAddOnUpgradeRequiredBody>}, TContext>, request?: SecondParameter<typeof customFetch>}
+ ): UseMutationResult<
+        Awaited<ReturnType<typeof subscriptionAddOnSetAddOnUpgradeRequired>>,
+        TError,
+        {subscriptionAddOnUid: string | null;data: NonReadonly<SubscriptionAddOnSetAddOnUpgradeRequiredBody>},
+        TContext
+      > => {
+
+      const mutationOptions = getSubscriptionAddOnSetAddOnUpgradeRequiredMutationOptions(options);
+
+      return useMutation(mutationOptions);
+    }
+    /**
+ * Removes the add-on from the subscription going forward and returns the updated
+subscription.
+ * @summary End an add-on on a subscription.
+ */
+export const subscriptionAddOnEndSubscriptionAddOn = (
+    subscriptionAddOnUid: string | null,
+ options?: SecondParameter<typeof customFetch>,) => {
+      
+      
+      return customFetch<Subscription>(
+      {url: `/api/v1/billing/subscriptionaddons/${subscriptionAddOnUid}/end`, method: 'PUT'
+    },
+      options);
+    }
+  
+
+
+export const getSubscriptionAddOnEndSubscriptionAddOnMutationOptions = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof subscriptionAddOnEndSubscriptionAddOn>>, TError,{subscriptionAddOnUid: string | null}, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof subscriptionAddOnEndSubscriptionAddOn>>, TError,{subscriptionAddOnUid: string | null}, TContext> => {
+
+const mutationKey = ['subscriptionAddOnEndSubscriptionAddOn'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof subscriptionAddOnEndSubscriptionAddOn>>, {subscriptionAddOnUid: string | null}> = (props) => {
+          const {subscriptionAddOnUid} = props ?? {};
+
+          return  subscriptionAddOnEndSubscriptionAddOn(subscriptionAddOnUid,requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type SubscriptionAddOnEndSubscriptionAddOnMutationResult = NonNullable<Awaited<ReturnType<typeof subscriptionAddOnEndSubscriptionAddOn>>>
+    
+    export type SubscriptionAddOnEndSubscriptionAddOnMutationError = void
+
+    /**
+ * @summary End an add-on on a subscription.
+ */
+export const useSubscriptionAddOnEndSubscriptionAddOn = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof subscriptionAddOnEndSubscriptionAddOn>>, TError,{subscriptionAddOnUid: string | null}, TContext>, request?: SecondParameter<typeof customFetch>}
+ ): UseMutationResult<
+        Awaited<ReturnType<typeof subscriptionAddOnEndSubscriptionAddOn>>,
+        TError,
+        {subscriptionAddOnUid: string | null},
+        TContext
+      > => {
+
+      const mutationOptions = getSubscriptionAddOnEndSubscriptionAddOnMutationOptions(options);
+
+      return useMutation(mutationOptions);
+    }
+    /**
+ * @summary Immediately ends an add-on.
+ */
+export const subscriptionAddOnExpireSubscriptionAddOn = (
+    subscriptionAddOnUid: string | null,
+ options?: SecondParameter<typeof customFetch>,) => {
+      
+      
+      return customFetch<Blob>(
+      {url: `/api/v1/billing/subscriptionaddons/${subscriptionAddOnUid}/expire`, method: 'PUT',
+        responseType: 'blob'
+    },
+      options);
+    }
+  
+
+
+export const getSubscriptionAddOnExpireSubscriptionAddOnMutationOptions = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof subscriptionAddOnExpireSubscriptionAddOn>>, TError,{subscriptionAddOnUid: string | null}, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof subscriptionAddOnExpireSubscriptionAddOn>>, TError,{subscriptionAddOnUid: string | null}, TContext> => {
+
+const mutationKey = ['subscriptionAddOnExpireSubscriptionAddOn'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof subscriptionAddOnExpireSubscriptionAddOn>>, {subscriptionAddOnUid: string | null}> = (props) => {
+          const {subscriptionAddOnUid} = props ?? {};
+
+          return  subscriptionAddOnExpireSubscriptionAddOn(subscriptionAddOnUid,requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type SubscriptionAddOnExpireSubscriptionAddOnMutationResult = NonNullable<Awaited<ReturnType<typeof subscriptionAddOnExpireSubscriptionAddOn>>>
+    
+    export type SubscriptionAddOnExpireSubscriptionAddOnMutationError = void
+
+    /**
+ * @summary Immediately ends an add-on.
+ */
+export const useSubscriptionAddOnExpireSubscriptionAddOn = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof subscriptionAddOnExpireSubscriptionAddOn>>, TError,{subscriptionAddOnUid: string | null}, TContext>, request?: SecondParameter<typeof customFetch>}
+ ): UseMutationResult<
+        Awaited<ReturnType<typeof subscriptionAddOnExpireSubscriptionAddOn>>,
+        TError,
+        {subscriptionAddOnUid: string | null},
+        TContext
+      > => {
+
+      const mutationOptions = getSubscriptionAddOnExpireSubscriptionAddOnMutationOptions(options);
+
+      return useMutation(mutationOptions);
+    }
+    /**
  * Admins and API key callers see every invoice. Non-admin users see only invoices
 belonging to the account they are the primary contact of.
 Pass excludeInvoiceUid as a query parameter to omit a specific invoice from the result set.
- * @summary Returns all invoices, optionally restricted to the requester's account.
+ * @summary Retrieve all invoices.
  */
 export const invoiceGetAllInvoices = (
     
@@ -519,7 +1339,7 @@ export type InvoiceGetAllInvoicesQueryError = void
 
 
 /**
- * @summary Returns all invoices, optionally restricted to the requester's account.
+ * @summary Retrieve all invoices.
  */
 
 export function useInvoiceGetAllInvoices<TData = Awaited<ReturnType<typeof invoiceGetAllInvoices>>, TError = void>(
@@ -604,7 +1424,7 @@ export const useInvoiceAddInvoice = <TError = void,
       return useMutation(mutationOptions);
     }
     /**
- * @summary Returns a single invoice by UID.
+ * @summary Retrieve an invoice.
  */
 export const invoiceGetInvoice = (
     invoiceUid: string | null,
@@ -651,7 +1471,7 @@ export type InvoiceGetInvoiceQueryError = void
 
 
 /**
- * @summary Returns a single invoice by UID.
+ * @summary Retrieve an invoice.
  */
 
 export function useInvoiceGetInvoice<TData = Awaited<ReturnType<typeof invoiceGetInvoice>>, TError = void>(
@@ -803,7 +1623,7 @@ export const useInvoiceDeleteInvoice = <TError = void,
     /**
  * Response body is a binary PDF (Content-Type: application/pdf) served as an
 attachment named invoice-{Number}-{InvoiceDate}-{AccountName}.pdf.
- * @summary Returns a rendered PDF copy of an invoice.
+ * @summary Retrieve a rendered PDF copy of an invoice.
  */
 export const invoiceGetInvoiceAsPdf = (
     invoiceUid: string | null,
@@ -851,7 +1671,7 @@ export type InvoiceGetInvoiceAsPdfQueryError = void
 
 
 /**
- * @summary Returns a rendered PDF copy of an invoice.
+ * @summary Retrieve a rendered PDF copy of an invoice.
  */
 
 export function useInvoiceGetInvoiceAsPdf<TData = Awaited<ReturnType<typeof invoiceGetInvoiceAsPdf>>, TError = void>(
@@ -1002,7 +1822,81 @@ export const useInvoiceSendInvoicePaidEmail = <TError = void,
       return useMutation(mutationOptions);
     }
     /**
- * @summary Retrieves a subscription.
+ * Admins and API key callers see every subscription; non-admin users see only
+subscriptions on accounts they are related to. That scope is determined by the auth
+token and cannot be widened by the caller. Optionally pass
+Account.PersonAccount.Person.Uid as a query parameter to narrow the results to a
+specific person.
+ * @summary Retrieve all subscriptions.
+ */
+export const subscriptionGetAllSubscriptions = (
+    params?: SubscriptionGetAllSubscriptionsParams,
+ options?: SecondParameter<typeof customFetch>,signal?: AbortSignal
+) => {
+      
+      
+      return customFetch<Subscription[]>(
+      {url: `/api/v1/billing/subscriptions`, method: 'GET',
+        params, signal
+    },
+      options);
+    }
+  
+
+
+
+export const getSubscriptionGetAllSubscriptionsQueryKey = (params?: SubscriptionGetAllSubscriptionsParams,) => {
+    return [
+    `/api/v1/billing/subscriptions`, ...(params ? [params]: [])
+    ] as const;
+    }
+
+    
+export const getSubscriptionGetAllSubscriptionsQueryOptions = <TData = Awaited<ReturnType<typeof subscriptionGetAllSubscriptions>>, TError = void>(params?: SubscriptionGetAllSubscriptionsParams, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof subscriptionGetAllSubscriptions>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getSubscriptionGetAllSubscriptionsQueryKey(params);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof subscriptionGetAllSubscriptions>>> = ({ signal }) => subscriptionGetAllSubscriptions(params, requestOptions, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof subscriptionGetAllSubscriptions>>, TError, TData> & { queryKey: QueryKey }
+}
+
+export type SubscriptionGetAllSubscriptionsQueryResult = NonNullable<Awaited<ReturnType<typeof subscriptionGetAllSubscriptions>>>
+export type SubscriptionGetAllSubscriptionsQueryError = void
+
+
+/**
+ * @summary Retrieve all subscriptions.
+ */
+
+export function useSubscriptionGetAllSubscriptions<TData = Awaited<ReturnType<typeof subscriptionGetAllSubscriptions>>, TError = void>(
+ params?: SubscriptionGetAllSubscriptionsParams, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof subscriptionGetAllSubscriptions>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
+  
+ ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } {
+
+  const queryOptions = getSubscriptionGetAllSubscriptionsQueryOptions(params,options)
+
+  const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: QueryKey };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+
+/**
+ * @summary Retrieve a subscription.
  */
 export const subscriptionGetSubscription = (
     subscriptionUid: string | null,
@@ -1049,7 +1943,7 @@ export type SubscriptionGetSubscriptionQueryError = void
 
 
 /**
- * @summary Retrieves a subscription.
+ * @summary Retrieve a subscription.
  */
 
 export function useSubscriptionGetSubscription<TData = Awaited<ReturnType<typeof subscriptionGetSubscription>>, TError = void>(
@@ -1070,6 +1964,70 @@ export function useSubscriptionGetSubscription<TData = Awaited<ReturnType<typeof
 
 
 /**
+ * Only a future-dated subscription can be deleted; the current subscription on an
+account cannot be removed this way.
+ * @summary Delete a subscription.
+ */
+export const subscriptionDeleteSubscription = (
+    subscriptionUid: string | null,
+ options?: SecondParameter<typeof customFetch>,) => {
+      
+      
+      return customFetch<Blob>(
+      {url: `/api/v1/billing/subscriptions/${subscriptionUid}`, method: 'DELETE',
+        responseType: 'blob'
+    },
+      options);
+    }
+  
+
+
+export const getSubscriptionDeleteSubscriptionMutationOptions = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof subscriptionDeleteSubscription>>, TError,{subscriptionUid: string | null}, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof subscriptionDeleteSubscription>>, TError,{subscriptionUid: string | null}, TContext> => {
+
+const mutationKey = ['subscriptionDeleteSubscription'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof subscriptionDeleteSubscription>>, {subscriptionUid: string | null}> = (props) => {
+          const {subscriptionUid} = props ?? {};
+
+          return  subscriptionDeleteSubscription(subscriptionUid,requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type SubscriptionDeleteSubscriptionMutationResult = NonNullable<Awaited<ReturnType<typeof subscriptionDeleteSubscription>>>
+    
+    export type SubscriptionDeleteSubscriptionMutationError = void
+
+    /**
+ * @summary Delete a subscription.
+ */
+export const useSubscriptionDeleteSubscription = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof subscriptionDeleteSubscription>>, TError,{subscriptionUid: string | null}, TContext>, request?: SecondParameter<typeof customFetch>}
+ ): UseMutationResult<
+        Awaited<ReturnType<typeof subscriptionDeleteSubscription>>,
+        TError,
+        {subscriptionUid: string | null},
+        TContext
+      > => {
+
+      const mutationOptions = getSubscriptionDeleteSubscriptionMutationOptions(options);
+
+      return useMutation(mutationOptions);
+    }
+    /**
  * @summary Add a discount to a subscription.
  */
 export const subscriptionAddDiscountToSubscription = (
@@ -1130,6 +2088,70 @@ export const useSubscriptionAddDiscountToSubscription = <TError = void,
       > => {
 
       const mutationOptions = getSubscriptionAddDiscountToSubscriptionMutationOptions(options);
+
+      return useMutation(mutationOptions);
+    }
+    /**
+ * Expires the active discount coupon on the subscription as of now.
+ * @summary Remove a discount from a subscription.
+ */
+export const subscriptionExpireDiscountCouponSubscription = (
+    subscriptionUid: string | null,
+    discountUid: string | null,
+ options?: SecondParameter<typeof customFetch>,) => {
+      
+      
+      return customFetch<Blob>(
+      {url: `/api/v1/billing/subscriptions/${subscriptionUid}/discounts/${discountUid}`, method: 'DELETE',
+        responseType: 'blob'
+    },
+      options);
+    }
+  
+
+
+export const getSubscriptionExpireDiscountCouponSubscriptionMutationOptions = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof subscriptionExpireDiscountCouponSubscription>>, TError,{subscriptionUid: string | null;discountUid: string | null}, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof subscriptionExpireDiscountCouponSubscription>>, TError,{subscriptionUid: string | null;discountUid: string | null}, TContext> => {
+
+const mutationKey = ['subscriptionExpireDiscountCouponSubscription'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof subscriptionExpireDiscountCouponSubscription>>, {subscriptionUid: string | null;discountUid: string | null}> = (props) => {
+          const {subscriptionUid,discountUid} = props ?? {};
+
+          return  subscriptionExpireDiscountCouponSubscription(subscriptionUid,discountUid,requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type SubscriptionExpireDiscountCouponSubscriptionMutationResult = NonNullable<Awaited<ReturnType<typeof subscriptionExpireDiscountCouponSubscription>>>
+    
+    export type SubscriptionExpireDiscountCouponSubscriptionMutationError = void
+
+    /**
+ * @summary Remove a discount from a subscription.
+ */
+export const useSubscriptionExpireDiscountCouponSubscription = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof subscriptionExpireDiscountCouponSubscription>>, TError,{subscriptionUid: string | null;discountUid: string | null}, TContext>, request?: SecondParameter<typeof customFetch>}
+ ): UseMutationResult<
+        Awaited<ReturnType<typeof subscriptionExpireDiscountCouponSubscription>>,
+        TError,
+        {subscriptionUid: string | null;discountUid: string | null},
+        TContext
+      > => {
+
+      const mutationOptions = getSubscriptionExpireDiscountCouponSubscriptionMutationOptions(options);
 
       return useMutation(mutationOptions);
     }
@@ -1469,7 +2491,7 @@ export const useSubscriptionChangeSubscription = <TError = void,
       return useMutation(mutationOptions);
     }
     /**
- * @summary Retrieves all plans.
+ * @summary Retrieve all plans.
  */
 export const planGetAllPlans = (
     
@@ -1516,7 +2538,7 @@ export type PlanGetAllPlansQueryError = unknown
 
 
 /**
- * @summary Retrieves all plans.
+ * @summary Retrieve all plans.
  */
 
 export function usePlanGetAllPlans<TData = Awaited<ReturnType<typeof planGetAllPlans>>, TError = unknown>(
@@ -1537,7 +2559,265 @@ export function usePlanGetAllPlans<TData = Awaited<ReturnType<typeof planGetAllP
 
 
 /**
- * @summary Retrieves all plan families.
+ * @summary Add a new plan.
+ */
+export const planAddPlan = (
+    planAddPlanBody: NonReadonly<PlanAddPlanBody>,
+ options?: SecondParameter<typeof customFetch>,signal?: AbortSignal
+) => {
+      
+      
+      return customFetch<Plan>(
+      {url: `/api/v1/billing/plans`, method: 'POST',
+      headers: {'Content-Type': 'application/json', },
+      data: planAddPlanBody, signal
+    },
+      options);
+    }
+  
+
+
+export const getPlanAddPlanMutationOptions = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof planAddPlan>>, TError,{data: NonReadonly<PlanAddPlanBody>}, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof planAddPlan>>, TError,{data: NonReadonly<PlanAddPlanBody>}, TContext> => {
+
+const mutationKey = ['planAddPlan'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof planAddPlan>>, {data: NonReadonly<PlanAddPlanBody>}> = (props) => {
+          const {data} = props ?? {};
+
+          return  planAddPlan(data,requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type PlanAddPlanMutationResult = NonNullable<Awaited<ReturnType<typeof planAddPlan>>>
+    export type PlanAddPlanMutationBody = NonReadonly<PlanAddPlanBody>
+    export type PlanAddPlanMutationError = void
+
+    /**
+ * @summary Add a new plan.
+ */
+export const usePlanAddPlan = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof planAddPlan>>, TError,{data: NonReadonly<PlanAddPlanBody>}, TContext>, request?: SecondParameter<typeof customFetch>}
+ ): UseMutationResult<
+        Awaited<ReturnType<typeof planAddPlan>>,
+        TError,
+        {data: NonReadonly<PlanAddPlanBody>},
+        TContext
+      > => {
+
+      const mutationOptions = getPlanAddPlanMutationOptions(options);
+
+      return useMutation(mutationOptions);
+    }
+    /**
+ * @summary Retrieve a plan.
+ */
+export const planGetPlan = (
+    planUid: string | null,
+ options?: SecondParameter<typeof customFetch>,signal?: AbortSignal
+) => {
+      
+      
+      return customFetch<Plan>(
+      {url: `/api/v1/billing/plans/${planUid}`, method: 'GET', signal
+    },
+      options);
+    }
+  
+
+
+
+export const getPlanGetPlanQueryKey = (planUid?: string | null,) => {
+    return [
+    `/api/v1/billing/plans/${planUid}`
+    ] as const;
+    }
+
+    
+export const getPlanGetPlanQueryOptions = <TData = Awaited<ReturnType<typeof planGetPlan>>, TError = void>(planUid: string | null, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof planGetPlan>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getPlanGetPlanQueryKey(planUid);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof planGetPlan>>> = ({ signal }) => planGetPlan(planUid, requestOptions, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, enabled: !!(planUid), ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof planGetPlan>>, TError, TData> & { queryKey: QueryKey }
+}
+
+export type PlanGetPlanQueryResult = NonNullable<Awaited<ReturnType<typeof planGetPlan>>>
+export type PlanGetPlanQueryError = void
+
+
+/**
+ * @summary Retrieve a plan.
+ */
+
+export function usePlanGetPlan<TData = Awaited<ReturnType<typeof planGetPlan>>, TError = void>(
+ planUid: string | null, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof planGetPlan>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
+  
+ ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } {
+
+  const queryOptions = getPlanGetPlanQueryOptions(planUid,options)
+
+  const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: QueryKey };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+
+/**
+ * @summary Update a plan.
+ */
+export const planUpdatePlan = (
+    planUid: string | null,
+    planUpdatePlanBody: NonReadonly<PlanUpdatePlanBody>,
+ options?: SecondParameter<typeof customFetch>,) => {
+      
+      
+      return customFetch<Plan>(
+      {url: `/api/v1/billing/plans/${planUid}`, method: 'PUT',
+      headers: {'Content-Type': 'application/json', },
+      data: planUpdatePlanBody
+    },
+      options);
+    }
+  
+
+
+export const getPlanUpdatePlanMutationOptions = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof planUpdatePlan>>, TError,{planUid: string | null;data: NonReadonly<PlanUpdatePlanBody>}, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof planUpdatePlan>>, TError,{planUid: string | null;data: NonReadonly<PlanUpdatePlanBody>}, TContext> => {
+
+const mutationKey = ['planUpdatePlan'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof planUpdatePlan>>, {planUid: string | null;data: NonReadonly<PlanUpdatePlanBody>}> = (props) => {
+          const {planUid,data} = props ?? {};
+
+          return  planUpdatePlan(planUid,data,requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type PlanUpdatePlanMutationResult = NonNullable<Awaited<ReturnType<typeof planUpdatePlan>>>
+    export type PlanUpdatePlanMutationBody = NonReadonly<PlanUpdatePlanBody>
+    export type PlanUpdatePlanMutationError = void
+
+    /**
+ * @summary Update a plan.
+ */
+export const usePlanUpdatePlan = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof planUpdatePlan>>, TError,{planUid: string | null;data: NonReadonly<PlanUpdatePlanBody>}, TContext>, request?: SecondParameter<typeof customFetch>}
+ ): UseMutationResult<
+        Awaited<ReturnType<typeof planUpdatePlan>>,
+        TError,
+        {planUid: string | null;data: NonReadonly<PlanUpdatePlanBody>},
+        TContext
+      > => {
+
+      const mutationOptions = getPlanUpdatePlanMutationOptions(options);
+
+      return useMutation(mutationOptions);
+    }
+    /**
+ * @summary Delete a plan.
+ */
+export const planDeletePlan = (
+    planUid: string | null,
+ options?: SecondParameter<typeof customFetch>,) => {
+      
+      
+      return customFetch<Blob>(
+      {url: `/api/v1/billing/plans/${planUid}`, method: 'DELETE',
+        responseType: 'blob'
+    },
+      options);
+    }
+  
+
+
+export const getPlanDeletePlanMutationOptions = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof planDeletePlan>>, TError,{planUid: string | null}, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof planDeletePlan>>, TError,{planUid: string | null}, TContext> => {
+
+const mutationKey = ['planDeletePlan'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof planDeletePlan>>, {planUid: string | null}> = (props) => {
+          const {planUid} = props ?? {};
+
+          return  planDeletePlan(planUid,requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type PlanDeletePlanMutationResult = NonNullable<Awaited<ReturnType<typeof planDeletePlan>>>
+    
+    export type PlanDeletePlanMutationError = void
+
+    /**
+ * @summary Delete a plan.
+ */
+export const usePlanDeletePlan = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof planDeletePlan>>, TError,{planUid: string | null}, TContext>, request?: SecondParameter<typeof customFetch>}
+ ): UseMutationResult<
+        Awaited<ReturnType<typeof planDeletePlan>>,
+        TError,
+        {planUid: string | null},
+        TContext
+      > => {
+
+      const mutationOptions = getPlanDeletePlanMutationOptions(options);
+
+      return useMutation(mutationOptions);
+    }
+    /**
+ * @summary Retrieve all plan families.
  */
 export const planFamilyGetAllPlanFamilies = (
     
@@ -1584,7 +2864,7 @@ export type PlanFamilyGetAllPlanFamiliesQueryError = unknown
 
 
 /**
- * @summary Retrieves all plan families.
+ * @summary Retrieve all plan families.
  */
 
 export function usePlanFamilyGetAllPlanFamilies<TData = Awaited<ReturnType<typeof planFamilyGetAllPlanFamilies>>, TError = unknown>(
@@ -1604,3 +2884,262 @@ export function usePlanFamilyGetAllPlanFamilies<TData = Awaited<ReturnType<typeo
 
 
 
+/**
+ * @summary Add a new plan family.
+ */
+export const planFamilyAddPlanFamily = (
+    planFamilyAddPlanFamilyBody: NonReadonly<PlanFamilyAddPlanFamilyBody>,
+ options?: SecondParameter<typeof customFetch>,signal?: AbortSignal
+) => {
+      
+      
+      return customFetch<PlanFamily>(
+      {url: `/api/v1/billing/planfamilies`, method: 'POST',
+      headers: {'Content-Type': 'application/json', },
+      data: planFamilyAddPlanFamilyBody, signal
+    },
+      options);
+    }
+  
+
+
+export const getPlanFamilyAddPlanFamilyMutationOptions = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof planFamilyAddPlanFamily>>, TError,{data: NonReadonly<PlanFamilyAddPlanFamilyBody>}, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof planFamilyAddPlanFamily>>, TError,{data: NonReadonly<PlanFamilyAddPlanFamilyBody>}, TContext> => {
+
+const mutationKey = ['planFamilyAddPlanFamily'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof planFamilyAddPlanFamily>>, {data: NonReadonly<PlanFamilyAddPlanFamilyBody>}> = (props) => {
+          const {data} = props ?? {};
+
+          return  planFamilyAddPlanFamily(data,requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type PlanFamilyAddPlanFamilyMutationResult = NonNullable<Awaited<ReturnType<typeof planFamilyAddPlanFamily>>>
+    export type PlanFamilyAddPlanFamilyMutationBody = NonReadonly<PlanFamilyAddPlanFamilyBody>
+    export type PlanFamilyAddPlanFamilyMutationError = void
+
+    /**
+ * @summary Add a new plan family.
+ */
+export const usePlanFamilyAddPlanFamily = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof planFamilyAddPlanFamily>>, TError,{data: NonReadonly<PlanFamilyAddPlanFamilyBody>}, TContext>, request?: SecondParameter<typeof customFetch>}
+ ): UseMutationResult<
+        Awaited<ReturnType<typeof planFamilyAddPlanFamily>>,
+        TError,
+        {data: NonReadonly<PlanFamilyAddPlanFamilyBody>},
+        TContext
+      > => {
+
+      const mutationOptions = getPlanFamilyAddPlanFamilyMutationOptions(options);
+
+      return useMutation(mutationOptions);
+    }
+    /**
+ * @summary Retrieve a plan family.
+ */
+export const planFamilyGetPlanFamily = (
+    planFamilyUid: string | null,
+ options?: SecondParameter<typeof customFetch>,signal?: AbortSignal
+) => {
+      
+      
+      return customFetch<PlanFamily>(
+      {url: `/api/v1/billing/planfamilies/${planFamilyUid}`, method: 'GET', signal
+    },
+      options);
+    }
+  
+
+
+
+export const getPlanFamilyGetPlanFamilyQueryKey = (planFamilyUid?: string | null,) => {
+    return [
+    `/api/v1/billing/planfamilies/${planFamilyUid}`
+    ] as const;
+    }
+
+    
+export const getPlanFamilyGetPlanFamilyQueryOptions = <TData = Awaited<ReturnType<typeof planFamilyGetPlanFamily>>, TError = void>(planFamilyUid: string | null, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof planFamilyGetPlanFamily>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getPlanFamilyGetPlanFamilyQueryKey(planFamilyUid);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof planFamilyGetPlanFamily>>> = ({ signal }) => planFamilyGetPlanFamily(planFamilyUid, requestOptions, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, enabled: !!(planFamilyUid), ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof planFamilyGetPlanFamily>>, TError, TData> & { queryKey: QueryKey }
+}
+
+export type PlanFamilyGetPlanFamilyQueryResult = NonNullable<Awaited<ReturnType<typeof planFamilyGetPlanFamily>>>
+export type PlanFamilyGetPlanFamilyQueryError = void
+
+
+/**
+ * @summary Retrieve a plan family.
+ */
+
+export function usePlanFamilyGetPlanFamily<TData = Awaited<ReturnType<typeof planFamilyGetPlanFamily>>, TError = void>(
+ planFamilyUid: string | null, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof planFamilyGetPlanFamily>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
+  
+ ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } {
+
+  const queryOptions = getPlanFamilyGetPlanFamilyQueryOptions(planFamilyUid,options)
+
+  const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: QueryKey };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+
+/**
+ * @summary Update a plan family.
+ */
+export const planFamilyUpdatePlanFamily = (
+    planFamilyUid: string | null,
+    planFamilyUpdatePlanFamilyBody: NonReadonly<PlanFamilyUpdatePlanFamilyBody>,
+ options?: SecondParameter<typeof customFetch>,) => {
+      
+      
+      return customFetch<PlanFamily>(
+      {url: `/api/v1/billing/planfamilies/${planFamilyUid}`, method: 'PUT',
+      headers: {'Content-Type': 'application/json', },
+      data: planFamilyUpdatePlanFamilyBody
+    },
+      options);
+    }
+  
+
+
+export const getPlanFamilyUpdatePlanFamilyMutationOptions = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof planFamilyUpdatePlanFamily>>, TError,{planFamilyUid: string | null;data: NonReadonly<PlanFamilyUpdatePlanFamilyBody>}, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof planFamilyUpdatePlanFamily>>, TError,{planFamilyUid: string | null;data: NonReadonly<PlanFamilyUpdatePlanFamilyBody>}, TContext> => {
+
+const mutationKey = ['planFamilyUpdatePlanFamily'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof planFamilyUpdatePlanFamily>>, {planFamilyUid: string | null;data: NonReadonly<PlanFamilyUpdatePlanFamilyBody>}> = (props) => {
+          const {planFamilyUid,data} = props ?? {};
+
+          return  planFamilyUpdatePlanFamily(planFamilyUid,data,requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type PlanFamilyUpdatePlanFamilyMutationResult = NonNullable<Awaited<ReturnType<typeof planFamilyUpdatePlanFamily>>>
+    export type PlanFamilyUpdatePlanFamilyMutationBody = NonReadonly<PlanFamilyUpdatePlanFamilyBody>
+    export type PlanFamilyUpdatePlanFamilyMutationError = void
+
+    /**
+ * @summary Update a plan family.
+ */
+export const usePlanFamilyUpdatePlanFamily = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof planFamilyUpdatePlanFamily>>, TError,{planFamilyUid: string | null;data: NonReadonly<PlanFamilyUpdatePlanFamilyBody>}, TContext>, request?: SecondParameter<typeof customFetch>}
+ ): UseMutationResult<
+        Awaited<ReturnType<typeof planFamilyUpdatePlanFamily>>,
+        TError,
+        {planFamilyUid: string | null;data: NonReadonly<PlanFamilyUpdatePlanFamilyBody>},
+        TContext
+      > => {
+
+      const mutationOptions = getPlanFamilyUpdatePlanFamilyMutationOptions(options);
+
+      return useMutation(mutationOptions);
+    }
+    /**
+ * @summary Delete a plan family.
+ */
+export const planFamilyDeletePlanFamily = (
+    planFamilyUid: string | null,
+ options?: SecondParameter<typeof customFetch>,) => {
+      
+      
+      return customFetch<Blob>(
+      {url: `/api/v1/billing/planfamilies/${planFamilyUid}`, method: 'DELETE',
+        responseType: 'blob'
+    },
+      options);
+    }
+  
+
+
+export const getPlanFamilyDeletePlanFamilyMutationOptions = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof planFamilyDeletePlanFamily>>, TError,{planFamilyUid: string | null}, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof planFamilyDeletePlanFamily>>, TError,{planFamilyUid: string | null}, TContext> => {
+
+const mutationKey = ['planFamilyDeletePlanFamily'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof planFamilyDeletePlanFamily>>, {planFamilyUid: string | null}> = (props) => {
+          const {planFamilyUid} = props ?? {};
+
+          return  planFamilyDeletePlanFamily(planFamilyUid,requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type PlanFamilyDeletePlanFamilyMutationResult = NonNullable<Awaited<ReturnType<typeof planFamilyDeletePlanFamily>>>
+    
+    export type PlanFamilyDeletePlanFamilyMutationError = void
+
+    /**
+ * @summary Delete a plan family.
+ */
+export const usePlanFamilyDeletePlanFamily = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof planFamilyDeletePlanFamily>>, TError,{planFamilyUid: string | null}, TContext>, request?: SecondParameter<typeof customFetch>}
+ ): UseMutationResult<
+        Awaited<ReturnType<typeof planFamilyDeletePlanFamily>>,
+        TError,
+        {planFamilyUid: string | null},
+        TContext
+      > => {
+
+      const mutationOptions = getPlanFamilyDeletePlanFamilyMutationOptions(options);
+
+      return useMutation(mutationOptions);
+    }
+    

@@ -59,9 +59,10 @@ type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
 
 
 /**
- * Assigned cases can be filtered by passing in the AssignedToPersonClientIdentifier,
+ * Optionally filtered by search string, tag, and/or assignment.
+Assigned cases can be filtered by passing in the AssignedToPersonClientIdentifier,
 which is the Uid of the person the case is assigned to.
- * @summary Returns all cases, optionally filtered by search string, tag, and/or assignment.
+ * @summary Retrieve all cases.
  */
 export const caseGetAllCases = (
     params?: CaseGetAllCasesParams,
@@ -109,7 +110,7 @@ export type CaseGetAllCasesQueryError = void
 
 
 /**
- * @summary Returns all cases, optionally filtered by search string, tag, and/or assignment.
+ * @summary Retrieve all cases.
  */
 
 export function useCaseGetAllCases<TData = Awaited<ReturnType<typeof caseGetAllCases>>, TError = void>(
@@ -196,7 +197,7 @@ export const useCaseAddCase = <TError = void,
       return useMutation(mutationOptions);
     }
     /**
- * @summary Retrieve a specific case
+ * @summary Retrieve a case.
  */
 export const caseGetCase = (
     caseUid: string | null,
@@ -243,7 +244,7 @@ export type CaseGetCaseQueryError = void
 
 
 /**
- * @summary Retrieve a specific case
+ * @summary Retrieve a case.
  */
 
 export function useCaseGetCase<TData = Awaited<ReturnType<typeof caseGetCase>>, TError = void>(
@@ -459,7 +460,7 @@ export function useArticleGetAllArticles<TData = Awaited<ReturnType<typeof artic
 
 
 /**
- * @summary Retrieves a knowledge base article.
+ * @summary Retrieve a knowledge base article.
  */
 export const articleGetArticle = (
     articleUid: string | null,
@@ -506,7 +507,7 @@ export type ArticleGetArticleQueryError = void
 
 
 /**
- * @summary Retrieves a knowledge base article.
+ * @summary Retrieve a knowledge base article.
  */
 
 export function useArticleGetArticle<TData = Awaited<ReturnType<typeof articleGetArticle>>, TError = void>(
@@ -527,7 +528,7 @@ export function useArticleGetArticle<TData = Awaited<ReturnType<typeof articleGe
 
 
 /**
- * @summary Retrieves all knowledge base categories.
+ * @summary Retrieve all knowledge base categories.
  */
 export const categoryGetAllCategories = (
     
@@ -574,7 +575,7 @@ export type CategoryGetAllCategoriesQueryError = unknown
 
 
 /**
- * @summary Retrieves all knowledge base categories.
+ * @summary Retrieve all knowledge base categories.
  */
 
 export function useCategoryGetAllCategories<TData = Awaited<ReturnType<typeof categoryGetAllCategories>>, TError = unknown>(

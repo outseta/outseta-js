@@ -40,9 +40,10 @@ type NonReadonly<T> = [T] extends [UnionToIntersection<T>] ? {
 
 
 /**
- * Assigned cases can be filtered by passing in the AssignedToPersonClientIdentifier,
+ * Optionally filtered by search string, tag, and/or assignment.
+Assigned cases can be filtered by passing in the AssignedToPersonClientIdentifier,
 which is the Uid of the person the case is assigned to.
- * @summary Returns all cases, optionally filtered by search string, tag, and/or assignment.
+ * @summary Retrieve all cases.
  */
 export type caseGetAllCasesResponse200 = {
   data: Case[]
@@ -147,7 +148,7 @@ export const caseAddCase = async (caseAddCaseBody: NonReadonly<CaseAddCaseBody>,
 
 
 /**
- * @summary Retrieve a specific case
+ * @summary Retrieve a case.
  */
 export type caseGetCaseResponse200 = {
   data: Case
@@ -347,7 +348,7 @@ export const articleGetAllArticles = async (params?: ArticleGetAllArticlesParams
 
 
 /**
- * @summary Retrieves a knowledge base article.
+ * @summary Retrieve a knowledge base article.
  */
 export type articleGetArticleResponse200 = {
   data: Article
@@ -394,7 +395,7 @@ export const articleGetArticle = async (articleUid: string | null, options?: Req
 
 
 /**
- * @summary Retrieves all knowledge base categories.
+ * @summary Retrieve all knowledge base categories.
  */
 export type categoryGetAllCategoriesResponse200 = {
   data: Category[]
