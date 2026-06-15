@@ -59,7 +59,7 @@ ActivityType=[100,101] where ActivityUpdated = 100 and AcccountUpdated = 101.
 Results will be limited to the last year unless ActivityDateTime is specified,
 possibly with ActivityDateTime__gt/ActivityDateTime__gte and
 ActivityDateTime__lt/ActivityDateTime__lte.
- * @summary Retrieve all activities, optionally filtered.
+ * @summary Retrieve all activities.
  */
 export const activityGetAll = (
     params?: ActivityGetAllParams,
@@ -107,7 +107,7 @@ export type ActivityGetAllQueryError = void
 
 
 /**
- * @summary Retrieve all activities, optionally filtered.
+ * @summary Retrieve all activities.
  */
 
 export function useActivityGetAll<TData = Awaited<ReturnType<typeof activityGetAll>>, TError = void>(

@@ -52,7 +52,8 @@ type NonReadonly<T> = [T] extends [UnionToIntersection<T>] ? {
 
 
 /**
- * @summary Retrieves all the deals associated with your account.
+ * Returns the deals associated with your account.
+ * @summary Retrieve all deals.
  */
 export type dealGetAllDealsResponse200 = {
   data: Deal[]
@@ -149,7 +150,7 @@ export const dealAddDeal = async (dealAddDealBody: NonReadonly<DealAddDealBody>,
 
 
 /**
- * @summary Retrieves one deal associated with your account.
+ * @summary Retrieve a deal.
  */
 export type dealGetDealResponse200 = {
   data: Deal
@@ -349,7 +350,8 @@ export const registrationRegisterAccount = async (account: NonReadonly<Account>,
 
 
 /**
- * @summary Returns all accounts, optionally filtered by segment or search query.
+ * Optionally filtered by segment (segmentUid) or search query (q).
+ * @summary Retrieve all accounts.
  */
 export type accountGetAllAccountsResponse200 = {
   data: Account[]
@@ -456,7 +458,7 @@ export const accountAddAccount = async (accountAddAccountBody: NonReadonly<Accou
 
 
 /**
- * @summary Returns a single account by UID.
+ * @summary Retrieve an account.
  */
 export type accountGetAccountResponse200 = {
   data: Account
@@ -999,7 +1001,8 @@ export const accountSendConfirmationEmail = async (accountUid: string | null, op
 
 
 /**
- * @summary Retrieves all the people associated with your account.
+ * Returns the people associated with your account.
+ * @summary Retrieve all people.
  */
 export type personGetAllPeopleResponse200 = {
   data: Person[]
@@ -1091,7 +1094,7 @@ export const personAddPerson = async (personAddPersonBody: NonReadonly<PersonAdd
 
 
 /**
- * @summary Retrieves a person.
+ * @summary Retrieve a person.
  */
 export type personGetPersonResponse200 = {
   data: Person

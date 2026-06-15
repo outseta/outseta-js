@@ -9,7 +9,7 @@ import { customFetch } from '../../client';
  * entityType is the name of an EntityType enum value, for example: Account, Person,
 Deal. Definitions describe the labels, system names, and control types of
 the custom attributes that have been added to that entity.
- * @summary Returns all custom attribute definitions for the given entity type.
+ * @summary Retrieve all custom attribute definitions.
  */
 export type definitionGetAllDefinitionsResponse200 = {
   data: Definition[]
@@ -46,7 +46,7 @@ export const definitionGetAllDefinitions = async (entityType: string | null, opt
 /**
  * The entityType segment of the URL must match the type the definition belongs to
 (e.g. Account, Person, Deal).
- * @summary Returns a single custom attribute definition by UID.
+ * @summary Retrieve a custom attribute definition.
  */
 export type definitionGetDefinitionResponse200 = {
   data: Definition

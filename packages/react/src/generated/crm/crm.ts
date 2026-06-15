@@ -71,7 +71,8 @@ type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
 
 
 /**
- * @summary Retrieves all the deals associated with your account.
+ * Returns the deals associated with your account.
+ * @summary Retrieve all deals.
  */
 export const dealGetAllDeals = (
     params?: DealGetAllDealsParams,
@@ -119,7 +120,7 @@ export type DealGetAllDealsQueryError = void
 
 
 /**
- * @summary Retrieves all the deals associated with your account.
+ * @summary Retrieve all deals.
  */
 
 export function useDealGetAllDeals<TData = Awaited<ReturnType<typeof dealGetAllDeals>>, TError = void>(
@@ -204,7 +205,7 @@ export const useDealAddDeal = <TError = void,
       return useMutation(mutationOptions);
     }
     /**
- * @summary Retrieves one deal associated with your account.
+ * @summary Retrieve a deal.
  */
 export const dealGetDeal = (
     dealUid: string | null,
@@ -251,7 +252,7 @@ export type DealGetDealQueryError = void
 
 
 /**
- * @summary Retrieves one deal associated with your account.
+ * @summary Retrieve a deal.
  */
 
 export function useDealGetDeal<TData = Awaited<ReturnType<typeof dealGetDeal>>, TError = void>(
@@ -468,7 +469,8 @@ export const useRegistrationRegisterAccount = <TError = unknown,
       return useMutation(mutationOptions);
     }
     /**
- * @summary Returns all accounts, optionally filtered by segment or search query.
+ * Optionally filtered by segment (segmentUid) or search query (q).
+ * @summary Retrieve all accounts.
  */
 export const accountGetAllAccounts = (
     params?: AccountGetAllAccountsParams,
@@ -516,7 +518,7 @@ export type AccountGetAllAccountsQueryError = void
 
 
 /**
- * @summary Returns all accounts, optionally filtered by segment or search query.
+ * @summary Retrieve all accounts.
  */
 
 export function useAccountGetAllAccounts<TData = Awaited<ReturnType<typeof accountGetAllAccounts>>, TError = void>(
@@ -606,7 +608,7 @@ export const useAccountAddAccount = <TError = void,
       return useMutation(mutationOptions);
     }
     /**
- * @summary Returns a single account by UID.
+ * @summary Retrieve an account.
  */
 export const accountGetAccount = (
     accountUid: string | null,
@@ -653,7 +655,7 @@ export type AccountGetAccountQueryError = void
 
 
 /**
- * @summary Returns a single account by UID.
+ * @summary Retrieve an account.
  */
 
 export function useAccountGetAccount<TData = Awaited<ReturnType<typeof accountGetAccount>>, TError = void>(
@@ -1257,7 +1259,8 @@ export const useAccountSendConfirmationEmail = <TError = void,
       return useMutation(mutationOptions);
     }
     /**
- * @summary Retrieves all the people associated with your account.
+ * Returns the people associated with your account.
+ * @summary Retrieve all people.
  */
 export const personGetAllPeople = (
     params?: PersonGetAllPeopleParams,
@@ -1305,7 +1308,7 @@ export type PersonGetAllPeopleQueryError = void
 
 
 /**
- * @summary Retrieves all the people associated with your account.
+ * @summary Retrieve all people.
  */
 
 export function usePersonGetAllPeople<TData = Awaited<ReturnType<typeof personGetAllPeople>>, TError = void>(
@@ -1390,7 +1393,7 @@ export const usePersonAddPerson = <TError = void,
       return useMutation(mutationOptions);
     }
     /**
- * @summary Retrieves a person.
+ * @summary Retrieve a person.
  */
 export const personGetPerson = (
     personUid: string | null,
@@ -1437,7 +1440,7 @@ export type PersonGetPersonQueryError = void
 
 
 /**
- * @summary Retrieves a person.
+ * @summary Retrieve a person.
  */
 
 export function usePersonGetPerson<TData = Awaited<ReturnType<typeof personGetPerson>>, TError = void>(

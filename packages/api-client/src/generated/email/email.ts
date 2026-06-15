@@ -39,7 +39,8 @@ type NonReadonly<T> = [T] extends [UnionToIntersection<T>] ? {
 
 
 /**
- * @summary Retrieves all non-archived broadcast campaigns.
+ * Archived campaigns are excluded.
+ * @summary Retrieve all broadcast campaigns.
  */
 export type campaignGetAllBroadcastEmailsResponse200 = {
   data: BroadcastCampaign[]
@@ -128,7 +129,7 @@ export const campaignAddBroadcastEmail = async (campaignAddBroadcastEmailBody: N
 
 
 /**
- * @summary Retrieves a single broadcast campaign by its Uid.
+ * @summary Retrieve a broadcast campaign.
  */
 export type campaignGetBroadcastEmailResponse200 = {
   data: BroadcastCampaign
@@ -442,7 +443,7 @@ export const campaignSendTestCampaignEmail = async (campaignSendTestCampaignEmai
 
 
 /**
- * @summary Retrieves all the people subscribing to an email list.
+ * @summary Retrieve all subscribers to an email list.
  */
 export type emailListGetAllSubscriptionsResponse200 = {
   data: EmailListPerson[]

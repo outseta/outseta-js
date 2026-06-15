@@ -18,7 +18,9 @@ import type {
 import { customFetch } from '../../client';
 
 /**
- * Post a JSON body with the user's credentials:
+ * Authenticates a user and returns a JWT access token (plus a refresh token).
+            
+Post a JSON body with the user's credentials:
             
     { "username": "user@example.com", "password": "their-password" }
             
@@ -53,7 +55,7 @@ body instead contains `"two_factor_enrollment_required": true` with a
 `challenge_token` to drive the mid-login enrollment endpoints.
             
 Invalid credentials return `400` with a body of `invalid_grant`.
- * @summary Log a user in and obtain a JWT access token.
+ * @summary Log a user in.
  */
 export type authGetTokenResponse200 = {
   data: TokenPayload

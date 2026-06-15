@@ -58,7 +58,8 @@ type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
 
 
 /**
- * @summary Retrieves all non-archived broadcast campaigns.
+ * Archived campaigns are excluded.
+ * @summary Retrieve all broadcast campaigns.
  */
 export const campaignGetAllBroadcastEmails = (
     
@@ -105,7 +106,7 @@ export type CampaignGetAllBroadcastEmailsQueryError = void
 
 
 /**
- * @summary Retrieves all non-archived broadcast campaigns.
+ * @summary Retrieve all broadcast campaigns.
  */
 
 export function useCampaignGetAllBroadcastEmails<TData = Awaited<ReturnType<typeof campaignGetAllBroadcastEmails>>, TError = void>(
@@ -194,7 +195,7 @@ export const useCampaignAddBroadcastEmail = <TError = void,
       return useMutation(mutationOptions);
     }
     /**
- * @summary Retrieves a single broadcast campaign by its Uid.
+ * @summary Retrieve a broadcast campaign.
  */
 export const campaignGetBroadcastEmail = (
     broadcastCampaignUid: string | null,
@@ -241,7 +242,7 @@ export type CampaignGetBroadcastEmailQueryError = void
 
 
 /**
- * @summary Retrieves a single broadcast campaign by its Uid.
+ * @summary Retrieve a broadcast campaign.
  */
 
 export function useCampaignGetBroadcastEmail<TData = Awaited<ReturnType<typeof campaignGetBroadcastEmail>>, TError = void>(
@@ -587,7 +588,7 @@ export const useCampaignSendTestCampaignEmail = <TError = void,
       return useMutation(mutationOptions);
     }
     /**
- * @summary Retrieves all the people subscribing to an email list.
+ * @summary Retrieve all subscribers to an email list.
  */
 export const emailListGetAllSubscriptions = (
     emailListUid: string | null,
@@ -638,7 +639,7 @@ export type EmailListGetAllSubscriptionsQueryError = void
 
 
 /**
- * @summary Retrieves all the people subscribing to an email list.
+ * @summary Retrieve all subscribers to an email list.
  */
 
 export function useEmailListGetAllSubscriptions<TData = Awaited<ReturnType<typeof emailListGetAllSubscriptions>>, TError = void>(

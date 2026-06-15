@@ -6073,10 +6073,53 @@ export type PersonSetTemporaryPasswordBody = TemporaryPasswordModel | null;
  */
 export type PersonForgotPasswordBody = Person | null;
 
+export type DiscountCouponGetDiscountCouponByCodeParams = {
+/**
+ * The unique identifier of the plan to validate the coupon against
+ * @nullable
+ */
+planUid: string | null;
+};
+
+export type DiscountCouponGetAllDiscountCouponsParams = {
+/**
+ * When true, returns only coupons that can still be redeemed
+ */
+canRedeem?: boolean;
+/**
+ * Searches coupons by name or code
+ * @nullable
+ */
+q?: string | null;
+/**
+ * Returns only coupons that apply to the plan with this unique identifier
+ * @nullable
+ */
+planUid?: string | null;
+};
+
 /**
  * @nullable
  */
 export type DiscountCouponAddDiscountCouponBody = DiscountCoupon | null;
+
+/**
+ * @nullable
+ */
+export type DiscountCouponUpdateDiscountCouponBody = DiscountCoupon | null;
+
+export type DiscountCouponGetDiscountCouponRedemptionsParams = {
+/**
+ * Searches redemptions by account or plan name
+ * @nullable
+ */
+q?: string | null;
+/**
+ * When set, filters by whether the redemption is still active
+ * @nullable
+ */
+isActive?: boolean | null;
+};
 
 /**
  * @nullable
@@ -6093,10 +6136,28 @@ export type TransactionsAddPaymentTransactionBody = Transaction | null;
  */
 export type PaymentInformationSavePaymentInformationBody = PaymentInformation | null;
 
+export type SubscriptionAddOnGetAllSubscriptionsAddOnsParams = {
+/**
+ * Filters by the add-on's lifecycle: current, future, or past
+ * @nullable
+ */
+status?: string | null;
+};
+
 /**
  * @nullable
  */
 export type SubscriptionAddOnAddSubscriptionAddOnBody = SubscriptionAddOn | null;
+
+/**
+ * @nullable
+ */
+export type SubscriptionAddOnAddSubscriptionAddOnPreviewBody = SubscriptionAddOn | null;
+
+/**
+ * @nullable
+ */
+export type SubscriptionAddOnSetAddOnUpgradeRequiredBody = SubscriptionAddOn | null;
 
 /**
  * @nullable
@@ -6107,6 +6168,19 @@ export type InvoiceAddInvoiceBody = Invoice | null;
  * @nullable
  */
 export type InvoiceUpdateInvoiceBody = Invoice | null;
+
+export type SubscriptionGetAllSubscriptionsParams = {
+/**
+ * Pass 1 to return only the most recent subscription per account, expired or not
+ * @nullable
+ */
+current?: string | null;
+/**
+ * Filters by the subscription's lifecycle: current, future, or past
+ * @nullable
+ */
+status?: string | null;
+};
 
 /**
  * @nullable
@@ -6156,6 +6230,26 @@ startImmediately?: string | null;
  * @nullable
  */
 export type SubscriptionChangeSubscriptionBody = Subscription | null;
+
+/**
+ * @nullable
+ */
+export type PlanAddPlanBody = Plan | null;
+
+/**
+ * @nullable
+ */
+export type PlanUpdatePlanBody = Plan | null;
+
+/**
+ * @nullable
+ */
+export type PlanFamilyAddPlanFamilyBody = PlanFamily | null;
+
+/**
+ * @nullable
+ */
+export type PlanFamilyUpdatePlanFamilyBody = PlanFamily | null;
 
 export type ActivityGetAllParams = {
 /**
