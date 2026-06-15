@@ -1,5 +1,13 @@
 # @outseta/react
 
+## 0.3.6
+
+### Patch Changes
+
+- cb6a6cf: Update API spec.
+- Updated dependencies [cb6a6cf]
+  - @outseta/api-client@0.3.5
+
 ## 0.3.5
 
 ### Patch Changes
