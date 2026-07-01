@@ -1,13 +1,13 @@
 // @ts-nocheck
 import {
   useQuery
-} from '@tanstack/react-query';
+} from '../../query';
 import type {
   QueryFunction,
   QueryKey,
   UseQueryOptions,
   UseQueryResult
-} from '@tanstack/react-query';
+} from '../../query';
 
 import type {
   Definition

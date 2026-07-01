@@ -28,7 +28,7 @@ outseta-js/
         client.ts                 # Custom Orval mutator (ky instance factory)
         index.ts
     node-sdk/                     # @outseta/node-sdk — public, wraps api-client
-    react/                        # @outseta/react — public, React Query hooks from Orval
+    react/                        # @outseta/react — public, React hooks from Orval
 ```
 
 ### MCP Server (existing repo, stays separate)

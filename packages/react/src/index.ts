@@ -4,7 +4,7 @@ export type { OutsetaCredentials } from "@outseta/api-client";
 // Outseta embed components and hooks
 export * from "./components/index.js";
 
-// Generated React Query hooks and schema types
+// Generated React hooks and schema types
 export * from "./generated/activity/activity.js";
 export * from "./generated/billing/billing.js";
 export * from "./generated/crm/crm.js";

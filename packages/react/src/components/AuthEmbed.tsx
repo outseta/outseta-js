@@ -5,6 +5,8 @@ export interface AuthEmbedProps extends HTMLAttributes<HTMLDivElement> {
   widgetMode?: "login" | "register" | "login|register";
   /** Registration defaults as a JSON string or object */
   registrationDefaults?: string | Record<string, unknown>;
+  /** Props applied to the element Outseta mounts into. */
+  widgetProps?: HTMLAttributes<HTMLDivElement>;
 }
 
 /**
@@ -16,6 +18,7 @@ export interface AuthEmbedProps extends HTMLAttributes<HTMLDivElement> {
 export function AuthEmbed({
   widgetMode = "login|register",
   registrationDefaults,
+  widgetProps,
   ...props
 }: AuthEmbedProps) {
   const defaults =
@@ -28,6 +31,7 @@ export function AuthEmbed({
   return (
     <div key={widgetMode} {...props}>
       <div
+        {...widgetProps}
         data-o-auth="1"
         data-mode="embed"
         data-widget-mode={widgetMode}

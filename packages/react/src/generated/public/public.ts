@@ -1,12 +1,12 @@
 // @ts-nocheck
 import {
   useMutation
-} from '@tanstack/react-query';
+} from '../../query';
 import type {
   MutationFunction,
   UseMutationOptions,
   UseMutationResult
-} from '@tanstack/react-query';
+} from '../../query';
 
 import type {
   AuthGetTokenParams,

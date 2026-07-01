@@ -1,5 +1,6 @@
 import type { ButtonHTMLAttributes } from "react";
 import { useOutseta } from "./OutsetaProvider.js";
+import { composeButtonClick } from "./utils.js";
 
 export interface PurchaseAddonButtonProps
   extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -17,20 +18,23 @@ export function PurchaseAddonButton({
   addonUid,
   billingRenewalTerm = 4,
   children = "Buy Add-on",
+  onClick,
+  type = "button",
   ...props
 }: PurchaseAddonButtonProps) {
   const { openProfile } = useOutseta();
 
   return (
     <button
-      onClick={() =>
+      type={type}
+      {...props}
+      onClick={composeButtonClick(onClick, () =>
         openProfile({
           mode: "popup",
           tab: "purchaseAddOn",
           stateProps: { addOnUid: addonUid, billingRenewalTerm },
-        })
-      }
-      {...props}
+        }),
+      )}
     >
       {children}
     </button>

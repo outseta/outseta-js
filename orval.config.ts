@@ -24,6 +24,9 @@ export default defineConfig({
       target: "./packages/react/src/generated",
       mode: "tags-split",
       clean: true,
+      // Orval emits react-query-shaped hooks; `scripts/post-generate.mjs`
+      // rewrites the `@tanstack/react-query` import to the local vanilla-React
+      // shim (`src/query.ts`), so the package ships no react-query dependency.
       client: "react-query",
       override: {
         header: false,

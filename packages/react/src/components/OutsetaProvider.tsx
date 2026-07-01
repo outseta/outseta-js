@@ -8,18 +8,25 @@ import {
 } from "react";
 import type {
   AuthWidgetOptions,
+  EmailListWidgetOptions,
+  LeadCaptureWidgetOptions,
   OutsetaEmbed,
   OutsetaUser,
   ProfileWidgetOptions,
+  SupportWidgetOptions,
 } from "./types.js";
 
 export interface OutsetaContextValue {
   user: OutsetaUser | null;
   isLoading: boolean;
   logout: () => void;
+  openAuth: (options?: AuthWidgetOptions) => void;
   openLogin: (options?: AuthWidgetOptions) => void;
   openSignup: (options?: AuthWidgetOptions) => void;
   openProfile: (options?: ProfileWidgetOptions) => void;
+  openSupport: (options?: SupportWidgetOptions) => void;
+  openEmailList: (options: EmailListWidgetOptions) => void;
+  openLeadCapture: (options: LeadCaptureWidgetOptions) => void;
 }
 
 const OutsetaContext = createContext<OutsetaContextValue | null>(null);
@@ -37,6 +44,11 @@ function getOutseta(): OutsetaEmbed | null {
     return window.Outseta;
   }
   return null;
+}
+
+function getCurrentUrl(): string | undefined {
+  if (typeof window === "undefined") return undefined;
+  return window.location.href;
 }
 
 export function OutsetaProvider({ children }: { children: ReactNode }) {
@@ -114,24 +126,37 @@ export function OutsetaProvider({ children }: { children: ReactNode }) {
     outseta.logout();
   };
 
-  const openLogin = (options: AuthWidgetOptions = {}) => {
+  const openAuth = (options: AuthWidgetOptions = {}) => {
     outsetaRef.current?.auth.open({
       widgetMode: "login|register",
-      authenticationCallbackUrl: window.location.href,
+      mode: "popup",
+      authenticationCallbackUrl: getCurrentUrl(),
       ...options,
     });
   };
 
+  const openLogin = (options: AuthWidgetOptions = {}) => {
+    openAuth({ ...options, widgetMode: "login" });
+  };
+
   const openSignup = (options: AuthWidgetOptions = {}) => {
-    outsetaRef.current?.auth.open({
-      widgetMode: "register",
-      authenticationCallbackUrl: window.location.href,
-      ...options,
-    });
+    openAuth({ ...options, widgetMode: "register" });
   };
 
   const openProfile = (options: ProfileWidgetOptions = {}) => {
     outsetaRef.current?.profile.open({ tab: "profile", ...options });
+  };
+
+  const openSupport = (options: SupportWidgetOptions = {}) => {
+    outsetaRef.current?.support?.open({ mode: "popup", ...options });
+  };
+
+  const openEmailList = (options: EmailListWidgetOptions) => {
+    outsetaRef.current?.emailList?.open({ mode: "popup", ...options });
+  };
+
+  const openLeadCapture = (options: LeadCaptureWidgetOptions) => {
+    outsetaRef.current?.leadCapture?.open({ mode: "popup", ...options });
   };
 
   return (
@@ -140,9 +165,13 @@ export function OutsetaProvider({ children }: { children: ReactNode }) {
         user,
         isLoading: status !== "ready",
         logout,
+        openAuth,
         openLogin,
         openSignup,
         openProfile,
+        openSupport,
+        openEmailList,
+        openLeadCapture,
       }}
     >
       {children}

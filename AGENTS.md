@@ -2,7 +2,7 @@
 
 ## Project overview
 
-Nx monorepo (package-based mode) for Outseta JavaScript/TypeScript packages. The `openapi.json` at the repo root is the single source of truth — Orval generates API clients, Zod schemas, and React Query hooks from it.
+Nx monorepo (package-based mode) for Outseta JavaScript/TypeScript packages. The `openapi.json` at the repo root is the single source of truth — Orval generates API clients, Zod schemas, and React hooks from it.
 
 ## Repo structure
 

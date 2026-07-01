@@ -9,11 +9,11 @@ type RequestConfig<T = unknown> = {
 };
 
 /**
- * Orval react-query mutator.
+ * Orval mutator for the generated React hooks.
  *
  * First arg is a request config object `{ url, method, params, signal }`.
- * Second arg is a client from `createClient()` (provided via the React
- * context/provider).
+ * Second arg is a client from `createClient()` (passed through each hook's
+ * `request` option).
  */
 export const customFetch = async <T>(
   config: RequestConfig,

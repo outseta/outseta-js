@@ -30,11 +30,14 @@ export interface OutsetaUser {
   [key: string]: unknown;
 }
 
+export type OutsetaWidgetMode = "popup" | "embed";
+export type AuthWidgetMode = "login" | "register" | "login|register";
+
 export interface AuthWidgetOptions {
-  widgetMode?: "login" | "register" | "login|register";
+  widgetMode?: AuthWidgetMode;
   authenticationCallbackUrl?: string;
-  mode?: "popup" | "embed";
-  registrationDefaults?: string;
+  mode?: OutsetaWidgetMode;
+  registrationDefaults?: string | Record<string, unknown>;
   [key: string]: unknown;
 }
 
@@ -46,8 +49,25 @@ export interface ProfileWidgetOptions {
     | "purchaseAddOn"
     | "passwordChange"
     | "teamMembers";
-  mode?: "popup" | "embed";
+  mode?: OutsetaWidgetMode;
   stateProps?: Record<string, unknown>;
+  [key: string]: unknown;
+}
+
+export interface SupportWidgetOptions {
+  mode?: OutsetaWidgetMode;
+  [key: string]: unknown;
+}
+
+export interface EmailListWidgetOptions {
+  emailListUid: string;
+  mode?: OutsetaWidgetMode;
+  [key: string]: unknown;
+}
+
+export interface LeadCaptureWidgetOptions {
+  formUid: string;
+  mode?: OutsetaWidgetMode;
   [key: string]: unknown;
 }
 
@@ -62,6 +82,15 @@ export interface OutsetaEmbed {
   };
   profile: {
     open: (options?: ProfileWidgetOptions) => void;
+  };
+  support?: {
+    open: (options?: SupportWidgetOptions) => void;
+  };
+  emailList?: {
+    open: (options: EmailListWidgetOptions) => void;
+  };
+  leadCapture?: {
+    open: (options: LeadCaptureWidgetOptions) => void;
   };
 }
 

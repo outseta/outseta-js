@@ -2,7 +2,7 @@
 import {
   useMutation,
   useQuery
-} from '@tanstack/react-query';
+} from '../../query';
 import type {
   MutationFunction,
   QueryFunction,
@@ -11,7 +11,7 @@ import type {
   UseMutationResult,
   UseQueryOptions,
   UseQueryResult
-} from '@tanstack/react-query';
+} from '../../query';
 
 import type {
   Article,
