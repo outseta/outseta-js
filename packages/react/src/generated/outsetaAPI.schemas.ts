@@ -3785,6 +3785,11 @@ export type MessageAllOf = {
    * @nullable
    */
   Subject?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PreviewText?: string | null;
   /** @nullable */
   Body?: string | null;
   /** @nullable */
