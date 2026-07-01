@@ -1,5 +1,12 @@
 # @outseta/react
 
+## 0.4.0
+
+### Minor Changes
+
+- f829b86: Add unstyled widget primitives for auth, profile, support, email list, and lead capture flows, including a headless email list form and provider methods for opening these widgets from custom UI.
+- f829b86: Remove the `@tanstack/react-query` dependency. The generated `useX` hooks keep the same call signatures (`useAccountGetAllAccounts(params, { request: client })`, etc.) and result fields (`data`, `error`, `isLoading`, `refetch`, `mutate`, ...), but are now backed by a lightweight vanilla-React implementation. A `QueryClientProvider` is no longer required. Note that these hooks no longer cache, dedupe, or refetch in the background — use TanStack Query (or another data layer) directly if you need those.
+
 ## 0.3.7
 
 ### Patch Changes
