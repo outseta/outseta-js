@@ -1,5 +1,11 @@
 # @outseta/api-client
 
+## 0.3.7
+
+### Patch Changes
+
+- d75fdb4: Update API spec.
+
 ## 0.3.6
 
 ### Patch Changes
