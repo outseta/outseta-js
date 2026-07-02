@@ -4844,6 +4844,1026 @@ export interface ActivityCriteria {
   ActivityTypes?: string[] | null;
 }
 
+export interface PersonListSubscribedActivityData {
+  /** @nullable */
+  EmailListUid?: string | null;
+  /**
+   * @deprecated
+   * @nullable
+   */
+  EmaillistId?: string | null;
+}
+
+/**
+ * @nullable
+ */
+export type PersonListSubscribedWebhookPayloadMailingAddress = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine1?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine2?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine3?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  City?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  State?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PostalCode?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Country?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  GeoLocation?: string | null;
+} | null;
+
+/**
+ * @nullable
+ */
+export type PersonListSubscribedWebhookPayloadPersonAccountItemAccount = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+} | null;
+
+export type PersonListSubscribedWebhookPayloadPersonAccountItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** @nullable */
+  Account?: PersonListSubscribedWebhookPayloadPersonAccountItemAccount;
+  IsPrimary?: boolean;
+  ReceiveInvoices?: boolean;
+};
+
+export type PersonListSubscribedWebhookPayloadDealPeopleItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+};
+
+export type PersonListSubscribedWebhookPayloadLeadFormSubmissionsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** @nullable */
+  RefererURL?: string | null;
+  /** @nullable */
+  RecaptchaToken?: string | null;
+  /** @nullable */
+  RecaptchaSiteKey?: string | null;
+};
+
+/**
+ * `2` - Trialing, `3` - Subscribing, `4` - Cancelling, `5` - Expired, `6` - Trial Expired, `7` - Past Due, `8` - Cancelling Trial, `9` - Paused, `10` - Created
+ */
+export type PersonListSubscribedWebhookPayloadAccountAccountStage = typeof PersonListSubscribedWebhookPayloadAccountAccountStage[keyof typeof PersonListSubscribedWebhookPayloadAccountAccountStage];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const PersonListSubscribedWebhookPayloadAccountAccountStage = {
+  Trialing: 2,
+  Subscribing: 3,
+  Cancelling: 4,
+  Expired: 5,
+  TrialExpired: 6,
+  PastDue: 7,
+  CancellingTrial: 8,
+  Paused: 9,
+  Created: 10,
+} as const;
+
+/**
+ * @nullable
+ */
+export type PersonListSubscribedWebhookPayloadAccount = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  StripeId?: string | null;
+  IsLivemode?: boolean;
+  /**
+   * @minLength 1
+   * @maxLength 250
+   */
+  Name?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  ClientIdentifier?: string | null;
+  /**
+   * @maxLength 3
+   * @nullable
+   */
+  Currency?: string | null;
+  /** @nullable */
+  InvoiceNotes?: string | null;
+  IsDemo?: boolean;
+  /** `2` - Trialing, `3` - Subscribing, `4` - Cancelling, `5` - Expired, `6` - Trial Expired, `7` - Past Due, `8` - Cancelling Trial, `9` - Paused, `10` - Created */
+  AccountStage?: PersonListSubscribedWebhookPayloadAccountAccountStage;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  StripeDefaultPaymentMethodId?: string | null;
+  /** @nullable */
+  LastLoginDateTime?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl1?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl2?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl3?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl4?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl5?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl6?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl7?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl8?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl9?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl10?: string | null;
+  /** @nullable */
+  RewardFulReferralId?: string | null;
+  /**
+   * @maxLength 36
+   * @nullable
+   */
+  ToltReferralId?: string | null;
+  /**
+   * @maxLength 20
+   * @nullable
+   */
+  TaxStatus?: string | null;
+  /** @nullable */
+  AccountStageLabel?: string | null;
+  /** @nullable */
+  CurrentStripeProducts?: string | null;
+  /** @nullable */
+  DomainName?: string | null;
+  HasLoggedIn?: boolean;
+  LifetimeRevenue?: number;
+  /** @nullable */
+  NextStripeInvoiceDate?: string | null;
+  /** @nullable */
+  Nonce?: string | null;
+  /** @nullable */
+  RecaptchaToken?: string | null;
+  /** @nullable */
+  StripeNextInvoiceSequence?: number | null;
+  /** @nullable */
+  StripePrice?: string[] | null;
+  /** @nullable */
+  StripePromotionCode?: string | null;
+  /** @nullable */
+  TaxId?: string | null;
+  TaxIdIsInvalid?: boolean;
+  /** @nullable */
+  TaxIdType?: string | null;
+  /** @nullable */
+  WebflowSlug?: string | null;
+} | null;
+
+/**
+ * `1` - Subscribed, `2` - Unsubscribed, `3` - Cleaned, `4` - Confirmed
+ */
+export type PersonListSubscribedWebhookPayloadEmailListPersonItemEmailListSubscriberStatus = typeof PersonListSubscribedWebhookPayloadEmailListPersonItemEmailListSubscriberStatus[keyof typeof PersonListSubscribedWebhookPayloadEmailListPersonItemEmailListSubscriberStatus];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const PersonListSubscribedWebhookPayloadEmailListPersonItemEmailListSubscriberStatus = {
+  Subscribed: 1,
+  Unsubscribed: 2,
+  Cleaned: 3,
+  Confirmed: 4,
+} as const;
+
+export type PersonListSubscribedWebhookPayloadEmailListPersonItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** `1` - Subscribed, `2` - Unsubscribed, `3` - Cleaned, `4` - Confirmed */
+  EmailListSubscriberStatus?: PersonListSubscribedWebhookPayloadEmailListPersonItemEmailListSubscriberStatus;
+  SubscribedDate?: string;
+  /** @nullable */
+  ConfirmedDate?: string | null;
+  /**
+   * @maxLength 500
+   * @nullable
+   */
+  ConfirmationNotes?: string | null;
+  /** @nullable */
+  UnsubscribedDate?: string | null;
+  /** @nullable */
+  CleanedDate?: string | null;
+  /** @nullable */
+  WelcomeEmailDeliverDateTime?: string | null;
+  /** @nullable */
+  WelcomeEmailOpenDateTime?: string | null;
+  /**
+   * @maxLength 20
+   * @nullable
+   */
+  UnsubscribeReason?: string | null;
+  /** @nullable */
+  UnsubscribeReasonOther?: string | null;
+  /** @nullable */
+  RecaptchaToken?: string | null;
+  /** @nullable */
+  RecaptchaSiteKey?: string | null;
+  SendWelcomeEmail?: boolean;
+  /** @nullable */
+  Source?: string | null;
+};
+
+/**
+ * `0` - None, `1` - Gmail
+ */
+export type PersonListSubscribedWebhookPayloadOAuthIntegrationStatus = typeof PersonListSubscribedWebhookPayloadOAuthIntegrationStatus[keyof typeof PersonListSubscribedWebhookPayloadOAuthIntegrationStatus];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const PersonListSubscribedWebhookPayloadOAuthIntegrationStatus = {
+  None: 0,
+  Gmail: 1,
+} as const;
+
+/**
+ * @nullable
+ */
+export type PersonListSubscribedWebhookPayloadDiscordUser = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  DiscordUserId?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  DiscordEmail?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  DiscordUsername?: string | null;
+  /** @nullable */
+  DiscordOAuthRefreshToken?: string | null;
+} | null;
+
+export interface PersonListSubscribedWebhookPayload {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Email?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  FirstName?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  LastName?: string | null;
+  /** @nullable */
+  MailingAddress?: PersonListSubscribedWebhookPayloadMailingAddress;
+  /** @nullable */
+  PasswordLastUpdated?: string | null;
+  PasswordMustChange?: boolean;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PhoneMobile?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PhoneWork?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  ProfileImageS3Url?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Title?: string | null;
+  /**
+   * @maxLength 100
+   * @nullable
+   */
+  Timezone?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  Language?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  IPAddress?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Referer?: string | null;
+  /**
+   * @maxLength 1000
+   * @nullable
+   */
+  UserAgent?: string | null;
+  /** @nullable */
+  LastLoginDateTime?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  OAuthGoogleProfileId?: string | null;
+  /** @nullable */
+  PersonAccount?: PersonListSubscribedWebhookPayloadPersonAccountItem[] | null;
+  /** @nullable */
+  DealPeople?: PersonListSubscribedWebhookPayloadDealPeopleItem[] | null;
+  /** @nullable */
+  LeadFormSubmissions?: PersonListSubscribedWebhookPayloadLeadFormSubmissionsItem[] | null;
+  /** @nullable */
+  Account?: PersonListSubscribedWebhookPayloadAccount;
+  /** @nullable */
+  AccountUids?: string | null;
+  /** @nullable */
+  EmailListPerson?: PersonListSubscribedWebhookPayloadEmailListPersonItem[] | null;
+  /** @nullable */
+  FullName?: string | null;
+  HasLoggedIn?: boolean;
+  /** `0` - None, `1` - Gmail */
+  OAuthIntegrationStatus?: PersonListSubscribedWebhookPayloadOAuthIntegrationStatus;
+  OptInToEmailList?: boolean;
+  /** @nullable */
+  Password?: string | null;
+  /** @nullable */
+  UserAgentPlatformBrowser?: string | null;
+  HasUnsubscribed?: boolean;
+  /** @nullable */
+  DiscordUser?: PersonListSubscribedWebhookPayloadDiscordUser;
+  IsConnectedToDiscord?: boolean;
+  ActivityEventData?: PersonListSubscribedActivityData;
+}
+
+export interface PersonListUnsubscribedActivityData {
+  /** @nullable */
+  EmailListUid?: string | null;
+  /** @nullable */
+  PersonUid?: string | null;
+  /**
+   * @deprecated
+   * @nullable
+   */
+  EmaillistId?: string | null;
+}
+
+/**
+ * @nullable
+ */
+export type PersonListUnsubscribedWebhookPayloadMailingAddress = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine1?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine2?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine3?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  City?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  State?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PostalCode?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Country?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  GeoLocation?: string | null;
+} | null;
+
+/**
+ * @nullable
+ */
+export type PersonListUnsubscribedWebhookPayloadPersonAccountItemAccount = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+} | null;
+
+export type PersonListUnsubscribedWebhookPayloadPersonAccountItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** @nullable */
+  Account?: PersonListUnsubscribedWebhookPayloadPersonAccountItemAccount;
+  IsPrimary?: boolean;
+  ReceiveInvoices?: boolean;
+};
+
+export type PersonListUnsubscribedWebhookPayloadDealPeopleItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+};
+
+export type PersonListUnsubscribedWebhookPayloadLeadFormSubmissionsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** @nullable */
+  RefererURL?: string | null;
+  /** @nullable */
+  RecaptchaToken?: string | null;
+  /** @nullable */
+  RecaptchaSiteKey?: string | null;
+};
+
+/**
+ * `2` - Trialing, `3` - Subscribing, `4` - Cancelling, `5` - Expired, `6` - Trial Expired, `7` - Past Due, `8` - Cancelling Trial, `9` - Paused, `10` - Created
+ */
+export type PersonListUnsubscribedWebhookPayloadAccountAccountStage = typeof PersonListUnsubscribedWebhookPayloadAccountAccountStage[keyof typeof PersonListUnsubscribedWebhookPayloadAccountAccountStage];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const PersonListUnsubscribedWebhookPayloadAccountAccountStage = {
+  Trialing: 2,
+  Subscribing: 3,
+  Cancelling: 4,
+  Expired: 5,
+  TrialExpired: 6,
+  PastDue: 7,
+  CancellingTrial: 8,
+  Paused: 9,
+  Created: 10,
+} as const;
+
+/**
+ * @nullable
+ */
+export type PersonListUnsubscribedWebhookPayloadAccount = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  StripeId?: string | null;
+  IsLivemode?: boolean;
+  /**
+   * @minLength 1
+   * @maxLength 250
+   */
+  Name?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  ClientIdentifier?: string | null;
+  /**
+   * @maxLength 3
+   * @nullable
+   */
+  Currency?: string | null;
+  /** @nullable */
+  InvoiceNotes?: string | null;
+  IsDemo?: boolean;
+  /** `2` - Trialing, `3` - Subscribing, `4` - Cancelling, `5` - Expired, `6` - Trial Expired, `7` - Past Due, `8` - Cancelling Trial, `9` - Paused, `10` - Created */
+  AccountStage?: PersonListUnsubscribedWebhookPayloadAccountAccountStage;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  StripeDefaultPaymentMethodId?: string | null;
+  /** @nullable */
+  LastLoginDateTime?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl1?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl2?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl3?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl4?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl5?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl6?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl7?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl8?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl9?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl10?: string | null;
+  /** @nullable */
+  RewardFulReferralId?: string | null;
+  /**
+   * @maxLength 36
+   * @nullable
+   */
+  ToltReferralId?: string | null;
+  /**
+   * @maxLength 20
+   * @nullable
+   */
+  TaxStatus?: string | null;
+  /** @nullable */
+  AccountStageLabel?: string | null;
+  /** @nullable */
+  CurrentStripeProducts?: string | null;
+  /** @nullable */
+  DomainName?: string | null;
+  HasLoggedIn?: boolean;
+  LifetimeRevenue?: number;
+  /** @nullable */
+  NextStripeInvoiceDate?: string | null;
+  /** @nullable */
+  Nonce?: string | null;
+  /** @nullable */
+  RecaptchaToken?: string | null;
+  /** @nullable */
+  StripeNextInvoiceSequence?: number | null;
+  /** @nullable */
+  StripePrice?: string[] | null;
+  /** @nullable */
+  StripePromotionCode?: string | null;
+  /** @nullable */
+  TaxId?: string | null;
+  TaxIdIsInvalid?: boolean;
+  /** @nullable */
+  TaxIdType?: string | null;
+  /** @nullable */
+  WebflowSlug?: string | null;
+} | null;
+
+/**
+ * `1` - Subscribed, `2` - Unsubscribed, `3` - Cleaned, `4` - Confirmed
+ */
+export type PersonListUnsubscribedWebhookPayloadEmailListPersonItemEmailListSubscriberStatus = typeof PersonListUnsubscribedWebhookPayloadEmailListPersonItemEmailListSubscriberStatus[keyof typeof PersonListUnsubscribedWebhookPayloadEmailListPersonItemEmailListSubscriberStatus];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const PersonListUnsubscribedWebhookPayloadEmailListPersonItemEmailListSubscriberStatus = {
+  Subscribed: 1,
+  Unsubscribed: 2,
+  Cleaned: 3,
+  Confirmed: 4,
+} as const;
+
+export type PersonListUnsubscribedWebhookPayloadEmailListPersonItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** `1` - Subscribed, `2` - Unsubscribed, `3` - Cleaned, `4` - Confirmed */
+  EmailListSubscriberStatus?: PersonListUnsubscribedWebhookPayloadEmailListPersonItemEmailListSubscriberStatus;
+  SubscribedDate?: string;
+  /** @nullable */
+  ConfirmedDate?: string | null;
+  /**
+   * @maxLength 500
+   * @nullable
+   */
+  ConfirmationNotes?: string | null;
+  /** @nullable */
+  UnsubscribedDate?: string | null;
+  /** @nullable */
+  CleanedDate?: string | null;
+  /** @nullable */
+  WelcomeEmailDeliverDateTime?: string | null;
+  /** @nullable */
+  WelcomeEmailOpenDateTime?: string | null;
+  /**
+   * @maxLength 20
+   * @nullable
+   */
+  UnsubscribeReason?: string | null;
+  /** @nullable */
+  UnsubscribeReasonOther?: string | null;
+  /** @nullable */
+  RecaptchaToken?: string | null;
+  /** @nullable */
+  RecaptchaSiteKey?: string | null;
+  SendWelcomeEmail?: boolean;
+  /** @nullable */
+  Source?: string | null;
+};
+
+/**
+ * `0` - None, `1` - Gmail
+ */
+export type PersonListUnsubscribedWebhookPayloadOAuthIntegrationStatus = typeof PersonListUnsubscribedWebhookPayloadOAuthIntegrationStatus[keyof typeof PersonListUnsubscribedWebhookPayloadOAuthIntegrationStatus];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const PersonListUnsubscribedWebhookPayloadOAuthIntegrationStatus = {
+  None: 0,
+  Gmail: 1,
+} as const;
+
+/**
+ * @nullable
+ */
+export type PersonListUnsubscribedWebhookPayloadDiscordUser = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  DiscordUserId?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  DiscordEmail?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  DiscordUsername?: string | null;
+  /** @nullable */
+  DiscordOAuthRefreshToken?: string | null;
+} | null;
+
+export interface PersonListUnsubscribedWebhookPayload {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Email?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  FirstName?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  LastName?: string | null;
+  /** @nullable */
+  MailingAddress?: PersonListUnsubscribedWebhookPayloadMailingAddress;
+  /** @nullable */
+  PasswordLastUpdated?: string | null;
+  PasswordMustChange?: boolean;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PhoneMobile?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PhoneWork?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  ProfileImageS3Url?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Title?: string | null;
+  /**
+   * @maxLength 100
+   * @nullable
+   */
+  Timezone?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  Language?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  IPAddress?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Referer?: string | null;
+  /**
+   * @maxLength 1000
+   * @nullable
+   */
+  UserAgent?: string | null;
+  /** @nullable */
+  LastLoginDateTime?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  OAuthGoogleProfileId?: string | null;
+  /** @nullable */
+  PersonAccount?: PersonListUnsubscribedWebhookPayloadPersonAccountItem[] | null;
+  /** @nullable */
+  DealPeople?: PersonListUnsubscribedWebhookPayloadDealPeopleItem[] | null;
+  /** @nullable */
+  LeadFormSubmissions?: PersonListUnsubscribedWebhookPayloadLeadFormSubmissionsItem[] | null;
+  /** @nullable */
+  Account?: PersonListUnsubscribedWebhookPayloadAccount;
+  /** @nullable */
+  AccountUids?: string | null;
+  /** @nullable */
+  EmailListPerson?: PersonListUnsubscribedWebhookPayloadEmailListPersonItem[] | null;
+  /** @nullable */
+  FullName?: string | null;
+  HasLoggedIn?: boolean;
+  /** `0` - None, `1` - Gmail */
+  OAuthIntegrationStatus?: PersonListUnsubscribedWebhookPayloadOAuthIntegrationStatus;
+  OptInToEmailList?: boolean;
+  /** @nullable */
+  Password?: string | null;
+  /** @nullable */
+  UserAgentPlatformBrowser?: string | null;
+  HasUnsubscribed?: boolean;
+  /** @nullable */
+  DiscordUser?: PersonListUnsubscribedWebhookPayloadDiscordUser;
+  IsConnectedToDiscord?: boolean;
+  ActivityEventData?: PersonListUnsubscribedActivityData;
+}
+
 export interface PersonSegmentAddedActivityData {
   /** @nullable */
   SegmentUid?: string | null;
@@ -5860,6 +6880,4075 @@ export interface PersonSegmentRemovedWebhookPayload {
   DiscordUser?: PersonSegmentRemovedWebhookPayloadDiscordUser;
   IsConnectedToDiscord?: boolean;
   ActivityEventData?: PersonSegmentRemovedActivityData;
+}
+
+export interface PersonSupportTicketCreatedActivityData {
+  /** @nullable */
+  CaseUid?: string | null;
+}
+
+/**
+ * @nullable
+ */
+export type PersonSupportTicketCreatedWebhookPayloadMailingAddress = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine1?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine2?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine3?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  City?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  State?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PostalCode?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Country?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  GeoLocation?: string | null;
+} | null;
+
+/**
+ * @nullable
+ */
+export type PersonSupportTicketCreatedWebhookPayloadPersonAccountItemAccount = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+} | null;
+
+export type PersonSupportTicketCreatedWebhookPayloadPersonAccountItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** @nullable */
+  Account?: PersonSupportTicketCreatedWebhookPayloadPersonAccountItemAccount;
+  IsPrimary?: boolean;
+  ReceiveInvoices?: boolean;
+};
+
+export type PersonSupportTicketCreatedWebhookPayloadDealPeopleItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+};
+
+export type PersonSupportTicketCreatedWebhookPayloadLeadFormSubmissionsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** @nullable */
+  RefererURL?: string | null;
+  /** @nullable */
+  RecaptchaToken?: string | null;
+  /** @nullable */
+  RecaptchaSiteKey?: string | null;
+};
+
+/**
+ * `2` - Trialing, `3` - Subscribing, `4` - Cancelling, `5` - Expired, `6` - Trial Expired, `7` - Past Due, `8` - Cancelling Trial, `9` - Paused, `10` - Created
+ */
+export type PersonSupportTicketCreatedWebhookPayloadAccountAccountStage = typeof PersonSupportTicketCreatedWebhookPayloadAccountAccountStage[keyof typeof PersonSupportTicketCreatedWebhookPayloadAccountAccountStage];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const PersonSupportTicketCreatedWebhookPayloadAccountAccountStage = {
+  Trialing: 2,
+  Subscribing: 3,
+  Cancelling: 4,
+  Expired: 5,
+  TrialExpired: 6,
+  PastDue: 7,
+  CancellingTrial: 8,
+  Paused: 9,
+  Created: 10,
+} as const;
+
+/**
+ * @nullable
+ */
+export type PersonSupportTicketCreatedWebhookPayloadAccount = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  StripeId?: string | null;
+  IsLivemode?: boolean;
+  /**
+   * @minLength 1
+   * @maxLength 250
+   */
+  Name?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  ClientIdentifier?: string | null;
+  /**
+   * @maxLength 3
+   * @nullable
+   */
+  Currency?: string | null;
+  /** @nullable */
+  InvoiceNotes?: string | null;
+  IsDemo?: boolean;
+  /** `2` - Trialing, `3` - Subscribing, `4` - Cancelling, `5` - Expired, `6` - Trial Expired, `7` - Past Due, `8` - Cancelling Trial, `9` - Paused, `10` - Created */
+  AccountStage?: PersonSupportTicketCreatedWebhookPayloadAccountAccountStage;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  StripeDefaultPaymentMethodId?: string | null;
+  /** @nullable */
+  LastLoginDateTime?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl1?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl2?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl3?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl4?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl5?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl6?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl7?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl8?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl9?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl10?: string | null;
+  /** @nullable */
+  RewardFulReferralId?: string | null;
+  /**
+   * @maxLength 36
+   * @nullable
+   */
+  ToltReferralId?: string | null;
+  /**
+   * @maxLength 20
+   * @nullable
+   */
+  TaxStatus?: string | null;
+  /** @nullable */
+  AccountStageLabel?: string | null;
+  /** @nullable */
+  CurrentStripeProducts?: string | null;
+  /** @nullable */
+  DomainName?: string | null;
+  HasLoggedIn?: boolean;
+  LifetimeRevenue?: number;
+  /** @nullable */
+  NextStripeInvoiceDate?: string | null;
+  /** @nullable */
+  Nonce?: string | null;
+  /** @nullable */
+  RecaptchaToken?: string | null;
+  /** @nullable */
+  StripeNextInvoiceSequence?: number | null;
+  /** @nullable */
+  StripePrice?: string[] | null;
+  /** @nullable */
+  StripePromotionCode?: string | null;
+  /** @nullable */
+  TaxId?: string | null;
+  TaxIdIsInvalid?: boolean;
+  /** @nullable */
+  TaxIdType?: string | null;
+  /** @nullable */
+  WebflowSlug?: string | null;
+} | null;
+
+/**
+ * `1` - Subscribed, `2` - Unsubscribed, `3` - Cleaned, `4` - Confirmed
+ */
+export type PersonSupportTicketCreatedWebhookPayloadEmailListPersonItemEmailListSubscriberStatus = typeof PersonSupportTicketCreatedWebhookPayloadEmailListPersonItemEmailListSubscriberStatus[keyof typeof PersonSupportTicketCreatedWebhookPayloadEmailListPersonItemEmailListSubscriberStatus];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const PersonSupportTicketCreatedWebhookPayloadEmailListPersonItemEmailListSubscriberStatus = {
+  Subscribed: 1,
+  Unsubscribed: 2,
+  Cleaned: 3,
+  Confirmed: 4,
+} as const;
+
+export type PersonSupportTicketCreatedWebhookPayloadEmailListPersonItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** `1` - Subscribed, `2` - Unsubscribed, `3` - Cleaned, `4` - Confirmed */
+  EmailListSubscriberStatus?: PersonSupportTicketCreatedWebhookPayloadEmailListPersonItemEmailListSubscriberStatus;
+  SubscribedDate?: string;
+  /** @nullable */
+  ConfirmedDate?: string | null;
+  /**
+   * @maxLength 500
+   * @nullable
+   */
+  ConfirmationNotes?: string | null;
+  /** @nullable */
+  UnsubscribedDate?: string | null;
+  /** @nullable */
+  CleanedDate?: string | null;
+  /** @nullable */
+  WelcomeEmailDeliverDateTime?: string | null;
+  /** @nullable */
+  WelcomeEmailOpenDateTime?: string | null;
+  /**
+   * @maxLength 20
+   * @nullable
+   */
+  UnsubscribeReason?: string | null;
+  /** @nullable */
+  UnsubscribeReasonOther?: string | null;
+  /** @nullable */
+  RecaptchaToken?: string | null;
+  /** @nullable */
+  RecaptchaSiteKey?: string | null;
+  SendWelcomeEmail?: boolean;
+  /** @nullable */
+  Source?: string | null;
+};
+
+/**
+ * `0` - None, `1` - Gmail
+ */
+export type PersonSupportTicketCreatedWebhookPayloadOAuthIntegrationStatus = typeof PersonSupportTicketCreatedWebhookPayloadOAuthIntegrationStatus[keyof typeof PersonSupportTicketCreatedWebhookPayloadOAuthIntegrationStatus];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const PersonSupportTicketCreatedWebhookPayloadOAuthIntegrationStatus = {
+  None: 0,
+  Gmail: 1,
+} as const;
+
+/**
+ * @nullable
+ */
+export type PersonSupportTicketCreatedWebhookPayloadDiscordUser = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  DiscordUserId?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  DiscordEmail?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  DiscordUsername?: string | null;
+  /** @nullable */
+  DiscordOAuthRefreshToken?: string | null;
+} | null;
+
+export interface PersonSupportTicketCreatedWebhookPayload {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Email?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  FirstName?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  LastName?: string | null;
+  /** @nullable */
+  MailingAddress?: PersonSupportTicketCreatedWebhookPayloadMailingAddress;
+  /** @nullable */
+  PasswordLastUpdated?: string | null;
+  PasswordMustChange?: boolean;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PhoneMobile?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PhoneWork?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  ProfileImageS3Url?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Title?: string | null;
+  /**
+   * @maxLength 100
+   * @nullable
+   */
+  Timezone?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  Language?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  IPAddress?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Referer?: string | null;
+  /**
+   * @maxLength 1000
+   * @nullable
+   */
+  UserAgent?: string | null;
+  /** @nullable */
+  LastLoginDateTime?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  OAuthGoogleProfileId?: string | null;
+  /** @nullable */
+  PersonAccount?: PersonSupportTicketCreatedWebhookPayloadPersonAccountItem[] | null;
+  /** @nullable */
+  DealPeople?: PersonSupportTicketCreatedWebhookPayloadDealPeopleItem[] | null;
+  /** @nullable */
+  LeadFormSubmissions?: PersonSupportTicketCreatedWebhookPayloadLeadFormSubmissionsItem[] | null;
+  /** @nullable */
+  Account?: PersonSupportTicketCreatedWebhookPayloadAccount;
+  /** @nullable */
+  AccountUids?: string | null;
+  /** @nullable */
+  EmailListPerson?: PersonSupportTicketCreatedWebhookPayloadEmailListPersonItem[] | null;
+  /** @nullable */
+  FullName?: string | null;
+  HasLoggedIn?: boolean;
+  /** `0` - None, `1` - Gmail */
+  OAuthIntegrationStatus?: PersonSupportTicketCreatedWebhookPayloadOAuthIntegrationStatus;
+  OptInToEmailList?: boolean;
+  /** @nullable */
+  Password?: string | null;
+  /** @nullable */
+  UserAgentPlatformBrowser?: string | null;
+  HasUnsubscribed?: boolean;
+  /** @nullable */
+  DiscordUser?: PersonSupportTicketCreatedWebhookPayloadDiscordUser;
+  IsConnectedToDiscord?: boolean;
+  ActivityEventData?: PersonSupportTicketCreatedActivityData;
+}
+
+export interface PersonSupportTicketUpdatedActivityData {
+  /** @nullable */
+  CaseUid?: string | null;
+}
+
+/**
+ * @nullable
+ */
+export type PersonSupportTicketUpdatedWebhookPayloadMailingAddress = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine1?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine2?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine3?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  City?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  State?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PostalCode?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Country?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  GeoLocation?: string | null;
+} | null;
+
+/**
+ * @nullable
+ */
+export type PersonSupportTicketUpdatedWebhookPayloadPersonAccountItemAccount = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+} | null;
+
+export type PersonSupportTicketUpdatedWebhookPayloadPersonAccountItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** @nullable */
+  Account?: PersonSupportTicketUpdatedWebhookPayloadPersonAccountItemAccount;
+  IsPrimary?: boolean;
+  ReceiveInvoices?: boolean;
+};
+
+export type PersonSupportTicketUpdatedWebhookPayloadDealPeopleItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+};
+
+export type PersonSupportTicketUpdatedWebhookPayloadLeadFormSubmissionsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** @nullable */
+  RefererURL?: string | null;
+  /** @nullable */
+  RecaptchaToken?: string | null;
+  /** @nullable */
+  RecaptchaSiteKey?: string | null;
+};
+
+/**
+ * `2` - Trialing, `3` - Subscribing, `4` - Cancelling, `5` - Expired, `6` - Trial Expired, `7` - Past Due, `8` - Cancelling Trial, `9` - Paused, `10` - Created
+ */
+export type PersonSupportTicketUpdatedWebhookPayloadAccountAccountStage = typeof PersonSupportTicketUpdatedWebhookPayloadAccountAccountStage[keyof typeof PersonSupportTicketUpdatedWebhookPayloadAccountAccountStage];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const PersonSupportTicketUpdatedWebhookPayloadAccountAccountStage = {
+  Trialing: 2,
+  Subscribing: 3,
+  Cancelling: 4,
+  Expired: 5,
+  TrialExpired: 6,
+  PastDue: 7,
+  CancellingTrial: 8,
+  Paused: 9,
+  Created: 10,
+} as const;
+
+/**
+ * @nullable
+ */
+export type PersonSupportTicketUpdatedWebhookPayloadAccount = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  StripeId?: string | null;
+  IsLivemode?: boolean;
+  /**
+   * @minLength 1
+   * @maxLength 250
+   */
+  Name?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  ClientIdentifier?: string | null;
+  /**
+   * @maxLength 3
+   * @nullable
+   */
+  Currency?: string | null;
+  /** @nullable */
+  InvoiceNotes?: string | null;
+  IsDemo?: boolean;
+  /** `2` - Trialing, `3` - Subscribing, `4` - Cancelling, `5` - Expired, `6` - Trial Expired, `7` - Past Due, `8` - Cancelling Trial, `9` - Paused, `10` - Created */
+  AccountStage?: PersonSupportTicketUpdatedWebhookPayloadAccountAccountStage;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  StripeDefaultPaymentMethodId?: string | null;
+  /** @nullable */
+  LastLoginDateTime?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl1?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl2?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl3?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl4?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl5?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl6?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl7?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl8?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl9?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl10?: string | null;
+  /** @nullable */
+  RewardFulReferralId?: string | null;
+  /**
+   * @maxLength 36
+   * @nullable
+   */
+  ToltReferralId?: string | null;
+  /**
+   * @maxLength 20
+   * @nullable
+   */
+  TaxStatus?: string | null;
+  /** @nullable */
+  AccountStageLabel?: string | null;
+  /** @nullable */
+  CurrentStripeProducts?: string | null;
+  /** @nullable */
+  DomainName?: string | null;
+  HasLoggedIn?: boolean;
+  LifetimeRevenue?: number;
+  /** @nullable */
+  NextStripeInvoiceDate?: string | null;
+  /** @nullable */
+  Nonce?: string | null;
+  /** @nullable */
+  RecaptchaToken?: string | null;
+  /** @nullable */
+  StripeNextInvoiceSequence?: number | null;
+  /** @nullable */
+  StripePrice?: string[] | null;
+  /** @nullable */
+  StripePromotionCode?: string | null;
+  /** @nullable */
+  TaxId?: string | null;
+  TaxIdIsInvalid?: boolean;
+  /** @nullable */
+  TaxIdType?: string | null;
+  /** @nullable */
+  WebflowSlug?: string | null;
+} | null;
+
+/**
+ * `1` - Subscribed, `2` - Unsubscribed, `3` - Cleaned, `4` - Confirmed
+ */
+export type PersonSupportTicketUpdatedWebhookPayloadEmailListPersonItemEmailListSubscriberStatus = typeof PersonSupportTicketUpdatedWebhookPayloadEmailListPersonItemEmailListSubscriberStatus[keyof typeof PersonSupportTicketUpdatedWebhookPayloadEmailListPersonItemEmailListSubscriberStatus];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const PersonSupportTicketUpdatedWebhookPayloadEmailListPersonItemEmailListSubscriberStatus = {
+  Subscribed: 1,
+  Unsubscribed: 2,
+  Cleaned: 3,
+  Confirmed: 4,
+} as const;
+
+export type PersonSupportTicketUpdatedWebhookPayloadEmailListPersonItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** `1` - Subscribed, `2` - Unsubscribed, `3` - Cleaned, `4` - Confirmed */
+  EmailListSubscriberStatus?: PersonSupportTicketUpdatedWebhookPayloadEmailListPersonItemEmailListSubscriberStatus;
+  SubscribedDate?: string;
+  /** @nullable */
+  ConfirmedDate?: string | null;
+  /**
+   * @maxLength 500
+   * @nullable
+   */
+  ConfirmationNotes?: string | null;
+  /** @nullable */
+  UnsubscribedDate?: string | null;
+  /** @nullable */
+  CleanedDate?: string | null;
+  /** @nullable */
+  WelcomeEmailDeliverDateTime?: string | null;
+  /** @nullable */
+  WelcomeEmailOpenDateTime?: string | null;
+  /**
+   * @maxLength 20
+   * @nullable
+   */
+  UnsubscribeReason?: string | null;
+  /** @nullable */
+  UnsubscribeReasonOther?: string | null;
+  /** @nullable */
+  RecaptchaToken?: string | null;
+  /** @nullable */
+  RecaptchaSiteKey?: string | null;
+  SendWelcomeEmail?: boolean;
+  /** @nullable */
+  Source?: string | null;
+};
+
+/**
+ * `0` - None, `1` - Gmail
+ */
+export type PersonSupportTicketUpdatedWebhookPayloadOAuthIntegrationStatus = typeof PersonSupportTicketUpdatedWebhookPayloadOAuthIntegrationStatus[keyof typeof PersonSupportTicketUpdatedWebhookPayloadOAuthIntegrationStatus];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const PersonSupportTicketUpdatedWebhookPayloadOAuthIntegrationStatus = {
+  None: 0,
+  Gmail: 1,
+} as const;
+
+/**
+ * @nullable
+ */
+export type PersonSupportTicketUpdatedWebhookPayloadDiscordUser = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  DiscordUserId?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  DiscordEmail?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  DiscordUsername?: string | null;
+  /** @nullable */
+  DiscordOAuthRefreshToken?: string | null;
+} | null;
+
+export interface PersonSupportTicketUpdatedWebhookPayload {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Email?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  FirstName?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  LastName?: string | null;
+  /** @nullable */
+  MailingAddress?: PersonSupportTicketUpdatedWebhookPayloadMailingAddress;
+  /** @nullable */
+  PasswordLastUpdated?: string | null;
+  PasswordMustChange?: boolean;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PhoneMobile?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PhoneWork?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  ProfileImageS3Url?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Title?: string | null;
+  /**
+   * @maxLength 100
+   * @nullable
+   */
+  Timezone?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  Language?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  IPAddress?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Referer?: string | null;
+  /**
+   * @maxLength 1000
+   * @nullable
+   */
+  UserAgent?: string | null;
+  /** @nullable */
+  LastLoginDateTime?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  OAuthGoogleProfileId?: string | null;
+  /** @nullable */
+  PersonAccount?: PersonSupportTicketUpdatedWebhookPayloadPersonAccountItem[] | null;
+  /** @nullable */
+  DealPeople?: PersonSupportTicketUpdatedWebhookPayloadDealPeopleItem[] | null;
+  /** @nullable */
+  LeadFormSubmissions?: PersonSupportTicketUpdatedWebhookPayloadLeadFormSubmissionsItem[] | null;
+  /** @nullable */
+  Account?: PersonSupportTicketUpdatedWebhookPayloadAccount;
+  /** @nullable */
+  AccountUids?: string | null;
+  /** @nullable */
+  EmailListPerson?: PersonSupportTicketUpdatedWebhookPayloadEmailListPersonItem[] | null;
+  /** @nullable */
+  FullName?: string | null;
+  HasLoggedIn?: boolean;
+  /** `0` - None, `1` - Gmail */
+  OAuthIntegrationStatus?: PersonSupportTicketUpdatedWebhookPayloadOAuthIntegrationStatus;
+  OptInToEmailList?: boolean;
+  /** @nullable */
+  Password?: string | null;
+  /** @nullable */
+  UserAgentPlatformBrowser?: string | null;
+  HasUnsubscribed?: boolean;
+  /** @nullable */
+  DiscordUser?: PersonSupportTicketUpdatedWebhookPayloadDiscordUser;
+  IsConnectedToDiscord?: boolean;
+  ActivityEventData?: PersonSupportTicketUpdatedActivityData;
+}
+
+export interface PersonLeadFormSubmittedActivityData {
+  /** @nullable */
+  LeadFormUid?: string | null;
+  /** @nullable */
+  RefererUrl?: string | null;
+}
+
+/**
+ * @nullable
+ */
+export type PersonLeadFormSubmittedWebhookPayloadMailingAddress = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine1?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine2?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine3?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  City?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  State?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PostalCode?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Country?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  GeoLocation?: string | null;
+} | null;
+
+/**
+ * @nullable
+ */
+export type PersonLeadFormSubmittedWebhookPayloadPersonAccountItemAccount = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+} | null;
+
+export type PersonLeadFormSubmittedWebhookPayloadPersonAccountItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** @nullable */
+  Account?: PersonLeadFormSubmittedWebhookPayloadPersonAccountItemAccount;
+  IsPrimary?: boolean;
+  ReceiveInvoices?: boolean;
+};
+
+export type PersonLeadFormSubmittedWebhookPayloadDealPeopleItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+};
+
+export type PersonLeadFormSubmittedWebhookPayloadLeadFormSubmissionsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** @nullable */
+  RefererURL?: string | null;
+  /** @nullable */
+  RecaptchaToken?: string | null;
+  /** @nullable */
+  RecaptchaSiteKey?: string | null;
+};
+
+/**
+ * `2` - Trialing, `3` - Subscribing, `4` - Cancelling, `5` - Expired, `6` - Trial Expired, `7` - Past Due, `8` - Cancelling Trial, `9` - Paused, `10` - Created
+ */
+export type PersonLeadFormSubmittedWebhookPayloadAccountAccountStage = typeof PersonLeadFormSubmittedWebhookPayloadAccountAccountStage[keyof typeof PersonLeadFormSubmittedWebhookPayloadAccountAccountStage];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const PersonLeadFormSubmittedWebhookPayloadAccountAccountStage = {
+  Trialing: 2,
+  Subscribing: 3,
+  Cancelling: 4,
+  Expired: 5,
+  TrialExpired: 6,
+  PastDue: 7,
+  CancellingTrial: 8,
+  Paused: 9,
+  Created: 10,
+} as const;
+
+/**
+ * @nullable
+ */
+export type PersonLeadFormSubmittedWebhookPayloadAccount = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  StripeId?: string | null;
+  IsLivemode?: boolean;
+  /**
+   * @minLength 1
+   * @maxLength 250
+   */
+  Name?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  ClientIdentifier?: string | null;
+  /**
+   * @maxLength 3
+   * @nullable
+   */
+  Currency?: string | null;
+  /** @nullable */
+  InvoiceNotes?: string | null;
+  IsDemo?: boolean;
+  /** `2` - Trialing, `3` - Subscribing, `4` - Cancelling, `5` - Expired, `6` - Trial Expired, `7` - Past Due, `8` - Cancelling Trial, `9` - Paused, `10` - Created */
+  AccountStage?: PersonLeadFormSubmittedWebhookPayloadAccountAccountStage;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  StripeDefaultPaymentMethodId?: string | null;
+  /** @nullable */
+  LastLoginDateTime?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl1?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl2?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl3?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl4?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl5?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl6?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl7?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl8?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl9?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl10?: string | null;
+  /** @nullable */
+  RewardFulReferralId?: string | null;
+  /**
+   * @maxLength 36
+   * @nullable
+   */
+  ToltReferralId?: string | null;
+  /**
+   * @maxLength 20
+   * @nullable
+   */
+  TaxStatus?: string | null;
+  /** @nullable */
+  AccountStageLabel?: string | null;
+  /** @nullable */
+  CurrentStripeProducts?: string | null;
+  /** @nullable */
+  DomainName?: string | null;
+  HasLoggedIn?: boolean;
+  LifetimeRevenue?: number;
+  /** @nullable */
+  NextStripeInvoiceDate?: string | null;
+  /** @nullable */
+  Nonce?: string | null;
+  /** @nullable */
+  RecaptchaToken?: string | null;
+  /** @nullable */
+  StripeNextInvoiceSequence?: number | null;
+  /** @nullable */
+  StripePrice?: string[] | null;
+  /** @nullable */
+  StripePromotionCode?: string | null;
+  /** @nullable */
+  TaxId?: string | null;
+  TaxIdIsInvalid?: boolean;
+  /** @nullable */
+  TaxIdType?: string | null;
+  /** @nullable */
+  WebflowSlug?: string | null;
+} | null;
+
+/**
+ * `1` - Subscribed, `2` - Unsubscribed, `3` - Cleaned, `4` - Confirmed
+ */
+export type PersonLeadFormSubmittedWebhookPayloadEmailListPersonItemEmailListSubscriberStatus = typeof PersonLeadFormSubmittedWebhookPayloadEmailListPersonItemEmailListSubscriberStatus[keyof typeof PersonLeadFormSubmittedWebhookPayloadEmailListPersonItemEmailListSubscriberStatus];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const PersonLeadFormSubmittedWebhookPayloadEmailListPersonItemEmailListSubscriberStatus = {
+  Subscribed: 1,
+  Unsubscribed: 2,
+  Cleaned: 3,
+  Confirmed: 4,
+} as const;
+
+export type PersonLeadFormSubmittedWebhookPayloadEmailListPersonItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** `1` - Subscribed, `2` - Unsubscribed, `3` - Cleaned, `4` - Confirmed */
+  EmailListSubscriberStatus?: PersonLeadFormSubmittedWebhookPayloadEmailListPersonItemEmailListSubscriberStatus;
+  SubscribedDate?: string;
+  /** @nullable */
+  ConfirmedDate?: string | null;
+  /**
+   * @maxLength 500
+   * @nullable
+   */
+  ConfirmationNotes?: string | null;
+  /** @nullable */
+  UnsubscribedDate?: string | null;
+  /** @nullable */
+  CleanedDate?: string | null;
+  /** @nullable */
+  WelcomeEmailDeliverDateTime?: string | null;
+  /** @nullable */
+  WelcomeEmailOpenDateTime?: string | null;
+  /**
+   * @maxLength 20
+   * @nullable
+   */
+  UnsubscribeReason?: string | null;
+  /** @nullable */
+  UnsubscribeReasonOther?: string | null;
+  /** @nullable */
+  RecaptchaToken?: string | null;
+  /** @nullable */
+  RecaptchaSiteKey?: string | null;
+  SendWelcomeEmail?: boolean;
+  /** @nullable */
+  Source?: string | null;
+};
+
+/**
+ * `0` - None, `1` - Gmail
+ */
+export type PersonLeadFormSubmittedWebhookPayloadOAuthIntegrationStatus = typeof PersonLeadFormSubmittedWebhookPayloadOAuthIntegrationStatus[keyof typeof PersonLeadFormSubmittedWebhookPayloadOAuthIntegrationStatus];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const PersonLeadFormSubmittedWebhookPayloadOAuthIntegrationStatus = {
+  None: 0,
+  Gmail: 1,
+} as const;
+
+/**
+ * @nullable
+ */
+export type PersonLeadFormSubmittedWebhookPayloadDiscordUser = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  DiscordUserId?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  DiscordEmail?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  DiscordUsername?: string | null;
+  /** @nullable */
+  DiscordOAuthRefreshToken?: string | null;
+} | null;
+
+export interface PersonLeadFormSubmittedWebhookPayload {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Email?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  FirstName?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  LastName?: string | null;
+  /** @nullable */
+  MailingAddress?: PersonLeadFormSubmittedWebhookPayloadMailingAddress;
+  /** @nullable */
+  PasswordLastUpdated?: string | null;
+  PasswordMustChange?: boolean;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PhoneMobile?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PhoneWork?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  ProfileImageS3Url?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Title?: string | null;
+  /**
+   * @maxLength 100
+   * @nullable
+   */
+  Timezone?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  Language?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  IPAddress?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Referer?: string | null;
+  /**
+   * @maxLength 1000
+   * @nullable
+   */
+  UserAgent?: string | null;
+  /** @nullable */
+  LastLoginDateTime?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  OAuthGoogleProfileId?: string | null;
+  /** @nullable */
+  PersonAccount?: PersonLeadFormSubmittedWebhookPayloadPersonAccountItem[] | null;
+  /** @nullable */
+  DealPeople?: PersonLeadFormSubmittedWebhookPayloadDealPeopleItem[] | null;
+  /** @nullable */
+  LeadFormSubmissions?: PersonLeadFormSubmittedWebhookPayloadLeadFormSubmissionsItem[] | null;
+  /** @nullable */
+  Account?: PersonLeadFormSubmittedWebhookPayloadAccount;
+  /** @nullable */
+  AccountUids?: string | null;
+  /** @nullable */
+  EmailListPerson?: PersonLeadFormSubmittedWebhookPayloadEmailListPersonItem[] | null;
+  /** @nullable */
+  FullName?: string | null;
+  HasLoggedIn?: boolean;
+  /** `0` - None, `1` - Gmail */
+  OAuthIntegrationStatus?: PersonLeadFormSubmittedWebhookPayloadOAuthIntegrationStatus;
+  OptInToEmailList?: boolean;
+  /** @nullable */
+  Password?: string | null;
+  /** @nullable */
+  UserAgentPlatformBrowser?: string | null;
+  HasUnsubscribed?: boolean;
+  /** @nullable */
+  DiscordUser?: PersonLeadFormSubmittedWebhookPayloadDiscordUser;
+  IsConnectedToDiscord?: boolean;
+  ActivityEventData?: PersonLeadFormSubmittedActivityData;
+}
+
+export interface PersonListConfirmedActivityData {
+  /** @nullable */
+  EmailListUid?: string | null;
+  /**
+   * @deprecated
+   * @nullable
+   */
+  EmaillistId?: string | null;
+}
+
+/**
+ * @nullable
+ */
+export type PersonListConfirmedWebhookPayloadMailingAddress = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine1?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine2?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine3?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  City?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  State?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PostalCode?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Country?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  GeoLocation?: string | null;
+} | null;
+
+/**
+ * @nullable
+ */
+export type PersonListConfirmedWebhookPayloadPersonAccountItemAccount = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+} | null;
+
+export type PersonListConfirmedWebhookPayloadPersonAccountItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** @nullable */
+  Account?: PersonListConfirmedWebhookPayloadPersonAccountItemAccount;
+  IsPrimary?: boolean;
+  ReceiveInvoices?: boolean;
+};
+
+export type PersonListConfirmedWebhookPayloadDealPeopleItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+};
+
+export type PersonListConfirmedWebhookPayloadLeadFormSubmissionsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** @nullable */
+  RefererURL?: string | null;
+  /** @nullable */
+  RecaptchaToken?: string | null;
+  /** @nullable */
+  RecaptchaSiteKey?: string | null;
+};
+
+/**
+ * `2` - Trialing, `3` - Subscribing, `4` - Cancelling, `5` - Expired, `6` - Trial Expired, `7` - Past Due, `8` - Cancelling Trial, `9` - Paused, `10` - Created
+ */
+export type PersonListConfirmedWebhookPayloadAccountAccountStage = typeof PersonListConfirmedWebhookPayloadAccountAccountStage[keyof typeof PersonListConfirmedWebhookPayloadAccountAccountStage];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const PersonListConfirmedWebhookPayloadAccountAccountStage = {
+  Trialing: 2,
+  Subscribing: 3,
+  Cancelling: 4,
+  Expired: 5,
+  TrialExpired: 6,
+  PastDue: 7,
+  CancellingTrial: 8,
+  Paused: 9,
+  Created: 10,
+} as const;
+
+/**
+ * @nullable
+ */
+export type PersonListConfirmedWebhookPayloadAccount = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  StripeId?: string | null;
+  IsLivemode?: boolean;
+  /**
+   * @minLength 1
+   * @maxLength 250
+   */
+  Name?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  ClientIdentifier?: string | null;
+  /**
+   * @maxLength 3
+   * @nullable
+   */
+  Currency?: string | null;
+  /** @nullable */
+  InvoiceNotes?: string | null;
+  IsDemo?: boolean;
+  /** `2` - Trialing, `3` - Subscribing, `4` - Cancelling, `5` - Expired, `6` - Trial Expired, `7` - Past Due, `8` - Cancelling Trial, `9` - Paused, `10` - Created */
+  AccountStage?: PersonListConfirmedWebhookPayloadAccountAccountStage;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  StripeDefaultPaymentMethodId?: string | null;
+  /** @nullable */
+  LastLoginDateTime?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl1?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl2?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl3?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl4?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl5?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl6?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl7?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl8?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl9?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl10?: string | null;
+  /** @nullable */
+  RewardFulReferralId?: string | null;
+  /**
+   * @maxLength 36
+   * @nullable
+   */
+  ToltReferralId?: string | null;
+  /**
+   * @maxLength 20
+   * @nullable
+   */
+  TaxStatus?: string | null;
+  /** @nullable */
+  AccountStageLabel?: string | null;
+  /** @nullable */
+  CurrentStripeProducts?: string | null;
+  /** @nullable */
+  DomainName?: string | null;
+  HasLoggedIn?: boolean;
+  LifetimeRevenue?: number;
+  /** @nullable */
+  NextStripeInvoiceDate?: string | null;
+  /** @nullable */
+  Nonce?: string | null;
+  /** @nullable */
+  RecaptchaToken?: string | null;
+  /** @nullable */
+  StripeNextInvoiceSequence?: number | null;
+  /** @nullable */
+  StripePrice?: string[] | null;
+  /** @nullable */
+  StripePromotionCode?: string | null;
+  /** @nullable */
+  TaxId?: string | null;
+  TaxIdIsInvalid?: boolean;
+  /** @nullable */
+  TaxIdType?: string | null;
+  /** @nullable */
+  WebflowSlug?: string | null;
+} | null;
+
+/**
+ * `1` - Subscribed, `2` - Unsubscribed, `3` - Cleaned, `4` - Confirmed
+ */
+export type PersonListConfirmedWebhookPayloadEmailListPersonItemEmailListSubscriberStatus = typeof PersonListConfirmedWebhookPayloadEmailListPersonItemEmailListSubscriberStatus[keyof typeof PersonListConfirmedWebhookPayloadEmailListPersonItemEmailListSubscriberStatus];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const PersonListConfirmedWebhookPayloadEmailListPersonItemEmailListSubscriberStatus = {
+  Subscribed: 1,
+  Unsubscribed: 2,
+  Cleaned: 3,
+  Confirmed: 4,
+} as const;
+
+export type PersonListConfirmedWebhookPayloadEmailListPersonItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** `1` - Subscribed, `2` - Unsubscribed, `3` - Cleaned, `4` - Confirmed */
+  EmailListSubscriberStatus?: PersonListConfirmedWebhookPayloadEmailListPersonItemEmailListSubscriberStatus;
+  SubscribedDate?: string;
+  /** @nullable */
+  ConfirmedDate?: string | null;
+  /**
+   * @maxLength 500
+   * @nullable
+   */
+  ConfirmationNotes?: string | null;
+  /** @nullable */
+  UnsubscribedDate?: string | null;
+  /** @nullable */
+  CleanedDate?: string | null;
+  /** @nullable */
+  WelcomeEmailDeliverDateTime?: string | null;
+  /** @nullable */
+  WelcomeEmailOpenDateTime?: string | null;
+  /**
+   * @maxLength 20
+   * @nullable
+   */
+  UnsubscribeReason?: string | null;
+  /** @nullable */
+  UnsubscribeReasonOther?: string | null;
+  /** @nullable */
+  RecaptchaToken?: string | null;
+  /** @nullable */
+  RecaptchaSiteKey?: string | null;
+  SendWelcomeEmail?: boolean;
+  /** @nullable */
+  Source?: string | null;
+};
+
+/**
+ * `0` - None, `1` - Gmail
+ */
+export type PersonListConfirmedWebhookPayloadOAuthIntegrationStatus = typeof PersonListConfirmedWebhookPayloadOAuthIntegrationStatus[keyof typeof PersonListConfirmedWebhookPayloadOAuthIntegrationStatus];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const PersonListConfirmedWebhookPayloadOAuthIntegrationStatus = {
+  None: 0,
+  Gmail: 1,
+} as const;
+
+/**
+ * @nullable
+ */
+export type PersonListConfirmedWebhookPayloadDiscordUser = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  DiscordUserId?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  DiscordEmail?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  DiscordUsername?: string | null;
+  /** @nullable */
+  DiscordOAuthRefreshToken?: string | null;
+} | null;
+
+export interface PersonListConfirmedWebhookPayload {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Email?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  FirstName?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  LastName?: string | null;
+  /** @nullable */
+  MailingAddress?: PersonListConfirmedWebhookPayloadMailingAddress;
+  /** @nullable */
+  PasswordLastUpdated?: string | null;
+  PasswordMustChange?: boolean;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PhoneMobile?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PhoneWork?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  ProfileImageS3Url?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Title?: string | null;
+  /**
+   * @maxLength 100
+   * @nullable
+   */
+  Timezone?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  Language?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  IPAddress?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Referer?: string | null;
+  /**
+   * @maxLength 1000
+   * @nullable
+   */
+  UserAgent?: string | null;
+  /** @nullable */
+  LastLoginDateTime?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  OAuthGoogleProfileId?: string | null;
+  /** @nullable */
+  PersonAccount?: PersonListConfirmedWebhookPayloadPersonAccountItem[] | null;
+  /** @nullable */
+  DealPeople?: PersonListConfirmedWebhookPayloadDealPeopleItem[] | null;
+  /** @nullable */
+  LeadFormSubmissions?: PersonListConfirmedWebhookPayloadLeadFormSubmissionsItem[] | null;
+  /** @nullable */
+  Account?: PersonListConfirmedWebhookPayloadAccount;
+  /** @nullable */
+  AccountUids?: string | null;
+  /** @nullable */
+  EmailListPerson?: PersonListConfirmedWebhookPayloadEmailListPersonItem[] | null;
+  /** @nullable */
+  FullName?: string | null;
+  HasLoggedIn?: boolean;
+  /** `0` - None, `1` - Gmail */
+  OAuthIntegrationStatus?: PersonListConfirmedWebhookPayloadOAuthIntegrationStatus;
+  OptInToEmailList?: boolean;
+  /** @nullable */
+  Password?: string | null;
+  /** @nullable */
+  UserAgentPlatformBrowser?: string | null;
+  HasUnsubscribed?: boolean;
+  /** @nullable */
+  DiscordUser?: PersonListConfirmedWebhookPayloadDiscordUser;
+  IsConnectedToDiscord?: boolean;
+  ActivityEventData?: PersonListConfirmedActivityData;
+}
+
+export interface PersonSupportTicketClosedActivityData {
+  /** @nullable */
+  CaseUid?: string | null;
+  /** @nullable */
+  AgentName?: string | null;
+}
+
+/**
+ * @nullable
+ */
+export type PersonSupportTicketClosedWebhookPayloadMailingAddress = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine1?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine2?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine3?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  City?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  State?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PostalCode?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Country?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  GeoLocation?: string | null;
+} | null;
+
+/**
+ * @nullable
+ */
+export type PersonSupportTicketClosedWebhookPayloadPersonAccountItemAccount = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+} | null;
+
+export type PersonSupportTicketClosedWebhookPayloadPersonAccountItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** @nullable */
+  Account?: PersonSupportTicketClosedWebhookPayloadPersonAccountItemAccount;
+  IsPrimary?: boolean;
+  ReceiveInvoices?: boolean;
+};
+
+export type PersonSupportTicketClosedWebhookPayloadDealPeopleItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+};
+
+export type PersonSupportTicketClosedWebhookPayloadLeadFormSubmissionsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** @nullable */
+  RefererURL?: string | null;
+  /** @nullable */
+  RecaptchaToken?: string | null;
+  /** @nullable */
+  RecaptchaSiteKey?: string | null;
+};
+
+/**
+ * `2` - Trialing, `3` - Subscribing, `4` - Cancelling, `5` - Expired, `6` - Trial Expired, `7` - Past Due, `8` - Cancelling Trial, `9` - Paused, `10` - Created
+ */
+export type PersonSupportTicketClosedWebhookPayloadAccountAccountStage = typeof PersonSupportTicketClosedWebhookPayloadAccountAccountStage[keyof typeof PersonSupportTicketClosedWebhookPayloadAccountAccountStage];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const PersonSupportTicketClosedWebhookPayloadAccountAccountStage = {
+  Trialing: 2,
+  Subscribing: 3,
+  Cancelling: 4,
+  Expired: 5,
+  TrialExpired: 6,
+  PastDue: 7,
+  CancellingTrial: 8,
+  Paused: 9,
+  Created: 10,
+} as const;
+
+/**
+ * @nullable
+ */
+export type PersonSupportTicketClosedWebhookPayloadAccount = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  StripeId?: string | null;
+  IsLivemode?: boolean;
+  /**
+   * @minLength 1
+   * @maxLength 250
+   */
+  Name?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  ClientIdentifier?: string | null;
+  /**
+   * @maxLength 3
+   * @nullable
+   */
+  Currency?: string | null;
+  /** @nullable */
+  InvoiceNotes?: string | null;
+  IsDemo?: boolean;
+  /** `2` - Trialing, `3` - Subscribing, `4` - Cancelling, `5` - Expired, `6` - Trial Expired, `7` - Past Due, `8` - Cancelling Trial, `9` - Paused, `10` - Created */
+  AccountStage?: PersonSupportTicketClosedWebhookPayloadAccountAccountStage;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  StripeDefaultPaymentMethodId?: string | null;
+  /** @nullable */
+  LastLoginDateTime?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl1?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl2?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl3?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl4?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl5?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl6?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl7?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl8?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl9?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl10?: string | null;
+  /** @nullable */
+  RewardFulReferralId?: string | null;
+  /**
+   * @maxLength 36
+   * @nullable
+   */
+  ToltReferralId?: string | null;
+  /**
+   * @maxLength 20
+   * @nullable
+   */
+  TaxStatus?: string | null;
+  /** @nullable */
+  AccountStageLabel?: string | null;
+  /** @nullable */
+  CurrentStripeProducts?: string | null;
+  /** @nullable */
+  DomainName?: string | null;
+  HasLoggedIn?: boolean;
+  LifetimeRevenue?: number;
+  /** @nullable */
+  NextStripeInvoiceDate?: string | null;
+  /** @nullable */
+  Nonce?: string | null;
+  /** @nullable */
+  RecaptchaToken?: string | null;
+  /** @nullable */
+  StripeNextInvoiceSequence?: number | null;
+  /** @nullable */
+  StripePrice?: string[] | null;
+  /** @nullable */
+  StripePromotionCode?: string | null;
+  /** @nullable */
+  TaxId?: string | null;
+  TaxIdIsInvalid?: boolean;
+  /** @nullable */
+  TaxIdType?: string | null;
+  /** @nullable */
+  WebflowSlug?: string | null;
+} | null;
+
+/**
+ * `1` - Subscribed, `2` - Unsubscribed, `3` - Cleaned, `4` - Confirmed
+ */
+export type PersonSupportTicketClosedWebhookPayloadEmailListPersonItemEmailListSubscriberStatus = typeof PersonSupportTicketClosedWebhookPayloadEmailListPersonItemEmailListSubscriberStatus[keyof typeof PersonSupportTicketClosedWebhookPayloadEmailListPersonItemEmailListSubscriberStatus];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const PersonSupportTicketClosedWebhookPayloadEmailListPersonItemEmailListSubscriberStatus = {
+  Subscribed: 1,
+  Unsubscribed: 2,
+  Cleaned: 3,
+  Confirmed: 4,
+} as const;
+
+export type PersonSupportTicketClosedWebhookPayloadEmailListPersonItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** `1` - Subscribed, `2` - Unsubscribed, `3` - Cleaned, `4` - Confirmed */
+  EmailListSubscriberStatus?: PersonSupportTicketClosedWebhookPayloadEmailListPersonItemEmailListSubscriberStatus;
+  SubscribedDate?: string;
+  /** @nullable */
+  ConfirmedDate?: string | null;
+  /**
+   * @maxLength 500
+   * @nullable
+   */
+  ConfirmationNotes?: string | null;
+  /** @nullable */
+  UnsubscribedDate?: string | null;
+  /** @nullable */
+  CleanedDate?: string | null;
+  /** @nullable */
+  WelcomeEmailDeliverDateTime?: string | null;
+  /** @nullable */
+  WelcomeEmailOpenDateTime?: string | null;
+  /**
+   * @maxLength 20
+   * @nullable
+   */
+  UnsubscribeReason?: string | null;
+  /** @nullable */
+  UnsubscribeReasonOther?: string | null;
+  /** @nullable */
+  RecaptchaToken?: string | null;
+  /** @nullable */
+  RecaptchaSiteKey?: string | null;
+  SendWelcomeEmail?: boolean;
+  /** @nullable */
+  Source?: string | null;
+};
+
+/**
+ * `0` - None, `1` - Gmail
+ */
+export type PersonSupportTicketClosedWebhookPayloadOAuthIntegrationStatus = typeof PersonSupportTicketClosedWebhookPayloadOAuthIntegrationStatus[keyof typeof PersonSupportTicketClosedWebhookPayloadOAuthIntegrationStatus];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const PersonSupportTicketClosedWebhookPayloadOAuthIntegrationStatus = {
+  None: 0,
+  Gmail: 1,
+} as const;
+
+/**
+ * @nullable
+ */
+export type PersonSupportTicketClosedWebhookPayloadDiscordUser = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  DiscordUserId?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  DiscordEmail?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  DiscordUsername?: string | null;
+  /** @nullable */
+  DiscordOAuthRefreshToken?: string | null;
+} | null;
+
+export interface PersonSupportTicketClosedWebhookPayload {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Email?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  FirstName?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  LastName?: string | null;
+  /** @nullable */
+  MailingAddress?: PersonSupportTicketClosedWebhookPayloadMailingAddress;
+  /** @nullable */
+  PasswordLastUpdated?: string | null;
+  PasswordMustChange?: boolean;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PhoneMobile?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PhoneWork?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  ProfileImageS3Url?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Title?: string | null;
+  /**
+   * @maxLength 100
+   * @nullable
+   */
+  Timezone?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  Language?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  IPAddress?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Referer?: string | null;
+  /**
+   * @maxLength 1000
+   * @nullable
+   */
+  UserAgent?: string | null;
+  /** @nullable */
+  LastLoginDateTime?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  OAuthGoogleProfileId?: string | null;
+  /** @nullable */
+  PersonAccount?: PersonSupportTicketClosedWebhookPayloadPersonAccountItem[] | null;
+  /** @nullable */
+  DealPeople?: PersonSupportTicketClosedWebhookPayloadDealPeopleItem[] | null;
+  /** @nullable */
+  LeadFormSubmissions?: PersonSupportTicketClosedWebhookPayloadLeadFormSubmissionsItem[] | null;
+  /** @nullable */
+  Account?: PersonSupportTicketClosedWebhookPayloadAccount;
+  /** @nullable */
+  AccountUids?: string | null;
+  /** @nullable */
+  EmailListPerson?: PersonSupportTicketClosedWebhookPayloadEmailListPersonItem[] | null;
+  /** @nullable */
+  FullName?: string | null;
+  HasLoggedIn?: boolean;
+  /** `0` - None, `1` - Gmail */
+  OAuthIntegrationStatus?: PersonSupportTicketClosedWebhookPayloadOAuthIntegrationStatus;
+  OptInToEmailList?: boolean;
+  /** @nullable */
+  Password?: string | null;
+  /** @nullable */
+  UserAgentPlatformBrowser?: string | null;
+  HasUnsubscribed?: boolean;
+  /** @nullable */
+  DiscordUser?: PersonSupportTicketClosedWebhookPayloadDiscordUser;
+  IsConnectedToDiscord?: boolean;
+  ActivityEventData?: PersonSupportTicketClosedActivityData;
+}
+
+export interface DiscordUserAddedToServerActivityData {
+  /** @nullable */
+  PersonUid?: string | null;
+  /** @nullable */
+  DiscordUserId?: string | null;
+  /** @nullable */
+  DiscordEmail?: string | null;
+  /** @nullable */
+  DiscordUsername?: string | null;
+  /** @nullable */
+  DiscordServerId?: string | null;
+}
+
+/**
+ * @nullable
+ */
+export type DiscordUserAddedToServerWebhookPayloadMailingAddress = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine1?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine2?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine3?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  City?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  State?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PostalCode?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Country?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  GeoLocation?: string | null;
+} | null;
+
+/**
+ * @nullable
+ */
+export type DiscordUserAddedToServerWebhookPayloadPersonAccountItemAccount = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+} | null;
+
+export type DiscordUserAddedToServerWebhookPayloadPersonAccountItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** @nullable */
+  Account?: DiscordUserAddedToServerWebhookPayloadPersonAccountItemAccount;
+  IsPrimary?: boolean;
+  ReceiveInvoices?: boolean;
+};
+
+export type DiscordUserAddedToServerWebhookPayloadDealPeopleItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+};
+
+export type DiscordUserAddedToServerWebhookPayloadLeadFormSubmissionsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** @nullable */
+  RefererURL?: string | null;
+  /** @nullable */
+  RecaptchaToken?: string | null;
+  /** @nullable */
+  RecaptchaSiteKey?: string | null;
+};
+
+/**
+ * `2` - Trialing, `3` - Subscribing, `4` - Cancelling, `5` - Expired, `6` - Trial Expired, `7` - Past Due, `8` - Cancelling Trial, `9` - Paused, `10` - Created
+ */
+export type DiscordUserAddedToServerWebhookPayloadAccountAccountStage = typeof DiscordUserAddedToServerWebhookPayloadAccountAccountStage[keyof typeof DiscordUserAddedToServerWebhookPayloadAccountAccountStage];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const DiscordUserAddedToServerWebhookPayloadAccountAccountStage = {
+  Trialing: 2,
+  Subscribing: 3,
+  Cancelling: 4,
+  Expired: 5,
+  TrialExpired: 6,
+  PastDue: 7,
+  CancellingTrial: 8,
+  Paused: 9,
+  Created: 10,
+} as const;
+
+/**
+ * @nullable
+ */
+export type DiscordUserAddedToServerWebhookPayloadAccount = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  StripeId?: string | null;
+  IsLivemode?: boolean;
+  /**
+   * @minLength 1
+   * @maxLength 250
+   */
+  Name?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  ClientIdentifier?: string | null;
+  /**
+   * @maxLength 3
+   * @nullable
+   */
+  Currency?: string | null;
+  /** @nullable */
+  InvoiceNotes?: string | null;
+  IsDemo?: boolean;
+  /** `2` - Trialing, `3` - Subscribing, `4` - Cancelling, `5` - Expired, `6` - Trial Expired, `7` - Past Due, `8` - Cancelling Trial, `9` - Paused, `10` - Created */
+  AccountStage?: DiscordUserAddedToServerWebhookPayloadAccountAccountStage;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  StripeDefaultPaymentMethodId?: string | null;
+  /** @nullable */
+  LastLoginDateTime?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl1?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl2?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl3?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl4?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl5?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl6?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl7?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl8?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl9?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl10?: string | null;
+  /** @nullable */
+  RewardFulReferralId?: string | null;
+  /**
+   * @maxLength 36
+   * @nullable
+   */
+  ToltReferralId?: string | null;
+  /**
+   * @maxLength 20
+   * @nullable
+   */
+  TaxStatus?: string | null;
+  /** @nullable */
+  AccountStageLabel?: string | null;
+  /** @nullable */
+  CurrentStripeProducts?: string | null;
+  /** @nullable */
+  DomainName?: string | null;
+  HasLoggedIn?: boolean;
+  LifetimeRevenue?: number;
+  /** @nullable */
+  NextStripeInvoiceDate?: string | null;
+  /** @nullable */
+  Nonce?: string | null;
+  /** @nullable */
+  RecaptchaToken?: string | null;
+  /** @nullable */
+  StripeNextInvoiceSequence?: number | null;
+  /** @nullable */
+  StripePrice?: string[] | null;
+  /** @nullable */
+  StripePromotionCode?: string | null;
+  /** @nullable */
+  TaxId?: string | null;
+  TaxIdIsInvalid?: boolean;
+  /** @nullable */
+  TaxIdType?: string | null;
+  /** @nullable */
+  WebflowSlug?: string | null;
+} | null;
+
+/**
+ * `1` - Subscribed, `2` - Unsubscribed, `3` - Cleaned, `4` - Confirmed
+ */
+export type DiscordUserAddedToServerWebhookPayloadEmailListPersonItemEmailListSubscriberStatus = typeof DiscordUserAddedToServerWebhookPayloadEmailListPersonItemEmailListSubscriberStatus[keyof typeof DiscordUserAddedToServerWebhookPayloadEmailListPersonItemEmailListSubscriberStatus];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const DiscordUserAddedToServerWebhookPayloadEmailListPersonItemEmailListSubscriberStatus = {
+  Subscribed: 1,
+  Unsubscribed: 2,
+  Cleaned: 3,
+  Confirmed: 4,
+} as const;
+
+export type DiscordUserAddedToServerWebhookPayloadEmailListPersonItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** `1` - Subscribed, `2` - Unsubscribed, `3` - Cleaned, `4` - Confirmed */
+  EmailListSubscriberStatus?: DiscordUserAddedToServerWebhookPayloadEmailListPersonItemEmailListSubscriberStatus;
+  SubscribedDate?: string;
+  /** @nullable */
+  ConfirmedDate?: string | null;
+  /**
+   * @maxLength 500
+   * @nullable
+   */
+  ConfirmationNotes?: string | null;
+  /** @nullable */
+  UnsubscribedDate?: string | null;
+  /** @nullable */
+  CleanedDate?: string | null;
+  /** @nullable */
+  WelcomeEmailDeliverDateTime?: string | null;
+  /** @nullable */
+  WelcomeEmailOpenDateTime?: string | null;
+  /**
+   * @maxLength 20
+   * @nullable
+   */
+  UnsubscribeReason?: string | null;
+  /** @nullable */
+  UnsubscribeReasonOther?: string | null;
+  /** @nullable */
+  RecaptchaToken?: string | null;
+  /** @nullable */
+  RecaptchaSiteKey?: string | null;
+  SendWelcomeEmail?: boolean;
+  /** @nullable */
+  Source?: string | null;
+};
+
+/**
+ * `0` - None, `1` - Gmail
+ */
+export type DiscordUserAddedToServerWebhookPayloadOAuthIntegrationStatus = typeof DiscordUserAddedToServerWebhookPayloadOAuthIntegrationStatus[keyof typeof DiscordUserAddedToServerWebhookPayloadOAuthIntegrationStatus];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const DiscordUserAddedToServerWebhookPayloadOAuthIntegrationStatus = {
+  None: 0,
+  Gmail: 1,
+} as const;
+
+/**
+ * @nullable
+ */
+export type DiscordUserAddedToServerWebhookPayloadDiscordUser = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  DiscordUserId?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  DiscordEmail?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  DiscordUsername?: string | null;
+  /** @nullable */
+  DiscordOAuthRefreshToken?: string | null;
+} | null;
+
+export interface DiscordUserAddedToServerWebhookPayload {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Email?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  FirstName?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  LastName?: string | null;
+  /** @nullable */
+  MailingAddress?: DiscordUserAddedToServerWebhookPayloadMailingAddress;
+  /** @nullable */
+  PasswordLastUpdated?: string | null;
+  PasswordMustChange?: boolean;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PhoneMobile?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PhoneWork?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  ProfileImageS3Url?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Title?: string | null;
+  /**
+   * @maxLength 100
+   * @nullable
+   */
+  Timezone?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  Language?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  IPAddress?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Referer?: string | null;
+  /**
+   * @maxLength 1000
+   * @nullable
+   */
+  UserAgent?: string | null;
+  /** @nullable */
+  LastLoginDateTime?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  OAuthGoogleProfileId?: string | null;
+  /** @nullable */
+  PersonAccount?: DiscordUserAddedToServerWebhookPayloadPersonAccountItem[] | null;
+  /** @nullable */
+  DealPeople?: DiscordUserAddedToServerWebhookPayloadDealPeopleItem[] | null;
+  /** @nullable */
+  LeadFormSubmissions?: DiscordUserAddedToServerWebhookPayloadLeadFormSubmissionsItem[] | null;
+  /** @nullable */
+  Account?: DiscordUserAddedToServerWebhookPayloadAccount;
+  /** @nullable */
+  AccountUids?: string | null;
+  /** @nullable */
+  EmailListPerson?: DiscordUserAddedToServerWebhookPayloadEmailListPersonItem[] | null;
+  /** @nullable */
+  FullName?: string | null;
+  HasLoggedIn?: boolean;
+  /** `0` - None, `1` - Gmail */
+  OAuthIntegrationStatus?: DiscordUserAddedToServerWebhookPayloadOAuthIntegrationStatus;
+  OptInToEmailList?: boolean;
+  /** @nullable */
+  Password?: string | null;
+  /** @nullable */
+  UserAgentPlatformBrowser?: string | null;
+  HasUnsubscribed?: boolean;
+  /** @nullable */
+  DiscordUser?: DiscordUserAddedToServerWebhookPayloadDiscordUser;
+  IsConnectedToDiscord?: boolean;
+  ActivityEventData?: DiscordUserAddedToServerActivityData;
+}
+
+export interface DiscordUserRolesUpdatedActivityData {
+  /** @nullable */
+  PersonUid?: string | null;
+  /** @nullable */
+  DiscordUserId?: string | null;
+  /** @nullable */
+  DiscordEmail?: string | null;
+  /** @nullable */
+  DiscordUsername?: string | null;
+  /** @nullable */
+  DiscordServerId?: string | null;
+  /** @nullable */
+  RoleIds?: string | null;
+}
+
+/**
+ * @nullable
+ */
+export type DiscordUserRolesUpdatedWebhookPayloadMailingAddress = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine1?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine2?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine3?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  City?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  State?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PostalCode?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Country?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  GeoLocation?: string | null;
+} | null;
+
+/**
+ * @nullable
+ */
+export type DiscordUserRolesUpdatedWebhookPayloadPersonAccountItemAccount = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+} | null;
+
+export type DiscordUserRolesUpdatedWebhookPayloadPersonAccountItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** @nullable */
+  Account?: DiscordUserRolesUpdatedWebhookPayloadPersonAccountItemAccount;
+  IsPrimary?: boolean;
+  ReceiveInvoices?: boolean;
+};
+
+export type DiscordUserRolesUpdatedWebhookPayloadDealPeopleItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+};
+
+export type DiscordUserRolesUpdatedWebhookPayloadLeadFormSubmissionsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** @nullable */
+  RefererURL?: string | null;
+  /** @nullable */
+  RecaptchaToken?: string | null;
+  /** @nullable */
+  RecaptchaSiteKey?: string | null;
+};
+
+/**
+ * `2` - Trialing, `3` - Subscribing, `4` - Cancelling, `5` - Expired, `6` - Trial Expired, `7` - Past Due, `8` - Cancelling Trial, `9` - Paused, `10` - Created
+ */
+export type DiscordUserRolesUpdatedWebhookPayloadAccountAccountStage = typeof DiscordUserRolesUpdatedWebhookPayloadAccountAccountStage[keyof typeof DiscordUserRolesUpdatedWebhookPayloadAccountAccountStage];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const DiscordUserRolesUpdatedWebhookPayloadAccountAccountStage = {
+  Trialing: 2,
+  Subscribing: 3,
+  Cancelling: 4,
+  Expired: 5,
+  TrialExpired: 6,
+  PastDue: 7,
+  CancellingTrial: 8,
+  Paused: 9,
+  Created: 10,
+} as const;
+
+/**
+ * @nullable
+ */
+export type DiscordUserRolesUpdatedWebhookPayloadAccount = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  StripeId?: string | null;
+  IsLivemode?: boolean;
+  /**
+   * @minLength 1
+   * @maxLength 250
+   */
+  Name?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  ClientIdentifier?: string | null;
+  /**
+   * @maxLength 3
+   * @nullable
+   */
+  Currency?: string | null;
+  /** @nullable */
+  InvoiceNotes?: string | null;
+  IsDemo?: boolean;
+  /** `2` - Trialing, `3` - Subscribing, `4` - Cancelling, `5` - Expired, `6` - Trial Expired, `7` - Past Due, `8` - Cancelling Trial, `9` - Paused, `10` - Created */
+  AccountStage?: DiscordUserRolesUpdatedWebhookPayloadAccountAccountStage;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  StripeDefaultPaymentMethodId?: string | null;
+  /** @nullable */
+  LastLoginDateTime?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl1?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl2?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl3?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl4?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl5?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl6?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl7?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl8?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl9?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl10?: string | null;
+  /** @nullable */
+  RewardFulReferralId?: string | null;
+  /**
+   * @maxLength 36
+   * @nullable
+   */
+  ToltReferralId?: string | null;
+  /**
+   * @maxLength 20
+   * @nullable
+   */
+  TaxStatus?: string | null;
+  /** @nullable */
+  AccountStageLabel?: string | null;
+  /** @nullable */
+  CurrentStripeProducts?: string | null;
+  /** @nullable */
+  DomainName?: string | null;
+  HasLoggedIn?: boolean;
+  LifetimeRevenue?: number;
+  /** @nullable */
+  NextStripeInvoiceDate?: string | null;
+  /** @nullable */
+  Nonce?: string | null;
+  /** @nullable */
+  RecaptchaToken?: string | null;
+  /** @nullable */
+  StripeNextInvoiceSequence?: number | null;
+  /** @nullable */
+  StripePrice?: string[] | null;
+  /** @nullable */
+  StripePromotionCode?: string | null;
+  /** @nullable */
+  TaxId?: string | null;
+  TaxIdIsInvalid?: boolean;
+  /** @nullable */
+  TaxIdType?: string | null;
+  /** @nullable */
+  WebflowSlug?: string | null;
+} | null;
+
+/**
+ * `1` - Subscribed, `2` - Unsubscribed, `3` - Cleaned, `4` - Confirmed
+ */
+export type DiscordUserRolesUpdatedWebhookPayloadEmailListPersonItemEmailListSubscriberStatus = typeof DiscordUserRolesUpdatedWebhookPayloadEmailListPersonItemEmailListSubscriberStatus[keyof typeof DiscordUserRolesUpdatedWebhookPayloadEmailListPersonItemEmailListSubscriberStatus];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const DiscordUserRolesUpdatedWebhookPayloadEmailListPersonItemEmailListSubscriberStatus = {
+  Subscribed: 1,
+  Unsubscribed: 2,
+  Cleaned: 3,
+  Confirmed: 4,
+} as const;
+
+export type DiscordUserRolesUpdatedWebhookPayloadEmailListPersonItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** `1` - Subscribed, `2` - Unsubscribed, `3` - Cleaned, `4` - Confirmed */
+  EmailListSubscriberStatus?: DiscordUserRolesUpdatedWebhookPayloadEmailListPersonItemEmailListSubscriberStatus;
+  SubscribedDate?: string;
+  /** @nullable */
+  ConfirmedDate?: string | null;
+  /**
+   * @maxLength 500
+   * @nullable
+   */
+  ConfirmationNotes?: string | null;
+  /** @nullable */
+  UnsubscribedDate?: string | null;
+  /** @nullable */
+  CleanedDate?: string | null;
+  /** @nullable */
+  WelcomeEmailDeliverDateTime?: string | null;
+  /** @nullable */
+  WelcomeEmailOpenDateTime?: string | null;
+  /**
+   * @maxLength 20
+   * @nullable
+   */
+  UnsubscribeReason?: string | null;
+  /** @nullable */
+  UnsubscribeReasonOther?: string | null;
+  /** @nullable */
+  RecaptchaToken?: string | null;
+  /** @nullable */
+  RecaptchaSiteKey?: string | null;
+  SendWelcomeEmail?: boolean;
+  /** @nullable */
+  Source?: string | null;
+};
+
+/**
+ * `0` - None, `1` - Gmail
+ */
+export type DiscordUserRolesUpdatedWebhookPayloadOAuthIntegrationStatus = typeof DiscordUserRolesUpdatedWebhookPayloadOAuthIntegrationStatus[keyof typeof DiscordUserRolesUpdatedWebhookPayloadOAuthIntegrationStatus];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const DiscordUserRolesUpdatedWebhookPayloadOAuthIntegrationStatus = {
+  None: 0,
+  Gmail: 1,
+} as const;
+
+/**
+ * @nullable
+ */
+export type DiscordUserRolesUpdatedWebhookPayloadDiscordUser = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  DiscordUserId?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  DiscordEmail?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  DiscordUsername?: string | null;
+  /** @nullable */
+  DiscordOAuthRefreshToken?: string | null;
+} | null;
+
+export interface DiscordUserRolesUpdatedWebhookPayload {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Email?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  FirstName?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  LastName?: string | null;
+  /** @nullable */
+  MailingAddress?: DiscordUserRolesUpdatedWebhookPayloadMailingAddress;
+  /** @nullable */
+  PasswordLastUpdated?: string | null;
+  PasswordMustChange?: boolean;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PhoneMobile?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PhoneWork?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  ProfileImageS3Url?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Title?: string | null;
+  /**
+   * @maxLength 100
+   * @nullable
+   */
+  Timezone?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  Language?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  IPAddress?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Referer?: string | null;
+  /**
+   * @maxLength 1000
+   * @nullable
+   */
+  UserAgent?: string | null;
+  /** @nullable */
+  LastLoginDateTime?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  OAuthGoogleProfileId?: string | null;
+  /** @nullable */
+  PersonAccount?: DiscordUserRolesUpdatedWebhookPayloadPersonAccountItem[] | null;
+  /** @nullable */
+  DealPeople?: DiscordUserRolesUpdatedWebhookPayloadDealPeopleItem[] | null;
+  /** @nullable */
+  LeadFormSubmissions?: DiscordUserRolesUpdatedWebhookPayloadLeadFormSubmissionsItem[] | null;
+  /** @nullable */
+  Account?: DiscordUserRolesUpdatedWebhookPayloadAccount;
+  /** @nullable */
+  AccountUids?: string | null;
+  /** @nullable */
+  EmailListPerson?: DiscordUserRolesUpdatedWebhookPayloadEmailListPersonItem[] | null;
+  /** @nullable */
+  FullName?: string | null;
+  HasLoggedIn?: boolean;
+  /** `0` - None, `1` - Gmail */
+  OAuthIntegrationStatus?: DiscordUserRolesUpdatedWebhookPayloadOAuthIntegrationStatus;
+  OptInToEmailList?: boolean;
+  /** @nullable */
+  Password?: string | null;
+  /** @nullable */
+  UserAgentPlatformBrowser?: string | null;
+  HasUnsubscribed?: boolean;
+  /** @nullable */
+  DiscordUser?: DiscordUserRolesUpdatedWebhookPayloadDiscordUser;
+  IsConnectedToDiscord?: boolean;
+  ActivityEventData?: DiscordUserRolesUpdatedActivityData;
+}
+
+export interface DiscordUserRemovedFromServerActivityData {
+  /** @nullable */
+  PersonUid?: string | null;
+  /** @nullable */
+  DiscordUserId?: string | null;
+  /** @nullable */
+  DiscordEmail?: string | null;
+  /** @nullable */
+  DiscordUsername?: string | null;
+  /** @nullable */
+  DiscordServerId?: string | null;
+  /** @nullable */
+  Trigger?: string | null;
+}
+
+/**
+ * @nullable
+ */
+export type DiscordUserRemovedFromServerWebhookPayloadMailingAddress = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine1?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine2?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine3?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  City?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  State?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PostalCode?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Country?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  GeoLocation?: string | null;
+} | null;
+
+/**
+ * @nullable
+ */
+export type DiscordUserRemovedFromServerWebhookPayloadPersonAccountItemAccount = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+} | null;
+
+export type DiscordUserRemovedFromServerWebhookPayloadPersonAccountItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** @nullable */
+  Account?: DiscordUserRemovedFromServerWebhookPayloadPersonAccountItemAccount;
+  IsPrimary?: boolean;
+  ReceiveInvoices?: boolean;
+};
+
+export type DiscordUserRemovedFromServerWebhookPayloadDealPeopleItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+};
+
+export type DiscordUserRemovedFromServerWebhookPayloadLeadFormSubmissionsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** @nullable */
+  RefererURL?: string | null;
+  /** @nullable */
+  RecaptchaToken?: string | null;
+  /** @nullable */
+  RecaptchaSiteKey?: string | null;
+};
+
+/**
+ * `2` - Trialing, `3` - Subscribing, `4` - Cancelling, `5` - Expired, `6` - Trial Expired, `7` - Past Due, `8` - Cancelling Trial, `9` - Paused, `10` - Created
+ */
+export type DiscordUserRemovedFromServerWebhookPayloadAccountAccountStage = typeof DiscordUserRemovedFromServerWebhookPayloadAccountAccountStage[keyof typeof DiscordUserRemovedFromServerWebhookPayloadAccountAccountStage];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const DiscordUserRemovedFromServerWebhookPayloadAccountAccountStage = {
+  Trialing: 2,
+  Subscribing: 3,
+  Cancelling: 4,
+  Expired: 5,
+  TrialExpired: 6,
+  PastDue: 7,
+  CancellingTrial: 8,
+  Paused: 9,
+  Created: 10,
+} as const;
+
+/**
+ * @nullable
+ */
+export type DiscordUserRemovedFromServerWebhookPayloadAccount = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  StripeId?: string | null;
+  IsLivemode?: boolean;
+  /**
+   * @minLength 1
+   * @maxLength 250
+   */
+  Name?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  ClientIdentifier?: string | null;
+  /**
+   * @maxLength 3
+   * @nullable
+   */
+  Currency?: string | null;
+  /** @nullable */
+  InvoiceNotes?: string | null;
+  IsDemo?: boolean;
+  /** `2` - Trialing, `3` - Subscribing, `4` - Cancelling, `5` - Expired, `6` - Trial Expired, `7` - Past Due, `8` - Cancelling Trial, `9` - Paused, `10` - Created */
+  AccountStage?: DiscordUserRemovedFromServerWebhookPayloadAccountAccountStage;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  StripeDefaultPaymentMethodId?: string | null;
+  /** @nullable */
+  LastLoginDateTime?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl1?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl2?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl3?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl4?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl5?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl6?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl7?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl8?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl9?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl10?: string | null;
+  /** @nullable */
+  RewardFulReferralId?: string | null;
+  /**
+   * @maxLength 36
+   * @nullable
+   */
+  ToltReferralId?: string | null;
+  /**
+   * @maxLength 20
+   * @nullable
+   */
+  TaxStatus?: string | null;
+  /** @nullable */
+  AccountStageLabel?: string | null;
+  /** @nullable */
+  CurrentStripeProducts?: string | null;
+  /** @nullable */
+  DomainName?: string | null;
+  HasLoggedIn?: boolean;
+  LifetimeRevenue?: number;
+  /** @nullable */
+  NextStripeInvoiceDate?: string | null;
+  /** @nullable */
+  Nonce?: string | null;
+  /** @nullable */
+  RecaptchaToken?: string | null;
+  /** @nullable */
+  StripeNextInvoiceSequence?: number | null;
+  /** @nullable */
+  StripePrice?: string[] | null;
+  /** @nullable */
+  StripePromotionCode?: string | null;
+  /** @nullable */
+  TaxId?: string | null;
+  TaxIdIsInvalid?: boolean;
+  /** @nullable */
+  TaxIdType?: string | null;
+  /** @nullable */
+  WebflowSlug?: string | null;
+} | null;
+
+/**
+ * `1` - Subscribed, `2` - Unsubscribed, `3` - Cleaned, `4` - Confirmed
+ */
+export type DiscordUserRemovedFromServerWebhookPayloadEmailListPersonItemEmailListSubscriberStatus = typeof DiscordUserRemovedFromServerWebhookPayloadEmailListPersonItemEmailListSubscriberStatus[keyof typeof DiscordUserRemovedFromServerWebhookPayloadEmailListPersonItemEmailListSubscriberStatus];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const DiscordUserRemovedFromServerWebhookPayloadEmailListPersonItemEmailListSubscriberStatus = {
+  Subscribed: 1,
+  Unsubscribed: 2,
+  Cleaned: 3,
+  Confirmed: 4,
+} as const;
+
+export type DiscordUserRemovedFromServerWebhookPayloadEmailListPersonItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** `1` - Subscribed, `2` - Unsubscribed, `3` - Cleaned, `4` - Confirmed */
+  EmailListSubscriberStatus?: DiscordUserRemovedFromServerWebhookPayloadEmailListPersonItemEmailListSubscriberStatus;
+  SubscribedDate?: string;
+  /** @nullable */
+  ConfirmedDate?: string | null;
+  /**
+   * @maxLength 500
+   * @nullable
+   */
+  ConfirmationNotes?: string | null;
+  /** @nullable */
+  UnsubscribedDate?: string | null;
+  /** @nullable */
+  CleanedDate?: string | null;
+  /** @nullable */
+  WelcomeEmailDeliverDateTime?: string | null;
+  /** @nullable */
+  WelcomeEmailOpenDateTime?: string | null;
+  /**
+   * @maxLength 20
+   * @nullable
+   */
+  UnsubscribeReason?: string | null;
+  /** @nullable */
+  UnsubscribeReasonOther?: string | null;
+  /** @nullable */
+  RecaptchaToken?: string | null;
+  /** @nullable */
+  RecaptchaSiteKey?: string | null;
+  SendWelcomeEmail?: boolean;
+  /** @nullable */
+  Source?: string | null;
+};
+
+/**
+ * `0` - None, `1` - Gmail
+ */
+export type DiscordUserRemovedFromServerWebhookPayloadOAuthIntegrationStatus = typeof DiscordUserRemovedFromServerWebhookPayloadOAuthIntegrationStatus[keyof typeof DiscordUserRemovedFromServerWebhookPayloadOAuthIntegrationStatus];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const DiscordUserRemovedFromServerWebhookPayloadOAuthIntegrationStatus = {
+  None: 0,
+  Gmail: 1,
+} as const;
+
+/**
+ * @nullable
+ */
+export type DiscordUserRemovedFromServerWebhookPayloadDiscordUser = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  DiscordUserId?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  DiscordEmail?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  DiscordUsername?: string | null;
+  /** @nullable */
+  DiscordOAuthRefreshToken?: string | null;
+} | null;
+
+export interface DiscordUserRemovedFromServerWebhookPayload {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Email?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  FirstName?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  LastName?: string | null;
+  /** @nullable */
+  MailingAddress?: DiscordUserRemovedFromServerWebhookPayloadMailingAddress;
+  /** @nullable */
+  PasswordLastUpdated?: string | null;
+  PasswordMustChange?: boolean;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PhoneMobile?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PhoneWork?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  ProfileImageS3Url?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Title?: string | null;
+  /**
+   * @maxLength 100
+   * @nullable
+   */
+  Timezone?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  Language?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  IPAddress?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Referer?: string | null;
+  /**
+   * @maxLength 1000
+   * @nullable
+   */
+  UserAgent?: string | null;
+  /** @nullable */
+  LastLoginDateTime?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  OAuthGoogleProfileId?: string | null;
+  /** @nullable */
+  PersonAccount?: DiscordUserRemovedFromServerWebhookPayloadPersonAccountItem[] | null;
+  /** @nullable */
+  DealPeople?: DiscordUserRemovedFromServerWebhookPayloadDealPeopleItem[] | null;
+  /** @nullable */
+  LeadFormSubmissions?: DiscordUserRemovedFromServerWebhookPayloadLeadFormSubmissionsItem[] | null;
+  /** @nullable */
+  Account?: DiscordUserRemovedFromServerWebhookPayloadAccount;
+  /** @nullable */
+  AccountUids?: string | null;
+  /** @nullable */
+  EmailListPerson?: DiscordUserRemovedFromServerWebhookPayloadEmailListPersonItem[] | null;
+  /** @nullable */
+  FullName?: string | null;
+  HasLoggedIn?: boolean;
+  /** `0` - None, `1` - Gmail */
+  OAuthIntegrationStatus?: DiscordUserRemovedFromServerWebhookPayloadOAuthIntegrationStatus;
+  OptInToEmailList?: boolean;
+  /** @nullable */
+  Password?: string | null;
+  /** @nullable */
+  UserAgentPlatformBrowser?: string | null;
+  HasUnsubscribed?: boolean;
+  /** @nullable */
+  DiscordUser?: DiscordUserRemovedFromServerWebhookPayloadDiscordUser;
+  IsConnectedToDiscord?: boolean;
+  ActivityEventData?: DiscordUserRemovedFromServerActivityData;
 }
 
 export type AuthGetTokenParams = {
