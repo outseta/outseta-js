@@ -4844,6 +4844,28209 @@ export interface ActivityCriteria {
   ActivityTypes?: string[] | null;
 }
 
+export interface AccountAddPersonActivityData {
+  /** @nullable */
+  AccountUid?: string | null;
+  /** @nullable */
+  PersonUid?: string | null;
+  /** @nullable */
+  Email?: string | null;
+}
+
+/**
+ * @nullable
+ */
+export type AccountAddPersonWebhookPayloadBillingAddress = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine1?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine2?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine3?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  City?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  State?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PostalCode?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Country?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  GeoLocation?: string | null;
+} | null;
+
+/**
+ * @nullable
+ */
+export type AccountAddPersonWebhookPayloadMailingAddress = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine1?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine2?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine3?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  City?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  State?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PostalCode?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Country?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  GeoLocation?: string | null;
+} | null;
+
+/**
+ * `2` - Trialing, `3` - Subscribing, `4` - Cancelling, `5` - Expired, `6` - Trial Expired, `7` - Past Due, `8` - Cancelling Trial, `9` - Paused, `10` - Created
+ */
+export type AccountAddPersonWebhookPayloadAccountStage = typeof AccountAddPersonWebhookPayloadAccountStage[keyof typeof AccountAddPersonWebhookPayloadAccountStage];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountAddPersonWebhookPayloadAccountStage = {
+  Trialing: 2,
+  Subscribing: 3,
+  Cancelling: 4,
+  Expired: 5,
+  TrialExpired: 6,
+  PastDue: 7,
+  CancellingTrial: 8,
+  Paused: 9,
+  Created: 10,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountAddPersonWebhookPayloadPaymentInformation = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  CustomerToken?: string | null;
+  /** @nullable */
+  LastFourDigits?: string | null;
+  /** @nullable */
+  LatestFailureDateTime?: string | null;
+  /** @nullable */
+  LatestFailureDescription?: string | null;
+  /** @nullable */
+  LatestSuccessDateTime?: string | null;
+  NumberOfFailures?: number;
+  /** @nullable */
+  PaymentClientSecret?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  PaymentMethodType?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PaymentToken?: string | null;
+  /**
+   * @maxLength 100
+   * @nullable
+   */
+  BankName?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  BankAccountType?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  BankAccountHolderType?: string | null;
+  /** @nullable */
+  NameOnCard?: string | null;
+  /** @nullable */
+  CardType?: string | null;
+  /** @nullable */
+  ExpirationMonth?: string | null;
+  /** @nullable */
+  ExpirationYear?: string | null;
+  /** @nullable */
+  Mode?: string | null;
+  /** @nullable */
+  OneTimeToken?: string | null;
+  /** @nullable */
+  RecaptchaToken?: string | null;
+  /** @nullable */
+  SetupIntent?: string | null;
+} | null;
+
+/**
+ * `0` - None, `1` - Gmail
+ */
+export type AccountAddPersonWebhookPayloadPersonAccountItemPersonOAuthIntegrationStatus = typeof AccountAddPersonWebhookPayloadPersonAccountItemPersonOAuthIntegrationStatus[keyof typeof AccountAddPersonWebhookPayloadPersonAccountItemPersonOAuthIntegrationStatus];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountAddPersonWebhookPayloadPersonAccountItemPersonOAuthIntegrationStatus = {
+  None: 0,
+  Gmail: 1,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountAddPersonWebhookPayloadPersonAccountItemPerson = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Email?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  FirstName?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  LastName?: string | null;
+  /** @nullable */
+  PasswordLastUpdated?: string | null;
+  PasswordMustChange?: boolean;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PhoneMobile?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PhoneWork?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  ProfileImageS3Url?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Title?: string | null;
+  /**
+   * @maxLength 100
+   * @nullable
+   */
+  Timezone?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  Language?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  IPAddress?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Referer?: string | null;
+  /**
+   * @maxLength 1000
+   * @nullable
+   */
+  UserAgent?: string | null;
+  /** @nullable */
+  LastLoginDateTime?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  OAuthGoogleProfileId?: string | null;
+  /** @nullable */
+  AccountUids?: string | null;
+  /** @nullable */
+  FullName?: string | null;
+  HasLoggedIn?: boolean;
+  /** `0` - None, `1` - Gmail */
+  OAuthIntegrationStatus?: AccountAddPersonWebhookPayloadPersonAccountItemPersonOAuthIntegrationStatus;
+  OptInToEmailList?: boolean;
+  /** @nullable */
+  Password?: string | null;
+  /** @nullable */
+  UserAgentPlatformBrowser?: string | null;
+  HasUnsubscribed?: boolean;
+  IsConnectedToDiscord?: boolean;
+} | null;
+
+export type AccountAddPersonWebhookPayloadPersonAccountItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** @nullable */
+  Person?: AccountAddPersonWebhookPayloadPersonAccountItemPerson;
+  IsPrimary?: boolean;
+  ReceiveInvoices?: boolean;
+};
+
+export type AccountAddPersonWebhookPayloadStripeInvoicesItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  StripeId?: string | null;
+  IsLivemode?: boolean;
+  AmountDue?: number;
+  AmountPaid?: number;
+  AmountShipping?: number;
+  AttemptCount?: number;
+  Attempted?: boolean;
+  /**
+   * @maxLength 3
+   * @nullable
+   */
+  Currency?: string | null;
+  /** @nullable */
+  Description?: string | null;
+  /** @nullable */
+  FinalizedAt?: string | null;
+  /**
+   * @maxLength 500
+   * @nullable
+   */
+  HostedInvoiceUrl?: string | null;
+  /**
+   * @maxLength 500
+   * @nullable
+   */
+  InvoicePdf?: string | null;
+  /** @nullable */
+  NextPaymentAttempt?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  Number?: string | null;
+  PeriodEnd?: string;
+  PeriodStart?: string;
+  /**
+   * @maxLength 30
+   * @nullable
+   */
+  Status?: string | null;
+  SubTotal?: number;
+  /** @nullable */
+  SubTotalExcludingTax?: number | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  SubscriptionId?: string | null;
+  /** @nullable */
+  Tax?: number | null;
+  Total?: number;
+  /** @nullable */
+  TotalExcludingTax?: number | null;
+  IsRefunded?: boolean;
+  CurrencyAmountCreditedPostPayment?: number;
+  CurrencyAmountCreditedPrePayment?: number;
+  CurrencyAmountDue?: number;
+  CurrencyAmountPaid?: number;
+  /** @nullable */
+  CurrencySymbol?: string | null;
+  CurrencyTotal?: number;
+  CurrencyTotalExcludingTax?: number;
+  CurrencySubTotal?: number;
+  CurrencySubTotalExcludingTax?: number;
+  CurrencyTax?: number;
+  /** @nullable */
+  DaysUntilDue?: number | null;
+  /** @nullable */
+  CustomerId?: string | null;
+  /** @nullable */
+  PaymentStatus?: string | null;
+  /** @nullable */
+  StripePaymentMethodId?: string | null;
+};
+
+export type AccountAddPersonWebhookPayloadStripePaymentMethodsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  StripeId?: string | null;
+  IsLivemode?: boolean;
+  /** @nullable */
+  Card_Brand?: string | null;
+  /** @nullable */
+  Card_ExpMonth?: number | null;
+  /** @nullable */
+  Card_ExpYear?: number | null;
+  /** @nullable */
+  Card_Wallet_Type?: string | null;
+  /** @nullable */
+  BankName?: string | null;
+  /** @nullable */
+  Last4?: string | null;
+  /** @nullable */
+  Type?: string | null;
+  /** @nullable */
+  Label?: string | null;
+};
+
+export type AccountAddPersonWebhookPayloadStripeSubscriptionsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  StripeId?: string | null;
+  IsLivemode?: boolean;
+  /** @nullable */
+  CancelAt?: string | null;
+  CancelAtPeriodEnd?: boolean;
+  /**
+   * @maxLength 3
+   * @nullable
+   */
+  Currency?: string | null;
+  /** @nullable */
+  EndedAt?: string | null;
+  /**
+   * @maxLength 30
+   * @nullable
+   */
+  PauseCollection_Behavior?: string | null;
+  /** @nullable */
+  PauseCollection_ResumesAt?: string | null;
+  StartDate?: string;
+  /**
+   * @maxLength 30
+   * @nullable
+   */
+  Status?: string | null;
+  /** @nullable */
+  TrialEnd?: string | null;
+  /** @nullable */
+  AccountUid?: string | null;
+  /** @nullable */
+  BillingCycleAnchor?: string | null;
+  /** @nullable */
+  CollectionMethod?: string | null;
+  /** @nullable */
+  CustomerId?: string | null;
+  /** @nullable */
+  DaysUntilDue?: number | null;
+  /** @nullable */
+  ScheduleId?: string | null;
+  /** @nullable */
+  StripeDiscountIds?: string[] | null;
+  /** @nullable */
+  StripePriceIds?: string | null;
+  TrialPeriodDays?: number;
+};
+
+/**
+ * `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time
+ */
+export type AccountAddPersonWebhookPayloadSubscriptionsItemBillingRenewalTerm = typeof AccountAddPersonWebhookPayloadSubscriptionsItemBillingRenewalTerm[keyof typeof AccountAddPersonWebhookPayloadSubscriptionsItemBillingRenewalTerm];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountAddPersonWebhookPayloadSubscriptionsItemBillingRenewalTerm = {
+  Monthly: 1,
+  Yearly: 2,
+  Quarterly: 3,
+  OneTime: 4,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountAddPersonWebhookPayloadSubscriptionsItemPlanPlanFamily = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  IsActive?: boolean;
+  IsDefault?: boolean;
+} | null;
+
+/**
+ * `1` - Individual, `2` - Team
+ */
+export type AccountAddPersonWebhookPayloadSubscriptionsItemPlanAccountRegistrationMode = typeof AccountAddPersonWebhookPayloadSubscriptionsItemPlanAccountRegistrationMode[keyof typeof AccountAddPersonWebhookPayloadSubscriptionsItemPlanAccountRegistrationMode];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountAddPersonWebhookPayloadSubscriptionsItemPlanAccountRegistrationMode = {
+  Individual: 1,
+  Team: 2,
+} as const;
+
+export type AccountAddPersonWebhookPayloadSubscriptionsItemPlanPlanAddOnsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  IsUserSelectable: boolean;
+};
+
+export type AccountAddPersonWebhookPayloadSubscriptionsItemPlanContentGroupsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @minLength 1
+   * @maxLength 50
+   */
+  Name: string;
+  /**
+   * @maxLength 1024
+   * @nullable
+   */
+  AccessDeniedPath?: string | null;
+};
+
+/**
+ * @nullable
+ */
+export type AccountAddPersonWebhookPayloadSubscriptionsItemPlan = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  /** @nullable */
+  Description?: string | null;
+  /** @nullable */
+  PlanFamily?: AccountAddPersonWebhookPayloadSubscriptionsItemPlanPlanFamily;
+  /** `1` - Individual, `2` - Team */
+  AccountRegistrationMode?: AccountAddPersonWebhookPayloadSubscriptionsItemPlanAccountRegistrationMode;
+  IsQuantityEditable?: boolean;
+  MinimumQuantity?: number;
+  /** @nullable */
+  MaximumPeople?: number | null;
+  MonthlyRate?: number;
+  AnnualRate?: number;
+  QuarterlyRate?: number;
+  OneTimeRate?: number;
+  SetupFee?: number;
+  SkipSetupFeeOnPlanChange?: boolean;
+  IsTaxable?: boolean;
+  IsActive?: boolean;
+  IsPerUser?: boolean;
+  RequirePaymentInformation?: boolean;
+  TrialPeriodDays?: number;
+  /** @nullable */
+  TrialUntilDate?: string | null;
+  ExpiresAfterMonths?: number;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PostLoginPath?: string | null;
+  /**
+   * @maxLength 15
+   * @nullable
+   */
+  StripeTaxCodeId?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  UnitOfMeasure?: string | null;
+  /** @nullable */
+  PlanAddOns?: AccountAddPersonWebhookPayloadSubscriptionsItemPlanPlanAddOnsItem[] | null;
+  /** @nullable */
+  ContentGroups?: AccountAddPersonWebhookPayloadSubscriptionsItemPlanContentGroupsItem[] | null;
+  /** @nullable */
+  NumberOfSubscriptions?: number | null;
+} | null;
+
+/**
+ * `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time
+ */
+export type AccountAddPersonWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemBillingRenewalTerm = typeof AccountAddPersonWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemBillingRenewalTerm[keyof typeof AccountAddPersonWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemBillingRenewalTerm];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountAddPersonWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemBillingRenewalTerm = {
+  Monthly: 1,
+  Yearly: 2,
+  Quarterly: 3,
+  OneTime: 4,
+} as const;
+
+/**
+ * `1` - Recurring, `2` - Usage, `3` - OneTime
+ */
+export type AccountAddPersonWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemAddOnBillingAddOnType = typeof AccountAddPersonWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemAddOnBillingAddOnType[keyof typeof AccountAddPersonWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemAddOnBillingAddOnType];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountAddPersonWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemAddOnBillingAddOnType = {
+  Recurring: 1,
+  Usage: 2,
+  OneTime: 3,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountAddPersonWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemAddOn = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  /** `1` - Recurring, `2` - Usage, `3` - OneTime */
+  BillingAddOnType?: AccountAddPersonWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemAddOnBillingAddOnType;
+  IsQuantityEditable?: boolean;
+  MinimumQuantity?: number;
+  MonthlyRate?: number;
+  AnnualRate?: number;
+  SetupFee?: number;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  UnitOfMeasure?: string | null;
+  IsTaxable?: boolean;
+  IsBilledDuringTrial?: boolean;
+  ExpiresAfterMonths?: number;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /**
+   * @maxLength 15
+   * @nullable
+   */
+  StripeTaxCodeId?: string | null;
+  IsPerUser?: boolean;
+  QuarterlyRate?: number;
+  OneTimeRate?: number;
+  SubscriptionCount?: number;
+  Quantity?: number;
+} | null;
+
+export type AccountAddPersonWebhookPayloadSubscriptionsItemSubscriptionAddOnsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time */
+  BillingRenewalTerm?: AccountAddPersonWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemBillingRenewalTerm;
+  /** @nullable */
+  AddOn?: AccountAddPersonWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemAddOn;
+  /** @nullable */
+  Quantity?: number | null;
+  StartDate?: string;
+  /** @nullable */
+  EndDate?: string | null;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /** @nullable */
+  RenewalDate?: string | null;
+  /** @nullable */
+  NewRequiredQuantity?: number | null;
+  /** @nullable */
+  Rate?: number | null;
+};
+
+/**
+ * `1` - Forever, `2` - Once, `3` - Repeating
+ */
+export type AccountAddPersonWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItemDiscountCouponDuration = typeof AccountAddPersonWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItemDiscountCouponDuration[keyof typeof AccountAddPersonWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItemDiscountCouponDuration];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountAddPersonWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItemDiscountCouponDuration = {
+  Forever: 1,
+  Once: 2,
+  Repeating: 3,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountAddPersonWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItemDiscountCoupon = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /** @nullable */
+  UniqueIdentifier?: string | null;
+  /** @nullable */
+  Name?: string | null;
+  IsActive?: boolean;
+  /** @nullable */
+  AmountOff?: number | null;
+  /** @nullable */
+  PercentOff?: number | null;
+  /** @nullable */
+  RedeemBy?: string | null;
+  /** `1` - Forever, `2` - Once, `3` - Repeating */
+  Duration?: AccountAddPersonWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItemDiscountCouponDuration;
+  /** @nullable */
+  DurationInMonths?: number | null;
+  TimesRedeemed?: number;
+  /** @nullable */
+  MaxRedemptions?: number | null;
+  ApplyToAddOns?: boolean;
+  /** @nullable */
+  PlanUids?: string | null;
+} | null;
+
+export type AccountAddPersonWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** @nullable */
+  RedeemedDate?: string | null;
+  /** @nullable */
+  ExpireDate?: string | null;
+  /** @nullable */
+  DiscountCoupon?: AccountAddPersonWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItemDiscountCoupon;
+};
+
+/**
+ * `1` - Unpaid, `2` - Paid, `3` - Partial, `4` - Uncollected, `5` - Refunded, `6` - Uncollectible, `7` - Processing
+ */
+export type AccountAddPersonWebhookPayloadSubscriptionsItemLatestInvoiceBillingInvoiceStatus = typeof AccountAddPersonWebhookPayloadSubscriptionsItemLatestInvoiceBillingInvoiceStatus[keyof typeof AccountAddPersonWebhookPayloadSubscriptionsItemLatestInvoiceBillingInvoiceStatus];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountAddPersonWebhookPayloadSubscriptionsItemLatestInvoiceBillingInvoiceStatus = {
+  Unpaid: 1,
+  Paid: 2,
+  Partial: 3,
+  Uncollected: 4,
+  Refunded: 5,
+  Uncollectible: 6,
+  Processing: 7,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountAddPersonWebhookPayloadSubscriptionsItemLatestInvoice = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  InvoiceDate?: string;
+  /** @nullable */
+  PaymentReminderSentDate?: string | null;
+  Number?: number;
+  /** `1` - Unpaid, `2` - Paid, `3` - Partial, `4` - Uncollected, `5` - Refunded, `6` - Uncollectible, `7` - Processing */
+  BillingInvoiceStatus?: AccountAddPersonWebhookPayloadSubscriptionsItemLatestInvoiceBillingInvoiceStatus;
+  Amount?: number;
+  AmountOutstanding?: number;
+  IsUserGenerated?: boolean;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  StripeTaxCalculationId?: string | null;
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  StripeTaxBehavior?: string | null;
+  AmountCredit?: number;
+  AmountDiscount?: number;
+  AmountPaid?: number;
+  AmountRefunded?: number;
+  AmountSubtotal?: number;
+  AmountTax?: number;
+  AmountTaxRefunded?: number;
+  IsTaxable?: boolean;
+  HasPaymentGatewayTransactions?: boolean;
+  /** @nullable */
+  StripePaymentTransactionIds?: string | null;
+  /** @nullable */
+  StripeRefundTransactionIds?: string | null;
+  /** @nullable */
+  StripeTaxRefundTransactionIds?: string | null;
+} | null;
+
+export type AccountAddPersonWebhookPayloadSubscriptionsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time */
+  BillingRenewalTerm?: AccountAddPersonWebhookPayloadSubscriptionsItemBillingRenewalTerm;
+  /** @nullable */
+  Plan?: AccountAddPersonWebhookPayloadSubscriptionsItemPlan;
+  /** @nullable */
+  Quantity?: number | null;
+  StartDate?: string;
+  /** @nullable */
+  EndDate?: string | null;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /** @nullable */
+  RenewalDate?: string | null;
+  /** @nullable */
+  NewRequiredQuantity?: number | null;
+  IsPlanUpgradeRequired?: boolean;
+  /** @nullable */
+  PlanUpgradeRequiredMessage?: string | null;
+  /** @nullable */
+  SubscriptionAddOns?: AccountAddPersonWebhookPayloadSubscriptionsItemSubscriptionAddOnsItem[] | null;
+  /** @nullable */
+  DiscountCouponSubscriptions?: AccountAddPersonWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItem[] | null;
+  /** @nullable */
+  DiscountCode?: string | null;
+  /** @nullable */
+  DiscountCouponExpirationDate?: string | null;
+  /** @nullable */
+  LatestInvoice?: AccountAddPersonWebhookPayloadSubscriptionsItemLatestInvoice;
+  /** @nullable */
+  Rate?: number | null;
+};
+
+export type AccountAddPersonWebhookPayloadDealsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @minLength 1
+   * @maxLength 250
+   */
+  Name: string;
+  /** @nullable */
+  Amount?: number | null;
+  /** @nullable */
+  DueDate?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  AssignedToPersonClientIdentifier?: string | null;
+  Weight?: number;
+  /** @nullable */
+  Contacts?: string | null;
+  AccountId?: number;
+  /** @nullable */
+  PipelineUid?: string | null;
+};
+
+export type AccountAddPersonWebhookPayloadTaxIdsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  StripeId?: string | null;
+  IsLivemode?: boolean;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  TaxId?: string | null;
+  /**
+   * @maxLength 20
+   * @nullable
+   */
+  TaxIdType?: string | null;
+  IsInvalid?: boolean;
+};
+
+/**
+ * `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time
+ */
+export type AccountAddPersonWebhookPayloadCurrentSubscriptionBillingRenewalTerm = typeof AccountAddPersonWebhookPayloadCurrentSubscriptionBillingRenewalTerm[keyof typeof AccountAddPersonWebhookPayloadCurrentSubscriptionBillingRenewalTerm];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountAddPersonWebhookPayloadCurrentSubscriptionBillingRenewalTerm = {
+  Monthly: 1,
+  Yearly: 2,
+  Quarterly: 3,
+  OneTime: 4,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountAddPersonWebhookPayloadCurrentSubscriptionPlanPlanFamily = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  IsActive?: boolean;
+  IsDefault?: boolean;
+} | null;
+
+/**
+ * `1` - Individual, `2` - Team
+ */
+export type AccountAddPersonWebhookPayloadCurrentSubscriptionPlanAccountRegistrationMode = typeof AccountAddPersonWebhookPayloadCurrentSubscriptionPlanAccountRegistrationMode[keyof typeof AccountAddPersonWebhookPayloadCurrentSubscriptionPlanAccountRegistrationMode];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountAddPersonWebhookPayloadCurrentSubscriptionPlanAccountRegistrationMode = {
+  Individual: 1,
+  Team: 2,
+} as const;
+
+export type AccountAddPersonWebhookPayloadCurrentSubscriptionPlanPlanAddOnsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  IsUserSelectable: boolean;
+};
+
+export type AccountAddPersonWebhookPayloadCurrentSubscriptionPlanContentGroupsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @minLength 1
+   * @maxLength 50
+   */
+  Name: string;
+  /**
+   * @maxLength 1024
+   * @nullable
+   */
+  AccessDeniedPath?: string | null;
+};
+
+/**
+ * @nullable
+ */
+export type AccountAddPersonWebhookPayloadCurrentSubscriptionPlan = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  /** @nullable */
+  Description?: string | null;
+  /** @nullable */
+  PlanFamily?: AccountAddPersonWebhookPayloadCurrentSubscriptionPlanPlanFamily;
+  /** `1` - Individual, `2` - Team */
+  AccountRegistrationMode?: AccountAddPersonWebhookPayloadCurrentSubscriptionPlanAccountRegistrationMode;
+  IsQuantityEditable?: boolean;
+  MinimumQuantity?: number;
+  /** @nullable */
+  MaximumPeople?: number | null;
+  MonthlyRate?: number;
+  AnnualRate?: number;
+  QuarterlyRate?: number;
+  OneTimeRate?: number;
+  SetupFee?: number;
+  SkipSetupFeeOnPlanChange?: boolean;
+  IsTaxable?: boolean;
+  IsActive?: boolean;
+  IsPerUser?: boolean;
+  RequirePaymentInformation?: boolean;
+  TrialPeriodDays?: number;
+  /** @nullable */
+  TrialUntilDate?: string | null;
+  ExpiresAfterMonths?: number;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PostLoginPath?: string | null;
+  /**
+   * @maxLength 15
+   * @nullable
+   */
+  StripeTaxCodeId?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  UnitOfMeasure?: string | null;
+  /** @nullable */
+  PlanAddOns?: AccountAddPersonWebhookPayloadCurrentSubscriptionPlanPlanAddOnsItem[] | null;
+  /** @nullable */
+  ContentGroups?: AccountAddPersonWebhookPayloadCurrentSubscriptionPlanContentGroupsItem[] | null;
+  /** @nullable */
+  NumberOfSubscriptions?: number | null;
+} | null;
+
+/**
+ * `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time
+ */
+export type AccountAddPersonWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemBillingRenewalTerm = typeof AccountAddPersonWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemBillingRenewalTerm[keyof typeof AccountAddPersonWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemBillingRenewalTerm];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountAddPersonWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemBillingRenewalTerm = {
+  Monthly: 1,
+  Yearly: 2,
+  Quarterly: 3,
+  OneTime: 4,
+} as const;
+
+/**
+ * `1` - Recurring, `2` - Usage, `3` - OneTime
+ */
+export type AccountAddPersonWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType = typeof AccountAddPersonWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType[keyof typeof AccountAddPersonWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountAddPersonWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType = {
+  Recurring: 1,
+  Usage: 2,
+  OneTime: 3,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountAddPersonWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemAddOn = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  /** `1` - Recurring, `2` - Usage, `3` - OneTime */
+  BillingAddOnType?: AccountAddPersonWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType;
+  IsQuantityEditable?: boolean;
+  MinimumQuantity?: number;
+  MonthlyRate?: number;
+  AnnualRate?: number;
+  SetupFee?: number;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  UnitOfMeasure?: string | null;
+  IsTaxable?: boolean;
+  IsBilledDuringTrial?: boolean;
+  ExpiresAfterMonths?: number;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /**
+   * @maxLength 15
+   * @nullable
+   */
+  StripeTaxCodeId?: string | null;
+  IsPerUser?: boolean;
+  QuarterlyRate?: number;
+  OneTimeRate?: number;
+  SubscriptionCount?: number;
+  Quantity?: number;
+} | null;
+
+export type AccountAddPersonWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time */
+  BillingRenewalTerm?: AccountAddPersonWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemBillingRenewalTerm;
+  /** @nullable */
+  AddOn?: AccountAddPersonWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemAddOn;
+  /** @nullable */
+  Quantity?: number | null;
+  StartDate?: string;
+  /** @nullable */
+  EndDate?: string | null;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /** @nullable */
+  RenewalDate?: string | null;
+  /** @nullable */
+  NewRequiredQuantity?: number | null;
+  /** @nullable */
+  Rate?: number | null;
+};
+
+/**
+ * `1` - Forever, `2` - Once, `3` - Repeating
+ */
+export type AccountAddPersonWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration = typeof AccountAddPersonWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration[keyof typeof AccountAddPersonWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountAddPersonWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration = {
+  Forever: 1,
+  Once: 2,
+  Repeating: 3,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountAddPersonWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItemDiscountCoupon = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /** @nullable */
+  UniqueIdentifier?: string | null;
+  /** @nullable */
+  Name?: string | null;
+  IsActive?: boolean;
+  /** @nullable */
+  AmountOff?: number | null;
+  /** @nullable */
+  PercentOff?: number | null;
+  /** @nullable */
+  RedeemBy?: string | null;
+  /** `1` - Forever, `2` - Once, `3` - Repeating */
+  Duration?: AccountAddPersonWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration;
+  /** @nullable */
+  DurationInMonths?: number | null;
+  TimesRedeemed?: number;
+  /** @nullable */
+  MaxRedemptions?: number | null;
+  ApplyToAddOns?: boolean;
+  /** @nullable */
+  PlanUids?: string | null;
+} | null;
+
+export type AccountAddPersonWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** @nullable */
+  RedeemedDate?: string | null;
+  /** @nullable */
+  ExpireDate?: string | null;
+  /** @nullable */
+  DiscountCoupon?: AccountAddPersonWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItemDiscountCoupon;
+};
+
+/**
+ * `1` - Unpaid, `2` - Paid, `3` - Partial, `4` - Uncollected, `5` - Refunded, `6` - Uncollectible, `7` - Processing
+ */
+export type AccountAddPersonWebhookPayloadCurrentSubscriptionLatestInvoiceBillingInvoiceStatus = typeof AccountAddPersonWebhookPayloadCurrentSubscriptionLatestInvoiceBillingInvoiceStatus[keyof typeof AccountAddPersonWebhookPayloadCurrentSubscriptionLatestInvoiceBillingInvoiceStatus];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountAddPersonWebhookPayloadCurrentSubscriptionLatestInvoiceBillingInvoiceStatus = {
+  Unpaid: 1,
+  Paid: 2,
+  Partial: 3,
+  Uncollected: 4,
+  Refunded: 5,
+  Uncollectible: 6,
+  Processing: 7,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountAddPersonWebhookPayloadCurrentSubscriptionLatestInvoice = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  InvoiceDate?: string;
+  /** @nullable */
+  PaymentReminderSentDate?: string | null;
+  Number?: number;
+  /** `1` - Unpaid, `2` - Paid, `3` - Partial, `4` - Uncollected, `5` - Refunded, `6` - Uncollectible, `7` - Processing */
+  BillingInvoiceStatus?: AccountAddPersonWebhookPayloadCurrentSubscriptionLatestInvoiceBillingInvoiceStatus;
+  Amount?: number;
+  AmountOutstanding?: number;
+  IsUserGenerated?: boolean;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  StripeTaxCalculationId?: string | null;
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  StripeTaxBehavior?: string | null;
+  AmountCredit?: number;
+  AmountDiscount?: number;
+  AmountPaid?: number;
+  AmountRefunded?: number;
+  AmountSubtotal?: number;
+  AmountTax?: number;
+  AmountTaxRefunded?: number;
+  IsTaxable?: boolean;
+  HasPaymentGatewayTransactions?: boolean;
+  /** @nullable */
+  StripePaymentTransactionIds?: string | null;
+  /** @nullable */
+  StripeRefundTransactionIds?: string | null;
+  /** @nullable */
+  StripeTaxRefundTransactionIds?: string | null;
+} | null;
+
+/**
+ * @nullable
+ */
+export type AccountAddPersonWebhookPayloadCurrentSubscription = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /** `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time */
+  BillingRenewalTerm?: AccountAddPersonWebhookPayloadCurrentSubscriptionBillingRenewalTerm;
+  /** @nullable */
+  Plan?: AccountAddPersonWebhookPayloadCurrentSubscriptionPlan;
+  /** @nullable */
+  Quantity?: number | null;
+  StartDate?: string;
+  /** @nullable */
+  EndDate?: string | null;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /** @nullable */
+  RenewalDate?: string | null;
+  /** @nullable */
+  NewRequiredQuantity?: number | null;
+  IsPlanUpgradeRequired?: boolean;
+  /** @nullable */
+  PlanUpgradeRequiredMessage?: string | null;
+  /** @nullable */
+  SubscriptionAddOns?: AccountAddPersonWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItem[] | null;
+  /** @nullable */
+  DiscountCouponSubscriptions?: AccountAddPersonWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItem[] | null;
+  /** @nullable */
+  DiscountCode?: string | null;
+  /** @nullable */
+  DiscountCouponExpirationDate?: string | null;
+  /** @nullable */
+  LatestInvoice?: AccountAddPersonWebhookPayloadCurrentSubscriptionLatestInvoice;
+  /** @nullable */
+  Rate?: number | null;
+} | null;
+
+/**
+ * `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time
+ */
+export type AccountAddPersonWebhookPayloadLatestSubscriptionBillingRenewalTerm = typeof AccountAddPersonWebhookPayloadLatestSubscriptionBillingRenewalTerm[keyof typeof AccountAddPersonWebhookPayloadLatestSubscriptionBillingRenewalTerm];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountAddPersonWebhookPayloadLatestSubscriptionBillingRenewalTerm = {
+  Monthly: 1,
+  Yearly: 2,
+  Quarterly: 3,
+  OneTime: 4,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountAddPersonWebhookPayloadLatestSubscriptionPlanPlanFamily = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  IsActive?: boolean;
+  IsDefault?: boolean;
+} | null;
+
+/**
+ * `1` - Individual, `2` - Team
+ */
+export type AccountAddPersonWebhookPayloadLatestSubscriptionPlanAccountRegistrationMode = typeof AccountAddPersonWebhookPayloadLatestSubscriptionPlanAccountRegistrationMode[keyof typeof AccountAddPersonWebhookPayloadLatestSubscriptionPlanAccountRegistrationMode];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountAddPersonWebhookPayloadLatestSubscriptionPlanAccountRegistrationMode = {
+  Individual: 1,
+  Team: 2,
+} as const;
+
+export type AccountAddPersonWebhookPayloadLatestSubscriptionPlanPlanAddOnsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  IsUserSelectable: boolean;
+};
+
+export type AccountAddPersonWebhookPayloadLatestSubscriptionPlanContentGroupsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @minLength 1
+   * @maxLength 50
+   */
+  Name: string;
+  /**
+   * @maxLength 1024
+   * @nullable
+   */
+  AccessDeniedPath?: string | null;
+};
+
+/**
+ * @nullable
+ */
+export type AccountAddPersonWebhookPayloadLatestSubscriptionPlan = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  /** @nullable */
+  Description?: string | null;
+  /** @nullable */
+  PlanFamily?: AccountAddPersonWebhookPayloadLatestSubscriptionPlanPlanFamily;
+  /** `1` - Individual, `2` - Team */
+  AccountRegistrationMode?: AccountAddPersonWebhookPayloadLatestSubscriptionPlanAccountRegistrationMode;
+  IsQuantityEditable?: boolean;
+  MinimumQuantity?: number;
+  /** @nullable */
+  MaximumPeople?: number | null;
+  MonthlyRate?: number;
+  AnnualRate?: number;
+  QuarterlyRate?: number;
+  OneTimeRate?: number;
+  SetupFee?: number;
+  SkipSetupFeeOnPlanChange?: boolean;
+  IsTaxable?: boolean;
+  IsActive?: boolean;
+  IsPerUser?: boolean;
+  RequirePaymentInformation?: boolean;
+  TrialPeriodDays?: number;
+  /** @nullable */
+  TrialUntilDate?: string | null;
+  ExpiresAfterMonths?: number;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PostLoginPath?: string | null;
+  /**
+   * @maxLength 15
+   * @nullable
+   */
+  StripeTaxCodeId?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  UnitOfMeasure?: string | null;
+  /** @nullable */
+  PlanAddOns?: AccountAddPersonWebhookPayloadLatestSubscriptionPlanPlanAddOnsItem[] | null;
+  /** @nullable */
+  ContentGroups?: AccountAddPersonWebhookPayloadLatestSubscriptionPlanContentGroupsItem[] | null;
+  /** @nullable */
+  NumberOfSubscriptions?: number | null;
+} | null;
+
+/**
+ * `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time
+ */
+export type AccountAddPersonWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemBillingRenewalTerm = typeof AccountAddPersonWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemBillingRenewalTerm[keyof typeof AccountAddPersonWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemBillingRenewalTerm];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountAddPersonWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemBillingRenewalTerm = {
+  Monthly: 1,
+  Yearly: 2,
+  Quarterly: 3,
+  OneTime: 4,
+} as const;
+
+/**
+ * `1` - Recurring, `2` - Usage, `3` - OneTime
+ */
+export type AccountAddPersonWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType = typeof AccountAddPersonWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType[keyof typeof AccountAddPersonWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountAddPersonWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType = {
+  Recurring: 1,
+  Usage: 2,
+  OneTime: 3,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountAddPersonWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemAddOn = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  /** `1` - Recurring, `2` - Usage, `3` - OneTime */
+  BillingAddOnType?: AccountAddPersonWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType;
+  IsQuantityEditable?: boolean;
+  MinimumQuantity?: number;
+  MonthlyRate?: number;
+  AnnualRate?: number;
+  SetupFee?: number;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  UnitOfMeasure?: string | null;
+  IsTaxable?: boolean;
+  IsBilledDuringTrial?: boolean;
+  ExpiresAfterMonths?: number;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /**
+   * @maxLength 15
+   * @nullable
+   */
+  StripeTaxCodeId?: string | null;
+  IsPerUser?: boolean;
+  QuarterlyRate?: number;
+  OneTimeRate?: number;
+  SubscriptionCount?: number;
+  Quantity?: number;
+} | null;
+
+export type AccountAddPersonWebhookPayloadLatestSubscriptionSubscriptionAddOnsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time */
+  BillingRenewalTerm?: AccountAddPersonWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemBillingRenewalTerm;
+  /** @nullable */
+  AddOn?: AccountAddPersonWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemAddOn;
+  /** @nullable */
+  Quantity?: number | null;
+  StartDate?: string;
+  /** @nullable */
+  EndDate?: string | null;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /** @nullable */
+  RenewalDate?: string | null;
+  /** @nullable */
+  NewRequiredQuantity?: number | null;
+  /** @nullable */
+  Rate?: number | null;
+};
+
+/**
+ * `1` - Forever, `2` - Once, `3` - Repeating
+ */
+export type AccountAddPersonWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration = typeof AccountAddPersonWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration[keyof typeof AccountAddPersonWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountAddPersonWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration = {
+  Forever: 1,
+  Once: 2,
+  Repeating: 3,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountAddPersonWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItemDiscountCoupon = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /** @nullable */
+  UniqueIdentifier?: string | null;
+  /** @nullable */
+  Name?: string | null;
+  IsActive?: boolean;
+  /** @nullable */
+  AmountOff?: number | null;
+  /** @nullable */
+  PercentOff?: number | null;
+  /** @nullable */
+  RedeemBy?: string | null;
+  /** `1` - Forever, `2` - Once, `3` - Repeating */
+  Duration?: AccountAddPersonWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration;
+  /** @nullable */
+  DurationInMonths?: number | null;
+  TimesRedeemed?: number;
+  /** @nullable */
+  MaxRedemptions?: number | null;
+  ApplyToAddOns?: boolean;
+  /** @nullable */
+  PlanUids?: string | null;
+} | null;
+
+export type AccountAddPersonWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** @nullable */
+  RedeemedDate?: string | null;
+  /** @nullable */
+  ExpireDate?: string | null;
+  /** @nullable */
+  DiscountCoupon?: AccountAddPersonWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItemDiscountCoupon;
+};
+
+/**
+ * `1` - Unpaid, `2` - Paid, `3` - Partial, `4` - Uncollected, `5` - Refunded, `6` - Uncollectible, `7` - Processing
+ */
+export type AccountAddPersonWebhookPayloadLatestSubscriptionLatestInvoiceBillingInvoiceStatus = typeof AccountAddPersonWebhookPayloadLatestSubscriptionLatestInvoiceBillingInvoiceStatus[keyof typeof AccountAddPersonWebhookPayloadLatestSubscriptionLatestInvoiceBillingInvoiceStatus];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountAddPersonWebhookPayloadLatestSubscriptionLatestInvoiceBillingInvoiceStatus = {
+  Unpaid: 1,
+  Paid: 2,
+  Partial: 3,
+  Uncollected: 4,
+  Refunded: 5,
+  Uncollectible: 6,
+  Processing: 7,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountAddPersonWebhookPayloadLatestSubscriptionLatestInvoice = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  InvoiceDate?: string;
+  /** @nullable */
+  PaymentReminderSentDate?: string | null;
+  Number?: number;
+  /** `1` - Unpaid, `2` - Paid, `3` - Partial, `4` - Uncollected, `5` - Refunded, `6` - Uncollectible, `7` - Processing */
+  BillingInvoiceStatus?: AccountAddPersonWebhookPayloadLatestSubscriptionLatestInvoiceBillingInvoiceStatus;
+  Amount?: number;
+  AmountOutstanding?: number;
+  IsUserGenerated?: boolean;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  StripeTaxCalculationId?: string | null;
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  StripeTaxBehavior?: string | null;
+  AmountCredit?: number;
+  AmountDiscount?: number;
+  AmountPaid?: number;
+  AmountRefunded?: number;
+  AmountSubtotal?: number;
+  AmountTax?: number;
+  AmountTaxRefunded?: number;
+  IsTaxable?: boolean;
+  HasPaymentGatewayTransactions?: boolean;
+  /** @nullable */
+  StripePaymentTransactionIds?: string | null;
+  /** @nullable */
+  StripeRefundTransactionIds?: string | null;
+  /** @nullable */
+  StripeTaxRefundTransactionIds?: string | null;
+} | null;
+
+/**
+ * @nullable
+ */
+export type AccountAddPersonWebhookPayloadLatestSubscription = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /** `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time */
+  BillingRenewalTerm?: AccountAddPersonWebhookPayloadLatestSubscriptionBillingRenewalTerm;
+  /** @nullable */
+  Plan?: AccountAddPersonWebhookPayloadLatestSubscriptionPlan;
+  /** @nullable */
+  Quantity?: number | null;
+  StartDate?: string;
+  /** @nullable */
+  EndDate?: string | null;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /** @nullable */
+  RenewalDate?: string | null;
+  /** @nullable */
+  NewRequiredQuantity?: number | null;
+  IsPlanUpgradeRequired?: boolean;
+  /** @nullable */
+  PlanUpgradeRequiredMessage?: string | null;
+  /** @nullable */
+  SubscriptionAddOns?: AccountAddPersonWebhookPayloadLatestSubscriptionSubscriptionAddOnsItem[] | null;
+  /** @nullable */
+  DiscountCouponSubscriptions?: AccountAddPersonWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItem[] | null;
+  /** @nullable */
+  DiscountCode?: string | null;
+  /** @nullable */
+  DiscountCouponExpirationDate?: string | null;
+  /** @nullable */
+  LatestInvoice?: AccountAddPersonWebhookPayloadLatestSubscriptionLatestInvoice;
+  /** @nullable */
+  Rate?: number | null;
+} | null;
+
+/**
+ * `0` - None, `1` - Gmail
+ */
+export type AccountAddPersonWebhookPayloadPrimaryContactOAuthIntegrationStatus = typeof AccountAddPersonWebhookPayloadPrimaryContactOAuthIntegrationStatus[keyof typeof AccountAddPersonWebhookPayloadPrimaryContactOAuthIntegrationStatus];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountAddPersonWebhookPayloadPrimaryContactOAuthIntegrationStatus = {
+  None: 0,
+  Gmail: 1,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountAddPersonWebhookPayloadPrimaryContact = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Email?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  FirstName?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  LastName?: string | null;
+  /** @nullable */
+  PasswordLastUpdated?: string | null;
+  PasswordMustChange?: boolean;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PhoneMobile?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PhoneWork?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  ProfileImageS3Url?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Title?: string | null;
+  /**
+   * @maxLength 100
+   * @nullable
+   */
+  Timezone?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  Language?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  IPAddress?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Referer?: string | null;
+  /**
+   * @maxLength 1000
+   * @nullable
+   */
+  UserAgent?: string | null;
+  /** @nullable */
+  LastLoginDateTime?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  OAuthGoogleProfileId?: string | null;
+  /** @nullable */
+  AccountUids?: string | null;
+  /** @nullable */
+  FullName?: string | null;
+  HasLoggedIn?: boolean;
+  /** `0` - None, `1` - Gmail */
+  OAuthIntegrationStatus?: AccountAddPersonWebhookPayloadPrimaryContactOAuthIntegrationStatus;
+  OptInToEmailList?: boolean;
+  /** @nullable */
+  Password?: string | null;
+  /** @nullable */
+  UserAgentPlatformBrowser?: string | null;
+  HasUnsubscribed?: boolean;
+  IsConnectedToDiscord?: boolean;
+} | null;
+
+/**
+ * `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time
+ */
+export type AccountAddPersonWebhookPayloadPrimarySubscriptionBillingRenewalTerm = typeof AccountAddPersonWebhookPayloadPrimarySubscriptionBillingRenewalTerm[keyof typeof AccountAddPersonWebhookPayloadPrimarySubscriptionBillingRenewalTerm];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountAddPersonWebhookPayloadPrimarySubscriptionBillingRenewalTerm = {
+  Monthly: 1,
+  Yearly: 2,
+  Quarterly: 3,
+  OneTime: 4,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountAddPersonWebhookPayloadPrimarySubscription = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /** `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time */
+  BillingRenewalTerm?: AccountAddPersonWebhookPayloadPrimarySubscriptionBillingRenewalTerm;
+  /** @nullable */
+  Quantity?: number | null;
+  StartDate?: string;
+  /** @nullable */
+  EndDate?: string | null;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /** @nullable */
+  RenewalDate?: string | null;
+  /** @nullable */
+  NewRequiredQuantity?: number | null;
+  IsPlanUpgradeRequired?: boolean;
+  /** @nullable */
+  PlanUpgradeRequiredMessage?: string | null;
+  /** @nullable */
+  DiscountCode?: string | null;
+  /** @nullable */
+  DiscountCouponExpirationDate?: string | null;
+  /** @nullable */
+  Rate?: number | null;
+} | null;
+
+/**
+ * @nullable
+ */
+export type AccountAddPersonWebhookPayloadPrimaryStripeSubscription = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  StripeId?: string | null;
+  IsLivemode?: boolean;
+  /** @nullable */
+  CancelAt?: string | null;
+  CancelAtPeriodEnd?: boolean;
+  /**
+   * @maxLength 3
+   * @nullable
+   */
+  Currency?: string | null;
+  /** @nullable */
+  EndedAt?: string | null;
+  /**
+   * @maxLength 30
+   * @nullable
+   */
+  PauseCollection_Behavior?: string | null;
+  /** @nullable */
+  PauseCollection_ResumesAt?: string | null;
+  StartDate?: string;
+  /**
+   * @maxLength 30
+   * @nullable
+   */
+  Status?: string | null;
+  /** @nullable */
+  TrialEnd?: string | null;
+  /** @nullable */
+  AccountUid?: string | null;
+  /** @nullable */
+  BillingCycleAnchor?: string | null;
+  /** @nullable */
+  CollectionMethod?: string | null;
+  /** @nullable */
+  CustomerId?: string | null;
+  /** @nullable */
+  DaysUntilDue?: number | null;
+  /** @nullable */
+  ScheduleId?: string | null;
+  /** @nullable */
+  StripeDiscountIds?: string[] | null;
+  /** @nullable */
+  StripePriceIds?: string | null;
+  TrialPeriodDays?: number;
+} | null;
+
+export interface AccountAddPersonWebhookPayload {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  StripeId?: string | null;
+  IsLivemode?: boolean;
+  /**
+   * @minLength 1
+   * @maxLength 250
+   */
+  Name: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  ClientIdentifier?: string | null;
+  /**
+   * @maxLength 3
+   * @nullable
+   */
+  Currency?: string | null;
+  /** @nullable */
+  InvoiceNotes?: string | null;
+  IsDemo?: boolean;
+  /** @nullable */
+  BillingAddress?: AccountAddPersonWebhookPayloadBillingAddress;
+  /** @nullable */
+  MailingAddress?: AccountAddPersonWebhookPayloadMailingAddress;
+  /** `2` - Trialing, `3` - Subscribing, `4` - Cancelling, `5` - Expired, `6` - Trial Expired, `7` - Past Due, `8` - Cancelling Trial, `9` - Paused, `10` - Created */
+  AccountStage?: AccountAddPersonWebhookPayloadAccountStage;
+  /** @nullable */
+  PaymentInformation?: AccountAddPersonWebhookPayloadPaymentInformation;
+  /** @nullable */
+  PersonAccount?: AccountAddPersonWebhookPayloadPersonAccountItem[] | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  StripeDefaultPaymentMethodId?: string | null;
+  /** @nullable */
+  StripeInvoices?: AccountAddPersonWebhookPayloadStripeInvoicesItem[] | null;
+  /** @nullable */
+  StripePaymentMethods?: AccountAddPersonWebhookPayloadStripePaymentMethodsItem[] | null;
+  /** @nullable */
+  StripeSubscriptions?: AccountAddPersonWebhookPayloadStripeSubscriptionsItem[] | null;
+  /** @nullable */
+  Subscriptions?: AccountAddPersonWebhookPayloadSubscriptionsItem[] | null;
+  /** @nullable */
+  Deals?: AccountAddPersonWebhookPayloadDealsItem[] | null;
+  /** @nullable */
+  LastLoginDateTime?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl1?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl2?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl3?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl4?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl5?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl6?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl7?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl8?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl9?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl10?: string | null;
+  /** @nullable */
+  RewardFulReferralId?: string | null;
+  /**
+   * @maxLength 36
+   * @nullable
+   */
+  ToltReferralId?: string | null;
+  /** @nullable */
+  TaxIds?: AccountAddPersonWebhookPayloadTaxIdsItem[] | null;
+  /**
+   * @maxLength 20
+   * @nullable
+   */
+  TaxStatus?: string | null;
+  /** @nullable */
+  AccountStageLabel?: string | null;
+  /** @nullable */
+  CurrentStripeProducts?: string | null;
+  /** @nullable */
+  CurrentSubscription?: AccountAddPersonWebhookPayloadCurrentSubscription;
+  /** @nullable */
+  DomainName?: string | null;
+  HasLoggedIn?: boolean;
+  /** @nullable */
+  LatestSubscription?: AccountAddPersonWebhookPayloadLatestSubscription;
+  LifetimeRevenue?: number;
+  /** @nullable */
+  NextStripeInvoiceDate?: string | null;
+  /** @nullable */
+  Nonce?: string | null;
+  /** @nullable */
+  PrimaryContact?: AccountAddPersonWebhookPayloadPrimaryContact;
+  /** @nullable */
+  PrimarySubscription?: AccountAddPersonWebhookPayloadPrimarySubscription;
+  /** @nullable */
+  PrimaryStripeSubscription?: AccountAddPersonWebhookPayloadPrimaryStripeSubscription;
+  /** @nullable */
+  RecaptchaToken?: string | null;
+  /** @nullable */
+  StripeNextInvoiceSequence?: number | null;
+  /** @nullable */
+  StripePrice?: string[] | null;
+  /** @nullable */
+  StripePromotionCode?: string | null;
+  /** @nullable */
+  TaxId?: string | null;
+  TaxIdIsInvalid?: boolean;
+  /** @nullable */
+  TaxIdType?: string | null;
+  /** @nullable */
+  WebflowSlug?: string | null;
+  ActivityEventData?: AccountAddPersonActivityData;
+}
+
+export interface AccountStageUpdatedActivityData {
+  /** @nullable */
+  PriorAccountStage?: string | null;
+  /** @nullable */
+  CurrentAccountStage?: string | null;
+  /** @nullable */
+  CancelationReason?: string | null;
+}
+
+/**
+ * @nullable
+ */
+export type AccountStageUpdatedWebhookPayloadBillingAddress = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine1?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine2?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine3?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  City?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  State?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PostalCode?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Country?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  GeoLocation?: string | null;
+} | null;
+
+/**
+ * @nullable
+ */
+export type AccountStageUpdatedWebhookPayloadMailingAddress = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine1?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine2?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine3?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  City?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  State?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PostalCode?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Country?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  GeoLocation?: string | null;
+} | null;
+
+/**
+ * `2` - Trialing, `3` - Subscribing, `4` - Cancelling, `5` - Expired, `6` - Trial Expired, `7` - Past Due, `8` - Cancelling Trial, `9` - Paused, `10` - Created
+ */
+export type AccountStageUpdatedWebhookPayloadAccountStage = typeof AccountStageUpdatedWebhookPayloadAccountStage[keyof typeof AccountStageUpdatedWebhookPayloadAccountStage];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountStageUpdatedWebhookPayloadAccountStage = {
+  Trialing: 2,
+  Subscribing: 3,
+  Cancelling: 4,
+  Expired: 5,
+  TrialExpired: 6,
+  PastDue: 7,
+  CancellingTrial: 8,
+  Paused: 9,
+  Created: 10,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountStageUpdatedWebhookPayloadPaymentInformation = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  CustomerToken?: string | null;
+  /** @nullable */
+  LastFourDigits?: string | null;
+  /** @nullable */
+  LatestFailureDateTime?: string | null;
+  /** @nullable */
+  LatestFailureDescription?: string | null;
+  /** @nullable */
+  LatestSuccessDateTime?: string | null;
+  NumberOfFailures?: number;
+  /** @nullable */
+  PaymentClientSecret?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  PaymentMethodType?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PaymentToken?: string | null;
+  /**
+   * @maxLength 100
+   * @nullable
+   */
+  BankName?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  BankAccountType?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  BankAccountHolderType?: string | null;
+  /** @nullable */
+  NameOnCard?: string | null;
+  /** @nullable */
+  CardType?: string | null;
+  /** @nullable */
+  ExpirationMonth?: string | null;
+  /** @nullable */
+  ExpirationYear?: string | null;
+  /** @nullable */
+  Mode?: string | null;
+  /** @nullable */
+  OneTimeToken?: string | null;
+  /** @nullable */
+  RecaptchaToken?: string | null;
+  /** @nullable */
+  SetupIntent?: string | null;
+} | null;
+
+/**
+ * `0` - None, `1` - Gmail
+ */
+export type AccountStageUpdatedWebhookPayloadPersonAccountItemPersonOAuthIntegrationStatus = typeof AccountStageUpdatedWebhookPayloadPersonAccountItemPersonOAuthIntegrationStatus[keyof typeof AccountStageUpdatedWebhookPayloadPersonAccountItemPersonOAuthIntegrationStatus];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountStageUpdatedWebhookPayloadPersonAccountItemPersonOAuthIntegrationStatus = {
+  None: 0,
+  Gmail: 1,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountStageUpdatedWebhookPayloadPersonAccountItemPerson = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Email?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  FirstName?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  LastName?: string | null;
+  /** @nullable */
+  PasswordLastUpdated?: string | null;
+  PasswordMustChange?: boolean;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PhoneMobile?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PhoneWork?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  ProfileImageS3Url?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Title?: string | null;
+  /**
+   * @maxLength 100
+   * @nullable
+   */
+  Timezone?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  Language?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  IPAddress?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Referer?: string | null;
+  /**
+   * @maxLength 1000
+   * @nullable
+   */
+  UserAgent?: string | null;
+  /** @nullable */
+  LastLoginDateTime?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  OAuthGoogleProfileId?: string | null;
+  /** @nullable */
+  AccountUids?: string | null;
+  /** @nullable */
+  FullName?: string | null;
+  HasLoggedIn?: boolean;
+  /** `0` - None, `1` - Gmail */
+  OAuthIntegrationStatus?: AccountStageUpdatedWebhookPayloadPersonAccountItemPersonOAuthIntegrationStatus;
+  OptInToEmailList?: boolean;
+  /** @nullable */
+  Password?: string | null;
+  /** @nullable */
+  UserAgentPlatformBrowser?: string | null;
+  HasUnsubscribed?: boolean;
+  IsConnectedToDiscord?: boolean;
+} | null;
+
+export type AccountStageUpdatedWebhookPayloadPersonAccountItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** @nullable */
+  Person?: AccountStageUpdatedWebhookPayloadPersonAccountItemPerson;
+  IsPrimary?: boolean;
+  ReceiveInvoices?: boolean;
+};
+
+export type AccountStageUpdatedWebhookPayloadStripeInvoicesItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  StripeId?: string | null;
+  IsLivemode?: boolean;
+  AmountDue?: number;
+  AmountPaid?: number;
+  AmountShipping?: number;
+  AttemptCount?: number;
+  Attempted?: boolean;
+  /**
+   * @maxLength 3
+   * @nullable
+   */
+  Currency?: string | null;
+  /** @nullable */
+  Description?: string | null;
+  /** @nullable */
+  FinalizedAt?: string | null;
+  /**
+   * @maxLength 500
+   * @nullable
+   */
+  HostedInvoiceUrl?: string | null;
+  /**
+   * @maxLength 500
+   * @nullable
+   */
+  InvoicePdf?: string | null;
+  /** @nullable */
+  NextPaymentAttempt?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  Number?: string | null;
+  PeriodEnd?: string;
+  PeriodStart?: string;
+  /**
+   * @maxLength 30
+   * @nullable
+   */
+  Status?: string | null;
+  SubTotal?: number;
+  /** @nullable */
+  SubTotalExcludingTax?: number | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  SubscriptionId?: string | null;
+  /** @nullable */
+  Tax?: number | null;
+  Total?: number;
+  /** @nullable */
+  TotalExcludingTax?: number | null;
+  IsRefunded?: boolean;
+  CurrencyAmountCreditedPostPayment?: number;
+  CurrencyAmountCreditedPrePayment?: number;
+  CurrencyAmountDue?: number;
+  CurrencyAmountPaid?: number;
+  /** @nullable */
+  CurrencySymbol?: string | null;
+  CurrencyTotal?: number;
+  CurrencyTotalExcludingTax?: number;
+  CurrencySubTotal?: number;
+  CurrencySubTotalExcludingTax?: number;
+  CurrencyTax?: number;
+  /** @nullable */
+  DaysUntilDue?: number | null;
+  /** @nullable */
+  CustomerId?: string | null;
+  /** @nullable */
+  PaymentStatus?: string | null;
+  /** @nullable */
+  StripePaymentMethodId?: string | null;
+};
+
+export type AccountStageUpdatedWebhookPayloadStripePaymentMethodsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  StripeId?: string | null;
+  IsLivemode?: boolean;
+  /** @nullable */
+  Card_Brand?: string | null;
+  /** @nullable */
+  Card_ExpMonth?: number | null;
+  /** @nullable */
+  Card_ExpYear?: number | null;
+  /** @nullable */
+  Card_Wallet_Type?: string | null;
+  /** @nullable */
+  BankName?: string | null;
+  /** @nullable */
+  Last4?: string | null;
+  /** @nullable */
+  Type?: string | null;
+  /** @nullable */
+  Label?: string | null;
+};
+
+export type AccountStageUpdatedWebhookPayloadStripeSubscriptionsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  StripeId?: string | null;
+  IsLivemode?: boolean;
+  /** @nullable */
+  CancelAt?: string | null;
+  CancelAtPeriodEnd?: boolean;
+  /**
+   * @maxLength 3
+   * @nullable
+   */
+  Currency?: string | null;
+  /** @nullable */
+  EndedAt?: string | null;
+  /**
+   * @maxLength 30
+   * @nullable
+   */
+  PauseCollection_Behavior?: string | null;
+  /** @nullable */
+  PauseCollection_ResumesAt?: string | null;
+  StartDate?: string;
+  /**
+   * @maxLength 30
+   * @nullable
+   */
+  Status?: string | null;
+  /** @nullable */
+  TrialEnd?: string | null;
+  /** @nullable */
+  AccountUid?: string | null;
+  /** @nullable */
+  BillingCycleAnchor?: string | null;
+  /** @nullable */
+  CollectionMethod?: string | null;
+  /** @nullable */
+  CustomerId?: string | null;
+  /** @nullable */
+  DaysUntilDue?: number | null;
+  /** @nullable */
+  ScheduleId?: string | null;
+  /** @nullable */
+  StripeDiscountIds?: string[] | null;
+  /** @nullable */
+  StripePriceIds?: string | null;
+  TrialPeriodDays?: number;
+};
+
+/**
+ * `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time
+ */
+export type AccountStageUpdatedWebhookPayloadSubscriptionsItemBillingRenewalTerm = typeof AccountStageUpdatedWebhookPayloadSubscriptionsItemBillingRenewalTerm[keyof typeof AccountStageUpdatedWebhookPayloadSubscriptionsItemBillingRenewalTerm];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountStageUpdatedWebhookPayloadSubscriptionsItemBillingRenewalTerm = {
+  Monthly: 1,
+  Yearly: 2,
+  Quarterly: 3,
+  OneTime: 4,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountStageUpdatedWebhookPayloadSubscriptionsItemPlanPlanFamily = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  IsActive?: boolean;
+  IsDefault?: boolean;
+} | null;
+
+/**
+ * `1` - Individual, `2` - Team
+ */
+export type AccountStageUpdatedWebhookPayloadSubscriptionsItemPlanAccountRegistrationMode = typeof AccountStageUpdatedWebhookPayloadSubscriptionsItemPlanAccountRegistrationMode[keyof typeof AccountStageUpdatedWebhookPayloadSubscriptionsItemPlanAccountRegistrationMode];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountStageUpdatedWebhookPayloadSubscriptionsItemPlanAccountRegistrationMode = {
+  Individual: 1,
+  Team: 2,
+} as const;
+
+export type AccountStageUpdatedWebhookPayloadSubscriptionsItemPlanPlanAddOnsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  IsUserSelectable: boolean;
+};
+
+export type AccountStageUpdatedWebhookPayloadSubscriptionsItemPlanContentGroupsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @minLength 1
+   * @maxLength 50
+   */
+  Name: string;
+  /**
+   * @maxLength 1024
+   * @nullable
+   */
+  AccessDeniedPath?: string | null;
+};
+
+/**
+ * @nullable
+ */
+export type AccountStageUpdatedWebhookPayloadSubscriptionsItemPlan = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  /** @nullable */
+  Description?: string | null;
+  /** @nullable */
+  PlanFamily?: AccountStageUpdatedWebhookPayloadSubscriptionsItemPlanPlanFamily;
+  /** `1` - Individual, `2` - Team */
+  AccountRegistrationMode?: AccountStageUpdatedWebhookPayloadSubscriptionsItemPlanAccountRegistrationMode;
+  IsQuantityEditable?: boolean;
+  MinimumQuantity?: number;
+  /** @nullable */
+  MaximumPeople?: number | null;
+  MonthlyRate?: number;
+  AnnualRate?: number;
+  QuarterlyRate?: number;
+  OneTimeRate?: number;
+  SetupFee?: number;
+  SkipSetupFeeOnPlanChange?: boolean;
+  IsTaxable?: boolean;
+  IsActive?: boolean;
+  IsPerUser?: boolean;
+  RequirePaymentInformation?: boolean;
+  TrialPeriodDays?: number;
+  /** @nullable */
+  TrialUntilDate?: string | null;
+  ExpiresAfterMonths?: number;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PostLoginPath?: string | null;
+  /**
+   * @maxLength 15
+   * @nullable
+   */
+  StripeTaxCodeId?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  UnitOfMeasure?: string | null;
+  /** @nullable */
+  PlanAddOns?: AccountStageUpdatedWebhookPayloadSubscriptionsItemPlanPlanAddOnsItem[] | null;
+  /** @nullable */
+  ContentGroups?: AccountStageUpdatedWebhookPayloadSubscriptionsItemPlanContentGroupsItem[] | null;
+  /** @nullable */
+  NumberOfSubscriptions?: number | null;
+} | null;
+
+/**
+ * `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time
+ */
+export type AccountStageUpdatedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemBillingRenewalTerm = typeof AccountStageUpdatedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemBillingRenewalTerm[keyof typeof AccountStageUpdatedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemBillingRenewalTerm];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountStageUpdatedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemBillingRenewalTerm = {
+  Monthly: 1,
+  Yearly: 2,
+  Quarterly: 3,
+  OneTime: 4,
+} as const;
+
+/**
+ * `1` - Recurring, `2` - Usage, `3` - OneTime
+ */
+export type AccountStageUpdatedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemAddOnBillingAddOnType = typeof AccountStageUpdatedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemAddOnBillingAddOnType[keyof typeof AccountStageUpdatedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemAddOnBillingAddOnType];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountStageUpdatedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemAddOnBillingAddOnType = {
+  Recurring: 1,
+  Usage: 2,
+  OneTime: 3,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountStageUpdatedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemAddOn = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  /** `1` - Recurring, `2` - Usage, `3` - OneTime */
+  BillingAddOnType?: AccountStageUpdatedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemAddOnBillingAddOnType;
+  IsQuantityEditable?: boolean;
+  MinimumQuantity?: number;
+  MonthlyRate?: number;
+  AnnualRate?: number;
+  SetupFee?: number;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  UnitOfMeasure?: string | null;
+  IsTaxable?: boolean;
+  IsBilledDuringTrial?: boolean;
+  ExpiresAfterMonths?: number;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /**
+   * @maxLength 15
+   * @nullable
+   */
+  StripeTaxCodeId?: string | null;
+  IsPerUser?: boolean;
+  QuarterlyRate?: number;
+  OneTimeRate?: number;
+  SubscriptionCount?: number;
+  Quantity?: number;
+} | null;
+
+export type AccountStageUpdatedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time */
+  BillingRenewalTerm?: AccountStageUpdatedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemBillingRenewalTerm;
+  /** @nullable */
+  AddOn?: AccountStageUpdatedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemAddOn;
+  /** @nullable */
+  Quantity?: number | null;
+  StartDate?: string;
+  /** @nullable */
+  EndDate?: string | null;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /** @nullable */
+  RenewalDate?: string | null;
+  /** @nullable */
+  NewRequiredQuantity?: number | null;
+  /** @nullable */
+  Rate?: number | null;
+};
+
+/**
+ * `1` - Forever, `2` - Once, `3` - Repeating
+ */
+export type AccountStageUpdatedWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItemDiscountCouponDuration = typeof AccountStageUpdatedWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItemDiscountCouponDuration[keyof typeof AccountStageUpdatedWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItemDiscountCouponDuration];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountStageUpdatedWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItemDiscountCouponDuration = {
+  Forever: 1,
+  Once: 2,
+  Repeating: 3,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountStageUpdatedWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItemDiscountCoupon = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /** @nullable */
+  UniqueIdentifier?: string | null;
+  /** @nullable */
+  Name?: string | null;
+  IsActive?: boolean;
+  /** @nullable */
+  AmountOff?: number | null;
+  /** @nullable */
+  PercentOff?: number | null;
+  /** @nullable */
+  RedeemBy?: string | null;
+  /** `1` - Forever, `2` - Once, `3` - Repeating */
+  Duration?: AccountStageUpdatedWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItemDiscountCouponDuration;
+  /** @nullable */
+  DurationInMonths?: number | null;
+  TimesRedeemed?: number;
+  /** @nullable */
+  MaxRedemptions?: number | null;
+  ApplyToAddOns?: boolean;
+  /** @nullable */
+  PlanUids?: string | null;
+} | null;
+
+export type AccountStageUpdatedWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** @nullable */
+  RedeemedDate?: string | null;
+  /** @nullable */
+  ExpireDate?: string | null;
+  /** @nullable */
+  DiscountCoupon?: AccountStageUpdatedWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItemDiscountCoupon;
+};
+
+/**
+ * `1` - Unpaid, `2` - Paid, `3` - Partial, `4` - Uncollected, `5` - Refunded, `6` - Uncollectible, `7` - Processing
+ */
+export type AccountStageUpdatedWebhookPayloadSubscriptionsItemLatestInvoiceBillingInvoiceStatus = typeof AccountStageUpdatedWebhookPayloadSubscriptionsItemLatestInvoiceBillingInvoiceStatus[keyof typeof AccountStageUpdatedWebhookPayloadSubscriptionsItemLatestInvoiceBillingInvoiceStatus];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountStageUpdatedWebhookPayloadSubscriptionsItemLatestInvoiceBillingInvoiceStatus = {
+  Unpaid: 1,
+  Paid: 2,
+  Partial: 3,
+  Uncollected: 4,
+  Refunded: 5,
+  Uncollectible: 6,
+  Processing: 7,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountStageUpdatedWebhookPayloadSubscriptionsItemLatestInvoice = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  InvoiceDate?: string;
+  /** @nullable */
+  PaymentReminderSentDate?: string | null;
+  Number?: number;
+  /** `1` - Unpaid, `2` - Paid, `3` - Partial, `4` - Uncollected, `5` - Refunded, `6` - Uncollectible, `7` - Processing */
+  BillingInvoiceStatus?: AccountStageUpdatedWebhookPayloadSubscriptionsItemLatestInvoiceBillingInvoiceStatus;
+  Amount?: number;
+  AmountOutstanding?: number;
+  IsUserGenerated?: boolean;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  StripeTaxCalculationId?: string | null;
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  StripeTaxBehavior?: string | null;
+  AmountCredit?: number;
+  AmountDiscount?: number;
+  AmountPaid?: number;
+  AmountRefunded?: number;
+  AmountSubtotal?: number;
+  AmountTax?: number;
+  AmountTaxRefunded?: number;
+  IsTaxable?: boolean;
+  HasPaymentGatewayTransactions?: boolean;
+  /** @nullable */
+  StripePaymentTransactionIds?: string | null;
+  /** @nullable */
+  StripeRefundTransactionIds?: string | null;
+  /** @nullable */
+  StripeTaxRefundTransactionIds?: string | null;
+} | null;
+
+export type AccountStageUpdatedWebhookPayloadSubscriptionsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time */
+  BillingRenewalTerm?: AccountStageUpdatedWebhookPayloadSubscriptionsItemBillingRenewalTerm;
+  /** @nullable */
+  Plan?: AccountStageUpdatedWebhookPayloadSubscriptionsItemPlan;
+  /** @nullable */
+  Quantity?: number | null;
+  StartDate?: string;
+  /** @nullable */
+  EndDate?: string | null;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /** @nullable */
+  RenewalDate?: string | null;
+  /** @nullable */
+  NewRequiredQuantity?: number | null;
+  IsPlanUpgradeRequired?: boolean;
+  /** @nullable */
+  PlanUpgradeRequiredMessage?: string | null;
+  /** @nullable */
+  SubscriptionAddOns?: AccountStageUpdatedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItem[] | null;
+  /** @nullable */
+  DiscountCouponSubscriptions?: AccountStageUpdatedWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItem[] | null;
+  /** @nullable */
+  DiscountCode?: string | null;
+  /** @nullable */
+  DiscountCouponExpirationDate?: string | null;
+  /** @nullable */
+  LatestInvoice?: AccountStageUpdatedWebhookPayloadSubscriptionsItemLatestInvoice;
+  /** @nullable */
+  Rate?: number | null;
+};
+
+export type AccountStageUpdatedWebhookPayloadDealsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @minLength 1
+   * @maxLength 250
+   */
+  Name: string;
+  /** @nullable */
+  Amount?: number | null;
+  /** @nullable */
+  DueDate?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  AssignedToPersonClientIdentifier?: string | null;
+  Weight?: number;
+  /** @nullable */
+  Contacts?: string | null;
+  AccountId?: number;
+  /** @nullable */
+  PipelineUid?: string | null;
+};
+
+export type AccountStageUpdatedWebhookPayloadTaxIdsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  StripeId?: string | null;
+  IsLivemode?: boolean;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  TaxId?: string | null;
+  /**
+   * @maxLength 20
+   * @nullable
+   */
+  TaxIdType?: string | null;
+  IsInvalid?: boolean;
+};
+
+/**
+ * `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time
+ */
+export type AccountStageUpdatedWebhookPayloadCurrentSubscriptionBillingRenewalTerm = typeof AccountStageUpdatedWebhookPayloadCurrentSubscriptionBillingRenewalTerm[keyof typeof AccountStageUpdatedWebhookPayloadCurrentSubscriptionBillingRenewalTerm];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountStageUpdatedWebhookPayloadCurrentSubscriptionBillingRenewalTerm = {
+  Monthly: 1,
+  Yearly: 2,
+  Quarterly: 3,
+  OneTime: 4,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountStageUpdatedWebhookPayloadCurrentSubscriptionPlanPlanFamily = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  IsActive?: boolean;
+  IsDefault?: boolean;
+} | null;
+
+/**
+ * `1` - Individual, `2` - Team
+ */
+export type AccountStageUpdatedWebhookPayloadCurrentSubscriptionPlanAccountRegistrationMode = typeof AccountStageUpdatedWebhookPayloadCurrentSubscriptionPlanAccountRegistrationMode[keyof typeof AccountStageUpdatedWebhookPayloadCurrentSubscriptionPlanAccountRegistrationMode];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountStageUpdatedWebhookPayloadCurrentSubscriptionPlanAccountRegistrationMode = {
+  Individual: 1,
+  Team: 2,
+} as const;
+
+export type AccountStageUpdatedWebhookPayloadCurrentSubscriptionPlanPlanAddOnsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  IsUserSelectable: boolean;
+};
+
+export type AccountStageUpdatedWebhookPayloadCurrentSubscriptionPlanContentGroupsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @minLength 1
+   * @maxLength 50
+   */
+  Name: string;
+  /**
+   * @maxLength 1024
+   * @nullable
+   */
+  AccessDeniedPath?: string | null;
+};
+
+/**
+ * @nullable
+ */
+export type AccountStageUpdatedWebhookPayloadCurrentSubscriptionPlan = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  /** @nullable */
+  Description?: string | null;
+  /** @nullable */
+  PlanFamily?: AccountStageUpdatedWebhookPayloadCurrentSubscriptionPlanPlanFamily;
+  /** `1` - Individual, `2` - Team */
+  AccountRegistrationMode?: AccountStageUpdatedWebhookPayloadCurrentSubscriptionPlanAccountRegistrationMode;
+  IsQuantityEditable?: boolean;
+  MinimumQuantity?: number;
+  /** @nullable */
+  MaximumPeople?: number | null;
+  MonthlyRate?: number;
+  AnnualRate?: number;
+  QuarterlyRate?: number;
+  OneTimeRate?: number;
+  SetupFee?: number;
+  SkipSetupFeeOnPlanChange?: boolean;
+  IsTaxable?: boolean;
+  IsActive?: boolean;
+  IsPerUser?: boolean;
+  RequirePaymentInformation?: boolean;
+  TrialPeriodDays?: number;
+  /** @nullable */
+  TrialUntilDate?: string | null;
+  ExpiresAfterMonths?: number;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PostLoginPath?: string | null;
+  /**
+   * @maxLength 15
+   * @nullable
+   */
+  StripeTaxCodeId?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  UnitOfMeasure?: string | null;
+  /** @nullable */
+  PlanAddOns?: AccountStageUpdatedWebhookPayloadCurrentSubscriptionPlanPlanAddOnsItem[] | null;
+  /** @nullable */
+  ContentGroups?: AccountStageUpdatedWebhookPayloadCurrentSubscriptionPlanContentGroupsItem[] | null;
+  /** @nullable */
+  NumberOfSubscriptions?: number | null;
+} | null;
+
+/**
+ * `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time
+ */
+export type AccountStageUpdatedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemBillingRenewalTerm = typeof AccountStageUpdatedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemBillingRenewalTerm[keyof typeof AccountStageUpdatedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemBillingRenewalTerm];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountStageUpdatedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemBillingRenewalTerm = {
+  Monthly: 1,
+  Yearly: 2,
+  Quarterly: 3,
+  OneTime: 4,
+} as const;
+
+/**
+ * `1` - Recurring, `2` - Usage, `3` - OneTime
+ */
+export type AccountStageUpdatedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType = typeof AccountStageUpdatedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType[keyof typeof AccountStageUpdatedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountStageUpdatedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType = {
+  Recurring: 1,
+  Usage: 2,
+  OneTime: 3,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountStageUpdatedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemAddOn = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  /** `1` - Recurring, `2` - Usage, `3` - OneTime */
+  BillingAddOnType?: AccountStageUpdatedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType;
+  IsQuantityEditable?: boolean;
+  MinimumQuantity?: number;
+  MonthlyRate?: number;
+  AnnualRate?: number;
+  SetupFee?: number;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  UnitOfMeasure?: string | null;
+  IsTaxable?: boolean;
+  IsBilledDuringTrial?: boolean;
+  ExpiresAfterMonths?: number;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /**
+   * @maxLength 15
+   * @nullable
+   */
+  StripeTaxCodeId?: string | null;
+  IsPerUser?: boolean;
+  QuarterlyRate?: number;
+  OneTimeRate?: number;
+  SubscriptionCount?: number;
+  Quantity?: number;
+} | null;
+
+export type AccountStageUpdatedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time */
+  BillingRenewalTerm?: AccountStageUpdatedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemBillingRenewalTerm;
+  /** @nullable */
+  AddOn?: AccountStageUpdatedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemAddOn;
+  /** @nullable */
+  Quantity?: number | null;
+  StartDate?: string;
+  /** @nullable */
+  EndDate?: string | null;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /** @nullable */
+  RenewalDate?: string | null;
+  /** @nullable */
+  NewRequiredQuantity?: number | null;
+  /** @nullable */
+  Rate?: number | null;
+};
+
+/**
+ * `1` - Forever, `2` - Once, `3` - Repeating
+ */
+export type AccountStageUpdatedWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration = typeof AccountStageUpdatedWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration[keyof typeof AccountStageUpdatedWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountStageUpdatedWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration = {
+  Forever: 1,
+  Once: 2,
+  Repeating: 3,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountStageUpdatedWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItemDiscountCoupon = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /** @nullable */
+  UniqueIdentifier?: string | null;
+  /** @nullable */
+  Name?: string | null;
+  IsActive?: boolean;
+  /** @nullable */
+  AmountOff?: number | null;
+  /** @nullable */
+  PercentOff?: number | null;
+  /** @nullable */
+  RedeemBy?: string | null;
+  /** `1` - Forever, `2` - Once, `3` - Repeating */
+  Duration?: AccountStageUpdatedWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration;
+  /** @nullable */
+  DurationInMonths?: number | null;
+  TimesRedeemed?: number;
+  /** @nullable */
+  MaxRedemptions?: number | null;
+  ApplyToAddOns?: boolean;
+  /** @nullable */
+  PlanUids?: string | null;
+} | null;
+
+export type AccountStageUpdatedWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** @nullable */
+  RedeemedDate?: string | null;
+  /** @nullable */
+  ExpireDate?: string | null;
+  /** @nullable */
+  DiscountCoupon?: AccountStageUpdatedWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItemDiscountCoupon;
+};
+
+/**
+ * `1` - Unpaid, `2` - Paid, `3` - Partial, `4` - Uncollected, `5` - Refunded, `6` - Uncollectible, `7` - Processing
+ */
+export type AccountStageUpdatedWebhookPayloadCurrentSubscriptionLatestInvoiceBillingInvoiceStatus = typeof AccountStageUpdatedWebhookPayloadCurrentSubscriptionLatestInvoiceBillingInvoiceStatus[keyof typeof AccountStageUpdatedWebhookPayloadCurrentSubscriptionLatestInvoiceBillingInvoiceStatus];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountStageUpdatedWebhookPayloadCurrentSubscriptionLatestInvoiceBillingInvoiceStatus = {
+  Unpaid: 1,
+  Paid: 2,
+  Partial: 3,
+  Uncollected: 4,
+  Refunded: 5,
+  Uncollectible: 6,
+  Processing: 7,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountStageUpdatedWebhookPayloadCurrentSubscriptionLatestInvoice = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  InvoiceDate?: string;
+  /** @nullable */
+  PaymentReminderSentDate?: string | null;
+  Number?: number;
+  /** `1` - Unpaid, `2` - Paid, `3` - Partial, `4` - Uncollected, `5` - Refunded, `6` - Uncollectible, `7` - Processing */
+  BillingInvoiceStatus?: AccountStageUpdatedWebhookPayloadCurrentSubscriptionLatestInvoiceBillingInvoiceStatus;
+  Amount?: number;
+  AmountOutstanding?: number;
+  IsUserGenerated?: boolean;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  StripeTaxCalculationId?: string | null;
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  StripeTaxBehavior?: string | null;
+  AmountCredit?: number;
+  AmountDiscount?: number;
+  AmountPaid?: number;
+  AmountRefunded?: number;
+  AmountSubtotal?: number;
+  AmountTax?: number;
+  AmountTaxRefunded?: number;
+  IsTaxable?: boolean;
+  HasPaymentGatewayTransactions?: boolean;
+  /** @nullable */
+  StripePaymentTransactionIds?: string | null;
+  /** @nullable */
+  StripeRefundTransactionIds?: string | null;
+  /** @nullable */
+  StripeTaxRefundTransactionIds?: string | null;
+} | null;
+
+/**
+ * @nullable
+ */
+export type AccountStageUpdatedWebhookPayloadCurrentSubscription = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /** `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time */
+  BillingRenewalTerm?: AccountStageUpdatedWebhookPayloadCurrentSubscriptionBillingRenewalTerm;
+  /** @nullable */
+  Plan?: AccountStageUpdatedWebhookPayloadCurrentSubscriptionPlan;
+  /** @nullable */
+  Quantity?: number | null;
+  StartDate?: string;
+  /** @nullable */
+  EndDate?: string | null;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /** @nullable */
+  RenewalDate?: string | null;
+  /** @nullable */
+  NewRequiredQuantity?: number | null;
+  IsPlanUpgradeRequired?: boolean;
+  /** @nullable */
+  PlanUpgradeRequiredMessage?: string | null;
+  /** @nullable */
+  SubscriptionAddOns?: AccountStageUpdatedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItem[] | null;
+  /** @nullable */
+  DiscountCouponSubscriptions?: AccountStageUpdatedWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItem[] | null;
+  /** @nullable */
+  DiscountCode?: string | null;
+  /** @nullable */
+  DiscountCouponExpirationDate?: string | null;
+  /** @nullable */
+  LatestInvoice?: AccountStageUpdatedWebhookPayloadCurrentSubscriptionLatestInvoice;
+  /** @nullable */
+  Rate?: number | null;
+} | null;
+
+/**
+ * `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time
+ */
+export type AccountStageUpdatedWebhookPayloadLatestSubscriptionBillingRenewalTerm = typeof AccountStageUpdatedWebhookPayloadLatestSubscriptionBillingRenewalTerm[keyof typeof AccountStageUpdatedWebhookPayloadLatestSubscriptionBillingRenewalTerm];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountStageUpdatedWebhookPayloadLatestSubscriptionBillingRenewalTerm = {
+  Monthly: 1,
+  Yearly: 2,
+  Quarterly: 3,
+  OneTime: 4,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountStageUpdatedWebhookPayloadLatestSubscriptionPlanPlanFamily = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  IsActive?: boolean;
+  IsDefault?: boolean;
+} | null;
+
+/**
+ * `1` - Individual, `2` - Team
+ */
+export type AccountStageUpdatedWebhookPayloadLatestSubscriptionPlanAccountRegistrationMode = typeof AccountStageUpdatedWebhookPayloadLatestSubscriptionPlanAccountRegistrationMode[keyof typeof AccountStageUpdatedWebhookPayloadLatestSubscriptionPlanAccountRegistrationMode];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountStageUpdatedWebhookPayloadLatestSubscriptionPlanAccountRegistrationMode = {
+  Individual: 1,
+  Team: 2,
+} as const;
+
+export type AccountStageUpdatedWebhookPayloadLatestSubscriptionPlanPlanAddOnsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  IsUserSelectable: boolean;
+};
+
+export type AccountStageUpdatedWebhookPayloadLatestSubscriptionPlanContentGroupsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @minLength 1
+   * @maxLength 50
+   */
+  Name: string;
+  /**
+   * @maxLength 1024
+   * @nullable
+   */
+  AccessDeniedPath?: string | null;
+};
+
+/**
+ * @nullable
+ */
+export type AccountStageUpdatedWebhookPayloadLatestSubscriptionPlan = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  /** @nullable */
+  Description?: string | null;
+  /** @nullable */
+  PlanFamily?: AccountStageUpdatedWebhookPayloadLatestSubscriptionPlanPlanFamily;
+  /** `1` - Individual, `2` - Team */
+  AccountRegistrationMode?: AccountStageUpdatedWebhookPayloadLatestSubscriptionPlanAccountRegistrationMode;
+  IsQuantityEditable?: boolean;
+  MinimumQuantity?: number;
+  /** @nullable */
+  MaximumPeople?: number | null;
+  MonthlyRate?: number;
+  AnnualRate?: number;
+  QuarterlyRate?: number;
+  OneTimeRate?: number;
+  SetupFee?: number;
+  SkipSetupFeeOnPlanChange?: boolean;
+  IsTaxable?: boolean;
+  IsActive?: boolean;
+  IsPerUser?: boolean;
+  RequirePaymentInformation?: boolean;
+  TrialPeriodDays?: number;
+  /** @nullable */
+  TrialUntilDate?: string | null;
+  ExpiresAfterMonths?: number;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PostLoginPath?: string | null;
+  /**
+   * @maxLength 15
+   * @nullable
+   */
+  StripeTaxCodeId?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  UnitOfMeasure?: string | null;
+  /** @nullable */
+  PlanAddOns?: AccountStageUpdatedWebhookPayloadLatestSubscriptionPlanPlanAddOnsItem[] | null;
+  /** @nullable */
+  ContentGroups?: AccountStageUpdatedWebhookPayloadLatestSubscriptionPlanContentGroupsItem[] | null;
+  /** @nullable */
+  NumberOfSubscriptions?: number | null;
+} | null;
+
+/**
+ * `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time
+ */
+export type AccountStageUpdatedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemBillingRenewalTerm = typeof AccountStageUpdatedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemBillingRenewalTerm[keyof typeof AccountStageUpdatedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemBillingRenewalTerm];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountStageUpdatedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemBillingRenewalTerm = {
+  Monthly: 1,
+  Yearly: 2,
+  Quarterly: 3,
+  OneTime: 4,
+} as const;
+
+/**
+ * `1` - Recurring, `2` - Usage, `3` - OneTime
+ */
+export type AccountStageUpdatedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType = typeof AccountStageUpdatedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType[keyof typeof AccountStageUpdatedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountStageUpdatedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType = {
+  Recurring: 1,
+  Usage: 2,
+  OneTime: 3,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountStageUpdatedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemAddOn = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  /** `1` - Recurring, `2` - Usage, `3` - OneTime */
+  BillingAddOnType?: AccountStageUpdatedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType;
+  IsQuantityEditable?: boolean;
+  MinimumQuantity?: number;
+  MonthlyRate?: number;
+  AnnualRate?: number;
+  SetupFee?: number;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  UnitOfMeasure?: string | null;
+  IsTaxable?: boolean;
+  IsBilledDuringTrial?: boolean;
+  ExpiresAfterMonths?: number;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /**
+   * @maxLength 15
+   * @nullable
+   */
+  StripeTaxCodeId?: string | null;
+  IsPerUser?: boolean;
+  QuarterlyRate?: number;
+  OneTimeRate?: number;
+  SubscriptionCount?: number;
+  Quantity?: number;
+} | null;
+
+export type AccountStageUpdatedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time */
+  BillingRenewalTerm?: AccountStageUpdatedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemBillingRenewalTerm;
+  /** @nullable */
+  AddOn?: AccountStageUpdatedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemAddOn;
+  /** @nullable */
+  Quantity?: number | null;
+  StartDate?: string;
+  /** @nullable */
+  EndDate?: string | null;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /** @nullable */
+  RenewalDate?: string | null;
+  /** @nullable */
+  NewRequiredQuantity?: number | null;
+  /** @nullable */
+  Rate?: number | null;
+};
+
+/**
+ * `1` - Forever, `2` - Once, `3` - Repeating
+ */
+export type AccountStageUpdatedWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration = typeof AccountStageUpdatedWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration[keyof typeof AccountStageUpdatedWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountStageUpdatedWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration = {
+  Forever: 1,
+  Once: 2,
+  Repeating: 3,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountStageUpdatedWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItemDiscountCoupon = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /** @nullable */
+  UniqueIdentifier?: string | null;
+  /** @nullable */
+  Name?: string | null;
+  IsActive?: boolean;
+  /** @nullable */
+  AmountOff?: number | null;
+  /** @nullable */
+  PercentOff?: number | null;
+  /** @nullable */
+  RedeemBy?: string | null;
+  /** `1` - Forever, `2` - Once, `3` - Repeating */
+  Duration?: AccountStageUpdatedWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration;
+  /** @nullable */
+  DurationInMonths?: number | null;
+  TimesRedeemed?: number;
+  /** @nullable */
+  MaxRedemptions?: number | null;
+  ApplyToAddOns?: boolean;
+  /** @nullable */
+  PlanUids?: string | null;
+} | null;
+
+export type AccountStageUpdatedWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** @nullable */
+  RedeemedDate?: string | null;
+  /** @nullable */
+  ExpireDate?: string | null;
+  /** @nullable */
+  DiscountCoupon?: AccountStageUpdatedWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItemDiscountCoupon;
+};
+
+/**
+ * `1` - Unpaid, `2` - Paid, `3` - Partial, `4` - Uncollected, `5` - Refunded, `6` - Uncollectible, `7` - Processing
+ */
+export type AccountStageUpdatedWebhookPayloadLatestSubscriptionLatestInvoiceBillingInvoiceStatus = typeof AccountStageUpdatedWebhookPayloadLatestSubscriptionLatestInvoiceBillingInvoiceStatus[keyof typeof AccountStageUpdatedWebhookPayloadLatestSubscriptionLatestInvoiceBillingInvoiceStatus];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountStageUpdatedWebhookPayloadLatestSubscriptionLatestInvoiceBillingInvoiceStatus = {
+  Unpaid: 1,
+  Paid: 2,
+  Partial: 3,
+  Uncollected: 4,
+  Refunded: 5,
+  Uncollectible: 6,
+  Processing: 7,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountStageUpdatedWebhookPayloadLatestSubscriptionLatestInvoice = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  InvoiceDate?: string;
+  /** @nullable */
+  PaymentReminderSentDate?: string | null;
+  Number?: number;
+  /** `1` - Unpaid, `2` - Paid, `3` - Partial, `4` - Uncollected, `5` - Refunded, `6` - Uncollectible, `7` - Processing */
+  BillingInvoiceStatus?: AccountStageUpdatedWebhookPayloadLatestSubscriptionLatestInvoiceBillingInvoiceStatus;
+  Amount?: number;
+  AmountOutstanding?: number;
+  IsUserGenerated?: boolean;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  StripeTaxCalculationId?: string | null;
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  StripeTaxBehavior?: string | null;
+  AmountCredit?: number;
+  AmountDiscount?: number;
+  AmountPaid?: number;
+  AmountRefunded?: number;
+  AmountSubtotal?: number;
+  AmountTax?: number;
+  AmountTaxRefunded?: number;
+  IsTaxable?: boolean;
+  HasPaymentGatewayTransactions?: boolean;
+  /** @nullable */
+  StripePaymentTransactionIds?: string | null;
+  /** @nullable */
+  StripeRefundTransactionIds?: string | null;
+  /** @nullable */
+  StripeTaxRefundTransactionIds?: string | null;
+} | null;
+
+/**
+ * @nullable
+ */
+export type AccountStageUpdatedWebhookPayloadLatestSubscription = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /** `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time */
+  BillingRenewalTerm?: AccountStageUpdatedWebhookPayloadLatestSubscriptionBillingRenewalTerm;
+  /** @nullable */
+  Plan?: AccountStageUpdatedWebhookPayloadLatestSubscriptionPlan;
+  /** @nullable */
+  Quantity?: number | null;
+  StartDate?: string;
+  /** @nullable */
+  EndDate?: string | null;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /** @nullable */
+  RenewalDate?: string | null;
+  /** @nullable */
+  NewRequiredQuantity?: number | null;
+  IsPlanUpgradeRequired?: boolean;
+  /** @nullable */
+  PlanUpgradeRequiredMessage?: string | null;
+  /** @nullable */
+  SubscriptionAddOns?: AccountStageUpdatedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItem[] | null;
+  /** @nullable */
+  DiscountCouponSubscriptions?: AccountStageUpdatedWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItem[] | null;
+  /** @nullable */
+  DiscountCode?: string | null;
+  /** @nullable */
+  DiscountCouponExpirationDate?: string | null;
+  /** @nullable */
+  LatestInvoice?: AccountStageUpdatedWebhookPayloadLatestSubscriptionLatestInvoice;
+  /** @nullable */
+  Rate?: number | null;
+} | null;
+
+/**
+ * `0` - None, `1` - Gmail
+ */
+export type AccountStageUpdatedWebhookPayloadPrimaryContactOAuthIntegrationStatus = typeof AccountStageUpdatedWebhookPayloadPrimaryContactOAuthIntegrationStatus[keyof typeof AccountStageUpdatedWebhookPayloadPrimaryContactOAuthIntegrationStatus];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountStageUpdatedWebhookPayloadPrimaryContactOAuthIntegrationStatus = {
+  None: 0,
+  Gmail: 1,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountStageUpdatedWebhookPayloadPrimaryContact = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Email?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  FirstName?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  LastName?: string | null;
+  /** @nullable */
+  PasswordLastUpdated?: string | null;
+  PasswordMustChange?: boolean;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PhoneMobile?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PhoneWork?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  ProfileImageS3Url?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Title?: string | null;
+  /**
+   * @maxLength 100
+   * @nullable
+   */
+  Timezone?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  Language?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  IPAddress?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Referer?: string | null;
+  /**
+   * @maxLength 1000
+   * @nullable
+   */
+  UserAgent?: string | null;
+  /** @nullable */
+  LastLoginDateTime?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  OAuthGoogleProfileId?: string | null;
+  /** @nullable */
+  AccountUids?: string | null;
+  /** @nullable */
+  FullName?: string | null;
+  HasLoggedIn?: boolean;
+  /** `0` - None, `1` - Gmail */
+  OAuthIntegrationStatus?: AccountStageUpdatedWebhookPayloadPrimaryContactOAuthIntegrationStatus;
+  OptInToEmailList?: boolean;
+  /** @nullable */
+  Password?: string | null;
+  /** @nullable */
+  UserAgentPlatformBrowser?: string | null;
+  HasUnsubscribed?: boolean;
+  IsConnectedToDiscord?: boolean;
+} | null;
+
+/**
+ * `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time
+ */
+export type AccountStageUpdatedWebhookPayloadPrimarySubscriptionBillingRenewalTerm = typeof AccountStageUpdatedWebhookPayloadPrimarySubscriptionBillingRenewalTerm[keyof typeof AccountStageUpdatedWebhookPayloadPrimarySubscriptionBillingRenewalTerm];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountStageUpdatedWebhookPayloadPrimarySubscriptionBillingRenewalTerm = {
+  Monthly: 1,
+  Yearly: 2,
+  Quarterly: 3,
+  OneTime: 4,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountStageUpdatedWebhookPayloadPrimarySubscription = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /** `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time */
+  BillingRenewalTerm?: AccountStageUpdatedWebhookPayloadPrimarySubscriptionBillingRenewalTerm;
+  /** @nullable */
+  Quantity?: number | null;
+  StartDate?: string;
+  /** @nullable */
+  EndDate?: string | null;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /** @nullable */
+  RenewalDate?: string | null;
+  /** @nullable */
+  NewRequiredQuantity?: number | null;
+  IsPlanUpgradeRequired?: boolean;
+  /** @nullable */
+  PlanUpgradeRequiredMessage?: string | null;
+  /** @nullable */
+  DiscountCode?: string | null;
+  /** @nullable */
+  DiscountCouponExpirationDate?: string | null;
+  /** @nullable */
+  Rate?: number | null;
+} | null;
+
+/**
+ * @nullable
+ */
+export type AccountStageUpdatedWebhookPayloadPrimaryStripeSubscription = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  StripeId?: string | null;
+  IsLivemode?: boolean;
+  /** @nullable */
+  CancelAt?: string | null;
+  CancelAtPeriodEnd?: boolean;
+  /**
+   * @maxLength 3
+   * @nullable
+   */
+  Currency?: string | null;
+  /** @nullable */
+  EndedAt?: string | null;
+  /**
+   * @maxLength 30
+   * @nullable
+   */
+  PauseCollection_Behavior?: string | null;
+  /** @nullable */
+  PauseCollection_ResumesAt?: string | null;
+  StartDate?: string;
+  /**
+   * @maxLength 30
+   * @nullable
+   */
+  Status?: string | null;
+  /** @nullable */
+  TrialEnd?: string | null;
+  /** @nullable */
+  AccountUid?: string | null;
+  /** @nullable */
+  BillingCycleAnchor?: string | null;
+  /** @nullable */
+  CollectionMethod?: string | null;
+  /** @nullable */
+  CustomerId?: string | null;
+  /** @nullable */
+  DaysUntilDue?: number | null;
+  /** @nullable */
+  ScheduleId?: string | null;
+  /** @nullable */
+  StripeDiscountIds?: string[] | null;
+  /** @nullable */
+  StripePriceIds?: string | null;
+  TrialPeriodDays?: number;
+} | null;
+
+export interface AccountStageUpdatedWebhookPayload {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  StripeId?: string | null;
+  IsLivemode?: boolean;
+  /**
+   * @minLength 1
+   * @maxLength 250
+   */
+  Name: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  ClientIdentifier?: string | null;
+  /**
+   * @maxLength 3
+   * @nullable
+   */
+  Currency?: string | null;
+  /** @nullable */
+  InvoiceNotes?: string | null;
+  IsDemo?: boolean;
+  /** @nullable */
+  BillingAddress?: AccountStageUpdatedWebhookPayloadBillingAddress;
+  /** @nullable */
+  MailingAddress?: AccountStageUpdatedWebhookPayloadMailingAddress;
+  /** `2` - Trialing, `3` - Subscribing, `4` - Cancelling, `5` - Expired, `6` - Trial Expired, `7` - Past Due, `8` - Cancelling Trial, `9` - Paused, `10` - Created */
+  AccountStage?: AccountStageUpdatedWebhookPayloadAccountStage;
+  /** @nullable */
+  PaymentInformation?: AccountStageUpdatedWebhookPayloadPaymentInformation;
+  /** @nullable */
+  PersonAccount?: AccountStageUpdatedWebhookPayloadPersonAccountItem[] | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  StripeDefaultPaymentMethodId?: string | null;
+  /** @nullable */
+  StripeInvoices?: AccountStageUpdatedWebhookPayloadStripeInvoicesItem[] | null;
+  /** @nullable */
+  StripePaymentMethods?: AccountStageUpdatedWebhookPayloadStripePaymentMethodsItem[] | null;
+  /** @nullable */
+  StripeSubscriptions?: AccountStageUpdatedWebhookPayloadStripeSubscriptionsItem[] | null;
+  /** @nullable */
+  Subscriptions?: AccountStageUpdatedWebhookPayloadSubscriptionsItem[] | null;
+  /** @nullable */
+  Deals?: AccountStageUpdatedWebhookPayloadDealsItem[] | null;
+  /** @nullable */
+  LastLoginDateTime?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl1?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl2?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl3?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl4?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl5?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl6?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl7?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl8?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl9?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl10?: string | null;
+  /** @nullable */
+  RewardFulReferralId?: string | null;
+  /**
+   * @maxLength 36
+   * @nullable
+   */
+  ToltReferralId?: string | null;
+  /** @nullable */
+  TaxIds?: AccountStageUpdatedWebhookPayloadTaxIdsItem[] | null;
+  /**
+   * @maxLength 20
+   * @nullable
+   */
+  TaxStatus?: string | null;
+  /** @nullable */
+  AccountStageLabel?: string | null;
+  /** @nullable */
+  CurrentStripeProducts?: string | null;
+  /** @nullable */
+  CurrentSubscription?: AccountStageUpdatedWebhookPayloadCurrentSubscription;
+  /** @nullable */
+  DomainName?: string | null;
+  HasLoggedIn?: boolean;
+  /** @nullable */
+  LatestSubscription?: AccountStageUpdatedWebhookPayloadLatestSubscription;
+  LifetimeRevenue?: number;
+  /** @nullable */
+  NextStripeInvoiceDate?: string | null;
+  /** @nullable */
+  Nonce?: string | null;
+  /** @nullable */
+  PrimaryContact?: AccountStageUpdatedWebhookPayloadPrimaryContact;
+  /** @nullable */
+  PrimarySubscription?: AccountStageUpdatedWebhookPayloadPrimarySubscription;
+  /** @nullable */
+  PrimaryStripeSubscription?: AccountStageUpdatedWebhookPayloadPrimaryStripeSubscription;
+  /** @nullable */
+  RecaptchaToken?: string | null;
+  /** @nullable */
+  StripeNextInvoiceSequence?: number | null;
+  /** @nullable */
+  StripePrice?: string[] | null;
+  /** @nullable */
+  StripePromotionCode?: string | null;
+  /** @nullable */
+  TaxId?: string | null;
+  TaxIdIsInvalid?: boolean;
+  /** @nullable */
+  TaxIdType?: string | null;
+  /** @nullable */
+  WebflowSlug?: string | null;
+  ActivityEventData?: AccountStageUpdatedActivityData;
+}
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionPlanUpdatedActivityDataSubscription = unknown | null;
+
+export interface AccountSubscriptionPlanUpdatedActivityData {
+  /** @nullable */
+  Subscription?: AccountSubscriptionPlanUpdatedActivityDataSubscription;
+  /** @nullable */
+  CurrentPrincipal?: string | null;
+}
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionPlanUpdatedWebhookPayloadBillingAddress = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine1?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine2?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine3?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  City?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  State?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PostalCode?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Country?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  GeoLocation?: string | null;
+} | null;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionPlanUpdatedWebhookPayloadMailingAddress = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine1?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine2?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine3?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  City?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  State?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PostalCode?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Country?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  GeoLocation?: string | null;
+} | null;
+
+/**
+ * `2` - Trialing, `3` - Subscribing, `4` - Cancelling, `5` - Expired, `6` - Trial Expired, `7` - Past Due, `8` - Cancelling Trial, `9` - Paused, `10` - Created
+ */
+export type AccountSubscriptionPlanUpdatedWebhookPayloadAccountStage = typeof AccountSubscriptionPlanUpdatedWebhookPayloadAccountStage[keyof typeof AccountSubscriptionPlanUpdatedWebhookPayloadAccountStage];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionPlanUpdatedWebhookPayloadAccountStage = {
+  Trialing: 2,
+  Subscribing: 3,
+  Cancelling: 4,
+  Expired: 5,
+  TrialExpired: 6,
+  PastDue: 7,
+  CancellingTrial: 8,
+  Paused: 9,
+  Created: 10,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionPlanUpdatedWebhookPayloadPaymentInformation = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  CustomerToken?: string | null;
+  /** @nullable */
+  LastFourDigits?: string | null;
+  /** @nullable */
+  LatestFailureDateTime?: string | null;
+  /** @nullable */
+  LatestFailureDescription?: string | null;
+  /** @nullable */
+  LatestSuccessDateTime?: string | null;
+  NumberOfFailures?: number;
+  /** @nullable */
+  PaymentClientSecret?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  PaymentMethodType?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PaymentToken?: string | null;
+  /**
+   * @maxLength 100
+   * @nullable
+   */
+  BankName?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  BankAccountType?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  BankAccountHolderType?: string | null;
+  /** @nullable */
+  NameOnCard?: string | null;
+  /** @nullable */
+  CardType?: string | null;
+  /** @nullable */
+  ExpirationMonth?: string | null;
+  /** @nullable */
+  ExpirationYear?: string | null;
+  /** @nullable */
+  Mode?: string | null;
+  /** @nullable */
+  OneTimeToken?: string | null;
+  /** @nullable */
+  RecaptchaToken?: string | null;
+  /** @nullable */
+  SetupIntent?: string | null;
+} | null;
+
+/**
+ * `0` - None, `1` - Gmail
+ */
+export type AccountSubscriptionPlanUpdatedWebhookPayloadPersonAccountItemPersonOAuthIntegrationStatus = typeof AccountSubscriptionPlanUpdatedWebhookPayloadPersonAccountItemPersonOAuthIntegrationStatus[keyof typeof AccountSubscriptionPlanUpdatedWebhookPayloadPersonAccountItemPersonOAuthIntegrationStatus];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionPlanUpdatedWebhookPayloadPersonAccountItemPersonOAuthIntegrationStatus = {
+  None: 0,
+  Gmail: 1,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionPlanUpdatedWebhookPayloadPersonAccountItemPerson = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Email?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  FirstName?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  LastName?: string | null;
+  /** @nullable */
+  PasswordLastUpdated?: string | null;
+  PasswordMustChange?: boolean;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PhoneMobile?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PhoneWork?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  ProfileImageS3Url?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Title?: string | null;
+  /**
+   * @maxLength 100
+   * @nullable
+   */
+  Timezone?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  Language?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  IPAddress?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Referer?: string | null;
+  /**
+   * @maxLength 1000
+   * @nullable
+   */
+  UserAgent?: string | null;
+  /** @nullable */
+  LastLoginDateTime?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  OAuthGoogleProfileId?: string | null;
+  /** @nullable */
+  AccountUids?: string | null;
+  /** @nullable */
+  FullName?: string | null;
+  HasLoggedIn?: boolean;
+  /** `0` - None, `1` - Gmail */
+  OAuthIntegrationStatus?: AccountSubscriptionPlanUpdatedWebhookPayloadPersonAccountItemPersonOAuthIntegrationStatus;
+  OptInToEmailList?: boolean;
+  /** @nullable */
+  Password?: string | null;
+  /** @nullable */
+  UserAgentPlatformBrowser?: string | null;
+  HasUnsubscribed?: boolean;
+  IsConnectedToDiscord?: boolean;
+} | null;
+
+export type AccountSubscriptionPlanUpdatedWebhookPayloadPersonAccountItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** @nullable */
+  Person?: AccountSubscriptionPlanUpdatedWebhookPayloadPersonAccountItemPerson;
+  IsPrimary?: boolean;
+  ReceiveInvoices?: boolean;
+};
+
+export type AccountSubscriptionPlanUpdatedWebhookPayloadStripeInvoicesItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  StripeId?: string | null;
+  IsLivemode?: boolean;
+  AmountDue?: number;
+  AmountPaid?: number;
+  AmountShipping?: number;
+  AttemptCount?: number;
+  Attempted?: boolean;
+  /**
+   * @maxLength 3
+   * @nullable
+   */
+  Currency?: string | null;
+  /** @nullable */
+  Description?: string | null;
+  /** @nullable */
+  FinalizedAt?: string | null;
+  /**
+   * @maxLength 500
+   * @nullable
+   */
+  HostedInvoiceUrl?: string | null;
+  /**
+   * @maxLength 500
+   * @nullable
+   */
+  InvoicePdf?: string | null;
+  /** @nullable */
+  NextPaymentAttempt?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  Number?: string | null;
+  PeriodEnd?: string;
+  PeriodStart?: string;
+  /**
+   * @maxLength 30
+   * @nullable
+   */
+  Status?: string | null;
+  SubTotal?: number;
+  /** @nullable */
+  SubTotalExcludingTax?: number | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  SubscriptionId?: string | null;
+  /** @nullable */
+  Tax?: number | null;
+  Total?: number;
+  /** @nullable */
+  TotalExcludingTax?: number | null;
+  IsRefunded?: boolean;
+  CurrencyAmountCreditedPostPayment?: number;
+  CurrencyAmountCreditedPrePayment?: number;
+  CurrencyAmountDue?: number;
+  CurrencyAmountPaid?: number;
+  /** @nullable */
+  CurrencySymbol?: string | null;
+  CurrencyTotal?: number;
+  CurrencyTotalExcludingTax?: number;
+  CurrencySubTotal?: number;
+  CurrencySubTotalExcludingTax?: number;
+  CurrencyTax?: number;
+  /** @nullable */
+  DaysUntilDue?: number | null;
+  /** @nullable */
+  CustomerId?: string | null;
+  /** @nullable */
+  PaymentStatus?: string | null;
+  /** @nullable */
+  StripePaymentMethodId?: string | null;
+};
+
+export type AccountSubscriptionPlanUpdatedWebhookPayloadStripePaymentMethodsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  StripeId?: string | null;
+  IsLivemode?: boolean;
+  /** @nullable */
+  Card_Brand?: string | null;
+  /** @nullable */
+  Card_ExpMonth?: number | null;
+  /** @nullable */
+  Card_ExpYear?: number | null;
+  /** @nullable */
+  Card_Wallet_Type?: string | null;
+  /** @nullable */
+  BankName?: string | null;
+  /** @nullable */
+  Last4?: string | null;
+  /** @nullable */
+  Type?: string | null;
+  /** @nullable */
+  Label?: string | null;
+};
+
+export type AccountSubscriptionPlanUpdatedWebhookPayloadStripeSubscriptionsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  StripeId?: string | null;
+  IsLivemode?: boolean;
+  /** @nullable */
+  CancelAt?: string | null;
+  CancelAtPeriodEnd?: boolean;
+  /**
+   * @maxLength 3
+   * @nullable
+   */
+  Currency?: string | null;
+  /** @nullable */
+  EndedAt?: string | null;
+  /**
+   * @maxLength 30
+   * @nullable
+   */
+  PauseCollection_Behavior?: string | null;
+  /** @nullable */
+  PauseCollection_ResumesAt?: string | null;
+  StartDate?: string;
+  /**
+   * @maxLength 30
+   * @nullable
+   */
+  Status?: string | null;
+  /** @nullable */
+  TrialEnd?: string | null;
+  /** @nullable */
+  AccountUid?: string | null;
+  /** @nullable */
+  BillingCycleAnchor?: string | null;
+  /** @nullable */
+  CollectionMethod?: string | null;
+  /** @nullable */
+  CustomerId?: string | null;
+  /** @nullable */
+  DaysUntilDue?: number | null;
+  /** @nullable */
+  ScheduleId?: string | null;
+  /** @nullable */
+  StripeDiscountIds?: string[] | null;
+  /** @nullable */
+  StripePriceIds?: string | null;
+  TrialPeriodDays?: number;
+};
+
+/**
+ * `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time
+ */
+export type AccountSubscriptionPlanUpdatedWebhookPayloadSubscriptionsItemBillingRenewalTerm = typeof AccountSubscriptionPlanUpdatedWebhookPayloadSubscriptionsItemBillingRenewalTerm[keyof typeof AccountSubscriptionPlanUpdatedWebhookPayloadSubscriptionsItemBillingRenewalTerm];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionPlanUpdatedWebhookPayloadSubscriptionsItemBillingRenewalTerm = {
+  Monthly: 1,
+  Yearly: 2,
+  Quarterly: 3,
+  OneTime: 4,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionPlanUpdatedWebhookPayloadSubscriptionsItemPlanPlanFamily = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  IsActive?: boolean;
+  IsDefault?: boolean;
+} | null;
+
+/**
+ * `1` - Individual, `2` - Team
+ */
+export type AccountSubscriptionPlanUpdatedWebhookPayloadSubscriptionsItemPlanAccountRegistrationMode = typeof AccountSubscriptionPlanUpdatedWebhookPayloadSubscriptionsItemPlanAccountRegistrationMode[keyof typeof AccountSubscriptionPlanUpdatedWebhookPayloadSubscriptionsItemPlanAccountRegistrationMode];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionPlanUpdatedWebhookPayloadSubscriptionsItemPlanAccountRegistrationMode = {
+  Individual: 1,
+  Team: 2,
+} as const;
+
+export type AccountSubscriptionPlanUpdatedWebhookPayloadSubscriptionsItemPlanPlanAddOnsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  IsUserSelectable: boolean;
+};
+
+export type AccountSubscriptionPlanUpdatedWebhookPayloadSubscriptionsItemPlanContentGroupsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @minLength 1
+   * @maxLength 50
+   */
+  Name: string;
+  /**
+   * @maxLength 1024
+   * @nullable
+   */
+  AccessDeniedPath?: string | null;
+};
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionPlanUpdatedWebhookPayloadSubscriptionsItemPlan = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  /** @nullable */
+  Description?: string | null;
+  /** @nullable */
+  PlanFamily?: AccountSubscriptionPlanUpdatedWebhookPayloadSubscriptionsItemPlanPlanFamily;
+  /** `1` - Individual, `2` - Team */
+  AccountRegistrationMode?: AccountSubscriptionPlanUpdatedWebhookPayloadSubscriptionsItemPlanAccountRegistrationMode;
+  IsQuantityEditable?: boolean;
+  MinimumQuantity?: number;
+  /** @nullable */
+  MaximumPeople?: number | null;
+  MonthlyRate?: number;
+  AnnualRate?: number;
+  QuarterlyRate?: number;
+  OneTimeRate?: number;
+  SetupFee?: number;
+  SkipSetupFeeOnPlanChange?: boolean;
+  IsTaxable?: boolean;
+  IsActive?: boolean;
+  IsPerUser?: boolean;
+  RequirePaymentInformation?: boolean;
+  TrialPeriodDays?: number;
+  /** @nullable */
+  TrialUntilDate?: string | null;
+  ExpiresAfterMonths?: number;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PostLoginPath?: string | null;
+  /**
+   * @maxLength 15
+   * @nullable
+   */
+  StripeTaxCodeId?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  UnitOfMeasure?: string | null;
+  /** @nullable */
+  PlanAddOns?: AccountSubscriptionPlanUpdatedWebhookPayloadSubscriptionsItemPlanPlanAddOnsItem[] | null;
+  /** @nullable */
+  ContentGroups?: AccountSubscriptionPlanUpdatedWebhookPayloadSubscriptionsItemPlanContentGroupsItem[] | null;
+  /** @nullable */
+  NumberOfSubscriptions?: number | null;
+} | null;
+
+/**
+ * `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time
+ */
+export type AccountSubscriptionPlanUpdatedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemBillingRenewalTerm = typeof AccountSubscriptionPlanUpdatedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemBillingRenewalTerm[keyof typeof AccountSubscriptionPlanUpdatedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemBillingRenewalTerm];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionPlanUpdatedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemBillingRenewalTerm = {
+  Monthly: 1,
+  Yearly: 2,
+  Quarterly: 3,
+  OneTime: 4,
+} as const;
+
+/**
+ * `1` - Recurring, `2` - Usage, `3` - OneTime
+ */
+export type AccountSubscriptionPlanUpdatedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemAddOnBillingAddOnType = typeof AccountSubscriptionPlanUpdatedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemAddOnBillingAddOnType[keyof typeof AccountSubscriptionPlanUpdatedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemAddOnBillingAddOnType];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionPlanUpdatedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemAddOnBillingAddOnType = {
+  Recurring: 1,
+  Usage: 2,
+  OneTime: 3,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionPlanUpdatedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemAddOn = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  /** `1` - Recurring, `2` - Usage, `3` - OneTime */
+  BillingAddOnType?: AccountSubscriptionPlanUpdatedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemAddOnBillingAddOnType;
+  IsQuantityEditable?: boolean;
+  MinimumQuantity?: number;
+  MonthlyRate?: number;
+  AnnualRate?: number;
+  SetupFee?: number;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  UnitOfMeasure?: string | null;
+  IsTaxable?: boolean;
+  IsBilledDuringTrial?: boolean;
+  ExpiresAfterMonths?: number;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /**
+   * @maxLength 15
+   * @nullable
+   */
+  StripeTaxCodeId?: string | null;
+  IsPerUser?: boolean;
+  QuarterlyRate?: number;
+  OneTimeRate?: number;
+  SubscriptionCount?: number;
+  Quantity?: number;
+} | null;
+
+export type AccountSubscriptionPlanUpdatedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time */
+  BillingRenewalTerm?: AccountSubscriptionPlanUpdatedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemBillingRenewalTerm;
+  /** @nullable */
+  AddOn?: AccountSubscriptionPlanUpdatedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemAddOn;
+  /** @nullable */
+  Quantity?: number | null;
+  StartDate?: string;
+  /** @nullable */
+  EndDate?: string | null;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /** @nullable */
+  RenewalDate?: string | null;
+  /** @nullable */
+  NewRequiredQuantity?: number | null;
+  /** @nullable */
+  Rate?: number | null;
+};
+
+/**
+ * `1` - Forever, `2` - Once, `3` - Repeating
+ */
+export type AccountSubscriptionPlanUpdatedWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItemDiscountCouponDuration = typeof AccountSubscriptionPlanUpdatedWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItemDiscountCouponDuration[keyof typeof AccountSubscriptionPlanUpdatedWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItemDiscountCouponDuration];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionPlanUpdatedWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItemDiscountCouponDuration = {
+  Forever: 1,
+  Once: 2,
+  Repeating: 3,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionPlanUpdatedWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItemDiscountCoupon = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /** @nullable */
+  UniqueIdentifier?: string | null;
+  /** @nullable */
+  Name?: string | null;
+  IsActive?: boolean;
+  /** @nullable */
+  AmountOff?: number | null;
+  /** @nullable */
+  PercentOff?: number | null;
+  /** @nullable */
+  RedeemBy?: string | null;
+  /** `1` - Forever, `2` - Once, `3` - Repeating */
+  Duration?: AccountSubscriptionPlanUpdatedWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItemDiscountCouponDuration;
+  /** @nullable */
+  DurationInMonths?: number | null;
+  TimesRedeemed?: number;
+  /** @nullable */
+  MaxRedemptions?: number | null;
+  ApplyToAddOns?: boolean;
+  /** @nullable */
+  PlanUids?: string | null;
+} | null;
+
+export type AccountSubscriptionPlanUpdatedWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** @nullable */
+  RedeemedDate?: string | null;
+  /** @nullable */
+  ExpireDate?: string | null;
+  /** @nullable */
+  DiscountCoupon?: AccountSubscriptionPlanUpdatedWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItemDiscountCoupon;
+};
+
+/**
+ * `1` - Unpaid, `2` - Paid, `3` - Partial, `4` - Uncollected, `5` - Refunded, `6` - Uncollectible, `7` - Processing
+ */
+export type AccountSubscriptionPlanUpdatedWebhookPayloadSubscriptionsItemLatestInvoiceBillingInvoiceStatus = typeof AccountSubscriptionPlanUpdatedWebhookPayloadSubscriptionsItemLatestInvoiceBillingInvoiceStatus[keyof typeof AccountSubscriptionPlanUpdatedWebhookPayloadSubscriptionsItemLatestInvoiceBillingInvoiceStatus];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionPlanUpdatedWebhookPayloadSubscriptionsItemLatestInvoiceBillingInvoiceStatus = {
+  Unpaid: 1,
+  Paid: 2,
+  Partial: 3,
+  Uncollected: 4,
+  Refunded: 5,
+  Uncollectible: 6,
+  Processing: 7,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionPlanUpdatedWebhookPayloadSubscriptionsItemLatestInvoice = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  InvoiceDate?: string;
+  /** @nullable */
+  PaymentReminderSentDate?: string | null;
+  Number?: number;
+  /** `1` - Unpaid, `2` - Paid, `3` - Partial, `4` - Uncollected, `5` - Refunded, `6` - Uncollectible, `7` - Processing */
+  BillingInvoiceStatus?: AccountSubscriptionPlanUpdatedWebhookPayloadSubscriptionsItemLatestInvoiceBillingInvoiceStatus;
+  Amount?: number;
+  AmountOutstanding?: number;
+  IsUserGenerated?: boolean;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  StripeTaxCalculationId?: string | null;
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  StripeTaxBehavior?: string | null;
+  AmountCredit?: number;
+  AmountDiscount?: number;
+  AmountPaid?: number;
+  AmountRefunded?: number;
+  AmountSubtotal?: number;
+  AmountTax?: number;
+  AmountTaxRefunded?: number;
+  IsTaxable?: boolean;
+  HasPaymentGatewayTransactions?: boolean;
+  /** @nullable */
+  StripePaymentTransactionIds?: string | null;
+  /** @nullable */
+  StripeRefundTransactionIds?: string | null;
+  /** @nullable */
+  StripeTaxRefundTransactionIds?: string | null;
+} | null;
+
+export type AccountSubscriptionPlanUpdatedWebhookPayloadSubscriptionsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time */
+  BillingRenewalTerm?: AccountSubscriptionPlanUpdatedWebhookPayloadSubscriptionsItemBillingRenewalTerm;
+  /** @nullable */
+  Plan?: AccountSubscriptionPlanUpdatedWebhookPayloadSubscriptionsItemPlan;
+  /** @nullable */
+  Quantity?: number | null;
+  StartDate?: string;
+  /** @nullable */
+  EndDate?: string | null;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /** @nullable */
+  RenewalDate?: string | null;
+  /** @nullable */
+  NewRequiredQuantity?: number | null;
+  IsPlanUpgradeRequired?: boolean;
+  /** @nullable */
+  PlanUpgradeRequiredMessage?: string | null;
+  /** @nullable */
+  SubscriptionAddOns?: AccountSubscriptionPlanUpdatedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItem[] | null;
+  /** @nullable */
+  DiscountCouponSubscriptions?: AccountSubscriptionPlanUpdatedWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItem[] | null;
+  /** @nullable */
+  DiscountCode?: string | null;
+  /** @nullable */
+  DiscountCouponExpirationDate?: string | null;
+  /** @nullable */
+  LatestInvoice?: AccountSubscriptionPlanUpdatedWebhookPayloadSubscriptionsItemLatestInvoice;
+  /** @nullable */
+  Rate?: number | null;
+};
+
+export type AccountSubscriptionPlanUpdatedWebhookPayloadDealsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @minLength 1
+   * @maxLength 250
+   */
+  Name: string;
+  /** @nullable */
+  Amount?: number | null;
+  /** @nullable */
+  DueDate?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  AssignedToPersonClientIdentifier?: string | null;
+  Weight?: number;
+  /** @nullable */
+  Contacts?: string | null;
+  AccountId?: number;
+  /** @nullable */
+  PipelineUid?: string | null;
+};
+
+export type AccountSubscriptionPlanUpdatedWebhookPayloadTaxIdsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  StripeId?: string | null;
+  IsLivemode?: boolean;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  TaxId?: string | null;
+  /**
+   * @maxLength 20
+   * @nullable
+   */
+  TaxIdType?: string | null;
+  IsInvalid?: boolean;
+};
+
+/**
+ * `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time
+ */
+export type AccountSubscriptionPlanUpdatedWebhookPayloadCurrentSubscriptionBillingRenewalTerm = typeof AccountSubscriptionPlanUpdatedWebhookPayloadCurrentSubscriptionBillingRenewalTerm[keyof typeof AccountSubscriptionPlanUpdatedWebhookPayloadCurrentSubscriptionBillingRenewalTerm];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionPlanUpdatedWebhookPayloadCurrentSubscriptionBillingRenewalTerm = {
+  Monthly: 1,
+  Yearly: 2,
+  Quarterly: 3,
+  OneTime: 4,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionPlanUpdatedWebhookPayloadCurrentSubscriptionPlanPlanFamily = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  IsActive?: boolean;
+  IsDefault?: boolean;
+} | null;
+
+/**
+ * `1` - Individual, `2` - Team
+ */
+export type AccountSubscriptionPlanUpdatedWebhookPayloadCurrentSubscriptionPlanAccountRegistrationMode = typeof AccountSubscriptionPlanUpdatedWebhookPayloadCurrentSubscriptionPlanAccountRegistrationMode[keyof typeof AccountSubscriptionPlanUpdatedWebhookPayloadCurrentSubscriptionPlanAccountRegistrationMode];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionPlanUpdatedWebhookPayloadCurrentSubscriptionPlanAccountRegistrationMode = {
+  Individual: 1,
+  Team: 2,
+} as const;
+
+export type AccountSubscriptionPlanUpdatedWebhookPayloadCurrentSubscriptionPlanPlanAddOnsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  IsUserSelectable: boolean;
+};
+
+export type AccountSubscriptionPlanUpdatedWebhookPayloadCurrentSubscriptionPlanContentGroupsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @minLength 1
+   * @maxLength 50
+   */
+  Name: string;
+  /**
+   * @maxLength 1024
+   * @nullable
+   */
+  AccessDeniedPath?: string | null;
+};
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionPlanUpdatedWebhookPayloadCurrentSubscriptionPlan = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  /** @nullable */
+  Description?: string | null;
+  /** @nullable */
+  PlanFamily?: AccountSubscriptionPlanUpdatedWebhookPayloadCurrentSubscriptionPlanPlanFamily;
+  /** `1` - Individual, `2` - Team */
+  AccountRegistrationMode?: AccountSubscriptionPlanUpdatedWebhookPayloadCurrentSubscriptionPlanAccountRegistrationMode;
+  IsQuantityEditable?: boolean;
+  MinimumQuantity?: number;
+  /** @nullable */
+  MaximumPeople?: number | null;
+  MonthlyRate?: number;
+  AnnualRate?: number;
+  QuarterlyRate?: number;
+  OneTimeRate?: number;
+  SetupFee?: number;
+  SkipSetupFeeOnPlanChange?: boolean;
+  IsTaxable?: boolean;
+  IsActive?: boolean;
+  IsPerUser?: boolean;
+  RequirePaymentInformation?: boolean;
+  TrialPeriodDays?: number;
+  /** @nullable */
+  TrialUntilDate?: string | null;
+  ExpiresAfterMonths?: number;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PostLoginPath?: string | null;
+  /**
+   * @maxLength 15
+   * @nullable
+   */
+  StripeTaxCodeId?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  UnitOfMeasure?: string | null;
+  /** @nullable */
+  PlanAddOns?: AccountSubscriptionPlanUpdatedWebhookPayloadCurrentSubscriptionPlanPlanAddOnsItem[] | null;
+  /** @nullable */
+  ContentGroups?: AccountSubscriptionPlanUpdatedWebhookPayloadCurrentSubscriptionPlanContentGroupsItem[] | null;
+  /** @nullable */
+  NumberOfSubscriptions?: number | null;
+} | null;
+
+/**
+ * `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time
+ */
+export type AccountSubscriptionPlanUpdatedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemBillingRenewalTerm = typeof AccountSubscriptionPlanUpdatedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemBillingRenewalTerm[keyof typeof AccountSubscriptionPlanUpdatedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemBillingRenewalTerm];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionPlanUpdatedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemBillingRenewalTerm = {
+  Monthly: 1,
+  Yearly: 2,
+  Quarterly: 3,
+  OneTime: 4,
+} as const;
+
+/**
+ * `1` - Recurring, `2` - Usage, `3` - OneTime
+ */
+export type AccountSubscriptionPlanUpdatedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType = typeof AccountSubscriptionPlanUpdatedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType[keyof typeof AccountSubscriptionPlanUpdatedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionPlanUpdatedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType = {
+  Recurring: 1,
+  Usage: 2,
+  OneTime: 3,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionPlanUpdatedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemAddOn = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  /** `1` - Recurring, `2` - Usage, `3` - OneTime */
+  BillingAddOnType?: AccountSubscriptionPlanUpdatedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType;
+  IsQuantityEditable?: boolean;
+  MinimumQuantity?: number;
+  MonthlyRate?: number;
+  AnnualRate?: number;
+  SetupFee?: number;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  UnitOfMeasure?: string | null;
+  IsTaxable?: boolean;
+  IsBilledDuringTrial?: boolean;
+  ExpiresAfterMonths?: number;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /**
+   * @maxLength 15
+   * @nullable
+   */
+  StripeTaxCodeId?: string | null;
+  IsPerUser?: boolean;
+  QuarterlyRate?: number;
+  OneTimeRate?: number;
+  SubscriptionCount?: number;
+  Quantity?: number;
+} | null;
+
+export type AccountSubscriptionPlanUpdatedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time */
+  BillingRenewalTerm?: AccountSubscriptionPlanUpdatedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemBillingRenewalTerm;
+  /** @nullable */
+  AddOn?: AccountSubscriptionPlanUpdatedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemAddOn;
+  /** @nullable */
+  Quantity?: number | null;
+  StartDate?: string;
+  /** @nullable */
+  EndDate?: string | null;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /** @nullable */
+  RenewalDate?: string | null;
+  /** @nullable */
+  NewRequiredQuantity?: number | null;
+  /** @nullable */
+  Rate?: number | null;
+};
+
+/**
+ * `1` - Forever, `2` - Once, `3` - Repeating
+ */
+export type AccountSubscriptionPlanUpdatedWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration = typeof AccountSubscriptionPlanUpdatedWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration[keyof typeof AccountSubscriptionPlanUpdatedWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionPlanUpdatedWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration = {
+  Forever: 1,
+  Once: 2,
+  Repeating: 3,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionPlanUpdatedWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItemDiscountCoupon = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /** @nullable */
+  UniqueIdentifier?: string | null;
+  /** @nullable */
+  Name?: string | null;
+  IsActive?: boolean;
+  /** @nullable */
+  AmountOff?: number | null;
+  /** @nullable */
+  PercentOff?: number | null;
+  /** @nullable */
+  RedeemBy?: string | null;
+  /** `1` - Forever, `2` - Once, `3` - Repeating */
+  Duration?: AccountSubscriptionPlanUpdatedWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration;
+  /** @nullable */
+  DurationInMonths?: number | null;
+  TimesRedeemed?: number;
+  /** @nullable */
+  MaxRedemptions?: number | null;
+  ApplyToAddOns?: boolean;
+  /** @nullable */
+  PlanUids?: string | null;
+} | null;
+
+export type AccountSubscriptionPlanUpdatedWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** @nullable */
+  RedeemedDate?: string | null;
+  /** @nullable */
+  ExpireDate?: string | null;
+  /** @nullable */
+  DiscountCoupon?: AccountSubscriptionPlanUpdatedWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItemDiscountCoupon;
+};
+
+/**
+ * `1` - Unpaid, `2` - Paid, `3` - Partial, `4` - Uncollected, `5` - Refunded, `6` - Uncollectible, `7` - Processing
+ */
+export type AccountSubscriptionPlanUpdatedWebhookPayloadCurrentSubscriptionLatestInvoiceBillingInvoiceStatus = typeof AccountSubscriptionPlanUpdatedWebhookPayloadCurrentSubscriptionLatestInvoiceBillingInvoiceStatus[keyof typeof AccountSubscriptionPlanUpdatedWebhookPayloadCurrentSubscriptionLatestInvoiceBillingInvoiceStatus];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionPlanUpdatedWebhookPayloadCurrentSubscriptionLatestInvoiceBillingInvoiceStatus = {
+  Unpaid: 1,
+  Paid: 2,
+  Partial: 3,
+  Uncollected: 4,
+  Refunded: 5,
+  Uncollectible: 6,
+  Processing: 7,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionPlanUpdatedWebhookPayloadCurrentSubscriptionLatestInvoice = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  InvoiceDate?: string;
+  /** @nullable */
+  PaymentReminderSentDate?: string | null;
+  Number?: number;
+  /** `1` - Unpaid, `2` - Paid, `3` - Partial, `4` - Uncollected, `5` - Refunded, `6` - Uncollectible, `7` - Processing */
+  BillingInvoiceStatus?: AccountSubscriptionPlanUpdatedWebhookPayloadCurrentSubscriptionLatestInvoiceBillingInvoiceStatus;
+  Amount?: number;
+  AmountOutstanding?: number;
+  IsUserGenerated?: boolean;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  StripeTaxCalculationId?: string | null;
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  StripeTaxBehavior?: string | null;
+  AmountCredit?: number;
+  AmountDiscount?: number;
+  AmountPaid?: number;
+  AmountRefunded?: number;
+  AmountSubtotal?: number;
+  AmountTax?: number;
+  AmountTaxRefunded?: number;
+  IsTaxable?: boolean;
+  HasPaymentGatewayTransactions?: boolean;
+  /** @nullable */
+  StripePaymentTransactionIds?: string | null;
+  /** @nullable */
+  StripeRefundTransactionIds?: string | null;
+  /** @nullable */
+  StripeTaxRefundTransactionIds?: string | null;
+} | null;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionPlanUpdatedWebhookPayloadCurrentSubscription = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /** `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time */
+  BillingRenewalTerm?: AccountSubscriptionPlanUpdatedWebhookPayloadCurrentSubscriptionBillingRenewalTerm;
+  /** @nullable */
+  Plan?: AccountSubscriptionPlanUpdatedWebhookPayloadCurrentSubscriptionPlan;
+  /** @nullable */
+  Quantity?: number | null;
+  StartDate?: string;
+  /** @nullable */
+  EndDate?: string | null;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /** @nullable */
+  RenewalDate?: string | null;
+  /** @nullable */
+  NewRequiredQuantity?: number | null;
+  IsPlanUpgradeRequired?: boolean;
+  /** @nullable */
+  PlanUpgradeRequiredMessage?: string | null;
+  /** @nullable */
+  SubscriptionAddOns?: AccountSubscriptionPlanUpdatedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItem[] | null;
+  /** @nullable */
+  DiscountCouponSubscriptions?: AccountSubscriptionPlanUpdatedWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItem[] | null;
+  /** @nullable */
+  DiscountCode?: string | null;
+  /** @nullable */
+  DiscountCouponExpirationDate?: string | null;
+  /** @nullable */
+  LatestInvoice?: AccountSubscriptionPlanUpdatedWebhookPayloadCurrentSubscriptionLatestInvoice;
+  /** @nullable */
+  Rate?: number | null;
+} | null;
+
+/**
+ * `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time
+ */
+export type AccountSubscriptionPlanUpdatedWebhookPayloadLatestSubscriptionBillingRenewalTerm = typeof AccountSubscriptionPlanUpdatedWebhookPayloadLatestSubscriptionBillingRenewalTerm[keyof typeof AccountSubscriptionPlanUpdatedWebhookPayloadLatestSubscriptionBillingRenewalTerm];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionPlanUpdatedWebhookPayloadLatestSubscriptionBillingRenewalTerm = {
+  Monthly: 1,
+  Yearly: 2,
+  Quarterly: 3,
+  OneTime: 4,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionPlanUpdatedWebhookPayloadLatestSubscriptionPlanPlanFamily = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  IsActive?: boolean;
+  IsDefault?: boolean;
+} | null;
+
+/**
+ * `1` - Individual, `2` - Team
+ */
+export type AccountSubscriptionPlanUpdatedWebhookPayloadLatestSubscriptionPlanAccountRegistrationMode = typeof AccountSubscriptionPlanUpdatedWebhookPayloadLatestSubscriptionPlanAccountRegistrationMode[keyof typeof AccountSubscriptionPlanUpdatedWebhookPayloadLatestSubscriptionPlanAccountRegistrationMode];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionPlanUpdatedWebhookPayloadLatestSubscriptionPlanAccountRegistrationMode = {
+  Individual: 1,
+  Team: 2,
+} as const;
+
+export type AccountSubscriptionPlanUpdatedWebhookPayloadLatestSubscriptionPlanPlanAddOnsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  IsUserSelectable: boolean;
+};
+
+export type AccountSubscriptionPlanUpdatedWebhookPayloadLatestSubscriptionPlanContentGroupsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @minLength 1
+   * @maxLength 50
+   */
+  Name: string;
+  /**
+   * @maxLength 1024
+   * @nullable
+   */
+  AccessDeniedPath?: string | null;
+};
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionPlanUpdatedWebhookPayloadLatestSubscriptionPlan = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  /** @nullable */
+  Description?: string | null;
+  /** @nullable */
+  PlanFamily?: AccountSubscriptionPlanUpdatedWebhookPayloadLatestSubscriptionPlanPlanFamily;
+  /** `1` - Individual, `2` - Team */
+  AccountRegistrationMode?: AccountSubscriptionPlanUpdatedWebhookPayloadLatestSubscriptionPlanAccountRegistrationMode;
+  IsQuantityEditable?: boolean;
+  MinimumQuantity?: number;
+  /** @nullable */
+  MaximumPeople?: number | null;
+  MonthlyRate?: number;
+  AnnualRate?: number;
+  QuarterlyRate?: number;
+  OneTimeRate?: number;
+  SetupFee?: number;
+  SkipSetupFeeOnPlanChange?: boolean;
+  IsTaxable?: boolean;
+  IsActive?: boolean;
+  IsPerUser?: boolean;
+  RequirePaymentInformation?: boolean;
+  TrialPeriodDays?: number;
+  /** @nullable */
+  TrialUntilDate?: string | null;
+  ExpiresAfterMonths?: number;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PostLoginPath?: string | null;
+  /**
+   * @maxLength 15
+   * @nullable
+   */
+  StripeTaxCodeId?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  UnitOfMeasure?: string | null;
+  /** @nullable */
+  PlanAddOns?: AccountSubscriptionPlanUpdatedWebhookPayloadLatestSubscriptionPlanPlanAddOnsItem[] | null;
+  /** @nullable */
+  ContentGroups?: AccountSubscriptionPlanUpdatedWebhookPayloadLatestSubscriptionPlanContentGroupsItem[] | null;
+  /** @nullable */
+  NumberOfSubscriptions?: number | null;
+} | null;
+
+/**
+ * `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time
+ */
+export type AccountSubscriptionPlanUpdatedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemBillingRenewalTerm = typeof AccountSubscriptionPlanUpdatedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemBillingRenewalTerm[keyof typeof AccountSubscriptionPlanUpdatedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemBillingRenewalTerm];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionPlanUpdatedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemBillingRenewalTerm = {
+  Monthly: 1,
+  Yearly: 2,
+  Quarterly: 3,
+  OneTime: 4,
+} as const;
+
+/**
+ * `1` - Recurring, `2` - Usage, `3` - OneTime
+ */
+export type AccountSubscriptionPlanUpdatedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType = typeof AccountSubscriptionPlanUpdatedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType[keyof typeof AccountSubscriptionPlanUpdatedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionPlanUpdatedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType = {
+  Recurring: 1,
+  Usage: 2,
+  OneTime: 3,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionPlanUpdatedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemAddOn = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  /** `1` - Recurring, `2` - Usage, `3` - OneTime */
+  BillingAddOnType?: AccountSubscriptionPlanUpdatedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType;
+  IsQuantityEditable?: boolean;
+  MinimumQuantity?: number;
+  MonthlyRate?: number;
+  AnnualRate?: number;
+  SetupFee?: number;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  UnitOfMeasure?: string | null;
+  IsTaxable?: boolean;
+  IsBilledDuringTrial?: boolean;
+  ExpiresAfterMonths?: number;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /**
+   * @maxLength 15
+   * @nullable
+   */
+  StripeTaxCodeId?: string | null;
+  IsPerUser?: boolean;
+  QuarterlyRate?: number;
+  OneTimeRate?: number;
+  SubscriptionCount?: number;
+  Quantity?: number;
+} | null;
+
+export type AccountSubscriptionPlanUpdatedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time */
+  BillingRenewalTerm?: AccountSubscriptionPlanUpdatedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemBillingRenewalTerm;
+  /** @nullable */
+  AddOn?: AccountSubscriptionPlanUpdatedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemAddOn;
+  /** @nullable */
+  Quantity?: number | null;
+  StartDate?: string;
+  /** @nullable */
+  EndDate?: string | null;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /** @nullable */
+  RenewalDate?: string | null;
+  /** @nullable */
+  NewRequiredQuantity?: number | null;
+  /** @nullable */
+  Rate?: number | null;
+};
+
+/**
+ * `1` - Forever, `2` - Once, `3` - Repeating
+ */
+export type AccountSubscriptionPlanUpdatedWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration = typeof AccountSubscriptionPlanUpdatedWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration[keyof typeof AccountSubscriptionPlanUpdatedWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionPlanUpdatedWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration = {
+  Forever: 1,
+  Once: 2,
+  Repeating: 3,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionPlanUpdatedWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItemDiscountCoupon = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /** @nullable */
+  UniqueIdentifier?: string | null;
+  /** @nullable */
+  Name?: string | null;
+  IsActive?: boolean;
+  /** @nullable */
+  AmountOff?: number | null;
+  /** @nullable */
+  PercentOff?: number | null;
+  /** @nullable */
+  RedeemBy?: string | null;
+  /** `1` - Forever, `2` - Once, `3` - Repeating */
+  Duration?: AccountSubscriptionPlanUpdatedWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration;
+  /** @nullable */
+  DurationInMonths?: number | null;
+  TimesRedeemed?: number;
+  /** @nullable */
+  MaxRedemptions?: number | null;
+  ApplyToAddOns?: boolean;
+  /** @nullable */
+  PlanUids?: string | null;
+} | null;
+
+export type AccountSubscriptionPlanUpdatedWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** @nullable */
+  RedeemedDate?: string | null;
+  /** @nullable */
+  ExpireDate?: string | null;
+  /** @nullable */
+  DiscountCoupon?: AccountSubscriptionPlanUpdatedWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItemDiscountCoupon;
+};
+
+/**
+ * `1` - Unpaid, `2` - Paid, `3` - Partial, `4` - Uncollected, `5` - Refunded, `6` - Uncollectible, `7` - Processing
+ */
+export type AccountSubscriptionPlanUpdatedWebhookPayloadLatestSubscriptionLatestInvoiceBillingInvoiceStatus = typeof AccountSubscriptionPlanUpdatedWebhookPayloadLatestSubscriptionLatestInvoiceBillingInvoiceStatus[keyof typeof AccountSubscriptionPlanUpdatedWebhookPayloadLatestSubscriptionLatestInvoiceBillingInvoiceStatus];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionPlanUpdatedWebhookPayloadLatestSubscriptionLatestInvoiceBillingInvoiceStatus = {
+  Unpaid: 1,
+  Paid: 2,
+  Partial: 3,
+  Uncollected: 4,
+  Refunded: 5,
+  Uncollectible: 6,
+  Processing: 7,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionPlanUpdatedWebhookPayloadLatestSubscriptionLatestInvoice = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  InvoiceDate?: string;
+  /** @nullable */
+  PaymentReminderSentDate?: string | null;
+  Number?: number;
+  /** `1` - Unpaid, `2` - Paid, `3` - Partial, `4` - Uncollected, `5` - Refunded, `6` - Uncollectible, `7` - Processing */
+  BillingInvoiceStatus?: AccountSubscriptionPlanUpdatedWebhookPayloadLatestSubscriptionLatestInvoiceBillingInvoiceStatus;
+  Amount?: number;
+  AmountOutstanding?: number;
+  IsUserGenerated?: boolean;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  StripeTaxCalculationId?: string | null;
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  StripeTaxBehavior?: string | null;
+  AmountCredit?: number;
+  AmountDiscount?: number;
+  AmountPaid?: number;
+  AmountRefunded?: number;
+  AmountSubtotal?: number;
+  AmountTax?: number;
+  AmountTaxRefunded?: number;
+  IsTaxable?: boolean;
+  HasPaymentGatewayTransactions?: boolean;
+  /** @nullable */
+  StripePaymentTransactionIds?: string | null;
+  /** @nullable */
+  StripeRefundTransactionIds?: string | null;
+  /** @nullable */
+  StripeTaxRefundTransactionIds?: string | null;
+} | null;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionPlanUpdatedWebhookPayloadLatestSubscription = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /** `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time */
+  BillingRenewalTerm?: AccountSubscriptionPlanUpdatedWebhookPayloadLatestSubscriptionBillingRenewalTerm;
+  /** @nullable */
+  Plan?: AccountSubscriptionPlanUpdatedWebhookPayloadLatestSubscriptionPlan;
+  /** @nullable */
+  Quantity?: number | null;
+  StartDate?: string;
+  /** @nullable */
+  EndDate?: string | null;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /** @nullable */
+  RenewalDate?: string | null;
+  /** @nullable */
+  NewRequiredQuantity?: number | null;
+  IsPlanUpgradeRequired?: boolean;
+  /** @nullable */
+  PlanUpgradeRequiredMessage?: string | null;
+  /** @nullable */
+  SubscriptionAddOns?: AccountSubscriptionPlanUpdatedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItem[] | null;
+  /** @nullable */
+  DiscountCouponSubscriptions?: AccountSubscriptionPlanUpdatedWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItem[] | null;
+  /** @nullable */
+  DiscountCode?: string | null;
+  /** @nullable */
+  DiscountCouponExpirationDate?: string | null;
+  /** @nullable */
+  LatestInvoice?: AccountSubscriptionPlanUpdatedWebhookPayloadLatestSubscriptionLatestInvoice;
+  /** @nullable */
+  Rate?: number | null;
+} | null;
+
+/**
+ * `0` - None, `1` - Gmail
+ */
+export type AccountSubscriptionPlanUpdatedWebhookPayloadPrimaryContactOAuthIntegrationStatus = typeof AccountSubscriptionPlanUpdatedWebhookPayloadPrimaryContactOAuthIntegrationStatus[keyof typeof AccountSubscriptionPlanUpdatedWebhookPayloadPrimaryContactOAuthIntegrationStatus];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionPlanUpdatedWebhookPayloadPrimaryContactOAuthIntegrationStatus = {
+  None: 0,
+  Gmail: 1,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionPlanUpdatedWebhookPayloadPrimaryContact = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Email?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  FirstName?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  LastName?: string | null;
+  /** @nullable */
+  PasswordLastUpdated?: string | null;
+  PasswordMustChange?: boolean;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PhoneMobile?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PhoneWork?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  ProfileImageS3Url?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Title?: string | null;
+  /**
+   * @maxLength 100
+   * @nullable
+   */
+  Timezone?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  Language?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  IPAddress?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Referer?: string | null;
+  /**
+   * @maxLength 1000
+   * @nullable
+   */
+  UserAgent?: string | null;
+  /** @nullable */
+  LastLoginDateTime?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  OAuthGoogleProfileId?: string | null;
+  /** @nullable */
+  AccountUids?: string | null;
+  /** @nullable */
+  FullName?: string | null;
+  HasLoggedIn?: boolean;
+  /** `0` - None, `1` - Gmail */
+  OAuthIntegrationStatus?: AccountSubscriptionPlanUpdatedWebhookPayloadPrimaryContactOAuthIntegrationStatus;
+  OptInToEmailList?: boolean;
+  /** @nullable */
+  Password?: string | null;
+  /** @nullable */
+  UserAgentPlatformBrowser?: string | null;
+  HasUnsubscribed?: boolean;
+  IsConnectedToDiscord?: boolean;
+} | null;
+
+/**
+ * `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time
+ */
+export type AccountSubscriptionPlanUpdatedWebhookPayloadPrimarySubscriptionBillingRenewalTerm = typeof AccountSubscriptionPlanUpdatedWebhookPayloadPrimarySubscriptionBillingRenewalTerm[keyof typeof AccountSubscriptionPlanUpdatedWebhookPayloadPrimarySubscriptionBillingRenewalTerm];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionPlanUpdatedWebhookPayloadPrimarySubscriptionBillingRenewalTerm = {
+  Monthly: 1,
+  Yearly: 2,
+  Quarterly: 3,
+  OneTime: 4,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionPlanUpdatedWebhookPayloadPrimarySubscription = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /** `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time */
+  BillingRenewalTerm?: AccountSubscriptionPlanUpdatedWebhookPayloadPrimarySubscriptionBillingRenewalTerm;
+  /** @nullable */
+  Quantity?: number | null;
+  StartDate?: string;
+  /** @nullable */
+  EndDate?: string | null;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /** @nullable */
+  RenewalDate?: string | null;
+  /** @nullable */
+  NewRequiredQuantity?: number | null;
+  IsPlanUpgradeRequired?: boolean;
+  /** @nullable */
+  PlanUpgradeRequiredMessage?: string | null;
+  /** @nullable */
+  DiscountCode?: string | null;
+  /** @nullable */
+  DiscountCouponExpirationDate?: string | null;
+  /** @nullable */
+  Rate?: number | null;
+} | null;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionPlanUpdatedWebhookPayloadPrimaryStripeSubscription = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  StripeId?: string | null;
+  IsLivemode?: boolean;
+  /** @nullable */
+  CancelAt?: string | null;
+  CancelAtPeriodEnd?: boolean;
+  /**
+   * @maxLength 3
+   * @nullable
+   */
+  Currency?: string | null;
+  /** @nullable */
+  EndedAt?: string | null;
+  /**
+   * @maxLength 30
+   * @nullable
+   */
+  PauseCollection_Behavior?: string | null;
+  /** @nullable */
+  PauseCollection_ResumesAt?: string | null;
+  StartDate?: string;
+  /**
+   * @maxLength 30
+   * @nullable
+   */
+  Status?: string | null;
+  /** @nullable */
+  TrialEnd?: string | null;
+  /** @nullable */
+  AccountUid?: string | null;
+  /** @nullable */
+  BillingCycleAnchor?: string | null;
+  /** @nullable */
+  CollectionMethod?: string | null;
+  /** @nullable */
+  CustomerId?: string | null;
+  /** @nullable */
+  DaysUntilDue?: number | null;
+  /** @nullable */
+  ScheduleId?: string | null;
+  /** @nullable */
+  StripeDiscountIds?: string[] | null;
+  /** @nullable */
+  StripePriceIds?: string | null;
+  TrialPeriodDays?: number;
+} | null;
+
+export interface AccountSubscriptionPlanUpdatedWebhookPayload {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  StripeId?: string | null;
+  IsLivemode?: boolean;
+  /**
+   * @minLength 1
+   * @maxLength 250
+   */
+  Name: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  ClientIdentifier?: string | null;
+  /**
+   * @maxLength 3
+   * @nullable
+   */
+  Currency?: string | null;
+  /** @nullable */
+  InvoiceNotes?: string | null;
+  IsDemo?: boolean;
+  /** @nullable */
+  BillingAddress?: AccountSubscriptionPlanUpdatedWebhookPayloadBillingAddress;
+  /** @nullable */
+  MailingAddress?: AccountSubscriptionPlanUpdatedWebhookPayloadMailingAddress;
+  /** `2` - Trialing, `3` - Subscribing, `4` - Cancelling, `5` - Expired, `6` - Trial Expired, `7` - Past Due, `8` - Cancelling Trial, `9` - Paused, `10` - Created */
+  AccountStage?: AccountSubscriptionPlanUpdatedWebhookPayloadAccountStage;
+  /** @nullable */
+  PaymentInformation?: AccountSubscriptionPlanUpdatedWebhookPayloadPaymentInformation;
+  /** @nullable */
+  PersonAccount?: AccountSubscriptionPlanUpdatedWebhookPayloadPersonAccountItem[] | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  StripeDefaultPaymentMethodId?: string | null;
+  /** @nullable */
+  StripeInvoices?: AccountSubscriptionPlanUpdatedWebhookPayloadStripeInvoicesItem[] | null;
+  /** @nullable */
+  StripePaymentMethods?: AccountSubscriptionPlanUpdatedWebhookPayloadStripePaymentMethodsItem[] | null;
+  /** @nullable */
+  StripeSubscriptions?: AccountSubscriptionPlanUpdatedWebhookPayloadStripeSubscriptionsItem[] | null;
+  /** @nullable */
+  Subscriptions?: AccountSubscriptionPlanUpdatedWebhookPayloadSubscriptionsItem[] | null;
+  /** @nullable */
+  Deals?: AccountSubscriptionPlanUpdatedWebhookPayloadDealsItem[] | null;
+  /** @nullable */
+  LastLoginDateTime?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl1?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl2?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl3?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl4?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl5?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl6?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl7?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl8?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl9?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl10?: string | null;
+  /** @nullable */
+  RewardFulReferralId?: string | null;
+  /**
+   * @maxLength 36
+   * @nullable
+   */
+  ToltReferralId?: string | null;
+  /** @nullable */
+  TaxIds?: AccountSubscriptionPlanUpdatedWebhookPayloadTaxIdsItem[] | null;
+  /**
+   * @maxLength 20
+   * @nullable
+   */
+  TaxStatus?: string | null;
+  /** @nullable */
+  AccountStageLabel?: string | null;
+  /** @nullable */
+  CurrentStripeProducts?: string | null;
+  /** @nullable */
+  CurrentSubscription?: AccountSubscriptionPlanUpdatedWebhookPayloadCurrentSubscription;
+  /** @nullable */
+  DomainName?: string | null;
+  HasLoggedIn?: boolean;
+  /** @nullable */
+  LatestSubscription?: AccountSubscriptionPlanUpdatedWebhookPayloadLatestSubscription;
+  LifetimeRevenue?: number;
+  /** @nullable */
+  NextStripeInvoiceDate?: string | null;
+  /** @nullable */
+  Nonce?: string | null;
+  /** @nullable */
+  PrimaryContact?: AccountSubscriptionPlanUpdatedWebhookPayloadPrimaryContact;
+  /** @nullable */
+  PrimarySubscription?: AccountSubscriptionPlanUpdatedWebhookPayloadPrimarySubscription;
+  /** @nullable */
+  PrimaryStripeSubscription?: AccountSubscriptionPlanUpdatedWebhookPayloadPrimaryStripeSubscription;
+  /** @nullable */
+  RecaptchaToken?: string | null;
+  /** @nullable */
+  StripeNextInvoiceSequence?: number | null;
+  /** @nullable */
+  StripePrice?: string[] | null;
+  /** @nullable */
+  StripePromotionCode?: string | null;
+  /** @nullable */
+  TaxId?: string | null;
+  TaxIdIsInvalid?: boolean;
+  /** @nullable */
+  TaxIdType?: string | null;
+  /** @nullable */
+  WebflowSlug?: string | null;
+  ActivityEventData?: AccountSubscriptionPlanUpdatedActivityData;
+}
+
+export interface AccountSubscriptionPaymentCollectedActivityData {
+  /** @nullable */
+  InvoiceUid?: string | null;
+  /** @nullable */
+  Amount?: string | null;
+}
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionPaymentCollectedWebhookPayloadBillingAddress = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine1?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine2?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine3?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  City?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  State?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PostalCode?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Country?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  GeoLocation?: string | null;
+} | null;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionPaymentCollectedWebhookPayloadMailingAddress = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine1?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine2?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine3?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  City?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  State?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PostalCode?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Country?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  GeoLocation?: string | null;
+} | null;
+
+/**
+ * `2` - Trialing, `3` - Subscribing, `4` - Cancelling, `5` - Expired, `6` - Trial Expired, `7` - Past Due, `8` - Cancelling Trial, `9` - Paused, `10` - Created
+ */
+export type AccountSubscriptionPaymentCollectedWebhookPayloadAccountStage = typeof AccountSubscriptionPaymentCollectedWebhookPayloadAccountStage[keyof typeof AccountSubscriptionPaymentCollectedWebhookPayloadAccountStage];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionPaymentCollectedWebhookPayloadAccountStage = {
+  Trialing: 2,
+  Subscribing: 3,
+  Cancelling: 4,
+  Expired: 5,
+  TrialExpired: 6,
+  PastDue: 7,
+  CancellingTrial: 8,
+  Paused: 9,
+  Created: 10,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionPaymentCollectedWebhookPayloadPaymentInformation = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  CustomerToken?: string | null;
+  /** @nullable */
+  LastFourDigits?: string | null;
+  /** @nullable */
+  LatestFailureDateTime?: string | null;
+  /** @nullable */
+  LatestFailureDescription?: string | null;
+  /** @nullable */
+  LatestSuccessDateTime?: string | null;
+  NumberOfFailures?: number;
+  /** @nullable */
+  PaymentClientSecret?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  PaymentMethodType?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PaymentToken?: string | null;
+  /**
+   * @maxLength 100
+   * @nullable
+   */
+  BankName?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  BankAccountType?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  BankAccountHolderType?: string | null;
+  /** @nullable */
+  NameOnCard?: string | null;
+  /** @nullable */
+  CardType?: string | null;
+  /** @nullable */
+  ExpirationMonth?: string | null;
+  /** @nullable */
+  ExpirationYear?: string | null;
+  /** @nullable */
+  Mode?: string | null;
+  /** @nullable */
+  OneTimeToken?: string | null;
+  /** @nullable */
+  RecaptchaToken?: string | null;
+  /** @nullable */
+  SetupIntent?: string | null;
+} | null;
+
+/**
+ * `0` - None, `1` - Gmail
+ */
+export type AccountSubscriptionPaymentCollectedWebhookPayloadPersonAccountItemPersonOAuthIntegrationStatus = typeof AccountSubscriptionPaymentCollectedWebhookPayloadPersonAccountItemPersonOAuthIntegrationStatus[keyof typeof AccountSubscriptionPaymentCollectedWebhookPayloadPersonAccountItemPersonOAuthIntegrationStatus];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionPaymentCollectedWebhookPayloadPersonAccountItemPersonOAuthIntegrationStatus = {
+  None: 0,
+  Gmail: 1,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionPaymentCollectedWebhookPayloadPersonAccountItemPerson = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Email?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  FirstName?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  LastName?: string | null;
+  /** @nullable */
+  PasswordLastUpdated?: string | null;
+  PasswordMustChange?: boolean;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PhoneMobile?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PhoneWork?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  ProfileImageS3Url?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Title?: string | null;
+  /**
+   * @maxLength 100
+   * @nullable
+   */
+  Timezone?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  Language?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  IPAddress?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Referer?: string | null;
+  /**
+   * @maxLength 1000
+   * @nullable
+   */
+  UserAgent?: string | null;
+  /** @nullable */
+  LastLoginDateTime?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  OAuthGoogleProfileId?: string | null;
+  /** @nullable */
+  AccountUids?: string | null;
+  /** @nullable */
+  FullName?: string | null;
+  HasLoggedIn?: boolean;
+  /** `0` - None, `1` - Gmail */
+  OAuthIntegrationStatus?: AccountSubscriptionPaymentCollectedWebhookPayloadPersonAccountItemPersonOAuthIntegrationStatus;
+  OptInToEmailList?: boolean;
+  /** @nullable */
+  Password?: string | null;
+  /** @nullable */
+  UserAgentPlatformBrowser?: string | null;
+  HasUnsubscribed?: boolean;
+  IsConnectedToDiscord?: boolean;
+} | null;
+
+export type AccountSubscriptionPaymentCollectedWebhookPayloadPersonAccountItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** @nullable */
+  Person?: AccountSubscriptionPaymentCollectedWebhookPayloadPersonAccountItemPerson;
+  IsPrimary?: boolean;
+  ReceiveInvoices?: boolean;
+};
+
+export type AccountSubscriptionPaymentCollectedWebhookPayloadStripeInvoicesItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  StripeId?: string | null;
+  IsLivemode?: boolean;
+  AmountDue?: number;
+  AmountPaid?: number;
+  AmountShipping?: number;
+  AttemptCount?: number;
+  Attempted?: boolean;
+  /**
+   * @maxLength 3
+   * @nullable
+   */
+  Currency?: string | null;
+  /** @nullable */
+  Description?: string | null;
+  /** @nullable */
+  FinalizedAt?: string | null;
+  /**
+   * @maxLength 500
+   * @nullable
+   */
+  HostedInvoiceUrl?: string | null;
+  /**
+   * @maxLength 500
+   * @nullable
+   */
+  InvoicePdf?: string | null;
+  /** @nullable */
+  NextPaymentAttempt?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  Number?: string | null;
+  PeriodEnd?: string;
+  PeriodStart?: string;
+  /**
+   * @maxLength 30
+   * @nullable
+   */
+  Status?: string | null;
+  SubTotal?: number;
+  /** @nullable */
+  SubTotalExcludingTax?: number | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  SubscriptionId?: string | null;
+  /** @nullable */
+  Tax?: number | null;
+  Total?: number;
+  /** @nullable */
+  TotalExcludingTax?: number | null;
+  IsRefunded?: boolean;
+  CurrencyAmountCreditedPostPayment?: number;
+  CurrencyAmountCreditedPrePayment?: number;
+  CurrencyAmountDue?: number;
+  CurrencyAmountPaid?: number;
+  /** @nullable */
+  CurrencySymbol?: string | null;
+  CurrencyTotal?: number;
+  CurrencyTotalExcludingTax?: number;
+  CurrencySubTotal?: number;
+  CurrencySubTotalExcludingTax?: number;
+  CurrencyTax?: number;
+  /** @nullable */
+  DaysUntilDue?: number | null;
+  /** @nullable */
+  CustomerId?: string | null;
+  /** @nullable */
+  PaymentStatus?: string | null;
+  /** @nullable */
+  StripePaymentMethodId?: string | null;
+};
+
+export type AccountSubscriptionPaymentCollectedWebhookPayloadStripePaymentMethodsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  StripeId?: string | null;
+  IsLivemode?: boolean;
+  /** @nullable */
+  Card_Brand?: string | null;
+  /** @nullable */
+  Card_ExpMonth?: number | null;
+  /** @nullable */
+  Card_ExpYear?: number | null;
+  /** @nullable */
+  Card_Wallet_Type?: string | null;
+  /** @nullable */
+  BankName?: string | null;
+  /** @nullable */
+  Last4?: string | null;
+  /** @nullable */
+  Type?: string | null;
+  /** @nullable */
+  Label?: string | null;
+};
+
+export type AccountSubscriptionPaymentCollectedWebhookPayloadStripeSubscriptionsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  StripeId?: string | null;
+  IsLivemode?: boolean;
+  /** @nullable */
+  CancelAt?: string | null;
+  CancelAtPeriodEnd?: boolean;
+  /**
+   * @maxLength 3
+   * @nullable
+   */
+  Currency?: string | null;
+  /** @nullable */
+  EndedAt?: string | null;
+  /**
+   * @maxLength 30
+   * @nullable
+   */
+  PauseCollection_Behavior?: string | null;
+  /** @nullable */
+  PauseCollection_ResumesAt?: string | null;
+  StartDate?: string;
+  /**
+   * @maxLength 30
+   * @nullable
+   */
+  Status?: string | null;
+  /** @nullable */
+  TrialEnd?: string | null;
+  /** @nullable */
+  AccountUid?: string | null;
+  /** @nullable */
+  BillingCycleAnchor?: string | null;
+  /** @nullable */
+  CollectionMethod?: string | null;
+  /** @nullable */
+  CustomerId?: string | null;
+  /** @nullable */
+  DaysUntilDue?: number | null;
+  /** @nullable */
+  ScheduleId?: string | null;
+  /** @nullable */
+  StripeDiscountIds?: string[] | null;
+  /** @nullable */
+  StripePriceIds?: string | null;
+  TrialPeriodDays?: number;
+};
+
+/**
+ * `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time
+ */
+export type AccountSubscriptionPaymentCollectedWebhookPayloadSubscriptionsItemBillingRenewalTerm = typeof AccountSubscriptionPaymentCollectedWebhookPayloadSubscriptionsItemBillingRenewalTerm[keyof typeof AccountSubscriptionPaymentCollectedWebhookPayloadSubscriptionsItemBillingRenewalTerm];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionPaymentCollectedWebhookPayloadSubscriptionsItemBillingRenewalTerm = {
+  Monthly: 1,
+  Yearly: 2,
+  Quarterly: 3,
+  OneTime: 4,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionPaymentCollectedWebhookPayloadSubscriptionsItemPlanPlanFamily = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  IsActive?: boolean;
+  IsDefault?: boolean;
+} | null;
+
+/**
+ * `1` - Individual, `2` - Team
+ */
+export type AccountSubscriptionPaymentCollectedWebhookPayloadSubscriptionsItemPlanAccountRegistrationMode = typeof AccountSubscriptionPaymentCollectedWebhookPayloadSubscriptionsItemPlanAccountRegistrationMode[keyof typeof AccountSubscriptionPaymentCollectedWebhookPayloadSubscriptionsItemPlanAccountRegistrationMode];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionPaymentCollectedWebhookPayloadSubscriptionsItemPlanAccountRegistrationMode = {
+  Individual: 1,
+  Team: 2,
+} as const;
+
+export type AccountSubscriptionPaymentCollectedWebhookPayloadSubscriptionsItemPlanPlanAddOnsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  IsUserSelectable: boolean;
+};
+
+export type AccountSubscriptionPaymentCollectedWebhookPayloadSubscriptionsItemPlanContentGroupsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @minLength 1
+   * @maxLength 50
+   */
+  Name: string;
+  /**
+   * @maxLength 1024
+   * @nullable
+   */
+  AccessDeniedPath?: string | null;
+};
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionPaymentCollectedWebhookPayloadSubscriptionsItemPlan = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  /** @nullable */
+  Description?: string | null;
+  /** @nullable */
+  PlanFamily?: AccountSubscriptionPaymentCollectedWebhookPayloadSubscriptionsItemPlanPlanFamily;
+  /** `1` - Individual, `2` - Team */
+  AccountRegistrationMode?: AccountSubscriptionPaymentCollectedWebhookPayloadSubscriptionsItemPlanAccountRegistrationMode;
+  IsQuantityEditable?: boolean;
+  MinimumQuantity?: number;
+  /** @nullable */
+  MaximumPeople?: number | null;
+  MonthlyRate?: number;
+  AnnualRate?: number;
+  QuarterlyRate?: number;
+  OneTimeRate?: number;
+  SetupFee?: number;
+  SkipSetupFeeOnPlanChange?: boolean;
+  IsTaxable?: boolean;
+  IsActive?: boolean;
+  IsPerUser?: boolean;
+  RequirePaymentInformation?: boolean;
+  TrialPeriodDays?: number;
+  /** @nullable */
+  TrialUntilDate?: string | null;
+  ExpiresAfterMonths?: number;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PostLoginPath?: string | null;
+  /**
+   * @maxLength 15
+   * @nullable
+   */
+  StripeTaxCodeId?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  UnitOfMeasure?: string | null;
+  /** @nullable */
+  PlanAddOns?: AccountSubscriptionPaymentCollectedWebhookPayloadSubscriptionsItemPlanPlanAddOnsItem[] | null;
+  /** @nullable */
+  ContentGroups?: AccountSubscriptionPaymentCollectedWebhookPayloadSubscriptionsItemPlanContentGroupsItem[] | null;
+  /** @nullable */
+  NumberOfSubscriptions?: number | null;
+} | null;
+
+/**
+ * `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time
+ */
+export type AccountSubscriptionPaymentCollectedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemBillingRenewalTerm = typeof AccountSubscriptionPaymentCollectedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemBillingRenewalTerm[keyof typeof AccountSubscriptionPaymentCollectedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemBillingRenewalTerm];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionPaymentCollectedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemBillingRenewalTerm = {
+  Monthly: 1,
+  Yearly: 2,
+  Quarterly: 3,
+  OneTime: 4,
+} as const;
+
+/**
+ * `1` - Recurring, `2` - Usage, `3` - OneTime
+ */
+export type AccountSubscriptionPaymentCollectedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemAddOnBillingAddOnType = typeof AccountSubscriptionPaymentCollectedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemAddOnBillingAddOnType[keyof typeof AccountSubscriptionPaymentCollectedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemAddOnBillingAddOnType];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionPaymentCollectedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemAddOnBillingAddOnType = {
+  Recurring: 1,
+  Usage: 2,
+  OneTime: 3,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionPaymentCollectedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemAddOn = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  /** `1` - Recurring, `2` - Usage, `3` - OneTime */
+  BillingAddOnType?: AccountSubscriptionPaymentCollectedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemAddOnBillingAddOnType;
+  IsQuantityEditable?: boolean;
+  MinimumQuantity?: number;
+  MonthlyRate?: number;
+  AnnualRate?: number;
+  SetupFee?: number;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  UnitOfMeasure?: string | null;
+  IsTaxable?: boolean;
+  IsBilledDuringTrial?: boolean;
+  ExpiresAfterMonths?: number;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /**
+   * @maxLength 15
+   * @nullable
+   */
+  StripeTaxCodeId?: string | null;
+  IsPerUser?: boolean;
+  QuarterlyRate?: number;
+  OneTimeRate?: number;
+  SubscriptionCount?: number;
+  Quantity?: number;
+} | null;
+
+export type AccountSubscriptionPaymentCollectedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time */
+  BillingRenewalTerm?: AccountSubscriptionPaymentCollectedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemBillingRenewalTerm;
+  /** @nullable */
+  AddOn?: AccountSubscriptionPaymentCollectedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemAddOn;
+  /** @nullable */
+  Quantity?: number | null;
+  StartDate?: string;
+  /** @nullable */
+  EndDate?: string | null;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /** @nullable */
+  RenewalDate?: string | null;
+  /** @nullable */
+  NewRequiredQuantity?: number | null;
+  /** @nullable */
+  Rate?: number | null;
+};
+
+/**
+ * `1` - Forever, `2` - Once, `3` - Repeating
+ */
+export type AccountSubscriptionPaymentCollectedWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItemDiscountCouponDuration = typeof AccountSubscriptionPaymentCollectedWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItemDiscountCouponDuration[keyof typeof AccountSubscriptionPaymentCollectedWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItemDiscountCouponDuration];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionPaymentCollectedWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItemDiscountCouponDuration = {
+  Forever: 1,
+  Once: 2,
+  Repeating: 3,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionPaymentCollectedWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItemDiscountCoupon = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /** @nullable */
+  UniqueIdentifier?: string | null;
+  /** @nullable */
+  Name?: string | null;
+  IsActive?: boolean;
+  /** @nullable */
+  AmountOff?: number | null;
+  /** @nullable */
+  PercentOff?: number | null;
+  /** @nullable */
+  RedeemBy?: string | null;
+  /** `1` - Forever, `2` - Once, `3` - Repeating */
+  Duration?: AccountSubscriptionPaymentCollectedWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItemDiscountCouponDuration;
+  /** @nullable */
+  DurationInMonths?: number | null;
+  TimesRedeemed?: number;
+  /** @nullable */
+  MaxRedemptions?: number | null;
+  ApplyToAddOns?: boolean;
+  /** @nullable */
+  PlanUids?: string | null;
+} | null;
+
+export type AccountSubscriptionPaymentCollectedWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** @nullable */
+  RedeemedDate?: string | null;
+  /** @nullable */
+  ExpireDate?: string | null;
+  /** @nullable */
+  DiscountCoupon?: AccountSubscriptionPaymentCollectedWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItemDiscountCoupon;
+};
+
+/**
+ * `1` - Unpaid, `2` - Paid, `3` - Partial, `4` - Uncollected, `5` - Refunded, `6` - Uncollectible, `7` - Processing
+ */
+export type AccountSubscriptionPaymentCollectedWebhookPayloadSubscriptionsItemLatestInvoiceBillingInvoiceStatus = typeof AccountSubscriptionPaymentCollectedWebhookPayloadSubscriptionsItemLatestInvoiceBillingInvoiceStatus[keyof typeof AccountSubscriptionPaymentCollectedWebhookPayloadSubscriptionsItemLatestInvoiceBillingInvoiceStatus];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionPaymentCollectedWebhookPayloadSubscriptionsItemLatestInvoiceBillingInvoiceStatus = {
+  Unpaid: 1,
+  Paid: 2,
+  Partial: 3,
+  Uncollected: 4,
+  Refunded: 5,
+  Uncollectible: 6,
+  Processing: 7,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionPaymentCollectedWebhookPayloadSubscriptionsItemLatestInvoice = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  InvoiceDate?: string;
+  /** @nullable */
+  PaymentReminderSentDate?: string | null;
+  Number?: number;
+  /** `1` - Unpaid, `2` - Paid, `3` - Partial, `4` - Uncollected, `5` - Refunded, `6` - Uncollectible, `7` - Processing */
+  BillingInvoiceStatus?: AccountSubscriptionPaymentCollectedWebhookPayloadSubscriptionsItemLatestInvoiceBillingInvoiceStatus;
+  Amount?: number;
+  AmountOutstanding?: number;
+  IsUserGenerated?: boolean;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  StripeTaxCalculationId?: string | null;
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  StripeTaxBehavior?: string | null;
+  AmountCredit?: number;
+  AmountDiscount?: number;
+  AmountPaid?: number;
+  AmountRefunded?: number;
+  AmountSubtotal?: number;
+  AmountTax?: number;
+  AmountTaxRefunded?: number;
+  IsTaxable?: boolean;
+  HasPaymentGatewayTransactions?: boolean;
+  /** @nullable */
+  StripePaymentTransactionIds?: string | null;
+  /** @nullable */
+  StripeRefundTransactionIds?: string | null;
+  /** @nullable */
+  StripeTaxRefundTransactionIds?: string | null;
+} | null;
+
+export type AccountSubscriptionPaymentCollectedWebhookPayloadSubscriptionsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time */
+  BillingRenewalTerm?: AccountSubscriptionPaymentCollectedWebhookPayloadSubscriptionsItemBillingRenewalTerm;
+  /** @nullable */
+  Plan?: AccountSubscriptionPaymentCollectedWebhookPayloadSubscriptionsItemPlan;
+  /** @nullable */
+  Quantity?: number | null;
+  StartDate?: string;
+  /** @nullable */
+  EndDate?: string | null;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /** @nullable */
+  RenewalDate?: string | null;
+  /** @nullable */
+  NewRequiredQuantity?: number | null;
+  IsPlanUpgradeRequired?: boolean;
+  /** @nullable */
+  PlanUpgradeRequiredMessage?: string | null;
+  /** @nullable */
+  SubscriptionAddOns?: AccountSubscriptionPaymentCollectedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItem[] | null;
+  /** @nullable */
+  DiscountCouponSubscriptions?: AccountSubscriptionPaymentCollectedWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItem[] | null;
+  /** @nullable */
+  DiscountCode?: string | null;
+  /** @nullable */
+  DiscountCouponExpirationDate?: string | null;
+  /** @nullable */
+  LatestInvoice?: AccountSubscriptionPaymentCollectedWebhookPayloadSubscriptionsItemLatestInvoice;
+  /** @nullable */
+  Rate?: number | null;
+};
+
+export type AccountSubscriptionPaymentCollectedWebhookPayloadDealsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @minLength 1
+   * @maxLength 250
+   */
+  Name: string;
+  /** @nullable */
+  Amount?: number | null;
+  /** @nullable */
+  DueDate?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  AssignedToPersonClientIdentifier?: string | null;
+  Weight?: number;
+  /** @nullable */
+  Contacts?: string | null;
+  AccountId?: number;
+  /** @nullable */
+  PipelineUid?: string | null;
+};
+
+export type AccountSubscriptionPaymentCollectedWebhookPayloadTaxIdsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  StripeId?: string | null;
+  IsLivemode?: boolean;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  TaxId?: string | null;
+  /**
+   * @maxLength 20
+   * @nullable
+   */
+  TaxIdType?: string | null;
+  IsInvalid?: boolean;
+};
+
+/**
+ * `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time
+ */
+export type AccountSubscriptionPaymentCollectedWebhookPayloadCurrentSubscriptionBillingRenewalTerm = typeof AccountSubscriptionPaymentCollectedWebhookPayloadCurrentSubscriptionBillingRenewalTerm[keyof typeof AccountSubscriptionPaymentCollectedWebhookPayloadCurrentSubscriptionBillingRenewalTerm];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionPaymentCollectedWebhookPayloadCurrentSubscriptionBillingRenewalTerm = {
+  Monthly: 1,
+  Yearly: 2,
+  Quarterly: 3,
+  OneTime: 4,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionPaymentCollectedWebhookPayloadCurrentSubscriptionPlanPlanFamily = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  IsActive?: boolean;
+  IsDefault?: boolean;
+} | null;
+
+/**
+ * `1` - Individual, `2` - Team
+ */
+export type AccountSubscriptionPaymentCollectedWebhookPayloadCurrentSubscriptionPlanAccountRegistrationMode = typeof AccountSubscriptionPaymentCollectedWebhookPayloadCurrentSubscriptionPlanAccountRegistrationMode[keyof typeof AccountSubscriptionPaymentCollectedWebhookPayloadCurrentSubscriptionPlanAccountRegistrationMode];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionPaymentCollectedWebhookPayloadCurrentSubscriptionPlanAccountRegistrationMode = {
+  Individual: 1,
+  Team: 2,
+} as const;
+
+export type AccountSubscriptionPaymentCollectedWebhookPayloadCurrentSubscriptionPlanPlanAddOnsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  IsUserSelectable: boolean;
+};
+
+export type AccountSubscriptionPaymentCollectedWebhookPayloadCurrentSubscriptionPlanContentGroupsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @minLength 1
+   * @maxLength 50
+   */
+  Name: string;
+  /**
+   * @maxLength 1024
+   * @nullable
+   */
+  AccessDeniedPath?: string | null;
+};
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionPaymentCollectedWebhookPayloadCurrentSubscriptionPlan = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  /** @nullable */
+  Description?: string | null;
+  /** @nullable */
+  PlanFamily?: AccountSubscriptionPaymentCollectedWebhookPayloadCurrentSubscriptionPlanPlanFamily;
+  /** `1` - Individual, `2` - Team */
+  AccountRegistrationMode?: AccountSubscriptionPaymentCollectedWebhookPayloadCurrentSubscriptionPlanAccountRegistrationMode;
+  IsQuantityEditable?: boolean;
+  MinimumQuantity?: number;
+  /** @nullable */
+  MaximumPeople?: number | null;
+  MonthlyRate?: number;
+  AnnualRate?: number;
+  QuarterlyRate?: number;
+  OneTimeRate?: number;
+  SetupFee?: number;
+  SkipSetupFeeOnPlanChange?: boolean;
+  IsTaxable?: boolean;
+  IsActive?: boolean;
+  IsPerUser?: boolean;
+  RequirePaymentInformation?: boolean;
+  TrialPeriodDays?: number;
+  /** @nullable */
+  TrialUntilDate?: string | null;
+  ExpiresAfterMonths?: number;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PostLoginPath?: string | null;
+  /**
+   * @maxLength 15
+   * @nullable
+   */
+  StripeTaxCodeId?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  UnitOfMeasure?: string | null;
+  /** @nullable */
+  PlanAddOns?: AccountSubscriptionPaymentCollectedWebhookPayloadCurrentSubscriptionPlanPlanAddOnsItem[] | null;
+  /** @nullable */
+  ContentGroups?: AccountSubscriptionPaymentCollectedWebhookPayloadCurrentSubscriptionPlanContentGroupsItem[] | null;
+  /** @nullable */
+  NumberOfSubscriptions?: number | null;
+} | null;
+
+/**
+ * `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time
+ */
+export type AccountSubscriptionPaymentCollectedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemBillingRenewalTerm = typeof AccountSubscriptionPaymentCollectedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemBillingRenewalTerm[keyof typeof AccountSubscriptionPaymentCollectedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemBillingRenewalTerm];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionPaymentCollectedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemBillingRenewalTerm = {
+  Monthly: 1,
+  Yearly: 2,
+  Quarterly: 3,
+  OneTime: 4,
+} as const;
+
+/**
+ * `1` - Recurring, `2` - Usage, `3` - OneTime
+ */
+export type AccountSubscriptionPaymentCollectedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType = typeof AccountSubscriptionPaymentCollectedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType[keyof typeof AccountSubscriptionPaymentCollectedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionPaymentCollectedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType = {
+  Recurring: 1,
+  Usage: 2,
+  OneTime: 3,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionPaymentCollectedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemAddOn = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  /** `1` - Recurring, `2` - Usage, `3` - OneTime */
+  BillingAddOnType?: AccountSubscriptionPaymentCollectedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType;
+  IsQuantityEditable?: boolean;
+  MinimumQuantity?: number;
+  MonthlyRate?: number;
+  AnnualRate?: number;
+  SetupFee?: number;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  UnitOfMeasure?: string | null;
+  IsTaxable?: boolean;
+  IsBilledDuringTrial?: boolean;
+  ExpiresAfterMonths?: number;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /**
+   * @maxLength 15
+   * @nullable
+   */
+  StripeTaxCodeId?: string | null;
+  IsPerUser?: boolean;
+  QuarterlyRate?: number;
+  OneTimeRate?: number;
+  SubscriptionCount?: number;
+  Quantity?: number;
+} | null;
+
+export type AccountSubscriptionPaymentCollectedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time */
+  BillingRenewalTerm?: AccountSubscriptionPaymentCollectedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemBillingRenewalTerm;
+  /** @nullable */
+  AddOn?: AccountSubscriptionPaymentCollectedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemAddOn;
+  /** @nullable */
+  Quantity?: number | null;
+  StartDate?: string;
+  /** @nullable */
+  EndDate?: string | null;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /** @nullable */
+  RenewalDate?: string | null;
+  /** @nullable */
+  NewRequiredQuantity?: number | null;
+  /** @nullable */
+  Rate?: number | null;
+};
+
+/**
+ * `1` - Forever, `2` - Once, `3` - Repeating
+ */
+export type AccountSubscriptionPaymentCollectedWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration = typeof AccountSubscriptionPaymentCollectedWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration[keyof typeof AccountSubscriptionPaymentCollectedWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionPaymentCollectedWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration = {
+  Forever: 1,
+  Once: 2,
+  Repeating: 3,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionPaymentCollectedWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItemDiscountCoupon = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /** @nullable */
+  UniqueIdentifier?: string | null;
+  /** @nullable */
+  Name?: string | null;
+  IsActive?: boolean;
+  /** @nullable */
+  AmountOff?: number | null;
+  /** @nullable */
+  PercentOff?: number | null;
+  /** @nullable */
+  RedeemBy?: string | null;
+  /** `1` - Forever, `2` - Once, `3` - Repeating */
+  Duration?: AccountSubscriptionPaymentCollectedWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration;
+  /** @nullable */
+  DurationInMonths?: number | null;
+  TimesRedeemed?: number;
+  /** @nullable */
+  MaxRedemptions?: number | null;
+  ApplyToAddOns?: boolean;
+  /** @nullable */
+  PlanUids?: string | null;
+} | null;
+
+export type AccountSubscriptionPaymentCollectedWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** @nullable */
+  RedeemedDate?: string | null;
+  /** @nullable */
+  ExpireDate?: string | null;
+  /** @nullable */
+  DiscountCoupon?: AccountSubscriptionPaymentCollectedWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItemDiscountCoupon;
+};
+
+/**
+ * `1` - Unpaid, `2` - Paid, `3` - Partial, `4` - Uncollected, `5` - Refunded, `6` - Uncollectible, `7` - Processing
+ */
+export type AccountSubscriptionPaymentCollectedWebhookPayloadCurrentSubscriptionLatestInvoiceBillingInvoiceStatus = typeof AccountSubscriptionPaymentCollectedWebhookPayloadCurrentSubscriptionLatestInvoiceBillingInvoiceStatus[keyof typeof AccountSubscriptionPaymentCollectedWebhookPayloadCurrentSubscriptionLatestInvoiceBillingInvoiceStatus];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionPaymentCollectedWebhookPayloadCurrentSubscriptionLatestInvoiceBillingInvoiceStatus = {
+  Unpaid: 1,
+  Paid: 2,
+  Partial: 3,
+  Uncollected: 4,
+  Refunded: 5,
+  Uncollectible: 6,
+  Processing: 7,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionPaymentCollectedWebhookPayloadCurrentSubscriptionLatestInvoice = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  InvoiceDate?: string;
+  /** @nullable */
+  PaymentReminderSentDate?: string | null;
+  Number?: number;
+  /** `1` - Unpaid, `2` - Paid, `3` - Partial, `4` - Uncollected, `5` - Refunded, `6` - Uncollectible, `7` - Processing */
+  BillingInvoiceStatus?: AccountSubscriptionPaymentCollectedWebhookPayloadCurrentSubscriptionLatestInvoiceBillingInvoiceStatus;
+  Amount?: number;
+  AmountOutstanding?: number;
+  IsUserGenerated?: boolean;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  StripeTaxCalculationId?: string | null;
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  StripeTaxBehavior?: string | null;
+  AmountCredit?: number;
+  AmountDiscount?: number;
+  AmountPaid?: number;
+  AmountRefunded?: number;
+  AmountSubtotal?: number;
+  AmountTax?: number;
+  AmountTaxRefunded?: number;
+  IsTaxable?: boolean;
+  HasPaymentGatewayTransactions?: boolean;
+  /** @nullable */
+  StripePaymentTransactionIds?: string | null;
+  /** @nullable */
+  StripeRefundTransactionIds?: string | null;
+  /** @nullable */
+  StripeTaxRefundTransactionIds?: string | null;
+} | null;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionPaymentCollectedWebhookPayloadCurrentSubscription = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /** `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time */
+  BillingRenewalTerm?: AccountSubscriptionPaymentCollectedWebhookPayloadCurrentSubscriptionBillingRenewalTerm;
+  /** @nullable */
+  Plan?: AccountSubscriptionPaymentCollectedWebhookPayloadCurrentSubscriptionPlan;
+  /** @nullable */
+  Quantity?: number | null;
+  StartDate?: string;
+  /** @nullable */
+  EndDate?: string | null;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /** @nullable */
+  RenewalDate?: string | null;
+  /** @nullable */
+  NewRequiredQuantity?: number | null;
+  IsPlanUpgradeRequired?: boolean;
+  /** @nullable */
+  PlanUpgradeRequiredMessage?: string | null;
+  /** @nullable */
+  SubscriptionAddOns?: AccountSubscriptionPaymentCollectedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItem[] | null;
+  /** @nullable */
+  DiscountCouponSubscriptions?: AccountSubscriptionPaymentCollectedWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItem[] | null;
+  /** @nullable */
+  DiscountCode?: string | null;
+  /** @nullable */
+  DiscountCouponExpirationDate?: string | null;
+  /** @nullable */
+  LatestInvoice?: AccountSubscriptionPaymentCollectedWebhookPayloadCurrentSubscriptionLatestInvoice;
+  /** @nullable */
+  Rate?: number | null;
+} | null;
+
+/**
+ * `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time
+ */
+export type AccountSubscriptionPaymentCollectedWebhookPayloadLatestSubscriptionBillingRenewalTerm = typeof AccountSubscriptionPaymentCollectedWebhookPayloadLatestSubscriptionBillingRenewalTerm[keyof typeof AccountSubscriptionPaymentCollectedWebhookPayloadLatestSubscriptionBillingRenewalTerm];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionPaymentCollectedWebhookPayloadLatestSubscriptionBillingRenewalTerm = {
+  Monthly: 1,
+  Yearly: 2,
+  Quarterly: 3,
+  OneTime: 4,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionPaymentCollectedWebhookPayloadLatestSubscriptionPlanPlanFamily = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  IsActive?: boolean;
+  IsDefault?: boolean;
+} | null;
+
+/**
+ * `1` - Individual, `2` - Team
+ */
+export type AccountSubscriptionPaymentCollectedWebhookPayloadLatestSubscriptionPlanAccountRegistrationMode = typeof AccountSubscriptionPaymentCollectedWebhookPayloadLatestSubscriptionPlanAccountRegistrationMode[keyof typeof AccountSubscriptionPaymentCollectedWebhookPayloadLatestSubscriptionPlanAccountRegistrationMode];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionPaymentCollectedWebhookPayloadLatestSubscriptionPlanAccountRegistrationMode = {
+  Individual: 1,
+  Team: 2,
+} as const;
+
+export type AccountSubscriptionPaymentCollectedWebhookPayloadLatestSubscriptionPlanPlanAddOnsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  IsUserSelectable: boolean;
+};
+
+export type AccountSubscriptionPaymentCollectedWebhookPayloadLatestSubscriptionPlanContentGroupsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @minLength 1
+   * @maxLength 50
+   */
+  Name: string;
+  /**
+   * @maxLength 1024
+   * @nullable
+   */
+  AccessDeniedPath?: string | null;
+};
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionPaymentCollectedWebhookPayloadLatestSubscriptionPlan = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  /** @nullable */
+  Description?: string | null;
+  /** @nullable */
+  PlanFamily?: AccountSubscriptionPaymentCollectedWebhookPayloadLatestSubscriptionPlanPlanFamily;
+  /** `1` - Individual, `2` - Team */
+  AccountRegistrationMode?: AccountSubscriptionPaymentCollectedWebhookPayloadLatestSubscriptionPlanAccountRegistrationMode;
+  IsQuantityEditable?: boolean;
+  MinimumQuantity?: number;
+  /** @nullable */
+  MaximumPeople?: number | null;
+  MonthlyRate?: number;
+  AnnualRate?: number;
+  QuarterlyRate?: number;
+  OneTimeRate?: number;
+  SetupFee?: number;
+  SkipSetupFeeOnPlanChange?: boolean;
+  IsTaxable?: boolean;
+  IsActive?: boolean;
+  IsPerUser?: boolean;
+  RequirePaymentInformation?: boolean;
+  TrialPeriodDays?: number;
+  /** @nullable */
+  TrialUntilDate?: string | null;
+  ExpiresAfterMonths?: number;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PostLoginPath?: string | null;
+  /**
+   * @maxLength 15
+   * @nullable
+   */
+  StripeTaxCodeId?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  UnitOfMeasure?: string | null;
+  /** @nullable */
+  PlanAddOns?: AccountSubscriptionPaymentCollectedWebhookPayloadLatestSubscriptionPlanPlanAddOnsItem[] | null;
+  /** @nullable */
+  ContentGroups?: AccountSubscriptionPaymentCollectedWebhookPayloadLatestSubscriptionPlanContentGroupsItem[] | null;
+  /** @nullable */
+  NumberOfSubscriptions?: number | null;
+} | null;
+
+/**
+ * `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time
+ */
+export type AccountSubscriptionPaymentCollectedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemBillingRenewalTerm = typeof AccountSubscriptionPaymentCollectedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemBillingRenewalTerm[keyof typeof AccountSubscriptionPaymentCollectedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemBillingRenewalTerm];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionPaymentCollectedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemBillingRenewalTerm = {
+  Monthly: 1,
+  Yearly: 2,
+  Quarterly: 3,
+  OneTime: 4,
+} as const;
+
+/**
+ * `1` - Recurring, `2` - Usage, `3` - OneTime
+ */
+export type AccountSubscriptionPaymentCollectedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType = typeof AccountSubscriptionPaymentCollectedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType[keyof typeof AccountSubscriptionPaymentCollectedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionPaymentCollectedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType = {
+  Recurring: 1,
+  Usage: 2,
+  OneTime: 3,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionPaymentCollectedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemAddOn = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  /** `1` - Recurring, `2` - Usage, `3` - OneTime */
+  BillingAddOnType?: AccountSubscriptionPaymentCollectedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType;
+  IsQuantityEditable?: boolean;
+  MinimumQuantity?: number;
+  MonthlyRate?: number;
+  AnnualRate?: number;
+  SetupFee?: number;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  UnitOfMeasure?: string | null;
+  IsTaxable?: boolean;
+  IsBilledDuringTrial?: boolean;
+  ExpiresAfterMonths?: number;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /**
+   * @maxLength 15
+   * @nullable
+   */
+  StripeTaxCodeId?: string | null;
+  IsPerUser?: boolean;
+  QuarterlyRate?: number;
+  OneTimeRate?: number;
+  SubscriptionCount?: number;
+  Quantity?: number;
+} | null;
+
+export type AccountSubscriptionPaymentCollectedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time */
+  BillingRenewalTerm?: AccountSubscriptionPaymentCollectedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemBillingRenewalTerm;
+  /** @nullable */
+  AddOn?: AccountSubscriptionPaymentCollectedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemAddOn;
+  /** @nullable */
+  Quantity?: number | null;
+  StartDate?: string;
+  /** @nullable */
+  EndDate?: string | null;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /** @nullable */
+  RenewalDate?: string | null;
+  /** @nullable */
+  NewRequiredQuantity?: number | null;
+  /** @nullable */
+  Rate?: number | null;
+};
+
+/**
+ * `1` - Forever, `2` - Once, `3` - Repeating
+ */
+export type AccountSubscriptionPaymentCollectedWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration = typeof AccountSubscriptionPaymentCollectedWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration[keyof typeof AccountSubscriptionPaymentCollectedWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionPaymentCollectedWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration = {
+  Forever: 1,
+  Once: 2,
+  Repeating: 3,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionPaymentCollectedWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItemDiscountCoupon = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /** @nullable */
+  UniqueIdentifier?: string | null;
+  /** @nullable */
+  Name?: string | null;
+  IsActive?: boolean;
+  /** @nullable */
+  AmountOff?: number | null;
+  /** @nullable */
+  PercentOff?: number | null;
+  /** @nullable */
+  RedeemBy?: string | null;
+  /** `1` - Forever, `2` - Once, `3` - Repeating */
+  Duration?: AccountSubscriptionPaymentCollectedWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration;
+  /** @nullable */
+  DurationInMonths?: number | null;
+  TimesRedeemed?: number;
+  /** @nullable */
+  MaxRedemptions?: number | null;
+  ApplyToAddOns?: boolean;
+  /** @nullable */
+  PlanUids?: string | null;
+} | null;
+
+export type AccountSubscriptionPaymentCollectedWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** @nullable */
+  RedeemedDate?: string | null;
+  /** @nullable */
+  ExpireDate?: string | null;
+  /** @nullable */
+  DiscountCoupon?: AccountSubscriptionPaymentCollectedWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItemDiscountCoupon;
+};
+
+/**
+ * `1` - Unpaid, `2` - Paid, `3` - Partial, `4` - Uncollected, `5` - Refunded, `6` - Uncollectible, `7` - Processing
+ */
+export type AccountSubscriptionPaymentCollectedWebhookPayloadLatestSubscriptionLatestInvoiceBillingInvoiceStatus = typeof AccountSubscriptionPaymentCollectedWebhookPayloadLatestSubscriptionLatestInvoiceBillingInvoiceStatus[keyof typeof AccountSubscriptionPaymentCollectedWebhookPayloadLatestSubscriptionLatestInvoiceBillingInvoiceStatus];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionPaymentCollectedWebhookPayloadLatestSubscriptionLatestInvoiceBillingInvoiceStatus = {
+  Unpaid: 1,
+  Paid: 2,
+  Partial: 3,
+  Uncollected: 4,
+  Refunded: 5,
+  Uncollectible: 6,
+  Processing: 7,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionPaymentCollectedWebhookPayloadLatestSubscriptionLatestInvoice = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  InvoiceDate?: string;
+  /** @nullable */
+  PaymentReminderSentDate?: string | null;
+  Number?: number;
+  /** `1` - Unpaid, `2` - Paid, `3` - Partial, `4` - Uncollected, `5` - Refunded, `6` - Uncollectible, `7` - Processing */
+  BillingInvoiceStatus?: AccountSubscriptionPaymentCollectedWebhookPayloadLatestSubscriptionLatestInvoiceBillingInvoiceStatus;
+  Amount?: number;
+  AmountOutstanding?: number;
+  IsUserGenerated?: boolean;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  StripeTaxCalculationId?: string | null;
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  StripeTaxBehavior?: string | null;
+  AmountCredit?: number;
+  AmountDiscount?: number;
+  AmountPaid?: number;
+  AmountRefunded?: number;
+  AmountSubtotal?: number;
+  AmountTax?: number;
+  AmountTaxRefunded?: number;
+  IsTaxable?: boolean;
+  HasPaymentGatewayTransactions?: boolean;
+  /** @nullable */
+  StripePaymentTransactionIds?: string | null;
+  /** @nullable */
+  StripeRefundTransactionIds?: string | null;
+  /** @nullable */
+  StripeTaxRefundTransactionIds?: string | null;
+} | null;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionPaymentCollectedWebhookPayloadLatestSubscription = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /** `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time */
+  BillingRenewalTerm?: AccountSubscriptionPaymentCollectedWebhookPayloadLatestSubscriptionBillingRenewalTerm;
+  /** @nullable */
+  Plan?: AccountSubscriptionPaymentCollectedWebhookPayloadLatestSubscriptionPlan;
+  /** @nullable */
+  Quantity?: number | null;
+  StartDate?: string;
+  /** @nullable */
+  EndDate?: string | null;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /** @nullable */
+  RenewalDate?: string | null;
+  /** @nullable */
+  NewRequiredQuantity?: number | null;
+  IsPlanUpgradeRequired?: boolean;
+  /** @nullable */
+  PlanUpgradeRequiredMessage?: string | null;
+  /** @nullable */
+  SubscriptionAddOns?: AccountSubscriptionPaymentCollectedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItem[] | null;
+  /** @nullable */
+  DiscountCouponSubscriptions?: AccountSubscriptionPaymentCollectedWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItem[] | null;
+  /** @nullable */
+  DiscountCode?: string | null;
+  /** @nullable */
+  DiscountCouponExpirationDate?: string | null;
+  /** @nullable */
+  LatestInvoice?: AccountSubscriptionPaymentCollectedWebhookPayloadLatestSubscriptionLatestInvoice;
+  /** @nullable */
+  Rate?: number | null;
+} | null;
+
+/**
+ * `0` - None, `1` - Gmail
+ */
+export type AccountSubscriptionPaymentCollectedWebhookPayloadPrimaryContactOAuthIntegrationStatus = typeof AccountSubscriptionPaymentCollectedWebhookPayloadPrimaryContactOAuthIntegrationStatus[keyof typeof AccountSubscriptionPaymentCollectedWebhookPayloadPrimaryContactOAuthIntegrationStatus];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionPaymentCollectedWebhookPayloadPrimaryContactOAuthIntegrationStatus = {
+  None: 0,
+  Gmail: 1,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionPaymentCollectedWebhookPayloadPrimaryContact = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Email?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  FirstName?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  LastName?: string | null;
+  /** @nullable */
+  PasswordLastUpdated?: string | null;
+  PasswordMustChange?: boolean;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PhoneMobile?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PhoneWork?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  ProfileImageS3Url?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Title?: string | null;
+  /**
+   * @maxLength 100
+   * @nullable
+   */
+  Timezone?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  Language?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  IPAddress?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Referer?: string | null;
+  /**
+   * @maxLength 1000
+   * @nullable
+   */
+  UserAgent?: string | null;
+  /** @nullable */
+  LastLoginDateTime?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  OAuthGoogleProfileId?: string | null;
+  /** @nullable */
+  AccountUids?: string | null;
+  /** @nullable */
+  FullName?: string | null;
+  HasLoggedIn?: boolean;
+  /** `0` - None, `1` - Gmail */
+  OAuthIntegrationStatus?: AccountSubscriptionPaymentCollectedWebhookPayloadPrimaryContactOAuthIntegrationStatus;
+  OptInToEmailList?: boolean;
+  /** @nullable */
+  Password?: string | null;
+  /** @nullable */
+  UserAgentPlatformBrowser?: string | null;
+  HasUnsubscribed?: boolean;
+  IsConnectedToDiscord?: boolean;
+} | null;
+
+/**
+ * `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time
+ */
+export type AccountSubscriptionPaymentCollectedWebhookPayloadPrimarySubscriptionBillingRenewalTerm = typeof AccountSubscriptionPaymentCollectedWebhookPayloadPrimarySubscriptionBillingRenewalTerm[keyof typeof AccountSubscriptionPaymentCollectedWebhookPayloadPrimarySubscriptionBillingRenewalTerm];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionPaymentCollectedWebhookPayloadPrimarySubscriptionBillingRenewalTerm = {
+  Monthly: 1,
+  Yearly: 2,
+  Quarterly: 3,
+  OneTime: 4,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionPaymentCollectedWebhookPayloadPrimarySubscription = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /** `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time */
+  BillingRenewalTerm?: AccountSubscriptionPaymentCollectedWebhookPayloadPrimarySubscriptionBillingRenewalTerm;
+  /** @nullable */
+  Quantity?: number | null;
+  StartDate?: string;
+  /** @nullable */
+  EndDate?: string | null;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /** @nullable */
+  RenewalDate?: string | null;
+  /** @nullable */
+  NewRequiredQuantity?: number | null;
+  IsPlanUpgradeRequired?: boolean;
+  /** @nullable */
+  PlanUpgradeRequiredMessage?: string | null;
+  /** @nullable */
+  DiscountCode?: string | null;
+  /** @nullable */
+  DiscountCouponExpirationDate?: string | null;
+  /** @nullable */
+  Rate?: number | null;
+} | null;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionPaymentCollectedWebhookPayloadPrimaryStripeSubscription = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  StripeId?: string | null;
+  IsLivemode?: boolean;
+  /** @nullable */
+  CancelAt?: string | null;
+  CancelAtPeriodEnd?: boolean;
+  /**
+   * @maxLength 3
+   * @nullable
+   */
+  Currency?: string | null;
+  /** @nullable */
+  EndedAt?: string | null;
+  /**
+   * @maxLength 30
+   * @nullable
+   */
+  PauseCollection_Behavior?: string | null;
+  /** @nullable */
+  PauseCollection_ResumesAt?: string | null;
+  StartDate?: string;
+  /**
+   * @maxLength 30
+   * @nullable
+   */
+  Status?: string | null;
+  /** @nullable */
+  TrialEnd?: string | null;
+  /** @nullable */
+  AccountUid?: string | null;
+  /** @nullable */
+  BillingCycleAnchor?: string | null;
+  /** @nullable */
+  CollectionMethod?: string | null;
+  /** @nullable */
+  CustomerId?: string | null;
+  /** @nullable */
+  DaysUntilDue?: number | null;
+  /** @nullable */
+  ScheduleId?: string | null;
+  /** @nullable */
+  StripeDiscountIds?: string[] | null;
+  /** @nullable */
+  StripePriceIds?: string | null;
+  TrialPeriodDays?: number;
+} | null;
+
+export interface AccountSubscriptionPaymentCollectedWebhookPayload {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  StripeId?: string | null;
+  IsLivemode?: boolean;
+  /**
+   * @minLength 1
+   * @maxLength 250
+   */
+  Name: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  ClientIdentifier?: string | null;
+  /**
+   * @maxLength 3
+   * @nullable
+   */
+  Currency?: string | null;
+  /** @nullable */
+  InvoiceNotes?: string | null;
+  IsDemo?: boolean;
+  /** @nullable */
+  BillingAddress?: AccountSubscriptionPaymentCollectedWebhookPayloadBillingAddress;
+  /** @nullable */
+  MailingAddress?: AccountSubscriptionPaymentCollectedWebhookPayloadMailingAddress;
+  /** `2` - Trialing, `3` - Subscribing, `4` - Cancelling, `5` - Expired, `6` - Trial Expired, `7` - Past Due, `8` - Cancelling Trial, `9` - Paused, `10` - Created */
+  AccountStage?: AccountSubscriptionPaymentCollectedWebhookPayloadAccountStage;
+  /** @nullable */
+  PaymentInformation?: AccountSubscriptionPaymentCollectedWebhookPayloadPaymentInformation;
+  /** @nullable */
+  PersonAccount?: AccountSubscriptionPaymentCollectedWebhookPayloadPersonAccountItem[] | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  StripeDefaultPaymentMethodId?: string | null;
+  /** @nullable */
+  StripeInvoices?: AccountSubscriptionPaymentCollectedWebhookPayloadStripeInvoicesItem[] | null;
+  /** @nullable */
+  StripePaymentMethods?: AccountSubscriptionPaymentCollectedWebhookPayloadStripePaymentMethodsItem[] | null;
+  /** @nullable */
+  StripeSubscriptions?: AccountSubscriptionPaymentCollectedWebhookPayloadStripeSubscriptionsItem[] | null;
+  /** @nullable */
+  Subscriptions?: AccountSubscriptionPaymentCollectedWebhookPayloadSubscriptionsItem[] | null;
+  /** @nullable */
+  Deals?: AccountSubscriptionPaymentCollectedWebhookPayloadDealsItem[] | null;
+  /** @nullable */
+  LastLoginDateTime?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl1?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl2?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl3?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl4?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl5?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl6?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl7?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl8?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl9?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl10?: string | null;
+  /** @nullable */
+  RewardFulReferralId?: string | null;
+  /**
+   * @maxLength 36
+   * @nullable
+   */
+  ToltReferralId?: string | null;
+  /** @nullable */
+  TaxIds?: AccountSubscriptionPaymentCollectedWebhookPayloadTaxIdsItem[] | null;
+  /**
+   * @maxLength 20
+   * @nullable
+   */
+  TaxStatus?: string | null;
+  /** @nullable */
+  AccountStageLabel?: string | null;
+  /** @nullable */
+  CurrentStripeProducts?: string | null;
+  /** @nullable */
+  CurrentSubscription?: AccountSubscriptionPaymentCollectedWebhookPayloadCurrentSubscription;
+  /** @nullable */
+  DomainName?: string | null;
+  HasLoggedIn?: boolean;
+  /** @nullable */
+  LatestSubscription?: AccountSubscriptionPaymentCollectedWebhookPayloadLatestSubscription;
+  LifetimeRevenue?: number;
+  /** @nullable */
+  NextStripeInvoiceDate?: string | null;
+  /** @nullable */
+  Nonce?: string | null;
+  /** @nullable */
+  PrimaryContact?: AccountSubscriptionPaymentCollectedWebhookPayloadPrimaryContact;
+  /** @nullable */
+  PrimarySubscription?: AccountSubscriptionPaymentCollectedWebhookPayloadPrimarySubscription;
+  /** @nullable */
+  PrimaryStripeSubscription?: AccountSubscriptionPaymentCollectedWebhookPayloadPrimaryStripeSubscription;
+  /** @nullable */
+  RecaptchaToken?: string | null;
+  /** @nullable */
+  StripeNextInvoiceSequence?: number | null;
+  /** @nullable */
+  StripePrice?: string[] | null;
+  /** @nullable */
+  StripePromotionCode?: string | null;
+  /** @nullable */
+  TaxId?: string | null;
+  TaxIdIsInvalid?: boolean;
+  /** @nullable */
+  TaxIdType?: string | null;
+  /** @nullable */
+  WebflowSlug?: string | null;
+  ActivityEventData?: AccountSubscriptionPaymentCollectedActivityData;
+}
+
+export interface AccountRemovePersonActivityData {
+  /** @nullable */
+  AccountUid?: string | null;
+  /** @nullable */
+  PersonUid?: string | null;
+  /** @nullable */
+  Email?: string | null;
+}
+
+/**
+ * @nullable
+ */
+export type AccountRemovePersonWebhookPayloadBillingAddress = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine1?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine2?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine3?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  City?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  State?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PostalCode?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Country?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  GeoLocation?: string | null;
+} | null;
+
+/**
+ * @nullable
+ */
+export type AccountRemovePersonWebhookPayloadMailingAddress = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine1?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine2?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine3?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  City?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  State?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PostalCode?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Country?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  GeoLocation?: string | null;
+} | null;
+
+/**
+ * `2` - Trialing, `3` - Subscribing, `4` - Cancelling, `5` - Expired, `6` - Trial Expired, `7` - Past Due, `8` - Cancelling Trial, `9` - Paused, `10` - Created
+ */
+export type AccountRemovePersonWebhookPayloadAccountStage = typeof AccountRemovePersonWebhookPayloadAccountStage[keyof typeof AccountRemovePersonWebhookPayloadAccountStage];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountRemovePersonWebhookPayloadAccountStage = {
+  Trialing: 2,
+  Subscribing: 3,
+  Cancelling: 4,
+  Expired: 5,
+  TrialExpired: 6,
+  PastDue: 7,
+  CancellingTrial: 8,
+  Paused: 9,
+  Created: 10,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountRemovePersonWebhookPayloadPaymentInformation = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  CustomerToken?: string | null;
+  /** @nullable */
+  LastFourDigits?: string | null;
+  /** @nullable */
+  LatestFailureDateTime?: string | null;
+  /** @nullable */
+  LatestFailureDescription?: string | null;
+  /** @nullable */
+  LatestSuccessDateTime?: string | null;
+  NumberOfFailures?: number;
+  /** @nullable */
+  PaymentClientSecret?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  PaymentMethodType?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PaymentToken?: string | null;
+  /**
+   * @maxLength 100
+   * @nullable
+   */
+  BankName?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  BankAccountType?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  BankAccountHolderType?: string | null;
+  /** @nullable */
+  NameOnCard?: string | null;
+  /** @nullable */
+  CardType?: string | null;
+  /** @nullable */
+  ExpirationMonth?: string | null;
+  /** @nullable */
+  ExpirationYear?: string | null;
+  /** @nullable */
+  Mode?: string | null;
+  /** @nullable */
+  OneTimeToken?: string | null;
+  /** @nullable */
+  RecaptchaToken?: string | null;
+  /** @nullable */
+  SetupIntent?: string | null;
+} | null;
+
+/**
+ * `0` - None, `1` - Gmail
+ */
+export type AccountRemovePersonWebhookPayloadPersonAccountItemPersonOAuthIntegrationStatus = typeof AccountRemovePersonWebhookPayloadPersonAccountItemPersonOAuthIntegrationStatus[keyof typeof AccountRemovePersonWebhookPayloadPersonAccountItemPersonOAuthIntegrationStatus];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountRemovePersonWebhookPayloadPersonAccountItemPersonOAuthIntegrationStatus = {
+  None: 0,
+  Gmail: 1,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountRemovePersonWebhookPayloadPersonAccountItemPerson = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Email?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  FirstName?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  LastName?: string | null;
+  /** @nullable */
+  PasswordLastUpdated?: string | null;
+  PasswordMustChange?: boolean;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PhoneMobile?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PhoneWork?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  ProfileImageS3Url?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Title?: string | null;
+  /**
+   * @maxLength 100
+   * @nullable
+   */
+  Timezone?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  Language?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  IPAddress?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Referer?: string | null;
+  /**
+   * @maxLength 1000
+   * @nullable
+   */
+  UserAgent?: string | null;
+  /** @nullable */
+  LastLoginDateTime?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  OAuthGoogleProfileId?: string | null;
+  /** @nullable */
+  AccountUids?: string | null;
+  /** @nullable */
+  FullName?: string | null;
+  HasLoggedIn?: boolean;
+  /** `0` - None, `1` - Gmail */
+  OAuthIntegrationStatus?: AccountRemovePersonWebhookPayloadPersonAccountItemPersonOAuthIntegrationStatus;
+  OptInToEmailList?: boolean;
+  /** @nullable */
+  Password?: string | null;
+  /** @nullable */
+  UserAgentPlatformBrowser?: string | null;
+  HasUnsubscribed?: boolean;
+  IsConnectedToDiscord?: boolean;
+} | null;
+
+export type AccountRemovePersonWebhookPayloadPersonAccountItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** @nullable */
+  Person?: AccountRemovePersonWebhookPayloadPersonAccountItemPerson;
+  IsPrimary?: boolean;
+  ReceiveInvoices?: boolean;
+};
+
+export type AccountRemovePersonWebhookPayloadStripeInvoicesItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  StripeId?: string | null;
+  IsLivemode?: boolean;
+  AmountDue?: number;
+  AmountPaid?: number;
+  AmountShipping?: number;
+  AttemptCount?: number;
+  Attempted?: boolean;
+  /**
+   * @maxLength 3
+   * @nullable
+   */
+  Currency?: string | null;
+  /** @nullable */
+  Description?: string | null;
+  /** @nullable */
+  FinalizedAt?: string | null;
+  /**
+   * @maxLength 500
+   * @nullable
+   */
+  HostedInvoiceUrl?: string | null;
+  /**
+   * @maxLength 500
+   * @nullable
+   */
+  InvoicePdf?: string | null;
+  /** @nullable */
+  NextPaymentAttempt?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  Number?: string | null;
+  PeriodEnd?: string;
+  PeriodStart?: string;
+  /**
+   * @maxLength 30
+   * @nullable
+   */
+  Status?: string | null;
+  SubTotal?: number;
+  /** @nullable */
+  SubTotalExcludingTax?: number | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  SubscriptionId?: string | null;
+  /** @nullable */
+  Tax?: number | null;
+  Total?: number;
+  /** @nullable */
+  TotalExcludingTax?: number | null;
+  IsRefunded?: boolean;
+  CurrencyAmountCreditedPostPayment?: number;
+  CurrencyAmountCreditedPrePayment?: number;
+  CurrencyAmountDue?: number;
+  CurrencyAmountPaid?: number;
+  /** @nullable */
+  CurrencySymbol?: string | null;
+  CurrencyTotal?: number;
+  CurrencyTotalExcludingTax?: number;
+  CurrencySubTotal?: number;
+  CurrencySubTotalExcludingTax?: number;
+  CurrencyTax?: number;
+  /** @nullable */
+  DaysUntilDue?: number | null;
+  /** @nullable */
+  CustomerId?: string | null;
+  /** @nullable */
+  PaymentStatus?: string | null;
+  /** @nullable */
+  StripePaymentMethodId?: string | null;
+};
+
+export type AccountRemovePersonWebhookPayloadStripePaymentMethodsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  StripeId?: string | null;
+  IsLivemode?: boolean;
+  /** @nullable */
+  Card_Brand?: string | null;
+  /** @nullable */
+  Card_ExpMonth?: number | null;
+  /** @nullable */
+  Card_ExpYear?: number | null;
+  /** @nullable */
+  Card_Wallet_Type?: string | null;
+  /** @nullable */
+  BankName?: string | null;
+  /** @nullable */
+  Last4?: string | null;
+  /** @nullable */
+  Type?: string | null;
+  /** @nullable */
+  Label?: string | null;
+};
+
+export type AccountRemovePersonWebhookPayloadStripeSubscriptionsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  StripeId?: string | null;
+  IsLivemode?: boolean;
+  /** @nullable */
+  CancelAt?: string | null;
+  CancelAtPeriodEnd?: boolean;
+  /**
+   * @maxLength 3
+   * @nullable
+   */
+  Currency?: string | null;
+  /** @nullable */
+  EndedAt?: string | null;
+  /**
+   * @maxLength 30
+   * @nullable
+   */
+  PauseCollection_Behavior?: string | null;
+  /** @nullable */
+  PauseCollection_ResumesAt?: string | null;
+  StartDate?: string;
+  /**
+   * @maxLength 30
+   * @nullable
+   */
+  Status?: string | null;
+  /** @nullable */
+  TrialEnd?: string | null;
+  /** @nullable */
+  AccountUid?: string | null;
+  /** @nullable */
+  BillingCycleAnchor?: string | null;
+  /** @nullable */
+  CollectionMethod?: string | null;
+  /** @nullable */
+  CustomerId?: string | null;
+  /** @nullable */
+  DaysUntilDue?: number | null;
+  /** @nullable */
+  ScheduleId?: string | null;
+  /** @nullable */
+  StripeDiscountIds?: string[] | null;
+  /** @nullable */
+  StripePriceIds?: string | null;
+  TrialPeriodDays?: number;
+};
+
+/**
+ * `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time
+ */
+export type AccountRemovePersonWebhookPayloadSubscriptionsItemBillingRenewalTerm = typeof AccountRemovePersonWebhookPayloadSubscriptionsItemBillingRenewalTerm[keyof typeof AccountRemovePersonWebhookPayloadSubscriptionsItemBillingRenewalTerm];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountRemovePersonWebhookPayloadSubscriptionsItemBillingRenewalTerm = {
+  Monthly: 1,
+  Yearly: 2,
+  Quarterly: 3,
+  OneTime: 4,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountRemovePersonWebhookPayloadSubscriptionsItemPlanPlanFamily = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  IsActive?: boolean;
+  IsDefault?: boolean;
+} | null;
+
+/**
+ * `1` - Individual, `2` - Team
+ */
+export type AccountRemovePersonWebhookPayloadSubscriptionsItemPlanAccountRegistrationMode = typeof AccountRemovePersonWebhookPayloadSubscriptionsItemPlanAccountRegistrationMode[keyof typeof AccountRemovePersonWebhookPayloadSubscriptionsItemPlanAccountRegistrationMode];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountRemovePersonWebhookPayloadSubscriptionsItemPlanAccountRegistrationMode = {
+  Individual: 1,
+  Team: 2,
+} as const;
+
+export type AccountRemovePersonWebhookPayloadSubscriptionsItemPlanPlanAddOnsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  IsUserSelectable: boolean;
+};
+
+export type AccountRemovePersonWebhookPayloadSubscriptionsItemPlanContentGroupsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @minLength 1
+   * @maxLength 50
+   */
+  Name: string;
+  /**
+   * @maxLength 1024
+   * @nullable
+   */
+  AccessDeniedPath?: string | null;
+};
+
+/**
+ * @nullable
+ */
+export type AccountRemovePersonWebhookPayloadSubscriptionsItemPlan = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  /** @nullable */
+  Description?: string | null;
+  /** @nullable */
+  PlanFamily?: AccountRemovePersonWebhookPayloadSubscriptionsItemPlanPlanFamily;
+  /** `1` - Individual, `2` - Team */
+  AccountRegistrationMode?: AccountRemovePersonWebhookPayloadSubscriptionsItemPlanAccountRegistrationMode;
+  IsQuantityEditable?: boolean;
+  MinimumQuantity?: number;
+  /** @nullable */
+  MaximumPeople?: number | null;
+  MonthlyRate?: number;
+  AnnualRate?: number;
+  QuarterlyRate?: number;
+  OneTimeRate?: number;
+  SetupFee?: number;
+  SkipSetupFeeOnPlanChange?: boolean;
+  IsTaxable?: boolean;
+  IsActive?: boolean;
+  IsPerUser?: boolean;
+  RequirePaymentInformation?: boolean;
+  TrialPeriodDays?: number;
+  /** @nullable */
+  TrialUntilDate?: string | null;
+  ExpiresAfterMonths?: number;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PostLoginPath?: string | null;
+  /**
+   * @maxLength 15
+   * @nullable
+   */
+  StripeTaxCodeId?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  UnitOfMeasure?: string | null;
+  /** @nullable */
+  PlanAddOns?: AccountRemovePersonWebhookPayloadSubscriptionsItemPlanPlanAddOnsItem[] | null;
+  /** @nullable */
+  ContentGroups?: AccountRemovePersonWebhookPayloadSubscriptionsItemPlanContentGroupsItem[] | null;
+  /** @nullable */
+  NumberOfSubscriptions?: number | null;
+} | null;
+
+/**
+ * `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time
+ */
+export type AccountRemovePersonWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemBillingRenewalTerm = typeof AccountRemovePersonWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemBillingRenewalTerm[keyof typeof AccountRemovePersonWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemBillingRenewalTerm];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountRemovePersonWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemBillingRenewalTerm = {
+  Monthly: 1,
+  Yearly: 2,
+  Quarterly: 3,
+  OneTime: 4,
+} as const;
+
+/**
+ * `1` - Recurring, `2` - Usage, `3` - OneTime
+ */
+export type AccountRemovePersonWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemAddOnBillingAddOnType = typeof AccountRemovePersonWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemAddOnBillingAddOnType[keyof typeof AccountRemovePersonWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemAddOnBillingAddOnType];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountRemovePersonWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemAddOnBillingAddOnType = {
+  Recurring: 1,
+  Usage: 2,
+  OneTime: 3,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountRemovePersonWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemAddOn = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  /** `1` - Recurring, `2` - Usage, `3` - OneTime */
+  BillingAddOnType?: AccountRemovePersonWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemAddOnBillingAddOnType;
+  IsQuantityEditable?: boolean;
+  MinimumQuantity?: number;
+  MonthlyRate?: number;
+  AnnualRate?: number;
+  SetupFee?: number;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  UnitOfMeasure?: string | null;
+  IsTaxable?: boolean;
+  IsBilledDuringTrial?: boolean;
+  ExpiresAfterMonths?: number;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /**
+   * @maxLength 15
+   * @nullable
+   */
+  StripeTaxCodeId?: string | null;
+  IsPerUser?: boolean;
+  QuarterlyRate?: number;
+  OneTimeRate?: number;
+  SubscriptionCount?: number;
+  Quantity?: number;
+} | null;
+
+export type AccountRemovePersonWebhookPayloadSubscriptionsItemSubscriptionAddOnsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time */
+  BillingRenewalTerm?: AccountRemovePersonWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemBillingRenewalTerm;
+  /** @nullable */
+  AddOn?: AccountRemovePersonWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemAddOn;
+  /** @nullable */
+  Quantity?: number | null;
+  StartDate?: string;
+  /** @nullable */
+  EndDate?: string | null;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /** @nullable */
+  RenewalDate?: string | null;
+  /** @nullable */
+  NewRequiredQuantity?: number | null;
+  /** @nullable */
+  Rate?: number | null;
+};
+
+/**
+ * `1` - Forever, `2` - Once, `3` - Repeating
+ */
+export type AccountRemovePersonWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItemDiscountCouponDuration = typeof AccountRemovePersonWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItemDiscountCouponDuration[keyof typeof AccountRemovePersonWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItemDiscountCouponDuration];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountRemovePersonWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItemDiscountCouponDuration = {
+  Forever: 1,
+  Once: 2,
+  Repeating: 3,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountRemovePersonWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItemDiscountCoupon = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /** @nullable */
+  UniqueIdentifier?: string | null;
+  /** @nullable */
+  Name?: string | null;
+  IsActive?: boolean;
+  /** @nullable */
+  AmountOff?: number | null;
+  /** @nullable */
+  PercentOff?: number | null;
+  /** @nullable */
+  RedeemBy?: string | null;
+  /** `1` - Forever, `2` - Once, `3` - Repeating */
+  Duration?: AccountRemovePersonWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItemDiscountCouponDuration;
+  /** @nullable */
+  DurationInMonths?: number | null;
+  TimesRedeemed?: number;
+  /** @nullable */
+  MaxRedemptions?: number | null;
+  ApplyToAddOns?: boolean;
+  /** @nullable */
+  PlanUids?: string | null;
+} | null;
+
+export type AccountRemovePersonWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** @nullable */
+  RedeemedDate?: string | null;
+  /** @nullable */
+  ExpireDate?: string | null;
+  /** @nullable */
+  DiscountCoupon?: AccountRemovePersonWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItemDiscountCoupon;
+};
+
+/**
+ * `1` - Unpaid, `2` - Paid, `3` - Partial, `4` - Uncollected, `5` - Refunded, `6` - Uncollectible, `7` - Processing
+ */
+export type AccountRemovePersonWebhookPayloadSubscriptionsItemLatestInvoiceBillingInvoiceStatus = typeof AccountRemovePersonWebhookPayloadSubscriptionsItemLatestInvoiceBillingInvoiceStatus[keyof typeof AccountRemovePersonWebhookPayloadSubscriptionsItemLatestInvoiceBillingInvoiceStatus];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountRemovePersonWebhookPayloadSubscriptionsItemLatestInvoiceBillingInvoiceStatus = {
+  Unpaid: 1,
+  Paid: 2,
+  Partial: 3,
+  Uncollected: 4,
+  Refunded: 5,
+  Uncollectible: 6,
+  Processing: 7,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountRemovePersonWebhookPayloadSubscriptionsItemLatestInvoice = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  InvoiceDate?: string;
+  /** @nullable */
+  PaymentReminderSentDate?: string | null;
+  Number?: number;
+  /** `1` - Unpaid, `2` - Paid, `3` - Partial, `4` - Uncollected, `5` - Refunded, `6` - Uncollectible, `7` - Processing */
+  BillingInvoiceStatus?: AccountRemovePersonWebhookPayloadSubscriptionsItemLatestInvoiceBillingInvoiceStatus;
+  Amount?: number;
+  AmountOutstanding?: number;
+  IsUserGenerated?: boolean;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  StripeTaxCalculationId?: string | null;
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  StripeTaxBehavior?: string | null;
+  AmountCredit?: number;
+  AmountDiscount?: number;
+  AmountPaid?: number;
+  AmountRefunded?: number;
+  AmountSubtotal?: number;
+  AmountTax?: number;
+  AmountTaxRefunded?: number;
+  IsTaxable?: boolean;
+  HasPaymentGatewayTransactions?: boolean;
+  /** @nullable */
+  StripePaymentTransactionIds?: string | null;
+  /** @nullable */
+  StripeRefundTransactionIds?: string | null;
+  /** @nullable */
+  StripeTaxRefundTransactionIds?: string | null;
+} | null;
+
+export type AccountRemovePersonWebhookPayloadSubscriptionsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time */
+  BillingRenewalTerm?: AccountRemovePersonWebhookPayloadSubscriptionsItemBillingRenewalTerm;
+  /** @nullable */
+  Plan?: AccountRemovePersonWebhookPayloadSubscriptionsItemPlan;
+  /** @nullable */
+  Quantity?: number | null;
+  StartDate?: string;
+  /** @nullable */
+  EndDate?: string | null;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /** @nullable */
+  RenewalDate?: string | null;
+  /** @nullable */
+  NewRequiredQuantity?: number | null;
+  IsPlanUpgradeRequired?: boolean;
+  /** @nullable */
+  PlanUpgradeRequiredMessage?: string | null;
+  /** @nullable */
+  SubscriptionAddOns?: AccountRemovePersonWebhookPayloadSubscriptionsItemSubscriptionAddOnsItem[] | null;
+  /** @nullable */
+  DiscountCouponSubscriptions?: AccountRemovePersonWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItem[] | null;
+  /** @nullable */
+  DiscountCode?: string | null;
+  /** @nullable */
+  DiscountCouponExpirationDate?: string | null;
+  /** @nullable */
+  LatestInvoice?: AccountRemovePersonWebhookPayloadSubscriptionsItemLatestInvoice;
+  /** @nullable */
+  Rate?: number | null;
+};
+
+export type AccountRemovePersonWebhookPayloadDealsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @minLength 1
+   * @maxLength 250
+   */
+  Name: string;
+  /** @nullable */
+  Amount?: number | null;
+  /** @nullable */
+  DueDate?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  AssignedToPersonClientIdentifier?: string | null;
+  Weight?: number;
+  /** @nullable */
+  Contacts?: string | null;
+  AccountId?: number;
+  /** @nullable */
+  PipelineUid?: string | null;
+};
+
+export type AccountRemovePersonWebhookPayloadTaxIdsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  StripeId?: string | null;
+  IsLivemode?: boolean;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  TaxId?: string | null;
+  /**
+   * @maxLength 20
+   * @nullable
+   */
+  TaxIdType?: string | null;
+  IsInvalid?: boolean;
+};
+
+/**
+ * `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time
+ */
+export type AccountRemovePersonWebhookPayloadCurrentSubscriptionBillingRenewalTerm = typeof AccountRemovePersonWebhookPayloadCurrentSubscriptionBillingRenewalTerm[keyof typeof AccountRemovePersonWebhookPayloadCurrentSubscriptionBillingRenewalTerm];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountRemovePersonWebhookPayloadCurrentSubscriptionBillingRenewalTerm = {
+  Monthly: 1,
+  Yearly: 2,
+  Quarterly: 3,
+  OneTime: 4,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountRemovePersonWebhookPayloadCurrentSubscriptionPlanPlanFamily = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  IsActive?: boolean;
+  IsDefault?: boolean;
+} | null;
+
+/**
+ * `1` - Individual, `2` - Team
+ */
+export type AccountRemovePersonWebhookPayloadCurrentSubscriptionPlanAccountRegistrationMode = typeof AccountRemovePersonWebhookPayloadCurrentSubscriptionPlanAccountRegistrationMode[keyof typeof AccountRemovePersonWebhookPayloadCurrentSubscriptionPlanAccountRegistrationMode];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountRemovePersonWebhookPayloadCurrentSubscriptionPlanAccountRegistrationMode = {
+  Individual: 1,
+  Team: 2,
+} as const;
+
+export type AccountRemovePersonWebhookPayloadCurrentSubscriptionPlanPlanAddOnsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  IsUserSelectable: boolean;
+};
+
+export type AccountRemovePersonWebhookPayloadCurrentSubscriptionPlanContentGroupsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @minLength 1
+   * @maxLength 50
+   */
+  Name: string;
+  /**
+   * @maxLength 1024
+   * @nullable
+   */
+  AccessDeniedPath?: string | null;
+};
+
+/**
+ * @nullable
+ */
+export type AccountRemovePersonWebhookPayloadCurrentSubscriptionPlan = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  /** @nullable */
+  Description?: string | null;
+  /** @nullable */
+  PlanFamily?: AccountRemovePersonWebhookPayloadCurrentSubscriptionPlanPlanFamily;
+  /** `1` - Individual, `2` - Team */
+  AccountRegistrationMode?: AccountRemovePersonWebhookPayloadCurrentSubscriptionPlanAccountRegistrationMode;
+  IsQuantityEditable?: boolean;
+  MinimumQuantity?: number;
+  /** @nullable */
+  MaximumPeople?: number | null;
+  MonthlyRate?: number;
+  AnnualRate?: number;
+  QuarterlyRate?: number;
+  OneTimeRate?: number;
+  SetupFee?: number;
+  SkipSetupFeeOnPlanChange?: boolean;
+  IsTaxable?: boolean;
+  IsActive?: boolean;
+  IsPerUser?: boolean;
+  RequirePaymentInformation?: boolean;
+  TrialPeriodDays?: number;
+  /** @nullable */
+  TrialUntilDate?: string | null;
+  ExpiresAfterMonths?: number;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PostLoginPath?: string | null;
+  /**
+   * @maxLength 15
+   * @nullable
+   */
+  StripeTaxCodeId?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  UnitOfMeasure?: string | null;
+  /** @nullable */
+  PlanAddOns?: AccountRemovePersonWebhookPayloadCurrentSubscriptionPlanPlanAddOnsItem[] | null;
+  /** @nullable */
+  ContentGroups?: AccountRemovePersonWebhookPayloadCurrentSubscriptionPlanContentGroupsItem[] | null;
+  /** @nullable */
+  NumberOfSubscriptions?: number | null;
+} | null;
+
+/**
+ * `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time
+ */
+export type AccountRemovePersonWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemBillingRenewalTerm = typeof AccountRemovePersonWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemBillingRenewalTerm[keyof typeof AccountRemovePersonWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemBillingRenewalTerm];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountRemovePersonWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemBillingRenewalTerm = {
+  Monthly: 1,
+  Yearly: 2,
+  Quarterly: 3,
+  OneTime: 4,
+} as const;
+
+/**
+ * `1` - Recurring, `2` - Usage, `3` - OneTime
+ */
+export type AccountRemovePersonWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType = typeof AccountRemovePersonWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType[keyof typeof AccountRemovePersonWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountRemovePersonWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType = {
+  Recurring: 1,
+  Usage: 2,
+  OneTime: 3,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountRemovePersonWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemAddOn = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  /** `1` - Recurring, `2` - Usage, `3` - OneTime */
+  BillingAddOnType?: AccountRemovePersonWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType;
+  IsQuantityEditable?: boolean;
+  MinimumQuantity?: number;
+  MonthlyRate?: number;
+  AnnualRate?: number;
+  SetupFee?: number;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  UnitOfMeasure?: string | null;
+  IsTaxable?: boolean;
+  IsBilledDuringTrial?: boolean;
+  ExpiresAfterMonths?: number;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /**
+   * @maxLength 15
+   * @nullable
+   */
+  StripeTaxCodeId?: string | null;
+  IsPerUser?: boolean;
+  QuarterlyRate?: number;
+  OneTimeRate?: number;
+  SubscriptionCount?: number;
+  Quantity?: number;
+} | null;
+
+export type AccountRemovePersonWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time */
+  BillingRenewalTerm?: AccountRemovePersonWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemBillingRenewalTerm;
+  /** @nullable */
+  AddOn?: AccountRemovePersonWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemAddOn;
+  /** @nullable */
+  Quantity?: number | null;
+  StartDate?: string;
+  /** @nullable */
+  EndDate?: string | null;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /** @nullable */
+  RenewalDate?: string | null;
+  /** @nullable */
+  NewRequiredQuantity?: number | null;
+  /** @nullable */
+  Rate?: number | null;
+};
+
+/**
+ * `1` - Forever, `2` - Once, `3` - Repeating
+ */
+export type AccountRemovePersonWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration = typeof AccountRemovePersonWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration[keyof typeof AccountRemovePersonWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountRemovePersonWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration = {
+  Forever: 1,
+  Once: 2,
+  Repeating: 3,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountRemovePersonWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItemDiscountCoupon = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /** @nullable */
+  UniqueIdentifier?: string | null;
+  /** @nullable */
+  Name?: string | null;
+  IsActive?: boolean;
+  /** @nullable */
+  AmountOff?: number | null;
+  /** @nullable */
+  PercentOff?: number | null;
+  /** @nullable */
+  RedeemBy?: string | null;
+  /** `1` - Forever, `2` - Once, `3` - Repeating */
+  Duration?: AccountRemovePersonWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration;
+  /** @nullable */
+  DurationInMonths?: number | null;
+  TimesRedeemed?: number;
+  /** @nullable */
+  MaxRedemptions?: number | null;
+  ApplyToAddOns?: boolean;
+  /** @nullable */
+  PlanUids?: string | null;
+} | null;
+
+export type AccountRemovePersonWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** @nullable */
+  RedeemedDate?: string | null;
+  /** @nullable */
+  ExpireDate?: string | null;
+  /** @nullable */
+  DiscountCoupon?: AccountRemovePersonWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItemDiscountCoupon;
+};
+
+/**
+ * `1` - Unpaid, `2` - Paid, `3` - Partial, `4` - Uncollected, `5` - Refunded, `6` - Uncollectible, `7` - Processing
+ */
+export type AccountRemovePersonWebhookPayloadCurrentSubscriptionLatestInvoiceBillingInvoiceStatus = typeof AccountRemovePersonWebhookPayloadCurrentSubscriptionLatestInvoiceBillingInvoiceStatus[keyof typeof AccountRemovePersonWebhookPayloadCurrentSubscriptionLatestInvoiceBillingInvoiceStatus];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountRemovePersonWebhookPayloadCurrentSubscriptionLatestInvoiceBillingInvoiceStatus = {
+  Unpaid: 1,
+  Paid: 2,
+  Partial: 3,
+  Uncollected: 4,
+  Refunded: 5,
+  Uncollectible: 6,
+  Processing: 7,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountRemovePersonWebhookPayloadCurrentSubscriptionLatestInvoice = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  InvoiceDate?: string;
+  /** @nullable */
+  PaymentReminderSentDate?: string | null;
+  Number?: number;
+  /** `1` - Unpaid, `2` - Paid, `3` - Partial, `4` - Uncollected, `5` - Refunded, `6` - Uncollectible, `7` - Processing */
+  BillingInvoiceStatus?: AccountRemovePersonWebhookPayloadCurrentSubscriptionLatestInvoiceBillingInvoiceStatus;
+  Amount?: number;
+  AmountOutstanding?: number;
+  IsUserGenerated?: boolean;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  StripeTaxCalculationId?: string | null;
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  StripeTaxBehavior?: string | null;
+  AmountCredit?: number;
+  AmountDiscount?: number;
+  AmountPaid?: number;
+  AmountRefunded?: number;
+  AmountSubtotal?: number;
+  AmountTax?: number;
+  AmountTaxRefunded?: number;
+  IsTaxable?: boolean;
+  HasPaymentGatewayTransactions?: boolean;
+  /** @nullable */
+  StripePaymentTransactionIds?: string | null;
+  /** @nullable */
+  StripeRefundTransactionIds?: string | null;
+  /** @nullable */
+  StripeTaxRefundTransactionIds?: string | null;
+} | null;
+
+/**
+ * @nullable
+ */
+export type AccountRemovePersonWebhookPayloadCurrentSubscription = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /** `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time */
+  BillingRenewalTerm?: AccountRemovePersonWebhookPayloadCurrentSubscriptionBillingRenewalTerm;
+  /** @nullable */
+  Plan?: AccountRemovePersonWebhookPayloadCurrentSubscriptionPlan;
+  /** @nullable */
+  Quantity?: number | null;
+  StartDate?: string;
+  /** @nullable */
+  EndDate?: string | null;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /** @nullable */
+  RenewalDate?: string | null;
+  /** @nullable */
+  NewRequiredQuantity?: number | null;
+  IsPlanUpgradeRequired?: boolean;
+  /** @nullable */
+  PlanUpgradeRequiredMessage?: string | null;
+  /** @nullable */
+  SubscriptionAddOns?: AccountRemovePersonWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItem[] | null;
+  /** @nullable */
+  DiscountCouponSubscriptions?: AccountRemovePersonWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItem[] | null;
+  /** @nullable */
+  DiscountCode?: string | null;
+  /** @nullable */
+  DiscountCouponExpirationDate?: string | null;
+  /** @nullable */
+  LatestInvoice?: AccountRemovePersonWebhookPayloadCurrentSubscriptionLatestInvoice;
+  /** @nullable */
+  Rate?: number | null;
+} | null;
+
+/**
+ * `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time
+ */
+export type AccountRemovePersonWebhookPayloadLatestSubscriptionBillingRenewalTerm = typeof AccountRemovePersonWebhookPayloadLatestSubscriptionBillingRenewalTerm[keyof typeof AccountRemovePersonWebhookPayloadLatestSubscriptionBillingRenewalTerm];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountRemovePersonWebhookPayloadLatestSubscriptionBillingRenewalTerm = {
+  Monthly: 1,
+  Yearly: 2,
+  Quarterly: 3,
+  OneTime: 4,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountRemovePersonWebhookPayloadLatestSubscriptionPlanPlanFamily = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  IsActive?: boolean;
+  IsDefault?: boolean;
+} | null;
+
+/**
+ * `1` - Individual, `2` - Team
+ */
+export type AccountRemovePersonWebhookPayloadLatestSubscriptionPlanAccountRegistrationMode = typeof AccountRemovePersonWebhookPayloadLatestSubscriptionPlanAccountRegistrationMode[keyof typeof AccountRemovePersonWebhookPayloadLatestSubscriptionPlanAccountRegistrationMode];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountRemovePersonWebhookPayloadLatestSubscriptionPlanAccountRegistrationMode = {
+  Individual: 1,
+  Team: 2,
+} as const;
+
+export type AccountRemovePersonWebhookPayloadLatestSubscriptionPlanPlanAddOnsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  IsUserSelectable: boolean;
+};
+
+export type AccountRemovePersonWebhookPayloadLatestSubscriptionPlanContentGroupsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @minLength 1
+   * @maxLength 50
+   */
+  Name: string;
+  /**
+   * @maxLength 1024
+   * @nullable
+   */
+  AccessDeniedPath?: string | null;
+};
+
+/**
+ * @nullable
+ */
+export type AccountRemovePersonWebhookPayloadLatestSubscriptionPlan = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  /** @nullable */
+  Description?: string | null;
+  /** @nullable */
+  PlanFamily?: AccountRemovePersonWebhookPayloadLatestSubscriptionPlanPlanFamily;
+  /** `1` - Individual, `2` - Team */
+  AccountRegistrationMode?: AccountRemovePersonWebhookPayloadLatestSubscriptionPlanAccountRegistrationMode;
+  IsQuantityEditable?: boolean;
+  MinimumQuantity?: number;
+  /** @nullable */
+  MaximumPeople?: number | null;
+  MonthlyRate?: number;
+  AnnualRate?: number;
+  QuarterlyRate?: number;
+  OneTimeRate?: number;
+  SetupFee?: number;
+  SkipSetupFeeOnPlanChange?: boolean;
+  IsTaxable?: boolean;
+  IsActive?: boolean;
+  IsPerUser?: boolean;
+  RequirePaymentInformation?: boolean;
+  TrialPeriodDays?: number;
+  /** @nullable */
+  TrialUntilDate?: string | null;
+  ExpiresAfterMonths?: number;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PostLoginPath?: string | null;
+  /**
+   * @maxLength 15
+   * @nullable
+   */
+  StripeTaxCodeId?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  UnitOfMeasure?: string | null;
+  /** @nullable */
+  PlanAddOns?: AccountRemovePersonWebhookPayloadLatestSubscriptionPlanPlanAddOnsItem[] | null;
+  /** @nullable */
+  ContentGroups?: AccountRemovePersonWebhookPayloadLatestSubscriptionPlanContentGroupsItem[] | null;
+  /** @nullable */
+  NumberOfSubscriptions?: number | null;
+} | null;
+
+/**
+ * `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time
+ */
+export type AccountRemovePersonWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemBillingRenewalTerm = typeof AccountRemovePersonWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemBillingRenewalTerm[keyof typeof AccountRemovePersonWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemBillingRenewalTerm];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountRemovePersonWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemBillingRenewalTerm = {
+  Monthly: 1,
+  Yearly: 2,
+  Quarterly: 3,
+  OneTime: 4,
+} as const;
+
+/**
+ * `1` - Recurring, `2` - Usage, `3` - OneTime
+ */
+export type AccountRemovePersonWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType = typeof AccountRemovePersonWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType[keyof typeof AccountRemovePersonWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountRemovePersonWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType = {
+  Recurring: 1,
+  Usage: 2,
+  OneTime: 3,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountRemovePersonWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemAddOn = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  /** `1` - Recurring, `2` - Usage, `3` - OneTime */
+  BillingAddOnType?: AccountRemovePersonWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType;
+  IsQuantityEditable?: boolean;
+  MinimumQuantity?: number;
+  MonthlyRate?: number;
+  AnnualRate?: number;
+  SetupFee?: number;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  UnitOfMeasure?: string | null;
+  IsTaxable?: boolean;
+  IsBilledDuringTrial?: boolean;
+  ExpiresAfterMonths?: number;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /**
+   * @maxLength 15
+   * @nullable
+   */
+  StripeTaxCodeId?: string | null;
+  IsPerUser?: boolean;
+  QuarterlyRate?: number;
+  OneTimeRate?: number;
+  SubscriptionCount?: number;
+  Quantity?: number;
+} | null;
+
+export type AccountRemovePersonWebhookPayloadLatestSubscriptionSubscriptionAddOnsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time */
+  BillingRenewalTerm?: AccountRemovePersonWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemBillingRenewalTerm;
+  /** @nullable */
+  AddOn?: AccountRemovePersonWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemAddOn;
+  /** @nullable */
+  Quantity?: number | null;
+  StartDate?: string;
+  /** @nullable */
+  EndDate?: string | null;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /** @nullable */
+  RenewalDate?: string | null;
+  /** @nullable */
+  NewRequiredQuantity?: number | null;
+  /** @nullable */
+  Rate?: number | null;
+};
+
+/**
+ * `1` - Forever, `2` - Once, `3` - Repeating
+ */
+export type AccountRemovePersonWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration = typeof AccountRemovePersonWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration[keyof typeof AccountRemovePersonWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountRemovePersonWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration = {
+  Forever: 1,
+  Once: 2,
+  Repeating: 3,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountRemovePersonWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItemDiscountCoupon = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /** @nullable */
+  UniqueIdentifier?: string | null;
+  /** @nullable */
+  Name?: string | null;
+  IsActive?: boolean;
+  /** @nullable */
+  AmountOff?: number | null;
+  /** @nullable */
+  PercentOff?: number | null;
+  /** @nullable */
+  RedeemBy?: string | null;
+  /** `1` - Forever, `2` - Once, `3` - Repeating */
+  Duration?: AccountRemovePersonWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration;
+  /** @nullable */
+  DurationInMonths?: number | null;
+  TimesRedeemed?: number;
+  /** @nullable */
+  MaxRedemptions?: number | null;
+  ApplyToAddOns?: boolean;
+  /** @nullable */
+  PlanUids?: string | null;
+} | null;
+
+export type AccountRemovePersonWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** @nullable */
+  RedeemedDate?: string | null;
+  /** @nullable */
+  ExpireDate?: string | null;
+  /** @nullable */
+  DiscountCoupon?: AccountRemovePersonWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItemDiscountCoupon;
+};
+
+/**
+ * `1` - Unpaid, `2` - Paid, `3` - Partial, `4` - Uncollected, `5` - Refunded, `6` - Uncollectible, `7` - Processing
+ */
+export type AccountRemovePersonWebhookPayloadLatestSubscriptionLatestInvoiceBillingInvoiceStatus = typeof AccountRemovePersonWebhookPayloadLatestSubscriptionLatestInvoiceBillingInvoiceStatus[keyof typeof AccountRemovePersonWebhookPayloadLatestSubscriptionLatestInvoiceBillingInvoiceStatus];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountRemovePersonWebhookPayloadLatestSubscriptionLatestInvoiceBillingInvoiceStatus = {
+  Unpaid: 1,
+  Paid: 2,
+  Partial: 3,
+  Uncollected: 4,
+  Refunded: 5,
+  Uncollectible: 6,
+  Processing: 7,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountRemovePersonWebhookPayloadLatestSubscriptionLatestInvoice = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  InvoiceDate?: string;
+  /** @nullable */
+  PaymentReminderSentDate?: string | null;
+  Number?: number;
+  /** `1` - Unpaid, `2` - Paid, `3` - Partial, `4` - Uncollected, `5` - Refunded, `6` - Uncollectible, `7` - Processing */
+  BillingInvoiceStatus?: AccountRemovePersonWebhookPayloadLatestSubscriptionLatestInvoiceBillingInvoiceStatus;
+  Amount?: number;
+  AmountOutstanding?: number;
+  IsUserGenerated?: boolean;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  StripeTaxCalculationId?: string | null;
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  StripeTaxBehavior?: string | null;
+  AmountCredit?: number;
+  AmountDiscount?: number;
+  AmountPaid?: number;
+  AmountRefunded?: number;
+  AmountSubtotal?: number;
+  AmountTax?: number;
+  AmountTaxRefunded?: number;
+  IsTaxable?: boolean;
+  HasPaymentGatewayTransactions?: boolean;
+  /** @nullable */
+  StripePaymentTransactionIds?: string | null;
+  /** @nullable */
+  StripeRefundTransactionIds?: string | null;
+  /** @nullable */
+  StripeTaxRefundTransactionIds?: string | null;
+} | null;
+
+/**
+ * @nullable
+ */
+export type AccountRemovePersonWebhookPayloadLatestSubscription = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /** `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time */
+  BillingRenewalTerm?: AccountRemovePersonWebhookPayloadLatestSubscriptionBillingRenewalTerm;
+  /** @nullable */
+  Plan?: AccountRemovePersonWebhookPayloadLatestSubscriptionPlan;
+  /** @nullable */
+  Quantity?: number | null;
+  StartDate?: string;
+  /** @nullable */
+  EndDate?: string | null;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /** @nullable */
+  RenewalDate?: string | null;
+  /** @nullable */
+  NewRequiredQuantity?: number | null;
+  IsPlanUpgradeRequired?: boolean;
+  /** @nullable */
+  PlanUpgradeRequiredMessage?: string | null;
+  /** @nullable */
+  SubscriptionAddOns?: AccountRemovePersonWebhookPayloadLatestSubscriptionSubscriptionAddOnsItem[] | null;
+  /** @nullable */
+  DiscountCouponSubscriptions?: AccountRemovePersonWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItem[] | null;
+  /** @nullable */
+  DiscountCode?: string | null;
+  /** @nullable */
+  DiscountCouponExpirationDate?: string | null;
+  /** @nullable */
+  LatestInvoice?: AccountRemovePersonWebhookPayloadLatestSubscriptionLatestInvoice;
+  /** @nullable */
+  Rate?: number | null;
+} | null;
+
+/**
+ * `0` - None, `1` - Gmail
+ */
+export type AccountRemovePersonWebhookPayloadPrimaryContactOAuthIntegrationStatus = typeof AccountRemovePersonWebhookPayloadPrimaryContactOAuthIntegrationStatus[keyof typeof AccountRemovePersonWebhookPayloadPrimaryContactOAuthIntegrationStatus];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountRemovePersonWebhookPayloadPrimaryContactOAuthIntegrationStatus = {
+  None: 0,
+  Gmail: 1,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountRemovePersonWebhookPayloadPrimaryContact = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Email?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  FirstName?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  LastName?: string | null;
+  /** @nullable */
+  PasswordLastUpdated?: string | null;
+  PasswordMustChange?: boolean;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PhoneMobile?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PhoneWork?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  ProfileImageS3Url?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Title?: string | null;
+  /**
+   * @maxLength 100
+   * @nullable
+   */
+  Timezone?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  Language?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  IPAddress?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Referer?: string | null;
+  /**
+   * @maxLength 1000
+   * @nullable
+   */
+  UserAgent?: string | null;
+  /** @nullable */
+  LastLoginDateTime?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  OAuthGoogleProfileId?: string | null;
+  /** @nullable */
+  AccountUids?: string | null;
+  /** @nullable */
+  FullName?: string | null;
+  HasLoggedIn?: boolean;
+  /** `0` - None, `1` - Gmail */
+  OAuthIntegrationStatus?: AccountRemovePersonWebhookPayloadPrimaryContactOAuthIntegrationStatus;
+  OptInToEmailList?: boolean;
+  /** @nullable */
+  Password?: string | null;
+  /** @nullable */
+  UserAgentPlatformBrowser?: string | null;
+  HasUnsubscribed?: boolean;
+  IsConnectedToDiscord?: boolean;
+} | null;
+
+/**
+ * `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time
+ */
+export type AccountRemovePersonWebhookPayloadPrimarySubscriptionBillingRenewalTerm = typeof AccountRemovePersonWebhookPayloadPrimarySubscriptionBillingRenewalTerm[keyof typeof AccountRemovePersonWebhookPayloadPrimarySubscriptionBillingRenewalTerm];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountRemovePersonWebhookPayloadPrimarySubscriptionBillingRenewalTerm = {
+  Monthly: 1,
+  Yearly: 2,
+  Quarterly: 3,
+  OneTime: 4,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountRemovePersonWebhookPayloadPrimarySubscription = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /** `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time */
+  BillingRenewalTerm?: AccountRemovePersonWebhookPayloadPrimarySubscriptionBillingRenewalTerm;
+  /** @nullable */
+  Quantity?: number | null;
+  StartDate?: string;
+  /** @nullable */
+  EndDate?: string | null;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /** @nullable */
+  RenewalDate?: string | null;
+  /** @nullable */
+  NewRequiredQuantity?: number | null;
+  IsPlanUpgradeRequired?: boolean;
+  /** @nullable */
+  PlanUpgradeRequiredMessage?: string | null;
+  /** @nullable */
+  DiscountCode?: string | null;
+  /** @nullable */
+  DiscountCouponExpirationDate?: string | null;
+  /** @nullable */
+  Rate?: number | null;
+} | null;
+
+/**
+ * @nullable
+ */
+export type AccountRemovePersonWebhookPayloadPrimaryStripeSubscription = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  StripeId?: string | null;
+  IsLivemode?: boolean;
+  /** @nullable */
+  CancelAt?: string | null;
+  CancelAtPeriodEnd?: boolean;
+  /**
+   * @maxLength 3
+   * @nullable
+   */
+  Currency?: string | null;
+  /** @nullable */
+  EndedAt?: string | null;
+  /**
+   * @maxLength 30
+   * @nullable
+   */
+  PauseCollection_Behavior?: string | null;
+  /** @nullable */
+  PauseCollection_ResumesAt?: string | null;
+  StartDate?: string;
+  /**
+   * @maxLength 30
+   * @nullable
+   */
+  Status?: string | null;
+  /** @nullable */
+  TrialEnd?: string | null;
+  /** @nullable */
+  AccountUid?: string | null;
+  /** @nullable */
+  BillingCycleAnchor?: string | null;
+  /** @nullable */
+  CollectionMethod?: string | null;
+  /** @nullable */
+  CustomerId?: string | null;
+  /** @nullable */
+  DaysUntilDue?: number | null;
+  /** @nullable */
+  ScheduleId?: string | null;
+  /** @nullable */
+  StripeDiscountIds?: string[] | null;
+  /** @nullable */
+  StripePriceIds?: string | null;
+  TrialPeriodDays?: number;
+} | null;
+
+export interface AccountRemovePersonWebhookPayload {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  StripeId?: string | null;
+  IsLivemode?: boolean;
+  /**
+   * @minLength 1
+   * @maxLength 250
+   */
+  Name: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  ClientIdentifier?: string | null;
+  /**
+   * @maxLength 3
+   * @nullable
+   */
+  Currency?: string | null;
+  /** @nullable */
+  InvoiceNotes?: string | null;
+  IsDemo?: boolean;
+  /** @nullable */
+  BillingAddress?: AccountRemovePersonWebhookPayloadBillingAddress;
+  /** @nullable */
+  MailingAddress?: AccountRemovePersonWebhookPayloadMailingAddress;
+  /** `2` - Trialing, `3` - Subscribing, `4` - Cancelling, `5` - Expired, `6` - Trial Expired, `7` - Past Due, `8` - Cancelling Trial, `9` - Paused, `10` - Created */
+  AccountStage?: AccountRemovePersonWebhookPayloadAccountStage;
+  /** @nullable */
+  PaymentInformation?: AccountRemovePersonWebhookPayloadPaymentInformation;
+  /** @nullable */
+  PersonAccount?: AccountRemovePersonWebhookPayloadPersonAccountItem[] | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  StripeDefaultPaymentMethodId?: string | null;
+  /** @nullable */
+  StripeInvoices?: AccountRemovePersonWebhookPayloadStripeInvoicesItem[] | null;
+  /** @nullable */
+  StripePaymentMethods?: AccountRemovePersonWebhookPayloadStripePaymentMethodsItem[] | null;
+  /** @nullable */
+  StripeSubscriptions?: AccountRemovePersonWebhookPayloadStripeSubscriptionsItem[] | null;
+  /** @nullable */
+  Subscriptions?: AccountRemovePersonWebhookPayloadSubscriptionsItem[] | null;
+  /** @nullable */
+  Deals?: AccountRemovePersonWebhookPayloadDealsItem[] | null;
+  /** @nullable */
+  LastLoginDateTime?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl1?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl2?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl3?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl4?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl5?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl6?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl7?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl8?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl9?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl10?: string | null;
+  /** @nullable */
+  RewardFulReferralId?: string | null;
+  /**
+   * @maxLength 36
+   * @nullable
+   */
+  ToltReferralId?: string | null;
+  /** @nullable */
+  TaxIds?: AccountRemovePersonWebhookPayloadTaxIdsItem[] | null;
+  /**
+   * @maxLength 20
+   * @nullable
+   */
+  TaxStatus?: string | null;
+  /** @nullable */
+  AccountStageLabel?: string | null;
+  /** @nullable */
+  CurrentStripeProducts?: string | null;
+  /** @nullable */
+  CurrentSubscription?: AccountRemovePersonWebhookPayloadCurrentSubscription;
+  /** @nullable */
+  DomainName?: string | null;
+  HasLoggedIn?: boolean;
+  /** @nullable */
+  LatestSubscription?: AccountRemovePersonWebhookPayloadLatestSubscription;
+  LifetimeRevenue?: number;
+  /** @nullable */
+  NextStripeInvoiceDate?: string | null;
+  /** @nullable */
+  Nonce?: string | null;
+  /** @nullable */
+  PrimaryContact?: AccountRemovePersonWebhookPayloadPrimaryContact;
+  /** @nullable */
+  PrimarySubscription?: AccountRemovePersonWebhookPayloadPrimarySubscription;
+  /** @nullable */
+  PrimaryStripeSubscription?: AccountRemovePersonWebhookPayloadPrimaryStripeSubscription;
+  /** @nullable */
+  RecaptchaToken?: string | null;
+  /** @nullable */
+  StripeNextInvoiceSequence?: number | null;
+  /** @nullable */
+  StripePrice?: string[] | null;
+  /** @nullable */
+  StripePromotionCode?: string | null;
+  /** @nullable */
+  TaxId?: string | null;
+  TaxIdIsInvalid?: boolean;
+  /** @nullable */
+  TaxIdType?: string | null;
+  /** @nullable */
+  WebflowSlug?: string | null;
+  ActivityEventData?: AccountRemovePersonActivityData;
+}
+
+export interface AccountPaidSubscriptionCreatedActivityData {
+  /** @nullable */
+  SubscriptionUid?: string | null;
+}
+
+/**
+ * @nullable
+ */
+export type AccountPaidSubscriptionCreatedWebhookPayloadBillingAddress = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine1?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine2?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine3?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  City?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  State?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PostalCode?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Country?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  GeoLocation?: string | null;
+} | null;
+
+/**
+ * @nullable
+ */
+export type AccountPaidSubscriptionCreatedWebhookPayloadMailingAddress = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine1?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine2?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine3?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  City?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  State?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PostalCode?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Country?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  GeoLocation?: string | null;
+} | null;
+
+/**
+ * `2` - Trialing, `3` - Subscribing, `4` - Cancelling, `5` - Expired, `6` - Trial Expired, `7` - Past Due, `8` - Cancelling Trial, `9` - Paused, `10` - Created
+ */
+export type AccountPaidSubscriptionCreatedWebhookPayloadAccountStage = typeof AccountPaidSubscriptionCreatedWebhookPayloadAccountStage[keyof typeof AccountPaidSubscriptionCreatedWebhookPayloadAccountStage];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountPaidSubscriptionCreatedWebhookPayloadAccountStage = {
+  Trialing: 2,
+  Subscribing: 3,
+  Cancelling: 4,
+  Expired: 5,
+  TrialExpired: 6,
+  PastDue: 7,
+  CancellingTrial: 8,
+  Paused: 9,
+  Created: 10,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountPaidSubscriptionCreatedWebhookPayloadPaymentInformation = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  CustomerToken?: string | null;
+  /** @nullable */
+  LastFourDigits?: string | null;
+  /** @nullable */
+  LatestFailureDateTime?: string | null;
+  /** @nullable */
+  LatestFailureDescription?: string | null;
+  /** @nullable */
+  LatestSuccessDateTime?: string | null;
+  NumberOfFailures?: number;
+  /** @nullable */
+  PaymentClientSecret?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  PaymentMethodType?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PaymentToken?: string | null;
+  /**
+   * @maxLength 100
+   * @nullable
+   */
+  BankName?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  BankAccountType?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  BankAccountHolderType?: string | null;
+  /** @nullable */
+  NameOnCard?: string | null;
+  /** @nullable */
+  CardType?: string | null;
+  /** @nullable */
+  ExpirationMonth?: string | null;
+  /** @nullable */
+  ExpirationYear?: string | null;
+  /** @nullable */
+  Mode?: string | null;
+  /** @nullable */
+  OneTimeToken?: string | null;
+  /** @nullable */
+  RecaptchaToken?: string | null;
+  /** @nullable */
+  SetupIntent?: string | null;
+} | null;
+
+/**
+ * `0` - None, `1` - Gmail
+ */
+export type AccountPaidSubscriptionCreatedWebhookPayloadPersonAccountItemPersonOAuthIntegrationStatus = typeof AccountPaidSubscriptionCreatedWebhookPayloadPersonAccountItemPersonOAuthIntegrationStatus[keyof typeof AccountPaidSubscriptionCreatedWebhookPayloadPersonAccountItemPersonOAuthIntegrationStatus];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountPaidSubscriptionCreatedWebhookPayloadPersonAccountItemPersonOAuthIntegrationStatus = {
+  None: 0,
+  Gmail: 1,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountPaidSubscriptionCreatedWebhookPayloadPersonAccountItemPerson = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Email?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  FirstName?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  LastName?: string | null;
+  /** @nullable */
+  PasswordLastUpdated?: string | null;
+  PasswordMustChange?: boolean;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PhoneMobile?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PhoneWork?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  ProfileImageS3Url?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Title?: string | null;
+  /**
+   * @maxLength 100
+   * @nullable
+   */
+  Timezone?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  Language?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  IPAddress?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Referer?: string | null;
+  /**
+   * @maxLength 1000
+   * @nullable
+   */
+  UserAgent?: string | null;
+  /** @nullable */
+  LastLoginDateTime?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  OAuthGoogleProfileId?: string | null;
+  /** @nullable */
+  AccountUids?: string | null;
+  /** @nullable */
+  FullName?: string | null;
+  HasLoggedIn?: boolean;
+  /** `0` - None, `1` - Gmail */
+  OAuthIntegrationStatus?: AccountPaidSubscriptionCreatedWebhookPayloadPersonAccountItemPersonOAuthIntegrationStatus;
+  OptInToEmailList?: boolean;
+  /** @nullable */
+  Password?: string | null;
+  /** @nullable */
+  UserAgentPlatformBrowser?: string | null;
+  HasUnsubscribed?: boolean;
+  IsConnectedToDiscord?: boolean;
+} | null;
+
+export type AccountPaidSubscriptionCreatedWebhookPayloadPersonAccountItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** @nullable */
+  Person?: AccountPaidSubscriptionCreatedWebhookPayloadPersonAccountItemPerson;
+  IsPrimary?: boolean;
+  ReceiveInvoices?: boolean;
+};
+
+export type AccountPaidSubscriptionCreatedWebhookPayloadStripeInvoicesItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  StripeId?: string | null;
+  IsLivemode?: boolean;
+  AmountDue?: number;
+  AmountPaid?: number;
+  AmountShipping?: number;
+  AttemptCount?: number;
+  Attempted?: boolean;
+  /**
+   * @maxLength 3
+   * @nullable
+   */
+  Currency?: string | null;
+  /** @nullable */
+  Description?: string | null;
+  /** @nullable */
+  FinalizedAt?: string | null;
+  /**
+   * @maxLength 500
+   * @nullable
+   */
+  HostedInvoiceUrl?: string | null;
+  /**
+   * @maxLength 500
+   * @nullable
+   */
+  InvoicePdf?: string | null;
+  /** @nullable */
+  NextPaymentAttempt?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  Number?: string | null;
+  PeriodEnd?: string;
+  PeriodStart?: string;
+  /**
+   * @maxLength 30
+   * @nullable
+   */
+  Status?: string | null;
+  SubTotal?: number;
+  /** @nullable */
+  SubTotalExcludingTax?: number | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  SubscriptionId?: string | null;
+  /** @nullable */
+  Tax?: number | null;
+  Total?: number;
+  /** @nullable */
+  TotalExcludingTax?: number | null;
+  IsRefunded?: boolean;
+  CurrencyAmountCreditedPostPayment?: number;
+  CurrencyAmountCreditedPrePayment?: number;
+  CurrencyAmountDue?: number;
+  CurrencyAmountPaid?: number;
+  /** @nullable */
+  CurrencySymbol?: string | null;
+  CurrencyTotal?: number;
+  CurrencyTotalExcludingTax?: number;
+  CurrencySubTotal?: number;
+  CurrencySubTotalExcludingTax?: number;
+  CurrencyTax?: number;
+  /** @nullable */
+  DaysUntilDue?: number | null;
+  /** @nullable */
+  CustomerId?: string | null;
+  /** @nullable */
+  PaymentStatus?: string | null;
+  /** @nullable */
+  StripePaymentMethodId?: string | null;
+};
+
+export type AccountPaidSubscriptionCreatedWebhookPayloadStripePaymentMethodsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  StripeId?: string | null;
+  IsLivemode?: boolean;
+  /** @nullable */
+  Card_Brand?: string | null;
+  /** @nullable */
+  Card_ExpMonth?: number | null;
+  /** @nullable */
+  Card_ExpYear?: number | null;
+  /** @nullable */
+  Card_Wallet_Type?: string | null;
+  /** @nullable */
+  BankName?: string | null;
+  /** @nullable */
+  Last4?: string | null;
+  /** @nullable */
+  Type?: string | null;
+  /** @nullable */
+  Label?: string | null;
+};
+
+export type AccountPaidSubscriptionCreatedWebhookPayloadStripeSubscriptionsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  StripeId?: string | null;
+  IsLivemode?: boolean;
+  /** @nullable */
+  CancelAt?: string | null;
+  CancelAtPeriodEnd?: boolean;
+  /**
+   * @maxLength 3
+   * @nullable
+   */
+  Currency?: string | null;
+  /** @nullable */
+  EndedAt?: string | null;
+  /**
+   * @maxLength 30
+   * @nullable
+   */
+  PauseCollection_Behavior?: string | null;
+  /** @nullable */
+  PauseCollection_ResumesAt?: string | null;
+  StartDate?: string;
+  /**
+   * @maxLength 30
+   * @nullable
+   */
+  Status?: string | null;
+  /** @nullable */
+  TrialEnd?: string | null;
+  /** @nullable */
+  AccountUid?: string | null;
+  /** @nullable */
+  BillingCycleAnchor?: string | null;
+  /** @nullable */
+  CollectionMethod?: string | null;
+  /** @nullable */
+  CustomerId?: string | null;
+  /** @nullable */
+  DaysUntilDue?: number | null;
+  /** @nullable */
+  ScheduleId?: string | null;
+  /** @nullable */
+  StripeDiscountIds?: string[] | null;
+  /** @nullable */
+  StripePriceIds?: string | null;
+  TrialPeriodDays?: number;
+};
+
+/**
+ * `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time
+ */
+export type AccountPaidSubscriptionCreatedWebhookPayloadSubscriptionsItemBillingRenewalTerm = typeof AccountPaidSubscriptionCreatedWebhookPayloadSubscriptionsItemBillingRenewalTerm[keyof typeof AccountPaidSubscriptionCreatedWebhookPayloadSubscriptionsItemBillingRenewalTerm];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountPaidSubscriptionCreatedWebhookPayloadSubscriptionsItemBillingRenewalTerm = {
+  Monthly: 1,
+  Yearly: 2,
+  Quarterly: 3,
+  OneTime: 4,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountPaidSubscriptionCreatedWebhookPayloadSubscriptionsItemPlanPlanFamily = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  IsActive?: boolean;
+  IsDefault?: boolean;
+} | null;
+
+/**
+ * `1` - Individual, `2` - Team
+ */
+export type AccountPaidSubscriptionCreatedWebhookPayloadSubscriptionsItemPlanAccountRegistrationMode = typeof AccountPaidSubscriptionCreatedWebhookPayloadSubscriptionsItemPlanAccountRegistrationMode[keyof typeof AccountPaidSubscriptionCreatedWebhookPayloadSubscriptionsItemPlanAccountRegistrationMode];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountPaidSubscriptionCreatedWebhookPayloadSubscriptionsItemPlanAccountRegistrationMode = {
+  Individual: 1,
+  Team: 2,
+} as const;
+
+export type AccountPaidSubscriptionCreatedWebhookPayloadSubscriptionsItemPlanPlanAddOnsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  IsUserSelectable: boolean;
+};
+
+export type AccountPaidSubscriptionCreatedWebhookPayloadSubscriptionsItemPlanContentGroupsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @minLength 1
+   * @maxLength 50
+   */
+  Name: string;
+  /**
+   * @maxLength 1024
+   * @nullable
+   */
+  AccessDeniedPath?: string | null;
+};
+
+/**
+ * @nullable
+ */
+export type AccountPaidSubscriptionCreatedWebhookPayloadSubscriptionsItemPlan = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  /** @nullable */
+  Description?: string | null;
+  /** @nullable */
+  PlanFamily?: AccountPaidSubscriptionCreatedWebhookPayloadSubscriptionsItemPlanPlanFamily;
+  /** `1` - Individual, `2` - Team */
+  AccountRegistrationMode?: AccountPaidSubscriptionCreatedWebhookPayloadSubscriptionsItemPlanAccountRegistrationMode;
+  IsQuantityEditable?: boolean;
+  MinimumQuantity?: number;
+  /** @nullable */
+  MaximumPeople?: number | null;
+  MonthlyRate?: number;
+  AnnualRate?: number;
+  QuarterlyRate?: number;
+  OneTimeRate?: number;
+  SetupFee?: number;
+  SkipSetupFeeOnPlanChange?: boolean;
+  IsTaxable?: boolean;
+  IsActive?: boolean;
+  IsPerUser?: boolean;
+  RequirePaymentInformation?: boolean;
+  TrialPeriodDays?: number;
+  /** @nullable */
+  TrialUntilDate?: string | null;
+  ExpiresAfterMonths?: number;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PostLoginPath?: string | null;
+  /**
+   * @maxLength 15
+   * @nullable
+   */
+  StripeTaxCodeId?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  UnitOfMeasure?: string | null;
+  /** @nullable */
+  PlanAddOns?: AccountPaidSubscriptionCreatedWebhookPayloadSubscriptionsItemPlanPlanAddOnsItem[] | null;
+  /** @nullable */
+  ContentGroups?: AccountPaidSubscriptionCreatedWebhookPayloadSubscriptionsItemPlanContentGroupsItem[] | null;
+  /** @nullable */
+  NumberOfSubscriptions?: number | null;
+} | null;
+
+/**
+ * `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time
+ */
+export type AccountPaidSubscriptionCreatedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemBillingRenewalTerm = typeof AccountPaidSubscriptionCreatedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemBillingRenewalTerm[keyof typeof AccountPaidSubscriptionCreatedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemBillingRenewalTerm];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountPaidSubscriptionCreatedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemBillingRenewalTerm = {
+  Monthly: 1,
+  Yearly: 2,
+  Quarterly: 3,
+  OneTime: 4,
+} as const;
+
+/**
+ * `1` - Recurring, `2` - Usage, `3` - OneTime
+ */
+export type AccountPaidSubscriptionCreatedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemAddOnBillingAddOnType = typeof AccountPaidSubscriptionCreatedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemAddOnBillingAddOnType[keyof typeof AccountPaidSubscriptionCreatedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemAddOnBillingAddOnType];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountPaidSubscriptionCreatedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemAddOnBillingAddOnType = {
+  Recurring: 1,
+  Usage: 2,
+  OneTime: 3,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountPaidSubscriptionCreatedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemAddOn = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  /** `1` - Recurring, `2` - Usage, `3` - OneTime */
+  BillingAddOnType?: AccountPaidSubscriptionCreatedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemAddOnBillingAddOnType;
+  IsQuantityEditable?: boolean;
+  MinimumQuantity?: number;
+  MonthlyRate?: number;
+  AnnualRate?: number;
+  SetupFee?: number;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  UnitOfMeasure?: string | null;
+  IsTaxable?: boolean;
+  IsBilledDuringTrial?: boolean;
+  ExpiresAfterMonths?: number;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /**
+   * @maxLength 15
+   * @nullable
+   */
+  StripeTaxCodeId?: string | null;
+  IsPerUser?: boolean;
+  QuarterlyRate?: number;
+  OneTimeRate?: number;
+  SubscriptionCount?: number;
+  Quantity?: number;
+} | null;
+
+export type AccountPaidSubscriptionCreatedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time */
+  BillingRenewalTerm?: AccountPaidSubscriptionCreatedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemBillingRenewalTerm;
+  /** @nullable */
+  AddOn?: AccountPaidSubscriptionCreatedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemAddOn;
+  /** @nullable */
+  Quantity?: number | null;
+  StartDate?: string;
+  /** @nullable */
+  EndDate?: string | null;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /** @nullable */
+  RenewalDate?: string | null;
+  /** @nullable */
+  NewRequiredQuantity?: number | null;
+  /** @nullable */
+  Rate?: number | null;
+};
+
+/**
+ * `1` - Forever, `2` - Once, `3` - Repeating
+ */
+export type AccountPaidSubscriptionCreatedWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItemDiscountCouponDuration = typeof AccountPaidSubscriptionCreatedWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItemDiscountCouponDuration[keyof typeof AccountPaidSubscriptionCreatedWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItemDiscountCouponDuration];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountPaidSubscriptionCreatedWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItemDiscountCouponDuration = {
+  Forever: 1,
+  Once: 2,
+  Repeating: 3,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountPaidSubscriptionCreatedWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItemDiscountCoupon = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /** @nullable */
+  UniqueIdentifier?: string | null;
+  /** @nullable */
+  Name?: string | null;
+  IsActive?: boolean;
+  /** @nullable */
+  AmountOff?: number | null;
+  /** @nullable */
+  PercentOff?: number | null;
+  /** @nullable */
+  RedeemBy?: string | null;
+  /** `1` - Forever, `2` - Once, `3` - Repeating */
+  Duration?: AccountPaidSubscriptionCreatedWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItemDiscountCouponDuration;
+  /** @nullable */
+  DurationInMonths?: number | null;
+  TimesRedeemed?: number;
+  /** @nullable */
+  MaxRedemptions?: number | null;
+  ApplyToAddOns?: boolean;
+  /** @nullable */
+  PlanUids?: string | null;
+} | null;
+
+export type AccountPaidSubscriptionCreatedWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** @nullable */
+  RedeemedDate?: string | null;
+  /** @nullable */
+  ExpireDate?: string | null;
+  /** @nullable */
+  DiscountCoupon?: AccountPaidSubscriptionCreatedWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItemDiscountCoupon;
+};
+
+/**
+ * `1` - Unpaid, `2` - Paid, `3` - Partial, `4` - Uncollected, `5` - Refunded, `6` - Uncollectible, `7` - Processing
+ */
+export type AccountPaidSubscriptionCreatedWebhookPayloadSubscriptionsItemLatestInvoiceBillingInvoiceStatus = typeof AccountPaidSubscriptionCreatedWebhookPayloadSubscriptionsItemLatestInvoiceBillingInvoiceStatus[keyof typeof AccountPaidSubscriptionCreatedWebhookPayloadSubscriptionsItemLatestInvoiceBillingInvoiceStatus];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountPaidSubscriptionCreatedWebhookPayloadSubscriptionsItemLatestInvoiceBillingInvoiceStatus = {
+  Unpaid: 1,
+  Paid: 2,
+  Partial: 3,
+  Uncollected: 4,
+  Refunded: 5,
+  Uncollectible: 6,
+  Processing: 7,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountPaidSubscriptionCreatedWebhookPayloadSubscriptionsItemLatestInvoice = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  InvoiceDate?: string;
+  /** @nullable */
+  PaymentReminderSentDate?: string | null;
+  Number?: number;
+  /** `1` - Unpaid, `2` - Paid, `3` - Partial, `4` - Uncollected, `5` - Refunded, `6` - Uncollectible, `7` - Processing */
+  BillingInvoiceStatus?: AccountPaidSubscriptionCreatedWebhookPayloadSubscriptionsItemLatestInvoiceBillingInvoiceStatus;
+  Amount?: number;
+  AmountOutstanding?: number;
+  IsUserGenerated?: boolean;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  StripeTaxCalculationId?: string | null;
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  StripeTaxBehavior?: string | null;
+  AmountCredit?: number;
+  AmountDiscount?: number;
+  AmountPaid?: number;
+  AmountRefunded?: number;
+  AmountSubtotal?: number;
+  AmountTax?: number;
+  AmountTaxRefunded?: number;
+  IsTaxable?: boolean;
+  HasPaymentGatewayTransactions?: boolean;
+  /** @nullable */
+  StripePaymentTransactionIds?: string | null;
+  /** @nullable */
+  StripeRefundTransactionIds?: string | null;
+  /** @nullable */
+  StripeTaxRefundTransactionIds?: string | null;
+} | null;
+
+export type AccountPaidSubscriptionCreatedWebhookPayloadSubscriptionsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time */
+  BillingRenewalTerm?: AccountPaidSubscriptionCreatedWebhookPayloadSubscriptionsItemBillingRenewalTerm;
+  /** @nullable */
+  Plan?: AccountPaidSubscriptionCreatedWebhookPayloadSubscriptionsItemPlan;
+  /** @nullable */
+  Quantity?: number | null;
+  StartDate?: string;
+  /** @nullable */
+  EndDate?: string | null;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /** @nullable */
+  RenewalDate?: string | null;
+  /** @nullable */
+  NewRequiredQuantity?: number | null;
+  IsPlanUpgradeRequired?: boolean;
+  /** @nullable */
+  PlanUpgradeRequiredMessage?: string | null;
+  /** @nullable */
+  SubscriptionAddOns?: AccountPaidSubscriptionCreatedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItem[] | null;
+  /** @nullable */
+  DiscountCouponSubscriptions?: AccountPaidSubscriptionCreatedWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItem[] | null;
+  /** @nullable */
+  DiscountCode?: string | null;
+  /** @nullable */
+  DiscountCouponExpirationDate?: string | null;
+  /** @nullable */
+  LatestInvoice?: AccountPaidSubscriptionCreatedWebhookPayloadSubscriptionsItemLatestInvoice;
+  /** @nullable */
+  Rate?: number | null;
+};
+
+export type AccountPaidSubscriptionCreatedWebhookPayloadDealsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @minLength 1
+   * @maxLength 250
+   */
+  Name: string;
+  /** @nullable */
+  Amount?: number | null;
+  /** @nullable */
+  DueDate?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  AssignedToPersonClientIdentifier?: string | null;
+  Weight?: number;
+  /** @nullable */
+  Contacts?: string | null;
+  AccountId?: number;
+  /** @nullable */
+  PipelineUid?: string | null;
+};
+
+export type AccountPaidSubscriptionCreatedWebhookPayloadTaxIdsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  StripeId?: string | null;
+  IsLivemode?: boolean;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  TaxId?: string | null;
+  /**
+   * @maxLength 20
+   * @nullable
+   */
+  TaxIdType?: string | null;
+  IsInvalid?: boolean;
+};
+
+/**
+ * `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time
+ */
+export type AccountPaidSubscriptionCreatedWebhookPayloadCurrentSubscriptionBillingRenewalTerm = typeof AccountPaidSubscriptionCreatedWebhookPayloadCurrentSubscriptionBillingRenewalTerm[keyof typeof AccountPaidSubscriptionCreatedWebhookPayloadCurrentSubscriptionBillingRenewalTerm];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountPaidSubscriptionCreatedWebhookPayloadCurrentSubscriptionBillingRenewalTerm = {
+  Monthly: 1,
+  Yearly: 2,
+  Quarterly: 3,
+  OneTime: 4,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountPaidSubscriptionCreatedWebhookPayloadCurrentSubscriptionPlanPlanFamily = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  IsActive?: boolean;
+  IsDefault?: boolean;
+} | null;
+
+/**
+ * `1` - Individual, `2` - Team
+ */
+export type AccountPaidSubscriptionCreatedWebhookPayloadCurrentSubscriptionPlanAccountRegistrationMode = typeof AccountPaidSubscriptionCreatedWebhookPayloadCurrentSubscriptionPlanAccountRegistrationMode[keyof typeof AccountPaidSubscriptionCreatedWebhookPayloadCurrentSubscriptionPlanAccountRegistrationMode];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountPaidSubscriptionCreatedWebhookPayloadCurrentSubscriptionPlanAccountRegistrationMode = {
+  Individual: 1,
+  Team: 2,
+} as const;
+
+export type AccountPaidSubscriptionCreatedWebhookPayloadCurrentSubscriptionPlanPlanAddOnsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  IsUserSelectable: boolean;
+};
+
+export type AccountPaidSubscriptionCreatedWebhookPayloadCurrentSubscriptionPlanContentGroupsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @minLength 1
+   * @maxLength 50
+   */
+  Name: string;
+  /**
+   * @maxLength 1024
+   * @nullable
+   */
+  AccessDeniedPath?: string | null;
+};
+
+/**
+ * @nullable
+ */
+export type AccountPaidSubscriptionCreatedWebhookPayloadCurrentSubscriptionPlan = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  /** @nullable */
+  Description?: string | null;
+  /** @nullable */
+  PlanFamily?: AccountPaidSubscriptionCreatedWebhookPayloadCurrentSubscriptionPlanPlanFamily;
+  /** `1` - Individual, `2` - Team */
+  AccountRegistrationMode?: AccountPaidSubscriptionCreatedWebhookPayloadCurrentSubscriptionPlanAccountRegistrationMode;
+  IsQuantityEditable?: boolean;
+  MinimumQuantity?: number;
+  /** @nullable */
+  MaximumPeople?: number | null;
+  MonthlyRate?: number;
+  AnnualRate?: number;
+  QuarterlyRate?: number;
+  OneTimeRate?: number;
+  SetupFee?: number;
+  SkipSetupFeeOnPlanChange?: boolean;
+  IsTaxable?: boolean;
+  IsActive?: boolean;
+  IsPerUser?: boolean;
+  RequirePaymentInformation?: boolean;
+  TrialPeriodDays?: number;
+  /** @nullable */
+  TrialUntilDate?: string | null;
+  ExpiresAfterMonths?: number;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PostLoginPath?: string | null;
+  /**
+   * @maxLength 15
+   * @nullable
+   */
+  StripeTaxCodeId?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  UnitOfMeasure?: string | null;
+  /** @nullable */
+  PlanAddOns?: AccountPaidSubscriptionCreatedWebhookPayloadCurrentSubscriptionPlanPlanAddOnsItem[] | null;
+  /** @nullable */
+  ContentGroups?: AccountPaidSubscriptionCreatedWebhookPayloadCurrentSubscriptionPlanContentGroupsItem[] | null;
+  /** @nullable */
+  NumberOfSubscriptions?: number | null;
+} | null;
+
+/**
+ * `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time
+ */
+export type AccountPaidSubscriptionCreatedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemBillingRenewalTerm = typeof AccountPaidSubscriptionCreatedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemBillingRenewalTerm[keyof typeof AccountPaidSubscriptionCreatedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemBillingRenewalTerm];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountPaidSubscriptionCreatedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemBillingRenewalTerm = {
+  Monthly: 1,
+  Yearly: 2,
+  Quarterly: 3,
+  OneTime: 4,
+} as const;
+
+/**
+ * `1` - Recurring, `2` - Usage, `3` - OneTime
+ */
+export type AccountPaidSubscriptionCreatedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType = typeof AccountPaidSubscriptionCreatedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType[keyof typeof AccountPaidSubscriptionCreatedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountPaidSubscriptionCreatedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType = {
+  Recurring: 1,
+  Usage: 2,
+  OneTime: 3,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountPaidSubscriptionCreatedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemAddOn = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  /** `1` - Recurring, `2` - Usage, `3` - OneTime */
+  BillingAddOnType?: AccountPaidSubscriptionCreatedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType;
+  IsQuantityEditable?: boolean;
+  MinimumQuantity?: number;
+  MonthlyRate?: number;
+  AnnualRate?: number;
+  SetupFee?: number;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  UnitOfMeasure?: string | null;
+  IsTaxable?: boolean;
+  IsBilledDuringTrial?: boolean;
+  ExpiresAfterMonths?: number;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /**
+   * @maxLength 15
+   * @nullable
+   */
+  StripeTaxCodeId?: string | null;
+  IsPerUser?: boolean;
+  QuarterlyRate?: number;
+  OneTimeRate?: number;
+  SubscriptionCount?: number;
+  Quantity?: number;
+} | null;
+
+export type AccountPaidSubscriptionCreatedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time */
+  BillingRenewalTerm?: AccountPaidSubscriptionCreatedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemBillingRenewalTerm;
+  /** @nullable */
+  AddOn?: AccountPaidSubscriptionCreatedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemAddOn;
+  /** @nullable */
+  Quantity?: number | null;
+  StartDate?: string;
+  /** @nullable */
+  EndDate?: string | null;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /** @nullable */
+  RenewalDate?: string | null;
+  /** @nullable */
+  NewRequiredQuantity?: number | null;
+  /** @nullable */
+  Rate?: number | null;
+};
+
+/**
+ * `1` - Forever, `2` - Once, `3` - Repeating
+ */
+export type AccountPaidSubscriptionCreatedWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration = typeof AccountPaidSubscriptionCreatedWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration[keyof typeof AccountPaidSubscriptionCreatedWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountPaidSubscriptionCreatedWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration = {
+  Forever: 1,
+  Once: 2,
+  Repeating: 3,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountPaidSubscriptionCreatedWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItemDiscountCoupon = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /** @nullable */
+  UniqueIdentifier?: string | null;
+  /** @nullable */
+  Name?: string | null;
+  IsActive?: boolean;
+  /** @nullable */
+  AmountOff?: number | null;
+  /** @nullable */
+  PercentOff?: number | null;
+  /** @nullable */
+  RedeemBy?: string | null;
+  /** `1` - Forever, `2` - Once, `3` - Repeating */
+  Duration?: AccountPaidSubscriptionCreatedWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration;
+  /** @nullable */
+  DurationInMonths?: number | null;
+  TimesRedeemed?: number;
+  /** @nullable */
+  MaxRedemptions?: number | null;
+  ApplyToAddOns?: boolean;
+  /** @nullable */
+  PlanUids?: string | null;
+} | null;
+
+export type AccountPaidSubscriptionCreatedWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** @nullable */
+  RedeemedDate?: string | null;
+  /** @nullable */
+  ExpireDate?: string | null;
+  /** @nullable */
+  DiscountCoupon?: AccountPaidSubscriptionCreatedWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItemDiscountCoupon;
+};
+
+/**
+ * `1` - Unpaid, `2` - Paid, `3` - Partial, `4` - Uncollected, `5` - Refunded, `6` - Uncollectible, `7` - Processing
+ */
+export type AccountPaidSubscriptionCreatedWebhookPayloadCurrentSubscriptionLatestInvoiceBillingInvoiceStatus = typeof AccountPaidSubscriptionCreatedWebhookPayloadCurrentSubscriptionLatestInvoiceBillingInvoiceStatus[keyof typeof AccountPaidSubscriptionCreatedWebhookPayloadCurrentSubscriptionLatestInvoiceBillingInvoiceStatus];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountPaidSubscriptionCreatedWebhookPayloadCurrentSubscriptionLatestInvoiceBillingInvoiceStatus = {
+  Unpaid: 1,
+  Paid: 2,
+  Partial: 3,
+  Uncollected: 4,
+  Refunded: 5,
+  Uncollectible: 6,
+  Processing: 7,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountPaidSubscriptionCreatedWebhookPayloadCurrentSubscriptionLatestInvoice = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  InvoiceDate?: string;
+  /** @nullable */
+  PaymentReminderSentDate?: string | null;
+  Number?: number;
+  /** `1` - Unpaid, `2` - Paid, `3` - Partial, `4` - Uncollected, `5` - Refunded, `6` - Uncollectible, `7` - Processing */
+  BillingInvoiceStatus?: AccountPaidSubscriptionCreatedWebhookPayloadCurrentSubscriptionLatestInvoiceBillingInvoiceStatus;
+  Amount?: number;
+  AmountOutstanding?: number;
+  IsUserGenerated?: boolean;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  StripeTaxCalculationId?: string | null;
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  StripeTaxBehavior?: string | null;
+  AmountCredit?: number;
+  AmountDiscount?: number;
+  AmountPaid?: number;
+  AmountRefunded?: number;
+  AmountSubtotal?: number;
+  AmountTax?: number;
+  AmountTaxRefunded?: number;
+  IsTaxable?: boolean;
+  HasPaymentGatewayTransactions?: boolean;
+  /** @nullable */
+  StripePaymentTransactionIds?: string | null;
+  /** @nullable */
+  StripeRefundTransactionIds?: string | null;
+  /** @nullable */
+  StripeTaxRefundTransactionIds?: string | null;
+} | null;
+
+/**
+ * @nullable
+ */
+export type AccountPaidSubscriptionCreatedWebhookPayloadCurrentSubscription = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /** `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time */
+  BillingRenewalTerm?: AccountPaidSubscriptionCreatedWebhookPayloadCurrentSubscriptionBillingRenewalTerm;
+  /** @nullable */
+  Plan?: AccountPaidSubscriptionCreatedWebhookPayloadCurrentSubscriptionPlan;
+  /** @nullable */
+  Quantity?: number | null;
+  StartDate?: string;
+  /** @nullable */
+  EndDate?: string | null;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /** @nullable */
+  RenewalDate?: string | null;
+  /** @nullable */
+  NewRequiredQuantity?: number | null;
+  IsPlanUpgradeRequired?: boolean;
+  /** @nullable */
+  PlanUpgradeRequiredMessage?: string | null;
+  /** @nullable */
+  SubscriptionAddOns?: AccountPaidSubscriptionCreatedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItem[] | null;
+  /** @nullable */
+  DiscountCouponSubscriptions?: AccountPaidSubscriptionCreatedWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItem[] | null;
+  /** @nullable */
+  DiscountCode?: string | null;
+  /** @nullable */
+  DiscountCouponExpirationDate?: string | null;
+  /** @nullable */
+  LatestInvoice?: AccountPaidSubscriptionCreatedWebhookPayloadCurrentSubscriptionLatestInvoice;
+  /** @nullable */
+  Rate?: number | null;
+} | null;
+
+/**
+ * `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time
+ */
+export type AccountPaidSubscriptionCreatedWebhookPayloadLatestSubscriptionBillingRenewalTerm = typeof AccountPaidSubscriptionCreatedWebhookPayloadLatestSubscriptionBillingRenewalTerm[keyof typeof AccountPaidSubscriptionCreatedWebhookPayloadLatestSubscriptionBillingRenewalTerm];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountPaidSubscriptionCreatedWebhookPayloadLatestSubscriptionBillingRenewalTerm = {
+  Monthly: 1,
+  Yearly: 2,
+  Quarterly: 3,
+  OneTime: 4,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountPaidSubscriptionCreatedWebhookPayloadLatestSubscriptionPlanPlanFamily = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  IsActive?: boolean;
+  IsDefault?: boolean;
+} | null;
+
+/**
+ * `1` - Individual, `2` - Team
+ */
+export type AccountPaidSubscriptionCreatedWebhookPayloadLatestSubscriptionPlanAccountRegistrationMode = typeof AccountPaidSubscriptionCreatedWebhookPayloadLatestSubscriptionPlanAccountRegistrationMode[keyof typeof AccountPaidSubscriptionCreatedWebhookPayloadLatestSubscriptionPlanAccountRegistrationMode];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountPaidSubscriptionCreatedWebhookPayloadLatestSubscriptionPlanAccountRegistrationMode = {
+  Individual: 1,
+  Team: 2,
+} as const;
+
+export type AccountPaidSubscriptionCreatedWebhookPayloadLatestSubscriptionPlanPlanAddOnsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  IsUserSelectable: boolean;
+};
+
+export type AccountPaidSubscriptionCreatedWebhookPayloadLatestSubscriptionPlanContentGroupsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @minLength 1
+   * @maxLength 50
+   */
+  Name: string;
+  /**
+   * @maxLength 1024
+   * @nullable
+   */
+  AccessDeniedPath?: string | null;
+};
+
+/**
+ * @nullable
+ */
+export type AccountPaidSubscriptionCreatedWebhookPayloadLatestSubscriptionPlan = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  /** @nullable */
+  Description?: string | null;
+  /** @nullable */
+  PlanFamily?: AccountPaidSubscriptionCreatedWebhookPayloadLatestSubscriptionPlanPlanFamily;
+  /** `1` - Individual, `2` - Team */
+  AccountRegistrationMode?: AccountPaidSubscriptionCreatedWebhookPayloadLatestSubscriptionPlanAccountRegistrationMode;
+  IsQuantityEditable?: boolean;
+  MinimumQuantity?: number;
+  /** @nullable */
+  MaximumPeople?: number | null;
+  MonthlyRate?: number;
+  AnnualRate?: number;
+  QuarterlyRate?: number;
+  OneTimeRate?: number;
+  SetupFee?: number;
+  SkipSetupFeeOnPlanChange?: boolean;
+  IsTaxable?: boolean;
+  IsActive?: boolean;
+  IsPerUser?: boolean;
+  RequirePaymentInformation?: boolean;
+  TrialPeriodDays?: number;
+  /** @nullable */
+  TrialUntilDate?: string | null;
+  ExpiresAfterMonths?: number;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PostLoginPath?: string | null;
+  /**
+   * @maxLength 15
+   * @nullable
+   */
+  StripeTaxCodeId?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  UnitOfMeasure?: string | null;
+  /** @nullable */
+  PlanAddOns?: AccountPaidSubscriptionCreatedWebhookPayloadLatestSubscriptionPlanPlanAddOnsItem[] | null;
+  /** @nullable */
+  ContentGroups?: AccountPaidSubscriptionCreatedWebhookPayloadLatestSubscriptionPlanContentGroupsItem[] | null;
+  /** @nullable */
+  NumberOfSubscriptions?: number | null;
+} | null;
+
+/**
+ * `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time
+ */
+export type AccountPaidSubscriptionCreatedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemBillingRenewalTerm = typeof AccountPaidSubscriptionCreatedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemBillingRenewalTerm[keyof typeof AccountPaidSubscriptionCreatedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemBillingRenewalTerm];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountPaidSubscriptionCreatedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemBillingRenewalTerm = {
+  Monthly: 1,
+  Yearly: 2,
+  Quarterly: 3,
+  OneTime: 4,
+} as const;
+
+/**
+ * `1` - Recurring, `2` - Usage, `3` - OneTime
+ */
+export type AccountPaidSubscriptionCreatedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType = typeof AccountPaidSubscriptionCreatedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType[keyof typeof AccountPaidSubscriptionCreatedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountPaidSubscriptionCreatedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType = {
+  Recurring: 1,
+  Usage: 2,
+  OneTime: 3,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountPaidSubscriptionCreatedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemAddOn = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  /** `1` - Recurring, `2` - Usage, `3` - OneTime */
+  BillingAddOnType?: AccountPaidSubscriptionCreatedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType;
+  IsQuantityEditable?: boolean;
+  MinimumQuantity?: number;
+  MonthlyRate?: number;
+  AnnualRate?: number;
+  SetupFee?: number;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  UnitOfMeasure?: string | null;
+  IsTaxable?: boolean;
+  IsBilledDuringTrial?: boolean;
+  ExpiresAfterMonths?: number;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /**
+   * @maxLength 15
+   * @nullable
+   */
+  StripeTaxCodeId?: string | null;
+  IsPerUser?: boolean;
+  QuarterlyRate?: number;
+  OneTimeRate?: number;
+  SubscriptionCount?: number;
+  Quantity?: number;
+} | null;
+
+export type AccountPaidSubscriptionCreatedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time */
+  BillingRenewalTerm?: AccountPaidSubscriptionCreatedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemBillingRenewalTerm;
+  /** @nullable */
+  AddOn?: AccountPaidSubscriptionCreatedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemAddOn;
+  /** @nullable */
+  Quantity?: number | null;
+  StartDate?: string;
+  /** @nullable */
+  EndDate?: string | null;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /** @nullable */
+  RenewalDate?: string | null;
+  /** @nullable */
+  NewRequiredQuantity?: number | null;
+  /** @nullable */
+  Rate?: number | null;
+};
+
+/**
+ * `1` - Forever, `2` - Once, `3` - Repeating
+ */
+export type AccountPaidSubscriptionCreatedWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration = typeof AccountPaidSubscriptionCreatedWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration[keyof typeof AccountPaidSubscriptionCreatedWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountPaidSubscriptionCreatedWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration = {
+  Forever: 1,
+  Once: 2,
+  Repeating: 3,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountPaidSubscriptionCreatedWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItemDiscountCoupon = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /** @nullable */
+  UniqueIdentifier?: string | null;
+  /** @nullable */
+  Name?: string | null;
+  IsActive?: boolean;
+  /** @nullable */
+  AmountOff?: number | null;
+  /** @nullable */
+  PercentOff?: number | null;
+  /** @nullable */
+  RedeemBy?: string | null;
+  /** `1` - Forever, `2` - Once, `3` - Repeating */
+  Duration?: AccountPaidSubscriptionCreatedWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration;
+  /** @nullable */
+  DurationInMonths?: number | null;
+  TimesRedeemed?: number;
+  /** @nullable */
+  MaxRedemptions?: number | null;
+  ApplyToAddOns?: boolean;
+  /** @nullable */
+  PlanUids?: string | null;
+} | null;
+
+export type AccountPaidSubscriptionCreatedWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** @nullable */
+  RedeemedDate?: string | null;
+  /** @nullable */
+  ExpireDate?: string | null;
+  /** @nullable */
+  DiscountCoupon?: AccountPaidSubscriptionCreatedWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItemDiscountCoupon;
+};
+
+/**
+ * `1` - Unpaid, `2` - Paid, `3` - Partial, `4` - Uncollected, `5` - Refunded, `6` - Uncollectible, `7` - Processing
+ */
+export type AccountPaidSubscriptionCreatedWebhookPayloadLatestSubscriptionLatestInvoiceBillingInvoiceStatus = typeof AccountPaidSubscriptionCreatedWebhookPayloadLatestSubscriptionLatestInvoiceBillingInvoiceStatus[keyof typeof AccountPaidSubscriptionCreatedWebhookPayloadLatestSubscriptionLatestInvoiceBillingInvoiceStatus];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountPaidSubscriptionCreatedWebhookPayloadLatestSubscriptionLatestInvoiceBillingInvoiceStatus = {
+  Unpaid: 1,
+  Paid: 2,
+  Partial: 3,
+  Uncollected: 4,
+  Refunded: 5,
+  Uncollectible: 6,
+  Processing: 7,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountPaidSubscriptionCreatedWebhookPayloadLatestSubscriptionLatestInvoice = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  InvoiceDate?: string;
+  /** @nullable */
+  PaymentReminderSentDate?: string | null;
+  Number?: number;
+  /** `1` - Unpaid, `2` - Paid, `3` - Partial, `4` - Uncollected, `5` - Refunded, `6` - Uncollectible, `7` - Processing */
+  BillingInvoiceStatus?: AccountPaidSubscriptionCreatedWebhookPayloadLatestSubscriptionLatestInvoiceBillingInvoiceStatus;
+  Amount?: number;
+  AmountOutstanding?: number;
+  IsUserGenerated?: boolean;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  StripeTaxCalculationId?: string | null;
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  StripeTaxBehavior?: string | null;
+  AmountCredit?: number;
+  AmountDiscount?: number;
+  AmountPaid?: number;
+  AmountRefunded?: number;
+  AmountSubtotal?: number;
+  AmountTax?: number;
+  AmountTaxRefunded?: number;
+  IsTaxable?: boolean;
+  HasPaymentGatewayTransactions?: boolean;
+  /** @nullable */
+  StripePaymentTransactionIds?: string | null;
+  /** @nullable */
+  StripeRefundTransactionIds?: string | null;
+  /** @nullable */
+  StripeTaxRefundTransactionIds?: string | null;
+} | null;
+
+/**
+ * @nullable
+ */
+export type AccountPaidSubscriptionCreatedWebhookPayloadLatestSubscription = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /** `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time */
+  BillingRenewalTerm?: AccountPaidSubscriptionCreatedWebhookPayloadLatestSubscriptionBillingRenewalTerm;
+  /** @nullable */
+  Plan?: AccountPaidSubscriptionCreatedWebhookPayloadLatestSubscriptionPlan;
+  /** @nullable */
+  Quantity?: number | null;
+  StartDate?: string;
+  /** @nullable */
+  EndDate?: string | null;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /** @nullable */
+  RenewalDate?: string | null;
+  /** @nullable */
+  NewRequiredQuantity?: number | null;
+  IsPlanUpgradeRequired?: boolean;
+  /** @nullable */
+  PlanUpgradeRequiredMessage?: string | null;
+  /** @nullable */
+  SubscriptionAddOns?: AccountPaidSubscriptionCreatedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItem[] | null;
+  /** @nullable */
+  DiscountCouponSubscriptions?: AccountPaidSubscriptionCreatedWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItem[] | null;
+  /** @nullable */
+  DiscountCode?: string | null;
+  /** @nullable */
+  DiscountCouponExpirationDate?: string | null;
+  /** @nullable */
+  LatestInvoice?: AccountPaidSubscriptionCreatedWebhookPayloadLatestSubscriptionLatestInvoice;
+  /** @nullable */
+  Rate?: number | null;
+} | null;
+
+/**
+ * `0` - None, `1` - Gmail
+ */
+export type AccountPaidSubscriptionCreatedWebhookPayloadPrimaryContactOAuthIntegrationStatus = typeof AccountPaidSubscriptionCreatedWebhookPayloadPrimaryContactOAuthIntegrationStatus[keyof typeof AccountPaidSubscriptionCreatedWebhookPayloadPrimaryContactOAuthIntegrationStatus];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountPaidSubscriptionCreatedWebhookPayloadPrimaryContactOAuthIntegrationStatus = {
+  None: 0,
+  Gmail: 1,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountPaidSubscriptionCreatedWebhookPayloadPrimaryContact = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Email?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  FirstName?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  LastName?: string | null;
+  /** @nullable */
+  PasswordLastUpdated?: string | null;
+  PasswordMustChange?: boolean;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PhoneMobile?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PhoneWork?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  ProfileImageS3Url?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Title?: string | null;
+  /**
+   * @maxLength 100
+   * @nullable
+   */
+  Timezone?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  Language?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  IPAddress?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Referer?: string | null;
+  /**
+   * @maxLength 1000
+   * @nullable
+   */
+  UserAgent?: string | null;
+  /** @nullable */
+  LastLoginDateTime?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  OAuthGoogleProfileId?: string | null;
+  /** @nullable */
+  AccountUids?: string | null;
+  /** @nullable */
+  FullName?: string | null;
+  HasLoggedIn?: boolean;
+  /** `0` - None, `1` - Gmail */
+  OAuthIntegrationStatus?: AccountPaidSubscriptionCreatedWebhookPayloadPrimaryContactOAuthIntegrationStatus;
+  OptInToEmailList?: boolean;
+  /** @nullable */
+  Password?: string | null;
+  /** @nullable */
+  UserAgentPlatformBrowser?: string | null;
+  HasUnsubscribed?: boolean;
+  IsConnectedToDiscord?: boolean;
+} | null;
+
+/**
+ * `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time
+ */
+export type AccountPaidSubscriptionCreatedWebhookPayloadPrimarySubscriptionBillingRenewalTerm = typeof AccountPaidSubscriptionCreatedWebhookPayloadPrimarySubscriptionBillingRenewalTerm[keyof typeof AccountPaidSubscriptionCreatedWebhookPayloadPrimarySubscriptionBillingRenewalTerm];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountPaidSubscriptionCreatedWebhookPayloadPrimarySubscriptionBillingRenewalTerm = {
+  Monthly: 1,
+  Yearly: 2,
+  Quarterly: 3,
+  OneTime: 4,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountPaidSubscriptionCreatedWebhookPayloadPrimarySubscription = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /** `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time */
+  BillingRenewalTerm?: AccountPaidSubscriptionCreatedWebhookPayloadPrimarySubscriptionBillingRenewalTerm;
+  /** @nullable */
+  Quantity?: number | null;
+  StartDate?: string;
+  /** @nullable */
+  EndDate?: string | null;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /** @nullable */
+  RenewalDate?: string | null;
+  /** @nullable */
+  NewRequiredQuantity?: number | null;
+  IsPlanUpgradeRequired?: boolean;
+  /** @nullable */
+  PlanUpgradeRequiredMessage?: string | null;
+  /** @nullable */
+  DiscountCode?: string | null;
+  /** @nullable */
+  DiscountCouponExpirationDate?: string | null;
+  /** @nullable */
+  Rate?: number | null;
+} | null;
+
+/**
+ * @nullable
+ */
+export type AccountPaidSubscriptionCreatedWebhookPayloadPrimaryStripeSubscription = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  StripeId?: string | null;
+  IsLivemode?: boolean;
+  /** @nullable */
+  CancelAt?: string | null;
+  CancelAtPeriodEnd?: boolean;
+  /**
+   * @maxLength 3
+   * @nullable
+   */
+  Currency?: string | null;
+  /** @nullable */
+  EndedAt?: string | null;
+  /**
+   * @maxLength 30
+   * @nullable
+   */
+  PauseCollection_Behavior?: string | null;
+  /** @nullable */
+  PauseCollection_ResumesAt?: string | null;
+  StartDate?: string;
+  /**
+   * @maxLength 30
+   * @nullable
+   */
+  Status?: string | null;
+  /** @nullable */
+  TrialEnd?: string | null;
+  /** @nullable */
+  AccountUid?: string | null;
+  /** @nullable */
+  BillingCycleAnchor?: string | null;
+  /** @nullable */
+  CollectionMethod?: string | null;
+  /** @nullable */
+  CustomerId?: string | null;
+  /** @nullable */
+  DaysUntilDue?: number | null;
+  /** @nullable */
+  ScheduleId?: string | null;
+  /** @nullable */
+  StripeDiscountIds?: string[] | null;
+  /** @nullable */
+  StripePriceIds?: string | null;
+  TrialPeriodDays?: number;
+} | null;
+
+export interface AccountPaidSubscriptionCreatedWebhookPayload {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  StripeId?: string | null;
+  IsLivemode?: boolean;
+  /**
+   * @minLength 1
+   * @maxLength 250
+   */
+  Name: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  ClientIdentifier?: string | null;
+  /**
+   * @maxLength 3
+   * @nullable
+   */
+  Currency?: string | null;
+  /** @nullable */
+  InvoiceNotes?: string | null;
+  IsDemo?: boolean;
+  /** @nullable */
+  BillingAddress?: AccountPaidSubscriptionCreatedWebhookPayloadBillingAddress;
+  /** @nullable */
+  MailingAddress?: AccountPaidSubscriptionCreatedWebhookPayloadMailingAddress;
+  /** `2` - Trialing, `3` - Subscribing, `4` - Cancelling, `5` - Expired, `6` - Trial Expired, `7` - Past Due, `8` - Cancelling Trial, `9` - Paused, `10` - Created */
+  AccountStage?: AccountPaidSubscriptionCreatedWebhookPayloadAccountStage;
+  /** @nullable */
+  PaymentInformation?: AccountPaidSubscriptionCreatedWebhookPayloadPaymentInformation;
+  /** @nullable */
+  PersonAccount?: AccountPaidSubscriptionCreatedWebhookPayloadPersonAccountItem[] | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  StripeDefaultPaymentMethodId?: string | null;
+  /** @nullable */
+  StripeInvoices?: AccountPaidSubscriptionCreatedWebhookPayloadStripeInvoicesItem[] | null;
+  /** @nullable */
+  StripePaymentMethods?: AccountPaidSubscriptionCreatedWebhookPayloadStripePaymentMethodsItem[] | null;
+  /** @nullable */
+  StripeSubscriptions?: AccountPaidSubscriptionCreatedWebhookPayloadStripeSubscriptionsItem[] | null;
+  /** @nullable */
+  Subscriptions?: AccountPaidSubscriptionCreatedWebhookPayloadSubscriptionsItem[] | null;
+  /** @nullable */
+  Deals?: AccountPaidSubscriptionCreatedWebhookPayloadDealsItem[] | null;
+  /** @nullable */
+  LastLoginDateTime?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl1?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl2?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl3?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl4?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl5?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl6?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl7?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl8?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl9?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl10?: string | null;
+  /** @nullable */
+  RewardFulReferralId?: string | null;
+  /**
+   * @maxLength 36
+   * @nullable
+   */
+  ToltReferralId?: string | null;
+  /** @nullable */
+  TaxIds?: AccountPaidSubscriptionCreatedWebhookPayloadTaxIdsItem[] | null;
+  /**
+   * @maxLength 20
+   * @nullable
+   */
+  TaxStatus?: string | null;
+  /** @nullable */
+  AccountStageLabel?: string | null;
+  /** @nullable */
+  CurrentStripeProducts?: string | null;
+  /** @nullable */
+  CurrentSubscription?: AccountPaidSubscriptionCreatedWebhookPayloadCurrentSubscription;
+  /** @nullable */
+  DomainName?: string | null;
+  HasLoggedIn?: boolean;
+  /** @nullable */
+  LatestSubscription?: AccountPaidSubscriptionCreatedWebhookPayloadLatestSubscription;
+  LifetimeRevenue?: number;
+  /** @nullable */
+  NextStripeInvoiceDate?: string | null;
+  /** @nullable */
+  Nonce?: string | null;
+  /** @nullable */
+  PrimaryContact?: AccountPaidSubscriptionCreatedWebhookPayloadPrimaryContact;
+  /** @nullable */
+  PrimarySubscription?: AccountPaidSubscriptionCreatedWebhookPayloadPrimarySubscription;
+  /** @nullable */
+  PrimaryStripeSubscription?: AccountPaidSubscriptionCreatedWebhookPayloadPrimaryStripeSubscription;
+  /** @nullable */
+  RecaptchaToken?: string | null;
+  /** @nullable */
+  StripeNextInvoiceSequence?: number | null;
+  /** @nullable */
+  StripePrice?: string[] | null;
+  /** @nullable */
+  StripePromotionCode?: string | null;
+  /** @nullable */
+  TaxId?: string | null;
+  TaxIdIsInvalid?: boolean;
+  /** @nullable */
+  TaxIdType?: string | null;
+  /** @nullable */
+  WebflowSlug?: string | null;
+  ActivityEventData?: AccountPaidSubscriptionCreatedActivityData;
+}
+
+export interface AccountPrimaryPersonUpdatedActivityData {
+  /** @nullable */
+  PreviousPrimaryPersonEmail?: string | null;
+  /** @nullable */
+  CurrentPrimaryPersonEmail?: string | null;
+}
+
+/**
+ * @nullable
+ */
+export type AccountPrimaryPersonUpdatedWebhookPayloadBillingAddress = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine1?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine2?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine3?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  City?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  State?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PostalCode?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Country?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  GeoLocation?: string | null;
+} | null;
+
+/**
+ * @nullable
+ */
+export type AccountPrimaryPersonUpdatedWebhookPayloadMailingAddress = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine1?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine2?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine3?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  City?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  State?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PostalCode?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Country?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  GeoLocation?: string | null;
+} | null;
+
+/**
+ * `2` - Trialing, `3` - Subscribing, `4` - Cancelling, `5` - Expired, `6` - Trial Expired, `7` - Past Due, `8` - Cancelling Trial, `9` - Paused, `10` - Created
+ */
+export type AccountPrimaryPersonUpdatedWebhookPayloadAccountStage = typeof AccountPrimaryPersonUpdatedWebhookPayloadAccountStage[keyof typeof AccountPrimaryPersonUpdatedWebhookPayloadAccountStage];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountPrimaryPersonUpdatedWebhookPayloadAccountStage = {
+  Trialing: 2,
+  Subscribing: 3,
+  Cancelling: 4,
+  Expired: 5,
+  TrialExpired: 6,
+  PastDue: 7,
+  CancellingTrial: 8,
+  Paused: 9,
+  Created: 10,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountPrimaryPersonUpdatedWebhookPayloadPaymentInformation = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  CustomerToken?: string | null;
+  /** @nullable */
+  LastFourDigits?: string | null;
+  /** @nullable */
+  LatestFailureDateTime?: string | null;
+  /** @nullable */
+  LatestFailureDescription?: string | null;
+  /** @nullable */
+  LatestSuccessDateTime?: string | null;
+  NumberOfFailures?: number;
+  /** @nullable */
+  PaymentClientSecret?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  PaymentMethodType?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PaymentToken?: string | null;
+  /**
+   * @maxLength 100
+   * @nullable
+   */
+  BankName?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  BankAccountType?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  BankAccountHolderType?: string | null;
+  /** @nullable */
+  NameOnCard?: string | null;
+  /** @nullable */
+  CardType?: string | null;
+  /** @nullable */
+  ExpirationMonth?: string | null;
+  /** @nullable */
+  ExpirationYear?: string | null;
+  /** @nullable */
+  Mode?: string | null;
+  /** @nullable */
+  OneTimeToken?: string | null;
+  /** @nullable */
+  RecaptchaToken?: string | null;
+  /** @nullable */
+  SetupIntent?: string | null;
+} | null;
+
+/**
+ * `0` - None, `1` - Gmail
+ */
+export type AccountPrimaryPersonUpdatedWebhookPayloadPersonAccountItemPersonOAuthIntegrationStatus = typeof AccountPrimaryPersonUpdatedWebhookPayloadPersonAccountItemPersonOAuthIntegrationStatus[keyof typeof AccountPrimaryPersonUpdatedWebhookPayloadPersonAccountItemPersonOAuthIntegrationStatus];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountPrimaryPersonUpdatedWebhookPayloadPersonAccountItemPersonOAuthIntegrationStatus = {
+  None: 0,
+  Gmail: 1,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountPrimaryPersonUpdatedWebhookPayloadPersonAccountItemPerson = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Email?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  FirstName?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  LastName?: string | null;
+  /** @nullable */
+  PasswordLastUpdated?: string | null;
+  PasswordMustChange?: boolean;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PhoneMobile?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PhoneWork?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  ProfileImageS3Url?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Title?: string | null;
+  /**
+   * @maxLength 100
+   * @nullable
+   */
+  Timezone?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  Language?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  IPAddress?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Referer?: string | null;
+  /**
+   * @maxLength 1000
+   * @nullable
+   */
+  UserAgent?: string | null;
+  /** @nullable */
+  LastLoginDateTime?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  OAuthGoogleProfileId?: string | null;
+  /** @nullable */
+  AccountUids?: string | null;
+  /** @nullable */
+  FullName?: string | null;
+  HasLoggedIn?: boolean;
+  /** `0` - None, `1` - Gmail */
+  OAuthIntegrationStatus?: AccountPrimaryPersonUpdatedWebhookPayloadPersonAccountItemPersonOAuthIntegrationStatus;
+  OptInToEmailList?: boolean;
+  /** @nullable */
+  Password?: string | null;
+  /** @nullable */
+  UserAgentPlatformBrowser?: string | null;
+  HasUnsubscribed?: boolean;
+  IsConnectedToDiscord?: boolean;
+} | null;
+
+export type AccountPrimaryPersonUpdatedWebhookPayloadPersonAccountItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** @nullable */
+  Person?: AccountPrimaryPersonUpdatedWebhookPayloadPersonAccountItemPerson;
+  IsPrimary?: boolean;
+  ReceiveInvoices?: boolean;
+};
+
+export type AccountPrimaryPersonUpdatedWebhookPayloadStripeInvoicesItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  StripeId?: string | null;
+  IsLivemode?: boolean;
+  AmountDue?: number;
+  AmountPaid?: number;
+  AmountShipping?: number;
+  AttemptCount?: number;
+  Attempted?: boolean;
+  /**
+   * @maxLength 3
+   * @nullable
+   */
+  Currency?: string | null;
+  /** @nullable */
+  Description?: string | null;
+  /** @nullable */
+  FinalizedAt?: string | null;
+  /**
+   * @maxLength 500
+   * @nullable
+   */
+  HostedInvoiceUrl?: string | null;
+  /**
+   * @maxLength 500
+   * @nullable
+   */
+  InvoicePdf?: string | null;
+  /** @nullable */
+  NextPaymentAttempt?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  Number?: string | null;
+  PeriodEnd?: string;
+  PeriodStart?: string;
+  /**
+   * @maxLength 30
+   * @nullable
+   */
+  Status?: string | null;
+  SubTotal?: number;
+  /** @nullable */
+  SubTotalExcludingTax?: number | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  SubscriptionId?: string | null;
+  /** @nullable */
+  Tax?: number | null;
+  Total?: number;
+  /** @nullable */
+  TotalExcludingTax?: number | null;
+  IsRefunded?: boolean;
+  CurrencyAmountCreditedPostPayment?: number;
+  CurrencyAmountCreditedPrePayment?: number;
+  CurrencyAmountDue?: number;
+  CurrencyAmountPaid?: number;
+  /** @nullable */
+  CurrencySymbol?: string | null;
+  CurrencyTotal?: number;
+  CurrencyTotalExcludingTax?: number;
+  CurrencySubTotal?: number;
+  CurrencySubTotalExcludingTax?: number;
+  CurrencyTax?: number;
+  /** @nullable */
+  DaysUntilDue?: number | null;
+  /** @nullable */
+  CustomerId?: string | null;
+  /** @nullable */
+  PaymentStatus?: string | null;
+  /** @nullable */
+  StripePaymentMethodId?: string | null;
+};
+
+export type AccountPrimaryPersonUpdatedWebhookPayloadStripePaymentMethodsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  StripeId?: string | null;
+  IsLivemode?: boolean;
+  /** @nullable */
+  Card_Brand?: string | null;
+  /** @nullable */
+  Card_ExpMonth?: number | null;
+  /** @nullable */
+  Card_ExpYear?: number | null;
+  /** @nullable */
+  Card_Wallet_Type?: string | null;
+  /** @nullable */
+  BankName?: string | null;
+  /** @nullable */
+  Last4?: string | null;
+  /** @nullable */
+  Type?: string | null;
+  /** @nullable */
+  Label?: string | null;
+};
+
+export type AccountPrimaryPersonUpdatedWebhookPayloadStripeSubscriptionsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  StripeId?: string | null;
+  IsLivemode?: boolean;
+  /** @nullable */
+  CancelAt?: string | null;
+  CancelAtPeriodEnd?: boolean;
+  /**
+   * @maxLength 3
+   * @nullable
+   */
+  Currency?: string | null;
+  /** @nullable */
+  EndedAt?: string | null;
+  /**
+   * @maxLength 30
+   * @nullable
+   */
+  PauseCollection_Behavior?: string | null;
+  /** @nullable */
+  PauseCollection_ResumesAt?: string | null;
+  StartDate?: string;
+  /**
+   * @maxLength 30
+   * @nullable
+   */
+  Status?: string | null;
+  /** @nullable */
+  TrialEnd?: string | null;
+  /** @nullable */
+  AccountUid?: string | null;
+  /** @nullable */
+  BillingCycleAnchor?: string | null;
+  /** @nullable */
+  CollectionMethod?: string | null;
+  /** @nullable */
+  CustomerId?: string | null;
+  /** @nullable */
+  DaysUntilDue?: number | null;
+  /** @nullable */
+  ScheduleId?: string | null;
+  /** @nullable */
+  StripeDiscountIds?: string[] | null;
+  /** @nullable */
+  StripePriceIds?: string | null;
+  TrialPeriodDays?: number;
+};
+
+/**
+ * `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time
+ */
+export type AccountPrimaryPersonUpdatedWebhookPayloadSubscriptionsItemBillingRenewalTerm = typeof AccountPrimaryPersonUpdatedWebhookPayloadSubscriptionsItemBillingRenewalTerm[keyof typeof AccountPrimaryPersonUpdatedWebhookPayloadSubscriptionsItemBillingRenewalTerm];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountPrimaryPersonUpdatedWebhookPayloadSubscriptionsItemBillingRenewalTerm = {
+  Monthly: 1,
+  Yearly: 2,
+  Quarterly: 3,
+  OneTime: 4,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountPrimaryPersonUpdatedWebhookPayloadSubscriptionsItemPlanPlanFamily = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  IsActive?: boolean;
+  IsDefault?: boolean;
+} | null;
+
+/**
+ * `1` - Individual, `2` - Team
+ */
+export type AccountPrimaryPersonUpdatedWebhookPayloadSubscriptionsItemPlanAccountRegistrationMode = typeof AccountPrimaryPersonUpdatedWebhookPayloadSubscriptionsItemPlanAccountRegistrationMode[keyof typeof AccountPrimaryPersonUpdatedWebhookPayloadSubscriptionsItemPlanAccountRegistrationMode];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountPrimaryPersonUpdatedWebhookPayloadSubscriptionsItemPlanAccountRegistrationMode = {
+  Individual: 1,
+  Team: 2,
+} as const;
+
+export type AccountPrimaryPersonUpdatedWebhookPayloadSubscriptionsItemPlanPlanAddOnsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  IsUserSelectable: boolean;
+};
+
+export type AccountPrimaryPersonUpdatedWebhookPayloadSubscriptionsItemPlanContentGroupsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @minLength 1
+   * @maxLength 50
+   */
+  Name: string;
+  /**
+   * @maxLength 1024
+   * @nullable
+   */
+  AccessDeniedPath?: string | null;
+};
+
+/**
+ * @nullable
+ */
+export type AccountPrimaryPersonUpdatedWebhookPayloadSubscriptionsItemPlan = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  /** @nullable */
+  Description?: string | null;
+  /** @nullable */
+  PlanFamily?: AccountPrimaryPersonUpdatedWebhookPayloadSubscriptionsItemPlanPlanFamily;
+  /** `1` - Individual, `2` - Team */
+  AccountRegistrationMode?: AccountPrimaryPersonUpdatedWebhookPayloadSubscriptionsItemPlanAccountRegistrationMode;
+  IsQuantityEditable?: boolean;
+  MinimumQuantity?: number;
+  /** @nullable */
+  MaximumPeople?: number | null;
+  MonthlyRate?: number;
+  AnnualRate?: number;
+  QuarterlyRate?: number;
+  OneTimeRate?: number;
+  SetupFee?: number;
+  SkipSetupFeeOnPlanChange?: boolean;
+  IsTaxable?: boolean;
+  IsActive?: boolean;
+  IsPerUser?: boolean;
+  RequirePaymentInformation?: boolean;
+  TrialPeriodDays?: number;
+  /** @nullable */
+  TrialUntilDate?: string | null;
+  ExpiresAfterMonths?: number;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PostLoginPath?: string | null;
+  /**
+   * @maxLength 15
+   * @nullable
+   */
+  StripeTaxCodeId?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  UnitOfMeasure?: string | null;
+  /** @nullable */
+  PlanAddOns?: AccountPrimaryPersonUpdatedWebhookPayloadSubscriptionsItemPlanPlanAddOnsItem[] | null;
+  /** @nullable */
+  ContentGroups?: AccountPrimaryPersonUpdatedWebhookPayloadSubscriptionsItemPlanContentGroupsItem[] | null;
+  /** @nullable */
+  NumberOfSubscriptions?: number | null;
+} | null;
+
+/**
+ * `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time
+ */
+export type AccountPrimaryPersonUpdatedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemBillingRenewalTerm = typeof AccountPrimaryPersonUpdatedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemBillingRenewalTerm[keyof typeof AccountPrimaryPersonUpdatedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemBillingRenewalTerm];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountPrimaryPersonUpdatedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemBillingRenewalTerm = {
+  Monthly: 1,
+  Yearly: 2,
+  Quarterly: 3,
+  OneTime: 4,
+} as const;
+
+/**
+ * `1` - Recurring, `2` - Usage, `3` - OneTime
+ */
+export type AccountPrimaryPersonUpdatedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemAddOnBillingAddOnType = typeof AccountPrimaryPersonUpdatedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemAddOnBillingAddOnType[keyof typeof AccountPrimaryPersonUpdatedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemAddOnBillingAddOnType];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountPrimaryPersonUpdatedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemAddOnBillingAddOnType = {
+  Recurring: 1,
+  Usage: 2,
+  OneTime: 3,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountPrimaryPersonUpdatedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemAddOn = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  /** `1` - Recurring, `2` - Usage, `3` - OneTime */
+  BillingAddOnType?: AccountPrimaryPersonUpdatedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemAddOnBillingAddOnType;
+  IsQuantityEditable?: boolean;
+  MinimumQuantity?: number;
+  MonthlyRate?: number;
+  AnnualRate?: number;
+  SetupFee?: number;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  UnitOfMeasure?: string | null;
+  IsTaxable?: boolean;
+  IsBilledDuringTrial?: boolean;
+  ExpiresAfterMonths?: number;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /**
+   * @maxLength 15
+   * @nullable
+   */
+  StripeTaxCodeId?: string | null;
+  IsPerUser?: boolean;
+  QuarterlyRate?: number;
+  OneTimeRate?: number;
+  SubscriptionCount?: number;
+  Quantity?: number;
+} | null;
+
+export type AccountPrimaryPersonUpdatedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time */
+  BillingRenewalTerm?: AccountPrimaryPersonUpdatedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemBillingRenewalTerm;
+  /** @nullable */
+  AddOn?: AccountPrimaryPersonUpdatedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemAddOn;
+  /** @nullable */
+  Quantity?: number | null;
+  StartDate?: string;
+  /** @nullable */
+  EndDate?: string | null;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /** @nullable */
+  RenewalDate?: string | null;
+  /** @nullable */
+  NewRequiredQuantity?: number | null;
+  /** @nullable */
+  Rate?: number | null;
+};
+
+/**
+ * `1` - Forever, `2` - Once, `3` - Repeating
+ */
+export type AccountPrimaryPersonUpdatedWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItemDiscountCouponDuration = typeof AccountPrimaryPersonUpdatedWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItemDiscountCouponDuration[keyof typeof AccountPrimaryPersonUpdatedWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItemDiscountCouponDuration];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountPrimaryPersonUpdatedWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItemDiscountCouponDuration = {
+  Forever: 1,
+  Once: 2,
+  Repeating: 3,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountPrimaryPersonUpdatedWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItemDiscountCoupon = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /** @nullable */
+  UniqueIdentifier?: string | null;
+  /** @nullable */
+  Name?: string | null;
+  IsActive?: boolean;
+  /** @nullable */
+  AmountOff?: number | null;
+  /** @nullable */
+  PercentOff?: number | null;
+  /** @nullable */
+  RedeemBy?: string | null;
+  /** `1` - Forever, `2` - Once, `3` - Repeating */
+  Duration?: AccountPrimaryPersonUpdatedWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItemDiscountCouponDuration;
+  /** @nullable */
+  DurationInMonths?: number | null;
+  TimesRedeemed?: number;
+  /** @nullable */
+  MaxRedemptions?: number | null;
+  ApplyToAddOns?: boolean;
+  /** @nullable */
+  PlanUids?: string | null;
+} | null;
+
+export type AccountPrimaryPersonUpdatedWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** @nullable */
+  RedeemedDate?: string | null;
+  /** @nullable */
+  ExpireDate?: string | null;
+  /** @nullable */
+  DiscountCoupon?: AccountPrimaryPersonUpdatedWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItemDiscountCoupon;
+};
+
+/**
+ * `1` - Unpaid, `2` - Paid, `3` - Partial, `4` - Uncollected, `5` - Refunded, `6` - Uncollectible, `7` - Processing
+ */
+export type AccountPrimaryPersonUpdatedWebhookPayloadSubscriptionsItemLatestInvoiceBillingInvoiceStatus = typeof AccountPrimaryPersonUpdatedWebhookPayloadSubscriptionsItemLatestInvoiceBillingInvoiceStatus[keyof typeof AccountPrimaryPersonUpdatedWebhookPayloadSubscriptionsItemLatestInvoiceBillingInvoiceStatus];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountPrimaryPersonUpdatedWebhookPayloadSubscriptionsItemLatestInvoiceBillingInvoiceStatus = {
+  Unpaid: 1,
+  Paid: 2,
+  Partial: 3,
+  Uncollected: 4,
+  Refunded: 5,
+  Uncollectible: 6,
+  Processing: 7,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountPrimaryPersonUpdatedWebhookPayloadSubscriptionsItemLatestInvoice = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  InvoiceDate?: string;
+  /** @nullable */
+  PaymentReminderSentDate?: string | null;
+  Number?: number;
+  /** `1` - Unpaid, `2` - Paid, `3` - Partial, `4` - Uncollected, `5` - Refunded, `6` - Uncollectible, `7` - Processing */
+  BillingInvoiceStatus?: AccountPrimaryPersonUpdatedWebhookPayloadSubscriptionsItemLatestInvoiceBillingInvoiceStatus;
+  Amount?: number;
+  AmountOutstanding?: number;
+  IsUserGenerated?: boolean;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  StripeTaxCalculationId?: string | null;
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  StripeTaxBehavior?: string | null;
+  AmountCredit?: number;
+  AmountDiscount?: number;
+  AmountPaid?: number;
+  AmountRefunded?: number;
+  AmountSubtotal?: number;
+  AmountTax?: number;
+  AmountTaxRefunded?: number;
+  IsTaxable?: boolean;
+  HasPaymentGatewayTransactions?: boolean;
+  /** @nullable */
+  StripePaymentTransactionIds?: string | null;
+  /** @nullable */
+  StripeRefundTransactionIds?: string | null;
+  /** @nullable */
+  StripeTaxRefundTransactionIds?: string | null;
+} | null;
+
+export type AccountPrimaryPersonUpdatedWebhookPayloadSubscriptionsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time */
+  BillingRenewalTerm?: AccountPrimaryPersonUpdatedWebhookPayloadSubscriptionsItemBillingRenewalTerm;
+  /** @nullable */
+  Plan?: AccountPrimaryPersonUpdatedWebhookPayloadSubscriptionsItemPlan;
+  /** @nullable */
+  Quantity?: number | null;
+  StartDate?: string;
+  /** @nullable */
+  EndDate?: string | null;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /** @nullable */
+  RenewalDate?: string | null;
+  /** @nullable */
+  NewRequiredQuantity?: number | null;
+  IsPlanUpgradeRequired?: boolean;
+  /** @nullable */
+  PlanUpgradeRequiredMessage?: string | null;
+  /** @nullable */
+  SubscriptionAddOns?: AccountPrimaryPersonUpdatedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItem[] | null;
+  /** @nullable */
+  DiscountCouponSubscriptions?: AccountPrimaryPersonUpdatedWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItem[] | null;
+  /** @nullable */
+  DiscountCode?: string | null;
+  /** @nullable */
+  DiscountCouponExpirationDate?: string | null;
+  /** @nullable */
+  LatestInvoice?: AccountPrimaryPersonUpdatedWebhookPayloadSubscriptionsItemLatestInvoice;
+  /** @nullable */
+  Rate?: number | null;
+};
+
+export type AccountPrimaryPersonUpdatedWebhookPayloadDealsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @minLength 1
+   * @maxLength 250
+   */
+  Name: string;
+  /** @nullable */
+  Amount?: number | null;
+  /** @nullable */
+  DueDate?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  AssignedToPersonClientIdentifier?: string | null;
+  Weight?: number;
+  /** @nullable */
+  Contacts?: string | null;
+  AccountId?: number;
+  /** @nullable */
+  PipelineUid?: string | null;
+};
+
+export type AccountPrimaryPersonUpdatedWebhookPayloadTaxIdsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  StripeId?: string | null;
+  IsLivemode?: boolean;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  TaxId?: string | null;
+  /**
+   * @maxLength 20
+   * @nullable
+   */
+  TaxIdType?: string | null;
+  IsInvalid?: boolean;
+};
+
+/**
+ * `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time
+ */
+export type AccountPrimaryPersonUpdatedWebhookPayloadCurrentSubscriptionBillingRenewalTerm = typeof AccountPrimaryPersonUpdatedWebhookPayloadCurrentSubscriptionBillingRenewalTerm[keyof typeof AccountPrimaryPersonUpdatedWebhookPayloadCurrentSubscriptionBillingRenewalTerm];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountPrimaryPersonUpdatedWebhookPayloadCurrentSubscriptionBillingRenewalTerm = {
+  Monthly: 1,
+  Yearly: 2,
+  Quarterly: 3,
+  OneTime: 4,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountPrimaryPersonUpdatedWebhookPayloadCurrentSubscriptionPlanPlanFamily = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  IsActive?: boolean;
+  IsDefault?: boolean;
+} | null;
+
+/**
+ * `1` - Individual, `2` - Team
+ */
+export type AccountPrimaryPersonUpdatedWebhookPayloadCurrentSubscriptionPlanAccountRegistrationMode = typeof AccountPrimaryPersonUpdatedWebhookPayloadCurrentSubscriptionPlanAccountRegistrationMode[keyof typeof AccountPrimaryPersonUpdatedWebhookPayloadCurrentSubscriptionPlanAccountRegistrationMode];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountPrimaryPersonUpdatedWebhookPayloadCurrentSubscriptionPlanAccountRegistrationMode = {
+  Individual: 1,
+  Team: 2,
+} as const;
+
+export type AccountPrimaryPersonUpdatedWebhookPayloadCurrentSubscriptionPlanPlanAddOnsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  IsUserSelectable: boolean;
+};
+
+export type AccountPrimaryPersonUpdatedWebhookPayloadCurrentSubscriptionPlanContentGroupsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @minLength 1
+   * @maxLength 50
+   */
+  Name: string;
+  /**
+   * @maxLength 1024
+   * @nullable
+   */
+  AccessDeniedPath?: string | null;
+};
+
+/**
+ * @nullable
+ */
+export type AccountPrimaryPersonUpdatedWebhookPayloadCurrentSubscriptionPlan = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  /** @nullable */
+  Description?: string | null;
+  /** @nullable */
+  PlanFamily?: AccountPrimaryPersonUpdatedWebhookPayloadCurrentSubscriptionPlanPlanFamily;
+  /** `1` - Individual, `2` - Team */
+  AccountRegistrationMode?: AccountPrimaryPersonUpdatedWebhookPayloadCurrentSubscriptionPlanAccountRegistrationMode;
+  IsQuantityEditable?: boolean;
+  MinimumQuantity?: number;
+  /** @nullable */
+  MaximumPeople?: number | null;
+  MonthlyRate?: number;
+  AnnualRate?: number;
+  QuarterlyRate?: number;
+  OneTimeRate?: number;
+  SetupFee?: number;
+  SkipSetupFeeOnPlanChange?: boolean;
+  IsTaxable?: boolean;
+  IsActive?: boolean;
+  IsPerUser?: boolean;
+  RequirePaymentInformation?: boolean;
+  TrialPeriodDays?: number;
+  /** @nullable */
+  TrialUntilDate?: string | null;
+  ExpiresAfterMonths?: number;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PostLoginPath?: string | null;
+  /**
+   * @maxLength 15
+   * @nullable
+   */
+  StripeTaxCodeId?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  UnitOfMeasure?: string | null;
+  /** @nullable */
+  PlanAddOns?: AccountPrimaryPersonUpdatedWebhookPayloadCurrentSubscriptionPlanPlanAddOnsItem[] | null;
+  /** @nullable */
+  ContentGroups?: AccountPrimaryPersonUpdatedWebhookPayloadCurrentSubscriptionPlanContentGroupsItem[] | null;
+  /** @nullable */
+  NumberOfSubscriptions?: number | null;
+} | null;
+
+/**
+ * `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time
+ */
+export type AccountPrimaryPersonUpdatedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemBillingRenewalTerm = typeof AccountPrimaryPersonUpdatedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemBillingRenewalTerm[keyof typeof AccountPrimaryPersonUpdatedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemBillingRenewalTerm];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountPrimaryPersonUpdatedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemBillingRenewalTerm = {
+  Monthly: 1,
+  Yearly: 2,
+  Quarterly: 3,
+  OneTime: 4,
+} as const;
+
+/**
+ * `1` - Recurring, `2` - Usage, `3` - OneTime
+ */
+export type AccountPrimaryPersonUpdatedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType = typeof AccountPrimaryPersonUpdatedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType[keyof typeof AccountPrimaryPersonUpdatedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountPrimaryPersonUpdatedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType = {
+  Recurring: 1,
+  Usage: 2,
+  OneTime: 3,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountPrimaryPersonUpdatedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemAddOn = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  /** `1` - Recurring, `2` - Usage, `3` - OneTime */
+  BillingAddOnType?: AccountPrimaryPersonUpdatedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType;
+  IsQuantityEditable?: boolean;
+  MinimumQuantity?: number;
+  MonthlyRate?: number;
+  AnnualRate?: number;
+  SetupFee?: number;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  UnitOfMeasure?: string | null;
+  IsTaxable?: boolean;
+  IsBilledDuringTrial?: boolean;
+  ExpiresAfterMonths?: number;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /**
+   * @maxLength 15
+   * @nullable
+   */
+  StripeTaxCodeId?: string | null;
+  IsPerUser?: boolean;
+  QuarterlyRate?: number;
+  OneTimeRate?: number;
+  SubscriptionCount?: number;
+  Quantity?: number;
+} | null;
+
+export type AccountPrimaryPersonUpdatedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time */
+  BillingRenewalTerm?: AccountPrimaryPersonUpdatedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemBillingRenewalTerm;
+  /** @nullable */
+  AddOn?: AccountPrimaryPersonUpdatedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemAddOn;
+  /** @nullable */
+  Quantity?: number | null;
+  StartDate?: string;
+  /** @nullable */
+  EndDate?: string | null;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /** @nullable */
+  RenewalDate?: string | null;
+  /** @nullable */
+  NewRequiredQuantity?: number | null;
+  /** @nullable */
+  Rate?: number | null;
+};
+
+/**
+ * `1` - Forever, `2` - Once, `3` - Repeating
+ */
+export type AccountPrimaryPersonUpdatedWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration = typeof AccountPrimaryPersonUpdatedWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration[keyof typeof AccountPrimaryPersonUpdatedWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountPrimaryPersonUpdatedWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration = {
+  Forever: 1,
+  Once: 2,
+  Repeating: 3,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountPrimaryPersonUpdatedWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItemDiscountCoupon = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /** @nullable */
+  UniqueIdentifier?: string | null;
+  /** @nullable */
+  Name?: string | null;
+  IsActive?: boolean;
+  /** @nullable */
+  AmountOff?: number | null;
+  /** @nullable */
+  PercentOff?: number | null;
+  /** @nullable */
+  RedeemBy?: string | null;
+  /** `1` - Forever, `2` - Once, `3` - Repeating */
+  Duration?: AccountPrimaryPersonUpdatedWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration;
+  /** @nullable */
+  DurationInMonths?: number | null;
+  TimesRedeemed?: number;
+  /** @nullable */
+  MaxRedemptions?: number | null;
+  ApplyToAddOns?: boolean;
+  /** @nullable */
+  PlanUids?: string | null;
+} | null;
+
+export type AccountPrimaryPersonUpdatedWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** @nullable */
+  RedeemedDate?: string | null;
+  /** @nullable */
+  ExpireDate?: string | null;
+  /** @nullable */
+  DiscountCoupon?: AccountPrimaryPersonUpdatedWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItemDiscountCoupon;
+};
+
+/**
+ * `1` - Unpaid, `2` - Paid, `3` - Partial, `4` - Uncollected, `5` - Refunded, `6` - Uncollectible, `7` - Processing
+ */
+export type AccountPrimaryPersonUpdatedWebhookPayloadCurrentSubscriptionLatestInvoiceBillingInvoiceStatus = typeof AccountPrimaryPersonUpdatedWebhookPayloadCurrentSubscriptionLatestInvoiceBillingInvoiceStatus[keyof typeof AccountPrimaryPersonUpdatedWebhookPayloadCurrentSubscriptionLatestInvoiceBillingInvoiceStatus];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountPrimaryPersonUpdatedWebhookPayloadCurrentSubscriptionLatestInvoiceBillingInvoiceStatus = {
+  Unpaid: 1,
+  Paid: 2,
+  Partial: 3,
+  Uncollected: 4,
+  Refunded: 5,
+  Uncollectible: 6,
+  Processing: 7,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountPrimaryPersonUpdatedWebhookPayloadCurrentSubscriptionLatestInvoice = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  InvoiceDate?: string;
+  /** @nullable */
+  PaymentReminderSentDate?: string | null;
+  Number?: number;
+  /** `1` - Unpaid, `2` - Paid, `3` - Partial, `4` - Uncollected, `5` - Refunded, `6` - Uncollectible, `7` - Processing */
+  BillingInvoiceStatus?: AccountPrimaryPersonUpdatedWebhookPayloadCurrentSubscriptionLatestInvoiceBillingInvoiceStatus;
+  Amount?: number;
+  AmountOutstanding?: number;
+  IsUserGenerated?: boolean;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  StripeTaxCalculationId?: string | null;
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  StripeTaxBehavior?: string | null;
+  AmountCredit?: number;
+  AmountDiscount?: number;
+  AmountPaid?: number;
+  AmountRefunded?: number;
+  AmountSubtotal?: number;
+  AmountTax?: number;
+  AmountTaxRefunded?: number;
+  IsTaxable?: boolean;
+  HasPaymentGatewayTransactions?: boolean;
+  /** @nullable */
+  StripePaymentTransactionIds?: string | null;
+  /** @nullable */
+  StripeRefundTransactionIds?: string | null;
+  /** @nullable */
+  StripeTaxRefundTransactionIds?: string | null;
+} | null;
+
+/**
+ * @nullable
+ */
+export type AccountPrimaryPersonUpdatedWebhookPayloadCurrentSubscription = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /** `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time */
+  BillingRenewalTerm?: AccountPrimaryPersonUpdatedWebhookPayloadCurrentSubscriptionBillingRenewalTerm;
+  /** @nullable */
+  Plan?: AccountPrimaryPersonUpdatedWebhookPayloadCurrentSubscriptionPlan;
+  /** @nullable */
+  Quantity?: number | null;
+  StartDate?: string;
+  /** @nullable */
+  EndDate?: string | null;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /** @nullable */
+  RenewalDate?: string | null;
+  /** @nullable */
+  NewRequiredQuantity?: number | null;
+  IsPlanUpgradeRequired?: boolean;
+  /** @nullable */
+  PlanUpgradeRequiredMessage?: string | null;
+  /** @nullable */
+  SubscriptionAddOns?: AccountPrimaryPersonUpdatedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItem[] | null;
+  /** @nullable */
+  DiscountCouponSubscriptions?: AccountPrimaryPersonUpdatedWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItem[] | null;
+  /** @nullable */
+  DiscountCode?: string | null;
+  /** @nullable */
+  DiscountCouponExpirationDate?: string | null;
+  /** @nullable */
+  LatestInvoice?: AccountPrimaryPersonUpdatedWebhookPayloadCurrentSubscriptionLatestInvoice;
+  /** @nullable */
+  Rate?: number | null;
+} | null;
+
+/**
+ * `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time
+ */
+export type AccountPrimaryPersonUpdatedWebhookPayloadLatestSubscriptionBillingRenewalTerm = typeof AccountPrimaryPersonUpdatedWebhookPayloadLatestSubscriptionBillingRenewalTerm[keyof typeof AccountPrimaryPersonUpdatedWebhookPayloadLatestSubscriptionBillingRenewalTerm];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountPrimaryPersonUpdatedWebhookPayloadLatestSubscriptionBillingRenewalTerm = {
+  Monthly: 1,
+  Yearly: 2,
+  Quarterly: 3,
+  OneTime: 4,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountPrimaryPersonUpdatedWebhookPayloadLatestSubscriptionPlanPlanFamily = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  IsActive?: boolean;
+  IsDefault?: boolean;
+} | null;
+
+/**
+ * `1` - Individual, `2` - Team
+ */
+export type AccountPrimaryPersonUpdatedWebhookPayloadLatestSubscriptionPlanAccountRegistrationMode = typeof AccountPrimaryPersonUpdatedWebhookPayloadLatestSubscriptionPlanAccountRegistrationMode[keyof typeof AccountPrimaryPersonUpdatedWebhookPayloadLatestSubscriptionPlanAccountRegistrationMode];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountPrimaryPersonUpdatedWebhookPayloadLatestSubscriptionPlanAccountRegistrationMode = {
+  Individual: 1,
+  Team: 2,
+} as const;
+
+export type AccountPrimaryPersonUpdatedWebhookPayloadLatestSubscriptionPlanPlanAddOnsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  IsUserSelectable: boolean;
+};
+
+export type AccountPrimaryPersonUpdatedWebhookPayloadLatestSubscriptionPlanContentGroupsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @minLength 1
+   * @maxLength 50
+   */
+  Name: string;
+  /**
+   * @maxLength 1024
+   * @nullable
+   */
+  AccessDeniedPath?: string | null;
+};
+
+/**
+ * @nullable
+ */
+export type AccountPrimaryPersonUpdatedWebhookPayloadLatestSubscriptionPlan = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  /** @nullable */
+  Description?: string | null;
+  /** @nullable */
+  PlanFamily?: AccountPrimaryPersonUpdatedWebhookPayloadLatestSubscriptionPlanPlanFamily;
+  /** `1` - Individual, `2` - Team */
+  AccountRegistrationMode?: AccountPrimaryPersonUpdatedWebhookPayloadLatestSubscriptionPlanAccountRegistrationMode;
+  IsQuantityEditable?: boolean;
+  MinimumQuantity?: number;
+  /** @nullable */
+  MaximumPeople?: number | null;
+  MonthlyRate?: number;
+  AnnualRate?: number;
+  QuarterlyRate?: number;
+  OneTimeRate?: number;
+  SetupFee?: number;
+  SkipSetupFeeOnPlanChange?: boolean;
+  IsTaxable?: boolean;
+  IsActive?: boolean;
+  IsPerUser?: boolean;
+  RequirePaymentInformation?: boolean;
+  TrialPeriodDays?: number;
+  /** @nullable */
+  TrialUntilDate?: string | null;
+  ExpiresAfterMonths?: number;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PostLoginPath?: string | null;
+  /**
+   * @maxLength 15
+   * @nullable
+   */
+  StripeTaxCodeId?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  UnitOfMeasure?: string | null;
+  /** @nullable */
+  PlanAddOns?: AccountPrimaryPersonUpdatedWebhookPayloadLatestSubscriptionPlanPlanAddOnsItem[] | null;
+  /** @nullable */
+  ContentGroups?: AccountPrimaryPersonUpdatedWebhookPayloadLatestSubscriptionPlanContentGroupsItem[] | null;
+  /** @nullable */
+  NumberOfSubscriptions?: number | null;
+} | null;
+
+/**
+ * `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time
+ */
+export type AccountPrimaryPersonUpdatedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemBillingRenewalTerm = typeof AccountPrimaryPersonUpdatedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemBillingRenewalTerm[keyof typeof AccountPrimaryPersonUpdatedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemBillingRenewalTerm];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountPrimaryPersonUpdatedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemBillingRenewalTerm = {
+  Monthly: 1,
+  Yearly: 2,
+  Quarterly: 3,
+  OneTime: 4,
+} as const;
+
+/**
+ * `1` - Recurring, `2` - Usage, `3` - OneTime
+ */
+export type AccountPrimaryPersonUpdatedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType = typeof AccountPrimaryPersonUpdatedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType[keyof typeof AccountPrimaryPersonUpdatedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountPrimaryPersonUpdatedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType = {
+  Recurring: 1,
+  Usage: 2,
+  OneTime: 3,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountPrimaryPersonUpdatedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemAddOn = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  /** `1` - Recurring, `2` - Usage, `3` - OneTime */
+  BillingAddOnType?: AccountPrimaryPersonUpdatedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType;
+  IsQuantityEditable?: boolean;
+  MinimumQuantity?: number;
+  MonthlyRate?: number;
+  AnnualRate?: number;
+  SetupFee?: number;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  UnitOfMeasure?: string | null;
+  IsTaxable?: boolean;
+  IsBilledDuringTrial?: boolean;
+  ExpiresAfterMonths?: number;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /**
+   * @maxLength 15
+   * @nullable
+   */
+  StripeTaxCodeId?: string | null;
+  IsPerUser?: boolean;
+  QuarterlyRate?: number;
+  OneTimeRate?: number;
+  SubscriptionCount?: number;
+  Quantity?: number;
+} | null;
+
+export type AccountPrimaryPersonUpdatedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time */
+  BillingRenewalTerm?: AccountPrimaryPersonUpdatedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemBillingRenewalTerm;
+  /** @nullable */
+  AddOn?: AccountPrimaryPersonUpdatedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemAddOn;
+  /** @nullable */
+  Quantity?: number | null;
+  StartDate?: string;
+  /** @nullable */
+  EndDate?: string | null;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /** @nullable */
+  RenewalDate?: string | null;
+  /** @nullable */
+  NewRequiredQuantity?: number | null;
+  /** @nullable */
+  Rate?: number | null;
+};
+
+/**
+ * `1` - Forever, `2` - Once, `3` - Repeating
+ */
+export type AccountPrimaryPersonUpdatedWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration = typeof AccountPrimaryPersonUpdatedWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration[keyof typeof AccountPrimaryPersonUpdatedWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountPrimaryPersonUpdatedWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration = {
+  Forever: 1,
+  Once: 2,
+  Repeating: 3,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountPrimaryPersonUpdatedWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItemDiscountCoupon = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /** @nullable */
+  UniqueIdentifier?: string | null;
+  /** @nullable */
+  Name?: string | null;
+  IsActive?: boolean;
+  /** @nullable */
+  AmountOff?: number | null;
+  /** @nullable */
+  PercentOff?: number | null;
+  /** @nullable */
+  RedeemBy?: string | null;
+  /** `1` - Forever, `2` - Once, `3` - Repeating */
+  Duration?: AccountPrimaryPersonUpdatedWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration;
+  /** @nullable */
+  DurationInMonths?: number | null;
+  TimesRedeemed?: number;
+  /** @nullable */
+  MaxRedemptions?: number | null;
+  ApplyToAddOns?: boolean;
+  /** @nullable */
+  PlanUids?: string | null;
+} | null;
+
+export type AccountPrimaryPersonUpdatedWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** @nullable */
+  RedeemedDate?: string | null;
+  /** @nullable */
+  ExpireDate?: string | null;
+  /** @nullable */
+  DiscountCoupon?: AccountPrimaryPersonUpdatedWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItemDiscountCoupon;
+};
+
+/**
+ * `1` - Unpaid, `2` - Paid, `3` - Partial, `4` - Uncollected, `5` - Refunded, `6` - Uncollectible, `7` - Processing
+ */
+export type AccountPrimaryPersonUpdatedWebhookPayloadLatestSubscriptionLatestInvoiceBillingInvoiceStatus = typeof AccountPrimaryPersonUpdatedWebhookPayloadLatestSubscriptionLatestInvoiceBillingInvoiceStatus[keyof typeof AccountPrimaryPersonUpdatedWebhookPayloadLatestSubscriptionLatestInvoiceBillingInvoiceStatus];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountPrimaryPersonUpdatedWebhookPayloadLatestSubscriptionLatestInvoiceBillingInvoiceStatus = {
+  Unpaid: 1,
+  Paid: 2,
+  Partial: 3,
+  Uncollected: 4,
+  Refunded: 5,
+  Uncollectible: 6,
+  Processing: 7,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountPrimaryPersonUpdatedWebhookPayloadLatestSubscriptionLatestInvoice = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  InvoiceDate?: string;
+  /** @nullable */
+  PaymentReminderSentDate?: string | null;
+  Number?: number;
+  /** `1` - Unpaid, `2` - Paid, `3` - Partial, `4` - Uncollected, `5` - Refunded, `6` - Uncollectible, `7` - Processing */
+  BillingInvoiceStatus?: AccountPrimaryPersonUpdatedWebhookPayloadLatestSubscriptionLatestInvoiceBillingInvoiceStatus;
+  Amount?: number;
+  AmountOutstanding?: number;
+  IsUserGenerated?: boolean;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  StripeTaxCalculationId?: string | null;
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  StripeTaxBehavior?: string | null;
+  AmountCredit?: number;
+  AmountDiscount?: number;
+  AmountPaid?: number;
+  AmountRefunded?: number;
+  AmountSubtotal?: number;
+  AmountTax?: number;
+  AmountTaxRefunded?: number;
+  IsTaxable?: boolean;
+  HasPaymentGatewayTransactions?: boolean;
+  /** @nullable */
+  StripePaymentTransactionIds?: string | null;
+  /** @nullable */
+  StripeRefundTransactionIds?: string | null;
+  /** @nullable */
+  StripeTaxRefundTransactionIds?: string | null;
+} | null;
+
+/**
+ * @nullable
+ */
+export type AccountPrimaryPersonUpdatedWebhookPayloadLatestSubscription = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /** `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time */
+  BillingRenewalTerm?: AccountPrimaryPersonUpdatedWebhookPayloadLatestSubscriptionBillingRenewalTerm;
+  /** @nullable */
+  Plan?: AccountPrimaryPersonUpdatedWebhookPayloadLatestSubscriptionPlan;
+  /** @nullable */
+  Quantity?: number | null;
+  StartDate?: string;
+  /** @nullable */
+  EndDate?: string | null;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /** @nullable */
+  RenewalDate?: string | null;
+  /** @nullable */
+  NewRequiredQuantity?: number | null;
+  IsPlanUpgradeRequired?: boolean;
+  /** @nullable */
+  PlanUpgradeRequiredMessage?: string | null;
+  /** @nullable */
+  SubscriptionAddOns?: AccountPrimaryPersonUpdatedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItem[] | null;
+  /** @nullable */
+  DiscountCouponSubscriptions?: AccountPrimaryPersonUpdatedWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItem[] | null;
+  /** @nullable */
+  DiscountCode?: string | null;
+  /** @nullable */
+  DiscountCouponExpirationDate?: string | null;
+  /** @nullable */
+  LatestInvoice?: AccountPrimaryPersonUpdatedWebhookPayloadLatestSubscriptionLatestInvoice;
+  /** @nullable */
+  Rate?: number | null;
+} | null;
+
+/**
+ * `0` - None, `1` - Gmail
+ */
+export type AccountPrimaryPersonUpdatedWebhookPayloadPrimaryContactOAuthIntegrationStatus = typeof AccountPrimaryPersonUpdatedWebhookPayloadPrimaryContactOAuthIntegrationStatus[keyof typeof AccountPrimaryPersonUpdatedWebhookPayloadPrimaryContactOAuthIntegrationStatus];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountPrimaryPersonUpdatedWebhookPayloadPrimaryContactOAuthIntegrationStatus = {
+  None: 0,
+  Gmail: 1,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountPrimaryPersonUpdatedWebhookPayloadPrimaryContact = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Email?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  FirstName?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  LastName?: string | null;
+  /** @nullable */
+  PasswordLastUpdated?: string | null;
+  PasswordMustChange?: boolean;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PhoneMobile?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PhoneWork?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  ProfileImageS3Url?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Title?: string | null;
+  /**
+   * @maxLength 100
+   * @nullable
+   */
+  Timezone?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  Language?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  IPAddress?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Referer?: string | null;
+  /**
+   * @maxLength 1000
+   * @nullable
+   */
+  UserAgent?: string | null;
+  /** @nullable */
+  LastLoginDateTime?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  OAuthGoogleProfileId?: string | null;
+  /** @nullable */
+  AccountUids?: string | null;
+  /** @nullable */
+  FullName?: string | null;
+  HasLoggedIn?: boolean;
+  /** `0` - None, `1` - Gmail */
+  OAuthIntegrationStatus?: AccountPrimaryPersonUpdatedWebhookPayloadPrimaryContactOAuthIntegrationStatus;
+  OptInToEmailList?: boolean;
+  /** @nullable */
+  Password?: string | null;
+  /** @nullable */
+  UserAgentPlatformBrowser?: string | null;
+  HasUnsubscribed?: boolean;
+  IsConnectedToDiscord?: boolean;
+} | null;
+
+/**
+ * `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time
+ */
+export type AccountPrimaryPersonUpdatedWebhookPayloadPrimarySubscriptionBillingRenewalTerm = typeof AccountPrimaryPersonUpdatedWebhookPayloadPrimarySubscriptionBillingRenewalTerm[keyof typeof AccountPrimaryPersonUpdatedWebhookPayloadPrimarySubscriptionBillingRenewalTerm];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountPrimaryPersonUpdatedWebhookPayloadPrimarySubscriptionBillingRenewalTerm = {
+  Monthly: 1,
+  Yearly: 2,
+  Quarterly: 3,
+  OneTime: 4,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountPrimaryPersonUpdatedWebhookPayloadPrimarySubscription = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /** `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time */
+  BillingRenewalTerm?: AccountPrimaryPersonUpdatedWebhookPayloadPrimarySubscriptionBillingRenewalTerm;
+  /** @nullable */
+  Quantity?: number | null;
+  StartDate?: string;
+  /** @nullable */
+  EndDate?: string | null;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /** @nullable */
+  RenewalDate?: string | null;
+  /** @nullable */
+  NewRequiredQuantity?: number | null;
+  IsPlanUpgradeRequired?: boolean;
+  /** @nullable */
+  PlanUpgradeRequiredMessage?: string | null;
+  /** @nullable */
+  DiscountCode?: string | null;
+  /** @nullable */
+  DiscountCouponExpirationDate?: string | null;
+  /** @nullable */
+  Rate?: number | null;
+} | null;
+
+/**
+ * @nullable
+ */
+export type AccountPrimaryPersonUpdatedWebhookPayloadPrimaryStripeSubscription = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  StripeId?: string | null;
+  IsLivemode?: boolean;
+  /** @nullable */
+  CancelAt?: string | null;
+  CancelAtPeriodEnd?: boolean;
+  /**
+   * @maxLength 3
+   * @nullable
+   */
+  Currency?: string | null;
+  /** @nullable */
+  EndedAt?: string | null;
+  /**
+   * @maxLength 30
+   * @nullable
+   */
+  PauseCollection_Behavior?: string | null;
+  /** @nullable */
+  PauseCollection_ResumesAt?: string | null;
+  StartDate?: string;
+  /**
+   * @maxLength 30
+   * @nullable
+   */
+  Status?: string | null;
+  /** @nullable */
+  TrialEnd?: string | null;
+  /** @nullable */
+  AccountUid?: string | null;
+  /** @nullable */
+  BillingCycleAnchor?: string | null;
+  /** @nullable */
+  CollectionMethod?: string | null;
+  /** @nullable */
+  CustomerId?: string | null;
+  /** @nullable */
+  DaysUntilDue?: number | null;
+  /** @nullable */
+  ScheduleId?: string | null;
+  /** @nullable */
+  StripeDiscountIds?: string[] | null;
+  /** @nullable */
+  StripePriceIds?: string | null;
+  TrialPeriodDays?: number;
+} | null;
+
+export interface AccountPrimaryPersonUpdatedWebhookPayload {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  StripeId?: string | null;
+  IsLivemode?: boolean;
+  /**
+   * @minLength 1
+   * @maxLength 250
+   */
+  Name: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  ClientIdentifier?: string | null;
+  /**
+   * @maxLength 3
+   * @nullable
+   */
+  Currency?: string | null;
+  /** @nullable */
+  InvoiceNotes?: string | null;
+  IsDemo?: boolean;
+  /** @nullable */
+  BillingAddress?: AccountPrimaryPersonUpdatedWebhookPayloadBillingAddress;
+  /** @nullable */
+  MailingAddress?: AccountPrimaryPersonUpdatedWebhookPayloadMailingAddress;
+  /** `2` - Trialing, `3` - Subscribing, `4` - Cancelling, `5` - Expired, `6` - Trial Expired, `7` - Past Due, `8` - Cancelling Trial, `9` - Paused, `10` - Created */
+  AccountStage?: AccountPrimaryPersonUpdatedWebhookPayloadAccountStage;
+  /** @nullable */
+  PaymentInformation?: AccountPrimaryPersonUpdatedWebhookPayloadPaymentInformation;
+  /** @nullable */
+  PersonAccount?: AccountPrimaryPersonUpdatedWebhookPayloadPersonAccountItem[] | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  StripeDefaultPaymentMethodId?: string | null;
+  /** @nullable */
+  StripeInvoices?: AccountPrimaryPersonUpdatedWebhookPayloadStripeInvoicesItem[] | null;
+  /** @nullable */
+  StripePaymentMethods?: AccountPrimaryPersonUpdatedWebhookPayloadStripePaymentMethodsItem[] | null;
+  /** @nullable */
+  StripeSubscriptions?: AccountPrimaryPersonUpdatedWebhookPayloadStripeSubscriptionsItem[] | null;
+  /** @nullable */
+  Subscriptions?: AccountPrimaryPersonUpdatedWebhookPayloadSubscriptionsItem[] | null;
+  /** @nullable */
+  Deals?: AccountPrimaryPersonUpdatedWebhookPayloadDealsItem[] | null;
+  /** @nullable */
+  LastLoginDateTime?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl1?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl2?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl3?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl4?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl5?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl6?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl7?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl8?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl9?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl10?: string | null;
+  /** @nullable */
+  RewardFulReferralId?: string | null;
+  /**
+   * @maxLength 36
+   * @nullable
+   */
+  ToltReferralId?: string | null;
+  /** @nullable */
+  TaxIds?: AccountPrimaryPersonUpdatedWebhookPayloadTaxIdsItem[] | null;
+  /**
+   * @maxLength 20
+   * @nullable
+   */
+  TaxStatus?: string | null;
+  /** @nullable */
+  AccountStageLabel?: string | null;
+  /** @nullable */
+  CurrentStripeProducts?: string | null;
+  /** @nullable */
+  CurrentSubscription?: AccountPrimaryPersonUpdatedWebhookPayloadCurrentSubscription;
+  /** @nullable */
+  DomainName?: string | null;
+  HasLoggedIn?: boolean;
+  /** @nullable */
+  LatestSubscription?: AccountPrimaryPersonUpdatedWebhookPayloadLatestSubscription;
+  LifetimeRevenue?: number;
+  /** @nullable */
+  NextStripeInvoiceDate?: string | null;
+  /** @nullable */
+  Nonce?: string | null;
+  /** @nullable */
+  PrimaryContact?: AccountPrimaryPersonUpdatedWebhookPayloadPrimaryContact;
+  /** @nullable */
+  PrimarySubscription?: AccountPrimaryPersonUpdatedWebhookPayloadPrimarySubscription;
+  /** @nullable */
+  PrimaryStripeSubscription?: AccountPrimaryPersonUpdatedWebhookPayloadPrimaryStripeSubscription;
+  /** @nullable */
+  RecaptchaToken?: string | null;
+  /** @nullable */
+  StripeNextInvoiceSequence?: number | null;
+  /** @nullable */
+  StripePrice?: string[] | null;
+  /** @nullable */
+  StripePromotionCode?: string | null;
+  /** @nullable */
+  TaxId?: string | null;
+  TaxIdIsInvalid?: boolean;
+  /** @nullable */
+  TaxIdType?: string | null;
+  /** @nullable */
+  WebflowSlug?: string | null;
+  ActivityEventData?: AccountPrimaryPersonUpdatedActivityData;
+}
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionStartedActivityDataSubscription = unknown | null;
+
+export interface AccountSubscriptionStartedActivityData {
+  /** @nullable */
+  Subscription?: AccountSubscriptionStartedActivityDataSubscription;
+  /** @nullable */
+  CurrentPrincipal?: string | null;
+  /** @nullable */
+  SubscriptionUid?: string | null;
+}
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionStartedWebhookPayloadBillingAddress = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine1?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine2?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine3?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  City?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  State?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PostalCode?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Country?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  GeoLocation?: string | null;
+} | null;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionStartedWebhookPayloadMailingAddress = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine1?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine2?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine3?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  City?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  State?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PostalCode?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Country?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  GeoLocation?: string | null;
+} | null;
+
+/**
+ * `2` - Trialing, `3` - Subscribing, `4` - Cancelling, `5` - Expired, `6` - Trial Expired, `7` - Past Due, `8` - Cancelling Trial, `9` - Paused, `10` - Created
+ */
+export type AccountSubscriptionStartedWebhookPayloadAccountStage = typeof AccountSubscriptionStartedWebhookPayloadAccountStage[keyof typeof AccountSubscriptionStartedWebhookPayloadAccountStage];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionStartedWebhookPayloadAccountStage = {
+  Trialing: 2,
+  Subscribing: 3,
+  Cancelling: 4,
+  Expired: 5,
+  TrialExpired: 6,
+  PastDue: 7,
+  CancellingTrial: 8,
+  Paused: 9,
+  Created: 10,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionStartedWebhookPayloadPaymentInformation = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  CustomerToken?: string | null;
+  /** @nullable */
+  LastFourDigits?: string | null;
+  /** @nullable */
+  LatestFailureDateTime?: string | null;
+  /** @nullable */
+  LatestFailureDescription?: string | null;
+  /** @nullable */
+  LatestSuccessDateTime?: string | null;
+  NumberOfFailures?: number;
+  /** @nullable */
+  PaymentClientSecret?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  PaymentMethodType?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PaymentToken?: string | null;
+  /**
+   * @maxLength 100
+   * @nullable
+   */
+  BankName?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  BankAccountType?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  BankAccountHolderType?: string | null;
+  /** @nullable */
+  NameOnCard?: string | null;
+  /** @nullable */
+  CardType?: string | null;
+  /** @nullable */
+  ExpirationMonth?: string | null;
+  /** @nullable */
+  ExpirationYear?: string | null;
+  /** @nullable */
+  Mode?: string | null;
+  /** @nullable */
+  OneTimeToken?: string | null;
+  /** @nullable */
+  RecaptchaToken?: string | null;
+  /** @nullable */
+  SetupIntent?: string | null;
+} | null;
+
+/**
+ * `0` - None, `1` - Gmail
+ */
+export type AccountSubscriptionStartedWebhookPayloadPersonAccountItemPersonOAuthIntegrationStatus = typeof AccountSubscriptionStartedWebhookPayloadPersonAccountItemPersonOAuthIntegrationStatus[keyof typeof AccountSubscriptionStartedWebhookPayloadPersonAccountItemPersonOAuthIntegrationStatus];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionStartedWebhookPayloadPersonAccountItemPersonOAuthIntegrationStatus = {
+  None: 0,
+  Gmail: 1,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionStartedWebhookPayloadPersonAccountItemPerson = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Email?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  FirstName?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  LastName?: string | null;
+  /** @nullable */
+  PasswordLastUpdated?: string | null;
+  PasswordMustChange?: boolean;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PhoneMobile?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PhoneWork?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  ProfileImageS3Url?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Title?: string | null;
+  /**
+   * @maxLength 100
+   * @nullable
+   */
+  Timezone?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  Language?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  IPAddress?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Referer?: string | null;
+  /**
+   * @maxLength 1000
+   * @nullable
+   */
+  UserAgent?: string | null;
+  /** @nullable */
+  LastLoginDateTime?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  OAuthGoogleProfileId?: string | null;
+  /** @nullable */
+  AccountUids?: string | null;
+  /** @nullable */
+  FullName?: string | null;
+  HasLoggedIn?: boolean;
+  /** `0` - None, `1` - Gmail */
+  OAuthIntegrationStatus?: AccountSubscriptionStartedWebhookPayloadPersonAccountItemPersonOAuthIntegrationStatus;
+  OptInToEmailList?: boolean;
+  /** @nullable */
+  Password?: string | null;
+  /** @nullable */
+  UserAgentPlatformBrowser?: string | null;
+  HasUnsubscribed?: boolean;
+  IsConnectedToDiscord?: boolean;
+} | null;
+
+export type AccountSubscriptionStartedWebhookPayloadPersonAccountItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** @nullable */
+  Person?: AccountSubscriptionStartedWebhookPayloadPersonAccountItemPerson;
+  IsPrimary?: boolean;
+  ReceiveInvoices?: boolean;
+};
+
+export type AccountSubscriptionStartedWebhookPayloadStripeInvoicesItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  StripeId?: string | null;
+  IsLivemode?: boolean;
+  AmountDue?: number;
+  AmountPaid?: number;
+  AmountShipping?: number;
+  AttemptCount?: number;
+  Attempted?: boolean;
+  /**
+   * @maxLength 3
+   * @nullable
+   */
+  Currency?: string | null;
+  /** @nullable */
+  Description?: string | null;
+  /** @nullable */
+  FinalizedAt?: string | null;
+  /**
+   * @maxLength 500
+   * @nullable
+   */
+  HostedInvoiceUrl?: string | null;
+  /**
+   * @maxLength 500
+   * @nullable
+   */
+  InvoicePdf?: string | null;
+  /** @nullable */
+  NextPaymentAttempt?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  Number?: string | null;
+  PeriodEnd?: string;
+  PeriodStart?: string;
+  /**
+   * @maxLength 30
+   * @nullable
+   */
+  Status?: string | null;
+  SubTotal?: number;
+  /** @nullable */
+  SubTotalExcludingTax?: number | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  SubscriptionId?: string | null;
+  /** @nullable */
+  Tax?: number | null;
+  Total?: number;
+  /** @nullable */
+  TotalExcludingTax?: number | null;
+  IsRefunded?: boolean;
+  CurrencyAmountCreditedPostPayment?: number;
+  CurrencyAmountCreditedPrePayment?: number;
+  CurrencyAmountDue?: number;
+  CurrencyAmountPaid?: number;
+  /** @nullable */
+  CurrencySymbol?: string | null;
+  CurrencyTotal?: number;
+  CurrencyTotalExcludingTax?: number;
+  CurrencySubTotal?: number;
+  CurrencySubTotalExcludingTax?: number;
+  CurrencyTax?: number;
+  /** @nullable */
+  DaysUntilDue?: number | null;
+  /** @nullable */
+  CustomerId?: string | null;
+  /** @nullable */
+  PaymentStatus?: string | null;
+  /** @nullable */
+  StripePaymentMethodId?: string | null;
+};
+
+export type AccountSubscriptionStartedWebhookPayloadStripePaymentMethodsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  StripeId?: string | null;
+  IsLivemode?: boolean;
+  /** @nullable */
+  Card_Brand?: string | null;
+  /** @nullable */
+  Card_ExpMonth?: number | null;
+  /** @nullable */
+  Card_ExpYear?: number | null;
+  /** @nullable */
+  Card_Wallet_Type?: string | null;
+  /** @nullable */
+  BankName?: string | null;
+  /** @nullable */
+  Last4?: string | null;
+  /** @nullable */
+  Type?: string | null;
+  /** @nullable */
+  Label?: string | null;
+};
+
+export type AccountSubscriptionStartedWebhookPayloadStripeSubscriptionsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  StripeId?: string | null;
+  IsLivemode?: boolean;
+  /** @nullable */
+  CancelAt?: string | null;
+  CancelAtPeriodEnd?: boolean;
+  /**
+   * @maxLength 3
+   * @nullable
+   */
+  Currency?: string | null;
+  /** @nullable */
+  EndedAt?: string | null;
+  /**
+   * @maxLength 30
+   * @nullable
+   */
+  PauseCollection_Behavior?: string | null;
+  /** @nullable */
+  PauseCollection_ResumesAt?: string | null;
+  StartDate?: string;
+  /**
+   * @maxLength 30
+   * @nullable
+   */
+  Status?: string | null;
+  /** @nullable */
+  TrialEnd?: string | null;
+  /** @nullable */
+  AccountUid?: string | null;
+  /** @nullable */
+  BillingCycleAnchor?: string | null;
+  /** @nullable */
+  CollectionMethod?: string | null;
+  /** @nullable */
+  CustomerId?: string | null;
+  /** @nullable */
+  DaysUntilDue?: number | null;
+  /** @nullable */
+  ScheduleId?: string | null;
+  /** @nullable */
+  StripeDiscountIds?: string[] | null;
+  /** @nullable */
+  StripePriceIds?: string | null;
+  TrialPeriodDays?: number;
+};
+
+/**
+ * `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time
+ */
+export type AccountSubscriptionStartedWebhookPayloadSubscriptionsItemBillingRenewalTerm = typeof AccountSubscriptionStartedWebhookPayloadSubscriptionsItemBillingRenewalTerm[keyof typeof AccountSubscriptionStartedWebhookPayloadSubscriptionsItemBillingRenewalTerm];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionStartedWebhookPayloadSubscriptionsItemBillingRenewalTerm = {
+  Monthly: 1,
+  Yearly: 2,
+  Quarterly: 3,
+  OneTime: 4,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionStartedWebhookPayloadSubscriptionsItemPlanPlanFamily = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  IsActive?: boolean;
+  IsDefault?: boolean;
+} | null;
+
+/**
+ * `1` - Individual, `2` - Team
+ */
+export type AccountSubscriptionStartedWebhookPayloadSubscriptionsItemPlanAccountRegistrationMode = typeof AccountSubscriptionStartedWebhookPayloadSubscriptionsItemPlanAccountRegistrationMode[keyof typeof AccountSubscriptionStartedWebhookPayloadSubscriptionsItemPlanAccountRegistrationMode];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionStartedWebhookPayloadSubscriptionsItemPlanAccountRegistrationMode = {
+  Individual: 1,
+  Team: 2,
+} as const;
+
+export type AccountSubscriptionStartedWebhookPayloadSubscriptionsItemPlanPlanAddOnsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  IsUserSelectable: boolean;
+};
+
+export type AccountSubscriptionStartedWebhookPayloadSubscriptionsItemPlanContentGroupsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @minLength 1
+   * @maxLength 50
+   */
+  Name: string;
+  /**
+   * @maxLength 1024
+   * @nullable
+   */
+  AccessDeniedPath?: string | null;
+};
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionStartedWebhookPayloadSubscriptionsItemPlan = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  /** @nullable */
+  Description?: string | null;
+  /** @nullable */
+  PlanFamily?: AccountSubscriptionStartedWebhookPayloadSubscriptionsItemPlanPlanFamily;
+  /** `1` - Individual, `2` - Team */
+  AccountRegistrationMode?: AccountSubscriptionStartedWebhookPayloadSubscriptionsItemPlanAccountRegistrationMode;
+  IsQuantityEditable?: boolean;
+  MinimumQuantity?: number;
+  /** @nullable */
+  MaximumPeople?: number | null;
+  MonthlyRate?: number;
+  AnnualRate?: number;
+  QuarterlyRate?: number;
+  OneTimeRate?: number;
+  SetupFee?: number;
+  SkipSetupFeeOnPlanChange?: boolean;
+  IsTaxable?: boolean;
+  IsActive?: boolean;
+  IsPerUser?: boolean;
+  RequirePaymentInformation?: boolean;
+  TrialPeriodDays?: number;
+  /** @nullable */
+  TrialUntilDate?: string | null;
+  ExpiresAfterMonths?: number;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PostLoginPath?: string | null;
+  /**
+   * @maxLength 15
+   * @nullable
+   */
+  StripeTaxCodeId?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  UnitOfMeasure?: string | null;
+  /** @nullable */
+  PlanAddOns?: AccountSubscriptionStartedWebhookPayloadSubscriptionsItemPlanPlanAddOnsItem[] | null;
+  /** @nullable */
+  ContentGroups?: AccountSubscriptionStartedWebhookPayloadSubscriptionsItemPlanContentGroupsItem[] | null;
+  /** @nullable */
+  NumberOfSubscriptions?: number | null;
+} | null;
+
+/**
+ * `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time
+ */
+export type AccountSubscriptionStartedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemBillingRenewalTerm = typeof AccountSubscriptionStartedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemBillingRenewalTerm[keyof typeof AccountSubscriptionStartedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemBillingRenewalTerm];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionStartedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemBillingRenewalTerm = {
+  Monthly: 1,
+  Yearly: 2,
+  Quarterly: 3,
+  OneTime: 4,
+} as const;
+
+/**
+ * `1` - Recurring, `2` - Usage, `3` - OneTime
+ */
+export type AccountSubscriptionStartedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemAddOnBillingAddOnType = typeof AccountSubscriptionStartedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemAddOnBillingAddOnType[keyof typeof AccountSubscriptionStartedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemAddOnBillingAddOnType];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionStartedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemAddOnBillingAddOnType = {
+  Recurring: 1,
+  Usage: 2,
+  OneTime: 3,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionStartedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemAddOn = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  /** `1` - Recurring, `2` - Usage, `3` - OneTime */
+  BillingAddOnType?: AccountSubscriptionStartedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemAddOnBillingAddOnType;
+  IsQuantityEditable?: boolean;
+  MinimumQuantity?: number;
+  MonthlyRate?: number;
+  AnnualRate?: number;
+  SetupFee?: number;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  UnitOfMeasure?: string | null;
+  IsTaxable?: boolean;
+  IsBilledDuringTrial?: boolean;
+  ExpiresAfterMonths?: number;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /**
+   * @maxLength 15
+   * @nullable
+   */
+  StripeTaxCodeId?: string | null;
+  IsPerUser?: boolean;
+  QuarterlyRate?: number;
+  OneTimeRate?: number;
+  SubscriptionCount?: number;
+  Quantity?: number;
+} | null;
+
+export type AccountSubscriptionStartedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time */
+  BillingRenewalTerm?: AccountSubscriptionStartedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemBillingRenewalTerm;
+  /** @nullable */
+  AddOn?: AccountSubscriptionStartedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemAddOn;
+  /** @nullable */
+  Quantity?: number | null;
+  StartDate?: string;
+  /** @nullable */
+  EndDate?: string | null;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /** @nullable */
+  RenewalDate?: string | null;
+  /** @nullable */
+  NewRequiredQuantity?: number | null;
+  /** @nullable */
+  Rate?: number | null;
+};
+
+/**
+ * `1` - Forever, `2` - Once, `3` - Repeating
+ */
+export type AccountSubscriptionStartedWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItemDiscountCouponDuration = typeof AccountSubscriptionStartedWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItemDiscountCouponDuration[keyof typeof AccountSubscriptionStartedWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItemDiscountCouponDuration];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionStartedWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItemDiscountCouponDuration = {
+  Forever: 1,
+  Once: 2,
+  Repeating: 3,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionStartedWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItemDiscountCoupon = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /** @nullable */
+  UniqueIdentifier?: string | null;
+  /** @nullable */
+  Name?: string | null;
+  IsActive?: boolean;
+  /** @nullable */
+  AmountOff?: number | null;
+  /** @nullable */
+  PercentOff?: number | null;
+  /** @nullable */
+  RedeemBy?: string | null;
+  /** `1` - Forever, `2` - Once, `3` - Repeating */
+  Duration?: AccountSubscriptionStartedWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItemDiscountCouponDuration;
+  /** @nullable */
+  DurationInMonths?: number | null;
+  TimesRedeemed?: number;
+  /** @nullable */
+  MaxRedemptions?: number | null;
+  ApplyToAddOns?: boolean;
+  /** @nullable */
+  PlanUids?: string | null;
+} | null;
+
+export type AccountSubscriptionStartedWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** @nullable */
+  RedeemedDate?: string | null;
+  /** @nullable */
+  ExpireDate?: string | null;
+  /** @nullable */
+  DiscountCoupon?: AccountSubscriptionStartedWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItemDiscountCoupon;
+};
+
+/**
+ * `1` - Unpaid, `2` - Paid, `3` - Partial, `4` - Uncollected, `5` - Refunded, `6` - Uncollectible, `7` - Processing
+ */
+export type AccountSubscriptionStartedWebhookPayloadSubscriptionsItemLatestInvoiceBillingInvoiceStatus = typeof AccountSubscriptionStartedWebhookPayloadSubscriptionsItemLatestInvoiceBillingInvoiceStatus[keyof typeof AccountSubscriptionStartedWebhookPayloadSubscriptionsItemLatestInvoiceBillingInvoiceStatus];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionStartedWebhookPayloadSubscriptionsItemLatestInvoiceBillingInvoiceStatus = {
+  Unpaid: 1,
+  Paid: 2,
+  Partial: 3,
+  Uncollected: 4,
+  Refunded: 5,
+  Uncollectible: 6,
+  Processing: 7,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionStartedWebhookPayloadSubscriptionsItemLatestInvoice = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  InvoiceDate?: string;
+  /** @nullable */
+  PaymentReminderSentDate?: string | null;
+  Number?: number;
+  /** `1` - Unpaid, `2` - Paid, `3` - Partial, `4` - Uncollected, `5` - Refunded, `6` - Uncollectible, `7` - Processing */
+  BillingInvoiceStatus?: AccountSubscriptionStartedWebhookPayloadSubscriptionsItemLatestInvoiceBillingInvoiceStatus;
+  Amount?: number;
+  AmountOutstanding?: number;
+  IsUserGenerated?: boolean;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  StripeTaxCalculationId?: string | null;
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  StripeTaxBehavior?: string | null;
+  AmountCredit?: number;
+  AmountDiscount?: number;
+  AmountPaid?: number;
+  AmountRefunded?: number;
+  AmountSubtotal?: number;
+  AmountTax?: number;
+  AmountTaxRefunded?: number;
+  IsTaxable?: boolean;
+  HasPaymentGatewayTransactions?: boolean;
+  /** @nullable */
+  StripePaymentTransactionIds?: string | null;
+  /** @nullable */
+  StripeRefundTransactionIds?: string | null;
+  /** @nullable */
+  StripeTaxRefundTransactionIds?: string | null;
+} | null;
+
+export type AccountSubscriptionStartedWebhookPayloadSubscriptionsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time */
+  BillingRenewalTerm?: AccountSubscriptionStartedWebhookPayloadSubscriptionsItemBillingRenewalTerm;
+  /** @nullable */
+  Plan?: AccountSubscriptionStartedWebhookPayloadSubscriptionsItemPlan;
+  /** @nullable */
+  Quantity?: number | null;
+  StartDate?: string;
+  /** @nullable */
+  EndDate?: string | null;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /** @nullable */
+  RenewalDate?: string | null;
+  /** @nullable */
+  NewRequiredQuantity?: number | null;
+  IsPlanUpgradeRequired?: boolean;
+  /** @nullable */
+  PlanUpgradeRequiredMessage?: string | null;
+  /** @nullable */
+  SubscriptionAddOns?: AccountSubscriptionStartedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItem[] | null;
+  /** @nullable */
+  DiscountCouponSubscriptions?: AccountSubscriptionStartedWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItem[] | null;
+  /** @nullable */
+  DiscountCode?: string | null;
+  /** @nullable */
+  DiscountCouponExpirationDate?: string | null;
+  /** @nullable */
+  LatestInvoice?: AccountSubscriptionStartedWebhookPayloadSubscriptionsItemLatestInvoice;
+  /** @nullable */
+  Rate?: number | null;
+};
+
+export type AccountSubscriptionStartedWebhookPayloadDealsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @minLength 1
+   * @maxLength 250
+   */
+  Name: string;
+  /** @nullable */
+  Amount?: number | null;
+  /** @nullable */
+  DueDate?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  AssignedToPersonClientIdentifier?: string | null;
+  Weight?: number;
+  /** @nullable */
+  Contacts?: string | null;
+  AccountId?: number;
+  /** @nullable */
+  PipelineUid?: string | null;
+};
+
+export type AccountSubscriptionStartedWebhookPayloadTaxIdsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  StripeId?: string | null;
+  IsLivemode?: boolean;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  TaxId?: string | null;
+  /**
+   * @maxLength 20
+   * @nullable
+   */
+  TaxIdType?: string | null;
+  IsInvalid?: boolean;
+};
+
+/**
+ * `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time
+ */
+export type AccountSubscriptionStartedWebhookPayloadCurrentSubscriptionBillingRenewalTerm = typeof AccountSubscriptionStartedWebhookPayloadCurrentSubscriptionBillingRenewalTerm[keyof typeof AccountSubscriptionStartedWebhookPayloadCurrentSubscriptionBillingRenewalTerm];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionStartedWebhookPayloadCurrentSubscriptionBillingRenewalTerm = {
+  Monthly: 1,
+  Yearly: 2,
+  Quarterly: 3,
+  OneTime: 4,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionStartedWebhookPayloadCurrentSubscriptionPlanPlanFamily = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  IsActive?: boolean;
+  IsDefault?: boolean;
+} | null;
+
+/**
+ * `1` - Individual, `2` - Team
+ */
+export type AccountSubscriptionStartedWebhookPayloadCurrentSubscriptionPlanAccountRegistrationMode = typeof AccountSubscriptionStartedWebhookPayloadCurrentSubscriptionPlanAccountRegistrationMode[keyof typeof AccountSubscriptionStartedWebhookPayloadCurrentSubscriptionPlanAccountRegistrationMode];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionStartedWebhookPayloadCurrentSubscriptionPlanAccountRegistrationMode = {
+  Individual: 1,
+  Team: 2,
+} as const;
+
+export type AccountSubscriptionStartedWebhookPayloadCurrentSubscriptionPlanPlanAddOnsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  IsUserSelectable: boolean;
+};
+
+export type AccountSubscriptionStartedWebhookPayloadCurrentSubscriptionPlanContentGroupsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @minLength 1
+   * @maxLength 50
+   */
+  Name: string;
+  /**
+   * @maxLength 1024
+   * @nullable
+   */
+  AccessDeniedPath?: string | null;
+};
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionStartedWebhookPayloadCurrentSubscriptionPlan = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  /** @nullable */
+  Description?: string | null;
+  /** @nullable */
+  PlanFamily?: AccountSubscriptionStartedWebhookPayloadCurrentSubscriptionPlanPlanFamily;
+  /** `1` - Individual, `2` - Team */
+  AccountRegistrationMode?: AccountSubscriptionStartedWebhookPayloadCurrentSubscriptionPlanAccountRegistrationMode;
+  IsQuantityEditable?: boolean;
+  MinimumQuantity?: number;
+  /** @nullable */
+  MaximumPeople?: number | null;
+  MonthlyRate?: number;
+  AnnualRate?: number;
+  QuarterlyRate?: number;
+  OneTimeRate?: number;
+  SetupFee?: number;
+  SkipSetupFeeOnPlanChange?: boolean;
+  IsTaxable?: boolean;
+  IsActive?: boolean;
+  IsPerUser?: boolean;
+  RequirePaymentInformation?: boolean;
+  TrialPeriodDays?: number;
+  /** @nullable */
+  TrialUntilDate?: string | null;
+  ExpiresAfterMonths?: number;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PostLoginPath?: string | null;
+  /**
+   * @maxLength 15
+   * @nullable
+   */
+  StripeTaxCodeId?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  UnitOfMeasure?: string | null;
+  /** @nullable */
+  PlanAddOns?: AccountSubscriptionStartedWebhookPayloadCurrentSubscriptionPlanPlanAddOnsItem[] | null;
+  /** @nullable */
+  ContentGroups?: AccountSubscriptionStartedWebhookPayloadCurrentSubscriptionPlanContentGroupsItem[] | null;
+  /** @nullable */
+  NumberOfSubscriptions?: number | null;
+} | null;
+
+/**
+ * `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time
+ */
+export type AccountSubscriptionStartedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemBillingRenewalTerm = typeof AccountSubscriptionStartedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemBillingRenewalTerm[keyof typeof AccountSubscriptionStartedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemBillingRenewalTerm];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionStartedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemBillingRenewalTerm = {
+  Monthly: 1,
+  Yearly: 2,
+  Quarterly: 3,
+  OneTime: 4,
+} as const;
+
+/**
+ * `1` - Recurring, `2` - Usage, `3` - OneTime
+ */
+export type AccountSubscriptionStartedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType = typeof AccountSubscriptionStartedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType[keyof typeof AccountSubscriptionStartedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionStartedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType = {
+  Recurring: 1,
+  Usage: 2,
+  OneTime: 3,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionStartedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemAddOn = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  /** `1` - Recurring, `2` - Usage, `3` - OneTime */
+  BillingAddOnType?: AccountSubscriptionStartedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType;
+  IsQuantityEditable?: boolean;
+  MinimumQuantity?: number;
+  MonthlyRate?: number;
+  AnnualRate?: number;
+  SetupFee?: number;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  UnitOfMeasure?: string | null;
+  IsTaxable?: boolean;
+  IsBilledDuringTrial?: boolean;
+  ExpiresAfterMonths?: number;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /**
+   * @maxLength 15
+   * @nullable
+   */
+  StripeTaxCodeId?: string | null;
+  IsPerUser?: boolean;
+  QuarterlyRate?: number;
+  OneTimeRate?: number;
+  SubscriptionCount?: number;
+  Quantity?: number;
+} | null;
+
+export type AccountSubscriptionStartedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time */
+  BillingRenewalTerm?: AccountSubscriptionStartedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemBillingRenewalTerm;
+  /** @nullable */
+  AddOn?: AccountSubscriptionStartedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemAddOn;
+  /** @nullable */
+  Quantity?: number | null;
+  StartDate?: string;
+  /** @nullable */
+  EndDate?: string | null;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /** @nullable */
+  RenewalDate?: string | null;
+  /** @nullable */
+  NewRequiredQuantity?: number | null;
+  /** @nullable */
+  Rate?: number | null;
+};
+
+/**
+ * `1` - Forever, `2` - Once, `3` - Repeating
+ */
+export type AccountSubscriptionStartedWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration = typeof AccountSubscriptionStartedWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration[keyof typeof AccountSubscriptionStartedWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionStartedWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration = {
+  Forever: 1,
+  Once: 2,
+  Repeating: 3,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionStartedWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItemDiscountCoupon = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /** @nullable */
+  UniqueIdentifier?: string | null;
+  /** @nullable */
+  Name?: string | null;
+  IsActive?: boolean;
+  /** @nullable */
+  AmountOff?: number | null;
+  /** @nullable */
+  PercentOff?: number | null;
+  /** @nullable */
+  RedeemBy?: string | null;
+  /** `1` - Forever, `2` - Once, `3` - Repeating */
+  Duration?: AccountSubscriptionStartedWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration;
+  /** @nullable */
+  DurationInMonths?: number | null;
+  TimesRedeemed?: number;
+  /** @nullable */
+  MaxRedemptions?: number | null;
+  ApplyToAddOns?: boolean;
+  /** @nullable */
+  PlanUids?: string | null;
+} | null;
+
+export type AccountSubscriptionStartedWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** @nullable */
+  RedeemedDate?: string | null;
+  /** @nullable */
+  ExpireDate?: string | null;
+  /** @nullable */
+  DiscountCoupon?: AccountSubscriptionStartedWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItemDiscountCoupon;
+};
+
+/**
+ * `1` - Unpaid, `2` - Paid, `3` - Partial, `4` - Uncollected, `5` - Refunded, `6` - Uncollectible, `7` - Processing
+ */
+export type AccountSubscriptionStartedWebhookPayloadCurrentSubscriptionLatestInvoiceBillingInvoiceStatus = typeof AccountSubscriptionStartedWebhookPayloadCurrentSubscriptionLatestInvoiceBillingInvoiceStatus[keyof typeof AccountSubscriptionStartedWebhookPayloadCurrentSubscriptionLatestInvoiceBillingInvoiceStatus];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionStartedWebhookPayloadCurrentSubscriptionLatestInvoiceBillingInvoiceStatus = {
+  Unpaid: 1,
+  Paid: 2,
+  Partial: 3,
+  Uncollected: 4,
+  Refunded: 5,
+  Uncollectible: 6,
+  Processing: 7,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionStartedWebhookPayloadCurrentSubscriptionLatestInvoice = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  InvoiceDate?: string;
+  /** @nullable */
+  PaymentReminderSentDate?: string | null;
+  Number?: number;
+  /** `1` - Unpaid, `2` - Paid, `3` - Partial, `4` - Uncollected, `5` - Refunded, `6` - Uncollectible, `7` - Processing */
+  BillingInvoiceStatus?: AccountSubscriptionStartedWebhookPayloadCurrentSubscriptionLatestInvoiceBillingInvoiceStatus;
+  Amount?: number;
+  AmountOutstanding?: number;
+  IsUserGenerated?: boolean;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  StripeTaxCalculationId?: string | null;
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  StripeTaxBehavior?: string | null;
+  AmountCredit?: number;
+  AmountDiscount?: number;
+  AmountPaid?: number;
+  AmountRefunded?: number;
+  AmountSubtotal?: number;
+  AmountTax?: number;
+  AmountTaxRefunded?: number;
+  IsTaxable?: boolean;
+  HasPaymentGatewayTransactions?: boolean;
+  /** @nullable */
+  StripePaymentTransactionIds?: string | null;
+  /** @nullable */
+  StripeRefundTransactionIds?: string | null;
+  /** @nullable */
+  StripeTaxRefundTransactionIds?: string | null;
+} | null;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionStartedWebhookPayloadCurrentSubscription = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /** `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time */
+  BillingRenewalTerm?: AccountSubscriptionStartedWebhookPayloadCurrentSubscriptionBillingRenewalTerm;
+  /** @nullable */
+  Plan?: AccountSubscriptionStartedWebhookPayloadCurrentSubscriptionPlan;
+  /** @nullable */
+  Quantity?: number | null;
+  StartDate?: string;
+  /** @nullable */
+  EndDate?: string | null;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /** @nullable */
+  RenewalDate?: string | null;
+  /** @nullable */
+  NewRequiredQuantity?: number | null;
+  IsPlanUpgradeRequired?: boolean;
+  /** @nullable */
+  PlanUpgradeRequiredMessage?: string | null;
+  /** @nullable */
+  SubscriptionAddOns?: AccountSubscriptionStartedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItem[] | null;
+  /** @nullable */
+  DiscountCouponSubscriptions?: AccountSubscriptionStartedWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItem[] | null;
+  /** @nullable */
+  DiscountCode?: string | null;
+  /** @nullable */
+  DiscountCouponExpirationDate?: string | null;
+  /** @nullable */
+  LatestInvoice?: AccountSubscriptionStartedWebhookPayloadCurrentSubscriptionLatestInvoice;
+  /** @nullable */
+  Rate?: number | null;
+} | null;
+
+/**
+ * `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time
+ */
+export type AccountSubscriptionStartedWebhookPayloadLatestSubscriptionBillingRenewalTerm = typeof AccountSubscriptionStartedWebhookPayloadLatestSubscriptionBillingRenewalTerm[keyof typeof AccountSubscriptionStartedWebhookPayloadLatestSubscriptionBillingRenewalTerm];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionStartedWebhookPayloadLatestSubscriptionBillingRenewalTerm = {
+  Monthly: 1,
+  Yearly: 2,
+  Quarterly: 3,
+  OneTime: 4,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionStartedWebhookPayloadLatestSubscriptionPlanPlanFamily = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  IsActive?: boolean;
+  IsDefault?: boolean;
+} | null;
+
+/**
+ * `1` - Individual, `2` - Team
+ */
+export type AccountSubscriptionStartedWebhookPayloadLatestSubscriptionPlanAccountRegistrationMode = typeof AccountSubscriptionStartedWebhookPayloadLatestSubscriptionPlanAccountRegistrationMode[keyof typeof AccountSubscriptionStartedWebhookPayloadLatestSubscriptionPlanAccountRegistrationMode];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionStartedWebhookPayloadLatestSubscriptionPlanAccountRegistrationMode = {
+  Individual: 1,
+  Team: 2,
+} as const;
+
+export type AccountSubscriptionStartedWebhookPayloadLatestSubscriptionPlanPlanAddOnsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  IsUserSelectable: boolean;
+};
+
+export type AccountSubscriptionStartedWebhookPayloadLatestSubscriptionPlanContentGroupsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @minLength 1
+   * @maxLength 50
+   */
+  Name: string;
+  /**
+   * @maxLength 1024
+   * @nullable
+   */
+  AccessDeniedPath?: string | null;
+};
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionStartedWebhookPayloadLatestSubscriptionPlan = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  /** @nullable */
+  Description?: string | null;
+  /** @nullable */
+  PlanFamily?: AccountSubscriptionStartedWebhookPayloadLatestSubscriptionPlanPlanFamily;
+  /** `1` - Individual, `2` - Team */
+  AccountRegistrationMode?: AccountSubscriptionStartedWebhookPayloadLatestSubscriptionPlanAccountRegistrationMode;
+  IsQuantityEditable?: boolean;
+  MinimumQuantity?: number;
+  /** @nullable */
+  MaximumPeople?: number | null;
+  MonthlyRate?: number;
+  AnnualRate?: number;
+  QuarterlyRate?: number;
+  OneTimeRate?: number;
+  SetupFee?: number;
+  SkipSetupFeeOnPlanChange?: boolean;
+  IsTaxable?: boolean;
+  IsActive?: boolean;
+  IsPerUser?: boolean;
+  RequirePaymentInformation?: boolean;
+  TrialPeriodDays?: number;
+  /** @nullable */
+  TrialUntilDate?: string | null;
+  ExpiresAfterMonths?: number;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PostLoginPath?: string | null;
+  /**
+   * @maxLength 15
+   * @nullable
+   */
+  StripeTaxCodeId?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  UnitOfMeasure?: string | null;
+  /** @nullable */
+  PlanAddOns?: AccountSubscriptionStartedWebhookPayloadLatestSubscriptionPlanPlanAddOnsItem[] | null;
+  /** @nullable */
+  ContentGroups?: AccountSubscriptionStartedWebhookPayloadLatestSubscriptionPlanContentGroupsItem[] | null;
+  /** @nullable */
+  NumberOfSubscriptions?: number | null;
+} | null;
+
+/**
+ * `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time
+ */
+export type AccountSubscriptionStartedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemBillingRenewalTerm = typeof AccountSubscriptionStartedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemBillingRenewalTerm[keyof typeof AccountSubscriptionStartedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemBillingRenewalTerm];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionStartedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemBillingRenewalTerm = {
+  Monthly: 1,
+  Yearly: 2,
+  Quarterly: 3,
+  OneTime: 4,
+} as const;
+
+/**
+ * `1` - Recurring, `2` - Usage, `3` - OneTime
+ */
+export type AccountSubscriptionStartedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType = typeof AccountSubscriptionStartedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType[keyof typeof AccountSubscriptionStartedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionStartedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType = {
+  Recurring: 1,
+  Usage: 2,
+  OneTime: 3,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionStartedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemAddOn = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  /** `1` - Recurring, `2` - Usage, `3` - OneTime */
+  BillingAddOnType?: AccountSubscriptionStartedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType;
+  IsQuantityEditable?: boolean;
+  MinimumQuantity?: number;
+  MonthlyRate?: number;
+  AnnualRate?: number;
+  SetupFee?: number;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  UnitOfMeasure?: string | null;
+  IsTaxable?: boolean;
+  IsBilledDuringTrial?: boolean;
+  ExpiresAfterMonths?: number;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /**
+   * @maxLength 15
+   * @nullable
+   */
+  StripeTaxCodeId?: string | null;
+  IsPerUser?: boolean;
+  QuarterlyRate?: number;
+  OneTimeRate?: number;
+  SubscriptionCount?: number;
+  Quantity?: number;
+} | null;
+
+export type AccountSubscriptionStartedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time */
+  BillingRenewalTerm?: AccountSubscriptionStartedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemBillingRenewalTerm;
+  /** @nullable */
+  AddOn?: AccountSubscriptionStartedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemAddOn;
+  /** @nullable */
+  Quantity?: number | null;
+  StartDate?: string;
+  /** @nullable */
+  EndDate?: string | null;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /** @nullable */
+  RenewalDate?: string | null;
+  /** @nullable */
+  NewRequiredQuantity?: number | null;
+  /** @nullable */
+  Rate?: number | null;
+};
+
+/**
+ * `1` - Forever, `2` - Once, `3` - Repeating
+ */
+export type AccountSubscriptionStartedWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration = typeof AccountSubscriptionStartedWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration[keyof typeof AccountSubscriptionStartedWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionStartedWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration = {
+  Forever: 1,
+  Once: 2,
+  Repeating: 3,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionStartedWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItemDiscountCoupon = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /** @nullable */
+  UniqueIdentifier?: string | null;
+  /** @nullable */
+  Name?: string | null;
+  IsActive?: boolean;
+  /** @nullable */
+  AmountOff?: number | null;
+  /** @nullable */
+  PercentOff?: number | null;
+  /** @nullable */
+  RedeemBy?: string | null;
+  /** `1` - Forever, `2` - Once, `3` - Repeating */
+  Duration?: AccountSubscriptionStartedWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration;
+  /** @nullable */
+  DurationInMonths?: number | null;
+  TimesRedeemed?: number;
+  /** @nullable */
+  MaxRedemptions?: number | null;
+  ApplyToAddOns?: boolean;
+  /** @nullable */
+  PlanUids?: string | null;
+} | null;
+
+export type AccountSubscriptionStartedWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** @nullable */
+  RedeemedDate?: string | null;
+  /** @nullable */
+  ExpireDate?: string | null;
+  /** @nullable */
+  DiscountCoupon?: AccountSubscriptionStartedWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItemDiscountCoupon;
+};
+
+/**
+ * `1` - Unpaid, `2` - Paid, `3` - Partial, `4` - Uncollected, `5` - Refunded, `6` - Uncollectible, `7` - Processing
+ */
+export type AccountSubscriptionStartedWebhookPayloadLatestSubscriptionLatestInvoiceBillingInvoiceStatus = typeof AccountSubscriptionStartedWebhookPayloadLatestSubscriptionLatestInvoiceBillingInvoiceStatus[keyof typeof AccountSubscriptionStartedWebhookPayloadLatestSubscriptionLatestInvoiceBillingInvoiceStatus];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionStartedWebhookPayloadLatestSubscriptionLatestInvoiceBillingInvoiceStatus = {
+  Unpaid: 1,
+  Paid: 2,
+  Partial: 3,
+  Uncollected: 4,
+  Refunded: 5,
+  Uncollectible: 6,
+  Processing: 7,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionStartedWebhookPayloadLatestSubscriptionLatestInvoice = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  InvoiceDate?: string;
+  /** @nullable */
+  PaymentReminderSentDate?: string | null;
+  Number?: number;
+  /** `1` - Unpaid, `2` - Paid, `3` - Partial, `4` - Uncollected, `5` - Refunded, `6` - Uncollectible, `7` - Processing */
+  BillingInvoiceStatus?: AccountSubscriptionStartedWebhookPayloadLatestSubscriptionLatestInvoiceBillingInvoiceStatus;
+  Amount?: number;
+  AmountOutstanding?: number;
+  IsUserGenerated?: boolean;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  StripeTaxCalculationId?: string | null;
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  StripeTaxBehavior?: string | null;
+  AmountCredit?: number;
+  AmountDiscount?: number;
+  AmountPaid?: number;
+  AmountRefunded?: number;
+  AmountSubtotal?: number;
+  AmountTax?: number;
+  AmountTaxRefunded?: number;
+  IsTaxable?: boolean;
+  HasPaymentGatewayTransactions?: boolean;
+  /** @nullable */
+  StripePaymentTransactionIds?: string | null;
+  /** @nullable */
+  StripeRefundTransactionIds?: string | null;
+  /** @nullable */
+  StripeTaxRefundTransactionIds?: string | null;
+} | null;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionStartedWebhookPayloadLatestSubscription = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /** `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time */
+  BillingRenewalTerm?: AccountSubscriptionStartedWebhookPayloadLatestSubscriptionBillingRenewalTerm;
+  /** @nullable */
+  Plan?: AccountSubscriptionStartedWebhookPayloadLatestSubscriptionPlan;
+  /** @nullable */
+  Quantity?: number | null;
+  StartDate?: string;
+  /** @nullable */
+  EndDate?: string | null;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /** @nullable */
+  RenewalDate?: string | null;
+  /** @nullable */
+  NewRequiredQuantity?: number | null;
+  IsPlanUpgradeRequired?: boolean;
+  /** @nullable */
+  PlanUpgradeRequiredMessage?: string | null;
+  /** @nullable */
+  SubscriptionAddOns?: AccountSubscriptionStartedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItem[] | null;
+  /** @nullable */
+  DiscountCouponSubscriptions?: AccountSubscriptionStartedWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItem[] | null;
+  /** @nullable */
+  DiscountCode?: string | null;
+  /** @nullable */
+  DiscountCouponExpirationDate?: string | null;
+  /** @nullable */
+  LatestInvoice?: AccountSubscriptionStartedWebhookPayloadLatestSubscriptionLatestInvoice;
+  /** @nullable */
+  Rate?: number | null;
+} | null;
+
+/**
+ * `0` - None, `1` - Gmail
+ */
+export type AccountSubscriptionStartedWebhookPayloadPrimaryContactOAuthIntegrationStatus = typeof AccountSubscriptionStartedWebhookPayloadPrimaryContactOAuthIntegrationStatus[keyof typeof AccountSubscriptionStartedWebhookPayloadPrimaryContactOAuthIntegrationStatus];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionStartedWebhookPayloadPrimaryContactOAuthIntegrationStatus = {
+  None: 0,
+  Gmail: 1,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionStartedWebhookPayloadPrimaryContact = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Email?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  FirstName?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  LastName?: string | null;
+  /** @nullable */
+  PasswordLastUpdated?: string | null;
+  PasswordMustChange?: boolean;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PhoneMobile?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PhoneWork?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  ProfileImageS3Url?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Title?: string | null;
+  /**
+   * @maxLength 100
+   * @nullable
+   */
+  Timezone?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  Language?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  IPAddress?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Referer?: string | null;
+  /**
+   * @maxLength 1000
+   * @nullable
+   */
+  UserAgent?: string | null;
+  /** @nullable */
+  LastLoginDateTime?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  OAuthGoogleProfileId?: string | null;
+  /** @nullable */
+  AccountUids?: string | null;
+  /** @nullable */
+  FullName?: string | null;
+  HasLoggedIn?: boolean;
+  /** `0` - None, `1` - Gmail */
+  OAuthIntegrationStatus?: AccountSubscriptionStartedWebhookPayloadPrimaryContactOAuthIntegrationStatus;
+  OptInToEmailList?: boolean;
+  /** @nullable */
+  Password?: string | null;
+  /** @nullable */
+  UserAgentPlatformBrowser?: string | null;
+  HasUnsubscribed?: boolean;
+  IsConnectedToDiscord?: boolean;
+} | null;
+
+/**
+ * `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time
+ */
+export type AccountSubscriptionStartedWebhookPayloadPrimarySubscriptionBillingRenewalTerm = typeof AccountSubscriptionStartedWebhookPayloadPrimarySubscriptionBillingRenewalTerm[keyof typeof AccountSubscriptionStartedWebhookPayloadPrimarySubscriptionBillingRenewalTerm];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionStartedWebhookPayloadPrimarySubscriptionBillingRenewalTerm = {
+  Monthly: 1,
+  Yearly: 2,
+  Quarterly: 3,
+  OneTime: 4,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionStartedWebhookPayloadPrimarySubscription = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /** `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time */
+  BillingRenewalTerm?: AccountSubscriptionStartedWebhookPayloadPrimarySubscriptionBillingRenewalTerm;
+  /** @nullable */
+  Quantity?: number | null;
+  StartDate?: string;
+  /** @nullable */
+  EndDate?: string | null;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /** @nullable */
+  RenewalDate?: string | null;
+  /** @nullable */
+  NewRequiredQuantity?: number | null;
+  IsPlanUpgradeRequired?: boolean;
+  /** @nullable */
+  PlanUpgradeRequiredMessage?: string | null;
+  /** @nullable */
+  DiscountCode?: string | null;
+  /** @nullable */
+  DiscountCouponExpirationDate?: string | null;
+  /** @nullable */
+  Rate?: number | null;
+} | null;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionStartedWebhookPayloadPrimaryStripeSubscription = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  StripeId?: string | null;
+  IsLivemode?: boolean;
+  /** @nullable */
+  CancelAt?: string | null;
+  CancelAtPeriodEnd?: boolean;
+  /**
+   * @maxLength 3
+   * @nullable
+   */
+  Currency?: string | null;
+  /** @nullable */
+  EndedAt?: string | null;
+  /**
+   * @maxLength 30
+   * @nullable
+   */
+  PauseCollection_Behavior?: string | null;
+  /** @nullable */
+  PauseCollection_ResumesAt?: string | null;
+  StartDate?: string;
+  /**
+   * @maxLength 30
+   * @nullable
+   */
+  Status?: string | null;
+  /** @nullable */
+  TrialEnd?: string | null;
+  /** @nullable */
+  AccountUid?: string | null;
+  /** @nullable */
+  BillingCycleAnchor?: string | null;
+  /** @nullable */
+  CollectionMethod?: string | null;
+  /** @nullable */
+  CustomerId?: string | null;
+  /** @nullable */
+  DaysUntilDue?: number | null;
+  /** @nullable */
+  ScheduleId?: string | null;
+  /** @nullable */
+  StripeDiscountIds?: string[] | null;
+  /** @nullable */
+  StripePriceIds?: string | null;
+  TrialPeriodDays?: number;
+} | null;
+
+export interface AccountSubscriptionStartedWebhookPayload {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  StripeId?: string | null;
+  IsLivemode?: boolean;
+  /**
+   * @minLength 1
+   * @maxLength 250
+   */
+  Name: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  ClientIdentifier?: string | null;
+  /**
+   * @maxLength 3
+   * @nullable
+   */
+  Currency?: string | null;
+  /** @nullable */
+  InvoiceNotes?: string | null;
+  IsDemo?: boolean;
+  /** @nullable */
+  BillingAddress?: AccountSubscriptionStartedWebhookPayloadBillingAddress;
+  /** @nullable */
+  MailingAddress?: AccountSubscriptionStartedWebhookPayloadMailingAddress;
+  /** `2` - Trialing, `3` - Subscribing, `4` - Cancelling, `5` - Expired, `6` - Trial Expired, `7` - Past Due, `8` - Cancelling Trial, `9` - Paused, `10` - Created */
+  AccountStage?: AccountSubscriptionStartedWebhookPayloadAccountStage;
+  /** @nullable */
+  PaymentInformation?: AccountSubscriptionStartedWebhookPayloadPaymentInformation;
+  /** @nullable */
+  PersonAccount?: AccountSubscriptionStartedWebhookPayloadPersonAccountItem[] | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  StripeDefaultPaymentMethodId?: string | null;
+  /** @nullable */
+  StripeInvoices?: AccountSubscriptionStartedWebhookPayloadStripeInvoicesItem[] | null;
+  /** @nullable */
+  StripePaymentMethods?: AccountSubscriptionStartedWebhookPayloadStripePaymentMethodsItem[] | null;
+  /** @nullable */
+  StripeSubscriptions?: AccountSubscriptionStartedWebhookPayloadStripeSubscriptionsItem[] | null;
+  /** @nullable */
+  Subscriptions?: AccountSubscriptionStartedWebhookPayloadSubscriptionsItem[] | null;
+  /** @nullable */
+  Deals?: AccountSubscriptionStartedWebhookPayloadDealsItem[] | null;
+  /** @nullable */
+  LastLoginDateTime?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl1?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl2?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl3?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl4?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl5?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl6?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl7?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl8?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl9?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl10?: string | null;
+  /** @nullable */
+  RewardFulReferralId?: string | null;
+  /**
+   * @maxLength 36
+   * @nullable
+   */
+  ToltReferralId?: string | null;
+  /** @nullable */
+  TaxIds?: AccountSubscriptionStartedWebhookPayloadTaxIdsItem[] | null;
+  /**
+   * @maxLength 20
+   * @nullable
+   */
+  TaxStatus?: string | null;
+  /** @nullable */
+  AccountStageLabel?: string | null;
+  /** @nullable */
+  CurrentStripeProducts?: string | null;
+  /** @nullable */
+  CurrentSubscription?: AccountSubscriptionStartedWebhookPayloadCurrentSubscription;
+  /** @nullable */
+  DomainName?: string | null;
+  HasLoggedIn?: boolean;
+  /** @nullable */
+  LatestSubscription?: AccountSubscriptionStartedWebhookPayloadLatestSubscription;
+  LifetimeRevenue?: number;
+  /** @nullable */
+  NextStripeInvoiceDate?: string | null;
+  /** @nullable */
+  Nonce?: string | null;
+  /** @nullable */
+  PrimaryContact?: AccountSubscriptionStartedWebhookPayloadPrimaryContact;
+  /** @nullable */
+  PrimarySubscription?: AccountSubscriptionStartedWebhookPayloadPrimarySubscription;
+  /** @nullable */
+  PrimaryStripeSubscription?: AccountSubscriptionStartedWebhookPayloadPrimaryStripeSubscription;
+  /** @nullable */
+  RecaptchaToken?: string | null;
+  /** @nullable */
+  StripeNextInvoiceSequence?: number | null;
+  /** @nullable */
+  StripePrice?: string[] | null;
+  /** @nullable */
+  StripePromotionCode?: string | null;
+  /** @nullable */
+  TaxId?: string | null;
+  TaxIdIsInvalid?: boolean;
+  /** @nullable */
+  TaxIdType?: string | null;
+  /** @nullable */
+  WebflowSlug?: string | null;
+  ActivityEventData?: AccountSubscriptionStartedActivityData;
+}
+
+export interface AccountSubscriptionRenewalExtendedActivityData {
+  /** @nullable */
+  PriorRenewalDate?: string | null;
+  /** @nullable */
+  RenewalDate?: string | null;
+}
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionRenewalExtendedWebhookPayloadBillingAddress = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine1?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine2?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine3?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  City?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  State?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PostalCode?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Country?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  GeoLocation?: string | null;
+} | null;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionRenewalExtendedWebhookPayloadMailingAddress = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine1?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine2?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine3?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  City?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  State?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PostalCode?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Country?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  GeoLocation?: string | null;
+} | null;
+
+/**
+ * `2` - Trialing, `3` - Subscribing, `4` - Cancelling, `5` - Expired, `6` - Trial Expired, `7` - Past Due, `8` - Cancelling Trial, `9` - Paused, `10` - Created
+ */
+export type AccountSubscriptionRenewalExtendedWebhookPayloadAccountStage = typeof AccountSubscriptionRenewalExtendedWebhookPayloadAccountStage[keyof typeof AccountSubscriptionRenewalExtendedWebhookPayloadAccountStage];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionRenewalExtendedWebhookPayloadAccountStage = {
+  Trialing: 2,
+  Subscribing: 3,
+  Cancelling: 4,
+  Expired: 5,
+  TrialExpired: 6,
+  PastDue: 7,
+  CancellingTrial: 8,
+  Paused: 9,
+  Created: 10,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionRenewalExtendedWebhookPayloadPaymentInformation = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  CustomerToken?: string | null;
+  /** @nullable */
+  LastFourDigits?: string | null;
+  /** @nullable */
+  LatestFailureDateTime?: string | null;
+  /** @nullable */
+  LatestFailureDescription?: string | null;
+  /** @nullable */
+  LatestSuccessDateTime?: string | null;
+  NumberOfFailures?: number;
+  /** @nullable */
+  PaymentClientSecret?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  PaymentMethodType?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PaymentToken?: string | null;
+  /**
+   * @maxLength 100
+   * @nullable
+   */
+  BankName?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  BankAccountType?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  BankAccountHolderType?: string | null;
+  /** @nullable */
+  NameOnCard?: string | null;
+  /** @nullable */
+  CardType?: string | null;
+  /** @nullable */
+  ExpirationMonth?: string | null;
+  /** @nullable */
+  ExpirationYear?: string | null;
+  /** @nullable */
+  Mode?: string | null;
+  /** @nullable */
+  OneTimeToken?: string | null;
+  /** @nullable */
+  RecaptchaToken?: string | null;
+  /** @nullable */
+  SetupIntent?: string | null;
+} | null;
+
+/**
+ * `0` - None, `1` - Gmail
+ */
+export type AccountSubscriptionRenewalExtendedWebhookPayloadPersonAccountItemPersonOAuthIntegrationStatus = typeof AccountSubscriptionRenewalExtendedWebhookPayloadPersonAccountItemPersonOAuthIntegrationStatus[keyof typeof AccountSubscriptionRenewalExtendedWebhookPayloadPersonAccountItemPersonOAuthIntegrationStatus];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionRenewalExtendedWebhookPayloadPersonAccountItemPersonOAuthIntegrationStatus = {
+  None: 0,
+  Gmail: 1,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionRenewalExtendedWebhookPayloadPersonAccountItemPerson = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Email?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  FirstName?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  LastName?: string | null;
+  /** @nullable */
+  PasswordLastUpdated?: string | null;
+  PasswordMustChange?: boolean;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PhoneMobile?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PhoneWork?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  ProfileImageS3Url?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Title?: string | null;
+  /**
+   * @maxLength 100
+   * @nullable
+   */
+  Timezone?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  Language?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  IPAddress?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Referer?: string | null;
+  /**
+   * @maxLength 1000
+   * @nullable
+   */
+  UserAgent?: string | null;
+  /** @nullable */
+  LastLoginDateTime?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  OAuthGoogleProfileId?: string | null;
+  /** @nullable */
+  AccountUids?: string | null;
+  /** @nullable */
+  FullName?: string | null;
+  HasLoggedIn?: boolean;
+  /** `0` - None, `1` - Gmail */
+  OAuthIntegrationStatus?: AccountSubscriptionRenewalExtendedWebhookPayloadPersonAccountItemPersonOAuthIntegrationStatus;
+  OptInToEmailList?: boolean;
+  /** @nullable */
+  Password?: string | null;
+  /** @nullable */
+  UserAgentPlatformBrowser?: string | null;
+  HasUnsubscribed?: boolean;
+  IsConnectedToDiscord?: boolean;
+} | null;
+
+export type AccountSubscriptionRenewalExtendedWebhookPayloadPersonAccountItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** @nullable */
+  Person?: AccountSubscriptionRenewalExtendedWebhookPayloadPersonAccountItemPerson;
+  IsPrimary?: boolean;
+  ReceiveInvoices?: boolean;
+};
+
+export type AccountSubscriptionRenewalExtendedWebhookPayloadStripeInvoicesItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  StripeId?: string | null;
+  IsLivemode?: boolean;
+  AmountDue?: number;
+  AmountPaid?: number;
+  AmountShipping?: number;
+  AttemptCount?: number;
+  Attempted?: boolean;
+  /**
+   * @maxLength 3
+   * @nullable
+   */
+  Currency?: string | null;
+  /** @nullable */
+  Description?: string | null;
+  /** @nullable */
+  FinalizedAt?: string | null;
+  /**
+   * @maxLength 500
+   * @nullable
+   */
+  HostedInvoiceUrl?: string | null;
+  /**
+   * @maxLength 500
+   * @nullable
+   */
+  InvoicePdf?: string | null;
+  /** @nullable */
+  NextPaymentAttempt?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  Number?: string | null;
+  PeriodEnd?: string;
+  PeriodStart?: string;
+  /**
+   * @maxLength 30
+   * @nullable
+   */
+  Status?: string | null;
+  SubTotal?: number;
+  /** @nullable */
+  SubTotalExcludingTax?: number | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  SubscriptionId?: string | null;
+  /** @nullable */
+  Tax?: number | null;
+  Total?: number;
+  /** @nullable */
+  TotalExcludingTax?: number | null;
+  IsRefunded?: boolean;
+  CurrencyAmountCreditedPostPayment?: number;
+  CurrencyAmountCreditedPrePayment?: number;
+  CurrencyAmountDue?: number;
+  CurrencyAmountPaid?: number;
+  /** @nullable */
+  CurrencySymbol?: string | null;
+  CurrencyTotal?: number;
+  CurrencyTotalExcludingTax?: number;
+  CurrencySubTotal?: number;
+  CurrencySubTotalExcludingTax?: number;
+  CurrencyTax?: number;
+  /** @nullable */
+  DaysUntilDue?: number | null;
+  /** @nullable */
+  CustomerId?: string | null;
+  /** @nullable */
+  PaymentStatus?: string | null;
+  /** @nullable */
+  StripePaymentMethodId?: string | null;
+};
+
+export type AccountSubscriptionRenewalExtendedWebhookPayloadStripePaymentMethodsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  StripeId?: string | null;
+  IsLivemode?: boolean;
+  /** @nullable */
+  Card_Brand?: string | null;
+  /** @nullable */
+  Card_ExpMonth?: number | null;
+  /** @nullable */
+  Card_ExpYear?: number | null;
+  /** @nullable */
+  Card_Wallet_Type?: string | null;
+  /** @nullable */
+  BankName?: string | null;
+  /** @nullable */
+  Last4?: string | null;
+  /** @nullable */
+  Type?: string | null;
+  /** @nullable */
+  Label?: string | null;
+};
+
+export type AccountSubscriptionRenewalExtendedWebhookPayloadStripeSubscriptionsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  StripeId?: string | null;
+  IsLivemode?: boolean;
+  /** @nullable */
+  CancelAt?: string | null;
+  CancelAtPeriodEnd?: boolean;
+  /**
+   * @maxLength 3
+   * @nullable
+   */
+  Currency?: string | null;
+  /** @nullable */
+  EndedAt?: string | null;
+  /**
+   * @maxLength 30
+   * @nullable
+   */
+  PauseCollection_Behavior?: string | null;
+  /** @nullable */
+  PauseCollection_ResumesAt?: string | null;
+  StartDate?: string;
+  /**
+   * @maxLength 30
+   * @nullable
+   */
+  Status?: string | null;
+  /** @nullable */
+  TrialEnd?: string | null;
+  /** @nullable */
+  AccountUid?: string | null;
+  /** @nullable */
+  BillingCycleAnchor?: string | null;
+  /** @nullable */
+  CollectionMethod?: string | null;
+  /** @nullable */
+  CustomerId?: string | null;
+  /** @nullable */
+  DaysUntilDue?: number | null;
+  /** @nullable */
+  ScheduleId?: string | null;
+  /** @nullable */
+  StripeDiscountIds?: string[] | null;
+  /** @nullable */
+  StripePriceIds?: string | null;
+  TrialPeriodDays?: number;
+};
+
+/**
+ * `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time
+ */
+export type AccountSubscriptionRenewalExtendedWebhookPayloadSubscriptionsItemBillingRenewalTerm = typeof AccountSubscriptionRenewalExtendedWebhookPayloadSubscriptionsItemBillingRenewalTerm[keyof typeof AccountSubscriptionRenewalExtendedWebhookPayloadSubscriptionsItemBillingRenewalTerm];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionRenewalExtendedWebhookPayloadSubscriptionsItemBillingRenewalTerm = {
+  Monthly: 1,
+  Yearly: 2,
+  Quarterly: 3,
+  OneTime: 4,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionRenewalExtendedWebhookPayloadSubscriptionsItemPlanPlanFamily = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  IsActive?: boolean;
+  IsDefault?: boolean;
+} | null;
+
+/**
+ * `1` - Individual, `2` - Team
+ */
+export type AccountSubscriptionRenewalExtendedWebhookPayloadSubscriptionsItemPlanAccountRegistrationMode = typeof AccountSubscriptionRenewalExtendedWebhookPayloadSubscriptionsItemPlanAccountRegistrationMode[keyof typeof AccountSubscriptionRenewalExtendedWebhookPayloadSubscriptionsItemPlanAccountRegistrationMode];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionRenewalExtendedWebhookPayloadSubscriptionsItemPlanAccountRegistrationMode = {
+  Individual: 1,
+  Team: 2,
+} as const;
+
+export type AccountSubscriptionRenewalExtendedWebhookPayloadSubscriptionsItemPlanPlanAddOnsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  IsUserSelectable: boolean;
+};
+
+export type AccountSubscriptionRenewalExtendedWebhookPayloadSubscriptionsItemPlanContentGroupsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @minLength 1
+   * @maxLength 50
+   */
+  Name: string;
+  /**
+   * @maxLength 1024
+   * @nullable
+   */
+  AccessDeniedPath?: string | null;
+};
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionRenewalExtendedWebhookPayloadSubscriptionsItemPlan = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  /** @nullable */
+  Description?: string | null;
+  /** @nullable */
+  PlanFamily?: AccountSubscriptionRenewalExtendedWebhookPayloadSubscriptionsItemPlanPlanFamily;
+  /** `1` - Individual, `2` - Team */
+  AccountRegistrationMode?: AccountSubscriptionRenewalExtendedWebhookPayloadSubscriptionsItemPlanAccountRegistrationMode;
+  IsQuantityEditable?: boolean;
+  MinimumQuantity?: number;
+  /** @nullable */
+  MaximumPeople?: number | null;
+  MonthlyRate?: number;
+  AnnualRate?: number;
+  QuarterlyRate?: number;
+  OneTimeRate?: number;
+  SetupFee?: number;
+  SkipSetupFeeOnPlanChange?: boolean;
+  IsTaxable?: boolean;
+  IsActive?: boolean;
+  IsPerUser?: boolean;
+  RequirePaymentInformation?: boolean;
+  TrialPeriodDays?: number;
+  /** @nullable */
+  TrialUntilDate?: string | null;
+  ExpiresAfterMonths?: number;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PostLoginPath?: string | null;
+  /**
+   * @maxLength 15
+   * @nullable
+   */
+  StripeTaxCodeId?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  UnitOfMeasure?: string | null;
+  /** @nullable */
+  PlanAddOns?: AccountSubscriptionRenewalExtendedWebhookPayloadSubscriptionsItemPlanPlanAddOnsItem[] | null;
+  /** @nullable */
+  ContentGroups?: AccountSubscriptionRenewalExtendedWebhookPayloadSubscriptionsItemPlanContentGroupsItem[] | null;
+  /** @nullable */
+  NumberOfSubscriptions?: number | null;
+} | null;
+
+/**
+ * `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time
+ */
+export type AccountSubscriptionRenewalExtendedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemBillingRenewalTerm = typeof AccountSubscriptionRenewalExtendedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemBillingRenewalTerm[keyof typeof AccountSubscriptionRenewalExtendedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemBillingRenewalTerm];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionRenewalExtendedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemBillingRenewalTerm = {
+  Monthly: 1,
+  Yearly: 2,
+  Quarterly: 3,
+  OneTime: 4,
+} as const;
+
+/**
+ * `1` - Recurring, `2` - Usage, `3` - OneTime
+ */
+export type AccountSubscriptionRenewalExtendedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemAddOnBillingAddOnType = typeof AccountSubscriptionRenewalExtendedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemAddOnBillingAddOnType[keyof typeof AccountSubscriptionRenewalExtendedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemAddOnBillingAddOnType];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionRenewalExtendedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemAddOnBillingAddOnType = {
+  Recurring: 1,
+  Usage: 2,
+  OneTime: 3,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionRenewalExtendedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemAddOn = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  /** `1` - Recurring, `2` - Usage, `3` - OneTime */
+  BillingAddOnType?: AccountSubscriptionRenewalExtendedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemAddOnBillingAddOnType;
+  IsQuantityEditable?: boolean;
+  MinimumQuantity?: number;
+  MonthlyRate?: number;
+  AnnualRate?: number;
+  SetupFee?: number;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  UnitOfMeasure?: string | null;
+  IsTaxable?: boolean;
+  IsBilledDuringTrial?: boolean;
+  ExpiresAfterMonths?: number;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /**
+   * @maxLength 15
+   * @nullable
+   */
+  StripeTaxCodeId?: string | null;
+  IsPerUser?: boolean;
+  QuarterlyRate?: number;
+  OneTimeRate?: number;
+  SubscriptionCount?: number;
+  Quantity?: number;
+} | null;
+
+export type AccountSubscriptionRenewalExtendedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time */
+  BillingRenewalTerm?: AccountSubscriptionRenewalExtendedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemBillingRenewalTerm;
+  /** @nullable */
+  AddOn?: AccountSubscriptionRenewalExtendedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemAddOn;
+  /** @nullable */
+  Quantity?: number | null;
+  StartDate?: string;
+  /** @nullable */
+  EndDate?: string | null;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /** @nullable */
+  RenewalDate?: string | null;
+  /** @nullable */
+  NewRequiredQuantity?: number | null;
+  /** @nullable */
+  Rate?: number | null;
+};
+
+/**
+ * `1` - Forever, `2` - Once, `3` - Repeating
+ */
+export type AccountSubscriptionRenewalExtendedWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItemDiscountCouponDuration = typeof AccountSubscriptionRenewalExtendedWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItemDiscountCouponDuration[keyof typeof AccountSubscriptionRenewalExtendedWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItemDiscountCouponDuration];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionRenewalExtendedWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItemDiscountCouponDuration = {
+  Forever: 1,
+  Once: 2,
+  Repeating: 3,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionRenewalExtendedWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItemDiscountCoupon = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /** @nullable */
+  UniqueIdentifier?: string | null;
+  /** @nullable */
+  Name?: string | null;
+  IsActive?: boolean;
+  /** @nullable */
+  AmountOff?: number | null;
+  /** @nullable */
+  PercentOff?: number | null;
+  /** @nullable */
+  RedeemBy?: string | null;
+  /** `1` - Forever, `2` - Once, `3` - Repeating */
+  Duration?: AccountSubscriptionRenewalExtendedWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItemDiscountCouponDuration;
+  /** @nullable */
+  DurationInMonths?: number | null;
+  TimesRedeemed?: number;
+  /** @nullable */
+  MaxRedemptions?: number | null;
+  ApplyToAddOns?: boolean;
+  /** @nullable */
+  PlanUids?: string | null;
+} | null;
+
+export type AccountSubscriptionRenewalExtendedWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** @nullable */
+  RedeemedDate?: string | null;
+  /** @nullable */
+  ExpireDate?: string | null;
+  /** @nullable */
+  DiscountCoupon?: AccountSubscriptionRenewalExtendedWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItemDiscountCoupon;
+};
+
+/**
+ * `1` - Unpaid, `2` - Paid, `3` - Partial, `4` - Uncollected, `5` - Refunded, `6` - Uncollectible, `7` - Processing
+ */
+export type AccountSubscriptionRenewalExtendedWebhookPayloadSubscriptionsItemLatestInvoiceBillingInvoiceStatus = typeof AccountSubscriptionRenewalExtendedWebhookPayloadSubscriptionsItemLatestInvoiceBillingInvoiceStatus[keyof typeof AccountSubscriptionRenewalExtendedWebhookPayloadSubscriptionsItemLatestInvoiceBillingInvoiceStatus];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionRenewalExtendedWebhookPayloadSubscriptionsItemLatestInvoiceBillingInvoiceStatus = {
+  Unpaid: 1,
+  Paid: 2,
+  Partial: 3,
+  Uncollected: 4,
+  Refunded: 5,
+  Uncollectible: 6,
+  Processing: 7,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionRenewalExtendedWebhookPayloadSubscriptionsItemLatestInvoice = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  InvoiceDate?: string;
+  /** @nullable */
+  PaymentReminderSentDate?: string | null;
+  Number?: number;
+  /** `1` - Unpaid, `2` - Paid, `3` - Partial, `4` - Uncollected, `5` - Refunded, `6` - Uncollectible, `7` - Processing */
+  BillingInvoiceStatus?: AccountSubscriptionRenewalExtendedWebhookPayloadSubscriptionsItemLatestInvoiceBillingInvoiceStatus;
+  Amount?: number;
+  AmountOutstanding?: number;
+  IsUserGenerated?: boolean;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  StripeTaxCalculationId?: string | null;
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  StripeTaxBehavior?: string | null;
+  AmountCredit?: number;
+  AmountDiscount?: number;
+  AmountPaid?: number;
+  AmountRefunded?: number;
+  AmountSubtotal?: number;
+  AmountTax?: number;
+  AmountTaxRefunded?: number;
+  IsTaxable?: boolean;
+  HasPaymentGatewayTransactions?: boolean;
+  /** @nullable */
+  StripePaymentTransactionIds?: string | null;
+  /** @nullable */
+  StripeRefundTransactionIds?: string | null;
+  /** @nullable */
+  StripeTaxRefundTransactionIds?: string | null;
+} | null;
+
+export type AccountSubscriptionRenewalExtendedWebhookPayloadSubscriptionsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time */
+  BillingRenewalTerm?: AccountSubscriptionRenewalExtendedWebhookPayloadSubscriptionsItemBillingRenewalTerm;
+  /** @nullable */
+  Plan?: AccountSubscriptionRenewalExtendedWebhookPayloadSubscriptionsItemPlan;
+  /** @nullable */
+  Quantity?: number | null;
+  StartDate?: string;
+  /** @nullable */
+  EndDate?: string | null;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /** @nullable */
+  RenewalDate?: string | null;
+  /** @nullable */
+  NewRequiredQuantity?: number | null;
+  IsPlanUpgradeRequired?: boolean;
+  /** @nullable */
+  PlanUpgradeRequiredMessage?: string | null;
+  /** @nullable */
+  SubscriptionAddOns?: AccountSubscriptionRenewalExtendedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItem[] | null;
+  /** @nullable */
+  DiscountCouponSubscriptions?: AccountSubscriptionRenewalExtendedWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItem[] | null;
+  /** @nullable */
+  DiscountCode?: string | null;
+  /** @nullable */
+  DiscountCouponExpirationDate?: string | null;
+  /** @nullable */
+  LatestInvoice?: AccountSubscriptionRenewalExtendedWebhookPayloadSubscriptionsItemLatestInvoice;
+  /** @nullable */
+  Rate?: number | null;
+};
+
+export type AccountSubscriptionRenewalExtendedWebhookPayloadDealsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @minLength 1
+   * @maxLength 250
+   */
+  Name: string;
+  /** @nullable */
+  Amount?: number | null;
+  /** @nullable */
+  DueDate?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  AssignedToPersonClientIdentifier?: string | null;
+  Weight?: number;
+  /** @nullable */
+  Contacts?: string | null;
+  AccountId?: number;
+  /** @nullable */
+  PipelineUid?: string | null;
+};
+
+export type AccountSubscriptionRenewalExtendedWebhookPayloadTaxIdsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  StripeId?: string | null;
+  IsLivemode?: boolean;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  TaxId?: string | null;
+  /**
+   * @maxLength 20
+   * @nullable
+   */
+  TaxIdType?: string | null;
+  IsInvalid?: boolean;
+};
+
+/**
+ * `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time
+ */
+export type AccountSubscriptionRenewalExtendedWebhookPayloadCurrentSubscriptionBillingRenewalTerm = typeof AccountSubscriptionRenewalExtendedWebhookPayloadCurrentSubscriptionBillingRenewalTerm[keyof typeof AccountSubscriptionRenewalExtendedWebhookPayloadCurrentSubscriptionBillingRenewalTerm];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionRenewalExtendedWebhookPayloadCurrentSubscriptionBillingRenewalTerm = {
+  Monthly: 1,
+  Yearly: 2,
+  Quarterly: 3,
+  OneTime: 4,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionRenewalExtendedWebhookPayloadCurrentSubscriptionPlanPlanFamily = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  IsActive?: boolean;
+  IsDefault?: boolean;
+} | null;
+
+/**
+ * `1` - Individual, `2` - Team
+ */
+export type AccountSubscriptionRenewalExtendedWebhookPayloadCurrentSubscriptionPlanAccountRegistrationMode = typeof AccountSubscriptionRenewalExtendedWebhookPayloadCurrentSubscriptionPlanAccountRegistrationMode[keyof typeof AccountSubscriptionRenewalExtendedWebhookPayloadCurrentSubscriptionPlanAccountRegistrationMode];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionRenewalExtendedWebhookPayloadCurrentSubscriptionPlanAccountRegistrationMode = {
+  Individual: 1,
+  Team: 2,
+} as const;
+
+export type AccountSubscriptionRenewalExtendedWebhookPayloadCurrentSubscriptionPlanPlanAddOnsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  IsUserSelectable: boolean;
+};
+
+export type AccountSubscriptionRenewalExtendedWebhookPayloadCurrentSubscriptionPlanContentGroupsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @minLength 1
+   * @maxLength 50
+   */
+  Name: string;
+  /**
+   * @maxLength 1024
+   * @nullable
+   */
+  AccessDeniedPath?: string | null;
+};
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionRenewalExtendedWebhookPayloadCurrentSubscriptionPlan = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  /** @nullable */
+  Description?: string | null;
+  /** @nullable */
+  PlanFamily?: AccountSubscriptionRenewalExtendedWebhookPayloadCurrentSubscriptionPlanPlanFamily;
+  /** `1` - Individual, `2` - Team */
+  AccountRegistrationMode?: AccountSubscriptionRenewalExtendedWebhookPayloadCurrentSubscriptionPlanAccountRegistrationMode;
+  IsQuantityEditable?: boolean;
+  MinimumQuantity?: number;
+  /** @nullable */
+  MaximumPeople?: number | null;
+  MonthlyRate?: number;
+  AnnualRate?: number;
+  QuarterlyRate?: number;
+  OneTimeRate?: number;
+  SetupFee?: number;
+  SkipSetupFeeOnPlanChange?: boolean;
+  IsTaxable?: boolean;
+  IsActive?: boolean;
+  IsPerUser?: boolean;
+  RequirePaymentInformation?: boolean;
+  TrialPeriodDays?: number;
+  /** @nullable */
+  TrialUntilDate?: string | null;
+  ExpiresAfterMonths?: number;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PostLoginPath?: string | null;
+  /**
+   * @maxLength 15
+   * @nullable
+   */
+  StripeTaxCodeId?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  UnitOfMeasure?: string | null;
+  /** @nullable */
+  PlanAddOns?: AccountSubscriptionRenewalExtendedWebhookPayloadCurrentSubscriptionPlanPlanAddOnsItem[] | null;
+  /** @nullable */
+  ContentGroups?: AccountSubscriptionRenewalExtendedWebhookPayloadCurrentSubscriptionPlanContentGroupsItem[] | null;
+  /** @nullable */
+  NumberOfSubscriptions?: number | null;
+} | null;
+
+/**
+ * `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time
+ */
+export type AccountSubscriptionRenewalExtendedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemBillingRenewalTerm = typeof AccountSubscriptionRenewalExtendedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemBillingRenewalTerm[keyof typeof AccountSubscriptionRenewalExtendedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemBillingRenewalTerm];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionRenewalExtendedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemBillingRenewalTerm = {
+  Monthly: 1,
+  Yearly: 2,
+  Quarterly: 3,
+  OneTime: 4,
+} as const;
+
+/**
+ * `1` - Recurring, `2` - Usage, `3` - OneTime
+ */
+export type AccountSubscriptionRenewalExtendedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType = typeof AccountSubscriptionRenewalExtendedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType[keyof typeof AccountSubscriptionRenewalExtendedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionRenewalExtendedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType = {
+  Recurring: 1,
+  Usage: 2,
+  OneTime: 3,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionRenewalExtendedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemAddOn = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  /** `1` - Recurring, `2` - Usage, `3` - OneTime */
+  BillingAddOnType?: AccountSubscriptionRenewalExtendedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType;
+  IsQuantityEditable?: boolean;
+  MinimumQuantity?: number;
+  MonthlyRate?: number;
+  AnnualRate?: number;
+  SetupFee?: number;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  UnitOfMeasure?: string | null;
+  IsTaxable?: boolean;
+  IsBilledDuringTrial?: boolean;
+  ExpiresAfterMonths?: number;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /**
+   * @maxLength 15
+   * @nullable
+   */
+  StripeTaxCodeId?: string | null;
+  IsPerUser?: boolean;
+  QuarterlyRate?: number;
+  OneTimeRate?: number;
+  SubscriptionCount?: number;
+  Quantity?: number;
+} | null;
+
+export type AccountSubscriptionRenewalExtendedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time */
+  BillingRenewalTerm?: AccountSubscriptionRenewalExtendedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemBillingRenewalTerm;
+  /** @nullable */
+  AddOn?: AccountSubscriptionRenewalExtendedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemAddOn;
+  /** @nullable */
+  Quantity?: number | null;
+  StartDate?: string;
+  /** @nullable */
+  EndDate?: string | null;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /** @nullable */
+  RenewalDate?: string | null;
+  /** @nullable */
+  NewRequiredQuantity?: number | null;
+  /** @nullable */
+  Rate?: number | null;
+};
+
+/**
+ * `1` - Forever, `2` - Once, `3` - Repeating
+ */
+export type AccountSubscriptionRenewalExtendedWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration = typeof AccountSubscriptionRenewalExtendedWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration[keyof typeof AccountSubscriptionRenewalExtendedWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionRenewalExtendedWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration = {
+  Forever: 1,
+  Once: 2,
+  Repeating: 3,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionRenewalExtendedWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItemDiscountCoupon = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /** @nullable */
+  UniqueIdentifier?: string | null;
+  /** @nullable */
+  Name?: string | null;
+  IsActive?: boolean;
+  /** @nullable */
+  AmountOff?: number | null;
+  /** @nullable */
+  PercentOff?: number | null;
+  /** @nullable */
+  RedeemBy?: string | null;
+  /** `1` - Forever, `2` - Once, `3` - Repeating */
+  Duration?: AccountSubscriptionRenewalExtendedWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration;
+  /** @nullable */
+  DurationInMonths?: number | null;
+  TimesRedeemed?: number;
+  /** @nullable */
+  MaxRedemptions?: number | null;
+  ApplyToAddOns?: boolean;
+  /** @nullable */
+  PlanUids?: string | null;
+} | null;
+
+export type AccountSubscriptionRenewalExtendedWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** @nullable */
+  RedeemedDate?: string | null;
+  /** @nullable */
+  ExpireDate?: string | null;
+  /** @nullable */
+  DiscountCoupon?: AccountSubscriptionRenewalExtendedWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItemDiscountCoupon;
+};
+
+/**
+ * `1` - Unpaid, `2` - Paid, `3` - Partial, `4` - Uncollected, `5` - Refunded, `6` - Uncollectible, `7` - Processing
+ */
+export type AccountSubscriptionRenewalExtendedWebhookPayloadCurrentSubscriptionLatestInvoiceBillingInvoiceStatus = typeof AccountSubscriptionRenewalExtendedWebhookPayloadCurrentSubscriptionLatestInvoiceBillingInvoiceStatus[keyof typeof AccountSubscriptionRenewalExtendedWebhookPayloadCurrentSubscriptionLatestInvoiceBillingInvoiceStatus];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionRenewalExtendedWebhookPayloadCurrentSubscriptionLatestInvoiceBillingInvoiceStatus = {
+  Unpaid: 1,
+  Paid: 2,
+  Partial: 3,
+  Uncollected: 4,
+  Refunded: 5,
+  Uncollectible: 6,
+  Processing: 7,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionRenewalExtendedWebhookPayloadCurrentSubscriptionLatestInvoice = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  InvoiceDate?: string;
+  /** @nullable */
+  PaymentReminderSentDate?: string | null;
+  Number?: number;
+  /** `1` - Unpaid, `2` - Paid, `3` - Partial, `4` - Uncollected, `5` - Refunded, `6` - Uncollectible, `7` - Processing */
+  BillingInvoiceStatus?: AccountSubscriptionRenewalExtendedWebhookPayloadCurrentSubscriptionLatestInvoiceBillingInvoiceStatus;
+  Amount?: number;
+  AmountOutstanding?: number;
+  IsUserGenerated?: boolean;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  StripeTaxCalculationId?: string | null;
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  StripeTaxBehavior?: string | null;
+  AmountCredit?: number;
+  AmountDiscount?: number;
+  AmountPaid?: number;
+  AmountRefunded?: number;
+  AmountSubtotal?: number;
+  AmountTax?: number;
+  AmountTaxRefunded?: number;
+  IsTaxable?: boolean;
+  HasPaymentGatewayTransactions?: boolean;
+  /** @nullable */
+  StripePaymentTransactionIds?: string | null;
+  /** @nullable */
+  StripeRefundTransactionIds?: string | null;
+  /** @nullable */
+  StripeTaxRefundTransactionIds?: string | null;
+} | null;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionRenewalExtendedWebhookPayloadCurrentSubscription = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /** `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time */
+  BillingRenewalTerm?: AccountSubscriptionRenewalExtendedWebhookPayloadCurrentSubscriptionBillingRenewalTerm;
+  /** @nullable */
+  Plan?: AccountSubscriptionRenewalExtendedWebhookPayloadCurrentSubscriptionPlan;
+  /** @nullable */
+  Quantity?: number | null;
+  StartDate?: string;
+  /** @nullable */
+  EndDate?: string | null;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /** @nullable */
+  RenewalDate?: string | null;
+  /** @nullable */
+  NewRequiredQuantity?: number | null;
+  IsPlanUpgradeRequired?: boolean;
+  /** @nullable */
+  PlanUpgradeRequiredMessage?: string | null;
+  /** @nullable */
+  SubscriptionAddOns?: AccountSubscriptionRenewalExtendedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItem[] | null;
+  /** @nullable */
+  DiscountCouponSubscriptions?: AccountSubscriptionRenewalExtendedWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItem[] | null;
+  /** @nullable */
+  DiscountCode?: string | null;
+  /** @nullable */
+  DiscountCouponExpirationDate?: string | null;
+  /** @nullable */
+  LatestInvoice?: AccountSubscriptionRenewalExtendedWebhookPayloadCurrentSubscriptionLatestInvoice;
+  /** @nullable */
+  Rate?: number | null;
+} | null;
+
+/**
+ * `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time
+ */
+export type AccountSubscriptionRenewalExtendedWebhookPayloadLatestSubscriptionBillingRenewalTerm = typeof AccountSubscriptionRenewalExtendedWebhookPayloadLatestSubscriptionBillingRenewalTerm[keyof typeof AccountSubscriptionRenewalExtendedWebhookPayloadLatestSubscriptionBillingRenewalTerm];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionRenewalExtendedWebhookPayloadLatestSubscriptionBillingRenewalTerm = {
+  Monthly: 1,
+  Yearly: 2,
+  Quarterly: 3,
+  OneTime: 4,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionRenewalExtendedWebhookPayloadLatestSubscriptionPlanPlanFamily = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  IsActive?: boolean;
+  IsDefault?: boolean;
+} | null;
+
+/**
+ * `1` - Individual, `2` - Team
+ */
+export type AccountSubscriptionRenewalExtendedWebhookPayloadLatestSubscriptionPlanAccountRegistrationMode = typeof AccountSubscriptionRenewalExtendedWebhookPayloadLatestSubscriptionPlanAccountRegistrationMode[keyof typeof AccountSubscriptionRenewalExtendedWebhookPayloadLatestSubscriptionPlanAccountRegistrationMode];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionRenewalExtendedWebhookPayloadLatestSubscriptionPlanAccountRegistrationMode = {
+  Individual: 1,
+  Team: 2,
+} as const;
+
+export type AccountSubscriptionRenewalExtendedWebhookPayloadLatestSubscriptionPlanPlanAddOnsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  IsUserSelectable: boolean;
+};
+
+export type AccountSubscriptionRenewalExtendedWebhookPayloadLatestSubscriptionPlanContentGroupsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @minLength 1
+   * @maxLength 50
+   */
+  Name: string;
+  /**
+   * @maxLength 1024
+   * @nullable
+   */
+  AccessDeniedPath?: string | null;
+};
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionRenewalExtendedWebhookPayloadLatestSubscriptionPlan = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  /** @nullable */
+  Description?: string | null;
+  /** @nullable */
+  PlanFamily?: AccountSubscriptionRenewalExtendedWebhookPayloadLatestSubscriptionPlanPlanFamily;
+  /** `1` - Individual, `2` - Team */
+  AccountRegistrationMode?: AccountSubscriptionRenewalExtendedWebhookPayloadLatestSubscriptionPlanAccountRegistrationMode;
+  IsQuantityEditable?: boolean;
+  MinimumQuantity?: number;
+  /** @nullable */
+  MaximumPeople?: number | null;
+  MonthlyRate?: number;
+  AnnualRate?: number;
+  QuarterlyRate?: number;
+  OneTimeRate?: number;
+  SetupFee?: number;
+  SkipSetupFeeOnPlanChange?: boolean;
+  IsTaxable?: boolean;
+  IsActive?: boolean;
+  IsPerUser?: boolean;
+  RequirePaymentInformation?: boolean;
+  TrialPeriodDays?: number;
+  /** @nullable */
+  TrialUntilDate?: string | null;
+  ExpiresAfterMonths?: number;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PostLoginPath?: string | null;
+  /**
+   * @maxLength 15
+   * @nullable
+   */
+  StripeTaxCodeId?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  UnitOfMeasure?: string | null;
+  /** @nullable */
+  PlanAddOns?: AccountSubscriptionRenewalExtendedWebhookPayloadLatestSubscriptionPlanPlanAddOnsItem[] | null;
+  /** @nullable */
+  ContentGroups?: AccountSubscriptionRenewalExtendedWebhookPayloadLatestSubscriptionPlanContentGroupsItem[] | null;
+  /** @nullable */
+  NumberOfSubscriptions?: number | null;
+} | null;
+
+/**
+ * `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time
+ */
+export type AccountSubscriptionRenewalExtendedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemBillingRenewalTerm = typeof AccountSubscriptionRenewalExtendedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemBillingRenewalTerm[keyof typeof AccountSubscriptionRenewalExtendedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemBillingRenewalTerm];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionRenewalExtendedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemBillingRenewalTerm = {
+  Monthly: 1,
+  Yearly: 2,
+  Quarterly: 3,
+  OneTime: 4,
+} as const;
+
+/**
+ * `1` - Recurring, `2` - Usage, `3` - OneTime
+ */
+export type AccountSubscriptionRenewalExtendedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType = typeof AccountSubscriptionRenewalExtendedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType[keyof typeof AccountSubscriptionRenewalExtendedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionRenewalExtendedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType = {
+  Recurring: 1,
+  Usage: 2,
+  OneTime: 3,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionRenewalExtendedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemAddOn = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  /** `1` - Recurring, `2` - Usage, `3` - OneTime */
+  BillingAddOnType?: AccountSubscriptionRenewalExtendedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType;
+  IsQuantityEditable?: boolean;
+  MinimumQuantity?: number;
+  MonthlyRate?: number;
+  AnnualRate?: number;
+  SetupFee?: number;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  UnitOfMeasure?: string | null;
+  IsTaxable?: boolean;
+  IsBilledDuringTrial?: boolean;
+  ExpiresAfterMonths?: number;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /**
+   * @maxLength 15
+   * @nullable
+   */
+  StripeTaxCodeId?: string | null;
+  IsPerUser?: boolean;
+  QuarterlyRate?: number;
+  OneTimeRate?: number;
+  SubscriptionCount?: number;
+  Quantity?: number;
+} | null;
+
+export type AccountSubscriptionRenewalExtendedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time */
+  BillingRenewalTerm?: AccountSubscriptionRenewalExtendedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemBillingRenewalTerm;
+  /** @nullable */
+  AddOn?: AccountSubscriptionRenewalExtendedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemAddOn;
+  /** @nullable */
+  Quantity?: number | null;
+  StartDate?: string;
+  /** @nullable */
+  EndDate?: string | null;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /** @nullable */
+  RenewalDate?: string | null;
+  /** @nullable */
+  NewRequiredQuantity?: number | null;
+  /** @nullable */
+  Rate?: number | null;
+};
+
+/**
+ * `1` - Forever, `2` - Once, `3` - Repeating
+ */
+export type AccountSubscriptionRenewalExtendedWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration = typeof AccountSubscriptionRenewalExtendedWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration[keyof typeof AccountSubscriptionRenewalExtendedWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionRenewalExtendedWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration = {
+  Forever: 1,
+  Once: 2,
+  Repeating: 3,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionRenewalExtendedWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItemDiscountCoupon = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /** @nullable */
+  UniqueIdentifier?: string | null;
+  /** @nullable */
+  Name?: string | null;
+  IsActive?: boolean;
+  /** @nullable */
+  AmountOff?: number | null;
+  /** @nullable */
+  PercentOff?: number | null;
+  /** @nullable */
+  RedeemBy?: string | null;
+  /** `1` - Forever, `2` - Once, `3` - Repeating */
+  Duration?: AccountSubscriptionRenewalExtendedWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration;
+  /** @nullable */
+  DurationInMonths?: number | null;
+  TimesRedeemed?: number;
+  /** @nullable */
+  MaxRedemptions?: number | null;
+  ApplyToAddOns?: boolean;
+  /** @nullable */
+  PlanUids?: string | null;
+} | null;
+
+export type AccountSubscriptionRenewalExtendedWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** @nullable */
+  RedeemedDate?: string | null;
+  /** @nullable */
+  ExpireDate?: string | null;
+  /** @nullable */
+  DiscountCoupon?: AccountSubscriptionRenewalExtendedWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItemDiscountCoupon;
+};
+
+/**
+ * `1` - Unpaid, `2` - Paid, `3` - Partial, `4` - Uncollected, `5` - Refunded, `6` - Uncollectible, `7` - Processing
+ */
+export type AccountSubscriptionRenewalExtendedWebhookPayloadLatestSubscriptionLatestInvoiceBillingInvoiceStatus = typeof AccountSubscriptionRenewalExtendedWebhookPayloadLatestSubscriptionLatestInvoiceBillingInvoiceStatus[keyof typeof AccountSubscriptionRenewalExtendedWebhookPayloadLatestSubscriptionLatestInvoiceBillingInvoiceStatus];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionRenewalExtendedWebhookPayloadLatestSubscriptionLatestInvoiceBillingInvoiceStatus = {
+  Unpaid: 1,
+  Paid: 2,
+  Partial: 3,
+  Uncollected: 4,
+  Refunded: 5,
+  Uncollectible: 6,
+  Processing: 7,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionRenewalExtendedWebhookPayloadLatestSubscriptionLatestInvoice = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  InvoiceDate?: string;
+  /** @nullable */
+  PaymentReminderSentDate?: string | null;
+  Number?: number;
+  /** `1` - Unpaid, `2` - Paid, `3` - Partial, `4` - Uncollected, `5` - Refunded, `6` - Uncollectible, `7` - Processing */
+  BillingInvoiceStatus?: AccountSubscriptionRenewalExtendedWebhookPayloadLatestSubscriptionLatestInvoiceBillingInvoiceStatus;
+  Amount?: number;
+  AmountOutstanding?: number;
+  IsUserGenerated?: boolean;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  StripeTaxCalculationId?: string | null;
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  StripeTaxBehavior?: string | null;
+  AmountCredit?: number;
+  AmountDiscount?: number;
+  AmountPaid?: number;
+  AmountRefunded?: number;
+  AmountSubtotal?: number;
+  AmountTax?: number;
+  AmountTaxRefunded?: number;
+  IsTaxable?: boolean;
+  HasPaymentGatewayTransactions?: boolean;
+  /** @nullable */
+  StripePaymentTransactionIds?: string | null;
+  /** @nullable */
+  StripeRefundTransactionIds?: string | null;
+  /** @nullable */
+  StripeTaxRefundTransactionIds?: string | null;
+} | null;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionRenewalExtendedWebhookPayloadLatestSubscription = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /** `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time */
+  BillingRenewalTerm?: AccountSubscriptionRenewalExtendedWebhookPayloadLatestSubscriptionBillingRenewalTerm;
+  /** @nullable */
+  Plan?: AccountSubscriptionRenewalExtendedWebhookPayloadLatestSubscriptionPlan;
+  /** @nullable */
+  Quantity?: number | null;
+  StartDate?: string;
+  /** @nullable */
+  EndDate?: string | null;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /** @nullable */
+  RenewalDate?: string | null;
+  /** @nullable */
+  NewRequiredQuantity?: number | null;
+  IsPlanUpgradeRequired?: boolean;
+  /** @nullable */
+  PlanUpgradeRequiredMessage?: string | null;
+  /** @nullable */
+  SubscriptionAddOns?: AccountSubscriptionRenewalExtendedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItem[] | null;
+  /** @nullable */
+  DiscountCouponSubscriptions?: AccountSubscriptionRenewalExtendedWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItem[] | null;
+  /** @nullable */
+  DiscountCode?: string | null;
+  /** @nullable */
+  DiscountCouponExpirationDate?: string | null;
+  /** @nullable */
+  LatestInvoice?: AccountSubscriptionRenewalExtendedWebhookPayloadLatestSubscriptionLatestInvoice;
+  /** @nullable */
+  Rate?: number | null;
+} | null;
+
+/**
+ * `0` - None, `1` - Gmail
+ */
+export type AccountSubscriptionRenewalExtendedWebhookPayloadPrimaryContactOAuthIntegrationStatus = typeof AccountSubscriptionRenewalExtendedWebhookPayloadPrimaryContactOAuthIntegrationStatus[keyof typeof AccountSubscriptionRenewalExtendedWebhookPayloadPrimaryContactOAuthIntegrationStatus];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionRenewalExtendedWebhookPayloadPrimaryContactOAuthIntegrationStatus = {
+  None: 0,
+  Gmail: 1,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionRenewalExtendedWebhookPayloadPrimaryContact = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Email?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  FirstName?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  LastName?: string | null;
+  /** @nullable */
+  PasswordLastUpdated?: string | null;
+  PasswordMustChange?: boolean;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PhoneMobile?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PhoneWork?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  ProfileImageS3Url?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Title?: string | null;
+  /**
+   * @maxLength 100
+   * @nullable
+   */
+  Timezone?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  Language?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  IPAddress?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Referer?: string | null;
+  /**
+   * @maxLength 1000
+   * @nullable
+   */
+  UserAgent?: string | null;
+  /** @nullable */
+  LastLoginDateTime?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  OAuthGoogleProfileId?: string | null;
+  /** @nullable */
+  AccountUids?: string | null;
+  /** @nullable */
+  FullName?: string | null;
+  HasLoggedIn?: boolean;
+  /** `0` - None, `1` - Gmail */
+  OAuthIntegrationStatus?: AccountSubscriptionRenewalExtendedWebhookPayloadPrimaryContactOAuthIntegrationStatus;
+  OptInToEmailList?: boolean;
+  /** @nullable */
+  Password?: string | null;
+  /** @nullable */
+  UserAgentPlatformBrowser?: string | null;
+  HasUnsubscribed?: boolean;
+  IsConnectedToDiscord?: boolean;
+} | null;
+
+/**
+ * `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time
+ */
+export type AccountSubscriptionRenewalExtendedWebhookPayloadPrimarySubscriptionBillingRenewalTerm = typeof AccountSubscriptionRenewalExtendedWebhookPayloadPrimarySubscriptionBillingRenewalTerm[keyof typeof AccountSubscriptionRenewalExtendedWebhookPayloadPrimarySubscriptionBillingRenewalTerm];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionRenewalExtendedWebhookPayloadPrimarySubscriptionBillingRenewalTerm = {
+  Monthly: 1,
+  Yearly: 2,
+  Quarterly: 3,
+  OneTime: 4,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionRenewalExtendedWebhookPayloadPrimarySubscription = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /** `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time */
+  BillingRenewalTerm?: AccountSubscriptionRenewalExtendedWebhookPayloadPrimarySubscriptionBillingRenewalTerm;
+  /** @nullable */
+  Quantity?: number | null;
+  StartDate?: string;
+  /** @nullable */
+  EndDate?: string | null;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /** @nullable */
+  RenewalDate?: string | null;
+  /** @nullable */
+  NewRequiredQuantity?: number | null;
+  IsPlanUpgradeRequired?: boolean;
+  /** @nullable */
+  PlanUpgradeRequiredMessage?: string | null;
+  /** @nullable */
+  DiscountCode?: string | null;
+  /** @nullable */
+  DiscountCouponExpirationDate?: string | null;
+  /** @nullable */
+  Rate?: number | null;
+} | null;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionRenewalExtendedWebhookPayloadPrimaryStripeSubscription = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  StripeId?: string | null;
+  IsLivemode?: boolean;
+  /** @nullable */
+  CancelAt?: string | null;
+  CancelAtPeriodEnd?: boolean;
+  /**
+   * @maxLength 3
+   * @nullable
+   */
+  Currency?: string | null;
+  /** @nullable */
+  EndedAt?: string | null;
+  /**
+   * @maxLength 30
+   * @nullable
+   */
+  PauseCollection_Behavior?: string | null;
+  /** @nullable */
+  PauseCollection_ResumesAt?: string | null;
+  StartDate?: string;
+  /**
+   * @maxLength 30
+   * @nullable
+   */
+  Status?: string | null;
+  /** @nullable */
+  TrialEnd?: string | null;
+  /** @nullable */
+  AccountUid?: string | null;
+  /** @nullable */
+  BillingCycleAnchor?: string | null;
+  /** @nullable */
+  CollectionMethod?: string | null;
+  /** @nullable */
+  CustomerId?: string | null;
+  /** @nullable */
+  DaysUntilDue?: number | null;
+  /** @nullable */
+  ScheduleId?: string | null;
+  /** @nullable */
+  StripeDiscountIds?: string[] | null;
+  /** @nullable */
+  StripePriceIds?: string | null;
+  TrialPeriodDays?: number;
+} | null;
+
+export interface AccountSubscriptionRenewalExtendedWebhookPayload {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  StripeId?: string | null;
+  IsLivemode?: boolean;
+  /**
+   * @minLength 1
+   * @maxLength 250
+   */
+  Name: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  ClientIdentifier?: string | null;
+  /**
+   * @maxLength 3
+   * @nullable
+   */
+  Currency?: string | null;
+  /** @nullable */
+  InvoiceNotes?: string | null;
+  IsDemo?: boolean;
+  /** @nullable */
+  BillingAddress?: AccountSubscriptionRenewalExtendedWebhookPayloadBillingAddress;
+  /** @nullable */
+  MailingAddress?: AccountSubscriptionRenewalExtendedWebhookPayloadMailingAddress;
+  /** `2` - Trialing, `3` - Subscribing, `4` - Cancelling, `5` - Expired, `6` - Trial Expired, `7` - Past Due, `8` - Cancelling Trial, `9` - Paused, `10` - Created */
+  AccountStage?: AccountSubscriptionRenewalExtendedWebhookPayloadAccountStage;
+  /** @nullable */
+  PaymentInformation?: AccountSubscriptionRenewalExtendedWebhookPayloadPaymentInformation;
+  /** @nullable */
+  PersonAccount?: AccountSubscriptionRenewalExtendedWebhookPayloadPersonAccountItem[] | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  StripeDefaultPaymentMethodId?: string | null;
+  /** @nullable */
+  StripeInvoices?: AccountSubscriptionRenewalExtendedWebhookPayloadStripeInvoicesItem[] | null;
+  /** @nullable */
+  StripePaymentMethods?: AccountSubscriptionRenewalExtendedWebhookPayloadStripePaymentMethodsItem[] | null;
+  /** @nullable */
+  StripeSubscriptions?: AccountSubscriptionRenewalExtendedWebhookPayloadStripeSubscriptionsItem[] | null;
+  /** @nullable */
+  Subscriptions?: AccountSubscriptionRenewalExtendedWebhookPayloadSubscriptionsItem[] | null;
+  /** @nullable */
+  Deals?: AccountSubscriptionRenewalExtendedWebhookPayloadDealsItem[] | null;
+  /** @nullable */
+  LastLoginDateTime?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl1?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl2?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl3?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl4?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl5?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl6?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl7?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl8?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl9?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl10?: string | null;
+  /** @nullable */
+  RewardFulReferralId?: string | null;
+  /**
+   * @maxLength 36
+   * @nullable
+   */
+  ToltReferralId?: string | null;
+  /** @nullable */
+  TaxIds?: AccountSubscriptionRenewalExtendedWebhookPayloadTaxIdsItem[] | null;
+  /**
+   * @maxLength 20
+   * @nullable
+   */
+  TaxStatus?: string | null;
+  /** @nullable */
+  AccountStageLabel?: string | null;
+  /** @nullable */
+  CurrentStripeProducts?: string | null;
+  /** @nullable */
+  CurrentSubscription?: AccountSubscriptionRenewalExtendedWebhookPayloadCurrentSubscription;
+  /** @nullable */
+  DomainName?: string | null;
+  HasLoggedIn?: boolean;
+  /** @nullable */
+  LatestSubscription?: AccountSubscriptionRenewalExtendedWebhookPayloadLatestSubscription;
+  LifetimeRevenue?: number;
+  /** @nullable */
+  NextStripeInvoiceDate?: string | null;
+  /** @nullable */
+  Nonce?: string | null;
+  /** @nullable */
+  PrimaryContact?: AccountSubscriptionRenewalExtendedWebhookPayloadPrimaryContact;
+  /** @nullable */
+  PrimarySubscription?: AccountSubscriptionRenewalExtendedWebhookPayloadPrimarySubscription;
+  /** @nullable */
+  PrimaryStripeSubscription?: AccountSubscriptionRenewalExtendedWebhookPayloadPrimaryStripeSubscription;
+  /** @nullable */
+  RecaptchaToken?: string | null;
+  /** @nullable */
+  StripeNextInvoiceSequence?: number | null;
+  /** @nullable */
+  StripePrice?: string[] | null;
+  /** @nullable */
+  StripePromotionCode?: string | null;
+  /** @nullable */
+  TaxId?: string | null;
+  TaxIdIsInvalid?: boolean;
+  /** @nullable */
+  TaxIdType?: string | null;
+  /** @nullable */
+  WebflowSlug?: string | null;
+  ActivityEventData?: AccountSubscriptionRenewalExtendedActivityData;
+}
+
+export interface AccountSubscriptionAddOnChange {
+  AddOnChangeType?: AddOnChangeType;
+  /** @nullable */
+  AddOnUid?: string | null;
+  StartDate?: string;
+  /** @nullable */
+  EndDate?: string | null;
+  /** @nullable */
+  RenewalDate?: string | null;
+  /** @nullable */
+  Quantity?: number | null;
+}
+
+/**
+ * `AddOnAdded` - AddOnAdded, `AddOnReactivated` - AddOnReactivated, `AddOnQuantityChanged` - AddOnQuantityChanged
+ */
+export type AddOnChangeType = typeof AddOnChangeType[keyof typeof AddOnChangeType];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AddOnChangeType = {
+  AddOnAdded: 'AddOnAdded',
+  AddOnReactivated: 'AddOnReactivated',
+  AddOnQuantityChanged: 'AddOnQuantityChanged',
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionAddOnsChangedWebhookPayloadBillingAddress = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine1?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine2?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine3?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  City?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  State?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PostalCode?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Country?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  GeoLocation?: string | null;
+} | null;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionAddOnsChangedWebhookPayloadMailingAddress = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine1?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine2?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine3?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  City?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  State?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PostalCode?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Country?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  GeoLocation?: string | null;
+} | null;
+
+/**
+ * `2` - Trialing, `3` - Subscribing, `4` - Cancelling, `5` - Expired, `6` - Trial Expired, `7` - Past Due, `8` - Cancelling Trial, `9` - Paused, `10` - Created
+ */
+export type AccountSubscriptionAddOnsChangedWebhookPayloadAccountStage = typeof AccountSubscriptionAddOnsChangedWebhookPayloadAccountStage[keyof typeof AccountSubscriptionAddOnsChangedWebhookPayloadAccountStage];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionAddOnsChangedWebhookPayloadAccountStage = {
+  Trialing: 2,
+  Subscribing: 3,
+  Cancelling: 4,
+  Expired: 5,
+  TrialExpired: 6,
+  PastDue: 7,
+  CancellingTrial: 8,
+  Paused: 9,
+  Created: 10,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionAddOnsChangedWebhookPayloadPaymentInformation = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  CustomerToken?: string | null;
+  /** @nullable */
+  LastFourDigits?: string | null;
+  /** @nullable */
+  LatestFailureDateTime?: string | null;
+  /** @nullable */
+  LatestFailureDescription?: string | null;
+  /** @nullable */
+  LatestSuccessDateTime?: string | null;
+  NumberOfFailures?: number;
+  /** @nullable */
+  PaymentClientSecret?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  PaymentMethodType?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PaymentToken?: string | null;
+  /**
+   * @maxLength 100
+   * @nullable
+   */
+  BankName?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  BankAccountType?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  BankAccountHolderType?: string | null;
+  /** @nullable */
+  NameOnCard?: string | null;
+  /** @nullable */
+  CardType?: string | null;
+  /** @nullable */
+  ExpirationMonth?: string | null;
+  /** @nullable */
+  ExpirationYear?: string | null;
+  /** @nullable */
+  Mode?: string | null;
+  /** @nullable */
+  OneTimeToken?: string | null;
+  /** @nullable */
+  RecaptchaToken?: string | null;
+  /** @nullable */
+  SetupIntent?: string | null;
+} | null;
+
+/**
+ * `0` - None, `1` - Gmail
+ */
+export type AccountSubscriptionAddOnsChangedWebhookPayloadPersonAccountItemPersonOAuthIntegrationStatus = typeof AccountSubscriptionAddOnsChangedWebhookPayloadPersonAccountItemPersonOAuthIntegrationStatus[keyof typeof AccountSubscriptionAddOnsChangedWebhookPayloadPersonAccountItemPersonOAuthIntegrationStatus];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionAddOnsChangedWebhookPayloadPersonAccountItemPersonOAuthIntegrationStatus = {
+  None: 0,
+  Gmail: 1,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionAddOnsChangedWebhookPayloadPersonAccountItemPerson = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Email?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  FirstName?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  LastName?: string | null;
+  /** @nullable */
+  PasswordLastUpdated?: string | null;
+  PasswordMustChange?: boolean;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PhoneMobile?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PhoneWork?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  ProfileImageS3Url?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Title?: string | null;
+  /**
+   * @maxLength 100
+   * @nullable
+   */
+  Timezone?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  Language?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  IPAddress?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Referer?: string | null;
+  /**
+   * @maxLength 1000
+   * @nullable
+   */
+  UserAgent?: string | null;
+  /** @nullable */
+  LastLoginDateTime?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  OAuthGoogleProfileId?: string | null;
+  /** @nullable */
+  AccountUids?: string | null;
+  /** @nullable */
+  FullName?: string | null;
+  HasLoggedIn?: boolean;
+  /** `0` - None, `1` - Gmail */
+  OAuthIntegrationStatus?: AccountSubscriptionAddOnsChangedWebhookPayloadPersonAccountItemPersonOAuthIntegrationStatus;
+  OptInToEmailList?: boolean;
+  /** @nullable */
+  Password?: string | null;
+  /** @nullable */
+  UserAgentPlatformBrowser?: string | null;
+  HasUnsubscribed?: boolean;
+  IsConnectedToDiscord?: boolean;
+} | null;
+
+export type AccountSubscriptionAddOnsChangedWebhookPayloadPersonAccountItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** @nullable */
+  Person?: AccountSubscriptionAddOnsChangedWebhookPayloadPersonAccountItemPerson;
+  IsPrimary?: boolean;
+  ReceiveInvoices?: boolean;
+};
+
+export type AccountSubscriptionAddOnsChangedWebhookPayloadStripeInvoicesItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  StripeId?: string | null;
+  IsLivemode?: boolean;
+  AmountDue?: number;
+  AmountPaid?: number;
+  AmountShipping?: number;
+  AttemptCount?: number;
+  Attempted?: boolean;
+  /**
+   * @maxLength 3
+   * @nullable
+   */
+  Currency?: string | null;
+  /** @nullable */
+  Description?: string | null;
+  /** @nullable */
+  FinalizedAt?: string | null;
+  /**
+   * @maxLength 500
+   * @nullable
+   */
+  HostedInvoiceUrl?: string | null;
+  /**
+   * @maxLength 500
+   * @nullable
+   */
+  InvoicePdf?: string | null;
+  /** @nullable */
+  NextPaymentAttempt?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  Number?: string | null;
+  PeriodEnd?: string;
+  PeriodStart?: string;
+  /**
+   * @maxLength 30
+   * @nullable
+   */
+  Status?: string | null;
+  SubTotal?: number;
+  /** @nullable */
+  SubTotalExcludingTax?: number | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  SubscriptionId?: string | null;
+  /** @nullable */
+  Tax?: number | null;
+  Total?: number;
+  /** @nullable */
+  TotalExcludingTax?: number | null;
+  IsRefunded?: boolean;
+  CurrencyAmountCreditedPostPayment?: number;
+  CurrencyAmountCreditedPrePayment?: number;
+  CurrencyAmountDue?: number;
+  CurrencyAmountPaid?: number;
+  /** @nullable */
+  CurrencySymbol?: string | null;
+  CurrencyTotal?: number;
+  CurrencyTotalExcludingTax?: number;
+  CurrencySubTotal?: number;
+  CurrencySubTotalExcludingTax?: number;
+  CurrencyTax?: number;
+  /** @nullable */
+  DaysUntilDue?: number | null;
+  /** @nullable */
+  CustomerId?: string | null;
+  /** @nullable */
+  PaymentStatus?: string | null;
+  /** @nullable */
+  StripePaymentMethodId?: string | null;
+};
+
+export type AccountSubscriptionAddOnsChangedWebhookPayloadStripePaymentMethodsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  StripeId?: string | null;
+  IsLivemode?: boolean;
+  /** @nullable */
+  Card_Brand?: string | null;
+  /** @nullable */
+  Card_ExpMonth?: number | null;
+  /** @nullable */
+  Card_ExpYear?: number | null;
+  /** @nullable */
+  Card_Wallet_Type?: string | null;
+  /** @nullable */
+  BankName?: string | null;
+  /** @nullable */
+  Last4?: string | null;
+  /** @nullable */
+  Type?: string | null;
+  /** @nullable */
+  Label?: string | null;
+};
+
+export type AccountSubscriptionAddOnsChangedWebhookPayloadStripeSubscriptionsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  StripeId?: string | null;
+  IsLivemode?: boolean;
+  /** @nullable */
+  CancelAt?: string | null;
+  CancelAtPeriodEnd?: boolean;
+  /**
+   * @maxLength 3
+   * @nullable
+   */
+  Currency?: string | null;
+  /** @nullable */
+  EndedAt?: string | null;
+  /**
+   * @maxLength 30
+   * @nullable
+   */
+  PauseCollection_Behavior?: string | null;
+  /** @nullable */
+  PauseCollection_ResumesAt?: string | null;
+  StartDate?: string;
+  /**
+   * @maxLength 30
+   * @nullable
+   */
+  Status?: string | null;
+  /** @nullable */
+  TrialEnd?: string | null;
+  /** @nullable */
+  AccountUid?: string | null;
+  /** @nullable */
+  BillingCycleAnchor?: string | null;
+  /** @nullable */
+  CollectionMethod?: string | null;
+  /** @nullable */
+  CustomerId?: string | null;
+  /** @nullable */
+  DaysUntilDue?: number | null;
+  /** @nullable */
+  ScheduleId?: string | null;
+  /** @nullable */
+  StripeDiscountIds?: string[] | null;
+  /** @nullable */
+  StripePriceIds?: string | null;
+  TrialPeriodDays?: number;
+};
+
+/**
+ * `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time
+ */
+export type AccountSubscriptionAddOnsChangedWebhookPayloadSubscriptionsItemBillingRenewalTerm = typeof AccountSubscriptionAddOnsChangedWebhookPayloadSubscriptionsItemBillingRenewalTerm[keyof typeof AccountSubscriptionAddOnsChangedWebhookPayloadSubscriptionsItemBillingRenewalTerm];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionAddOnsChangedWebhookPayloadSubscriptionsItemBillingRenewalTerm = {
+  Monthly: 1,
+  Yearly: 2,
+  Quarterly: 3,
+  OneTime: 4,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionAddOnsChangedWebhookPayloadSubscriptionsItemPlanPlanFamily = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  IsActive?: boolean;
+  IsDefault?: boolean;
+} | null;
+
+/**
+ * `1` - Individual, `2` - Team
+ */
+export type AccountSubscriptionAddOnsChangedWebhookPayloadSubscriptionsItemPlanAccountRegistrationMode = typeof AccountSubscriptionAddOnsChangedWebhookPayloadSubscriptionsItemPlanAccountRegistrationMode[keyof typeof AccountSubscriptionAddOnsChangedWebhookPayloadSubscriptionsItemPlanAccountRegistrationMode];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionAddOnsChangedWebhookPayloadSubscriptionsItemPlanAccountRegistrationMode = {
+  Individual: 1,
+  Team: 2,
+} as const;
+
+export type AccountSubscriptionAddOnsChangedWebhookPayloadSubscriptionsItemPlanPlanAddOnsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  IsUserSelectable: boolean;
+};
+
+export type AccountSubscriptionAddOnsChangedWebhookPayloadSubscriptionsItemPlanContentGroupsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @minLength 1
+   * @maxLength 50
+   */
+  Name: string;
+  /**
+   * @maxLength 1024
+   * @nullable
+   */
+  AccessDeniedPath?: string | null;
+};
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionAddOnsChangedWebhookPayloadSubscriptionsItemPlan = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  /** @nullable */
+  Description?: string | null;
+  /** @nullable */
+  PlanFamily?: AccountSubscriptionAddOnsChangedWebhookPayloadSubscriptionsItemPlanPlanFamily;
+  /** `1` - Individual, `2` - Team */
+  AccountRegistrationMode?: AccountSubscriptionAddOnsChangedWebhookPayloadSubscriptionsItemPlanAccountRegistrationMode;
+  IsQuantityEditable?: boolean;
+  MinimumQuantity?: number;
+  /** @nullable */
+  MaximumPeople?: number | null;
+  MonthlyRate?: number;
+  AnnualRate?: number;
+  QuarterlyRate?: number;
+  OneTimeRate?: number;
+  SetupFee?: number;
+  SkipSetupFeeOnPlanChange?: boolean;
+  IsTaxable?: boolean;
+  IsActive?: boolean;
+  IsPerUser?: boolean;
+  RequirePaymentInformation?: boolean;
+  TrialPeriodDays?: number;
+  /** @nullable */
+  TrialUntilDate?: string | null;
+  ExpiresAfterMonths?: number;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PostLoginPath?: string | null;
+  /**
+   * @maxLength 15
+   * @nullable
+   */
+  StripeTaxCodeId?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  UnitOfMeasure?: string | null;
+  /** @nullable */
+  PlanAddOns?: AccountSubscriptionAddOnsChangedWebhookPayloadSubscriptionsItemPlanPlanAddOnsItem[] | null;
+  /** @nullable */
+  ContentGroups?: AccountSubscriptionAddOnsChangedWebhookPayloadSubscriptionsItemPlanContentGroupsItem[] | null;
+  /** @nullable */
+  NumberOfSubscriptions?: number | null;
+} | null;
+
+/**
+ * `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time
+ */
+export type AccountSubscriptionAddOnsChangedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemBillingRenewalTerm = typeof AccountSubscriptionAddOnsChangedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemBillingRenewalTerm[keyof typeof AccountSubscriptionAddOnsChangedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemBillingRenewalTerm];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionAddOnsChangedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemBillingRenewalTerm = {
+  Monthly: 1,
+  Yearly: 2,
+  Quarterly: 3,
+  OneTime: 4,
+} as const;
+
+/**
+ * `1` - Recurring, `2` - Usage, `3` - OneTime
+ */
+export type AccountSubscriptionAddOnsChangedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemAddOnBillingAddOnType = typeof AccountSubscriptionAddOnsChangedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemAddOnBillingAddOnType[keyof typeof AccountSubscriptionAddOnsChangedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemAddOnBillingAddOnType];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionAddOnsChangedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemAddOnBillingAddOnType = {
+  Recurring: 1,
+  Usage: 2,
+  OneTime: 3,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionAddOnsChangedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemAddOn = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  /** `1` - Recurring, `2` - Usage, `3` - OneTime */
+  BillingAddOnType?: AccountSubscriptionAddOnsChangedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemAddOnBillingAddOnType;
+  IsQuantityEditable?: boolean;
+  MinimumQuantity?: number;
+  MonthlyRate?: number;
+  AnnualRate?: number;
+  SetupFee?: number;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  UnitOfMeasure?: string | null;
+  IsTaxable?: boolean;
+  IsBilledDuringTrial?: boolean;
+  ExpiresAfterMonths?: number;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /**
+   * @maxLength 15
+   * @nullable
+   */
+  StripeTaxCodeId?: string | null;
+  IsPerUser?: boolean;
+  QuarterlyRate?: number;
+  OneTimeRate?: number;
+  SubscriptionCount?: number;
+  Quantity?: number;
+} | null;
+
+export type AccountSubscriptionAddOnsChangedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time */
+  BillingRenewalTerm?: AccountSubscriptionAddOnsChangedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemBillingRenewalTerm;
+  /** @nullable */
+  AddOn?: AccountSubscriptionAddOnsChangedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemAddOn;
+  /** @nullable */
+  Quantity?: number | null;
+  StartDate?: string;
+  /** @nullable */
+  EndDate?: string | null;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /** @nullable */
+  RenewalDate?: string | null;
+  /** @nullable */
+  NewRequiredQuantity?: number | null;
+  /** @nullable */
+  Rate?: number | null;
+};
+
+/**
+ * `1` - Forever, `2` - Once, `3` - Repeating
+ */
+export type AccountSubscriptionAddOnsChangedWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItemDiscountCouponDuration = typeof AccountSubscriptionAddOnsChangedWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItemDiscountCouponDuration[keyof typeof AccountSubscriptionAddOnsChangedWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItemDiscountCouponDuration];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionAddOnsChangedWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItemDiscountCouponDuration = {
+  Forever: 1,
+  Once: 2,
+  Repeating: 3,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionAddOnsChangedWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItemDiscountCoupon = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /** @nullable */
+  UniqueIdentifier?: string | null;
+  /** @nullable */
+  Name?: string | null;
+  IsActive?: boolean;
+  /** @nullable */
+  AmountOff?: number | null;
+  /** @nullable */
+  PercentOff?: number | null;
+  /** @nullable */
+  RedeemBy?: string | null;
+  /** `1` - Forever, `2` - Once, `3` - Repeating */
+  Duration?: AccountSubscriptionAddOnsChangedWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItemDiscountCouponDuration;
+  /** @nullable */
+  DurationInMonths?: number | null;
+  TimesRedeemed?: number;
+  /** @nullable */
+  MaxRedemptions?: number | null;
+  ApplyToAddOns?: boolean;
+  /** @nullable */
+  PlanUids?: string | null;
+} | null;
+
+export type AccountSubscriptionAddOnsChangedWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** @nullable */
+  RedeemedDate?: string | null;
+  /** @nullable */
+  ExpireDate?: string | null;
+  /** @nullable */
+  DiscountCoupon?: AccountSubscriptionAddOnsChangedWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItemDiscountCoupon;
+};
+
+/**
+ * `1` - Unpaid, `2` - Paid, `3` - Partial, `4` - Uncollected, `5` - Refunded, `6` - Uncollectible, `7` - Processing
+ */
+export type AccountSubscriptionAddOnsChangedWebhookPayloadSubscriptionsItemLatestInvoiceBillingInvoiceStatus = typeof AccountSubscriptionAddOnsChangedWebhookPayloadSubscriptionsItemLatestInvoiceBillingInvoiceStatus[keyof typeof AccountSubscriptionAddOnsChangedWebhookPayloadSubscriptionsItemLatestInvoiceBillingInvoiceStatus];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionAddOnsChangedWebhookPayloadSubscriptionsItemLatestInvoiceBillingInvoiceStatus = {
+  Unpaid: 1,
+  Paid: 2,
+  Partial: 3,
+  Uncollected: 4,
+  Refunded: 5,
+  Uncollectible: 6,
+  Processing: 7,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionAddOnsChangedWebhookPayloadSubscriptionsItemLatestInvoice = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  InvoiceDate?: string;
+  /** @nullable */
+  PaymentReminderSentDate?: string | null;
+  Number?: number;
+  /** `1` - Unpaid, `2` - Paid, `3` - Partial, `4` - Uncollected, `5` - Refunded, `6` - Uncollectible, `7` - Processing */
+  BillingInvoiceStatus?: AccountSubscriptionAddOnsChangedWebhookPayloadSubscriptionsItemLatestInvoiceBillingInvoiceStatus;
+  Amount?: number;
+  AmountOutstanding?: number;
+  IsUserGenerated?: boolean;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  StripeTaxCalculationId?: string | null;
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  StripeTaxBehavior?: string | null;
+  AmountCredit?: number;
+  AmountDiscount?: number;
+  AmountPaid?: number;
+  AmountRefunded?: number;
+  AmountSubtotal?: number;
+  AmountTax?: number;
+  AmountTaxRefunded?: number;
+  IsTaxable?: boolean;
+  HasPaymentGatewayTransactions?: boolean;
+  /** @nullable */
+  StripePaymentTransactionIds?: string | null;
+  /** @nullable */
+  StripeRefundTransactionIds?: string | null;
+  /** @nullable */
+  StripeTaxRefundTransactionIds?: string | null;
+} | null;
+
+export type AccountSubscriptionAddOnsChangedWebhookPayloadSubscriptionsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time */
+  BillingRenewalTerm?: AccountSubscriptionAddOnsChangedWebhookPayloadSubscriptionsItemBillingRenewalTerm;
+  /** @nullable */
+  Plan?: AccountSubscriptionAddOnsChangedWebhookPayloadSubscriptionsItemPlan;
+  /** @nullable */
+  Quantity?: number | null;
+  StartDate?: string;
+  /** @nullable */
+  EndDate?: string | null;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /** @nullable */
+  RenewalDate?: string | null;
+  /** @nullable */
+  NewRequiredQuantity?: number | null;
+  IsPlanUpgradeRequired?: boolean;
+  /** @nullable */
+  PlanUpgradeRequiredMessage?: string | null;
+  /** @nullable */
+  SubscriptionAddOns?: AccountSubscriptionAddOnsChangedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItem[] | null;
+  /** @nullable */
+  DiscountCouponSubscriptions?: AccountSubscriptionAddOnsChangedWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItem[] | null;
+  /** @nullable */
+  DiscountCode?: string | null;
+  /** @nullable */
+  DiscountCouponExpirationDate?: string | null;
+  /** @nullable */
+  LatestInvoice?: AccountSubscriptionAddOnsChangedWebhookPayloadSubscriptionsItemLatestInvoice;
+  /** @nullable */
+  Rate?: number | null;
+};
+
+export type AccountSubscriptionAddOnsChangedWebhookPayloadDealsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @minLength 1
+   * @maxLength 250
+   */
+  Name: string;
+  /** @nullable */
+  Amount?: number | null;
+  /** @nullable */
+  DueDate?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  AssignedToPersonClientIdentifier?: string | null;
+  Weight?: number;
+  /** @nullable */
+  Contacts?: string | null;
+  AccountId?: number;
+  /** @nullable */
+  PipelineUid?: string | null;
+};
+
+export type AccountSubscriptionAddOnsChangedWebhookPayloadTaxIdsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  StripeId?: string | null;
+  IsLivemode?: boolean;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  TaxId?: string | null;
+  /**
+   * @maxLength 20
+   * @nullable
+   */
+  TaxIdType?: string | null;
+  IsInvalid?: boolean;
+};
+
+/**
+ * `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time
+ */
+export type AccountSubscriptionAddOnsChangedWebhookPayloadCurrentSubscriptionBillingRenewalTerm = typeof AccountSubscriptionAddOnsChangedWebhookPayloadCurrentSubscriptionBillingRenewalTerm[keyof typeof AccountSubscriptionAddOnsChangedWebhookPayloadCurrentSubscriptionBillingRenewalTerm];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionAddOnsChangedWebhookPayloadCurrentSubscriptionBillingRenewalTerm = {
+  Monthly: 1,
+  Yearly: 2,
+  Quarterly: 3,
+  OneTime: 4,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionAddOnsChangedWebhookPayloadCurrentSubscriptionPlanPlanFamily = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  IsActive?: boolean;
+  IsDefault?: boolean;
+} | null;
+
+/**
+ * `1` - Individual, `2` - Team
+ */
+export type AccountSubscriptionAddOnsChangedWebhookPayloadCurrentSubscriptionPlanAccountRegistrationMode = typeof AccountSubscriptionAddOnsChangedWebhookPayloadCurrentSubscriptionPlanAccountRegistrationMode[keyof typeof AccountSubscriptionAddOnsChangedWebhookPayloadCurrentSubscriptionPlanAccountRegistrationMode];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionAddOnsChangedWebhookPayloadCurrentSubscriptionPlanAccountRegistrationMode = {
+  Individual: 1,
+  Team: 2,
+} as const;
+
+export type AccountSubscriptionAddOnsChangedWebhookPayloadCurrentSubscriptionPlanPlanAddOnsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  IsUserSelectable: boolean;
+};
+
+export type AccountSubscriptionAddOnsChangedWebhookPayloadCurrentSubscriptionPlanContentGroupsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @minLength 1
+   * @maxLength 50
+   */
+  Name: string;
+  /**
+   * @maxLength 1024
+   * @nullable
+   */
+  AccessDeniedPath?: string | null;
+};
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionAddOnsChangedWebhookPayloadCurrentSubscriptionPlan = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  /** @nullable */
+  Description?: string | null;
+  /** @nullable */
+  PlanFamily?: AccountSubscriptionAddOnsChangedWebhookPayloadCurrentSubscriptionPlanPlanFamily;
+  /** `1` - Individual, `2` - Team */
+  AccountRegistrationMode?: AccountSubscriptionAddOnsChangedWebhookPayloadCurrentSubscriptionPlanAccountRegistrationMode;
+  IsQuantityEditable?: boolean;
+  MinimumQuantity?: number;
+  /** @nullable */
+  MaximumPeople?: number | null;
+  MonthlyRate?: number;
+  AnnualRate?: number;
+  QuarterlyRate?: number;
+  OneTimeRate?: number;
+  SetupFee?: number;
+  SkipSetupFeeOnPlanChange?: boolean;
+  IsTaxable?: boolean;
+  IsActive?: boolean;
+  IsPerUser?: boolean;
+  RequirePaymentInformation?: boolean;
+  TrialPeriodDays?: number;
+  /** @nullable */
+  TrialUntilDate?: string | null;
+  ExpiresAfterMonths?: number;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PostLoginPath?: string | null;
+  /**
+   * @maxLength 15
+   * @nullable
+   */
+  StripeTaxCodeId?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  UnitOfMeasure?: string | null;
+  /** @nullable */
+  PlanAddOns?: AccountSubscriptionAddOnsChangedWebhookPayloadCurrentSubscriptionPlanPlanAddOnsItem[] | null;
+  /** @nullable */
+  ContentGroups?: AccountSubscriptionAddOnsChangedWebhookPayloadCurrentSubscriptionPlanContentGroupsItem[] | null;
+  /** @nullable */
+  NumberOfSubscriptions?: number | null;
+} | null;
+
+/**
+ * `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time
+ */
+export type AccountSubscriptionAddOnsChangedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemBillingRenewalTerm = typeof AccountSubscriptionAddOnsChangedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemBillingRenewalTerm[keyof typeof AccountSubscriptionAddOnsChangedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemBillingRenewalTerm];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionAddOnsChangedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemBillingRenewalTerm = {
+  Monthly: 1,
+  Yearly: 2,
+  Quarterly: 3,
+  OneTime: 4,
+} as const;
+
+/**
+ * `1` - Recurring, `2` - Usage, `3` - OneTime
+ */
+export type AccountSubscriptionAddOnsChangedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType = typeof AccountSubscriptionAddOnsChangedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType[keyof typeof AccountSubscriptionAddOnsChangedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionAddOnsChangedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType = {
+  Recurring: 1,
+  Usage: 2,
+  OneTime: 3,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionAddOnsChangedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemAddOn = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  /** `1` - Recurring, `2` - Usage, `3` - OneTime */
+  BillingAddOnType?: AccountSubscriptionAddOnsChangedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType;
+  IsQuantityEditable?: boolean;
+  MinimumQuantity?: number;
+  MonthlyRate?: number;
+  AnnualRate?: number;
+  SetupFee?: number;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  UnitOfMeasure?: string | null;
+  IsTaxable?: boolean;
+  IsBilledDuringTrial?: boolean;
+  ExpiresAfterMonths?: number;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /**
+   * @maxLength 15
+   * @nullable
+   */
+  StripeTaxCodeId?: string | null;
+  IsPerUser?: boolean;
+  QuarterlyRate?: number;
+  OneTimeRate?: number;
+  SubscriptionCount?: number;
+  Quantity?: number;
+} | null;
+
+export type AccountSubscriptionAddOnsChangedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time */
+  BillingRenewalTerm?: AccountSubscriptionAddOnsChangedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemBillingRenewalTerm;
+  /** @nullable */
+  AddOn?: AccountSubscriptionAddOnsChangedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemAddOn;
+  /** @nullable */
+  Quantity?: number | null;
+  StartDate?: string;
+  /** @nullable */
+  EndDate?: string | null;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /** @nullable */
+  RenewalDate?: string | null;
+  /** @nullable */
+  NewRequiredQuantity?: number | null;
+  /** @nullable */
+  Rate?: number | null;
+};
+
+/**
+ * `1` - Forever, `2` - Once, `3` - Repeating
+ */
+export type AccountSubscriptionAddOnsChangedWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration = typeof AccountSubscriptionAddOnsChangedWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration[keyof typeof AccountSubscriptionAddOnsChangedWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionAddOnsChangedWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration = {
+  Forever: 1,
+  Once: 2,
+  Repeating: 3,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionAddOnsChangedWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItemDiscountCoupon = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /** @nullable */
+  UniqueIdentifier?: string | null;
+  /** @nullable */
+  Name?: string | null;
+  IsActive?: boolean;
+  /** @nullable */
+  AmountOff?: number | null;
+  /** @nullable */
+  PercentOff?: number | null;
+  /** @nullable */
+  RedeemBy?: string | null;
+  /** `1` - Forever, `2` - Once, `3` - Repeating */
+  Duration?: AccountSubscriptionAddOnsChangedWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration;
+  /** @nullable */
+  DurationInMonths?: number | null;
+  TimesRedeemed?: number;
+  /** @nullable */
+  MaxRedemptions?: number | null;
+  ApplyToAddOns?: boolean;
+  /** @nullable */
+  PlanUids?: string | null;
+} | null;
+
+export type AccountSubscriptionAddOnsChangedWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** @nullable */
+  RedeemedDate?: string | null;
+  /** @nullable */
+  ExpireDate?: string | null;
+  /** @nullable */
+  DiscountCoupon?: AccountSubscriptionAddOnsChangedWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItemDiscountCoupon;
+};
+
+/**
+ * `1` - Unpaid, `2` - Paid, `3` - Partial, `4` - Uncollected, `5` - Refunded, `6` - Uncollectible, `7` - Processing
+ */
+export type AccountSubscriptionAddOnsChangedWebhookPayloadCurrentSubscriptionLatestInvoiceBillingInvoiceStatus = typeof AccountSubscriptionAddOnsChangedWebhookPayloadCurrentSubscriptionLatestInvoiceBillingInvoiceStatus[keyof typeof AccountSubscriptionAddOnsChangedWebhookPayloadCurrentSubscriptionLatestInvoiceBillingInvoiceStatus];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionAddOnsChangedWebhookPayloadCurrentSubscriptionLatestInvoiceBillingInvoiceStatus = {
+  Unpaid: 1,
+  Paid: 2,
+  Partial: 3,
+  Uncollected: 4,
+  Refunded: 5,
+  Uncollectible: 6,
+  Processing: 7,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionAddOnsChangedWebhookPayloadCurrentSubscriptionLatestInvoice = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  InvoiceDate?: string;
+  /** @nullable */
+  PaymentReminderSentDate?: string | null;
+  Number?: number;
+  /** `1` - Unpaid, `2` - Paid, `3` - Partial, `4` - Uncollected, `5` - Refunded, `6` - Uncollectible, `7` - Processing */
+  BillingInvoiceStatus?: AccountSubscriptionAddOnsChangedWebhookPayloadCurrentSubscriptionLatestInvoiceBillingInvoiceStatus;
+  Amount?: number;
+  AmountOutstanding?: number;
+  IsUserGenerated?: boolean;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  StripeTaxCalculationId?: string | null;
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  StripeTaxBehavior?: string | null;
+  AmountCredit?: number;
+  AmountDiscount?: number;
+  AmountPaid?: number;
+  AmountRefunded?: number;
+  AmountSubtotal?: number;
+  AmountTax?: number;
+  AmountTaxRefunded?: number;
+  IsTaxable?: boolean;
+  HasPaymentGatewayTransactions?: boolean;
+  /** @nullable */
+  StripePaymentTransactionIds?: string | null;
+  /** @nullable */
+  StripeRefundTransactionIds?: string | null;
+  /** @nullable */
+  StripeTaxRefundTransactionIds?: string | null;
+} | null;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionAddOnsChangedWebhookPayloadCurrentSubscription = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /** `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time */
+  BillingRenewalTerm?: AccountSubscriptionAddOnsChangedWebhookPayloadCurrentSubscriptionBillingRenewalTerm;
+  /** @nullable */
+  Plan?: AccountSubscriptionAddOnsChangedWebhookPayloadCurrentSubscriptionPlan;
+  /** @nullable */
+  Quantity?: number | null;
+  StartDate?: string;
+  /** @nullable */
+  EndDate?: string | null;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /** @nullable */
+  RenewalDate?: string | null;
+  /** @nullable */
+  NewRequiredQuantity?: number | null;
+  IsPlanUpgradeRequired?: boolean;
+  /** @nullable */
+  PlanUpgradeRequiredMessage?: string | null;
+  /** @nullable */
+  SubscriptionAddOns?: AccountSubscriptionAddOnsChangedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItem[] | null;
+  /** @nullable */
+  DiscountCouponSubscriptions?: AccountSubscriptionAddOnsChangedWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItem[] | null;
+  /** @nullable */
+  DiscountCode?: string | null;
+  /** @nullable */
+  DiscountCouponExpirationDate?: string | null;
+  /** @nullable */
+  LatestInvoice?: AccountSubscriptionAddOnsChangedWebhookPayloadCurrentSubscriptionLatestInvoice;
+  /** @nullable */
+  Rate?: number | null;
+} | null;
+
+/**
+ * `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time
+ */
+export type AccountSubscriptionAddOnsChangedWebhookPayloadLatestSubscriptionBillingRenewalTerm = typeof AccountSubscriptionAddOnsChangedWebhookPayloadLatestSubscriptionBillingRenewalTerm[keyof typeof AccountSubscriptionAddOnsChangedWebhookPayloadLatestSubscriptionBillingRenewalTerm];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionAddOnsChangedWebhookPayloadLatestSubscriptionBillingRenewalTerm = {
+  Monthly: 1,
+  Yearly: 2,
+  Quarterly: 3,
+  OneTime: 4,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionAddOnsChangedWebhookPayloadLatestSubscriptionPlanPlanFamily = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  IsActive?: boolean;
+  IsDefault?: boolean;
+} | null;
+
+/**
+ * `1` - Individual, `2` - Team
+ */
+export type AccountSubscriptionAddOnsChangedWebhookPayloadLatestSubscriptionPlanAccountRegistrationMode = typeof AccountSubscriptionAddOnsChangedWebhookPayloadLatestSubscriptionPlanAccountRegistrationMode[keyof typeof AccountSubscriptionAddOnsChangedWebhookPayloadLatestSubscriptionPlanAccountRegistrationMode];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionAddOnsChangedWebhookPayloadLatestSubscriptionPlanAccountRegistrationMode = {
+  Individual: 1,
+  Team: 2,
+} as const;
+
+export type AccountSubscriptionAddOnsChangedWebhookPayloadLatestSubscriptionPlanPlanAddOnsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  IsUserSelectable: boolean;
+};
+
+export type AccountSubscriptionAddOnsChangedWebhookPayloadLatestSubscriptionPlanContentGroupsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @minLength 1
+   * @maxLength 50
+   */
+  Name: string;
+  /**
+   * @maxLength 1024
+   * @nullable
+   */
+  AccessDeniedPath?: string | null;
+};
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionAddOnsChangedWebhookPayloadLatestSubscriptionPlan = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  /** @nullable */
+  Description?: string | null;
+  /** @nullable */
+  PlanFamily?: AccountSubscriptionAddOnsChangedWebhookPayloadLatestSubscriptionPlanPlanFamily;
+  /** `1` - Individual, `2` - Team */
+  AccountRegistrationMode?: AccountSubscriptionAddOnsChangedWebhookPayloadLatestSubscriptionPlanAccountRegistrationMode;
+  IsQuantityEditable?: boolean;
+  MinimumQuantity?: number;
+  /** @nullable */
+  MaximumPeople?: number | null;
+  MonthlyRate?: number;
+  AnnualRate?: number;
+  QuarterlyRate?: number;
+  OneTimeRate?: number;
+  SetupFee?: number;
+  SkipSetupFeeOnPlanChange?: boolean;
+  IsTaxable?: boolean;
+  IsActive?: boolean;
+  IsPerUser?: boolean;
+  RequirePaymentInformation?: boolean;
+  TrialPeriodDays?: number;
+  /** @nullable */
+  TrialUntilDate?: string | null;
+  ExpiresAfterMonths?: number;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PostLoginPath?: string | null;
+  /**
+   * @maxLength 15
+   * @nullable
+   */
+  StripeTaxCodeId?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  UnitOfMeasure?: string | null;
+  /** @nullable */
+  PlanAddOns?: AccountSubscriptionAddOnsChangedWebhookPayloadLatestSubscriptionPlanPlanAddOnsItem[] | null;
+  /** @nullable */
+  ContentGroups?: AccountSubscriptionAddOnsChangedWebhookPayloadLatestSubscriptionPlanContentGroupsItem[] | null;
+  /** @nullable */
+  NumberOfSubscriptions?: number | null;
+} | null;
+
+/**
+ * `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time
+ */
+export type AccountSubscriptionAddOnsChangedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemBillingRenewalTerm = typeof AccountSubscriptionAddOnsChangedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemBillingRenewalTerm[keyof typeof AccountSubscriptionAddOnsChangedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemBillingRenewalTerm];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionAddOnsChangedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemBillingRenewalTerm = {
+  Monthly: 1,
+  Yearly: 2,
+  Quarterly: 3,
+  OneTime: 4,
+} as const;
+
+/**
+ * `1` - Recurring, `2` - Usage, `3` - OneTime
+ */
+export type AccountSubscriptionAddOnsChangedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType = typeof AccountSubscriptionAddOnsChangedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType[keyof typeof AccountSubscriptionAddOnsChangedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionAddOnsChangedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType = {
+  Recurring: 1,
+  Usage: 2,
+  OneTime: 3,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionAddOnsChangedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemAddOn = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  /** `1` - Recurring, `2` - Usage, `3` - OneTime */
+  BillingAddOnType?: AccountSubscriptionAddOnsChangedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType;
+  IsQuantityEditable?: boolean;
+  MinimumQuantity?: number;
+  MonthlyRate?: number;
+  AnnualRate?: number;
+  SetupFee?: number;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  UnitOfMeasure?: string | null;
+  IsTaxable?: boolean;
+  IsBilledDuringTrial?: boolean;
+  ExpiresAfterMonths?: number;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /**
+   * @maxLength 15
+   * @nullable
+   */
+  StripeTaxCodeId?: string | null;
+  IsPerUser?: boolean;
+  QuarterlyRate?: number;
+  OneTimeRate?: number;
+  SubscriptionCount?: number;
+  Quantity?: number;
+} | null;
+
+export type AccountSubscriptionAddOnsChangedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time */
+  BillingRenewalTerm?: AccountSubscriptionAddOnsChangedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemBillingRenewalTerm;
+  /** @nullable */
+  AddOn?: AccountSubscriptionAddOnsChangedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemAddOn;
+  /** @nullable */
+  Quantity?: number | null;
+  StartDate?: string;
+  /** @nullable */
+  EndDate?: string | null;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /** @nullable */
+  RenewalDate?: string | null;
+  /** @nullable */
+  NewRequiredQuantity?: number | null;
+  /** @nullable */
+  Rate?: number | null;
+};
+
+/**
+ * `1` - Forever, `2` - Once, `3` - Repeating
+ */
+export type AccountSubscriptionAddOnsChangedWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration = typeof AccountSubscriptionAddOnsChangedWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration[keyof typeof AccountSubscriptionAddOnsChangedWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionAddOnsChangedWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration = {
+  Forever: 1,
+  Once: 2,
+  Repeating: 3,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionAddOnsChangedWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItemDiscountCoupon = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /** @nullable */
+  UniqueIdentifier?: string | null;
+  /** @nullable */
+  Name?: string | null;
+  IsActive?: boolean;
+  /** @nullable */
+  AmountOff?: number | null;
+  /** @nullable */
+  PercentOff?: number | null;
+  /** @nullable */
+  RedeemBy?: string | null;
+  /** `1` - Forever, `2` - Once, `3` - Repeating */
+  Duration?: AccountSubscriptionAddOnsChangedWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration;
+  /** @nullable */
+  DurationInMonths?: number | null;
+  TimesRedeemed?: number;
+  /** @nullable */
+  MaxRedemptions?: number | null;
+  ApplyToAddOns?: boolean;
+  /** @nullable */
+  PlanUids?: string | null;
+} | null;
+
+export type AccountSubscriptionAddOnsChangedWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** @nullable */
+  RedeemedDate?: string | null;
+  /** @nullable */
+  ExpireDate?: string | null;
+  /** @nullable */
+  DiscountCoupon?: AccountSubscriptionAddOnsChangedWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItemDiscountCoupon;
+};
+
+/**
+ * `1` - Unpaid, `2` - Paid, `3` - Partial, `4` - Uncollected, `5` - Refunded, `6` - Uncollectible, `7` - Processing
+ */
+export type AccountSubscriptionAddOnsChangedWebhookPayloadLatestSubscriptionLatestInvoiceBillingInvoiceStatus = typeof AccountSubscriptionAddOnsChangedWebhookPayloadLatestSubscriptionLatestInvoiceBillingInvoiceStatus[keyof typeof AccountSubscriptionAddOnsChangedWebhookPayloadLatestSubscriptionLatestInvoiceBillingInvoiceStatus];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionAddOnsChangedWebhookPayloadLatestSubscriptionLatestInvoiceBillingInvoiceStatus = {
+  Unpaid: 1,
+  Paid: 2,
+  Partial: 3,
+  Uncollected: 4,
+  Refunded: 5,
+  Uncollectible: 6,
+  Processing: 7,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionAddOnsChangedWebhookPayloadLatestSubscriptionLatestInvoice = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  InvoiceDate?: string;
+  /** @nullable */
+  PaymentReminderSentDate?: string | null;
+  Number?: number;
+  /** `1` - Unpaid, `2` - Paid, `3` - Partial, `4` - Uncollected, `5` - Refunded, `6` - Uncollectible, `7` - Processing */
+  BillingInvoiceStatus?: AccountSubscriptionAddOnsChangedWebhookPayloadLatestSubscriptionLatestInvoiceBillingInvoiceStatus;
+  Amount?: number;
+  AmountOutstanding?: number;
+  IsUserGenerated?: boolean;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  StripeTaxCalculationId?: string | null;
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  StripeTaxBehavior?: string | null;
+  AmountCredit?: number;
+  AmountDiscount?: number;
+  AmountPaid?: number;
+  AmountRefunded?: number;
+  AmountSubtotal?: number;
+  AmountTax?: number;
+  AmountTaxRefunded?: number;
+  IsTaxable?: boolean;
+  HasPaymentGatewayTransactions?: boolean;
+  /** @nullable */
+  StripePaymentTransactionIds?: string | null;
+  /** @nullable */
+  StripeRefundTransactionIds?: string | null;
+  /** @nullable */
+  StripeTaxRefundTransactionIds?: string | null;
+} | null;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionAddOnsChangedWebhookPayloadLatestSubscription = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /** `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time */
+  BillingRenewalTerm?: AccountSubscriptionAddOnsChangedWebhookPayloadLatestSubscriptionBillingRenewalTerm;
+  /** @nullable */
+  Plan?: AccountSubscriptionAddOnsChangedWebhookPayloadLatestSubscriptionPlan;
+  /** @nullable */
+  Quantity?: number | null;
+  StartDate?: string;
+  /** @nullable */
+  EndDate?: string | null;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /** @nullable */
+  RenewalDate?: string | null;
+  /** @nullable */
+  NewRequiredQuantity?: number | null;
+  IsPlanUpgradeRequired?: boolean;
+  /** @nullable */
+  PlanUpgradeRequiredMessage?: string | null;
+  /** @nullable */
+  SubscriptionAddOns?: AccountSubscriptionAddOnsChangedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItem[] | null;
+  /** @nullable */
+  DiscountCouponSubscriptions?: AccountSubscriptionAddOnsChangedWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItem[] | null;
+  /** @nullable */
+  DiscountCode?: string | null;
+  /** @nullable */
+  DiscountCouponExpirationDate?: string | null;
+  /** @nullable */
+  LatestInvoice?: AccountSubscriptionAddOnsChangedWebhookPayloadLatestSubscriptionLatestInvoice;
+  /** @nullable */
+  Rate?: number | null;
+} | null;
+
+/**
+ * `0` - None, `1` - Gmail
+ */
+export type AccountSubscriptionAddOnsChangedWebhookPayloadPrimaryContactOAuthIntegrationStatus = typeof AccountSubscriptionAddOnsChangedWebhookPayloadPrimaryContactOAuthIntegrationStatus[keyof typeof AccountSubscriptionAddOnsChangedWebhookPayloadPrimaryContactOAuthIntegrationStatus];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionAddOnsChangedWebhookPayloadPrimaryContactOAuthIntegrationStatus = {
+  None: 0,
+  Gmail: 1,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionAddOnsChangedWebhookPayloadPrimaryContact = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Email?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  FirstName?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  LastName?: string | null;
+  /** @nullable */
+  PasswordLastUpdated?: string | null;
+  PasswordMustChange?: boolean;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PhoneMobile?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PhoneWork?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  ProfileImageS3Url?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Title?: string | null;
+  /**
+   * @maxLength 100
+   * @nullable
+   */
+  Timezone?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  Language?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  IPAddress?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Referer?: string | null;
+  /**
+   * @maxLength 1000
+   * @nullable
+   */
+  UserAgent?: string | null;
+  /** @nullable */
+  LastLoginDateTime?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  OAuthGoogleProfileId?: string | null;
+  /** @nullable */
+  AccountUids?: string | null;
+  /** @nullable */
+  FullName?: string | null;
+  HasLoggedIn?: boolean;
+  /** `0` - None, `1` - Gmail */
+  OAuthIntegrationStatus?: AccountSubscriptionAddOnsChangedWebhookPayloadPrimaryContactOAuthIntegrationStatus;
+  OptInToEmailList?: boolean;
+  /** @nullable */
+  Password?: string | null;
+  /** @nullable */
+  UserAgentPlatformBrowser?: string | null;
+  HasUnsubscribed?: boolean;
+  IsConnectedToDiscord?: boolean;
+} | null;
+
+/**
+ * `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time
+ */
+export type AccountSubscriptionAddOnsChangedWebhookPayloadPrimarySubscriptionBillingRenewalTerm = typeof AccountSubscriptionAddOnsChangedWebhookPayloadPrimarySubscriptionBillingRenewalTerm[keyof typeof AccountSubscriptionAddOnsChangedWebhookPayloadPrimarySubscriptionBillingRenewalTerm];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionAddOnsChangedWebhookPayloadPrimarySubscriptionBillingRenewalTerm = {
+  Monthly: 1,
+  Yearly: 2,
+  Quarterly: 3,
+  OneTime: 4,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionAddOnsChangedWebhookPayloadPrimarySubscription = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /** `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time */
+  BillingRenewalTerm?: AccountSubscriptionAddOnsChangedWebhookPayloadPrimarySubscriptionBillingRenewalTerm;
+  /** @nullable */
+  Quantity?: number | null;
+  StartDate?: string;
+  /** @nullable */
+  EndDate?: string | null;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /** @nullable */
+  RenewalDate?: string | null;
+  /** @nullable */
+  NewRequiredQuantity?: number | null;
+  IsPlanUpgradeRequired?: boolean;
+  /** @nullable */
+  PlanUpgradeRequiredMessage?: string | null;
+  /** @nullable */
+  DiscountCode?: string | null;
+  /** @nullable */
+  DiscountCouponExpirationDate?: string | null;
+  /** @nullable */
+  Rate?: number | null;
+} | null;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionAddOnsChangedWebhookPayloadPrimaryStripeSubscription = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  StripeId?: string | null;
+  IsLivemode?: boolean;
+  /** @nullable */
+  CancelAt?: string | null;
+  CancelAtPeriodEnd?: boolean;
+  /**
+   * @maxLength 3
+   * @nullable
+   */
+  Currency?: string | null;
+  /** @nullable */
+  EndedAt?: string | null;
+  /**
+   * @maxLength 30
+   * @nullable
+   */
+  PauseCollection_Behavior?: string | null;
+  /** @nullable */
+  PauseCollection_ResumesAt?: string | null;
+  StartDate?: string;
+  /**
+   * @maxLength 30
+   * @nullable
+   */
+  Status?: string | null;
+  /** @nullable */
+  TrialEnd?: string | null;
+  /** @nullable */
+  AccountUid?: string | null;
+  /** @nullable */
+  BillingCycleAnchor?: string | null;
+  /** @nullable */
+  CollectionMethod?: string | null;
+  /** @nullable */
+  CustomerId?: string | null;
+  /** @nullable */
+  DaysUntilDue?: number | null;
+  /** @nullable */
+  ScheduleId?: string | null;
+  /** @nullable */
+  StripeDiscountIds?: string[] | null;
+  /** @nullable */
+  StripePriceIds?: string | null;
+  TrialPeriodDays?: number;
+} | null;
+
+export interface AccountSubscriptionAddOnsChangedWebhookPayload {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  StripeId?: string | null;
+  IsLivemode?: boolean;
+  /**
+   * @minLength 1
+   * @maxLength 250
+   */
+  Name: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  ClientIdentifier?: string | null;
+  /**
+   * @maxLength 3
+   * @nullable
+   */
+  Currency?: string | null;
+  /** @nullable */
+  InvoiceNotes?: string | null;
+  IsDemo?: boolean;
+  /** @nullable */
+  BillingAddress?: AccountSubscriptionAddOnsChangedWebhookPayloadBillingAddress;
+  /** @nullable */
+  MailingAddress?: AccountSubscriptionAddOnsChangedWebhookPayloadMailingAddress;
+  /** `2` - Trialing, `3` - Subscribing, `4` - Cancelling, `5` - Expired, `6` - Trial Expired, `7` - Past Due, `8` - Cancelling Trial, `9` - Paused, `10` - Created */
+  AccountStage?: AccountSubscriptionAddOnsChangedWebhookPayloadAccountStage;
+  /** @nullable */
+  PaymentInformation?: AccountSubscriptionAddOnsChangedWebhookPayloadPaymentInformation;
+  /** @nullable */
+  PersonAccount?: AccountSubscriptionAddOnsChangedWebhookPayloadPersonAccountItem[] | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  StripeDefaultPaymentMethodId?: string | null;
+  /** @nullable */
+  StripeInvoices?: AccountSubscriptionAddOnsChangedWebhookPayloadStripeInvoicesItem[] | null;
+  /** @nullable */
+  StripePaymentMethods?: AccountSubscriptionAddOnsChangedWebhookPayloadStripePaymentMethodsItem[] | null;
+  /** @nullable */
+  StripeSubscriptions?: AccountSubscriptionAddOnsChangedWebhookPayloadStripeSubscriptionsItem[] | null;
+  /** @nullable */
+  Subscriptions?: AccountSubscriptionAddOnsChangedWebhookPayloadSubscriptionsItem[] | null;
+  /** @nullable */
+  Deals?: AccountSubscriptionAddOnsChangedWebhookPayloadDealsItem[] | null;
+  /** @nullable */
+  LastLoginDateTime?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl1?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl2?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl3?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl4?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl5?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl6?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl7?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl8?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl9?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl10?: string | null;
+  /** @nullable */
+  RewardFulReferralId?: string | null;
+  /**
+   * @maxLength 36
+   * @nullable
+   */
+  ToltReferralId?: string | null;
+  /** @nullable */
+  TaxIds?: AccountSubscriptionAddOnsChangedWebhookPayloadTaxIdsItem[] | null;
+  /**
+   * @maxLength 20
+   * @nullable
+   */
+  TaxStatus?: string | null;
+  /** @nullable */
+  AccountStageLabel?: string | null;
+  /** @nullable */
+  CurrentStripeProducts?: string | null;
+  /** @nullable */
+  CurrentSubscription?: AccountSubscriptionAddOnsChangedWebhookPayloadCurrentSubscription;
+  /** @nullable */
+  DomainName?: string | null;
+  HasLoggedIn?: boolean;
+  /** @nullable */
+  LatestSubscription?: AccountSubscriptionAddOnsChangedWebhookPayloadLatestSubscription;
+  LifetimeRevenue?: number;
+  /** @nullable */
+  NextStripeInvoiceDate?: string | null;
+  /** @nullable */
+  Nonce?: string | null;
+  /** @nullable */
+  PrimaryContact?: AccountSubscriptionAddOnsChangedWebhookPayloadPrimaryContact;
+  /** @nullable */
+  PrimarySubscription?: AccountSubscriptionAddOnsChangedWebhookPayloadPrimarySubscription;
+  /** @nullable */
+  PrimaryStripeSubscription?: AccountSubscriptionAddOnsChangedWebhookPayloadPrimaryStripeSubscription;
+  /** @nullable */
+  RecaptchaToken?: string | null;
+  /** @nullable */
+  StripeNextInvoiceSequence?: number | null;
+  /** @nullable */
+  StripePrice?: string[] | null;
+  /** @nullable */
+  StripePromotionCode?: string | null;
+  /** @nullable */
+  TaxId?: string | null;
+  TaxIdIsInvalid?: boolean;
+  /** @nullable */
+  TaxIdType?: string | null;
+  /** @nullable */
+  WebflowSlug?: string | null;
+  ActivityEventData?: AccountSubscriptionAddOnChange[];
+}
+
+export interface AccountSubscriptionCancellationRequestedActivityData {
+  /** @nullable */
+  RequestedByEmail?: string | null;
+  /** @nullable */
+  CancelationReason?: string | null;
+  /** @nullable */
+  Comment?: string | null;
+}
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionCancellationRequestedWebhookPayloadBillingAddress = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine1?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine2?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine3?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  City?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  State?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PostalCode?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Country?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  GeoLocation?: string | null;
+} | null;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionCancellationRequestedWebhookPayloadMailingAddress = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine1?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine2?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine3?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  City?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  State?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PostalCode?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Country?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  GeoLocation?: string | null;
+} | null;
+
+/**
+ * `2` - Trialing, `3` - Subscribing, `4` - Cancelling, `5` - Expired, `6` - Trial Expired, `7` - Past Due, `8` - Cancelling Trial, `9` - Paused, `10` - Created
+ */
+export type AccountSubscriptionCancellationRequestedWebhookPayloadAccountStage = typeof AccountSubscriptionCancellationRequestedWebhookPayloadAccountStage[keyof typeof AccountSubscriptionCancellationRequestedWebhookPayloadAccountStage];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionCancellationRequestedWebhookPayloadAccountStage = {
+  Trialing: 2,
+  Subscribing: 3,
+  Cancelling: 4,
+  Expired: 5,
+  TrialExpired: 6,
+  PastDue: 7,
+  CancellingTrial: 8,
+  Paused: 9,
+  Created: 10,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionCancellationRequestedWebhookPayloadPaymentInformation = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  CustomerToken?: string | null;
+  /** @nullable */
+  LastFourDigits?: string | null;
+  /** @nullable */
+  LatestFailureDateTime?: string | null;
+  /** @nullable */
+  LatestFailureDescription?: string | null;
+  /** @nullable */
+  LatestSuccessDateTime?: string | null;
+  NumberOfFailures?: number;
+  /** @nullable */
+  PaymentClientSecret?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  PaymentMethodType?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PaymentToken?: string | null;
+  /**
+   * @maxLength 100
+   * @nullable
+   */
+  BankName?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  BankAccountType?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  BankAccountHolderType?: string | null;
+  /** @nullable */
+  NameOnCard?: string | null;
+  /** @nullable */
+  CardType?: string | null;
+  /** @nullable */
+  ExpirationMonth?: string | null;
+  /** @nullable */
+  ExpirationYear?: string | null;
+  /** @nullable */
+  Mode?: string | null;
+  /** @nullable */
+  OneTimeToken?: string | null;
+  /** @nullable */
+  RecaptchaToken?: string | null;
+  /** @nullable */
+  SetupIntent?: string | null;
+} | null;
+
+/**
+ * `0` - None, `1` - Gmail
+ */
+export type AccountSubscriptionCancellationRequestedWebhookPayloadPersonAccountItemPersonOAuthIntegrationStatus = typeof AccountSubscriptionCancellationRequestedWebhookPayloadPersonAccountItemPersonOAuthIntegrationStatus[keyof typeof AccountSubscriptionCancellationRequestedWebhookPayloadPersonAccountItemPersonOAuthIntegrationStatus];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionCancellationRequestedWebhookPayloadPersonAccountItemPersonOAuthIntegrationStatus = {
+  None: 0,
+  Gmail: 1,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionCancellationRequestedWebhookPayloadPersonAccountItemPerson = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Email?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  FirstName?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  LastName?: string | null;
+  /** @nullable */
+  PasswordLastUpdated?: string | null;
+  PasswordMustChange?: boolean;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PhoneMobile?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PhoneWork?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  ProfileImageS3Url?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Title?: string | null;
+  /**
+   * @maxLength 100
+   * @nullable
+   */
+  Timezone?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  Language?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  IPAddress?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Referer?: string | null;
+  /**
+   * @maxLength 1000
+   * @nullable
+   */
+  UserAgent?: string | null;
+  /** @nullable */
+  LastLoginDateTime?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  OAuthGoogleProfileId?: string | null;
+  /** @nullable */
+  AccountUids?: string | null;
+  /** @nullable */
+  FullName?: string | null;
+  HasLoggedIn?: boolean;
+  /** `0` - None, `1` - Gmail */
+  OAuthIntegrationStatus?: AccountSubscriptionCancellationRequestedWebhookPayloadPersonAccountItemPersonOAuthIntegrationStatus;
+  OptInToEmailList?: boolean;
+  /** @nullable */
+  Password?: string | null;
+  /** @nullable */
+  UserAgentPlatformBrowser?: string | null;
+  HasUnsubscribed?: boolean;
+  IsConnectedToDiscord?: boolean;
+} | null;
+
+export type AccountSubscriptionCancellationRequestedWebhookPayloadPersonAccountItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** @nullable */
+  Person?: AccountSubscriptionCancellationRequestedWebhookPayloadPersonAccountItemPerson;
+  IsPrimary?: boolean;
+  ReceiveInvoices?: boolean;
+};
+
+export type AccountSubscriptionCancellationRequestedWebhookPayloadStripeInvoicesItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  StripeId?: string | null;
+  IsLivemode?: boolean;
+  AmountDue?: number;
+  AmountPaid?: number;
+  AmountShipping?: number;
+  AttemptCount?: number;
+  Attempted?: boolean;
+  /**
+   * @maxLength 3
+   * @nullable
+   */
+  Currency?: string | null;
+  /** @nullable */
+  Description?: string | null;
+  /** @nullable */
+  FinalizedAt?: string | null;
+  /**
+   * @maxLength 500
+   * @nullable
+   */
+  HostedInvoiceUrl?: string | null;
+  /**
+   * @maxLength 500
+   * @nullable
+   */
+  InvoicePdf?: string | null;
+  /** @nullable */
+  NextPaymentAttempt?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  Number?: string | null;
+  PeriodEnd?: string;
+  PeriodStart?: string;
+  /**
+   * @maxLength 30
+   * @nullable
+   */
+  Status?: string | null;
+  SubTotal?: number;
+  /** @nullable */
+  SubTotalExcludingTax?: number | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  SubscriptionId?: string | null;
+  /** @nullable */
+  Tax?: number | null;
+  Total?: number;
+  /** @nullable */
+  TotalExcludingTax?: number | null;
+  IsRefunded?: boolean;
+  CurrencyAmountCreditedPostPayment?: number;
+  CurrencyAmountCreditedPrePayment?: number;
+  CurrencyAmountDue?: number;
+  CurrencyAmountPaid?: number;
+  /** @nullable */
+  CurrencySymbol?: string | null;
+  CurrencyTotal?: number;
+  CurrencyTotalExcludingTax?: number;
+  CurrencySubTotal?: number;
+  CurrencySubTotalExcludingTax?: number;
+  CurrencyTax?: number;
+  /** @nullable */
+  DaysUntilDue?: number | null;
+  /** @nullable */
+  CustomerId?: string | null;
+  /** @nullable */
+  PaymentStatus?: string | null;
+  /** @nullable */
+  StripePaymentMethodId?: string | null;
+};
+
+export type AccountSubscriptionCancellationRequestedWebhookPayloadStripePaymentMethodsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  StripeId?: string | null;
+  IsLivemode?: boolean;
+  /** @nullable */
+  Card_Brand?: string | null;
+  /** @nullable */
+  Card_ExpMonth?: number | null;
+  /** @nullable */
+  Card_ExpYear?: number | null;
+  /** @nullable */
+  Card_Wallet_Type?: string | null;
+  /** @nullable */
+  BankName?: string | null;
+  /** @nullable */
+  Last4?: string | null;
+  /** @nullable */
+  Type?: string | null;
+  /** @nullable */
+  Label?: string | null;
+};
+
+export type AccountSubscriptionCancellationRequestedWebhookPayloadStripeSubscriptionsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  StripeId?: string | null;
+  IsLivemode?: boolean;
+  /** @nullable */
+  CancelAt?: string | null;
+  CancelAtPeriodEnd?: boolean;
+  /**
+   * @maxLength 3
+   * @nullable
+   */
+  Currency?: string | null;
+  /** @nullable */
+  EndedAt?: string | null;
+  /**
+   * @maxLength 30
+   * @nullable
+   */
+  PauseCollection_Behavior?: string | null;
+  /** @nullable */
+  PauseCollection_ResumesAt?: string | null;
+  StartDate?: string;
+  /**
+   * @maxLength 30
+   * @nullable
+   */
+  Status?: string | null;
+  /** @nullable */
+  TrialEnd?: string | null;
+  /** @nullable */
+  AccountUid?: string | null;
+  /** @nullable */
+  BillingCycleAnchor?: string | null;
+  /** @nullable */
+  CollectionMethod?: string | null;
+  /** @nullable */
+  CustomerId?: string | null;
+  /** @nullable */
+  DaysUntilDue?: number | null;
+  /** @nullable */
+  ScheduleId?: string | null;
+  /** @nullable */
+  StripeDiscountIds?: string[] | null;
+  /** @nullable */
+  StripePriceIds?: string | null;
+  TrialPeriodDays?: number;
+};
+
+/**
+ * `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time
+ */
+export type AccountSubscriptionCancellationRequestedWebhookPayloadSubscriptionsItemBillingRenewalTerm = typeof AccountSubscriptionCancellationRequestedWebhookPayloadSubscriptionsItemBillingRenewalTerm[keyof typeof AccountSubscriptionCancellationRequestedWebhookPayloadSubscriptionsItemBillingRenewalTerm];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionCancellationRequestedWebhookPayloadSubscriptionsItemBillingRenewalTerm = {
+  Monthly: 1,
+  Yearly: 2,
+  Quarterly: 3,
+  OneTime: 4,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionCancellationRequestedWebhookPayloadSubscriptionsItemPlanPlanFamily = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  IsActive?: boolean;
+  IsDefault?: boolean;
+} | null;
+
+/**
+ * `1` - Individual, `2` - Team
+ */
+export type AccountSubscriptionCancellationRequestedWebhookPayloadSubscriptionsItemPlanAccountRegistrationMode = typeof AccountSubscriptionCancellationRequestedWebhookPayloadSubscriptionsItemPlanAccountRegistrationMode[keyof typeof AccountSubscriptionCancellationRequestedWebhookPayloadSubscriptionsItemPlanAccountRegistrationMode];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionCancellationRequestedWebhookPayloadSubscriptionsItemPlanAccountRegistrationMode = {
+  Individual: 1,
+  Team: 2,
+} as const;
+
+export type AccountSubscriptionCancellationRequestedWebhookPayloadSubscriptionsItemPlanPlanAddOnsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  IsUserSelectable: boolean;
+};
+
+export type AccountSubscriptionCancellationRequestedWebhookPayloadSubscriptionsItemPlanContentGroupsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @minLength 1
+   * @maxLength 50
+   */
+  Name: string;
+  /**
+   * @maxLength 1024
+   * @nullable
+   */
+  AccessDeniedPath?: string | null;
+};
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionCancellationRequestedWebhookPayloadSubscriptionsItemPlan = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  /** @nullable */
+  Description?: string | null;
+  /** @nullable */
+  PlanFamily?: AccountSubscriptionCancellationRequestedWebhookPayloadSubscriptionsItemPlanPlanFamily;
+  /** `1` - Individual, `2` - Team */
+  AccountRegistrationMode?: AccountSubscriptionCancellationRequestedWebhookPayloadSubscriptionsItemPlanAccountRegistrationMode;
+  IsQuantityEditable?: boolean;
+  MinimumQuantity?: number;
+  /** @nullable */
+  MaximumPeople?: number | null;
+  MonthlyRate?: number;
+  AnnualRate?: number;
+  QuarterlyRate?: number;
+  OneTimeRate?: number;
+  SetupFee?: number;
+  SkipSetupFeeOnPlanChange?: boolean;
+  IsTaxable?: boolean;
+  IsActive?: boolean;
+  IsPerUser?: boolean;
+  RequirePaymentInformation?: boolean;
+  TrialPeriodDays?: number;
+  /** @nullable */
+  TrialUntilDate?: string | null;
+  ExpiresAfterMonths?: number;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PostLoginPath?: string | null;
+  /**
+   * @maxLength 15
+   * @nullable
+   */
+  StripeTaxCodeId?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  UnitOfMeasure?: string | null;
+  /** @nullable */
+  PlanAddOns?: AccountSubscriptionCancellationRequestedWebhookPayloadSubscriptionsItemPlanPlanAddOnsItem[] | null;
+  /** @nullable */
+  ContentGroups?: AccountSubscriptionCancellationRequestedWebhookPayloadSubscriptionsItemPlanContentGroupsItem[] | null;
+  /** @nullable */
+  NumberOfSubscriptions?: number | null;
+} | null;
+
+/**
+ * `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time
+ */
+export type AccountSubscriptionCancellationRequestedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemBillingRenewalTerm = typeof AccountSubscriptionCancellationRequestedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemBillingRenewalTerm[keyof typeof AccountSubscriptionCancellationRequestedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemBillingRenewalTerm];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionCancellationRequestedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemBillingRenewalTerm = {
+  Monthly: 1,
+  Yearly: 2,
+  Quarterly: 3,
+  OneTime: 4,
+} as const;
+
+/**
+ * `1` - Recurring, `2` - Usage, `3` - OneTime
+ */
+export type AccountSubscriptionCancellationRequestedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemAddOnBillingAddOnType = typeof AccountSubscriptionCancellationRequestedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemAddOnBillingAddOnType[keyof typeof AccountSubscriptionCancellationRequestedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemAddOnBillingAddOnType];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionCancellationRequestedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemAddOnBillingAddOnType = {
+  Recurring: 1,
+  Usage: 2,
+  OneTime: 3,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionCancellationRequestedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemAddOn = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  /** `1` - Recurring, `2` - Usage, `3` - OneTime */
+  BillingAddOnType?: AccountSubscriptionCancellationRequestedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemAddOnBillingAddOnType;
+  IsQuantityEditable?: boolean;
+  MinimumQuantity?: number;
+  MonthlyRate?: number;
+  AnnualRate?: number;
+  SetupFee?: number;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  UnitOfMeasure?: string | null;
+  IsTaxable?: boolean;
+  IsBilledDuringTrial?: boolean;
+  ExpiresAfterMonths?: number;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /**
+   * @maxLength 15
+   * @nullable
+   */
+  StripeTaxCodeId?: string | null;
+  IsPerUser?: boolean;
+  QuarterlyRate?: number;
+  OneTimeRate?: number;
+  SubscriptionCount?: number;
+  Quantity?: number;
+} | null;
+
+export type AccountSubscriptionCancellationRequestedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time */
+  BillingRenewalTerm?: AccountSubscriptionCancellationRequestedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemBillingRenewalTerm;
+  /** @nullable */
+  AddOn?: AccountSubscriptionCancellationRequestedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemAddOn;
+  /** @nullable */
+  Quantity?: number | null;
+  StartDate?: string;
+  /** @nullable */
+  EndDate?: string | null;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /** @nullable */
+  RenewalDate?: string | null;
+  /** @nullable */
+  NewRequiredQuantity?: number | null;
+  /** @nullable */
+  Rate?: number | null;
+};
+
+/**
+ * `1` - Forever, `2` - Once, `3` - Repeating
+ */
+export type AccountSubscriptionCancellationRequestedWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItemDiscountCouponDuration = typeof AccountSubscriptionCancellationRequestedWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItemDiscountCouponDuration[keyof typeof AccountSubscriptionCancellationRequestedWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItemDiscountCouponDuration];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionCancellationRequestedWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItemDiscountCouponDuration = {
+  Forever: 1,
+  Once: 2,
+  Repeating: 3,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionCancellationRequestedWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItemDiscountCoupon = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /** @nullable */
+  UniqueIdentifier?: string | null;
+  /** @nullable */
+  Name?: string | null;
+  IsActive?: boolean;
+  /** @nullable */
+  AmountOff?: number | null;
+  /** @nullable */
+  PercentOff?: number | null;
+  /** @nullable */
+  RedeemBy?: string | null;
+  /** `1` - Forever, `2` - Once, `3` - Repeating */
+  Duration?: AccountSubscriptionCancellationRequestedWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItemDiscountCouponDuration;
+  /** @nullable */
+  DurationInMonths?: number | null;
+  TimesRedeemed?: number;
+  /** @nullable */
+  MaxRedemptions?: number | null;
+  ApplyToAddOns?: boolean;
+  /** @nullable */
+  PlanUids?: string | null;
+} | null;
+
+export type AccountSubscriptionCancellationRequestedWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** @nullable */
+  RedeemedDate?: string | null;
+  /** @nullable */
+  ExpireDate?: string | null;
+  /** @nullable */
+  DiscountCoupon?: AccountSubscriptionCancellationRequestedWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItemDiscountCoupon;
+};
+
+/**
+ * `1` - Unpaid, `2` - Paid, `3` - Partial, `4` - Uncollected, `5` - Refunded, `6` - Uncollectible, `7` - Processing
+ */
+export type AccountSubscriptionCancellationRequestedWebhookPayloadSubscriptionsItemLatestInvoiceBillingInvoiceStatus = typeof AccountSubscriptionCancellationRequestedWebhookPayloadSubscriptionsItemLatestInvoiceBillingInvoiceStatus[keyof typeof AccountSubscriptionCancellationRequestedWebhookPayloadSubscriptionsItemLatestInvoiceBillingInvoiceStatus];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionCancellationRequestedWebhookPayloadSubscriptionsItemLatestInvoiceBillingInvoiceStatus = {
+  Unpaid: 1,
+  Paid: 2,
+  Partial: 3,
+  Uncollected: 4,
+  Refunded: 5,
+  Uncollectible: 6,
+  Processing: 7,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionCancellationRequestedWebhookPayloadSubscriptionsItemLatestInvoice = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  InvoiceDate?: string;
+  /** @nullable */
+  PaymentReminderSentDate?: string | null;
+  Number?: number;
+  /** `1` - Unpaid, `2` - Paid, `3` - Partial, `4` - Uncollected, `5` - Refunded, `6` - Uncollectible, `7` - Processing */
+  BillingInvoiceStatus?: AccountSubscriptionCancellationRequestedWebhookPayloadSubscriptionsItemLatestInvoiceBillingInvoiceStatus;
+  Amount?: number;
+  AmountOutstanding?: number;
+  IsUserGenerated?: boolean;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  StripeTaxCalculationId?: string | null;
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  StripeTaxBehavior?: string | null;
+  AmountCredit?: number;
+  AmountDiscount?: number;
+  AmountPaid?: number;
+  AmountRefunded?: number;
+  AmountSubtotal?: number;
+  AmountTax?: number;
+  AmountTaxRefunded?: number;
+  IsTaxable?: boolean;
+  HasPaymentGatewayTransactions?: boolean;
+  /** @nullable */
+  StripePaymentTransactionIds?: string | null;
+  /** @nullable */
+  StripeRefundTransactionIds?: string | null;
+  /** @nullable */
+  StripeTaxRefundTransactionIds?: string | null;
+} | null;
+
+export type AccountSubscriptionCancellationRequestedWebhookPayloadSubscriptionsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time */
+  BillingRenewalTerm?: AccountSubscriptionCancellationRequestedWebhookPayloadSubscriptionsItemBillingRenewalTerm;
+  /** @nullable */
+  Plan?: AccountSubscriptionCancellationRequestedWebhookPayloadSubscriptionsItemPlan;
+  /** @nullable */
+  Quantity?: number | null;
+  StartDate?: string;
+  /** @nullable */
+  EndDate?: string | null;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /** @nullable */
+  RenewalDate?: string | null;
+  /** @nullable */
+  NewRequiredQuantity?: number | null;
+  IsPlanUpgradeRequired?: boolean;
+  /** @nullable */
+  PlanUpgradeRequiredMessage?: string | null;
+  /** @nullable */
+  SubscriptionAddOns?: AccountSubscriptionCancellationRequestedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItem[] | null;
+  /** @nullable */
+  DiscountCouponSubscriptions?: AccountSubscriptionCancellationRequestedWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItem[] | null;
+  /** @nullable */
+  DiscountCode?: string | null;
+  /** @nullable */
+  DiscountCouponExpirationDate?: string | null;
+  /** @nullable */
+  LatestInvoice?: AccountSubscriptionCancellationRequestedWebhookPayloadSubscriptionsItemLatestInvoice;
+  /** @nullable */
+  Rate?: number | null;
+};
+
+export type AccountSubscriptionCancellationRequestedWebhookPayloadDealsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @minLength 1
+   * @maxLength 250
+   */
+  Name: string;
+  /** @nullable */
+  Amount?: number | null;
+  /** @nullable */
+  DueDate?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  AssignedToPersonClientIdentifier?: string | null;
+  Weight?: number;
+  /** @nullable */
+  Contacts?: string | null;
+  AccountId?: number;
+  /** @nullable */
+  PipelineUid?: string | null;
+};
+
+export type AccountSubscriptionCancellationRequestedWebhookPayloadTaxIdsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  StripeId?: string | null;
+  IsLivemode?: boolean;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  TaxId?: string | null;
+  /**
+   * @maxLength 20
+   * @nullable
+   */
+  TaxIdType?: string | null;
+  IsInvalid?: boolean;
+};
+
+/**
+ * `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time
+ */
+export type AccountSubscriptionCancellationRequestedWebhookPayloadCurrentSubscriptionBillingRenewalTerm = typeof AccountSubscriptionCancellationRequestedWebhookPayloadCurrentSubscriptionBillingRenewalTerm[keyof typeof AccountSubscriptionCancellationRequestedWebhookPayloadCurrentSubscriptionBillingRenewalTerm];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionCancellationRequestedWebhookPayloadCurrentSubscriptionBillingRenewalTerm = {
+  Monthly: 1,
+  Yearly: 2,
+  Quarterly: 3,
+  OneTime: 4,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionCancellationRequestedWebhookPayloadCurrentSubscriptionPlanPlanFamily = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  IsActive?: boolean;
+  IsDefault?: boolean;
+} | null;
+
+/**
+ * `1` - Individual, `2` - Team
+ */
+export type AccountSubscriptionCancellationRequestedWebhookPayloadCurrentSubscriptionPlanAccountRegistrationMode = typeof AccountSubscriptionCancellationRequestedWebhookPayloadCurrentSubscriptionPlanAccountRegistrationMode[keyof typeof AccountSubscriptionCancellationRequestedWebhookPayloadCurrentSubscriptionPlanAccountRegistrationMode];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionCancellationRequestedWebhookPayloadCurrentSubscriptionPlanAccountRegistrationMode = {
+  Individual: 1,
+  Team: 2,
+} as const;
+
+export type AccountSubscriptionCancellationRequestedWebhookPayloadCurrentSubscriptionPlanPlanAddOnsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  IsUserSelectable: boolean;
+};
+
+export type AccountSubscriptionCancellationRequestedWebhookPayloadCurrentSubscriptionPlanContentGroupsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @minLength 1
+   * @maxLength 50
+   */
+  Name: string;
+  /**
+   * @maxLength 1024
+   * @nullable
+   */
+  AccessDeniedPath?: string | null;
+};
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionCancellationRequestedWebhookPayloadCurrentSubscriptionPlan = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  /** @nullable */
+  Description?: string | null;
+  /** @nullable */
+  PlanFamily?: AccountSubscriptionCancellationRequestedWebhookPayloadCurrentSubscriptionPlanPlanFamily;
+  /** `1` - Individual, `2` - Team */
+  AccountRegistrationMode?: AccountSubscriptionCancellationRequestedWebhookPayloadCurrentSubscriptionPlanAccountRegistrationMode;
+  IsQuantityEditable?: boolean;
+  MinimumQuantity?: number;
+  /** @nullable */
+  MaximumPeople?: number | null;
+  MonthlyRate?: number;
+  AnnualRate?: number;
+  QuarterlyRate?: number;
+  OneTimeRate?: number;
+  SetupFee?: number;
+  SkipSetupFeeOnPlanChange?: boolean;
+  IsTaxable?: boolean;
+  IsActive?: boolean;
+  IsPerUser?: boolean;
+  RequirePaymentInformation?: boolean;
+  TrialPeriodDays?: number;
+  /** @nullable */
+  TrialUntilDate?: string | null;
+  ExpiresAfterMonths?: number;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PostLoginPath?: string | null;
+  /**
+   * @maxLength 15
+   * @nullable
+   */
+  StripeTaxCodeId?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  UnitOfMeasure?: string | null;
+  /** @nullable */
+  PlanAddOns?: AccountSubscriptionCancellationRequestedWebhookPayloadCurrentSubscriptionPlanPlanAddOnsItem[] | null;
+  /** @nullable */
+  ContentGroups?: AccountSubscriptionCancellationRequestedWebhookPayloadCurrentSubscriptionPlanContentGroupsItem[] | null;
+  /** @nullable */
+  NumberOfSubscriptions?: number | null;
+} | null;
+
+/**
+ * `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time
+ */
+export type AccountSubscriptionCancellationRequestedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemBillingRenewalTerm = typeof AccountSubscriptionCancellationRequestedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemBillingRenewalTerm[keyof typeof AccountSubscriptionCancellationRequestedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemBillingRenewalTerm];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionCancellationRequestedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemBillingRenewalTerm = {
+  Monthly: 1,
+  Yearly: 2,
+  Quarterly: 3,
+  OneTime: 4,
+} as const;
+
+/**
+ * `1` - Recurring, `2` - Usage, `3` - OneTime
+ */
+export type AccountSubscriptionCancellationRequestedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType = typeof AccountSubscriptionCancellationRequestedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType[keyof typeof AccountSubscriptionCancellationRequestedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionCancellationRequestedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType = {
+  Recurring: 1,
+  Usage: 2,
+  OneTime: 3,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionCancellationRequestedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemAddOn = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  /** `1` - Recurring, `2` - Usage, `3` - OneTime */
+  BillingAddOnType?: AccountSubscriptionCancellationRequestedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType;
+  IsQuantityEditable?: boolean;
+  MinimumQuantity?: number;
+  MonthlyRate?: number;
+  AnnualRate?: number;
+  SetupFee?: number;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  UnitOfMeasure?: string | null;
+  IsTaxable?: boolean;
+  IsBilledDuringTrial?: boolean;
+  ExpiresAfterMonths?: number;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /**
+   * @maxLength 15
+   * @nullable
+   */
+  StripeTaxCodeId?: string | null;
+  IsPerUser?: boolean;
+  QuarterlyRate?: number;
+  OneTimeRate?: number;
+  SubscriptionCount?: number;
+  Quantity?: number;
+} | null;
+
+export type AccountSubscriptionCancellationRequestedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time */
+  BillingRenewalTerm?: AccountSubscriptionCancellationRequestedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemBillingRenewalTerm;
+  /** @nullable */
+  AddOn?: AccountSubscriptionCancellationRequestedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemAddOn;
+  /** @nullable */
+  Quantity?: number | null;
+  StartDate?: string;
+  /** @nullable */
+  EndDate?: string | null;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /** @nullable */
+  RenewalDate?: string | null;
+  /** @nullable */
+  NewRequiredQuantity?: number | null;
+  /** @nullable */
+  Rate?: number | null;
+};
+
+/**
+ * `1` - Forever, `2` - Once, `3` - Repeating
+ */
+export type AccountSubscriptionCancellationRequestedWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration = typeof AccountSubscriptionCancellationRequestedWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration[keyof typeof AccountSubscriptionCancellationRequestedWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionCancellationRequestedWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration = {
+  Forever: 1,
+  Once: 2,
+  Repeating: 3,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionCancellationRequestedWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItemDiscountCoupon = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /** @nullable */
+  UniqueIdentifier?: string | null;
+  /** @nullable */
+  Name?: string | null;
+  IsActive?: boolean;
+  /** @nullable */
+  AmountOff?: number | null;
+  /** @nullable */
+  PercentOff?: number | null;
+  /** @nullable */
+  RedeemBy?: string | null;
+  /** `1` - Forever, `2` - Once, `3` - Repeating */
+  Duration?: AccountSubscriptionCancellationRequestedWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration;
+  /** @nullable */
+  DurationInMonths?: number | null;
+  TimesRedeemed?: number;
+  /** @nullable */
+  MaxRedemptions?: number | null;
+  ApplyToAddOns?: boolean;
+  /** @nullable */
+  PlanUids?: string | null;
+} | null;
+
+export type AccountSubscriptionCancellationRequestedWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** @nullable */
+  RedeemedDate?: string | null;
+  /** @nullable */
+  ExpireDate?: string | null;
+  /** @nullable */
+  DiscountCoupon?: AccountSubscriptionCancellationRequestedWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItemDiscountCoupon;
+};
+
+/**
+ * `1` - Unpaid, `2` - Paid, `3` - Partial, `4` - Uncollected, `5` - Refunded, `6` - Uncollectible, `7` - Processing
+ */
+export type AccountSubscriptionCancellationRequestedWebhookPayloadCurrentSubscriptionLatestInvoiceBillingInvoiceStatus = typeof AccountSubscriptionCancellationRequestedWebhookPayloadCurrentSubscriptionLatestInvoiceBillingInvoiceStatus[keyof typeof AccountSubscriptionCancellationRequestedWebhookPayloadCurrentSubscriptionLatestInvoiceBillingInvoiceStatus];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionCancellationRequestedWebhookPayloadCurrentSubscriptionLatestInvoiceBillingInvoiceStatus = {
+  Unpaid: 1,
+  Paid: 2,
+  Partial: 3,
+  Uncollected: 4,
+  Refunded: 5,
+  Uncollectible: 6,
+  Processing: 7,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionCancellationRequestedWebhookPayloadCurrentSubscriptionLatestInvoice = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  InvoiceDate?: string;
+  /** @nullable */
+  PaymentReminderSentDate?: string | null;
+  Number?: number;
+  /** `1` - Unpaid, `2` - Paid, `3` - Partial, `4` - Uncollected, `5` - Refunded, `6` - Uncollectible, `7` - Processing */
+  BillingInvoiceStatus?: AccountSubscriptionCancellationRequestedWebhookPayloadCurrentSubscriptionLatestInvoiceBillingInvoiceStatus;
+  Amount?: number;
+  AmountOutstanding?: number;
+  IsUserGenerated?: boolean;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  StripeTaxCalculationId?: string | null;
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  StripeTaxBehavior?: string | null;
+  AmountCredit?: number;
+  AmountDiscount?: number;
+  AmountPaid?: number;
+  AmountRefunded?: number;
+  AmountSubtotal?: number;
+  AmountTax?: number;
+  AmountTaxRefunded?: number;
+  IsTaxable?: boolean;
+  HasPaymentGatewayTransactions?: boolean;
+  /** @nullable */
+  StripePaymentTransactionIds?: string | null;
+  /** @nullable */
+  StripeRefundTransactionIds?: string | null;
+  /** @nullable */
+  StripeTaxRefundTransactionIds?: string | null;
+} | null;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionCancellationRequestedWebhookPayloadCurrentSubscription = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /** `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time */
+  BillingRenewalTerm?: AccountSubscriptionCancellationRequestedWebhookPayloadCurrentSubscriptionBillingRenewalTerm;
+  /** @nullable */
+  Plan?: AccountSubscriptionCancellationRequestedWebhookPayloadCurrentSubscriptionPlan;
+  /** @nullable */
+  Quantity?: number | null;
+  StartDate?: string;
+  /** @nullable */
+  EndDate?: string | null;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /** @nullable */
+  RenewalDate?: string | null;
+  /** @nullable */
+  NewRequiredQuantity?: number | null;
+  IsPlanUpgradeRequired?: boolean;
+  /** @nullable */
+  PlanUpgradeRequiredMessage?: string | null;
+  /** @nullable */
+  SubscriptionAddOns?: AccountSubscriptionCancellationRequestedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItem[] | null;
+  /** @nullable */
+  DiscountCouponSubscriptions?: AccountSubscriptionCancellationRequestedWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItem[] | null;
+  /** @nullable */
+  DiscountCode?: string | null;
+  /** @nullable */
+  DiscountCouponExpirationDate?: string | null;
+  /** @nullable */
+  LatestInvoice?: AccountSubscriptionCancellationRequestedWebhookPayloadCurrentSubscriptionLatestInvoice;
+  /** @nullable */
+  Rate?: number | null;
+} | null;
+
+/**
+ * `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time
+ */
+export type AccountSubscriptionCancellationRequestedWebhookPayloadLatestSubscriptionBillingRenewalTerm = typeof AccountSubscriptionCancellationRequestedWebhookPayloadLatestSubscriptionBillingRenewalTerm[keyof typeof AccountSubscriptionCancellationRequestedWebhookPayloadLatestSubscriptionBillingRenewalTerm];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionCancellationRequestedWebhookPayloadLatestSubscriptionBillingRenewalTerm = {
+  Monthly: 1,
+  Yearly: 2,
+  Quarterly: 3,
+  OneTime: 4,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionCancellationRequestedWebhookPayloadLatestSubscriptionPlanPlanFamily = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  IsActive?: boolean;
+  IsDefault?: boolean;
+} | null;
+
+/**
+ * `1` - Individual, `2` - Team
+ */
+export type AccountSubscriptionCancellationRequestedWebhookPayloadLatestSubscriptionPlanAccountRegistrationMode = typeof AccountSubscriptionCancellationRequestedWebhookPayloadLatestSubscriptionPlanAccountRegistrationMode[keyof typeof AccountSubscriptionCancellationRequestedWebhookPayloadLatestSubscriptionPlanAccountRegistrationMode];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionCancellationRequestedWebhookPayloadLatestSubscriptionPlanAccountRegistrationMode = {
+  Individual: 1,
+  Team: 2,
+} as const;
+
+export type AccountSubscriptionCancellationRequestedWebhookPayloadLatestSubscriptionPlanPlanAddOnsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  IsUserSelectable: boolean;
+};
+
+export type AccountSubscriptionCancellationRequestedWebhookPayloadLatestSubscriptionPlanContentGroupsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @minLength 1
+   * @maxLength 50
+   */
+  Name: string;
+  /**
+   * @maxLength 1024
+   * @nullable
+   */
+  AccessDeniedPath?: string | null;
+};
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionCancellationRequestedWebhookPayloadLatestSubscriptionPlan = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  /** @nullable */
+  Description?: string | null;
+  /** @nullable */
+  PlanFamily?: AccountSubscriptionCancellationRequestedWebhookPayloadLatestSubscriptionPlanPlanFamily;
+  /** `1` - Individual, `2` - Team */
+  AccountRegistrationMode?: AccountSubscriptionCancellationRequestedWebhookPayloadLatestSubscriptionPlanAccountRegistrationMode;
+  IsQuantityEditable?: boolean;
+  MinimumQuantity?: number;
+  /** @nullable */
+  MaximumPeople?: number | null;
+  MonthlyRate?: number;
+  AnnualRate?: number;
+  QuarterlyRate?: number;
+  OneTimeRate?: number;
+  SetupFee?: number;
+  SkipSetupFeeOnPlanChange?: boolean;
+  IsTaxable?: boolean;
+  IsActive?: boolean;
+  IsPerUser?: boolean;
+  RequirePaymentInformation?: boolean;
+  TrialPeriodDays?: number;
+  /** @nullable */
+  TrialUntilDate?: string | null;
+  ExpiresAfterMonths?: number;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PostLoginPath?: string | null;
+  /**
+   * @maxLength 15
+   * @nullable
+   */
+  StripeTaxCodeId?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  UnitOfMeasure?: string | null;
+  /** @nullable */
+  PlanAddOns?: AccountSubscriptionCancellationRequestedWebhookPayloadLatestSubscriptionPlanPlanAddOnsItem[] | null;
+  /** @nullable */
+  ContentGroups?: AccountSubscriptionCancellationRequestedWebhookPayloadLatestSubscriptionPlanContentGroupsItem[] | null;
+  /** @nullable */
+  NumberOfSubscriptions?: number | null;
+} | null;
+
+/**
+ * `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time
+ */
+export type AccountSubscriptionCancellationRequestedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemBillingRenewalTerm = typeof AccountSubscriptionCancellationRequestedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemBillingRenewalTerm[keyof typeof AccountSubscriptionCancellationRequestedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemBillingRenewalTerm];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionCancellationRequestedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemBillingRenewalTerm = {
+  Monthly: 1,
+  Yearly: 2,
+  Quarterly: 3,
+  OneTime: 4,
+} as const;
+
+/**
+ * `1` - Recurring, `2` - Usage, `3` - OneTime
+ */
+export type AccountSubscriptionCancellationRequestedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType = typeof AccountSubscriptionCancellationRequestedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType[keyof typeof AccountSubscriptionCancellationRequestedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionCancellationRequestedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType = {
+  Recurring: 1,
+  Usage: 2,
+  OneTime: 3,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionCancellationRequestedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemAddOn = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  /** `1` - Recurring, `2` - Usage, `3` - OneTime */
+  BillingAddOnType?: AccountSubscriptionCancellationRequestedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType;
+  IsQuantityEditable?: boolean;
+  MinimumQuantity?: number;
+  MonthlyRate?: number;
+  AnnualRate?: number;
+  SetupFee?: number;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  UnitOfMeasure?: string | null;
+  IsTaxable?: boolean;
+  IsBilledDuringTrial?: boolean;
+  ExpiresAfterMonths?: number;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /**
+   * @maxLength 15
+   * @nullable
+   */
+  StripeTaxCodeId?: string | null;
+  IsPerUser?: boolean;
+  QuarterlyRate?: number;
+  OneTimeRate?: number;
+  SubscriptionCount?: number;
+  Quantity?: number;
+} | null;
+
+export type AccountSubscriptionCancellationRequestedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time */
+  BillingRenewalTerm?: AccountSubscriptionCancellationRequestedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemBillingRenewalTerm;
+  /** @nullable */
+  AddOn?: AccountSubscriptionCancellationRequestedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemAddOn;
+  /** @nullable */
+  Quantity?: number | null;
+  StartDate?: string;
+  /** @nullable */
+  EndDate?: string | null;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /** @nullable */
+  RenewalDate?: string | null;
+  /** @nullable */
+  NewRequiredQuantity?: number | null;
+  /** @nullable */
+  Rate?: number | null;
+};
+
+/**
+ * `1` - Forever, `2` - Once, `3` - Repeating
+ */
+export type AccountSubscriptionCancellationRequestedWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration = typeof AccountSubscriptionCancellationRequestedWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration[keyof typeof AccountSubscriptionCancellationRequestedWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionCancellationRequestedWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration = {
+  Forever: 1,
+  Once: 2,
+  Repeating: 3,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionCancellationRequestedWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItemDiscountCoupon = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /** @nullable */
+  UniqueIdentifier?: string | null;
+  /** @nullable */
+  Name?: string | null;
+  IsActive?: boolean;
+  /** @nullable */
+  AmountOff?: number | null;
+  /** @nullable */
+  PercentOff?: number | null;
+  /** @nullable */
+  RedeemBy?: string | null;
+  /** `1` - Forever, `2` - Once, `3` - Repeating */
+  Duration?: AccountSubscriptionCancellationRequestedWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration;
+  /** @nullable */
+  DurationInMonths?: number | null;
+  TimesRedeemed?: number;
+  /** @nullable */
+  MaxRedemptions?: number | null;
+  ApplyToAddOns?: boolean;
+  /** @nullable */
+  PlanUids?: string | null;
+} | null;
+
+export type AccountSubscriptionCancellationRequestedWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** @nullable */
+  RedeemedDate?: string | null;
+  /** @nullable */
+  ExpireDate?: string | null;
+  /** @nullable */
+  DiscountCoupon?: AccountSubscriptionCancellationRequestedWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItemDiscountCoupon;
+};
+
+/**
+ * `1` - Unpaid, `2` - Paid, `3` - Partial, `4` - Uncollected, `5` - Refunded, `6` - Uncollectible, `7` - Processing
+ */
+export type AccountSubscriptionCancellationRequestedWebhookPayloadLatestSubscriptionLatestInvoiceBillingInvoiceStatus = typeof AccountSubscriptionCancellationRequestedWebhookPayloadLatestSubscriptionLatestInvoiceBillingInvoiceStatus[keyof typeof AccountSubscriptionCancellationRequestedWebhookPayloadLatestSubscriptionLatestInvoiceBillingInvoiceStatus];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionCancellationRequestedWebhookPayloadLatestSubscriptionLatestInvoiceBillingInvoiceStatus = {
+  Unpaid: 1,
+  Paid: 2,
+  Partial: 3,
+  Uncollected: 4,
+  Refunded: 5,
+  Uncollectible: 6,
+  Processing: 7,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionCancellationRequestedWebhookPayloadLatestSubscriptionLatestInvoice = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  InvoiceDate?: string;
+  /** @nullable */
+  PaymentReminderSentDate?: string | null;
+  Number?: number;
+  /** `1` - Unpaid, `2` - Paid, `3` - Partial, `4` - Uncollected, `5` - Refunded, `6` - Uncollectible, `7` - Processing */
+  BillingInvoiceStatus?: AccountSubscriptionCancellationRequestedWebhookPayloadLatestSubscriptionLatestInvoiceBillingInvoiceStatus;
+  Amount?: number;
+  AmountOutstanding?: number;
+  IsUserGenerated?: boolean;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  StripeTaxCalculationId?: string | null;
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  StripeTaxBehavior?: string | null;
+  AmountCredit?: number;
+  AmountDiscount?: number;
+  AmountPaid?: number;
+  AmountRefunded?: number;
+  AmountSubtotal?: number;
+  AmountTax?: number;
+  AmountTaxRefunded?: number;
+  IsTaxable?: boolean;
+  HasPaymentGatewayTransactions?: boolean;
+  /** @nullable */
+  StripePaymentTransactionIds?: string | null;
+  /** @nullable */
+  StripeRefundTransactionIds?: string | null;
+  /** @nullable */
+  StripeTaxRefundTransactionIds?: string | null;
+} | null;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionCancellationRequestedWebhookPayloadLatestSubscription = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /** `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time */
+  BillingRenewalTerm?: AccountSubscriptionCancellationRequestedWebhookPayloadLatestSubscriptionBillingRenewalTerm;
+  /** @nullable */
+  Plan?: AccountSubscriptionCancellationRequestedWebhookPayloadLatestSubscriptionPlan;
+  /** @nullable */
+  Quantity?: number | null;
+  StartDate?: string;
+  /** @nullable */
+  EndDate?: string | null;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /** @nullable */
+  RenewalDate?: string | null;
+  /** @nullable */
+  NewRequiredQuantity?: number | null;
+  IsPlanUpgradeRequired?: boolean;
+  /** @nullable */
+  PlanUpgradeRequiredMessage?: string | null;
+  /** @nullable */
+  SubscriptionAddOns?: AccountSubscriptionCancellationRequestedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItem[] | null;
+  /** @nullable */
+  DiscountCouponSubscriptions?: AccountSubscriptionCancellationRequestedWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItem[] | null;
+  /** @nullable */
+  DiscountCode?: string | null;
+  /** @nullable */
+  DiscountCouponExpirationDate?: string | null;
+  /** @nullable */
+  LatestInvoice?: AccountSubscriptionCancellationRequestedWebhookPayloadLatestSubscriptionLatestInvoice;
+  /** @nullable */
+  Rate?: number | null;
+} | null;
+
+/**
+ * `0` - None, `1` - Gmail
+ */
+export type AccountSubscriptionCancellationRequestedWebhookPayloadPrimaryContactOAuthIntegrationStatus = typeof AccountSubscriptionCancellationRequestedWebhookPayloadPrimaryContactOAuthIntegrationStatus[keyof typeof AccountSubscriptionCancellationRequestedWebhookPayloadPrimaryContactOAuthIntegrationStatus];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionCancellationRequestedWebhookPayloadPrimaryContactOAuthIntegrationStatus = {
+  None: 0,
+  Gmail: 1,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionCancellationRequestedWebhookPayloadPrimaryContact = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Email?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  FirstName?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  LastName?: string | null;
+  /** @nullable */
+  PasswordLastUpdated?: string | null;
+  PasswordMustChange?: boolean;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PhoneMobile?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PhoneWork?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  ProfileImageS3Url?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Title?: string | null;
+  /**
+   * @maxLength 100
+   * @nullable
+   */
+  Timezone?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  Language?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  IPAddress?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Referer?: string | null;
+  /**
+   * @maxLength 1000
+   * @nullable
+   */
+  UserAgent?: string | null;
+  /** @nullable */
+  LastLoginDateTime?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  OAuthGoogleProfileId?: string | null;
+  /** @nullable */
+  AccountUids?: string | null;
+  /** @nullable */
+  FullName?: string | null;
+  HasLoggedIn?: boolean;
+  /** `0` - None, `1` - Gmail */
+  OAuthIntegrationStatus?: AccountSubscriptionCancellationRequestedWebhookPayloadPrimaryContactOAuthIntegrationStatus;
+  OptInToEmailList?: boolean;
+  /** @nullable */
+  Password?: string | null;
+  /** @nullable */
+  UserAgentPlatformBrowser?: string | null;
+  HasUnsubscribed?: boolean;
+  IsConnectedToDiscord?: boolean;
+} | null;
+
+/**
+ * `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time
+ */
+export type AccountSubscriptionCancellationRequestedWebhookPayloadPrimarySubscriptionBillingRenewalTerm = typeof AccountSubscriptionCancellationRequestedWebhookPayloadPrimarySubscriptionBillingRenewalTerm[keyof typeof AccountSubscriptionCancellationRequestedWebhookPayloadPrimarySubscriptionBillingRenewalTerm];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionCancellationRequestedWebhookPayloadPrimarySubscriptionBillingRenewalTerm = {
+  Monthly: 1,
+  Yearly: 2,
+  Quarterly: 3,
+  OneTime: 4,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionCancellationRequestedWebhookPayloadPrimarySubscription = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /** `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time */
+  BillingRenewalTerm?: AccountSubscriptionCancellationRequestedWebhookPayloadPrimarySubscriptionBillingRenewalTerm;
+  /** @nullable */
+  Quantity?: number | null;
+  StartDate?: string;
+  /** @nullable */
+  EndDate?: string | null;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /** @nullable */
+  RenewalDate?: string | null;
+  /** @nullable */
+  NewRequiredQuantity?: number | null;
+  IsPlanUpgradeRequired?: boolean;
+  /** @nullable */
+  PlanUpgradeRequiredMessage?: string | null;
+  /** @nullable */
+  DiscountCode?: string | null;
+  /** @nullable */
+  DiscountCouponExpirationDate?: string | null;
+  /** @nullable */
+  Rate?: number | null;
+} | null;
+
+/**
+ * @nullable
+ */
+export type AccountSubscriptionCancellationRequestedWebhookPayloadPrimaryStripeSubscription = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  StripeId?: string | null;
+  IsLivemode?: boolean;
+  /** @nullable */
+  CancelAt?: string | null;
+  CancelAtPeriodEnd?: boolean;
+  /**
+   * @maxLength 3
+   * @nullable
+   */
+  Currency?: string | null;
+  /** @nullable */
+  EndedAt?: string | null;
+  /**
+   * @maxLength 30
+   * @nullable
+   */
+  PauseCollection_Behavior?: string | null;
+  /** @nullable */
+  PauseCollection_ResumesAt?: string | null;
+  StartDate?: string;
+  /**
+   * @maxLength 30
+   * @nullable
+   */
+  Status?: string | null;
+  /** @nullable */
+  TrialEnd?: string | null;
+  /** @nullable */
+  AccountUid?: string | null;
+  /** @nullable */
+  BillingCycleAnchor?: string | null;
+  /** @nullable */
+  CollectionMethod?: string | null;
+  /** @nullable */
+  CustomerId?: string | null;
+  /** @nullable */
+  DaysUntilDue?: number | null;
+  /** @nullable */
+  ScheduleId?: string | null;
+  /** @nullable */
+  StripeDiscountIds?: string[] | null;
+  /** @nullable */
+  StripePriceIds?: string | null;
+  TrialPeriodDays?: number;
+} | null;
+
+export interface AccountSubscriptionCancellationRequestedWebhookPayload {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  StripeId?: string | null;
+  IsLivemode?: boolean;
+  /**
+   * @minLength 1
+   * @maxLength 250
+   */
+  Name: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  ClientIdentifier?: string | null;
+  /**
+   * @maxLength 3
+   * @nullable
+   */
+  Currency?: string | null;
+  /** @nullable */
+  InvoiceNotes?: string | null;
+  IsDemo?: boolean;
+  /** @nullable */
+  BillingAddress?: AccountSubscriptionCancellationRequestedWebhookPayloadBillingAddress;
+  /** @nullable */
+  MailingAddress?: AccountSubscriptionCancellationRequestedWebhookPayloadMailingAddress;
+  /** `2` - Trialing, `3` - Subscribing, `4` - Cancelling, `5` - Expired, `6` - Trial Expired, `7` - Past Due, `8` - Cancelling Trial, `9` - Paused, `10` - Created */
+  AccountStage?: AccountSubscriptionCancellationRequestedWebhookPayloadAccountStage;
+  /** @nullable */
+  PaymentInformation?: AccountSubscriptionCancellationRequestedWebhookPayloadPaymentInformation;
+  /** @nullable */
+  PersonAccount?: AccountSubscriptionCancellationRequestedWebhookPayloadPersonAccountItem[] | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  StripeDefaultPaymentMethodId?: string | null;
+  /** @nullable */
+  StripeInvoices?: AccountSubscriptionCancellationRequestedWebhookPayloadStripeInvoicesItem[] | null;
+  /** @nullable */
+  StripePaymentMethods?: AccountSubscriptionCancellationRequestedWebhookPayloadStripePaymentMethodsItem[] | null;
+  /** @nullable */
+  StripeSubscriptions?: AccountSubscriptionCancellationRequestedWebhookPayloadStripeSubscriptionsItem[] | null;
+  /** @nullable */
+  Subscriptions?: AccountSubscriptionCancellationRequestedWebhookPayloadSubscriptionsItem[] | null;
+  /** @nullable */
+  Deals?: AccountSubscriptionCancellationRequestedWebhookPayloadDealsItem[] | null;
+  /** @nullable */
+  LastLoginDateTime?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl1?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl2?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl3?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl4?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl5?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl6?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl7?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl8?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl9?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl10?: string | null;
+  /** @nullable */
+  RewardFulReferralId?: string | null;
+  /**
+   * @maxLength 36
+   * @nullable
+   */
+  ToltReferralId?: string | null;
+  /** @nullable */
+  TaxIds?: AccountSubscriptionCancellationRequestedWebhookPayloadTaxIdsItem[] | null;
+  /**
+   * @maxLength 20
+   * @nullable
+   */
+  TaxStatus?: string | null;
+  /** @nullable */
+  AccountStageLabel?: string | null;
+  /** @nullable */
+  CurrentStripeProducts?: string | null;
+  /** @nullable */
+  CurrentSubscription?: AccountSubscriptionCancellationRequestedWebhookPayloadCurrentSubscription;
+  /** @nullable */
+  DomainName?: string | null;
+  HasLoggedIn?: boolean;
+  /** @nullable */
+  LatestSubscription?: AccountSubscriptionCancellationRequestedWebhookPayloadLatestSubscription;
+  LifetimeRevenue?: number;
+  /** @nullable */
+  NextStripeInvoiceDate?: string | null;
+  /** @nullable */
+  Nonce?: string | null;
+  /** @nullable */
+  PrimaryContact?: AccountSubscriptionCancellationRequestedWebhookPayloadPrimaryContact;
+  /** @nullable */
+  PrimarySubscription?: AccountSubscriptionCancellationRequestedWebhookPayloadPrimarySubscription;
+  /** @nullable */
+  PrimaryStripeSubscription?: AccountSubscriptionCancellationRequestedWebhookPayloadPrimaryStripeSubscription;
+  /** @nullable */
+  RecaptchaToken?: string | null;
+  /** @nullable */
+  StripeNextInvoiceSequence?: number | null;
+  /** @nullable */
+  StripePrice?: string[] | null;
+  /** @nullable */
+  StripePromotionCode?: string | null;
+  /** @nullable */
+  TaxId?: string | null;
+  TaxIdIsInvalid?: boolean;
+  /** @nullable */
+  TaxIdType?: string | null;
+  /** @nullable */
+  WebflowSlug?: string | null;
+  ActivityEventData?: AccountSubscriptionCancellationRequestedActivityData;
+}
+
+export interface PersonLoginActivityData {
+  /** @nullable */
+  PersonUid?: string | null;
+  /** @nullable */
+  LoginDateTime?: string | null;
+  /** @nullable */
+  SiteUrl?: string | null;
+}
+
+/**
+ * @nullable
+ */
+export type PersonLoginWebhookPayloadBillingAddress = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine1?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine2?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine3?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  City?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  State?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PostalCode?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Country?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  GeoLocation?: string | null;
+} | null;
+
+/**
+ * @nullable
+ */
+export type PersonLoginWebhookPayloadMailingAddress = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine1?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine2?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine3?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  City?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  State?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PostalCode?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Country?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  GeoLocation?: string | null;
+} | null;
+
+/**
+ * `2` - Trialing, `3` - Subscribing, `4` - Cancelling, `5` - Expired, `6` - Trial Expired, `7` - Past Due, `8` - Cancelling Trial, `9` - Paused, `10` - Created
+ */
+export type PersonLoginWebhookPayloadAccountStage = typeof PersonLoginWebhookPayloadAccountStage[keyof typeof PersonLoginWebhookPayloadAccountStage];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const PersonLoginWebhookPayloadAccountStage = {
+  Trialing: 2,
+  Subscribing: 3,
+  Cancelling: 4,
+  Expired: 5,
+  TrialExpired: 6,
+  PastDue: 7,
+  CancellingTrial: 8,
+  Paused: 9,
+  Created: 10,
+} as const;
+
+/**
+ * @nullable
+ */
+export type PersonLoginWebhookPayloadPaymentInformation = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  CustomerToken?: string | null;
+  /** @nullable */
+  LastFourDigits?: string | null;
+  /** @nullable */
+  LatestFailureDateTime?: string | null;
+  /** @nullable */
+  LatestFailureDescription?: string | null;
+  /** @nullable */
+  LatestSuccessDateTime?: string | null;
+  NumberOfFailures?: number;
+  /** @nullable */
+  PaymentClientSecret?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  PaymentMethodType?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PaymentToken?: string | null;
+  /**
+   * @maxLength 100
+   * @nullable
+   */
+  BankName?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  BankAccountType?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  BankAccountHolderType?: string | null;
+  /** @nullable */
+  NameOnCard?: string | null;
+  /** @nullable */
+  CardType?: string | null;
+  /** @nullable */
+  ExpirationMonth?: string | null;
+  /** @nullable */
+  ExpirationYear?: string | null;
+  /** @nullable */
+  Mode?: string | null;
+  /** @nullable */
+  OneTimeToken?: string | null;
+  /** @nullable */
+  RecaptchaToken?: string | null;
+  /** @nullable */
+  SetupIntent?: string | null;
+} | null;
+
+/**
+ * `0` - None, `1` - Gmail
+ */
+export type PersonLoginWebhookPayloadPersonAccountItemPersonOAuthIntegrationStatus = typeof PersonLoginWebhookPayloadPersonAccountItemPersonOAuthIntegrationStatus[keyof typeof PersonLoginWebhookPayloadPersonAccountItemPersonOAuthIntegrationStatus];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const PersonLoginWebhookPayloadPersonAccountItemPersonOAuthIntegrationStatus = {
+  None: 0,
+  Gmail: 1,
+} as const;
+
+/**
+ * @nullable
+ */
+export type PersonLoginWebhookPayloadPersonAccountItemPerson = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Email?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  FirstName?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  LastName?: string | null;
+  /** @nullable */
+  PasswordLastUpdated?: string | null;
+  PasswordMustChange?: boolean;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PhoneMobile?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PhoneWork?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  ProfileImageS3Url?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Title?: string | null;
+  /**
+   * @maxLength 100
+   * @nullable
+   */
+  Timezone?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  Language?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  IPAddress?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Referer?: string | null;
+  /**
+   * @maxLength 1000
+   * @nullable
+   */
+  UserAgent?: string | null;
+  /** @nullable */
+  LastLoginDateTime?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  OAuthGoogleProfileId?: string | null;
+  /** @nullable */
+  AccountUids?: string | null;
+  /** @nullable */
+  FullName?: string | null;
+  HasLoggedIn?: boolean;
+  /** `0` - None, `1` - Gmail */
+  OAuthIntegrationStatus?: PersonLoginWebhookPayloadPersonAccountItemPersonOAuthIntegrationStatus;
+  OptInToEmailList?: boolean;
+  /** @nullable */
+  Password?: string | null;
+  /** @nullable */
+  UserAgentPlatformBrowser?: string | null;
+  HasUnsubscribed?: boolean;
+  IsConnectedToDiscord?: boolean;
+} | null;
+
+export type PersonLoginWebhookPayloadPersonAccountItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** @nullable */
+  Person?: PersonLoginWebhookPayloadPersonAccountItemPerson;
+  IsPrimary?: boolean;
+  ReceiveInvoices?: boolean;
+};
+
+export type PersonLoginWebhookPayloadStripeInvoicesItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  StripeId?: string | null;
+  IsLivemode?: boolean;
+  AmountDue?: number;
+  AmountPaid?: number;
+  AmountShipping?: number;
+  AttemptCount?: number;
+  Attempted?: boolean;
+  /**
+   * @maxLength 3
+   * @nullable
+   */
+  Currency?: string | null;
+  /** @nullable */
+  Description?: string | null;
+  /** @nullable */
+  FinalizedAt?: string | null;
+  /**
+   * @maxLength 500
+   * @nullable
+   */
+  HostedInvoiceUrl?: string | null;
+  /**
+   * @maxLength 500
+   * @nullable
+   */
+  InvoicePdf?: string | null;
+  /** @nullable */
+  NextPaymentAttempt?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  Number?: string | null;
+  PeriodEnd?: string;
+  PeriodStart?: string;
+  /**
+   * @maxLength 30
+   * @nullable
+   */
+  Status?: string | null;
+  SubTotal?: number;
+  /** @nullable */
+  SubTotalExcludingTax?: number | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  SubscriptionId?: string | null;
+  /** @nullable */
+  Tax?: number | null;
+  Total?: number;
+  /** @nullable */
+  TotalExcludingTax?: number | null;
+  IsRefunded?: boolean;
+  CurrencyAmountCreditedPostPayment?: number;
+  CurrencyAmountCreditedPrePayment?: number;
+  CurrencyAmountDue?: number;
+  CurrencyAmountPaid?: number;
+  /** @nullable */
+  CurrencySymbol?: string | null;
+  CurrencyTotal?: number;
+  CurrencyTotalExcludingTax?: number;
+  CurrencySubTotal?: number;
+  CurrencySubTotalExcludingTax?: number;
+  CurrencyTax?: number;
+  /** @nullable */
+  DaysUntilDue?: number | null;
+  /** @nullable */
+  CustomerId?: string | null;
+  /** @nullable */
+  PaymentStatus?: string | null;
+  /** @nullable */
+  StripePaymentMethodId?: string | null;
+};
+
+export type PersonLoginWebhookPayloadStripePaymentMethodsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  StripeId?: string | null;
+  IsLivemode?: boolean;
+  /** @nullable */
+  Card_Brand?: string | null;
+  /** @nullable */
+  Card_ExpMonth?: number | null;
+  /** @nullable */
+  Card_ExpYear?: number | null;
+  /** @nullable */
+  Card_Wallet_Type?: string | null;
+  /** @nullable */
+  BankName?: string | null;
+  /** @nullable */
+  Last4?: string | null;
+  /** @nullable */
+  Type?: string | null;
+  /** @nullable */
+  Label?: string | null;
+};
+
+export type PersonLoginWebhookPayloadStripeSubscriptionsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  StripeId?: string | null;
+  IsLivemode?: boolean;
+  /** @nullable */
+  CancelAt?: string | null;
+  CancelAtPeriodEnd?: boolean;
+  /**
+   * @maxLength 3
+   * @nullable
+   */
+  Currency?: string | null;
+  /** @nullable */
+  EndedAt?: string | null;
+  /**
+   * @maxLength 30
+   * @nullable
+   */
+  PauseCollection_Behavior?: string | null;
+  /** @nullable */
+  PauseCollection_ResumesAt?: string | null;
+  StartDate?: string;
+  /**
+   * @maxLength 30
+   * @nullable
+   */
+  Status?: string | null;
+  /** @nullable */
+  TrialEnd?: string | null;
+  /** @nullable */
+  AccountUid?: string | null;
+  /** @nullable */
+  BillingCycleAnchor?: string | null;
+  /** @nullable */
+  CollectionMethod?: string | null;
+  /** @nullable */
+  CustomerId?: string | null;
+  /** @nullable */
+  DaysUntilDue?: number | null;
+  /** @nullable */
+  ScheduleId?: string | null;
+  /** @nullable */
+  StripeDiscountIds?: string[] | null;
+  /** @nullable */
+  StripePriceIds?: string | null;
+  TrialPeriodDays?: number;
+};
+
+/**
+ * `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time
+ */
+export type PersonLoginWebhookPayloadSubscriptionsItemBillingRenewalTerm = typeof PersonLoginWebhookPayloadSubscriptionsItemBillingRenewalTerm[keyof typeof PersonLoginWebhookPayloadSubscriptionsItemBillingRenewalTerm];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const PersonLoginWebhookPayloadSubscriptionsItemBillingRenewalTerm = {
+  Monthly: 1,
+  Yearly: 2,
+  Quarterly: 3,
+  OneTime: 4,
+} as const;
+
+/**
+ * @nullable
+ */
+export type PersonLoginWebhookPayloadSubscriptionsItemPlanPlanFamily = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  IsActive?: boolean;
+  IsDefault?: boolean;
+} | null;
+
+/**
+ * `1` - Individual, `2` - Team
+ */
+export type PersonLoginWebhookPayloadSubscriptionsItemPlanAccountRegistrationMode = typeof PersonLoginWebhookPayloadSubscriptionsItemPlanAccountRegistrationMode[keyof typeof PersonLoginWebhookPayloadSubscriptionsItemPlanAccountRegistrationMode];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const PersonLoginWebhookPayloadSubscriptionsItemPlanAccountRegistrationMode = {
+  Individual: 1,
+  Team: 2,
+} as const;
+
+export type PersonLoginWebhookPayloadSubscriptionsItemPlanPlanAddOnsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  IsUserSelectable: boolean;
+};
+
+export type PersonLoginWebhookPayloadSubscriptionsItemPlanContentGroupsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @minLength 1
+   * @maxLength 50
+   */
+  Name: string;
+  /**
+   * @maxLength 1024
+   * @nullable
+   */
+  AccessDeniedPath?: string | null;
+};
+
+/**
+ * @nullable
+ */
+export type PersonLoginWebhookPayloadSubscriptionsItemPlan = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  /** @nullable */
+  Description?: string | null;
+  /** @nullable */
+  PlanFamily?: PersonLoginWebhookPayloadSubscriptionsItemPlanPlanFamily;
+  /** `1` - Individual, `2` - Team */
+  AccountRegistrationMode?: PersonLoginWebhookPayloadSubscriptionsItemPlanAccountRegistrationMode;
+  IsQuantityEditable?: boolean;
+  MinimumQuantity?: number;
+  /** @nullable */
+  MaximumPeople?: number | null;
+  MonthlyRate?: number;
+  AnnualRate?: number;
+  QuarterlyRate?: number;
+  OneTimeRate?: number;
+  SetupFee?: number;
+  SkipSetupFeeOnPlanChange?: boolean;
+  IsTaxable?: boolean;
+  IsActive?: boolean;
+  IsPerUser?: boolean;
+  RequirePaymentInformation?: boolean;
+  TrialPeriodDays?: number;
+  /** @nullable */
+  TrialUntilDate?: string | null;
+  ExpiresAfterMonths?: number;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PostLoginPath?: string | null;
+  /**
+   * @maxLength 15
+   * @nullable
+   */
+  StripeTaxCodeId?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  UnitOfMeasure?: string | null;
+  /** @nullable */
+  PlanAddOns?: PersonLoginWebhookPayloadSubscriptionsItemPlanPlanAddOnsItem[] | null;
+  /** @nullable */
+  ContentGroups?: PersonLoginWebhookPayloadSubscriptionsItemPlanContentGroupsItem[] | null;
+  /** @nullable */
+  NumberOfSubscriptions?: number | null;
+} | null;
+
+/**
+ * `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time
+ */
+export type PersonLoginWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemBillingRenewalTerm = typeof PersonLoginWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemBillingRenewalTerm[keyof typeof PersonLoginWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemBillingRenewalTerm];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const PersonLoginWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemBillingRenewalTerm = {
+  Monthly: 1,
+  Yearly: 2,
+  Quarterly: 3,
+  OneTime: 4,
+} as const;
+
+/**
+ * `1` - Recurring, `2` - Usage, `3` - OneTime
+ */
+export type PersonLoginWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemAddOnBillingAddOnType = typeof PersonLoginWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemAddOnBillingAddOnType[keyof typeof PersonLoginWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemAddOnBillingAddOnType];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const PersonLoginWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemAddOnBillingAddOnType = {
+  Recurring: 1,
+  Usage: 2,
+  OneTime: 3,
+} as const;
+
+/**
+ * @nullable
+ */
+export type PersonLoginWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemAddOn = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  /** `1` - Recurring, `2` - Usage, `3` - OneTime */
+  BillingAddOnType?: PersonLoginWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemAddOnBillingAddOnType;
+  IsQuantityEditable?: boolean;
+  MinimumQuantity?: number;
+  MonthlyRate?: number;
+  AnnualRate?: number;
+  SetupFee?: number;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  UnitOfMeasure?: string | null;
+  IsTaxable?: boolean;
+  IsBilledDuringTrial?: boolean;
+  ExpiresAfterMonths?: number;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /**
+   * @maxLength 15
+   * @nullable
+   */
+  StripeTaxCodeId?: string | null;
+  IsPerUser?: boolean;
+  QuarterlyRate?: number;
+  OneTimeRate?: number;
+  SubscriptionCount?: number;
+  Quantity?: number;
+} | null;
+
+export type PersonLoginWebhookPayloadSubscriptionsItemSubscriptionAddOnsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time */
+  BillingRenewalTerm?: PersonLoginWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemBillingRenewalTerm;
+  /** @nullable */
+  AddOn?: PersonLoginWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemAddOn;
+  /** @nullable */
+  Quantity?: number | null;
+  StartDate?: string;
+  /** @nullable */
+  EndDate?: string | null;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /** @nullable */
+  RenewalDate?: string | null;
+  /** @nullable */
+  NewRequiredQuantity?: number | null;
+  /** @nullable */
+  Rate?: number | null;
+};
+
+/**
+ * `1` - Forever, `2` - Once, `3` - Repeating
+ */
+export type PersonLoginWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItemDiscountCouponDuration = typeof PersonLoginWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItemDiscountCouponDuration[keyof typeof PersonLoginWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItemDiscountCouponDuration];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const PersonLoginWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItemDiscountCouponDuration = {
+  Forever: 1,
+  Once: 2,
+  Repeating: 3,
+} as const;
+
+/**
+ * @nullable
+ */
+export type PersonLoginWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItemDiscountCoupon = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /** @nullable */
+  UniqueIdentifier?: string | null;
+  /** @nullable */
+  Name?: string | null;
+  IsActive?: boolean;
+  /** @nullable */
+  AmountOff?: number | null;
+  /** @nullable */
+  PercentOff?: number | null;
+  /** @nullable */
+  RedeemBy?: string | null;
+  /** `1` - Forever, `2` - Once, `3` - Repeating */
+  Duration?: PersonLoginWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItemDiscountCouponDuration;
+  /** @nullable */
+  DurationInMonths?: number | null;
+  TimesRedeemed?: number;
+  /** @nullable */
+  MaxRedemptions?: number | null;
+  ApplyToAddOns?: boolean;
+  /** @nullable */
+  PlanUids?: string | null;
+} | null;
+
+export type PersonLoginWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** @nullable */
+  RedeemedDate?: string | null;
+  /** @nullable */
+  ExpireDate?: string | null;
+  /** @nullable */
+  DiscountCoupon?: PersonLoginWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItemDiscountCoupon;
+};
+
+/**
+ * `1` - Unpaid, `2` - Paid, `3` - Partial, `4` - Uncollected, `5` - Refunded, `6` - Uncollectible, `7` - Processing
+ */
+export type PersonLoginWebhookPayloadSubscriptionsItemLatestInvoiceBillingInvoiceStatus = typeof PersonLoginWebhookPayloadSubscriptionsItemLatestInvoiceBillingInvoiceStatus[keyof typeof PersonLoginWebhookPayloadSubscriptionsItemLatestInvoiceBillingInvoiceStatus];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const PersonLoginWebhookPayloadSubscriptionsItemLatestInvoiceBillingInvoiceStatus = {
+  Unpaid: 1,
+  Paid: 2,
+  Partial: 3,
+  Uncollected: 4,
+  Refunded: 5,
+  Uncollectible: 6,
+  Processing: 7,
+} as const;
+
+/**
+ * @nullable
+ */
+export type PersonLoginWebhookPayloadSubscriptionsItemLatestInvoice = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  InvoiceDate?: string;
+  /** @nullable */
+  PaymentReminderSentDate?: string | null;
+  Number?: number;
+  /** `1` - Unpaid, `2` - Paid, `3` - Partial, `4` - Uncollected, `5` - Refunded, `6` - Uncollectible, `7` - Processing */
+  BillingInvoiceStatus?: PersonLoginWebhookPayloadSubscriptionsItemLatestInvoiceBillingInvoiceStatus;
+  Amount?: number;
+  AmountOutstanding?: number;
+  IsUserGenerated?: boolean;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  StripeTaxCalculationId?: string | null;
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  StripeTaxBehavior?: string | null;
+  AmountCredit?: number;
+  AmountDiscount?: number;
+  AmountPaid?: number;
+  AmountRefunded?: number;
+  AmountSubtotal?: number;
+  AmountTax?: number;
+  AmountTaxRefunded?: number;
+  IsTaxable?: boolean;
+  HasPaymentGatewayTransactions?: boolean;
+  /** @nullable */
+  StripePaymentTransactionIds?: string | null;
+  /** @nullable */
+  StripeRefundTransactionIds?: string | null;
+  /** @nullable */
+  StripeTaxRefundTransactionIds?: string | null;
+} | null;
+
+export type PersonLoginWebhookPayloadSubscriptionsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time */
+  BillingRenewalTerm?: PersonLoginWebhookPayloadSubscriptionsItemBillingRenewalTerm;
+  /** @nullable */
+  Plan?: PersonLoginWebhookPayloadSubscriptionsItemPlan;
+  /** @nullable */
+  Quantity?: number | null;
+  StartDate?: string;
+  /** @nullable */
+  EndDate?: string | null;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /** @nullable */
+  RenewalDate?: string | null;
+  /** @nullable */
+  NewRequiredQuantity?: number | null;
+  IsPlanUpgradeRequired?: boolean;
+  /** @nullable */
+  PlanUpgradeRequiredMessage?: string | null;
+  /** @nullable */
+  SubscriptionAddOns?: PersonLoginWebhookPayloadSubscriptionsItemSubscriptionAddOnsItem[] | null;
+  /** @nullable */
+  DiscountCouponSubscriptions?: PersonLoginWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItem[] | null;
+  /** @nullable */
+  DiscountCode?: string | null;
+  /** @nullable */
+  DiscountCouponExpirationDate?: string | null;
+  /** @nullable */
+  LatestInvoice?: PersonLoginWebhookPayloadSubscriptionsItemLatestInvoice;
+  /** @nullable */
+  Rate?: number | null;
+};
+
+export type PersonLoginWebhookPayloadDealsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @minLength 1
+   * @maxLength 250
+   */
+  Name: string;
+  /** @nullable */
+  Amount?: number | null;
+  /** @nullable */
+  DueDate?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  AssignedToPersonClientIdentifier?: string | null;
+  Weight?: number;
+  /** @nullable */
+  Contacts?: string | null;
+  AccountId?: number;
+  /** @nullable */
+  PipelineUid?: string | null;
+};
+
+export type PersonLoginWebhookPayloadTaxIdsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  StripeId?: string | null;
+  IsLivemode?: boolean;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  TaxId?: string | null;
+  /**
+   * @maxLength 20
+   * @nullable
+   */
+  TaxIdType?: string | null;
+  IsInvalid?: boolean;
+};
+
+/**
+ * `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time
+ */
+export type PersonLoginWebhookPayloadCurrentSubscriptionBillingRenewalTerm = typeof PersonLoginWebhookPayloadCurrentSubscriptionBillingRenewalTerm[keyof typeof PersonLoginWebhookPayloadCurrentSubscriptionBillingRenewalTerm];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const PersonLoginWebhookPayloadCurrentSubscriptionBillingRenewalTerm = {
+  Monthly: 1,
+  Yearly: 2,
+  Quarterly: 3,
+  OneTime: 4,
+} as const;
+
+/**
+ * @nullable
+ */
+export type PersonLoginWebhookPayloadCurrentSubscriptionPlanPlanFamily = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  IsActive?: boolean;
+  IsDefault?: boolean;
+} | null;
+
+/**
+ * `1` - Individual, `2` - Team
+ */
+export type PersonLoginWebhookPayloadCurrentSubscriptionPlanAccountRegistrationMode = typeof PersonLoginWebhookPayloadCurrentSubscriptionPlanAccountRegistrationMode[keyof typeof PersonLoginWebhookPayloadCurrentSubscriptionPlanAccountRegistrationMode];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const PersonLoginWebhookPayloadCurrentSubscriptionPlanAccountRegistrationMode = {
+  Individual: 1,
+  Team: 2,
+} as const;
+
+export type PersonLoginWebhookPayloadCurrentSubscriptionPlanPlanAddOnsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  IsUserSelectable: boolean;
+};
+
+export type PersonLoginWebhookPayloadCurrentSubscriptionPlanContentGroupsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @minLength 1
+   * @maxLength 50
+   */
+  Name: string;
+  /**
+   * @maxLength 1024
+   * @nullable
+   */
+  AccessDeniedPath?: string | null;
+};
+
+/**
+ * @nullable
+ */
+export type PersonLoginWebhookPayloadCurrentSubscriptionPlan = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  /** @nullable */
+  Description?: string | null;
+  /** @nullable */
+  PlanFamily?: PersonLoginWebhookPayloadCurrentSubscriptionPlanPlanFamily;
+  /** `1` - Individual, `2` - Team */
+  AccountRegistrationMode?: PersonLoginWebhookPayloadCurrentSubscriptionPlanAccountRegistrationMode;
+  IsQuantityEditable?: boolean;
+  MinimumQuantity?: number;
+  /** @nullable */
+  MaximumPeople?: number | null;
+  MonthlyRate?: number;
+  AnnualRate?: number;
+  QuarterlyRate?: number;
+  OneTimeRate?: number;
+  SetupFee?: number;
+  SkipSetupFeeOnPlanChange?: boolean;
+  IsTaxable?: boolean;
+  IsActive?: boolean;
+  IsPerUser?: boolean;
+  RequirePaymentInformation?: boolean;
+  TrialPeriodDays?: number;
+  /** @nullable */
+  TrialUntilDate?: string | null;
+  ExpiresAfterMonths?: number;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PostLoginPath?: string | null;
+  /**
+   * @maxLength 15
+   * @nullable
+   */
+  StripeTaxCodeId?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  UnitOfMeasure?: string | null;
+  /** @nullable */
+  PlanAddOns?: PersonLoginWebhookPayloadCurrentSubscriptionPlanPlanAddOnsItem[] | null;
+  /** @nullable */
+  ContentGroups?: PersonLoginWebhookPayloadCurrentSubscriptionPlanContentGroupsItem[] | null;
+  /** @nullable */
+  NumberOfSubscriptions?: number | null;
+} | null;
+
+/**
+ * `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time
+ */
+export type PersonLoginWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemBillingRenewalTerm = typeof PersonLoginWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemBillingRenewalTerm[keyof typeof PersonLoginWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemBillingRenewalTerm];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const PersonLoginWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemBillingRenewalTerm = {
+  Monthly: 1,
+  Yearly: 2,
+  Quarterly: 3,
+  OneTime: 4,
+} as const;
+
+/**
+ * `1` - Recurring, `2` - Usage, `3` - OneTime
+ */
+export type PersonLoginWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType = typeof PersonLoginWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType[keyof typeof PersonLoginWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const PersonLoginWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType = {
+  Recurring: 1,
+  Usage: 2,
+  OneTime: 3,
+} as const;
+
+/**
+ * @nullable
+ */
+export type PersonLoginWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemAddOn = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  /** `1` - Recurring, `2` - Usage, `3` - OneTime */
+  BillingAddOnType?: PersonLoginWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType;
+  IsQuantityEditable?: boolean;
+  MinimumQuantity?: number;
+  MonthlyRate?: number;
+  AnnualRate?: number;
+  SetupFee?: number;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  UnitOfMeasure?: string | null;
+  IsTaxable?: boolean;
+  IsBilledDuringTrial?: boolean;
+  ExpiresAfterMonths?: number;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /**
+   * @maxLength 15
+   * @nullable
+   */
+  StripeTaxCodeId?: string | null;
+  IsPerUser?: boolean;
+  QuarterlyRate?: number;
+  OneTimeRate?: number;
+  SubscriptionCount?: number;
+  Quantity?: number;
+} | null;
+
+export type PersonLoginWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time */
+  BillingRenewalTerm?: PersonLoginWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemBillingRenewalTerm;
+  /** @nullable */
+  AddOn?: PersonLoginWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemAddOn;
+  /** @nullable */
+  Quantity?: number | null;
+  StartDate?: string;
+  /** @nullable */
+  EndDate?: string | null;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /** @nullable */
+  RenewalDate?: string | null;
+  /** @nullable */
+  NewRequiredQuantity?: number | null;
+  /** @nullable */
+  Rate?: number | null;
+};
+
+/**
+ * `1` - Forever, `2` - Once, `3` - Repeating
+ */
+export type PersonLoginWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration = typeof PersonLoginWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration[keyof typeof PersonLoginWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const PersonLoginWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration = {
+  Forever: 1,
+  Once: 2,
+  Repeating: 3,
+} as const;
+
+/**
+ * @nullable
+ */
+export type PersonLoginWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItemDiscountCoupon = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /** @nullable */
+  UniqueIdentifier?: string | null;
+  /** @nullable */
+  Name?: string | null;
+  IsActive?: boolean;
+  /** @nullable */
+  AmountOff?: number | null;
+  /** @nullable */
+  PercentOff?: number | null;
+  /** @nullable */
+  RedeemBy?: string | null;
+  /** `1` - Forever, `2` - Once, `3` - Repeating */
+  Duration?: PersonLoginWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration;
+  /** @nullable */
+  DurationInMonths?: number | null;
+  TimesRedeemed?: number;
+  /** @nullable */
+  MaxRedemptions?: number | null;
+  ApplyToAddOns?: boolean;
+  /** @nullable */
+  PlanUids?: string | null;
+} | null;
+
+export type PersonLoginWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** @nullable */
+  RedeemedDate?: string | null;
+  /** @nullable */
+  ExpireDate?: string | null;
+  /** @nullable */
+  DiscountCoupon?: PersonLoginWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItemDiscountCoupon;
+};
+
+/**
+ * `1` - Unpaid, `2` - Paid, `3` - Partial, `4` - Uncollected, `5` - Refunded, `6` - Uncollectible, `7` - Processing
+ */
+export type PersonLoginWebhookPayloadCurrentSubscriptionLatestInvoiceBillingInvoiceStatus = typeof PersonLoginWebhookPayloadCurrentSubscriptionLatestInvoiceBillingInvoiceStatus[keyof typeof PersonLoginWebhookPayloadCurrentSubscriptionLatestInvoiceBillingInvoiceStatus];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const PersonLoginWebhookPayloadCurrentSubscriptionLatestInvoiceBillingInvoiceStatus = {
+  Unpaid: 1,
+  Paid: 2,
+  Partial: 3,
+  Uncollected: 4,
+  Refunded: 5,
+  Uncollectible: 6,
+  Processing: 7,
+} as const;
+
+/**
+ * @nullable
+ */
+export type PersonLoginWebhookPayloadCurrentSubscriptionLatestInvoice = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  InvoiceDate?: string;
+  /** @nullable */
+  PaymentReminderSentDate?: string | null;
+  Number?: number;
+  /** `1` - Unpaid, `2` - Paid, `3` - Partial, `4` - Uncollected, `5` - Refunded, `6` - Uncollectible, `7` - Processing */
+  BillingInvoiceStatus?: PersonLoginWebhookPayloadCurrentSubscriptionLatestInvoiceBillingInvoiceStatus;
+  Amount?: number;
+  AmountOutstanding?: number;
+  IsUserGenerated?: boolean;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  StripeTaxCalculationId?: string | null;
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  StripeTaxBehavior?: string | null;
+  AmountCredit?: number;
+  AmountDiscount?: number;
+  AmountPaid?: number;
+  AmountRefunded?: number;
+  AmountSubtotal?: number;
+  AmountTax?: number;
+  AmountTaxRefunded?: number;
+  IsTaxable?: boolean;
+  HasPaymentGatewayTransactions?: boolean;
+  /** @nullable */
+  StripePaymentTransactionIds?: string | null;
+  /** @nullable */
+  StripeRefundTransactionIds?: string | null;
+  /** @nullable */
+  StripeTaxRefundTransactionIds?: string | null;
+} | null;
+
+/**
+ * @nullable
+ */
+export type PersonLoginWebhookPayloadCurrentSubscription = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /** `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time */
+  BillingRenewalTerm?: PersonLoginWebhookPayloadCurrentSubscriptionBillingRenewalTerm;
+  /** @nullable */
+  Plan?: PersonLoginWebhookPayloadCurrentSubscriptionPlan;
+  /** @nullable */
+  Quantity?: number | null;
+  StartDate?: string;
+  /** @nullable */
+  EndDate?: string | null;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /** @nullable */
+  RenewalDate?: string | null;
+  /** @nullable */
+  NewRequiredQuantity?: number | null;
+  IsPlanUpgradeRequired?: boolean;
+  /** @nullable */
+  PlanUpgradeRequiredMessage?: string | null;
+  /** @nullable */
+  SubscriptionAddOns?: PersonLoginWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItem[] | null;
+  /** @nullable */
+  DiscountCouponSubscriptions?: PersonLoginWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItem[] | null;
+  /** @nullable */
+  DiscountCode?: string | null;
+  /** @nullable */
+  DiscountCouponExpirationDate?: string | null;
+  /** @nullable */
+  LatestInvoice?: PersonLoginWebhookPayloadCurrentSubscriptionLatestInvoice;
+  /** @nullable */
+  Rate?: number | null;
+} | null;
+
+/**
+ * `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time
+ */
+export type PersonLoginWebhookPayloadLatestSubscriptionBillingRenewalTerm = typeof PersonLoginWebhookPayloadLatestSubscriptionBillingRenewalTerm[keyof typeof PersonLoginWebhookPayloadLatestSubscriptionBillingRenewalTerm];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const PersonLoginWebhookPayloadLatestSubscriptionBillingRenewalTerm = {
+  Monthly: 1,
+  Yearly: 2,
+  Quarterly: 3,
+  OneTime: 4,
+} as const;
+
+/**
+ * @nullable
+ */
+export type PersonLoginWebhookPayloadLatestSubscriptionPlanPlanFamily = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  IsActive?: boolean;
+  IsDefault?: boolean;
+} | null;
+
+/**
+ * `1` - Individual, `2` - Team
+ */
+export type PersonLoginWebhookPayloadLatestSubscriptionPlanAccountRegistrationMode = typeof PersonLoginWebhookPayloadLatestSubscriptionPlanAccountRegistrationMode[keyof typeof PersonLoginWebhookPayloadLatestSubscriptionPlanAccountRegistrationMode];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const PersonLoginWebhookPayloadLatestSubscriptionPlanAccountRegistrationMode = {
+  Individual: 1,
+  Team: 2,
+} as const;
+
+export type PersonLoginWebhookPayloadLatestSubscriptionPlanPlanAddOnsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  IsUserSelectable: boolean;
+};
+
+export type PersonLoginWebhookPayloadLatestSubscriptionPlanContentGroupsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @minLength 1
+   * @maxLength 50
+   */
+  Name: string;
+  /**
+   * @maxLength 1024
+   * @nullable
+   */
+  AccessDeniedPath?: string | null;
+};
+
+/**
+ * @nullable
+ */
+export type PersonLoginWebhookPayloadLatestSubscriptionPlan = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  /** @nullable */
+  Description?: string | null;
+  /** @nullable */
+  PlanFamily?: PersonLoginWebhookPayloadLatestSubscriptionPlanPlanFamily;
+  /** `1` - Individual, `2` - Team */
+  AccountRegistrationMode?: PersonLoginWebhookPayloadLatestSubscriptionPlanAccountRegistrationMode;
+  IsQuantityEditable?: boolean;
+  MinimumQuantity?: number;
+  /** @nullable */
+  MaximumPeople?: number | null;
+  MonthlyRate?: number;
+  AnnualRate?: number;
+  QuarterlyRate?: number;
+  OneTimeRate?: number;
+  SetupFee?: number;
+  SkipSetupFeeOnPlanChange?: boolean;
+  IsTaxable?: boolean;
+  IsActive?: boolean;
+  IsPerUser?: boolean;
+  RequirePaymentInformation?: boolean;
+  TrialPeriodDays?: number;
+  /** @nullable */
+  TrialUntilDate?: string | null;
+  ExpiresAfterMonths?: number;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PostLoginPath?: string | null;
+  /**
+   * @maxLength 15
+   * @nullable
+   */
+  StripeTaxCodeId?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  UnitOfMeasure?: string | null;
+  /** @nullable */
+  PlanAddOns?: PersonLoginWebhookPayloadLatestSubscriptionPlanPlanAddOnsItem[] | null;
+  /** @nullable */
+  ContentGroups?: PersonLoginWebhookPayloadLatestSubscriptionPlanContentGroupsItem[] | null;
+  /** @nullable */
+  NumberOfSubscriptions?: number | null;
+} | null;
+
+/**
+ * `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time
+ */
+export type PersonLoginWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemBillingRenewalTerm = typeof PersonLoginWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemBillingRenewalTerm[keyof typeof PersonLoginWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemBillingRenewalTerm];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const PersonLoginWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemBillingRenewalTerm = {
+  Monthly: 1,
+  Yearly: 2,
+  Quarterly: 3,
+  OneTime: 4,
+} as const;
+
+/**
+ * `1` - Recurring, `2` - Usage, `3` - OneTime
+ */
+export type PersonLoginWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType = typeof PersonLoginWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType[keyof typeof PersonLoginWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const PersonLoginWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType = {
+  Recurring: 1,
+  Usage: 2,
+  OneTime: 3,
+} as const;
+
+/**
+ * @nullable
+ */
+export type PersonLoginWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemAddOn = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  /** `1` - Recurring, `2` - Usage, `3` - OneTime */
+  BillingAddOnType?: PersonLoginWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType;
+  IsQuantityEditable?: boolean;
+  MinimumQuantity?: number;
+  MonthlyRate?: number;
+  AnnualRate?: number;
+  SetupFee?: number;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  UnitOfMeasure?: string | null;
+  IsTaxable?: boolean;
+  IsBilledDuringTrial?: boolean;
+  ExpiresAfterMonths?: number;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /**
+   * @maxLength 15
+   * @nullable
+   */
+  StripeTaxCodeId?: string | null;
+  IsPerUser?: boolean;
+  QuarterlyRate?: number;
+  OneTimeRate?: number;
+  SubscriptionCount?: number;
+  Quantity?: number;
+} | null;
+
+export type PersonLoginWebhookPayloadLatestSubscriptionSubscriptionAddOnsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time */
+  BillingRenewalTerm?: PersonLoginWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemBillingRenewalTerm;
+  /** @nullable */
+  AddOn?: PersonLoginWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemAddOn;
+  /** @nullable */
+  Quantity?: number | null;
+  StartDate?: string;
+  /** @nullable */
+  EndDate?: string | null;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /** @nullable */
+  RenewalDate?: string | null;
+  /** @nullable */
+  NewRequiredQuantity?: number | null;
+  /** @nullable */
+  Rate?: number | null;
+};
+
+/**
+ * `1` - Forever, `2` - Once, `3` - Repeating
+ */
+export type PersonLoginWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration = typeof PersonLoginWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration[keyof typeof PersonLoginWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const PersonLoginWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration = {
+  Forever: 1,
+  Once: 2,
+  Repeating: 3,
+} as const;
+
+/**
+ * @nullable
+ */
+export type PersonLoginWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItemDiscountCoupon = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /** @nullable */
+  UniqueIdentifier?: string | null;
+  /** @nullable */
+  Name?: string | null;
+  IsActive?: boolean;
+  /** @nullable */
+  AmountOff?: number | null;
+  /** @nullable */
+  PercentOff?: number | null;
+  /** @nullable */
+  RedeemBy?: string | null;
+  /** `1` - Forever, `2` - Once, `3` - Repeating */
+  Duration?: PersonLoginWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration;
+  /** @nullable */
+  DurationInMonths?: number | null;
+  TimesRedeemed?: number;
+  /** @nullable */
+  MaxRedemptions?: number | null;
+  ApplyToAddOns?: boolean;
+  /** @nullable */
+  PlanUids?: string | null;
+} | null;
+
+export type PersonLoginWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** @nullable */
+  RedeemedDate?: string | null;
+  /** @nullable */
+  ExpireDate?: string | null;
+  /** @nullable */
+  DiscountCoupon?: PersonLoginWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItemDiscountCoupon;
+};
+
+/**
+ * `1` - Unpaid, `2` - Paid, `3` - Partial, `4` - Uncollected, `5` - Refunded, `6` - Uncollectible, `7` - Processing
+ */
+export type PersonLoginWebhookPayloadLatestSubscriptionLatestInvoiceBillingInvoiceStatus = typeof PersonLoginWebhookPayloadLatestSubscriptionLatestInvoiceBillingInvoiceStatus[keyof typeof PersonLoginWebhookPayloadLatestSubscriptionLatestInvoiceBillingInvoiceStatus];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const PersonLoginWebhookPayloadLatestSubscriptionLatestInvoiceBillingInvoiceStatus = {
+  Unpaid: 1,
+  Paid: 2,
+  Partial: 3,
+  Uncollected: 4,
+  Refunded: 5,
+  Uncollectible: 6,
+  Processing: 7,
+} as const;
+
+/**
+ * @nullable
+ */
+export type PersonLoginWebhookPayloadLatestSubscriptionLatestInvoice = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  InvoiceDate?: string;
+  /** @nullable */
+  PaymentReminderSentDate?: string | null;
+  Number?: number;
+  /** `1` - Unpaid, `2` - Paid, `3` - Partial, `4` - Uncollected, `5` - Refunded, `6` - Uncollectible, `7` - Processing */
+  BillingInvoiceStatus?: PersonLoginWebhookPayloadLatestSubscriptionLatestInvoiceBillingInvoiceStatus;
+  Amount?: number;
+  AmountOutstanding?: number;
+  IsUserGenerated?: boolean;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  StripeTaxCalculationId?: string | null;
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  StripeTaxBehavior?: string | null;
+  AmountCredit?: number;
+  AmountDiscount?: number;
+  AmountPaid?: number;
+  AmountRefunded?: number;
+  AmountSubtotal?: number;
+  AmountTax?: number;
+  AmountTaxRefunded?: number;
+  IsTaxable?: boolean;
+  HasPaymentGatewayTransactions?: boolean;
+  /** @nullable */
+  StripePaymentTransactionIds?: string | null;
+  /** @nullable */
+  StripeRefundTransactionIds?: string | null;
+  /** @nullable */
+  StripeTaxRefundTransactionIds?: string | null;
+} | null;
+
+/**
+ * @nullable
+ */
+export type PersonLoginWebhookPayloadLatestSubscription = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /** `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time */
+  BillingRenewalTerm?: PersonLoginWebhookPayloadLatestSubscriptionBillingRenewalTerm;
+  /** @nullable */
+  Plan?: PersonLoginWebhookPayloadLatestSubscriptionPlan;
+  /** @nullable */
+  Quantity?: number | null;
+  StartDate?: string;
+  /** @nullable */
+  EndDate?: string | null;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /** @nullable */
+  RenewalDate?: string | null;
+  /** @nullable */
+  NewRequiredQuantity?: number | null;
+  IsPlanUpgradeRequired?: boolean;
+  /** @nullable */
+  PlanUpgradeRequiredMessage?: string | null;
+  /** @nullable */
+  SubscriptionAddOns?: PersonLoginWebhookPayloadLatestSubscriptionSubscriptionAddOnsItem[] | null;
+  /** @nullable */
+  DiscountCouponSubscriptions?: PersonLoginWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItem[] | null;
+  /** @nullable */
+  DiscountCode?: string | null;
+  /** @nullable */
+  DiscountCouponExpirationDate?: string | null;
+  /** @nullable */
+  LatestInvoice?: PersonLoginWebhookPayloadLatestSubscriptionLatestInvoice;
+  /** @nullable */
+  Rate?: number | null;
+} | null;
+
+/**
+ * `0` - None, `1` - Gmail
+ */
+export type PersonLoginWebhookPayloadPrimaryContactOAuthIntegrationStatus = typeof PersonLoginWebhookPayloadPrimaryContactOAuthIntegrationStatus[keyof typeof PersonLoginWebhookPayloadPrimaryContactOAuthIntegrationStatus];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const PersonLoginWebhookPayloadPrimaryContactOAuthIntegrationStatus = {
+  None: 0,
+  Gmail: 1,
+} as const;
+
+/**
+ * @nullable
+ */
+export type PersonLoginWebhookPayloadPrimaryContact = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Email?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  FirstName?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  LastName?: string | null;
+  /** @nullable */
+  PasswordLastUpdated?: string | null;
+  PasswordMustChange?: boolean;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PhoneMobile?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PhoneWork?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  ProfileImageS3Url?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Title?: string | null;
+  /**
+   * @maxLength 100
+   * @nullable
+   */
+  Timezone?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  Language?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  IPAddress?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Referer?: string | null;
+  /**
+   * @maxLength 1000
+   * @nullable
+   */
+  UserAgent?: string | null;
+  /** @nullable */
+  LastLoginDateTime?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  OAuthGoogleProfileId?: string | null;
+  /** @nullable */
+  AccountUids?: string | null;
+  /** @nullable */
+  FullName?: string | null;
+  HasLoggedIn?: boolean;
+  /** `0` - None, `1` - Gmail */
+  OAuthIntegrationStatus?: PersonLoginWebhookPayloadPrimaryContactOAuthIntegrationStatus;
+  OptInToEmailList?: boolean;
+  /** @nullable */
+  Password?: string | null;
+  /** @nullable */
+  UserAgentPlatformBrowser?: string | null;
+  HasUnsubscribed?: boolean;
+  IsConnectedToDiscord?: boolean;
+} | null;
+
+/**
+ * `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time
+ */
+export type PersonLoginWebhookPayloadPrimarySubscriptionBillingRenewalTerm = typeof PersonLoginWebhookPayloadPrimarySubscriptionBillingRenewalTerm[keyof typeof PersonLoginWebhookPayloadPrimarySubscriptionBillingRenewalTerm];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const PersonLoginWebhookPayloadPrimarySubscriptionBillingRenewalTerm = {
+  Monthly: 1,
+  Yearly: 2,
+  Quarterly: 3,
+  OneTime: 4,
+} as const;
+
+/**
+ * @nullable
+ */
+export type PersonLoginWebhookPayloadPrimarySubscription = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /** `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time */
+  BillingRenewalTerm?: PersonLoginWebhookPayloadPrimarySubscriptionBillingRenewalTerm;
+  /** @nullable */
+  Quantity?: number | null;
+  StartDate?: string;
+  /** @nullable */
+  EndDate?: string | null;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /** @nullable */
+  RenewalDate?: string | null;
+  /** @nullable */
+  NewRequiredQuantity?: number | null;
+  IsPlanUpgradeRequired?: boolean;
+  /** @nullable */
+  PlanUpgradeRequiredMessage?: string | null;
+  /** @nullable */
+  DiscountCode?: string | null;
+  /** @nullable */
+  DiscountCouponExpirationDate?: string | null;
+  /** @nullable */
+  Rate?: number | null;
+} | null;
+
+/**
+ * @nullable
+ */
+export type PersonLoginWebhookPayloadPrimaryStripeSubscription = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  StripeId?: string | null;
+  IsLivemode?: boolean;
+  /** @nullable */
+  CancelAt?: string | null;
+  CancelAtPeriodEnd?: boolean;
+  /**
+   * @maxLength 3
+   * @nullable
+   */
+  Currency?: string | null;
+  /** @nullable */
+  EndedAt?: string | null;
+  /**
+   * @maxLength 30
+   * @nullable
+   */
+  PauseCollection_Behavior?: string | null;
+  /** @nullable */
+  PauseCollection_ResumesAt?: string | null;
+  StartDate?: string;
+  /**
+   * @maxLength 30
+   * @nullable
+   */
+  Status?: string | null;
+  /** @nullable */
+  TrialEnd?: string | null;
+  /** @nullable */
+  AccountUid?: string | null;
+  /** @nullable */
+  BillingCycleAnchor?: string | null;
+  /** @nullable */
+  CollectionMethod?: string | null;
+  /** @nullable */
+  CustomerId?: string | null;
+  /** @nullable */
+  DaysUntilDue?: number | null;
+  /** @nullable */
+  ScheduleId?: string | null;
+  /** @nullable */
+  StripeDiscountIds?: string[] | null;
+  /** @nullable */
+  StripePriceIds?: string | null;
+  TrialPeriodDays?: number;
+} | null;
+
+export interface PersonLoginWebhookPayload {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  StripeId?: string | null;
+  IsLivemode?: boolean;
+  /**
+   * @minLength 1
+   * @maxLength 250
+   */
+  Name: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  ClientIdentifier?: string | null;
+  /**
+   * @maxLength 3
+   * @nullable
+   */
+  Currency?: string | null;
+  /** @nullable */
+  InvoiceNotes?: string | null;
+  IsDemo?: boolean;
+  /** @nullable */
+  BillingAddress?: PersonLoginWebhookPayloadBillingAddress;
+  /** @nullable */
+  MailingAddress?: PersonLoginWebhookPayloadMailingAddress;
+  /** `2` - Trialing, `3` - Subscribing, `4` - Cancelling, `5` - Expired, `6` - Trial Expired, `7` - Past Due, `8` - Cancelling Trial, `9` - Paused, `10` - Created */
+  AccountStage?: PersonLoginWebhookPayloadAccountStage;
+  /** @nullable */
+  PaymentInformation?: PersonLoginWebhookPayloadPaymentInformation;
+  /** @nullable */
+  PersonAccount?: PersonLoginWebhookPayloadPersonAccountItem[] | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  StripeDefaultPaymentMethodId?: string | null;
+  /** @nullable */
+  StripeInvoices?: PersonLoginWebhookPayloadStripeInvoicesItem[] | null;
+  /** @nullable */
+  StripePaymentMethods?: PersonLoginWebhookPayloadStripePaymentMethodsItem[] | null;
+  /** @nullable */
+  StripeSubscriptions?: PersonLoginWebhookPayloadStripeSubscriptionsItem[] | null;
+  /** @nullable */
+  Subscriptions?: PersonLoginWebhookPayloadSubscriptionsItem[] | null;
+  /** @nullable */
+  Deals?: PersonLoginWebhookPayloadDealsItem[] | null;
+  /** @nullable */
+  LastLoginDateTime?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl1?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl2?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl3?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl4?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl5?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl6?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl7?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl8?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl9?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl10?: string | null;
+  /** @nullable */
+  RewardFulReferralId?: string | null;
+  /**
+   * @maxLength 36
+   * @nullable
+   */
+  ToltReferralId?: string | null;
+  /** @nullable */
+  TaxIds?: PersonLoginWebhookPayloadTaxIdsItem[] | null;
+  /**
+   * @maxLength 20
+   * @nullable
+   */
+  TaxStatus?: string | null;
+  /** @nullable */
+  AccountStageLabel?: string | null;
+  /** @nullable */
+  CurrentStripeProducts?: string | null;
+  /** @nullable */
+  CurrentSubscription?: PersonLoginWebhookPayloadCurrentSubscription;
+  /** @nullable */
+  DomainName?: string | null;
+  HasLoggedIn?: boolean;
+  /** @nullable */
+  LatestSubscription?: PersonLoginWebhookPayloadLatestSubscription;
+  LifetimeRevenue?: number;
+  /** @nullable */
+  NextStripeInvoiceDate?: string | null;
+  /** @nullable */
+  Nonce?: string | null;
+  /** @nullable */
+  PrimaryContact?: PersonLoginWebhookPayloadPrimaryContact;
+  /** @nullable */
+  PrimarySubscription?: PersonLoginWebhookPayloadPrimarySubscription;
+  /** @nullable */
+  PrimaryStripeSubscription?: PersonLoginWebhookPayloadPrimaryStripeSubscription;
+  /** @nullable */
+  RecaptchaToken?: string | null;
+  /** @nullable */
+  StripeNextInvoiceSequence?: number | null;
+  /** @nullable */
+  StripePrice?: string[] | null;
+  /** @nullable */
+  StripePromotionCode?: string | null;
+  /** @nullable */
+  TaxId?: string | null;
+  TaxIdIsInvalid?: boolean;
+  /** @nullable */
+  TaxIdType?: string | null;
+  /** @nullable */
+  WebflowSlug?: string | null;
+  ActivityEventData?: PersonLoginActivityData;
+}
+
 export interface PersonListSubscribedActivityData {
   /** @nullable */
   EmailListUid?: string | null;
