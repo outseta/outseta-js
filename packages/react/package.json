@@ -1,6 +1,6 @@
 {
   "name": "@outseta/react",
-  "version": "0.4.3",
+  "version": "0.4.4",
   "description": "React hooks and components for the Outseta API",
   "license": "MIT",
   "repository": {
