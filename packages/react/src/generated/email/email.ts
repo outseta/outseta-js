@@ -18,6 +18,13 @@ import type {
   CampaignAddBroadcastEmailBody,
   CampaignSendTestCampaignEmailBody,
   CampaignUpdateBroadcastEmailBody,
+  DripCampaign,
+  DripCampaignAddDripCampaignBody,
+  DripCampaignAddDripCampaignMessageBody,
+  DripCampaignMessage,
+  DripCampaignSendTestCampaignEmailBody,
+  DripCampaignUpdateDripCampaignBody,
+  DripCampaignUpdateDripCampaignMessageBody,
   EmailListAddSubscriptionBody,
   EmailListGetAllSubscriptionsParams,
   EmailListPerson
@@ -58,8 +65,682 @@ type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
 
 
 /**
- * Archived campaigns are excluded.
- * @summary Retrieve all broadcast campaigns.
+ * @summary Retrieve all drip campaigns.
+ */
+export const dripCampaignGetAllDripCampaigns = (
+    
+ options?: SecondParameter<typeof customFetch>,signal?: AbortSignal
+) => {
+      
+      
+      return customFetch<DripCampaign[]>(
+      {url: `/api/v1/email/campaigns/drips`, method: 'GET', signal
+    },
+      options);
+    }
+  
+
+
+
+export const getDripCampaignGetAllDripCampaignsQueryKey = () => {
+    return [
+    `/api/v1/email/campaigns/drips`
+    ] as const;
+    }
+
+    
+export const getDripCampaignGetAllDripCampaignsQueryOptions = <TData = Awaited<ReturnType<typeof dripCampaignGetAllDripCampaigns>>, TError = void>( options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof dripCampaignGetAllDripCampaigns>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getDripCampaignGetAllDripCampaignsQueryKey();
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof dripCampaignGetAllDripCampaigns>>> = ({ signal }) => dripCampaignGetAllDripCampaigns(requestOptions, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof dripCampaignGetAllDripCampaigns>>, TError, TData> & { queryKey: QueryKey }
+}
+
+export type DripCampaignGetAllDripCampaignsQueryResult = NonNullable<Awaited<ReturnType<typeof dripCampaignGetAllDripCampaigns>>>
+export type DripCampaignGetAllDripCampaignsQueryError = void
+
+
+/**
+ * @summary Retrieve all drip campaigns.
+ */
+
+export function useDripCampaignGetAllDripCampaigns<TData = Awaited<ReturnType<typeof dripCampaignGetAllDripCampaigns>>, TError = void>(
+  options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof dripCampaignGetAllDripCampaigns>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
+  
+ ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } {
+
+  const queryOptions = getDripCampaignGetAllDripCampaignsQueryOptions(options)
+
+  const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: QueryKey };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+
+/**
+ * To copy an existing drip campaign, retrieve it and pass its data as the request body — the
+Uid and per-message counts are automatically reset. Messages can be supplied inline via
+DripCampaignMessages, or added later with the messages endpoint. Each inline message's Name
+defaults to its position (e.g. "Message 1") when omitted.
+ * @summary Create a new drip campaign.
+ */
+export const dripCampaignAddDripCampaign = (
+    dripCampaignAddDripCampaignBody: NonReadonly<DripCampaignAddDripCampaignBody>,
+ options?: SecondParameter<typeof customFetch>,signal?: AbortSignal
+) => {
+      
+      
+      return customFetch<DripCampaign>(
+      {url: `/api/v1/email/campaigns/drips`, method: 'POST',
+      headers: {'Content-Type': 'application/json', },
+      data: dripCampaignAddDripCampaignBody, signal
+    },
+      options);
+    }
+  
+
+
+export const getDripCampaignAddDripCampaignMutationOptions = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof dripCampaignAddDripCampaign>>, TError,{data: NonReadonly<DripCampaignAddDripCampaignBody>}, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof dripCampaignAddDripCampaign>>, TError,{data: NonReadonly<DripCampaignAddDripCampaignBody>}, TContext> => {
+
+const mutationKey = ['dripCampaignAddDripCampaign'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof dripCampaignAddDripCampaign>>, {data: NonReadonly<DripCampaignAddDripCampaignBody>}> = (props) => {
+          const {data} = props ?? {};
+
+          return  dripCampaignAddDripCampaign(data,requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type DripCampaignAddDripCampaignMutationResult = NonNullable<Awaited<ReturnType<typeof dripCampaignAddDripCampaign>>>
+    export type DripCampaignAddDripCampaignMutationBody = NonReadonly<DripCampaignAddDripCampaignBody>
+    export type DripCampaignAddDripCampaignMutationError = void
+
+    /**
+ * @summary Create a new drip campaign.
+ */
+export const useDripCampaignAddDripCampaign = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof dripCampaignAddDripCampaign>>, TError,{data: NonReadonly<DripCampaignAddDripCampaignBody>}, TContext>, request?: SecondParameter<typeof customFetch>}
+ ): UseMutationResult<
+        Awaited<ReturnType<typeof dripCampaignAddDripCampaign>>,
+        TError,
+        {data: NonReadonly<DripCampaignAddDripCampaignBody>},
+        TContext
+      > => {
+
+      const mutationOptions = getDripCampaignAddDripCampaignMutationOptions(options);
+
+      return useMutation(mutationOptions);
+    }
+    /**
+ * @summary Retrieve a drip campaign.
+ */
+export const dripCampaignGetDripCampaign = (
+    dripCampaignUid: string | null,
+ options?: SecondParameter<typeof customFetch>,signal?: AbortSignal
+) => {
+      
+      
+      return customFetch<DripCampaign>(
+      {url: `/api/v1/email/campaigns/drips/${dripCampaignUid}`, method: 'GET', signal
+    },
+      options);
+    }
+  
+
+
+
+export const getDripCampaignGetDripCampaignQueryKey = (dripCampaignUid?: string | null,) => {
+    return [
+    `/api/v1/email/campaigns/drips/${dripCampaignUid}`
+    ] as const;
+    }
+
+    
+export const getDripCampaignGetDripCampaignQueryOptions = <TData = Awaited<ReturnType<typeof dripCampaignGetDripCampaign>>, TError = void>(dripCampaignUid: string | null, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof dripCampaignGetDripCampaign>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getDripCampaignGetDripCampaignQueryKey(dripCampaignUid);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof dripCampaignGetDripCampaign>>> = ({ signal }) => dripCampaignGetDripCampaign(dripCampaignUid, requestOptions, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, enabled: !!(dripCampaignUid), ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof dripCampaignGetDripCampaign>>, TError, TData> & { queryKey: QueryKey }
+}
+
+export type DripCampaignGetDripCampaignQueryResult = NonNullable<Awaited<ReturnType<typeof dripCampaignGetDripCampaign>>>
+export type DripCampaignGetDripCampaignQueryError = void
+
+
+/**
+ * @summary Retrieve a drip campaign.
+ */
+
+export function useDripCampaignGetDripCampaign<TData = Awaited<ReturnType<typeof dripCampaignGetDripCampaign>>, TError = void>(
+ dripCampaignUid: string | null, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof dripCampaignGetDripCampaign>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
+  
+ ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } {
+
+  const queryOptions = getDripCampaignGetDripCampaignQueryOptions(dripCampaignUid,options)
+
+  const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: QueryKey };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+
+/**
+ * Activating a drip campaign (setting IsActive) begins sending its messages to members.
+StartDripToExistingMembers controls whether members already in the campaign receive the
+messages or only members added going forward.
+ * @summary Update a drip campaign.
+ */
+export const dripCampaignUpdateDripCampaign = (
+    dripCampaignUid: string | null,
+    dripCampaignUpdateDripCampaignBody: NonReadonly<DripCampaignUpdateDripCampaignBody>,
+ options?: SecondParameter<typeof customFetch>,) => {
+      
+      
+      return customFetch<DripCampaign>(
+      {url: `/api/v1/email/campaigns/drips/${dripCampaignUid}`, method: 'PUT',
+      headers: {'Content-Type': 'application/json', },
+      data: dripCampaignUpdateDripCampaignBody
+    },
+      options);
+    }
+  
+
+
+export const getDripCampaignUpdateDripCampaignMutationOptions = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof dripCampaignUpdateDripCampaign>>, TError,{dripCampaignUid: string | null;data: NonReadonly<DripCampaignUpdateDripCampaignBody>}, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof dripCampaignUpdateDripCampaign>>, TError,{dripCampaignUid: string | null;data: NonReadonly<DripCampaignUpdateDripCampaignBody>}, TContext> => {
+
+const mutationKey = ['dripCampaignUpdateDripCampaign'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof dripCampaignUpdateDripCampaign>>, {dripCampaignUid: string | null;data: NonReadonly<DripCampaignUpdateDripCampaignBody>}> = (props) => {
+          const {dripCampaignUid,data} = props ?? {};
+
+          return  dripCampaignUpdateDripCampaign(dripCampaignUid,data,requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type DripCampaignUpdateDripCampaignMutationResult = NonNullable<Awaited<ReturnType<typeof dripCampaignUpdateDripCampaign>>>
+    export type DripCampaignUpdateDripCampaignMutationBody = NonReadonly<DripCampaignUpdateDripCampaignBody>
+    export type DripCampaignUpdateDripCampaignMutationError = void
+
+    /**
+ * @summary Update a drip campaign.
+ */
+export const useDripCampaignUpdateDripCampaign = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof dripCampaignUpdateDripCampaign>>, TError,{dripCampaignUid: string | null;data: NonReadonly<DripCampaignUpdateDripCampaignBody>}, TContext>, request?: SecondParameter<typeof customFetch>}
+ ): UseMutationResult<
+        Awaited<ReturnType<typeof dripCampaignUpdateDripCampaign>>,
+        TError,
+        {dripCampaignUid: string | null;data: NonReadonly<DripCampaignUpdateDripCampaignBody>},
+        TContext
+      > => {
+
+      const mutationOptions = getDripCampaignUpdateDripCampaignMutationOptions(options);
+
+      return useMutation(mutationOptions);
+    }
+    /**
+ * @summary Delete a drip campaign.
+ */
+export const dripCampaignDeleteDripCampaign = (
+    dripCampaignUid: string | null,
+ options?: SecondParameter<typeof customFetch>,) => {
+      
+      
+      return customFetch<Blob>(
+      {url: `/api/v1/email/campaigns/drips/${dripCampaignUid}`, method: 'DELETE',
+        responseType: 'blob'
+    },
+      options);
+    }
+  
+
+
+export const getDripCampaignDeleteDripCampaignMutationOptions = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof dripCampaignDeleteDripCampaign>>, TError,{dripCampaignUid: string | null}, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof dripCampaignDeleteDripCampaign>>, TError,{dripCampaignUid: string | null}, TContext> => {
+
+const mutationKey = ['dripCampaignDeleteDripCampaign'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof dripCampaignDeleteDripCampaign>>, {dripCampaignUid: string | null}> = (props) => {
+          const {dripCampaignUid} = props ?? {};
+
+          return  dripCampaignDeleteDripCampaign(dripCampaignUid,requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type DripCampaignDeleteDripCampaignMutationResult = NonNullable<Awaited<ReturnType<typeof dripCampaignDeleteDripCampaign>>>
+    
+    export type DripCampaignDeleteDripCampaignMutationError = void
+
+    /**
+ * @summary Delete a drip campaign.
+ */
+export const useDripCampaignDeleteDripCampaign = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof dripCampaignDeleteDripCampaign>>, TError,{dripCampaignUid: string | null}, TContext>, request?: SecondParameter<typeof customFetch>}
+ ): UseMutationResult<
+        Awaited<ReturnType<typeof dripCampaignDeleteDripCampaign>>,
+        TError,
+        {dripCampaignUid: string | null},
+        TContext
+      > => {
+
+      const mutationOptions = getDripCampaignDeleteDripCampaignMutationOptions(options);
+
+      return useMutation(mutationOptions);
+    }
+    /**
+ * Adding a message deactivates the drip campaign so its schedule can be reviewed before it
+resumes sending. Use DelayInHours to control how long after the trigger the message is sent.
+ * @summary Add a message to a drip campaign.
+ */
+export const dripCampaignAddDripCampaignMessage = (
+    dripCampaignUid: string | null,
+    dripCampaignAddDripCampaignMessageBody: NonReadonly<DripCampaignAddDripCampaignMessageBody>,
+ options?: SecondParameter<typeof customFetch>,signal?: AbortSignal
+) => {
+      
+      
+      return customFetch<DripCampaignMessage>(
+      {url: `/api/v1/email/campaigns/drips/${dripCampaignUid}/messages`, method: 'POST',
+      headers: {'Content-Type': 'application/json', },
+      data: dripCampaignAddDripCampaignMessageBody, signal
+    },
+      options);
+    }
+  
+
+
+export const getDripCampaignAddDripCampaignMessageMutationOptions = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof dripCampaignAddDripCampaignMessage>>, TError,{dripCampaignUid: string | null;data: NonReadonly<DripCampaignAddDripCampaignMessageBody>}, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof dripCampaignAddDripCampaignMessage>>, TError,{dripCampaignUid: string | null;data: NonReadonly<DripCampaignAddDripCampaignMessageBody>}, TContext> => {
+
+const mutationKey = ['dripCampaignAddDripCampaignMessage'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof dripCampaignAddDripCampaignMessage>>, {dripCampaignUid: string | null;data: NonReadonly<DripCampaignAddDripCampaignMessageBody>}> = (props) => {
+          const {dripCampaignUid,data} = props ?? {};
+
+          return  dripCampaignAddDripCampaignMessage(dripCampaignUid,data,requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type DripCampaignAddDripCampaignMessageMutationResult = NonNullable<Awaited<ReturnType<typeof dripCampaignAddDripCampaignMessage>>>
+    export type DripCampaignAddDripCampaignMessageMutationBody = NonReadonly<DripCampaignAddDripCampaignMessageBody>
+    export type DripCampaignAddDripCampaignMessageMutationError = void
+
+    /**
+ * @summary Add a message to a drip campaign.
+ */
+export const useDripCampaignAddDripCampaignMessage = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof dripCampaignAddDripCampaignMessage>>, TError,{dripCampaignUid: string | null;data: NonReadonly<DripCampaignAddDripCampaignMessageBody>}, TContext>, request?: SecondParameter<typeof customFetch>}
+ ): UseMutationResult<
+        Awaited<ReturnType<typeof dripCampaignAddDripCampaignMessage>>,
+        TError,
+        {dripCampaignUid: string | null;data: NonReadonly<DripCampaignAddDripCampaignMessageBody>},
+        TContext
+      > => {
+
+      const mutationOptions = getDripCampaignAddDripCampaignMessageMutationOptions(options);
+
+      return useMutation(mutationOptions);
+    }
+    /**
+ * @summary Retrieve a message from a drip campaign.
+ */
+export const dripCampaignGetDripCampaignMessage = (
+    dripCampaignUid: string | null,
+    dripCampaignMessageUid: string | null,
+ options?: SecondParameter<typeof customFetch>,signal?: AbortSignal
+) => {
+      
+      
+      return customFetch<DripCampaignMessage>(
+      {url: `/api/v1/email/campaigns/drips/${dripCampaignUid}/messages/${dripCampaignMessageUid}`, method: 'GET', signal
+    },
+      options);
+    }
+  
+
+
+
+export const getDripCampaignGetDripCampaignMessageQueryKey = (dripCampaignUid?: string | null,
+    dripCampaignMessageUid?: string | null,) => {
+    return [
+    `/api/v1/email/campaigns/drips/${dripCampaignUid}/messages/${dripCampaignMessageUid}`
+    ] as const;
+    }
+
+    
+export const getDripCampaignGetDripCampaignMessageQueryOptions = <TData = Awaited<ReturnType<typeof dripCampaignGetDripCampaignMessage>>, TError = void>(dripCampaignUid: string | null,
+    dripCampaignMessageUid: string | null, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof dripCampaignGetDripCampaignMessage>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getDripCampaignGetDripCampaignMessageQueryKey(dripCampaignUid,dripCampaignMessageUid);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof dripCampaignGetDripCampaignMessage>>> = ({ signal }) => dripCampaignGetDripCampaignMessage(dripCampaignUid,dripCampaignMessageUid, requestOptions, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, enabled: !!(dripCampaignUid && dripCampaignMessageUid), ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof dripCampaignGetDripCampaignMessage>>, TError, TData> & { queryKey: QueryKey }
+}
+
+export type DripCampaignGetDripCampaignMessageQueryResult = NonNullable<Awaited<ReturnType<typeof dripCampaignGetDripCampaignMessage>>>
+export type DripCampaignGetDripCampaignMessageQueryError = void
+
+
+/**
+ * @summary Retrieve a message from a drip campaign.
+ */
+
+export function useDripCampaignGetDripCampaignMessage<TData = Awaited<ReturnType<typeof dripCampaignGetDripCampaignMessage>>, TError = void>(
+ dripCampaignUid: string | null,
+    dripCampaignMessageUid: string | null, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof dripCampaignGetDripCampaignMessage>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
+  
+ ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } {
+
+  const queryOptions = getDripCampaignGetDripCampaignMessageQueryOptions(dripCampaignUid,dripCampaignMessageUid,options)
+
+  const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: QueryKey };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+
+/**
+ * Changing DelayInHours on an active drip campaign reschedules the drip for its existing
+members. The DripCampaign Uid on the body, if supplied, must match the dripCampaignUid in
+the URL, and the message Uid on the body must match the dripCampaignMessageUid in the URL.
+ * @summary Update a message in a drip campaign.
+ */
+export const dripCampaignUpdateDripCampaignMessage = (
+    dripCampaignUid: string | null,
+    dripCampaignMessageUid: string | null,
+    dripCampaignUpdateDripCampaignMessageBody: NonReadonly<DripCampaignUpdateDripCampaignMessageBody>,
+ options?: SecondParameter<typeof customFetch>,) => {
+      
+      
+      return customFetch<DripCampaignMessage>(
+      {url: `/api/v1/email/campaigns/drips/${dripCampaignUid}/messages/${dripCampaignMessageUid}`, method: 'PUT',
+      headers: {'Content-Type': 'application/json', },
+      data: dripCampaignUpdateDripCampaignMessageBody
+    },
+      options);
+    }
+  
+
+
+export const getDripCampaignUpdateDripCampaignMessageMutationOptions = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof dripCampaignUpdateDripCampaignMessage>>, TError,{dripCampaignUid: string | null;dripCampaignMessageUid: string | null;data: NonReadonly<DripCampaignUpdateDripCampaignMessageBody>}, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof dripCampaignUpdateDripCampaignMessage>>, TError,{dripCampaignUid: string | null;dripCampaignMessageUid: string | null;data: NonReadonly<DripCampaignUpdateDripCampaignMessageBody>}, TContext> => {
+
+const mutationKey = ['dripCampaignUpdateDripCampaignMessage'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof dripCampaignUpdateDripCampaignMessage>>, {dripCampaignUid: string | null;dripCampaignMessageUid: string | null;data: NonReadonly<DripCampaignUpdateDripCampaignMessageBody>}> = (props) => {
+          const {dripCampaignUid,dripCampaignMessageUid,data} = props ?? {};
+
+          return  dripCampaignUpdateDripCampaignMessage(dripCampaignUid,dripCampaignMessageUid,data,requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type DripCampaignUpdateDripCampaignMessageMutationResult = NonNullable<Awaited<ReturnType<typeof dripCampaignUpdateDripCampaignMessage>>>
+    export type DripCampaignUpdateDripCampaignMessageMutationBody = NonReadonly<DripCampaignUpdateDripCampaignMessageBody>
+    export type DripCampaignUpdateDripCampaignMessageMutationError = void
+
+    /**
+ * @summary Update a message in a drip campaign.
+ */
+export const useDripCampaignUpdateDripCampaignMessage = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof dripCampaignUpdateDripCampaignMessage>>, TError,{dripCampaignUid: string | null;dripCampaignMessageUid: string | null;data: NonReadonly<DripCampaignUpdateDripCampaignMessageBody>}, TContext>, request?: SecondParameter<typeof customFetch>}
+ ): UseMutationResult<
+        Awaited<ReturnType<typeof dripCampaignUpdateDripCampaignMessage>>,
+        TError,
+        {dripCampaignUid: string | null;dripCampaignMessageUid: string | null;data: NonReadonly<DripCampaignUpdateDripCampaignMessageBody>},
+        TContext
+      > => {
+
+      const mutationOptions = getDripCampaignUpdateDripCampaignMessageMutationOptions(options);
+
+      return useMutation(mutationOptions);
+    }
+    /**
+ * If the drip campaign is active, the drip is rescheduled for its existing members after the
+message is removed.
+ * @summary Delete a message from a drip campaign.
+ */
+export const dripCampaignDeleteDripCampaignMessage = (
+    dripCampaignUid: string | null,
+    dripCampaignMessageUid: string | null,
+ options?: SecondParameter<typeof customFetch>,) => {
+      
+      
+      return customFetch<Blob>(
+      {url: `/api/v1/email/campaigns/drips/${dripCampaignUid}/messages/${dripCampaignMessageUid}`, method: 'DELETE',
+        responseType: 'blob'
+    },
+      options);
+    }
+  
+
+
+export const getDripCampaignDeleteDripCampaignMessageMutationOptions = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof dripCampaignDeleteDripCampaignMessage>>, TError,{dripCampaignUid: string | null;dripCampaignMessageUid: string | null}, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof dripCampaignDeleteDripCampaignMessage>>, TError,{dripCampaignUid: string | null;dripCampaignMessageUid: string | null}, TContext> => {
+
+const mutationKey = ['dripCampaignDeleteDripCampaignMessage'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof dripCampaignDeleteDripCampaignMessage>>, {dripCampaignUid: string | null;dripCampaignMessageUid: string | null}> = (props) => {
+          const {dripCampaignUid,dripCampaignMessageUid} = props ?? {};
+
+          return  dripCampaignDeleteDripCampaignMessage(dripCampaignUid,dripCampaignMessageUid,requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type DripCampaignDeleteDripCampaignMessageMutationResult = NonNullable<Awaited<ReturnType<typeof dripCampaignDeleteDripCampaignMessage>>>
+    
+    export type DripCampaignDeleteDripCampaignMessageMutationError = void
+
+    /**
+ * @summary Delete a message from a drip campaign.
+ */
+export const useDripCampaignDeleteDripCampaignMessage = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof dripCampaignDeleteDripCampaignMessage>>, TError,{dripCampaignUid: string | null;dripCampaignMessageUid: string | null}, TContext>, request?: SecondParameter<typeof customFetch>}
+ ): UseMutationResult<
+        Awaited<ReturnType<typeof dripCampaignDeleteDripCampaignMessage>>,
+        TError,
+        {dripCampaignUid: string | null;dripCampaignMessageUid: string | null},
+        TContext
+      > => {
+
+      const mutationOptions = getDripCampaignDeleteDripCampaignMessageMutationOptions(options);
+
+      return useMutation(mutationOptions);
+    }
+    /**
+ * Sends the drip campaign to the logged-in user and optionally to additional recipients.
+Additional recipients are specified as a list of person Uids and must belong to the same
+account as the logged-in user. Sending is skipped when the account is restricted due to
+unpaid invoices.
+ * @summary Send a test email for a drip campaign.
+ */
+export const dripCampaignSendTestCampaignEmail = (
+    dripCampaignSendTestCampaignEmailBody: DripCampaignSendTestCampaignEmailBody,
+ options?: SecondParameter<typeof customFetch>,signal?: AbortSignal
+) => {
+      
+      
+      return customFetch<Blob>(
+      {url: `/api/v1/email/campaigns/drips/sendtestemail`, method: 'POST',
+      headers: {'Content-Type': 'application/json', },
+      data: dripCampaignSendTestCampaignEmailBody,
+        responseType: 'blob', signal
+    },
+      options);
+    }
+  
+
+
+export const getDripCampaignSendTestCampaignEmailMutationOptions = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof dripCampaignSendTestCampaignEmail>>, TError,{data: DripCampaignSendTestCampaignEmailBody}, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof dripCampaignSendTestCampaignEmail>>, TError,{data: DripCampaignSendTestCampaignEmailBody}, TContext> => {
+
+const mutationKey = ['dripCampaignSendTestCampaignEmail'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof dripCampaignSendTestCampaignEmail>>, {data: DripCampaignSendTestCampaignEmailBody}> = (props) => {
+          const {data} = props ?? {};
+
+          return  dripCampaignSendTestCampaignEmail(data,requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type DripCampaignSendTestCampaignEmailMutationResult = NonNullable<Awaited<ReturnType<typeof dripCampaignSendTestCampaignEmail>>>
+    export type DripCampaignSendTestCampaignEmailMutationBody = DripCampaignSendTestCampaignEmailBody
+    export type DripCampaignSendTestCampaignEmailMutationError = void
+
+    /**
+ * @summary Send a test email for a drip campaign.
+ */
+export const useDripCampaignSendTestCampaignEmail = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof dripCampaignSendTestCampaignEmail>>, TError,{data: DripCampaignSendTestCampaignEmailBody}, TContext>, request?: SecondParameter<typeof customFetch>}
+ ): UseMutationResult<
+        Awaited<ReturnType<typeof dripCampaignSendTestCampaignEmail>>,
+        TError,
+        {data: DripCampaignSendTestCampaignEmailBody},
+        TContext
+      > => {
+
+      const mutationOptions = getDripCampaignSendTestCampaignEmailMutationOptions(options);
+
+      return useMutation(mutationOptions);
+    }
+    /**
+ * Archived broadcasts are excluded.
+ * @summary Retrieve all broadcasts.
  */
 export const campaignGetAllBroadcastEmails = (
     
@@ -106,7 +787,7 @@ export type CampaignGetAllBroadcastEmailsQueryError = void
 
 
 /**
- * @summary Retrieve all broadcast campaigns.
+ * @summary Retrieve all broadcasts.
  */
 
 export function useCampaignGetAllBroadcastEmails<TData = Awaited<ReturnType<typeof campaignGetAllBroadcastEmails>>, TError = void>(
@@ -128,10 +809,32 @@ export function useCampaignGetAllBroadcastEmails<TData = Awaited<ReturnType<type
 
 /**
  * To copy an existing broadcast, retrieve it and pass its data as the request body — the
-Uid, SendDateTime, and message counts are automatically reset. Recipients can be
-specified using EmailListUids and SegmentUids instead of populating RecipientData
-directly. If both are provided, they are merged.
- * @summary Create a new broadcast campaign.
+Uid, SendDateTime, and message counts are automatically reset. A new broadcast is always
+created as a Draft; schedule it by updating it with a SendDateTime (see the update endpoint).
+            
+Specify who the broadcast is sent to with EmailListUids and/or SegmentUids: EmailListUids is
+an array of email list Uids (from GET /api/v1/email/lists) and SegmentUids is an array of
+segment Uids (from GET /api/v1/crm/segments). These are the recommended way to set recipients
+— they are merged into the underlying RecipientData for you, so callers (including LLM tools)
+do not need to build that structure by hand; unknown Uids are rejected. RecipientData may
+still be supplied directly (a JSON string of the form
+{"BroadcastRecipientsEmailLists":[{"Uid":"..."}],"BroadcastRecipientsSegments":[{"Uid":"..."}]});
+when both are present they are merged.
+            
+Message.Body is the complete HTML email and is exactly what gets sent. It is rendered as a
+Liquid template, so it may include merge tags such as {{ Person.FirstName }}; unknown {{ }}
+tokens render as empty text. An inline-styled HTML fragment is recommended, though a full
+HTML document is also accepted. Message.Design (the drag-and-drop editor state) is optional —
+when omitted it is generated automatically from Body, so callers (including LLM tools) do not
+need to understand it. Use Message.PreviewText for inbox preview text rather than an in-body
+preheader.
+            
+You must include a visible unsubscribe link in the body yourself: add {{ UnsubscribeLink }}
+(a ready-made anchor) or {{ UnsubscribeUrl }} (the raw URL) where you want it. One is not
+inserted automatically, and its presence is not validated. A one-click List-Unsubscribe
+header is always added, but most anti-spam laws (e.g. CAN-SPAM) also require a visible
+unsubscribe link in the body.
+ * @summary Create a new broadcast.
  */
 export const campaignAddBroadcastEmail = (
     campaignAddBroadcastEmailBody: NonReadonly<CampaignAddBroadcastEmailBody>,
@@ -179,7 +882,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
     export type CampaignAddBroadcastEmailMutationError = void
 
     /**
- * @summary Create a new broadcast campaign.
+ * @summary Create a new broadcast.
  */
 export const useCampaignAddBroadcastEmail = <TError = void,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof campaignAddBroadcastEmail>>, TError,{data: NonReadonly<CampaignAddBroadcastEmailBody>}, TContext>, request?: SecondParameter<typeof customFetch>}
@@ -195,7 +898,7 @@ export const useCampaignAddBroadcastEmail = <TError = void,
       return useMutation(mutationOptions);
     }
     /**
- * @summary Retrieve a broadcast campaign.
+ * @summary Retrieve a broadcast.
  */
 export const campaignGetBroadcastEmail = (
     broadcastCampaignUid: string | null,
@@ -242,7 +945,7 @@ export type CampaignGetBroadcastEmailQueryError = void
 
 
 /**
- * @summary Retrieve a broadcast campaign.
+ * @summary Retrieve a broadcast.
  */
 
 export function useCampaignGetBroadcastEmail<TData = Awaited<ReturnType<typeof campaignGetBroadcastEmail>>, TError = void>(
@@ -263,11 +966,17 @@ export function useCampaignGetBroadcastEmail<TData = Awaited<ReturnType<typeof c
 
 
 /**
- * Setting SendDateTime to a future date schedules the broadcast for sending and its status
-changes to Pending. Clearing SendDateTime unschedules the broadcast. Recipients can be
-specified using EmailListUids and SegmentUids instead of populating RecipientData
-directly. If both are provided, they are merged.
- * @summary Update a broadcast campaign.
+ * Setting SendDateTime to a future UTC date schedules the broadcast for sending and its status
+changes to Pending. Clearing SendDateTime unschedules the broadcast. Recipients can be added
+with EmailListUids and SegmentUids (see the create endpoint): on update these are merged onto
+the broadcast's existing recipients and only ever add — to remove recipients or replace the
+set, send RecipientData directly.
+            
+When changing Message.Body, omit Message.Design: it is regenerated from the new Body so the
+drag-and-drop editor stays in sync. Sending a Design that was captured from an earlier
+response alongside an edited Body would otherwise keep the stale design. See the create
+endpoint for how Body is rendered (Liquid) and the unsubscribe-token expectation.
+ * @summary Update a broadcast.
  */
 export const campaignUpdateBroadcastEmail = (
     broadcastCampaignUid: string | null,
@@ -315,7 +1024,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
     export type CampaignUpdateBroadcastEmailMutationError = void
 
     /**
- * @summary Update a broadcast campaign.
+ * @summary Update a broadcast.
  */
 export const useCampaignUpdateBroadcastEmail = <TError = void,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof campaignUpdateBroadcastEmail>>, TError,{broadcastCampaignUid: string | null;data: NonReadonly<CampaignUpdateBroadcastEmailBody>}, TContext>, request?: SecondParameter<typeof customFetch>}
@@ -331,9 +1040,9 @@ export const useCampaignUpdateBroadcastEmail = <TError = void,
       return useMutation(mutationOptions);
     }
     /**
- * Only campaigns in Draft or Pending status can be deleted. Campaigns that have been
+ * Only broadcasts in Draft or Pending status can be deleted. Broadcasts that have been
 processed should be archived instead.
- * @summary Delete a broadcast campaign.
+ * @summary Delete a broadcast.
  */
 export const campaignDeleteBroadcastCampaign = (
     broadcastCampaignUid: string | null,
@@ -379,7 +1088,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
     export type CampaignDeleteBroadcastCampaignMutationError = void
 
     /**
- * @summary Delete a broadcast campaign.
+ * @summary Delete a broadcast.
  */
 export const useCampaignDeleteBroadcastCampaign = <TError = void,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof campaignDeleteBroadcastCampaign>>, TError,{broadcastCampaignUid: string | null}, TContext>, request?: SecondParameter<typeof customFetch>}
@@ -395,7 +1104,8 @@ export const useCampaignDeleteBroadcastCampaign = <TError = void,
       return useMutation(mutationOptions);
     }
     /**
- * @summary Unschedules a pending broadcast campaign, reverting its status to Draft.
+ * Unschedules a pending broadcast, reverting its status to Draft.
+ * @summary Unschedule a broadcast.
  */
 export const campaignUnscheduleBroadcastEmail = (
     broadcastCampaignUid: string | null,
@@ -441,7 +1151,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
     export type CampaignUnscheduleBroadcastEmailMutationError = void
 
     /**
- * @summary Unschedules a pending broadcast campaign, reverting its status to Draft.
+ * @summary Unschedule a broadcast.
  */
 export const useCampaignUnscheduleBroadcastEmail = <TError = void,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof campaignUnscheduleBroadcastEmail>>, TError,{broadcastCampaignUid: string | null}, TContext>, request?: SecondParameter<typeof customFetch>}
@@ -457,7 +1167,8 @@ export const useCampaignUnscheduleBroadcastEmail = <TError = void,
       return useMutation(mutationOptions);
     }
     /**
- * @summary Archives a broadcast campaign. Archived campaigns are excluded from the default list results.
+ * Archived broadcasts are excluded from the default list results.
+ * @summary Archive a broadcast.
  */
 export const campaignArchiveBroadcastCampaign = (
     broadcastCampaignUid: string | null,
@@ -504,7 +1215,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
     export type CampaignArchiveBroadcastCampaignMutationError = void
 
     /**
- * @summary Archives a broadcast campaign. Archived campaigns are excluded from the default list results.
+ * @summary Archive a broadcast.
  */
 export const useCampaignArchiveBroadcastCampaign = <TError = void,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof campaignArchiveBroadcastCampaign>>, TError,{broadcastCampaignUid: string | null}, TContext>, request?: SecondParameter<typeof customFetch>}
@@ -523,7 +1234,7 @@ export const useCampaignArchiveBroadcastCampaign = <TError = void,
  * Sends to the logged-in user and optionally to additional recipients. Additional
 recipients are specified as a list of person Uids and must belong to the same account
 as the logged-in user.
- * @summary Send a test email for a broadcast campaign.
+ * @summary Send a test email for a broadcast.
  */
 export const campaignSendTestCampaignEmail = (
     campaignSendTestCampaignEmailBody: CampaignSendTestCampaignEmailBody,
@@ -572,7 +1283,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
     export type CampaignSendTestCampaignEmailMutationError = void
 
     /**
- * @summary Send a test email for a broadcast campaign.
+ * @summary Send a test email for a broadcast.
  */
 export const useCampaignSendTestCampaignEmail = <TError = void,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof campaignSendTestCampaignEmail>>, TError,{data: CampaignSendTestCampaignEmailBody}, TContext>, request?: SecondParameter<typeof customFetch>}

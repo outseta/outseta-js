@@ -4,6 +4,13 @@ import type {
   CampaignAddBroadcastEmailBody,
   CampaignSendTestCampaignEmailBody,
   CampaignUpdateBroadcastEmailBody,
+  DripCampaign,
+  DripCampaignAddDripCampaignBody,
+  DripCampaignAddDripCampaignMessageBody,
+  DripCampaignMessage,
+  DripCampaignSendTestCampaignEmailBody,
+  DripCampaignUpdateDripCampaignBody,
+  DripCampaignUpdateDripCampaignMessageBody,
   EmailListAddSubscriptionBody,
   EmailListGetAllSubscriptionsParams,
   EmailListPerson
@@ -39,8 +46,530 @@ type NonReadonly<T> = [T] extends [UnionToIntersection<T>] ? {
 
 
 /**
- * Archived campaigns are excluded.
- * @summary Retrieve all broadcast campaigns.
+ * @summary Retrieve all drip campaigns.
+ */
+export type dripCampaignGetAllDripCampaignsResponse200 = {
+  data: DripCampaign[]
+  status: 200
+}
+
+export type dripCampaignGetAllDripCampaignsResponse401 = {
+  data: void
+  status: 401
+}
+    
+export type dripCampaignGetAllDripCampaignsResponseSuccess = (dripCampaignGetAllDripCampaignsResponse200) & {
+  headers: Headers;
+};
+export type dripCampaignGetAllDripCampaignsResponseError = (dripCampaignGetAllDripCampaignsResponse401) & {
+  headers: Headers;
+};
+
+export type dripCampaignGetAllDripCampaignsResponse = (dripCampaignGetAllDripCampaignsResponseSuccess | dripCampaignGetAllDripCampaignsResponseError)
+
+export const getDripCampaignGetAllDripCampaignsUrl = () => {
+
+
+  
+
+  return `/api/v1/email/campaigns/drips`
+}
+
+export const dripCampaignGetAllDripCampaigns = async ( options?: RequestInit): Promise<dripCampaignGetAllDripCampaignsResponse> => {
+  
+  return customFetch<dripCampaignGetAllDripCampaignsResponse>(getDripCampaignGetAllDripCampaignsUrl(),
+  {      
+    ...options,
+    method: 'GET'
+    
+    
+  }
+);}
+
+
+/**
+ * To copy an existing drip campaign, retrieve it and pass its data as the request body — the
+Uid and per-message counts are automatically reset. Messages can be supplied inline via
+DripCampaignMessages, or added later with the messages endpoint. Each inline message's Name
+defaults to its position (e.g. "Message 1") when omitted.
+ * @summary Create a new drip campaign.
+ */
+export type dripCampaignAddDripCampaignResponse200 = {
+  data: DripCampaign
+  status: 200
+}
+
+export type dripCampaignAddDripCampaignResponse401 = {
+  data: void
+  status: 401
+}
+    
+export type dripCampaignAddDripCampaignResponseSuccess = (dripCampaignAddDripCampaignResponse200) & {
+  headers: Headers;
+};
+export type dripCampaignAddDripCampaignResponseError = (dripCampaignAddDripCampaignResponse401) & {
+  headers: Headers;
+};
+
+export type dripCampaignAddDripCampaignResponse = (dripCampaignAddDripCampaignResponseSuccess | dripCampaignAddDripCampaignResponseError)
+
+export const getDripCampaignAddDripCampaignUrl = () => {
+
+
+  
+
+  return `/api/v1/email/campaigns/drips`
+}
+
+export const dripCampaignAddDripCampaign = async (dripCampaignAddDripCampaignBody: NonReadonly<DripCampaignAddDripCampaignBody>, options?: RequestInit): Promise<dripCampaignAddDripCampaignResponse> => {
+  
+  return customFetch<dripCampaignAddDripCampaignResponse>(getDripCampaignAddDripCampaignUrl(),
+  {      
+    ...options,
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', ...options?.headers },
+    body: JSON.stringify(
+      dripCampaignAddDripCampaignBody,)
+  }
+);}
+
+
+/**
+ * @summary Retrieve a drip campaign.
+ */
+export type dripCampaignGetDripCampaignResponse200 = {
+  data: DripCampaign
+  status: 200
+}
+
+export type dripCampaignGetDripCampaignResponse400 = {
+  data: void
+  status: 400
+}
+
+export type dripCampaignGetDripCampaignResponse401 = {
+  data: void
+  status: 401
+}
+
+export type dripCampaignGetDripCampaignResponse404 = {
+  data: void
+  status: 404
+}
+    
+export type dripCampaignGetDripCampaignResponseSuccess = (dripCampaignGetDripCampaignResponse200) & {
+  headers: Headers;
+};
+export type dripCampaignGetDripCampaignResponseError = (dripCampaignGetDripCampaignResponse400 | dripCampaignGetDripCampaignResponse401 | dripCampaignGetDripCampaignResponse404) & {
+  headers: Headers;
+};
+
+export type dripCampaignGetDripCampaignResponse = (dripCampaignGetDripCampaignResponseSuccess | dripCampaignGetDripCampaignResponseError)
+
+export const getDripCampaignGetDripCampaignUrl = (dripCampaignUid: string | null,) => {
+
+
+  
+
+  return `/api/v1/email/campaigns/drips/${dripCampaignUid}`
+}
+
+export const dripCampaignGetDripCampaign = async (dripCampaignUid: string | null, options?: RequestInit): Promise<dripCampaignGetDripCampaignResponse> => {
+  
+  return customFetch<dripCampaignGetDripCampaignResponse>(getDripCampaignGetDripCampaignUrl(dripCampaignUid),
+  {      
+    ...options,
+    method: 'GET'
+    
+    
+  }
+);}
+
+
+/**
+ * Activating a drip campaign (setting IsActive) begins sending its messages to members.
+StartDripToExistingMembers controls whether members already in the campaign receive the
+messages or only members added going forward.
+ * @summary Update a drip campaign.
+ */
+export type dripCampaignUpdateDripCampaignResponse200 = {
+  data: DripCampaign
+  status: 200
+}
+
+export type dripCampaignUpdateDripCampaignResponse400 = {
+  data: void
+  status: 400
+}
+
+export type dripCampaignUpdateDripCampaignResponse401 = {
+  data: void
+  status: 401
+}
+
+export type dripCampaignUpdateDripCampaignResponse404 = {
+  data: void
+  status: 404
+}
+    
+export type dripCampaignUpdateDripCampaignResponseSuccess = (dripCampaignUpdateDripCampaignResponse200) & {
+  headers: Headers;
+};
+export type dripCampaignUpdateDripCampaignResponseError = (dripCampaignUpdateDripCampaignResponse400 | dripCampaignUpdateDripCampaignResponse401 | dripCampaignUpdateDripCampaignResponse404) & {
+  headers: Headers;
+};
+
+export type dripCampaignUpdateDripCampaignResponse = (dripCampaignUpdateDripCampaignResponseSuccess | dripCampaignUpdateDripCampaignResponseError)
+
+export const getDripCampaignUpdateDripCampaignUrl = (dripCampaignUid: string | null,) => {
+
+
+  
+
+  return `/api/v1/email/campaigns/drips/${dripCampaignUid}`
+}
+
+export const dripCampaignUpdateDripCampaign = async (dripCampaignUid: string | null,
+    dripCampaignUpdateDripCampaignBody: NonReadonly<DripCampaignUpdateDripCampaignBody>, options?: RequestInit): Promise<dripCampaignUpdateDripCampaignResponse> => {
+  
+  return customFetch<dripCampaignUpdateDripCampaignResponse>(getDripCampaignUpdateDripCampaignUrl(dripCampaignUid),
+  {      
+    ...options,
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json', ...options?.headers },
+    body: JSON.stringify(
+      dripCampaignUpdateDripCampaignBody,)
+  }
+);}
+
+
+/**
+ * @summary Delete a drip campaign.
+ */
+export type dripCampaignDeleteDripCampaignResponse200 = {
+  data: Blob
+  status: 200
+}
+
+export type dripCampaignDeleteDripCampaignResponse400 = {
+  data: void
+  status: 400
+}
+
+export type dripCampaignDeleteDripCampaignResponse401 = {
+  data: void
+  status: 401
+}
+
+export type dripCampaignDeleteDripCampaignResponse404 = {
+  data: void
+  status: 404
+}
+    
+export type dripCampaignDeleteDripCampaignResponseSuccess = (dripCampaignDeleteDripCampaignResponse200) & {
+  headers: Headers;
+};
+export type dripCampaignDeleteDripCampaignResponseError = (dripCampaignDeleteDripCampaignResponse400 | dripCampaignDeleteDripCampaignResponse401 | dripCampaignDeleteDripCampaignResponse404) & {
+  headers: Headers;
+};
+
+export type dripCampaignDeleteDripCampaignResponse = (dripCampaignDeleteDripCampaignResponseSuccess | dripCampaignDeleteDripCampaignResponseError)
+
+export const getDripCampaignDeleteDripCampaignUrl = (dripCampaignUid: string | null,) => {
+
+
+  
+
+  return `/api/v1/email/campaigns/drips/${dripCampaignUid}`
+}
+
+export const dripCampaignDeleteDripCampaign = async (dripCampaignUid: string | null, options?: RequestInit): Promise<dripCampaignDeleteDripCampaignResponse> => {
+  
+  return customFetch<dripCampaignDeleteDripCampaignResponse>(getDripCampaignDeleteDripCampaignUrl(dripCampaignUid),
+  {      
+    ...options,
+    method: 'DELETE'
+    
+    
+  }
+);}
+
+
+/**
+ * Adding a message deactivates the drip campaign so its schedule can be reviewed before it
+resumes sending. Use DelayInHours to control how long after the trigger the message is sent.
+ * @summary Add a message to a drip campaign.
+ */
+export type dripCampaignAddDripCampaignMessageResponse200 = {
+  data: DripCampaignMessage
+  status: 200
+}
+
+export type dripCampaignAddDripCampaignMessageResponse400 = {
+  data: void
+  status: 400
+}
+
+export type dripCampaignAddDripCampaignMessageResponse401 = {
+  data: void
+  status: 401
+}
+
+export type dripCampaignAddDripCampaignMessageResponse404 = {
+  data: void
+  status: 404
+}
+    
+export type dripCampaignAddDripCampaignMessageResponseSuccess = (dripCampaignAddDripCampaignMessageResponse200) & {
+  headers: Headers;
+};
+export type dripCampaignAddDripCampaignMessageResponseError = (dripCampaignAddDripCampaignMessageResponse400 | dripCampaignAddDripCampaignMessageResponse401 | dripCampaignAddDripCampaignMessageResponse404) & {
+  headers: Headers;
+};
+
+export type dripCampaignAddDripCampaignMessageResponse = (dripCampaignAddDripCampaignMessageResponseSuccess | dripCampaignAddDripCampaignMessageResponseError)
+
+export const getDripCampaignAddDripCampaignMessageUrl = (dripCampaignUid: string | null,) => {
+
+
+  
+
+  return `/api/v1/email/campaigns/drips/${dripCampaignUid}/messages`
+}
+
+export const dripCampaignAddDripCampaignMessage = async (dripCampaignUid: string | null,
+    dripCampaignAddDripCampaignMessageBody: NonReadonly<DripCampaignAddDripCampaignMessageBody>, options?: RequestInit): Promise<dripCampaignAddDripCampaignMessageResponse> => {
+  
+  return customFetch<dripCampaignAddDripCampaignMessageResponse>(getDripCampaignAddDripCampaignMessageUrl(dripCampaignUid),
+  {      
+    ...options,
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', ...options?.headers },
+    body: JSON.stringify(
+      dripCampaignAddDripCampaignMessageBody,)
+  }
+);}
+
+
+/**
+ * @summary Retrieve a message from a drip campaign.
+ */
+export type dripCampaignGetDripCampaignMessageResponse200 = {
+  data: DripCampaignMessage
+  status: 200
+}
+
+export type dripCampaignGetDripCampaignMessageResponse400 = {
+  data: void
+  status: 400
+}
+
+export type dripCampaignGetDripCampaignMessageResponse401 = {
+  data: void
+  status: 401
+}
+
+export type dripCampaignGetDripCampaignMessageResponse404 = {
+  data: void
+  status: 404
+}
+    
+export type dripCampaignGetDripCampaignMessageResponseSuccess = (dripCampaignGetDripCampaignMessageResponse200) & {
+  headers: Headers;
+};
+export type dripCampaignGetDripCampaignMessageResponseError = (dripCampaignGetDripCampaignMessageResponse400 | dripCampaignGetDripCampaignMessageResponse401 | dripCampaignGetDripCampaignMessageResponse404) & {
+  headers: Headers;
+};
+
+export type dripCampaignGetDripCampaignMessageResponse = (dripCampaignGetDripCampaignMessageResponseSuccess | dripCampaignGetDripCampaignMessageResponseError)
+
+export const getDripCampaignGetDripCampaignMessageUrl = (dripCampaignUid: string | null,
+    dripCampaignMessageUid: string | null,) => {
+
+
+  
+
+  return `/api/v1/email/campaigns/drips/${dripCampaignUid}/messages/${dripCampaignMessageUid}`
+}
+
+export const dripCampaignGetDripCampaignMessage = async (dripCampaignUid: string | null,
+    dripCampaignMessageUid: string | null, options?: RequestInit): Promise<dripCampaignGetDripCampaignMessageResponse> => {
+  
+  return customFetch<dripCampaignGetDripCampaignMessageResponse>(getDripCampaignGetDripCampaignMessageUrl(dripCampaignUid,dripCampaignMessageUid),
+  {      
+    ...options,
+    method: 'GET'
+    
+    
+  }
+);}
+
+
+/**
+ * Changing DelayInHours on an active drip campaign reschedules the drip for its existing
+members. The DripCampaign Uid on the body, if supplied, must match the dripCampaignUid in
+the URL, and the message Uid on the body must match the dripCampaignMessageUid in the URL.
+ * @summary Update a message in a drip campaign.
+ */
+export type dripCampaignUpdateDripCampaignMessageResponse200 = {
+  data: DripCampaignMessage
+  status: 200
+}
+
+export type dripCampaignUpdateDripCampaignMessageResponse400 = {
+  data: void
+  status: 400
+}
+
+export type dripCampaignUpdateDripCampaignMessageResponse401 = {
+  data: void
+  status: 401
+}
+
+export type dripCampaignUpdateDripCampaignMessageResponse404 = {
+  data: void
+  status: 404
+}
+    
+export type dripCampaignUpdateDripCampaignMessageResponseSuccess = (dripCampaignUpdateDripCampaignMessageResponse200) & {
+  headers: Headers;
+};
+export type dripCampaignUpdateDripCampaignMessageResponseError = (dripCampaignUpdateDripCampaignMessageResponse400 | dripCampaignUpdateDripCampaignMessageResponse401 | dripCampaignUpdateDripCampaignMessageResponse404) & {
+  headers: Headers;
+};
+
+export type dripCampaignUpdateDripCampaignMessageResponse = (dripCampaignUpdateDripCampaignMessageResponseSuccess | dripCampaignUpdateDripCampaignMessageResponseError)
+
+export const getDripCampaignUpdateDripCampaignMessageUrl = (dripCampaignUid: string | null,
+    dripCampaignMessageUid: string | null,) => {
+
+
+  
+
+  return `/api/v1/email/campaigns/drips/${dripCampaignUid}/messages/${dripCampaignMessageUid}`
+}
+
+export const dripCampaignUpdateDripCampaignMessage = async (dripCampaignUid: string | null,
+    dripCampaignMessageUid: string | null,
+    dripCampaignUpdateDripCampaignMessageBody: NonReadonly<DripCampaignUpdateDripCampaignMessageBody>, options?: RequestInit): Promise<dripCampaignUpdateDripCampaignMessageResponse> => {
+  
+  return customFetch<dripCampaignUpdateDripCampaignMessageResponse>(getDripCampaignUpdateDripCampaignMessageUrl(dripCampaignUid,dripCampaignMessageUid),
+  {      
+    ...options,
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json', ...options?.headers },
+    body: JSON.stringify(
+      dripCampaignUpdateDripCampaignMessageBody,)
+  }
+);}
+
+
+/**
+ * If the drip campaign is active, the drip is rescheduled for its existing members after the
+message is removed.
+ * @summary Delete a message from a drip campaign.
+ */
+export type dripCampaignDeleteDripCampaignMessageResponse200 = {
+  data: Blob
+  status: 200
+}
+
+export type dripCampaignDeleteDripCampaignMessageResponse400 = {
+  data: void
+  status: 400
+}
+
+export type dripCampaignDeleteDripCampaignMessageResponse401 = {
+  data: void
+  status: 401
+}
+
+export type dripCampaignDeleteDripCampaignMessageResponse404 = {
+  data: void
+  status: 404
+}
+    
+export type dripCampaignDeleteDripCampaignMessageResponseSuccess = (dripCampaignDeleteDripCampaignMessageResponse200) & {
+  headers: Headers;
+};
+export type dripCampaignDeleteDripCampaignMessageResponseError = (dripCampaignDeleteDripCampaignMessageResponse400 | dripCampaignDeleteDripCampaignMessageResponse401 | dripCampaignDeleteDripCampaignMessageResponse404) & {
+  headers: Headers;
+};
+
+export type dripCampaignDeleteDripCampaignMessageResponse = (dripCampaignDeleteDripCampaignMessageResponseSuccess | dripCampaignDeleteDripCampaignMessageResponseError)
+
+export const getDripCampaignDeleteDripCampaignMessageUrl = (dripCampaignUid: string | null,
+    dripCampaignMessageUid: string | null,) => {
+
+
+  
+
+  return `/api/v1/email/campaigns/drips/${dripCampaignUid}/messages/${dripCampaignMessageUid}`
+}
+
+export const dripCampaignDeleteDripCampaignMessage = async (dripCampaignUid: string | null,
+    dripCampaignMessageUid: string | null, options?: RequestInit): Promise<dripCampaignDeleteDripCampaignMessageResponse> => {
+  
+  return customFetch<dripCampaignDeleteDripCampaignMessageResponse>(getDripCampaignDeleteDripCampaignMessageUrl(dripCampaignUid,dripCampaignMessageUid),
+  {      
+    ...options,
+    method: 'DELETE'
+    
+    
+  }
+);}
+
+
+/**
+ * Sends the drip campaign to the logged-in user and optionally to additional recipients.
+Additional recipients are specified as a list of person Uids and must belong to the same
+account as the logged-in user. Sending is skipped when the account is restricted due to
+unpaid invoices.
+ * @summary Send a test email for a drip campaign.
+ */
+export type dripCampaignSendTestCampaignEmailResponse200 = {
+  data: Blob
+  status: 200
+}
+
+export type dripCampaignSendTestCampaignEmailResponse401 = {
+  data: void
+  status: 401
+}
+    
+export type dripCampaignSendTestCampaignEmailResponseSuccess = (dripCampaignSendTestCampaignEmailResponse200) & {
+  headers: Headers;
+};
+export type dripCampaignSendTestCampaignEmailResponseError = (dripCampaignSendTestCampaignEmailResponse401) & {
+  headers: Headers;
+};
+
+export type dripCampaignSendTestCampaignEmailResponse = (dripCampaignSendTestCampaignEmailResponseSuccess | dripCampaignSendTestCampaignEmailResponseError)
+
+export const getDripCampaignSendTestCampaignEmailUrl = () => {
+
+
+  
+
+  return `/api/v1/email/campaigns/drips/sendtestemail`
+}
+
+export const dripCampaignSendTestCampaignEmail = async (dripCampaignSendTestCampaignEmailBody: DripCampaignSendTestCampaignEmailBody, options?: RequestInit): Promise<dripCampaignSendTestCampaignEmailResponse> => {
+  
+  return customFetch<dripCampaignSendTestCampaignEmailResponse>(getDripCampaignSendTestCampaignEmailUrl(),
+  {      
+    ...options,
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', ...options?.headers },
+    body: JSON.stringify(
+      dripCampaignSendTestCampaignEmailBody,)
+  }
+);}
+
+
+/**
+ * Archived broadcasts are excluded.
+ * @summary Retrieve all broadcasts.
  */
 export type campaignGetAllBroadcastEmailsResponse200 = {
   data: BroadcastCampaign[]
@@ -83,10 +612,32 @@ export const campaignGetAllBroadcastEmails = async ( options?: RequestInit): Pro
 
 /**
  * To copy an existing broadcast, retrieve it and pass its data as the request body — the
-Uid, SendDateTime, and message counts are automatically reset. Recipients can be
-specified using EmailListUids and SegmentUids instead of populating RecipientData
-directly. If both are provided, they are merged.
- * @summary Create a new broadcast campaign.
+Uid, SendDateTime, and message counts are automatically reset. A new broadcast is always
+created as a Draft; schedule it by updating it with a SendDateTime (see the update endpoint).
+            
+Specify who the broadcast is sent to with EmailListUids and/or SegmentUids: EmailListUids is
+an array of email list Uids (from GET /api/v1/email/lists) and SegmentUids is an array of
+segment Uids (from GET /api/v1/crm/segments). These are the recommended way to set recipients
+— they are merged into the underlying RecipientData for you, so callers (including LLM tools)
+do not need to build that structure by hand; unknown Uids are rejected. RecipientData may
+still be supplied directly (a JSON string of the form
+{"BroadcastRecipientsEmailLists":[{"Uid":"..."}],"BroadcastRecipientsSegments":[{"Uid":"..."}]});
+when both are present they are merged.
+            
+Message.Body is the complete HTML email and is exactly what gets sent. It is rendered as a
+Liquid template, so it may include merge tags such as {{ Person.FirstName }}; unknown {{ }}
+tokens render as empty text. An inline-styled HTML fragment is recommended, though a full
+HTML document is also accepted. Message.Design (the drag-and-drop editor state) is optional —
+when omitted it is generated automatically from Body, so callers (including LLM tools) do not
+need to understand it. Use Message.PreviewText for inbox preview text rather than an in-body
+preheader.
+            
+You must include a visible unsubscribe link in the body yourself: add {{ UnsubscribeLink }}
+(a ready-made anchor) or {{ UnsubscribeUrl }} (the raw URL) where you want it. One is not
+inserted automatically, and its presence is not validated. A one-click List-Unsubscribe
+header is always added, but most anti-spam laws (e.g. CAN-SPAM) also require a visible
+unsubscribe link in the body.
+ * @summary Create a new broadcast.
  */
 export type campaignAddBroadcastEmailResponse200 = {
   data: BroadcastCampaign
@@ -129,7 +680,7 @@ export const campaignAddBroadcastEmail = async (campaignAddBroadcastEmailBody: N
 
 
 /**
- * @summary Retrieve a broadcast campaign.
+ * @summary Retrieve a broadcast.
  */
 export type campaignGetBroadcastEmailResponse200 = {
   data: BroadcastCampaign
@@ -181,11 +732,17 @@ export const campaignGetBroadcastEmail = async (broadcastCampaignUid: string | n
 
 
 /**
- * Setting SendDateTime to a future date schedules the broadcast for sending and its status
-changes to Pending. Clearing SendDateTime unschedules the broadcast. Recipients can be
-specified using EmailListUids and SegmentUids instead of populating RecipientData
-directly. If both are provided, they are merged.
- * @summary Update a broadcast campaign.
+ * Setting SendDateTime to a future UTC date schedules the broadcast for sending and its status
+changes to Pending. Clearing SendDateTime unschedules the broadcast. Recipients can be added
+with EmailListUids and SegmentUids (see the create endpoint): on update these are merged onto
+the broadcast's existing recipients and only ever add — to remove recipients or replace the
+set, send RecipientData directly.
+            
+When changing Message.Body, omit Message.Design: it is regenerated from the new Body so the
+drag-and-drop editor stays in sync. Sending a Design that was captured from an earlier
+response alongside an edited Body would otherwise keep the stale design. See the create
+endpoint for how Body is rendered (Liquid) and the unsubscribe-token expectation.
+ * @summary Update a broadcast.
  */
 export type campaignUpdateBroadcastEmailResponse200 = {
   data: BroadcastCampaign
@@ -239,9 +796,9 @@ export const campaignUpdateBroadcastEmail = async (broadcastCampaignUid: string 
 
 
 /**
- * Only campaigns in Draft or Pending status can be deleted. Campaigns that have been
+ * Only broadcasts in Draft or Pending status can be deleted. Broadcasts that have been
 processed should be archived instead.
- * @summary Delete a broadcast campaign.
+ * @summary Delete a broadcast.
  */
 export type campaignDeleteBroadcastCampaignResponse200 = {
   data: Blob
@@ -293,7 +850,8 @@ export const campaignDeleteBroadcastCampaign = async (broadcastCampaignUid: stri
 
 
 /**
- * @summary Unschedules a pending broadcast campaign, reverting its status to Draft.
+ * Unschedules a pending broadcast, reverting its status to Draft.
+ * @summary Unschedule a broadcast.
  */
 export type campaignUnscheduleBroadcastEmailResponse200 = {
   data: BroadcastCampaign
@@ -345,7 +903,8 @@ export const campaignUnscheduleBroadcastEmail = async (broadcastCampaignUid: str
 
 
 /**
- * @summary Archives a broadcast campaign. Archived campaigns are excluded from the default list results.
+ * Archived broadcasts are excluded from the default list results.
+ * @summary Archive a broadcast.
  */
 export type campaignArchiveBroadcastCampaignResponse200 = {
   data: Blob
@@ -400,7 +959,7 @@ export const campaignArchiveBroadcastCampaign = async (broadcastCampaignUid: str
  * Sends to the logged-in user and optionally to additional recipients. Additional
 recipients are specified as a list of person Uids and must belong to the same account
 as the logged-in user.
- * @summary Send a test email for a broadcast campaign.
+ * @summary Send a test email for a broadcast.
  */
 export type campaignSendTestCampaignEmailResponse200 = {
   data: Blob
