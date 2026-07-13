@@ -4,7 +4,7 @@
   "type": "module",
   "packageManager": "pnpm@10.33.2",
   "scripts": {
-    "fetch-spec": "curl -sf https://go.outseta.com/swagger/v1/swagger.json -o openapi.json",
+    "fetch-spec": "curl --fail --silent --show-error --retry 3 --retry-all-errors --user-agent 'outseta-js-spec-sync/1.0' https://go.outseta.com/swagger/v1/swagger.json -o openapi.json",
     "generate": "bun run fetch-spec && orval && bun scripts/post-generate.mjs",
     "build": "nx run-many -t build",
     "test": "nx run-many -t test",
