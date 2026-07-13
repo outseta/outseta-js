@@ -1,7 +1,7 @@
 // @ts-nocheck
 
 /**
- * `10` - Custom, `50` - Note, `51` - Email, `52` - PhoneCall, `53` - Meeting, `54` - Chat, `100` - AccountCreated, `101` - AccountUpdated, `102` - AccountAddPerson, `103` - AccountStageUpdated, `104` - AccountDeleted, `105` - AccountBillingInformationUpdated, `106` - AccountSubscriptionPlanUpdated, `107` - AccountSubscriptionPaymentCollected, `108` - AccountSubscriptionPaymentDeclined, `109` - AccountBillingInformationRequested, `110` - AccountBillingInvoiceEmailSent, `111` - AccountRemovePerson, `112` - AccountPaidSubscriptionCreated, `113` - AccountBillingInformationRemoved, `114` - AccountPrimaryPersonUpdated, `115` - AccountBillingInvoiceCreated, `116` - AccountSubscriptionStarted, `117` - AccountSubscriptionRenewalExtended, `118` - AccountSubscriptionAddOnsChanged, `119` - AccountSubscriptionCancellationRequested, `120` - AccountBillingInvoiceDeleted, `200` - PersonCreated, `201` - PersonUpdated, `202` - PersonDeleted, `203` - PersonLogin, `204` - PersonListSubscribed, `205` - PersonListUnsubscribed, `206` - PersonSegmentAdded, `207` - PersonSegmentRemoved, `208` - PersonEmailOpened, `209` - PersonEmailClicked, `210` - PersonEmailBounce, `211` - PersonEmailSpam, `212` - PersonSupportTicketCreated, `213` - PersonSupportTicketUpdated, `214` - PersonLeadFormSubmitted, `215` - PersonListConfirmed, `216` - PersonEmailSubscribed, `217` - PersonEmailUnsubscribed, `218` - PersonTemporaryPasswordSet, `219` - PersonSupportTicketClosed, `220` - PersonTwoFactorRecoveryCodesRegenerated, `300` - DealCreated, `301` - DealUpdated, `302` - DealAddPerson, `303` - DealAddAccount, `304` - DealDeleted, `305` - DealDueDate, `306` - TaskCreated, `307` - TaskUpdated, `400` - PlanCreated, `401` - PlanUpdated, `402` - AddOnCreated, `403` - AddOnUpdated, `500` - DiscordUserLinked, `501` - DiscordUserAddedToServer, `502` - DiscordUserRolesUpdated, `503` - DiscordUserRemovedFromServer, `1000` - OutsetaSuspiciousBehavior
+ * `10` - Custom, `50` - Note, `51` - Email, `52` - PhoneCall, `53` - Meeting, `54` - Chat, `100` - AccountCreated, `101` - AccountUpdated, `102` - AccountAddPerson, `103` - AccountStageUpdated, `104` - AccountDeleted, `105` - AccountBillingInformationUpdated, `106` - AccountSubscriptionPlanUpdated, `107` - AccountSubscriptionPaymentCollected, `108` - AccountSubscriptionPaymentDeclined, `109` - AccountBillingInformationRequested, `110` - AccountBillingInvoiceEmailSent, `111` - AccountRemovePerson, `112` - AccountPaidSubscriptionCreated, `113` - AccountBillingInformationRemoved, `114` - AccountPrimaryPersonUpdated, `115` - AccountBillingInvoiceCreated, `116` - AccountSubscriptionStarted, `117` - AccountSubscriptionRenewalExtended, `118` - AccountSubscriptionAddOnsChanged, `119` - AccountSubscriptionCancellationRequested, `120` - AccountBillingInvoiceDeleted, `200` - PersonCreated, `201` - PersonUpdated, `202` - PersonDeleted, `203` - PersonLogin, `204` - PersonListSubscribed, `205` - PersonListUnsubscribed, `206` - PersonSegmentAdded, `207` - PersonSegmentRemoved, `208` - PersonEmailOpened, `209` - PersonEmailClicked, `210` - PersonEmailBounce, `211` - PersonEmailSpam, `212` - PersonSupportTicketCreated, `213` - PersonSupportTicketUpdated, `214` - PersonLeadFormSubmitted, `215` - PersonListConfirmed, `216` - PersonEmailSubscribed, `217` - PersonEmailUnsubscribed, `218` - PersonTemporaryPasswordSet, `219` - PersonSupportTicketClosed, `220` - PersonTwoFactorRecoveryCodesRegenerated, `300` - DealCreated, `301` - DealUpdated, `304` - DealDeleted, `305` - DealDueDate, `306` - TaskCreated, `307` - TaskUpdated, `400` - PlanCreated, `401` - PlanUpdated, `402` - AddOnCreated, `403` - AddOnUpdated, `500` - DiscordUserLinked, `501` - DiscordUserAddedToServer, `502` - DiscordUserRolesUpdated, `503` - DiscordUserRemovedFromServer
  */
 export type ActivityType = typeof ActivityType[keyof typeof ActivityType];
 
@@ -58,8 +58,6 @@ export const ActivityType = {
   PersonTwoFactorRecoveryCodesRegenerated: 220,
   DealCreated: 300,
   DealUpdated: 301,
-  DealAddPerson: 302,
-  DealAddAccount: 303,
   DealDeleted: 304,
   DealDueDate: 305,
   TaskCreated: 306,
@@ -72,5 +70,4 @@ export const ActivityType = {
   DiscordUserAddedToServer: 501,
   DiscordUserRolesUpdated: 502,
   DiscordUserRemovedFromServer: 503,
-  OutsetaSuspiciousBehavior: 1000,
 } as const;

@@ -673,7 +673,10 @@ export const accountAddPersonToAccount = async (accountUid: string | null,
 
 
 /**
- * @summary Update an account membership. This is the method by which you can change the primary contact of an account.
+ * Update the membership that links a person to an account — for example, to make a different
+person the account's primary contact. The membershipUid identifies which membership to update;
+send the changed PersonAccount fields (such as IsPrimary) in the request body.
+ * @summary Update an account membership.
  */
 export type accountUpdateMembershipResponse200 = {
   data: Blob
@@ -729,7 +732,8 @@ export const accountUpdateMembership = async (accountUid: string | null,
 
 
 /**
- * @summary Remove a person from an account. Note that you cannot remove the primary contact of an account.
+ * Note that you cannot remove the primary contact of an account.
+ * @summary Remove a person from an account.
  */
 export type accountDeleteMembershipResponse200 = {
   data: Blob
@@ -1255,7 +1259,8 @@ export const personDeletePerson = async (personUid: string | null, options?: Req
 
 
 /**
- * @summary Set a temporary password for a user. The user needs to update the password with the next login.
+ * The user needs to update the password with the next login.
+ * @summary Set a temporary password for a user.
  */
 export type personSetTemporaryPasswordResponse200 = {
   data: Blob
@@ -1309,11 +1314,11 @@ export const personSetTemporaryPassword = async (personUid: string | null,
 
 
 /**
- * All prior recovery codes are invalidated. Existing TOTP/Email mechanisms are intentionally
-left in place — the admin returns the new codes to the user out of band, the user logs in
-with one, then re-enrolls their device. Mirrors the temporary-password flow at
-SetTemporaryPassword.
- * @summary Regenerate 2FA recovery codes for a user locked out of their authenticator.
+ * Use this when a user is locked out of their authenticator. All prior recovery codes are
+invalidated. Existing TOTP/Email mechanisms are intentionally left in place — the admin
+returns the new codes to the user out of band, the user logs in with one, then re-enrolls
+their device. Mirrors the temporary-password flow at SetTemporaryPassword.
+ * @summary Regenerate 2FA recovery codes for a user.
  */
 export type personRegenerateTwoFactorRecoveryCodesResponse200 = {
   data: Blob

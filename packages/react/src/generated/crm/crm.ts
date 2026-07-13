@@ -870,7 +870,10 @@ export const useAccountAddPersonToAccount = <TError = void,
       return useMutation(mutationOptions);
     }
     /**
- * @summary Update an account membership. This is the method by which you can change the primary contact of an account.
+ * Update the membership that links a person to an account — for example, to make a different
+person the account's primary contact. The membershipUid identifies which membership to update;
+send the changed PersonAccount fields (such as IsPrimary) in the request body.
+ * @summary Update an account membership.
  */
 export const accountUpdateMembership = (
     accountUid: string | null,
@@ -920,7 +923,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
     export type AccountUpdateMembershipMutationError = void
 
     /**
- * @summary Update an account membership. This is the method by which you can change the primary contact of an account.
+ * @summary Update an account membership.
  */
 export const useAccountUpdateMembership = <TError = void,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof accountUpdateMembership>>, TError,{accountUid: string | null;membershipUid: string | null;data: NonReadonly<AccountUpdateMembershipBody>}, TContext>, request?: SecondParameter<typeof customFetch>}
@@ -936,7 +939,8 @@ export const useAccountUpdateMembership = <TError = void,
       return useMutation(mutationOptions);
     }
     /**
- * @summary Remove a person from an account. Note that you cannot remove the primary contact of an account.
+ * Note that you cannot remove the primary contact of an account.
+ * @summary Remove a person from an account.
  */
 export const accountDeleteMembership = (
     accountUid: string | null,
@@ -983,7 +987,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
     export type AccountDeleteMembershipMutationError = void
 
     /**
- * @summary Remove a person from an account. Note that you cannot remove the primary contact of an account.
+ * @summary Remove a person from an account.
  */
 export const useAccountDeleteMembership = <TError = void,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof accountDeleteMembership>>, TError,{accountUid: string | null;membershipUid: string | null}, TContext>, request?: SecondParameter<typeof customFetch>}
@@ -1590,7 +1594,8 @@ export const usePersonDeletePerson = <TError = void,
       return useMutation(mutationOptions);
     }
     /**
- * @summary Set a temporary password for a user. The user needs to update the password with the next login.
+ * The user needs to update the password with the next login.
+ * @summary Set a temporary password for a user.
  */
 export const personSetTemporaryPassword = (
     personUid: string | null,
@@ -1639,7 +1644,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
     export type PersonSetTemporaryPasswordMutationError = void
 
     /**
- * @summary Set a temporary password for a user. The user needs to update the password with the next login.
+ * @summary Set a temporary password for a user.
  */
 export const usePersonSetTemporaryPassword = <TError = void,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof personSetTemporaryPassword>>, TError,{personUid: string | null;data: PersonSetTemporaryPasswordBody}, TContext>, request?: SecondParameter<typeof customFetch>}
@@ -1655,11 +1660,11 @@ export const usePersonSetTemporaryPassword = <TError = void,
       return useMutation(mutationOptions);
     }
     /**
- * All prior recovery codes are invalidated. Existing TOTP/Email mechanisms are intentionally
-left in place — the admin returns the new codes to the user out of band, the user logs in
-with one, then re-enrolls their device. Mirrors the temporary-password flow at
-SetTemporaryPassword.
- * @summary Regenerate 2FA recovery codes for a user locked out of their authenticator.
+ * Use this when a user is locked out of their authenticator. All prior recovery codes are
+invalidated. Existing TOTP/Email mechanisms are intentionally left in place — the admin
+returns the new codes to the user out of band, the user logs in with one, then re-enrolls
+their device. Mirrors the temporary-password flow at SetTemporaryPassword.
+ * @summary Regenerate 2FA recovery codes for a user.
  */
 export const personRegenerateTwoFactorRecoveryCodes = (
     personUid: string | null,
@@ -1705,7 +1710,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
     export type PersonRegenerateTwoFactorRecoveryCodesMutationError = void
 
     /**
- * @summary Regenerate 2FA recovery codes for a user locked out of their authenticator.
+ * @summary Regenerate 2FA recovery codes for a user.
  */
 export const usePersonRegenerateTwoFactorRecoveryCodes = <TError = void,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof personRegenerateTwoFactorRecoveryCodes>>, TError,{personUid: string | null}, TContext>, request?: SecondParameter<typeof customFetch>}
