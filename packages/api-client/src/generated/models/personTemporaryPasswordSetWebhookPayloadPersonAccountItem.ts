@@ -1,5 +1,6 @@
 // @ts-nocheck
 import type { PersonTemporaryPasswordSetWebhookPayloadPersonAccountItemAccount } from './personTemporaryPasswordSetWebhookPayloadPersonAccountItemAccount';
+import type { PersonTemporaryPasswordSetWebhookPayloadPersonAccountItemRole } from './personTemporaryPasswordSetWebhookPayloadPersonAccountItemRole';
 
 export type PersonTemporaryPasswordSetWebhookPayloadPersonAccountItem = {
   /**
@@ -17,4 +18,9 @@ export type PersonTemporaryPasswordSetWebhookPayloadPersonAccountItem = {
   Account?: PersonTemporaryPasswordSetWebhookPayloadPersonAccountItemAccount;
   IsPrimary?: boolean;
   ReceiveInvoices?: boolean;
+  /**
+   * `1` - Admin, `2` - FullAccess, `3` - Operator
+   * @nullable
+   */
+  Role?: PersonTemporaryPasswordSetWebhookPayloadPersonAccountItemRole;
 };

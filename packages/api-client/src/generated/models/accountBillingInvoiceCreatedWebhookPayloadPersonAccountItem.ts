@@ -1,5 +1,6 @@
 // @ts-nocheck
 import type { AccountBillingInvoiceCreatedWebhookPayloadPersonAccountItemPerson } from './accountBillingInvoiceCreatedWebhookPayloadPersonAccountItemPerson';
+import type { AccountBillingInvoiceCreatedWebhookPayloadPersonAccountItemRole } from './accountBillingInvoiceCreatedWebhookPayloadPersonAccountItemRole';
 
 export type AccountBillingInvoiceCreatedWebhookPayloadPersonAccountItem = {
   /**
@@ -17,4 +18,9 @@ export type AccountBillingInvoiceCreatedWebhookPayloadPersonAccountItem = {
   Person?: AccountBillingInvoiceCreatedWebhookPayloadPersonAccountItemPerson;
   IsPrimary?: boolean;
   ReceiveInvoices?: boolean;
+  /**
+   * `1` - Admin, `2` - FullAccess, `3` - Operator
+   * @nullable
+   */
+  Role?: AccountBillingInvoiceCreatedWebhookPayloadPersonAccountItemRole;
 };

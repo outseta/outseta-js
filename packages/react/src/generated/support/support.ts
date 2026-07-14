@@ -15,6 +15,7 @@ import type {
 
 import type {
   Article,
+  ArticleAddArticleBody,
   ArticleGetAllArticlesParams,
   Case,
   CaseAddCaseBody,
@@ -460,6 +461,70 @@ export function useArticleGetAllArticles<TData = Awaited<ReturnType<typeof artic
 
 
 /**
+ * @summary Create a knowledge base article.
+ */
+export const articleAddArticle = (
+    articleAddArticleBody: NonReadonly<ArticleAddArticleBody>,
+ options?: SecondParameter<typeof customFetch>,signal?: AbortSignal
+) => {
+      
+      
+      return customFetch<Article>(
+      {url: `/api/v1/support/articles`, method: 'POST',
+      headers: {'Content-Type': 'application/json', },
+      data: articleAddArticleBody, signal
+    },
+      options);
+    }
+  
+
+
+export const getArticleAddArticleMutationOptions = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof articleAddArticle>>, TError,{data: NonReadonly<ArticleAddArticleBody>}, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof articleAddArticle>>, TError,{data: NonReadonly<ArticleAddArticleBody>}, TContext> => {
+
+const mutationKey = ['articleAddArticle'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof articleAddArticle>>, {data: NonReadonly<ArticleAddArticleBody>}> = (props) => {
+          const {data} = props ?? {};
+
+          return  articleAddArticle(data,requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type ArticleAddArticleMutationResult = NonNullable<Awaited<ReturnType<typeof articleAddArticle>>>
+    export type ArticleAddArticleMutationBody = NonReadonly<ArticleAddArticleBody>
+    export type ArticleAddArticleMutationError = void
+
+    /**
+ * @summary Create a knowledge base article.
+ */
+export const useArticleAddArticle = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof articleAddArticle>>, TError,{data: NonReadonly<ArticleAddArticleBody>}, TContext>, request?: SecondParameter<typeof customFetch>}
+ ): UseMutationResult<
+        Awaited<ReturnType<typeof articleAddArticle>>,
+        TError,
+        {data: NonReadonly<ArticleAddArticleBody>},
+        TContext
+      > => {
+
+      const mutationOptions = getArticleAddArticleMutationOptions(options);
+
+      return useMutation(mutationOptions);
+    }
+    /**
  * @summary Retrieve a knowledge base article.
  */
 export const articleGetArticle = (

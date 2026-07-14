@@ -1,6 +1,7 @@
 // @ts-nocheck
 import type {
   Article,
+  ArticleAddArticleBody,
   ArticleGetAllArticlesParams,
   Case,
   CaseAddCaseBody,
@@ -343,6 +344,49 @@ export const articleGetAllArticles = async (params?: ArticleGetAllArticlesParams
     method: 'GET'
     
     
+  }
+);}
+
+
+/**
+ * @summary Create a knowledge base article.
+ */
+export type articleAddArticleResponse200 = {
+  data: Article
+  status: 200
+}
+
+export type articleAddArticleResponse401 = {
+  data: void
+  status: 401
+}
+    
+export type articleAddArticleResponseSuccess = (articleAddArticleResponse200) & {
+  headers: Headers;
+};
+export type articleAddArticleResponseError = (articleAddArticleResponse401) & {
+  headers: Headers;
+};
+
+export type articleAddArticleResponse = (articleAddArticleResponseSuccess | articleAddArticleResponseError)
+
+export const getArticleAddArticleUrl = () => {
+
+
+  
+
+  return `/api/v1/support/articles`
+}
+
+export const articleAddArticle = async (articleAddArticleBody: NonReadonly<ArticleAddArticleBody>, options?: RequestInit): Promise<articleAddArticleResponse> => {
+  
+  return customFetch<articleAddArticleResponse>(getArticleAddArticleUrl(),
+  {      
+    ...options,
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', ...options?.headers },
+    body: JSON.stringify(
+      articleAddArticleBody,)
   }
 );}
 
