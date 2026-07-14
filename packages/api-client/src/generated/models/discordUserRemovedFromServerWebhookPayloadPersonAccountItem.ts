@@ -1,5 +1,6 @@
 // @ts-nocheck
 import type { DiscordUserRemovedFromServerWebhookPayloadPersonAccountItemAccount } from './discordUserRemovedFromServerWebhookPayloadPersonAccountItemAccount';
+import type { DiscordUserRemovedFromServerWebhookPayloadPersonAccountItemRole } from './discordUserRemovedFromServerWebhookPayloadPersonAccountItemRole';
 
 export type DiscordUserRemovedFromServerWebhookPayloadPersonAccountItem = {
   /**
@@ -17,4 +18,9 @@ export type DiscordUserRemovedFromServerWebhookPayloadPersonAccountItem = {
   Account?: DiscordUserRemovedFromServerWebhookPayloadPersonAccountItemAccount;
   IsPrimary?: boolean;
   ReceiveInvoices?: boolean;
+  /**
+   * `1` - Admin, `2` - FullAccess, `3` - Operator
+   * @nullable
+   */
+  Role?: DiscordUserRemovedFromServerWebhookPayloadPersonAccountItemRole;
 };

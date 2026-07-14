@@ -1,5 +1,6 @@
 // @ts-nocheck
 import type { PersonSupportTicketClosedWebhookPayloadPersonAccountItemAccount } from './personSupportTicketClosedWebhookPayloadPersonAccountItemAccount';
+import type { PersonSupportTicketClosedWebhookPayloadPersonAccountItemRole } from './personSupportTicketClosedWebhookPayloadPersonAccountItemRole';
 
 export type PersonSupportTicketClosedWebhookPayloadPersonAccountItem = {
   /**
@@ -17,4 +18,9 @@ export type PersonSupportTicketClosedWebhookPayloadPersonAccountItem = {
   Account?: PersonSupportTicketClosedWebhookPayloadPersonAccountItemAccount;
   IsPrimary?: boolean;
   ReceiveInvoices?: boolean;
+  /**
+   * `1` - Admin, `2` - FullAccess, `3` - Operator
+   * @nullable
+   */
+  Role?: PersonSupportTicketClosedWebhookPayloadPersonAccountItemRole;
 };

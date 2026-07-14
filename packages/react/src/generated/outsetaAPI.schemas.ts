@@ -420,6 +420,11 @@ export type PersonAccountAllOfPerson = Person | null;
  */
 export type PersonAccountAllOfAccount = Account | null;
 
+/**
+ * @nullable
+ */
+export type PersonAccountAllOfRole = TeamRole | null;
+
 export type PersonAccountAllOf = {
   /** @nullable */
   Person?: PersonAccountAllOfPerson;
@@ -427,6 +432,8 @@ export type PersonAccountAllOf = {
   Account?: PersonAccountAllOfAccount;
   IsPrimary?: boolean;
   ReceiveInvoices?: boolean;
+  /** @nullable */
+  Role?: PersonAccountAllOfRole;
 };
 
 export type PersonAccount = AbstractQcountBean & PersonAccountAllOf;
@@ -2586,6 +2593,19 @@ export type AbstractStripeBeanOfCustomerAllOf = {
 
 export type AbstractStripeBeanOfCustomer = AbstractSchemaLessBean & AbstractStripeBeanOfCustomerAllOf;
 
+/**
+ * `1` - Admin, `2` - FullAccess, `3` - Operator
+ */
+export type TeamRole = typeof TeamRole[keyof typeof TeamRole];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const TeamRole = {
+  Admin: 1,
+  FullAccess: 2,
+  Operator: 3,
+} as const;
+
 export type LeadFormSubmissionAllOf = {
   Person: Person;
   LeadForm: LeadForm;
@@ -3520,7 +3540,7 @@ export interface SlackChannelSetting {
 }
 
 /**
- * `10` - Custom, `50` - Note, `51` - Email, `52` - PhoneCall, `53` - Meeting, `54` - Chat, `100` - AccountCreated, `101` - AccountUpdated, `102` - AccountAddPerson, `103` - AccountStageUpdated, `104` - AccountDeleted, `105` - AccountBillingInformationUpdated, `106` - AccountSubscriptionPlanUpdated, `107` - AccountSubscriptionPaymentCollected, `108` - AccountSubscriptionPaymentDeclined, `109` - AccountBillingInformationRequested, `110` - AccountBillingInvoiceEmailSent, `111` - AccountRemovePerson, `112` - AccountPaidSubscriptionCreated, `113` - AccountBillingInformationRemoved, `114` - AccountPrimaryPersonUpdated, `115` - AccountBillingInvoiceCreated, `116` - AccountSubscriptionStarted, `117` - AccountSubscriptionRenewalExtended, `118` - AccountSubscriptionAddOnsChanged, `119` - AccountSubscriptionCancellationRequested, `120` - AccountBillingInvoiceDeleted, `200` - PersonCreated, `201` - PersonUpdated, `202` - PersonDeleted, `203` - PersonLogin, `204` - PersonListSubscribed, `205` - PersonListUnsubscribed, `206` - PersonSegmentAdded, `207` - PersonSegmentRemoved, `208` - PersonEmailOpened, `209` - PersonEmailClicked, `210` - PersonEmailBounce, `211` - PersonEmailSpam, `212` - PersonSupportTicketCreated, `213` - PersonSupportTicketUpdated, `214` - PersonLeadFormSubmitted, `215` - PersonListConfirmed, `216` - PersonEmailSubscribed, `217` - PersonEmailUnsubscribed, `218` - PersonTemporaryPasswordSet, `219` - PersonSupportTicketClosed, `220` - PersonTwoFactorRecoveryCodesRegenerated, `300` - DealCreated, `301` - DealUpdated, `304` - DealDeleted, `305` - DealDueDate, `306` - TaskCreated, `307` - TaskUpdated, `400` - PlanCreated, `401` - PlanUpdated, `402` - AddOnCreated, `403` - AddOnUpdated, `500` - DiscordUserLinked, `501` - DiscordUserAddedToServer, `502` - DiscordUserRolesUpdated, `503` - DiscordUserRemovedFromServer
+ * `10` - Custom, `50` - Note, `51` - Email, `52` - PhoneCall, `53` - Meeting, `54` - Chat, `100` - AccountCreated, `101` - AccountUpdated, `102` - AccountAddPerson, `103` - AccountStageUpdated, `104` - AccountDeleted, `105` - AccountBillingInformationUpdated, `106` - AccountSubscriptionPlanUpdated, `107` - AccountSubscriptionPaymentCollected, `108` - AccountSubscriptionPaymentDeclined, `109` - AccountBillingInformationRequested, `110` - AccountBillingInvoiceEmailSent, `111` - AccountRemovePerson, `112` - AccountPaidSubscriptionCreated, `113` - AccountBillingInformationRemoved, `114` - AccountPrimaryPersonUpdated, `115` - AccountBillingInvoiceCreated, `116` - AccountSubscriptionStarted, `117` - AccountSubscriptionRenewalExtended, `118` - AccountSubscriptionAddOnsChanged, `119` - AccountSubscriptionCancellationRequested, `120` - AccountBillingInvoiceDeleted, `121` - AccountPersonRoleUpdated, `200` - PersonCreated, `201` - PersonUpdated, `202` - PersonDeleted, `203` - PersonLogin, `204` - PersonListSubscribed, `205` - PersonListUnsubscribed, `206` - PersonSegmentAdded, `207` - PersonSegmentRemoved, `208` - PersonEmailOpened, `209` - PersonEmailClicked, `210` - PersonEmailBounce, `211` - PersonEmailSpam, `212` - PersonSupportTicketCreated, `213` - PersonSupportTicketUpdated, `214` - PersonLeadFormSubmitted, `215` - PersonListConfirmed, `216` - PersonEmailSubscribed, `217` - PersonEmailUnsubscribed, `218` - PersonTemporaryPasswordSet, `219` - PersonSupportTicketClosed, `220` - PersonTwoFactorRecoveryCodesRegenerated, `300` - DealCreated, `301` - DealUpdated, `304` - DealDeleted, `305` - DealDueDate, `306` - TaskCreated, `307` - TaskUpdated, `400` - PlanCreated, `401` - PlanUpdated, `402` - AddOnCreated, `403` - AddOnUpdated, `500` - DiscordUserLinked, `501` - DiscordUserAddedToServer, `502` - DiscordUserRolesUpdated, `503` - DiscordUserRemovedFromServer
  */
 export type ActivityType = typeof ActivityType[keyof typeof ActivityType];
 
@@ -3554,6 +3574,7 @@ export const ActivityType = {
   AccountSubscriptionAddOnsChanged: 118,
   AccountSubscriptionCancellationRequested: 119,
   AccountBillingInvoiceDeleted: 120,
+  AccountPersonRoleUpdated: 121,
   PersonCreated: 200,
   PersonUpdated: 201,
   PersonDeleted: 202,
@@ -4233,6 +4254,16 @@ export const BackGroundTaskType = {
   SendInvoicePaidEmailTask: 20,
   ResendTrialLimitEmailTask: 21,
 } as const;
+
+/**
+ * @nullable
+ */
+export type UpdateAccountMemberRoleModelRole = TeamRole | null;
+
+export interface UpdateAccountMemberRoleModel {
+  /** @nullable */
+  Role?: UpdateAccountMemberRoleModelRole;
+}
 
 export interface PasswordChangeModel {
   /** @nullable */
@@ -5161,6 +5192,20 @@ export type AccountCreatedWebhookPayloadPersonAccountItemPerson = {
   IsConnectedToDiscord?: boolean;
 } | null;
 
+/**
+ * `1` - Admin, `2` - FullAccess, `3` - Operator
+ * @nullable
+ */
+export type AccountCreatedWebhookPayloadPersonAccountItemRole = typeof AccountCreatedWebhookPayloadPersonAccountItemRole[keyof typeof AccountCreatedWebhookPayloadPersonAccountItemRole] | null;
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountCreatedWebhookPayloadPersonAccountItemRole = {
+  Admin: 1,
+  FullAccess: 2,
+  Operator: 3,
+} as const;
+
 export type AccountCreatedWebhookPayloadPersonAccountItem = {
   /**
    * @maxLength 10
@@ -5177,6 +5222,11 @@ export type AccountCreatedWebhookPayloadPersonAccountItem = {
   Person?: AccountCreatedWebhookPayloadPersonAccountItemPerson;
   IsPrimary?: boolean;
   ReceiveInvoices?: boolean;
+  /**
+   * `1` - Admin, `2` - FullAccess, `3` - Operator
+   * @nullable
+   */
+  Role?: AccountCreatedWebhookPayloadPersonAccountItemRole;
 };
 
 export type AccountCreatedWebhookPayloadStripeInvoicesItem = {
@@ -7500,6 +7550,20 @@ export type AccountUpdatedWebhookPayloadPersonAccountItemPerson = {
   IsConnectedToDiscord?: boolean;
 } | null;
 
+/**
+ * `1` - Admin, `2` - FullAccess, `3` - Operator
+ * @nullable
+ */
+export type AccountUpdatedWebhookPayloadPersonAccountItemRole = typeof AccountUpdatedWebhookPayloadPersonAccountItemRole[keyof typeof AccountUpdatedWebhookPayloadPersonAccountItemRole] | null;
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountUpdatedWebhookPayloadPersonAccountItemRole = {
+  Admin: 1,
+  FullAccess: 2,
+  Operator: 3,
+} as const;
+
 export type AccountUpdatedWebhookPayloadPersonAccountItem = {
   /**
    * @maxLength 10
@@ -7516,6 +7580,11 @@ export type AccountUpdatedWebhookPayloadPersonAccountItem = {
   Person?: AccountUpdatedWebhookPayloadPersonAccountItemPerson;
   IsPrimary?: boolean;
   ReceiveInvoices?: boolean;
+  /**
+   * `1` - Admin, `2` - FullAccess, `3` - Operator
+   * @nullable
+   */
+  Role?: AccountUpdatedWebhookPayloadPersonAccountItemRole;
 };
 
 export type AccountUpdatedWebhookPayloadStripeInvoicesItem = {
@@ -9848,6 +9917,20 @@ export type AccountAddPersonWebhookPayloadPersonAccountItemPerson = {
   IsConnectedToDiscord?: boolean;
 } | null;
 
+/**
+ * `1` - Admin, `2` - FullAccess, `3` - Operator
+ * @nullable
+ */
+export type AccountAddPersonWebhookPayloadPersonAccountItemRole = typeof AccountAddPersonWebhookPayloadPersonAccountItemRole[keyof typeof AccountAddPersonWebhookPayloadPersonAccountItemRole] | null;
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountAddPersonWebhookPayloadPersonAccountItemRole = {
+  Admin: 1,
+  FullAccess: 2,
+  Operator: 3,
+} as const;
+
 export type AccountAddPersonWebhookPayloadPersonAccountItem = {
   /**
    * @maxLength 10
@@ -9864,6 +9947,11 @@ export type AccountAddPersonWebhookPayloadPersonAccountItem = {
   Person?: AccountAddPersonWebhookPayloadPersonAccountItemPerson;
   IsPrimary?: boolean;
   ReceiveInvoices?: boolean;
+  /**
+   * `1` - Admin, `2` - FullAccess, `3` - Operator
+   * @nullable
+   */
+  Role?: AccountAddPersonWebhookPayloadPersonAccountItemRole;
 };
 
 export type AccountAddPersonWebhookPayloadStripeInvoicesItem = {
@@ -12197,6 +12285,20 @@ export type AccountStageUpdatedWebhookPayloadPersonAccountItemPerson = {
   IsConnectedToDiscord?: boolean;
 } | null;
 
+/**
+ * `1` - Admin, `2` - FullAccess, `3` - Operator
+ * @nullable
+ */
+export type AccountStageUpdatedWebhookPayloadPersonAccountItemRole = typeof AccountStageUpdatedWebhookPayloadPersonAccountItemRole[keyof typeof AccountStageUpdatedWebhookPayloadPersonAccountItemRole] | null;
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountStageUpdatedWebhookPayloadPersonAccountItemRole = {
+  Admin: 1,
+  FullAccess: 2,
+  Operator: 3,
+} as const;
+
 export type AccountStageUpdatedWebhookPayloadPersonAccountItem = {
   /**
    * @maxLength 10
@@ -12213,6 +12315,11 @@ export type AccountStageUpdatedWebhookPayloadPersonAccountItem = {
   Person?: AccountStageUpdatedWebhookPayloadPersonAccountItemPerson;
   IsPrimary?: boolean;
   ReceiveInvoices?: boolean;
+  /**
+   * `1` - Admin, `2` - FullAccess, `3` - Operator
+   * @nullable
+   */
+  Role?: AccountStageUpdatedWebhookPayloadPersonAccountItemRole;
 };
 
 export type AccountStageUpdatedWebhookPayloadStripeInvoicesItem = {
@@ -14537,6 +14644,20 @@ export type AccountDeletedWebhookPayloadPersonAccountItemPerson = {
   IsConnectedToDiscord?: boolean;
 } | null;
 
+/**
+ * `1` - Admin, `2` - FullAccess, `3` - Operator
+ * @nullable
+ */
+export type AccountDeletedWebhookPayloadPersonAccountItemRole = typeof AccountDeletedWebhookPayloadPersonAccountItemRole[keyof typeof AccountDeletedWebhookPayloadPersonAccountItemRole] | null;
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountDeletedWebhookPayloadPersonAccountItemRole = {
+  Admin: 1,
+  FullAccess: 2,
+  Operator: 3,
+} as const;
+
 export type AccountDeletedWebhookPayloadPersonAccountItem = {
   /**
    * @maxLength 10
@@ -14553,6 +14674,11 @@ export type AccountDeletedWebhookPayloadPersonAccountItem = {
   Person?: AccountDeletedWebhookPayloadPersonAccountItemPerson;
   IsPrimary?: boolean;
   ReceiveInvoices?: boolean;
+  /**
+   * `1` - Admin, `2` - FullAccess, `3` - Operator
+   * @nullable
+   */
+  Role?: AccountDeletedWebhookPayloadPersonAccountItemRole;
 };
 
 export type AccountDeletedWebhookPayloadStripeInvoicesItem = {
@@ -16876,6 +17002,20 @@ export type AccountBillingInformationUpdatedWebhookPayloadPersonAccountItemPerso
   IsConnectedToDiscord?: boolean;
 } | null;
 
+/**
+ * `1` - Admin, `2` - FullAccess, `3` - Operator
+ * @nullable
+ */
+export type AccountBillingInformationUpdatedWebhookPayloadPersonAccountItemRole = typeof AccountBillingInformationUpdatedWebhookPayloadPersonAccountItemRole[keyof typeof AccountBillingInformationUpdatedWebhookPayloadPersonAccountItemRole] | null;
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountBillingInformationUpdatedWebhookPayloadPersonAccountItemRole = {
+  Admin: 1,
+  FullAccess: 2,
+  Operator: 3,
+} as const;
+
 export type AccountBillingInformationUpdatedWebhookPayloadPersonAccountItem = {
   /**
    * @maxLength 10
@@ -16892,6 +17032,11 @@ export type AccountBillingInformationUpdatedWebhookPayloadPersonAccountItem = {
   Person?: AccountBillingInformationUpdatedWebhookPayloadPersonAccountItemPerson;
   IsPrimary?: boolean;
   ReceiveInvoices?: boolean;
+  /**
+   * `1` - Admin, `2` - FullAccess, `3` - Operator
+   * @nullable
+   */
+  Role?: AccountBillingInformationUpdatedWebhookPayloadPersonAccountItemRole;
 };
 
 export type AccountBillingInformationUpdatedWebhookPayloadStripeInvoicesItem = {
@@ -19227,6 +19372,20 @@ export type AccountSubscriptionPlanUpdatedWebhookPayloadPersonAccountItemPerson 
   IsConnectedToDiscord?: boolean;
 } | null;
 
+/**
+ * `1` - Admin, `2` - FullAccess, `3` - Operator
+ * @nullable
+ */
+export type AccountSubscriptionPlanUpdatedWebhookPayloadPersonAccountItemRole = typeof AccountSubscriptionPlanUpdatedWebhookPayloadPersonAccountItemRole[keyof typeof AccountSubscriptionPlanUpdatedWebhookPayloadPersonAccountItemRole] | null;
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionPlanUpdatedWebhookPayloadPersonAccountItemRole = {
+  Admin: 1,
+  FullAccess: 2,
+  Operator: 3,
+} as const;
+
 export type AccountSubscriptionPlanUpdatedWebhookPayloadPersonAccountItem = {
   /**
    * @maxLength 10
@@ -19243,6 +19402,11 @@ export type AccountSubscriptionPlanUpdatedWebhookPayloadPersonAccountItem = {
   Person?: AccountSubscriptionPlanUpdatedWebhookPayloadPersonAccountItemPerson;
   IsPrimary?: boolean;
   ReceiveInvoices?: boolean;
+  /**
+   * `1` - Admin, `2` - FullAccess, `3` - Operator
+   * @nullable
+   */
+  Role?: AccountSubscriptionPlanUpdatedWebhookPayloadPersonAccountItemRole;
 };
 
 export type AccountSubscriptionPlanUpdatedWebhookPayloadStripeInvoicesItem = {
@@ -21574,6 +21738,20 @@ export type AccountSubscriptionPaymentCollectedWebhookPayloadPersonAccountItemPe
   IsConnectedToDiscord?: boolean;
 } | null;
 
+/**
+ * `1` - Admin, `2` - FullAccess, `3` - Operator
+ * @nullable
+ */
+export type AccountSubscriptionPaymentCollectedWebhookPayloadPersonAccountItemRole = typeof AccountSubscriptionPaymentCollectedWebhookPayloadPersonAccountItemRole[keyof typeof AccountSubscriptionPaymentCollectedWebhookPayloadPersonAccountItemRole] | null;
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionPaymentCollectedWebhookPayloadPersonAccountItemRole = {
+  Admin: 1,
+  FullAccess: 2,
+  Operator: 3,
+} as const;
+
 export type AccountSubscriptionPaymentCollectedWebhookPayloadPersonAccountItem = {
   /**
    * @maxLength 10
@@ -21590,6 +21768,11 @@ export type AccountSubscriptionPaymentCollectedWebhookPayloadPersonAccountItem =
   Person?: AccountSubscriptionPaymentCollectedWebhookPayloadPersonAccountItemPerson;
   IsPrimary?: boolean;
   ReceiveInvoices?: boolean;
+  /**
+   * `1` - Admin, `2` - FullAccess, `3` - Operator
+   * @nullable
+   */
+  Role?: AccountSubscriptionPaymentCollectedWebhookPayloadPersonAccountItemRole;
 };
 
 export type AccountSubscriptionPaymentCollectedWebhookPayloadStripeInvoicesItem = {
@@ -23914,6 +24097,20 @@ export type AccountSubscriptionPaymentDeclinedWebhookPayloadPersonAccountItemPer
   IsConnectedToDiscord?: boolean;
 } | null;
 
+/**
+ * `1` - Admin, `2` - FullAccess, `3` - Operator
+ * @nullable
+ */
+export type AccountSubscriptionPaymentDeclinedWebhookPayloadPersonAccountItemRole = typeof AccountSubscriptionPaymentDeclinedWebhookPayloadPersonAccountItemRole[keyof typeof AccountSubscriptionPaymentDeclinedWebhookPayloadPersonAccountItemRole] | null;
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionPaymentDeclinedWebhookPayloadPersonAccountItemRole = {
+  Admin: 1,
+  FullAccess: 2,
+  Operator: 3,
+} as const;
+
 export type AccountSubscriptionPaymentDeclinedWebhookPayloadPersonAccountItem = {
   /**
    * @maxLength 10
@@ -23930,6 +24127,11 @@ export type AccountSubscriptionPaymentDeclinedWebhookPayloadPersonAccountItem = 
   Person?: AccountSubscriptionPaymentDeclinedWebhookPayloadPersonAccountItemPerson;
   IsPrimary?: boolean;
   ReceiveInvoices?: boolean;
+  /**
+   * `1` - Admin, `2` - FullAccess, `3` - Operator
+   * @nullable
+   */
+  Role?: AccountSubscriptionPaymentDeclinedWebhookPayloadPersonAccountItemRole;
 };
 
 export type AccountSubscriptionPaymentDeclinedWebhookPayloadStripeInvoicesItem = {
@@ -26253,6 +26455,20 @@ export type AccountBillingInformationRequestedWebhookPayloadPersonAccountItemPer
   IsConnectedToDiscord?: boolean;
 } | null;
 
+/**
+ * `1` - Admin, `2` - FullAccess, `3` - Operator
+ * @nullable
+ */
+export type AccountBillingInformationRequestedWebhookPayloadPersonAccountItemRole = typeof AccountBillingInformationRequestedWebhookPayloadPersonAccountItemRole[keyof typeof AccountBillingInformationRequestedWebhookPayloadPersonAccountItemRole] | null;
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountBillingInformationRequestedWebhookPayloadPersonAccountItemRole = {
+  Admin: 1,
+  FullAccess: 2,
+  Operator: 3,
+} as const;
+
 export type AccountBillingInformationRequestedWebhookPayloadPersonAccountItem = {
   /**
    * @maxLength 10
@@ -26269,6 +26485,11 @@ export type AccountBillingInformationRequestedWebhookPayloadPersonAccountItem = 
   Person?: AccountBillingInformationRequestedWebhookPayloadPersonAccountItemPerson;
   IsPrimary?: boolean;
   ReceiveInvoices?: boolean;
+  /**
+   * `1` - Admin, `2` - FullAccess, `3` - Operator
+   * @nullable
+   */
+  Role?: AccountBillingInformationRequestedWebhookPayloadPersonAccountItemRole;
 };
 
 export type AccountBillingInformationRequestedWebhookPayloadStripeInvoicesItem = {
@@ -28592,6 +28813,20 @@ export type AccountBillingInvoiceEmailSentWebhookPayloadPersonAccountItemPerson 
   IsConnectedToDiscord?: boolean;
 } | null;
 
+/**
+ * `1` - Admin, `2` - FullAccess, `3` - Operator
+ * @nullable
+ */
+export type AccountBillingInvoiceEmailSentWebhookPayloadPersonAccountItemRole = typeof AccountBillingInvoiceEmailSentWebhookPayloadPersonAccountItemRole[keyof typeof AccountBillingInvoiceEmailSentWebhookPayloadPersonAccountItemRole] | null;
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountBillingInvoiceEmailSentWebhookPayloadPersonAccountItemRole = {
+  Admin: 1,
+  FullAccess: 2,
+  Operator: 3,
+} as const;
+
 export type AccountBillingInvoiceEmailSentWebhookPayloadPersonAccountItem = {
   /**
    * @maxLength 10
@@ -28608,6 +28843,11 @@ export type AccountBillingInvoiceEmailSentWebhookPayloadPersonAccountItem = {
   Person?: AccountBillingInvoiceEmailSentWebhookPayloadPersonAccountItemPerson;
   IsPrimary?: boolean;
   ReceiveInvoices?: boolean;
+  /**
+   * `1` - Admin, `2` - FullAccess, `3` - Operator
+   * @nullable
+   */
+  Role?: AccountBillingInvoiceEmailSentWebhookPayloadPersonAccountItemRole;
 };
 
 export type AccountBillingInvoiceEmailSentWebhookPayloadStripeInvoicesItem = {
@@ -30940,6 +31180,20 @@ export type AccountRemovePersonWebhookPayloadPersonAccountItemPerson = {
   IsConnectedToDiscord?: boolean;
 } | null;
 
+/**
+ * `1` - Admin, `2` - FullAccess, `3` - Operator
+ * @nullable
+ */
+export type AccountRemovePersonWebhookPayloadPersonAccountItemRole = typeof AccountRemovePersonWebhookPayloadPersonAccountItemRole[keyof typeof AccountRemovePersonWebhookPayloadPersonAccountItemRole] | null;
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountRemovePersonWebhookPayloadPersonAccountItemRole = {
+  Admin: 1,
+  FullAccess: 2,
+  Operator: 3,
+} as const;
+
 export type AccountRemovePersonWebhookPayloadPersonAccountItem = {
   /**
    * @maxLength 10
@@ -30956,6 +31210,11 @@ export type AccountRemovePersonWebhookPayloadPersonAccountItem = {
   Person?: AccountRemovePersonWebhookPayloadPersonAccountItemPerson;
   IsPrimary?: boolean;
   ReceiveInvoices?: boolean;
+  /**
+   * `1` - Admin, `2` - FullAccess, `3` - Operator
+   * @nullable
+   */
+  Role?: AccountRemovePersonWebhookPayloadPersonAccountItemRole;
 };
 
 export type AccountRemovePersonWebhookPayloadStripeInvoicesItem = {
@@ -33285,6 +33544,20 @@ export type AccountPaidSubscriptionCreatedWebhookPayloadPersonAccountItemPerson 
   IsConnectedToDiscord?: boolean;
 } | null;
 
+/**
+ * `1` - Admin, `2` - FullAccess, `3` - Operator
+ * @nullable
+ */
+export type AccountPaidSubscriptionCreatedWebhookPayloadPersonAccountItemRole = typeof AccountPaidSubscriptionCreatedWebhookPayloadPersonAccountItemRole[keyof typeof AccountPaidSubscriptionCreatedWebhookPayloadPersonAccountItemRole] | null;
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountPaidSubscriptionCreatedWebhookPayloadPersonAccountItemRole = {
+  Admin: 1,
+  FullAccess: 2,
+  Operator: 3,
+} as const;
+
 export type AccountPaidSubscriptionCreatedWebhookPayloadPersonAccountItem = {
   /**
    * @maxLength 10
@@ -33301,6 +33574,11 @@ export type AccountPaidSubscriptionCreatedWebhookPayloadPersonAccountItem = {
   Person?: AccountPaidSubscriptionCreatedWebhookPayloadPersonAccountItemPerson;
   IsPrimary?: boolean;
   ReceiveInvoices?: boolean;
+  /**
+   * `1` - Admin, `2` - FullAccess, `3` - Operator
+   * @nullable
+   */
+  Role?: AccountPaidSubscriptionCreatedWebhookPayloadPersonAccountItemRole;
 };
 
 export type AccountPaidSubscriptionCreatedWebhookPayloadStripeInvoicesItem = {
@@ -35625,6 +35903,20 @@ export type AccountBillingInformationRemovedWebhookPayloadPersonAccountItemPerso
   IsConnectedToDiscord?: boolean;
 } | null;
 
+/**
+ * `1` - Admin, `2` - FullAccess, `3` - Operator
+ * @nullable
+ */
+export type AccountBillingInformationRemovedWebhookPayloadPersonAccountItemRole = typeof AccountBillingInformationRemovedWebhookPayloadPersonAccountItemRole[keyof typeof AccountBillingInformationRemovedWebhookPayloadPersonAccountItemRole] | null;
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountBillingInformationRemovedWebhookPayloadPersonAccountItemRole = {
+  Admin: 1,
+  FullAccess: 2,
+  Operator: 3,
+} as const;
+
 export type AccountBillingInformationRemovedWebhookPayloadPersonAccountItem = {
   /**
    * @maxLength 10
@@ -35641,6 +35933,11 @@ export type AccountBillingInformationRemovedWebhookPayloadPersonAccountItem = {
   Person?: AccountBillingInformationRemovedWebhookPayloadPersonAccountItemPerson;
   IsPrimary?: boolean;
   ReceiveInvoices?: boolean;
+  /**
+   * `1` - Admin, `2` - FullAccess, `3` - Operator
+   * @nullable
+   */
+  Role?: AccountBillingInformationRemovedWebhookPayloadPersonAccountItemRole;
 };
 
 export type AccountBillingInformationRemovedWebhookPayloadStripeInvoicesItem = {
@@ -37971,6 +38268,20 @@ export type AccountPrimaryPersonUpdatedWebhookPayloadPersonAccountItemPerson = {
   IsConnectedToDiscord?: boolean;
 } | null;
 
+/**
+ * `1` - Admin, `2` - FullAccess, `3` - Operator
+ * @nullable
+ */
+export type AccountPrimaryPersonUpdatedWebhookPayloadPersonAccountItemRole = typeof AccountPrimaryPersonUpdatedWebhookPayloadPersonAccountItemRole[keyof typeof AccountPrimaryPersonUpdatedWebhookPayloadPersonAccountItemRole] | null;
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountPrimaryPersonUpdatedWebhookPayloadPersonAccountItemRole = {
+  Admin: 1,
+  FullAccess: 2,
+  Operator: 3,
+} as const;
+
 export type AccountPrimaryPersonUpdatedWebhookPayloadPersonAccountItem = {
   /**
    * @maxLength 10
@@ -37987,6 +38298,11 @@ export type AccountPrimaryPersonUpdatedWebhookPayloadPersonAccountItem = {
   Person?: AccountPrimaryPersonUpdatedWebhookPayloadPersonAccountItemPerson;
   IsPrimary?: boolean;
   ReceiveInvoices?: boolean;
+  /**
+   * `1` - Admin, `2` - FullAccess, `3` - Operator
+   * @nullable
+   */
+  Role?: AccountPrimaryPersonUpdatedWebhookPayloadPersonAccountItemRole;
 };
 
 export type AccountPrimaryPersonUpdatedWebhookPayloadStripeInvoicesItem = {
@@ -40311,6 +40627,20 @@ export type AccountBillingInvoiceCreatedWebhookPayloadPersonAccountItemPerson = 
   IsConnectedToDiscord?: boolean;
 } | null;
 
+/**
+ * `1` - Admin, `2` - FullAccess, `3` - Operator
+ * @nullable
+ */
+export type AccountBillingInvoiceCreatedWebhookPayloadPersonAccountItemRole = typeof AccountBillingInvoiceCreatedWebhookPayloadPersonAccountItemRole[keyof typeof AccountBillingInvoiceCreatedWebhookPayloadPersonAccountItemRole] | null;
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountBillingInvoiceCreatedWebhookPayloadPersonAccountItemRole = {
+  Admin: 1,
+  FullAccess: 2,
+  Operator: 3,
+} as const;
+
 export type AccountBillingInvoiceCreatedWebhookPayloadPersonAccountItem = {
   /**
    * @maxLength 10
@@ -40327,6 +40657,11 @@ export type AccountBillingInvoiceCreatedWebhookPayloadPersonAccountItem = {
   Person?: AccountBillingInvoiceCreatedWebhookPayloadPersonAccountItemPerson;
   IsPrimary?: boolean;
   ReceiveInvoices?: boolean;
+  /**
+   * `1` - Admin, `2` - FullAccess, `3` - Operator
+   * @nullable
+   */
+  Role?: AccountBillingInvoiceCreatedWebhookPayloadPersonAccountItemRole;
 };
 
 export type AccountBillingInvoiceCreatedWebhookPayloadStripeInvoicesItem = {
@@ -42664,6 +42999,20 @@ export type AccountSubscriptionStartedWebhookPayloadPersonAccountItemPerson = {
   IsConnectedToDiscord?: boolean;
 } | null;
 
+/**
+ * `1` - Admin, `2` - FullAccess, `3` - Operator
+ * @nullable
+ */
+export type AccountSubscriptionStartedWebhookPayloadPersonAccountItemRole = typeof AccountSubscriptionStartedWebhookPayloadPersonAccountItemRole[keyof typeof AccountSubscriptionStartedWebhookPayloadPersonAccountItemRole] | null;
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionStartedWebhookPayloadPersonAccountItemRole = {
+  Admin: 1,
+  FullAccess: 2,
+  Operator: 3,
+} as const;
+
 export type AccountSubscriptionStartedWebhookPayloadPersonAccountItem = {
   /**
    * @maxLength 10
@@ -42680,6 +43029,11 @@ export type AccountSubscriptionStartedWebhookPayloadPersonAccountItem = {
   Person?: AccountSubscriptionStartedWebhookPayloadPersonAccountItemPerson;
   IsPrimary?: boolean;
   ReceiveInvoices?: boolean;
+  /**
+   * `1` - Admin, `2` - FullAccess, `3` - Operator
+   * @nullable
+   */
+  Role?: AccountSubscriptionStartedWebhookPayloadPersonAccountItemRole;
 };
 
 export type AccountSubscriptionStartedWebhookPayloadStripeInvoicesItem = {
@@ -45011,6 +45365,20 @@ export type AccountSubscriptionRenewalExtendedWebhookPayloadPersonAccountItemPer
   IsConnectedToDiscord?: boolean;
 } | null;
 
+/**
+ * `1` - Admin, `2` - FullAccess, `3` - Operator
+ * @nullable
+ */
+export type AccountSubscriptionRenewalExtendedWebhookPayloadPersonAccountItemRole = typeof AccountSubscriptionRenewalExtendedWebhookPayloadPersonAccountItemRole[keyof typeof AccountSubscriptionRenewalExtendedWebhookPayloadPersonAccountItemRole] | null;
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionRenewalExtendedWebhookPayloadPersonAccountItemRole = {
+  Admin: 1,
+  FullAccess: 2,
+  Operator: 3,
+} as const;
+
 export type AccountSubscriptionRenewalExtendedWebhookPayloadPersonAccountItem = {
   /**
    * @maxLength 10
@@ -45027,6 +45395,11 @@ export type AccountSubscriptionRenewalExtendedWebhookPayloadPersonAccountItem = 
   Person?: AccountSubscriptionRenewalExtendedWebhookPayloadPersonAccountItemPerson;
   IsPrimary?: boolean;
   ReceiveInvoices?: boolean;
+  /**
+   * `1` - Admin, `2` - FullAccess, `3` - Operator
+   * @nullable
+   */
+  Role?: AccountSubscriptionRenewalExtendedWebhookPayloadPersonAccountItemRole;
 };
 
 export type AccountSubscriptionRenewalExtendedWebhookPayloadStripeInvoicesItem = {
@@ -47377,6 +47750,20 @@ export type AccountSubscriptionAddOnsChangedWebhookPayloadPersonAccountItemPerso
   IsConnectedToDiscord?: boolean;
 } | null;
 
+/**
+ * `1` - Admin, `2` - FullAccess, `3` - Operator
+ * @nullable
+ */
+export type AccountSubscriptionAddOnsChangedWebhookPayloadPersonAccountItemRole = typeof AccountSubscriptionAddOnsChangedWebhookPayloadPersonAccountItemRole[keyof typeof AccountSubscriptionAddOnsChangedWebhookPayloadPersonAccountItemRole] | null;
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionAddOnsChangedWebhookPayloadPersonAccountItemRole = {
+  Admin: 1,
+  FullAccess: 2,
+  Operator: 3,
+} as const;
+
 export type AccountSubscriptionAddOnsChangedWebhookPayloadPersonAccountItem = {
   /**
    * @maxLength 10
@@ -47393,6 +47780,11 @@ export type AccountSubscriptionAddOnsChangedWebhookPayloadPersonAccountItem = {
   Person?: AccountSubscriptionAddOnsChangedWebhookPayloadPersonAccountItemPerson;
   IsPrimary?: boolean;
   ReceiveInvoices?: boolean;
+  /**
+   * `1` - Admin, `2` - FullAccess, `3` - Operator
+   * @nullable
+   */
+  Role?: AccountSubscriptionAddOnsChangedWebhookPayloadPersonAccountItemRole;
 };
 
 export type AccountSubscriptionAddOnsChangedWebhookPayloadStripeInvoicesItem = {
@@ -49726,6 +50118,20 @@ export type AccountSubscriptionCancellationRequestedWebhookPayloadPersonAccountI
   IsConnectedToDiscord?: boolean;
 } | null;
 
+/**
+ * `1` - Admin, `2` - FullAccess, `3` - Operator
+ * @nullable
+ */
+export type AccountSubscriptionCancellationRequestedWebhookPayloadPersonAccountItemRole = typeof AccountSubscriptionCancellationRequestedWebhookPayloadPersonAccountItemRole[keyof typeof AccountSubscriptionCancellationRequestedWebhookPayloadPersonAccountItemRole] | null;
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountSubscriptionCancellationRequestedWebhookPayloadPersonAccountItemRole = {
+  Admin: 1,
+  FullAccess: 2,
+  Operator: 3,
+} as const;
+
 export type AccountSubscriptionCancellationRequestedWebhookPayloadPersonAccountItem = {
   /**
    * @maxLength 10
@@ -49742,6 +50148,11 @@ export type AccountSubscriptionCancellationRequestedWebhookPayloadPersonAccountI
   Person?: AccountSubscriptionCancellationRequestedWebhookPayloadPersonAccountItemPerson;
   IsPrimary?: boolean;
   ReceiveInvoices?: boolean;
+  /**
+   * `1` - Admin, `2` - FullAccess, `3` - Operator
+   * @nullable
+   */
+  Role?: AccountSubscriptionCancellationRequestedWebhookPayloadPersonAccountItemRole;
 };
 
 export type AccountSubscriptionCancellationRequestedWebhookPayloadStripeInvoicesItem = {
@@ -52080,6 +52491,20 @@ export type AccountBillingInvoiceDeletedWebhookPayloadPersonAccountItemPerson = 
   IsConnectedToDiscord?: boolean;
 } | null;
 
+/**
+ * `1` - Admin, `2` - FullAccess, `3` - Operator
+ * @nullable
+ */
+export type AccountBillingInvoiceDeletedWebhookPayloadPersonAccountItemRole = typeof AccountBillingInvoiceDeletedWebhookPayloadPersonAccountItemRole[keyof typeof AccountBillingInvoiceDeletedWebhookPayloadPersonAccountItemRole] | null;
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountBillingInvoiceDeletedWebhookPayloadPersonAccountItemRole = {
+  Admin: 1,
+  FullAccess: 2,
+  Operator: 3,
+} as const;
+
 export type AccountBillingInvoiceDeletedWebhookPayloadPersonAccountItem = {
   /**
    * @maxLength 10
@@ -52096,6 +52521,11 @@ export type AccountBillingInvoiceDeletedWebhookPayloadPersonAccountItem = {
   Person?: AccountBillingInvoiceDeletedWebhookPayloadPersonAccountItemPerson;
   IsPrimary?: boolean;
   ReceiveInvoices?: boolean;
+  /**
+   * `1` - Admin, `2` - FullAccess, `3` - Operator
+   * @nullable
+   */
+  Role?: AccountBillingInvoiceDeletedWebhookPayloadPersonAccountItemRole;
 };
 
 export type AccountBillingInvoiceDeletedWebhookPayloadStripeInvoicesItem = {
@@ -54100,6 +54530,2374 @@ export interface AccountBillingInvoiceDeletedWebhookPayload {
   ActivityEventData?: AccountBillingInvoiceDeletedActivityData;
 }
 
+export interface AccountPersonRoleUpdatedActivityData {
+  /** @nullable */
+  PersonEmail?: string | null;
+  /** @nullable */
+  PreviousRole?: string | null;
+  /** @nullable */
+  CurrentRole?: string | null;
+}
+
+/**
+ * @nullable
+ */
+export type AccountPersonRoleUpdatedWebhookPayloadBillingAddress = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine1?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine2?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine3?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  City?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  State?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PostalCode?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Country?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  GeoLocation?: string | null;
+} | null;
+
+/**
+ * @nullable
+ */
+export type AccountPersonRoleUpdatedWebhookPayloadMailingAddress = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine1?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine2?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  AddressLine3?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  City?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  State?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PostalCode?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Country?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  GeoLocation?: string | null;
+} | null;
+
+/**
+ * `2` - Trialing, `3` - Subscribing, `4` - Cancelling, `5` - Expired, `6` - Trial Expired, `7` - Past Due, `8` - Cancelling Trial, `9` - Paused, `10` - Created
+ */
+export type AccountPersonRoleUpdatedWebhookPayloadAccountStage = typeof AccountPersonRoleUpdatedWebhookPayloadAccountStage[keyof typeof AccountPersonRoleUpdatedWebhookPayloadAccountStage];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountPersonRoleUpdatedWebhookPayloadAccountStage = {
+  Trialing: 2,
+  Subscribing: 3,
+  Cancelling: 4,
+  Expired: 5,
+  TrialExpired: 6,
+  PastDue: 7,
+  CancellingTrial: 8,
+  Paused: 9,
+  Created: 10,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountPersonRoleUpdatedWebhookPayloadPaymentInformation = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  CustomerToken?: string | null;
+  /** @nullable */
+  LastFourDigits?: string | null;
+  /** @nullable */
+  LatestFailureDateTime?: string | null;
+  /** @nullable */
+  LatestFailureDescription?: string | null;
+  /** @nullable */
+  LatestSuccessDateTime?: string | null;
+  NumberOfFailures?: number;
+  /** @nullable */
+  PaymentClientSecret?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  PaymentMethodType?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PaymentToken?: string | null;
+  /**
+   * @maxLength 100
+   * @nullable
+   */
+  BankName?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  BankAccountType?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  BankAccountHolderType?: string | null;
+  /** @nullable */
+  NameOnCard?: string | null;
+  /** @nullable */
+  CardType?: string | null;
+  /** @nullable */
+  ExpirationMonth?: string | null;
+  /** @nullable */
+  ExpirationYear?: string | null;
+  /** @nullable */
+  Mode?: string | null;
+  /** @nullable */
+  OneTimeToken?: string | null;
+  /** @nullable */
+  RecaptchaToken?: string | null;
+  /** @nullable */
+  SetupIntent?: string | null;
+} | null;
+
+/**
+ * `0` - None, `1` - Gmail
+ */
+export type AccountPersonRoleUpdatedWebhookPayloadPersonAccountItemPersonOAuthIntegrationStatus = typeof AccountPersonRoleUpdatedWebhookPayloadPersonAccountItemPersonOAuthIntegrationStatus[keyof typeof AccountPersonRoleUpdatedWebhookPayloadPersonAccountItemPersonOAuthIntegrationStatus];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountPersonRoleUpdatedWebhookPayloadPersonAccountItemPersonOAuthIntegrationStatus = {
+  None: 0,
+  Gmail: 1,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountPersonRoleUpdatedWebhookPayloadPersonAccountItemPerson = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Email?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  FirstName?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  LastName?: string | null;
+  /** @nullable */
+  PasswordLastUpdated?: string | null;
+  PasswordMustChange?: boolean;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PhoneMobile?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PhoneWork?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  ProfileImageS3Url?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Title?: string | null;
+  /**
+   * @maxLength 100
+   * @nullable
+   */
+  Timezone?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  Language?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  IPAddress?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Referer?: string | null;
+  /**
+   * @maxLength 1000
+   * @nullable
+   */
+  UserAgent?: string | null;
+  /** @nullable */
+  LastLoginDateTime?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  OAuthGoogleProfileId?: string | null;
+  /** @nullable */
+  AccountUids?: string | null;
+  /** @nullable */
+  FullName?: string | null;
+  HasLoggedIn?: boolean;
+  /** `0` - None, `1` - Gmail */
+  OAuthIntegrationStatus?: AccountPersonRoleUpdatedWebhookPayloadPersonAccountItemPersonOAuthIntegrationStatus;
+  OptInToEmailList?: boolean;
+  /** @nullable */
+  Password?: string | null;
+  /** @nullable */
+  UserAgentPlatformBrowser?: string | null;
+  HasUnsubscribed?: boolean;
+  IsConnectedToDiscord?: boolean;
+} | null;
+
+/**
+ * `1` - Admin, `2` - FullAccess, `3` - Operator
+ * @nullable
+ */
+export type AccountPersonRoleUpdatedWebhookPayloadPersonAccountItemRole = typeof AccountPersonRoleUpdatedWebhookPayloadPersonAccountItemRole[keyof typeof AccountPersonRoleUpdatedWebhookPayloadPersonAccountItemRole] | null;
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountPersonRoleUpdatedWebhookPayloadPersonAccountItemRole = {
+  Admin: 1,
+  FullAccess: 2,
+  Operator: 3,
+} as const;
+
+export type AccountPersonRoleUpdatedWebhookPayloadPersonAccountItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** @nullable */
+  Person?: AccountPersonRoleUpdatedWebhookPayloadPersonAccountItemPerson;
+  IsPrimary?: boolean;
+  ReceiveInvoices?: boolean;
+  /**
+   * `1` - Admin, `2` - FullAccess, `3` - Operator
+   * @nullable
+   */
+  Role?: AccountPersonRoleUpdatedWebhookPayloadPersonAccountItemRole;
+};
+
+export type AccountPersonRoleUpdatedWebhookPayloadStripeInvoicesItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  StripeId?: string | null;
+  IsLivemode?: boolean;
+  AmountDue?: number;
+  AmountPaid?: number;
+  AmountShipping?: number;
+  AttemptCount?: number;
+  Attempted?: boolean;
+  /**
+   * @maxLength 3
+   * @nullable
+   */
+  Currency?: string | null;
+  /** @nullable */
+  Description?: string | null;
+  /** @nullable */
+  FinalizedAt?: string | null;
+  /**
+   * @maxLength 500
+   * @nullable
+   */
+  HostedInvoiceUrl?: string | null;
+  /**
+   * @maxLength 500
+   * @nullable
+   */
+  InvoicePdf?: string | null;
+  /** @nullable */
+  NextPaymentAttempt?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  Number?: string | null;
+  PeriodEnd?: string;
+  PeriodStart?: string;
+  /**
+   * @maxLength 30
+   * @nullable
+   */
+  Status?: string | null;
+  SubTotal?: number;
+  /** @nullable */
+  SubTotalExcludingTax?: number | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  SubscriptionId?: string | null;
+  /** @nullable */
+  Tax?: number | null;
+  Total?: number;
+  /** @nullable */
+  TotalExcludingTax?: number | null;
+  IsRefunded?: boolean;
+  CurrencyAmountCreditedPostPayment?: number;
+  CurrencyAmountCreditedPrePayment?: number;
+  CurrencyAmountDue?: number;
+  CurrencyAmountPaid?: number;
+  /** @nullable */
+  CurrencySymbol?: string | null;
+  CurrencyTotal?: number;
+  CurrencyTotalExcludingTax?: number;
+  CurrencySubTotal?: number;
+  CurrencySubTotalExcludingTax?: number;
+  CurrencyTax?: number;
+  /** @nullable */
+  DaysUntilDue?: number | null;
+  /** @nullable */
+  CustomerId?: string | null;
+  /** @nullable */
+  PaymentStatus?: string | null;
+  /** @nullable */
+  StripePaymentMethodId?: string | null;
+};
+
+export type AccountPersonRoleUpdatedWebhookPayloadStripePaymentMethodsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  StripeId?: string | null;
+  IsLivemode?: boolean;
+  /** @nullable */
+  Card_Brand?: string | null;
+  /** @nullable */
+  Card_ExpMonth?: number | null;
+  /** @nullable */
+  Card_ExpYear?: number | null;
+  /** @nullable */
+  Card_Wallet_Type?: string | null;
+  /** @nullable */
+  BankName?: string | null;
+  /** @nullable */
+  Last4?: string | null;
+  /** @nullable */
+  Type?: string | null;
+  /** @nullable */
+  Label?: string | null;
+};
+
+export type AccountPersonRoleUpdatedWebhookPayloadStripeSubscriptionsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  StripeId?: string | null;
+  IsLivemode?: boolean;
+  /** @nullable */
+  CancelAt?: string | null;
+  CancelAtPeriodEnd?: boolean;
+  /**
+   * @maxLength 3
+   * @nullable
+   */
+  Currency?: string | null;
+  /** @nullable */
+  EndedAt?: string | null;
+  /**
+   * @maxLength 30
+   * @nullable
+   */
+  PauseCollection_Behavior?: string | null;
+  /** @nullable */
+  PauseCollection_ResumesAt?: string | null;
+  StartDate?: string;
+  /**
+   * @maxLength 30
+   * @nullable
+   */
+  Status?: string | null;
+  /** @nullable */
+  TrialEnd?: string | null;
+  /** @nullable */
+  AccountUid?: string | null;
+  /** @nullable */
+  BillingCycleAnchor?: string | null;
+  /** @nullable */
+  CollectionMethod?: string | null;
+  /** @nullable */
+  CustomerId?: string | null;
+  /** @nullable */
+  DaysUntilDue?: number | null;
+  /** @nullable */
+  ScheduleId?: string | null;
+  /** @nullable */
+  StripeDiscountIds?: string[] | null;
+  /** @nullable */
+  StripePriceIds?: string | null;
+  TrialPeriodDays?: number;
+};
+
+/**
+ * `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time
+ */
+export type AccountPersonRoleUpdatedWebhookPayloadSubscriptionsItemBillingRenewalTerm = typeof AccountPersonRoleUpdatedWebhookPayloadSubscriptionsItemBillingRenewalTerm[keyof typeof AccountPersonRoleUpdatedWebhookPayloadSubscriptionsItemBillingRenewalTerm];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountPersonRoleUpdatedWebhookPayloadSubscriptionsItemBillingRenewalTerm = {
+  Monthly: 1,
+  Yearly: 2,
+  Quarterly: 3,
+  OneTime: 4,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountPersonRoleUpdatedWebhookPayloadSubscriptionsItemPlanPlanFamily = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  IsActive?: boolean;
+  IsDefault?: boolean;
+} | null;
+
+/**
+ * `1` - Individual, `2` - Team
+ */
+export type AccountPersonRoleUpdatedWebhookPayloadSubscriptionsItemPlanAccountRegistrationMode = typeof AccountPersonRoleUpdatedWebhookPayloadSubscriptionsItemPlanAccountRegistrationMode[keyof typeof AccountPersonRoleUpdatedWebhookPayloadSubscriptionsItemPlanAccountRegistrationMode];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountPersonRoleUpdatedWebhookPayloadSubscriptionsItemPlanAccountRegistrationMode = {
+  Individual: 1,
+  Team: 2,
+} as const;
+
+export type AccountPersonRoleUpdatedWebhookPayloadSubscriptionsItemPlanPlanAddOnsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  IsUserSelectable: boolean;
+};
+
+export type AccountPersonRoleUpdatedWebhookPayloadSubscriptionsItemPlanContentGroupsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @minLength 1
+   * @maxLength 50
+   */
+  Name: string;
+  /**
+   * @maxLength 1024
+   * @nullable
+   */
+  AccessDeniedPath?: string | null;
+};
+
+/**
+ * @nullable
+ */
+export type AccountPersonRoleUpdatedWebhookPayloadSubscriptionsItemPlan = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  /** @nullable */
+  Description?: string | null;
+  /** @nullable */
+  PlanFamily?: AccountPersonRoleUpdatedWebhookPayloadSubscriptionsItemPlanPlanFamily;
+  /** `1` - Individual, `2` - Team */
+  AccountRegistrationMode?: AccountPersonRoleUpdatedWebhookPayloadSubscriptionsItemPlanAccountRegistrationMode;
+  IsQuantityEditable?: boolean;
+  MinimumQuantity?: number;
+  /** @nullable */
+  MaximumPeople?: number | null;
+  MonthlyRate?: number;
+  AnnualRate?: number;
+  QuarterlyRate?: number;
+  OneTimeRate?: number;
+  SetupFee?: number;
+  SkipSetupFeeOnPlanChange?: boolean;
+  IsTaxable?: boolean;
+  IsActive?: boolean;
+  IsPerUser?: boolean;
+  RequirePaymentInformation?: boolean;
+  TrialPeriodDays?: number;
+  /** @nullable */
+  TrialUntilDate?: string | null;
+  ExpiresAfterMonths?: number;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PostLoginPath?: string | null;
+  /**
+   * @maxLength 15
+   * @nullable
+   */
+  StripeTaxCodeId?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  UnitOfMeasure?: string | null;
+  /** @nullable */
+  PlanAddOns?: AccountPersonRoleUpdatedWebhookPayloadSubscriptionsItemPlanPlanAddOnsItem[] | null;
+  /** @nullable */
+  ContentGroups?: AccountPersonRoleUpdatedWebhookPayloadSubscriptionsItemPlanContentGroupsItem[] | null;
+  /** @nullable */
+  NumberOfSubscriptions?: number | null;
+} | null;
+
+/**
+ * `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time
+ */
+export type AccountPersonRoleUpdatedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemBillingRenewalTerm = typeof AccountPersonRoleUpdatedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemBillingRenewalTerm[keyof typeof AccountPersonRoleUpdatedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemBillingRenewalTerm];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountPersonRoleUpdatedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemBillingRenewalTerm = {
+  Monthly: 1,
+  Yearly: 2,
+  Quarterly: 3,
+  OneTime: 4,
+} as const;
+
+/**
+ * `1` - Recurring, `2` - Usage, `3` - OneTime
+ */
+export type AccountPersonRoleUpdatedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemAddOnBillingAddOnType = typeof AccountPersonRoleUpdatedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemAddOnBillingAddOnType[keyof typeof AccountPersonRoleUpdatedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemAddOnBillingAddOnType];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountPersonRoleUpdatedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemAddOnBillingAddOnType = {
+  Recurring: 1,
+  Usage: 2,
+  OneTime: 3,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountPersonRoleUpdatedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemAddOn = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  /** `1` - Recurring, `2` - Usage, `3` - OneTime */
+  BillingAddOnType?: AccountPersonRoleUpdatedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemAddOnBillingAddOnType;
+  IsQuantityEditable?: boolean;
+  MinimumQuantity?: number;
+  MonthlyRate?: number;
+  AnnualRate?: number;
+  SetupFee?: number;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  UnitOfMeasure?: string | null;
+  IsTaxable?: boolean;
+  IsBilledDuringTrial?: boolean;
+  ExpiresAfterMonths?: number;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /**
+   * @maxLength 15
+   * @nullable
+   */
+  StripeTaxCodeId?: string | null;
+  IsPerUser?: boolean;
+  QuarterlyRate?: number;
+  OneTimeRate?: number;
+  SubscriptionCount?: number;
+  Quantity?: number;
+} | null;
+
+export type AccountPersonRoleUpdatedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time */
+  BillingRenewalTerm?: AccountPersonRoleUpdatedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemBillingRenewalTerm;
+  /** @nullable */
+  AddOn?: AccountPersonRoleUpdatedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItemAddOn;
+  /** @nullable */
+  Quantity?: number | null;
+  StartDate?: string;
+  /** @nullable */
+  EndDate?: string | null;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /** @nullable */
+  RenewalDate?: string | null;
+  /** @nullable */
+  NewRequiredQuantity?: number | null;
+  /** @nullable */
+  Rate?: number | null;
+};
+
+/**
+ * `1` - Forever, `2` - Once, `3` - Repeating
+ */
+export type AccountPersonRoleUpdatedWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItemDiscountCouponDuration = typeof AccountPersonRoleUpdatedWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItemDiscountCouponDuration[keyof typeof AccountPersonRoleUpdatedWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItemDiscountCouponDuration];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountPersonRoleUpdatedWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItemDiscountCouponDuration = {
+  Forever: 1,
+  Once: 2,
+  Repeating: 3,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountPersonRoleUpdatedWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItemDiscountCoupon = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /** @nullable */
+  UniqueIdentifier?: string | null;
+  /** @nullable */
+  Name?: string | null;
+  IsActive?: boolean;
+  /** @nullable */
+  AmountOff?: number | null;
+  /** @nullable */
+  PercentOff?: number | null;
+  /** @nullable */
+  RedeemBy?: string | null;
+  /** `1` - Forever, `2` - Once, `3` - Repeating */
+  Duration?: AccountPersonRoleUpdatedWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItemDiscountCouponDuration;
+  /** @nullable */
+  DurationInMonths?: number | null;
+  TimesRedeemed?: number;
+  /** @nullable */
+  MaxRedemptions?: number | null;
+  ApplyToAddOns?: boolean;
+  /** @nullable */
+  PlanUids?: string | null;
+} | null;
+
+export type AccountPersonRoleUpdatedWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** @nullable */
+  RedeemedDate?: string | null;
+  /** @nullable */
+  ExpireDate?: string | null;
+  /** @nullable */
+  DiscountCoupon?: AccountPersonRoleUpdatedWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItemDiscountCoupon;
+};
+
+/**
+ * `1` - Unpaid, `2` - Paid, `3` - Partial, `4` - Uncollected, `5` - Refunded, `6` - Uncollectible, `7` - Processing
+ */
+export type AccountPersonRoleUpdatedWebhookPayloadSubscriptionsItemLatestInvoiceBillingInvoiceStatus = typeof AccountPersonRoleUpdatedWebhookPayloadSubscriptionsItemLatestInvoiceBillingInvoiceStatus[keyof typeof AccountPersonRoleUpdatedWebhookPayloadSubscriptionsItemLatestInvoiceBillingInvoiceStatus];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountPersonRoleUpdatedWebhookPayloadSubscriptionsItemLatestInvoiceBillingInvoiceStatus = {
+  Unpaid: 1,
+  Paid: 2,
+  Partial: 3,
+  Uncollected: 4,
+  Refunded: 5,
+  Uncollectible: 6,
+  Processing: 7,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountPersonRoleUpdatedWebhookPayloadSubscriptionsItemLatestInvoice = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  InvoiceDate?: string;
+  /** @nullable */
+  PaymentReminderSentDate?: string | null;
+  Number?: number;
+  /** `1` - Unpaid, `2` - Paid, `3` - Partial, `4` - Uncollected, `5` - Refunded, `6` - Uncollectible, `7` - Processing */
+  BillingInvoiceStatus?: AccountPersonRoleUpdatedWebhookPayloadSubscriptionsItemLatestInvoiceBillingInvoiceStatus;
+  Amount?: number;
+  AmountOutstanding?: number;
+  IsUserGenerated?: boolean;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  StripeTaxCalculationId?: string | null;
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  StripeTaxBehavior?: string | null;
+  AmountCredit?: number;
+  AmountDiscount?: number;
+  AmountPaid?: number;
+  AmountRefunded?: number;
+  AmountSubtotal?: number;
+  AmountTax?: number;
+  AmountTaxRefunded?: number;
+  IsTaxable?: boolean;
+  HasPaymentGatewayTransactions?: boolean;
+  /** @nullable */
+  StripePaymentTransactionIds?: string | null;
+  /** @nullable */
+  StripeRefundTransactionIds?: string | null;
+  /** @nullable */
+  StripeTaxRefundTransactionIds?: string | null;
+} | null;
+
+export type AccountPersonRoleUpdatedWebhookPayloadSubscriptionsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time */
+  BillingRenewalTerm?: AccountPersonRoleUpdatedWebhookPayloadSubscriptionsItemBillingRenewalTerm;
+  /** @nullable */
+  Plan?: AccountPersonRoleUpdatedWebhookPayloadSubscriptionsItemPlan;
+  /** @nullable */
+  Quantity?: number | null;
+  StartDate?: string;
+  /** @nullable */
+  EndDate?: string | null;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /** @nullable */
+  RenewalDate?: string | null;
+  /** @nullable */
+  NewRequiredQuantity?: number | null;
+  IsPlanUpgradeRequired?: boolean;
+  /** @nullable */
+  PlanUpgradeRequiredMessage?: string | null;
+  /** @nullable */
+  SubscriptionAddOns?: AccountPersonRoleUpdatedWebhookPayloadSubscriptionsItemSubscriptionAddOnsItem[] | null;
+  /** @nullable */
+  DiscountCouponSubscriptions?: AccountPersonRoleUpdatedWebhookPayloadSubscriptionsItemDiscountCouponSubscriptionsItem[] | null;
+  /** @nullable */
+  DiscountCode?: string | null;
+  /** @nullable */
+  DiscountCouponExpirationDate?: string | null;
+  /** @nullable */
+  LatestInvoice?: AccountPersonRoleUpdatedWebhookPayloadSubscriptionsItemLatestInvoice;
+  /** @nullable */
+  Rate?: number | null;
+};
+
+export type AccountPersonRoleUpdatedWebhookPayloadDealsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @minLength 1
+   * @maxLength 250
+   */
+  Name: string;
+  /** @nullable */
+  Amount?: number | null;
+  /** @nullable */
+  DueDate?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  AssignedToPersonClientIdentifier?: string | null;
+  Weight?: number;
+  /** @nullable */
+  Contacts?: string | null;
+  AccountId?: number;
+  /** @nullable */
+  PipelineUid?: string | null;
+};
+
+export type AccountPersonRoleUpdatedWebhookPayloadTaxIdsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  StripeId?: string | null;
+  IsLivemode?: boolean;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  TaxId?: string | null;
+  /**
+   * @maxLength 20
+   * @nullable
+   */
+  TaxIdType?: string | null;
+  IsInvalid?: boolean;
+};
+
+/**
+ * `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time
+ */
+export type AccountPersonRoleUpdatedWebhookPayloadCurrentSubscriptionBillingRenewalTerm = typeof AccountPersonRoleUpdatedWebhookPayloadCurrentSubscriptionBillingRenewalTerm[keyof typeof AccountPersonRoleUpdatedWebhookPayloadCurrentSubscriptionBillingRenewalTerm];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountPersonRoleUpdatedWebhookPayloadCurrentSubscriptionBillingRenewalTerm = {
+  Monthly: 1,
+  Yearly: 2,
+  Quarterly: 3,
+  OneTime: 4,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountPersonRoleUpdatedWebhookPayloadCurrentSubscriptionPlanPlanFamily = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  IsActive?: boolean;
+  IsDefault?: boolean;
+} | null;
+
+/**
+ * `1` - Individual, `2` - Team
+ */
+export type AccountPersonRoleUpdatedWebhookPayloadCurrentSubscriptionPlanAccountRegistrationMode = typeof AccountPersonRoleUpdatedWebhookPayloadCurrentSubscriptionPlanAccountRegistrationMode[keyof typeof AccountPersonRoleUpdatedWebhookPayloadCurrentSubscriptionPlanAccountRegistrationMode];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountPersonRoleUpdatedWebhookPayloadCurrentSubscriptionPlanAccountRegistrationMode = {
+  Individual: 1,
+  Team: 2,
+} as const;
+
+export type AccountPersonRoleUpdatedWebhookPayloadCurrentSubscriptionPlanPlanAddOnsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  IsUserSelectable: boolean;
+};
+
+export type AccountPersonRoleUpdatedWebhookPayloadCurrentSubscriptionPlanContentGroupsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @minLength 1
+   * @maxLength 50
+   */
+  Name: string;
+  /**
+   * @maxLength 1024
+   * @nullable
+   */
+  AccessDeniedPath?: string | null;
+};
+
+/**
+ * @nullable
+ */
+export type AccountPersonRoleUpdatedWebhookPayloadCurrentSubscriptionPlan = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  /** @nullable */
+  Description?: string | null;
+  /** @nullable */
+  PlanFamily?: AccountPersonRoleUpdatedWebhookPayloadCurrentSubscriptionPlanPlanFamily;
+  /** `1` - Individual, `2` - Team */
+  AccountRegistrationMode?: AccountPersonRoleUpdatedWebhookPayloadCurrentSubscriptionPlanAccountRegistrationMode;
+  IsQuantityEditable?: boolean;
+  MinimumQuantity?: number;
+  /** @nullable */
+  MaximumPeople?: number | null;
+  MonthlyRate?: number;
+  AnnualRate?: number;
+  QuarterlyRate?: number;
+  OneTimeRate?: number;
+  SetupFee?: number;
+  SkipSetupFeeOnPlanChange?: boolean;
+  IsTaxable?: boolean;
+  IsActive?: boolean;
+  IsPerUser?: boolean;
+  RequirePaymentInformation?: boolean;
+  TrialPeriodDays?: number;
+  /** @nullable */
+  TrialUntilDate?: string | null;
+  ExpiresAfterMonths?: number;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PostLoginPath?: string | null;
+  /**
+   * @maxLength 15
+   * @nullable
+   */
+  StripeTaxCodeId?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  UnitOfMeasure?: string | null;
+  /** @nullable */
+  PlanAddOns?: AccountPersonRoleUpdatedWebhookPayloadCurrentSubscriptionPlanPlanAddOnsItem[] | null;
+  /** @nullable */
+  ContentGroups?: AccountPersonRoleUpdatedWebhookPayloadCurrentSubscriptionPlanContentGroupsItem[] | null;
+  /** @nullable */
+  NumberOfSubscriptions?: number | null;
+} | null;
+
+/**
+ * `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time
+ */
+export type AccountPersonRoleUpdatedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemBillingRenewalTerm = typeof AccountPersonRoleUpdatedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemBillingRenewalTerm[keyof typeof AccountPersonRoleUpdatedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemBillingRenewalTerm];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountPersonRoleUpdatedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemBillingRenewalTerm = {
+  Monthly: 1,
+  Yearly: 2,
+  Quarterly: 3,
+  OneTime: 4,
+} as const;
+
+/**
+ * `1` - Recurring, `2` - Usage, `3` - OneTime
+ */
+export type AccountPersonRoleUpdatedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType = typeof AccountPersonRoleUpdatedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType[keyof typeof AccountPersonRoleUpdatedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountPersonRoleUpdatedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType = {
+  Recurring: 1,
+  Usage: 2,
+  OneTime: 3,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountPersonRoleUpdatedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemAddOn = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  /** `1` - Recurring, `2` - Usage, `3` - OneTime */
+  BillingAddOnType?: AccountPersonRoleUpdatedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType;
+  IsQuantityEditable?: boolean;
+  MinimumQuantity?: number;
+  MonthlyRate?: number;
+  AnnualRate?: number;
+  SetupFee?: number;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  UnitOfMeasure?: string | null;
+  IsTaxable?: boolean;
+  IsBilledDuringTrial?: boolean;
+  ExpiresAfterMonths?: number;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /**
+   * @maxLength 15
+   * @nullable
+   */
+  StripeTaxCodeId?: string | null;
+  IsPerUser?: boolean;
+  QuarterlyRate?: number;
+  OneTimeRate?: number;
+  SubscriptionCount?: number;
+  Quantity?: number;
+} | null;
+
+export type AccountPersonRoleUpdatedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time */
+  BillingRenewalTerm?: AccountPersonRoleUpdatedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemBillingRenewalTerm;
+  /** @nullable */
+  AddOn?: AccountPersonRoleUpdatedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItemAddOn;
+  /** @nullable */
+  Quantity?: number | null;
+  StartDate?: string;
+  /** @nullable */
+  EndDate?: string | null;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /** @nullable */
+  RenewalDate?: string | null;
+  /** @nullable */
+  NewRequiredQuantity?: number | null;
+  /** @nullable */
+  Rate?: number | null;
+};
+
+/**
+ * `1` - Forever, `2` - Once, `3` - Repeating
+ */
+export type AccountPersonRoleUpdatedWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration = typeof AccountPersonRoleUpdatedWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration[keyof typeof AccountPersonRoleUpdatedWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountPersonRoleUpdatedWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration = {
+  Forever: 1,
+  Once: 2,
+  Repeating: 3,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountPersonRoleUpdatedWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItemDiscountCoupon = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /** @nullable */
+  UniqueIdentifier?: string | null;
+  /** @nullable */
+  Name?: string | null;
+  IsActive?: boolean;
+  /** @nullable */
+  AmountOff?: number | null;
+  /** @nullable */
+  PercentOff?: number | null;
+  /** @nullable */
+  RedeemBy?: string | null;
+  /** `1` - Forever, `2` - Once, `3` - Repeating */
+  Duration?: AccountPersonRoleUpdatedWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration;
+  /** @nullable */
+  DurationInMonths?: number | null;
+  TimesRedeemed?: number;
+  /** @nullable */
+  MaxRedemptions?: number | null;
+  ApplyToAddOns?: boolean;
+  /** @nullable */
+  PlanUids?: string | null;
+} | null;
+
+export type AccountPersonRoleUpdatedWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** @nullable */
+  RedeemedDate?: string | null;
+  /** @nullable */
+  ExpireDate?: string | null;
+  /** @nullable */
+  DiscountCoupon?: AccountPersonRoleUpdatedWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItemDiscountCoupon;
+};
+
+/**
+ * `1` - Unpaid, `2` - Paid, `3` - Partial, `4` - Uncollected, `5` - Refunded, `6` - Uncollectible, `7` - Processing
+ */
+export type AccountPersonRoleUpdatedWebhookPayloadCurrentSubscriptionLatestInvoiceBillingInvoiceStatus = typeof AccountPersonRoleUpdatedWebhookPayloadCurrentSubscriptionLatestInvoiceBillingInvoiceStatus[keyof typeof AccountPersonRoleUpdatedWebhookPayloadCurrentSubscriptionLatestInvoiceBillingInvoiceStatus];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountPersonRoleUpdatedWebhookPayloadCurrentSubscriptionLatestInvoiceBillingInvoiceStatus = {
+  Unpaid: 1,
+  Paid: 2,
+  Partial: 3,
+  Uncollected: 4,
+  Refunded: 5,
+  Uncollectible: 6,
+  Processing: 7,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountPersonRoleUpdatedWebhookPayloadCurrentSubscriptionLatestInvoice = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  InvoiceDate?: string;
+  /** @nullable */
+  PaymentReminderSentDate?: string | null;
+  Number?: number;
+  /** `1` - Unpaid, `2` - Paid, `3` - Partial, `4` - Uncollected, `5` - Refunded, `6` - Uncollectible, `7` - Processing */
+  BillingInvoiceStatus?: AccountPersonRoleUpdatedWebhookPayloadCurrentSubscriptionLatestInvoiceBillingInvoiceStatus;
+  Amount?: number;
+  AmountOutstanding?: number;
+  IsUserGenerated?: boolean;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  StripeTaxCalculationId?: string | null;
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  StripeTaxBehavior?: string | null;
+  AmountCredit?: number;
+  AmountDiscount?: number;
+  AmountPaid?: number;
+  AmountRefunded?: number;
+  AmountSubtotal?: number;
+  AmountTax?: number;
+  AmountTaxRefunded?: number;
+  IsTaxable?: boolean;
+  HasPaymentGatewayTransactions?: boolean;
+  /** @nullable */
+  StripePaymentTransactionIds?: string | null;
+  /** @nullable */
+  StripeRefundTransactionIds?: string | null;
+  /** @nullable */
+  StripeTaxRefundTransactionIds?: string | null;
+} | null;
+
+/**
+ * @nullable
+ */
+export type AccountPersonRoleUpdatedWebhookPayloadCurrentSubscription = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /** `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time */
+  BillingRenewalTerm?: AccountPersonRoleUpdatedWebhookPayloadCurrentSubscriptionBillingRenewalTerm;
+  /** @nullable */
+  Plan?: AccountPersonRoleUpdatedWebhookPayloadCurrentSubscriptionPlan;
+  /** @nullable */
+  Quantity?: number | null;
+  StartDate?: string;
+  /** @nullable */
+  EndDate?: string | null;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /** @nullable */
+  RenewalDate?: string | null;
+  /** @nullable */
+  NewRequiredQuantity?: number | null;
+  IsPlanUpgradeRequired?: boolean;
+  /** @nullable */
+  PlanUpgradeRequiredMessage?: string | null;
+  /** @nullable */
+  SubscriptionAddOns?: AccountPersonRoleUpdatedWebhookPayloadCurrentSubscriptionSubscriptionAddOnsItem[] | null;
+  /** @nullable */
+  DiscountCouponSubscriptions?: AccountPersonRoleUpdatedWebhookPayloadCurrentSubscriptionDiscountCouponSubscriptionsItem[] | null;
+  /** @nullable */
+  DiscountCode?: string | null;
+  /** @nullable */
+  DiscountCouponExpirationDate?: string | null;
+  /** @nullable */
+  LatestInvoice?: AccountPersonRoleUpdatedWebhookPayloadCurrentSubscriptionLatestInvoice;
+  /** @nullable */
+  Rate?: number | null;
+} | null;
+
+/**
+ * `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time
+ */
+export type AccountPersonRoleUpdatedWebhookPayloadLatestSubscriptionBillingRenewalTerm = typeof AccountPersonRoleUpdatedWebhookPayloadLatestSubscriptionBillingRenewalTerm[keyof typeof AccountPersonRoleUpdatedWebhookPayloadLatestSubscriptionBillingRenewalTerm];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountPersonRoleUpdatedWebhookPayloadLatestSubscriptionBillingRenewalTerm = {
+  Monthly: 1,
+  Yearly: 2,
+  Quarterly: 3,
+  OneTime: 4,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountPersonRoleUpdatedWebhookPayloadLatestSubscriptionPlanPlanFamily = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  IsActive?: boolean;
+  IsDefault?: boolean;
+} | null;
+
+/**
+ * `1` - Individual, `2` - Team
+ */
+export type AccountPersonRoleUpdatedWebhookPayloadLatestSubscriptionPlanAccountRegistrationMode = typeof AccountPersonRoleUpdatedWebhookPayloadLatestSubscriptionPlanAccountRegistrationMode[keyof typeof AccountPersonRoleUpdatedWebhookPayloadLatestSubscriptionPlanAccountRegistrationMode];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountPersonRoleUpdatedWebhookPayloadLatestSubscriptionPlanAccountRegistrationMode = {
+  Individual: 1,
+  Team: 2,
+} as const;
+
+export type AccountPersonRoleUpdatedWebhookPayloadLatestSubscriptionPlanPlanAddOnsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  IsUserSelectable: boolean;
+};
+
+export type AccountPersonRoleUpdatedWebhookPayloadLatestSubscriptionPlanContentGroupsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @minLength 1
+   * @maxLength 50
+   */
+  Name: string;
+  /**
+   * @maxLength 1024
+   * @nullable
+   */
+  AccessDeniedPath?: string | null;
+};
+
+/**
+ * @nullable
+ */
+export type AccountPersonRoleUpdatedWebhookPayloadLatestSubscriptionPlan = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  /** @nullable */
+  Description?: string | null;
+  /** @nullable */
+  PlanFamily?: AccountPersonRoleUpdatedWebhookPayloadLatestSubscriptionPlanPlanFamily;
+  /** `1` - Individual, `2` - Team */
+  AccountRegistrationMode?: AccountPersonRoleUpdatedWebhookPayloadLatestSubscriptionPlanAccountRegistrationMode;
+  IsQuantityEditable?: boolean;
+  MinimumQuantity?: number;
+  /** @nullable */
+  MaximumPeople?: number | null;
+  MonthlyRate?: number;
+  AnnualRate?: number;
+  QuarterlyRate?: number;
+  OneTimeRate?: number;
+  SetupFee?: number;
+  SkipSetupFeeOnPlanChange?: boolean;
+  IsTaxable?: boolean;
+  IsActive?: boolean;
+  IsPerUser?: boolean;
+  RequirePaymentInformation?: boolean;
+  TrialPeriodDays?: number;
+  /** @nullable */
+  TrialUntilDate?: string | null;
+  ExpiresAfterMonths?: number;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PostLoginPath?: string | null;
+  /**
+   * @maxLength 15
+   * @nullable
+   */
+  StripeTaxCodeId?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  UnitOfMeasure?: string | null;
+  /** @nullable */
+  PlanAddOns?: AccountPersonRoleUpdatedWebhookPayloadLatestSubscriptionPlanPlanAddOnsItem[] | null;
+  /** @nullable */
+  ContentGroups?: AccountPersonRoleUpdatedWebhookPayloadLatestSubscriptionPlanContentGroupsItem[] | null;
+  /** @nullable */
+  NumberOfSubscriptions?: number | null;
+} | null;
+
+/**
+ * `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time
+ */
+export type AccountPersonRoleUpdatedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemBillingRenewalTerm = typeof AccountPersonRoleUpdatedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemBillingRenewalTerm[keyof typeof AccountPersonRoleUpdatedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemBillingRenewalTerm];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountPersonRoleUpdatedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemBillingRenewalTerm = {
+  Monthly: 1,
+  Yearly: 2,
+  Quarterly: 3,
+  OneTime: 4,
+} as const;
+
+/**
+ * `1` - Recurring, `2` - Usage, `3` - OneTime
+ */
+export type AccountPersonRoleUpdatedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType = typeof AccountPersonRoleUpdatedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType[keyof typeof AccountPersonRoleUpdatedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountPersonRoleUpdatedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType = {
+  Recurring: 1,
+  Usage: 2,
+  OneTime: 3,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountPersonRoleUpdatedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemAddOn = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  /** `1` - Recurring, `2` - Usage, `3` - OneTime */
+  BillingAddOnType?: AccountPersonRoleUpdatedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemAddOnBillingAddOnType;
+  IsQuantityEditable?: boolean;
+  MinimumQuantity?: number;
+  MonthlyRate?: number;
+  AnnualRate?: number;
+  SetupFee?: number;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  UnitOfMeasure?: string | null;
+  IsTaxable?: boolean;
+  IsBilledDuringTrial?: boolean;
+  ExpiresAfterMonths?: number;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /**
+   * @maxLength 15
+   * @nullable
+   */
+  StripeTaxCodeId?: string | null;
+  IsPerUser?: boolean;
+  QuarterlyRate?: number;
+  OneTimeRate?: number;
+  SubscriptionCount?: number;
+  Quantity?: number;
+} | null;
+
+export type AccountPersonRoleUpdatedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time */
+  BillingRenewalTerm?: AccountPersonRoleUpdatedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemBillingRenewalTerm;
+  /** @nullable */
+  AddOn?: AccountPersonRoleUpdatedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItemAddOn;
+  /** @nullable */
+  Quantity?: number | null;
+  StartDate?: string;
+  /** @nullable */
+  EndDate?: string | null;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /** @nullable */
+  RenewalDate?: string | null;
+  /** @nullable */
+  NewRequiredQuantity?: number | null;
+  /** @nullable */
+  Rate?: number | null;
+};
+
+/**
+ * `1` - Forever, `2` - Once, `3` - Repeating
+ */
+export type AccountPersonRoleUpdatedWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration = typeof AccountPersonRoleUpdatedWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration[keyof typeof AccountPersonRoleUpdatedWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountPersonRoleUpdatedWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration = {
+  Forever: 1,
+  Once: 2,
+  Repeating: 3,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountPersonRoleUpdatedWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItemDiscountCoupon = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /** @nullable */
+  UniqueIdentifier?: string | null;
+  /** @nullable */
+  Name?: string | null;
+  IsActive?: boolean;
+  /** @nullable */
+  AmountOff?: number | null;
+  /** @nullable */
+  PercentOff?: number | null;
+  /** @nullable */
+  RedeemBy?: string | null;
+  /** `1` - Forever, `2` - Once, `3` - Repeating */
+  Duration?: AccountPersonRoleUpdatedWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItemDiscountCouponDuration;
+  /** @nullable */
+  DurationInMonths?: number | null;
+  TimesRedeemed?: number;
+  /** @nullable */
+  MaxRedemptions?: number | null;
+  ApplyToAddOns?: boolean;
+  /** @nullable */
+  PlanUids?: string | null;
+} | null;
+
+export type AccountPersonRoleUpdatedWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /** @nullable */
+  RedeemedDate?: string | null;
+  /** @nullable */
+  ExpireDate?: string | null;
+  /** @nullable */
+  DiscountCoupon?: AccountPersonRoleUpdatedWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItemDiscountCoupon;
+};
+
+/**
+ * `1` - Unpaid, `2` - Paid, `3` - Partial, `4` - Uncollected, `5` - Refunded, `6` - Uncollectible, `7` - Processing
+ */
+export type AccountPersonRoleUpdatedWebhookPayloadLatestSubscriptionLatestInvoiceBillingInvoiceStatus = typeof AccountPersonRoleUpdatedWebhookPayloadLatestSubscriptionLatestInvoiceBillingInvoiceStatus[keyof typeof AccountPersonRoleUpdatedWebhookPayloadLatestSubscriptionLatestInvoiceBillingInvoiceStatus];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountPersonRoleUpdatedWebhookPayloadLatestSubscriptionLatestInvoiceBillingInvoiceStatus = {
+  Unpaid: 1,
+  Paid: 2,
+  Partial: 3,
+  Uncollected: 4,
+  Refunded: 5,
+  Uncollectible: 6,
+  Processing: 7,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountPersonRoleUpdatedWebhookPayloadLatestSubscriptionLatestInvoice = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  InvoiceDate?: string;
+  /** @nullable */
+  PaymentReminderSentDate?: string | null;
+  Number?: number;
+  /** `1` - Unpaid, `2` - Paid, `3` - Partial, `4` - Uncollected, `5` - Refunded, `6` - Uncollectible, `7` - Processing */
+  BillingInvoiceStatus?: AccountPersonRoleUpdatedWebhookPayloadLatestSubscriptionLatestInvoiceBillingInvoiceStatus;
+  Amount?: number;
+  AmountOutstanding?: number;
+  IsUserGenerated?: boolean;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  StripeTaxCalculationId?: string | null;
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  StripeTaxBehavior?: string | null;
+  AmountCredit?: number;
+  AmountDiscount?: number;
+  AmountPaid?: number;
+  AmountRefunded?: number;
+  AmountSubtotal?: number;
+  AmountTax?: number;
+  AmountTaxRefunded?: number;
+  IsTaxable?: boolean;
+  HasPaymentGatewayTransactions?: boolean;
+  /** @nullable */
+  StripePaymentTransactionIds?: string | null;
+  /** @nullable */
+  StripeRefundTransactionIds?: string | null;
+  /** @nullable */
+  StripeTaxRefundTransactionIds?: string | null;
+} | null;
+
+/**
+ * @nullable
+ */
+export type AccountPersonRoleUpdatedWebhookPayloadLatestSubscription = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /** `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time */
+  BillingRenewalTerm?: AccountPersonRoleUpdatedWebhookPayloadLatestSubscriptionBillingRenewalTerm;
+  /** @nullable */
+  Plan?: AccountPersonRoleUpdatedWebhookPayloadLatestSubscriptionPlan;
+  /** @nullable */
+  Quantity?: number | null;
+  StartDate?: string;
+  /** @nullable */
+  EndDate?: string | null;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /** @nullable */
+  RenewalDate?: string | null;
+  /** @nullable */
+  NewRequiredQuantity?: number | null;
+  IsPlanUpgradeRequired?: boolean;
+  /** @nullable */
+  PlanUpgradeRequiredMessage?: string | null;
+  /** @nullable */
+  SubscriptionAddOns?: AccountPersonRoleUpdatedWebhookPayloadLatestSubscriptionSubscriptionAddOnsItem[] | null;
+  /** @nullable */
+  DiscountCouponSubscriptions?: AccountPersonRoleUpdatedWebhookPayloadLatestSubscriptionDiscountCouponSubscriptionsItem[] | null;
+  /** @nullable */
+  DiscountCode?: string | null;
+  /** @nullable */
+  DiscountCouponExpirationDate?: string | null;
+  /** @nullable */
+  LatestInvoice?: AccountPersonRoleUpdatedWebhookPayloadLatestSubscriptionLatestInvoice;
+  /** @nullable */
+  Rate?: number | null;
+} | null;
+
+/**
+ * `0` - None, `1` - Gmail
+ */
+export type AccountPersonRoleUpdatedWebhookPayloadPrimaryContactOAuthIntegrationStatus = typeof AccountPersonRoleUpdatedWebhookPayloadPrimaryContactOAuthIntegrationStatus[keyof typeof AccountPersonRoleUpdatedWebhookPayloadPrimaryContactOAuthIntegrationStatus];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountPersonRoleUpdatedWebhookPayloadPrimaryContactOAuthIntegrationStatus = {
+  None: 0,
+  Gmail: 1,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountPersonRoleUpdatedWebhookPayloadPrimaryContact = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Email?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  FirstName?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  LastName?: string | null;
+  /** @nullable */
+  PasswordLastUpdated?: string | null;
+  PasswordMustChange?: boolean;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PhoneMobile?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PhoneWork?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  ProfileImageS3Url?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Title?: string | null;
+  /**
+   * @maxLength 100
+   * @nullable
+   */
+  Timezone?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  Language?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  IPAddress?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Referer?: string | null;
+  /**
+   * @maxLength 1000
+   * @nullable
+   */
+  UserAgent?: string | null;
+  /** @nullable */
+  LastLoginDateTime?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  OAuthGoogleProfileId?: string | null;
+  /** @nullable */
+  AccountUids?: string | null;
+  /** @nullable */
+  FullName?: string | null;
+  HasLoggedIn?: boolean;
+  /** `0` - None, `1` - Gmail */
+  OAuthIntegrationStatus?: AccountPersonRoleUpdatedWebhookPayloadPrimaryContactOAuthIntegrationStatus;
+  OptInToEmailList?: boolean;
+  /** @nullable */
+  Password?: string | null;
+  /** @nullable */
+  UserAgentPlatformBrowser?: string | null;
+  HasUnsubscribed?: boolean;
+  IsConnectedToDiscord?: boolean;
+} | null;
+
+/**
+ * `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time
+ */
+export type AccountPersonRoleUpdatedWebhookPayloadPrimarySubscriptionBillingRenewalTerm = typeof AccountPersonRoleUpdatedWebhookPayloadPrimarySubscriptionBillingRenewalTerm[keyof typeof AccountPersonRoleUpdatedWebhookPayloadPrimarySubscriptionBillingRenewalTerm];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountPersonRoleUpdatedWebhookPayloadPrimarySubscriptionBillingRenewalTerm = {
+  Monthly: 1,
+  Yearly: 2,
+  Quarterly: 3,
+  OneTime: 4,
+} as const;
+
+/**
+ * @nullable
+ */
+export type AccountPersonRoleUpdatedWebhookPayloadPrimarySubscription = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /** `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time */
+  BillingRenewalTerm?: AccountPersonRoleUpdatedWebhookPayloadPrimarySubscriptionBillingRenewalTerm;
+  /** @nullable */
+  Quantity?: number | null;
+  StartDate?: string;
+  /** @nullable */
+  EndDate?: string | null;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  /** @nullable */
+  RenewalDate?: string | null;
+  /** @nullable */
+  NewRequiredQuantity?: number | null;
+  IsPlanUpgradeRequired?: boolean;
+  /** @nullable */
+  PlanUpgradeRequiredMessage?: string | null;
+  /** @nullable */
+  DiscountCode?: string | null;
+  /** @nullable */
+  DiscountCouponExpirationDate?: string | null;
+  /** @nullable */
+  Rate?: number | null;
+} | null;
+
+/**
+ * @nullable
+ */
+export type AccountPersonRoleUpdatedWebhookPayloadPrimaryStripeSubscription = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created?: string;
+  /** @minLength 1 */
+  Updated?: string;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  StripeId?: string | null;
+  IsLivemode?: boolean;
+  /** @nullable */
+  CancelAt?: string | null;
+  CancelAtPeriodEnd?: boolean;
+  /**
+   * @maxLength 3
+   * @nullable
+   */
+  Currency?: string | null;
+  /** @nullable */
+  EndedAt?: string | null;
+  /**
+   * @maxLength 30
+   * @nullable
+   */
+  PauseCollection_Behavior?: string | null;
+  /** @nullable */
+  PauseCollection_ResumesAt?: string | null;
+  StartDate?: string;
+  /**
+   * @maxLength 30
+   * @nullable
+   */
+  Status?: string | null;
+  /** @nullable */
+  TrialEnd?: string | null;
+  /** @nullable */
+  AccountUid?: string | null;
+  /** @nullable */
+  BillingCycleAnchor?: string | null;
+  /** @nullable */
+  CollectionMethod?: string | null;
+  /** @nullable */
+  CustomerId?: string | null;
+  /** @nullable */
+  DaysUntilDue?: number | null;
+  /** @nullable */
+  ScheduleId?: string | null;
+  /** @nullable */
+  StripeDiscountIds?: string[] | null;
+  /** @nullable */
+  StripePriceIds?: string | null;
+  TrialPeriodDays?: number;
+} | null;
+
+export interface AccountPersonRoleUpdatedWebhookPayload {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  StripeId?: string | null;
+  IsLivemode?: boolean;
+  /**
+   * @minLength 1
+   * @maxLength 250
+   */
+  Name: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  ClientIdentifier?: string | null;
+  /**
+   * @maxLength 3
+   * @nullable
+   */
+  Currency?: string | null;
+  /** @nullable */
+  InvoiceNotes?: string | null;
+  IsDemo?: boolean;
+  /** @nullable */
+  BillingAddress?: AccountPersonRoleUpdatedWebhookPayloadBillingAddress;
+  /** @nullable */
+  MailingAddress?: AccountPersonRoleUpdatedWebhookPayloadMailingAddress;
+  /** `2` - Trialing, `3` - Subscribing, `4` - Cancelling, `5` - Expired, `6` - Trial Expired, `7` - Past Due, `8` - Cancelling Trial, `9` - Paused, `10` - Created */
+  AccountStage?: AccountPersonRoleUpdatedWebhookPayloadAccountStage;
+  /** @nullable */
+  PaymentInformation?: AccountPersonRoleUpdatedWebhookPayloadPaymentInformation;
+  /** @nullable */
+  PersonAccount?: AccountPersonRoleUpdatedWebhookPayloadPersonAccountItem[] | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  StripeDefaultPaymentMethodId?: string | null;
+  /** @nullable */
+  StripeInvoices?: AccountPersonRoleUpdatedWebhookPayloadStripeInvoicesItem[] | null;
+  /** @nullable */
+  StripePaymentMethods?: AccountPersonRoleUpdatedWebhookPayloadStripePaymentMethodsItem[] | null;
+  /** @nullable */
+  StripeSubscriptions?: AccountPersonRoleUpdatedWebhookPayloadStripeSubscriptionsItem[] | null;
+  /** @nullable */
+  Subscriptions?: AccountPersonRoleUpdatedWebhookPayloadSubscriptionsItem[] | null;
+  /** @nullable */
+  Deals?: AccountPersonRoleUpdatedWebhookPayloadDealsItem[] | null;
+  /** @nullable */
+  LastLoginDateTime?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl1?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl2?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl3?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl4?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl5?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl6?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl7?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl8?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl9?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  AccountSpecificPageUrl10?: string | null;
+  /** @nullable */
+  RewardFulReferralId?: string | null;
+  /**
+   * @maxLength 36
+   * @nullable
+   */
+  ToltReferralId?: string | null;
+  /** @nullable */
+  TaxIds?: AccountPersonRoleUpdatedWebhookPayloadTaxIdsItem[] | null;
+  /**
+   * @maxLength 20
+   * @nullable
+   */
+  TaxStatus?: string | null;
+  /** @nullable */
+  AccountStageLabel?: string | null;
+  /** @nullable */
+  CurrentStripeProducts?: string | null;
+  /** @nullable */
+  CurrentSubscription?: AccountPersonRoleUpdatedWebhookPayloadCurrentSubscription;
+  /** @nullable */
+  DomainName?: string | null;
+  HasLoggedIn?: boolean;
+  /** @nullable */
+  LatestSubscription?: AccountPersonRoleUpdatedWebhookPayloadLatestSubscription;
+  LifetimeRevenue?: number;
+  /** @nullable */
+  NextStripeInvoiceDate?: string | null;
+  /** @nullable */
+  Nonce?: string | null;
+  /** @nullable */
+  PrimaryContact?: AccountPersonRoleUpdatedWebhookPayloadPrimaryContact;
+  /** @nullable */
+  PrimarySubscription?: AccountPersonRoleUpdatedWebhookPayloadPrimarySubscription;
+  /** @nullable */
+  PrimaryStripeSubscription?: AccountPersonRoleUpdatedWebhookPayloadPrimaryStripeSubscription;
+  /** @nullable */
+  RecaptchaToken?: string | null;
+  /** @nullable */
+  StripeNextInvoiceSequence?: number | null;
+  /** @nullable */
+  StripePrice?: string[] | null;
+  /** @nullable */
+  StripePromotionCode?: string | null;
+  /** @nullable */
+  TaxId?: string | null;
+  TaxIdIsInvalid?: boolean;
+  /** @nullable */
+  TaxIdType?: string | null;
+  /** @nullable */
+  WebflowSlug?: string | null;
+  ActivityEventData?: AccountPersonRoleUpdatedActivityData;
+}
+
 /**
  * @nullable
  */
@@ -54170,6 +56968,20 @@ export type PersonCreatedWebhookPayloadPersonAccountItemAccount = {
   _objectType?: string | null;
 } | null;
 
+/**
+ * `1` - Admin, `2` - FullAccess, `3` - Operator
+ * @nullable
+ */
+export type PersonCreatedWebhookPayloadPersonAccountItemRole = typeof PersonCreatedWebhookPayloadPersonAccountItemRole[keyof typeof PersonCreatedWebhookPayloadPersonAccountItemRole] | null;
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const PersonCreatedWebhookPayloadPersonAccountItemRole = {
+  Admin: 1,
+  FullAccess: 2,
+  Operator: 3,
+} as const;
+
 export type PersonCreatedWebhookPayloadPersonAccountItem = {
   /**
    * @maxLength 10
@@ -54186,6 +56998,11 @@ export type PersonCreatedWebhookPayloadPersonAccountItem = {
   Account?: PersonCreatedWebhookPayloadPersonAccountItemAccount;
   IsPrimary?: boolean;
   ReceiveInvoices?: boolean;
+  /**
+   * `1` - Admin, `2` - FullAccess, `3` - Operator
+   * @nullable
+   */
+  Role?: PersonCreatedWebhookPayloadPersonAccountItemRole;
 };
 
 export type PersonCreatedWebhookPayloadDealPeopleItem = {
@@ -54685,6 +57502,20 @@ export type PersonUpdatedWebhookPayloadPersonAccountItemAccount = {
   _objectType?: string | null;
 } | null;
 
+/**
+ * `1` - Admin, `2` - FullAccess, `3` - Operator
+ * @nullable
+ */
+export type PersonUpdatedWebhookPayloadPersonAccountItemRole = typeof PersonUpdatedWebhookPayloadPersonAccountItemRole[keyof typeof PersonUpdatedWebhookPayloadPersonAccountItemRole] | null;
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const PersonUpdatedWebhookPayloadPersonAccountItemRole = {
+  Admin: 1,
+  FullAccess: 2,
+  Operator: 3,
+} as const;
+
 export type PersonUpdatedWebhookPayloadPersonAccountItem = {
   /**
    * @maxLength 10
@@ -54701,6 +57532,11 @@ export type PersonUpdatedWebhookPayloadPersonAccountItem = {
   Account?: PersonUpdatedWebhookPayloadPersonAccountItemAccount;
   IsPrimary?: boolean;
   ReceiveInvoices?: boolean;
+  /**
+   * `1` - Admin, `2` - FullAccess, `3` - Operator
+   * @nullable
+   */
+  Role?: PersonUpdatedWebhookPayloadPersonAccountItemRole;
 };
 
 export type PersonUpdatedWebhookPayloadDealPeopleItem = {
@@ -55184,6 +58020,20 @@ export type PersonDeletedWebhookPayloadPersonAccountItemAccount = {
   _objectType?: string | null;
 } | null;
 
+/**
+ * `1` - Admin, `2` - FullAccess, `3` - Operator
+ * @nullable
+ */
+export type PersonDeletedWebhookPayloadPersonAccountItemRole = typeof PersonDeletedWebhookPayloadPersonAccountItemRole[keyof typeof PersonDeletedWebhookPayloadPersonAccountItemRole] | null;
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const PersonDeletedWebhookPayloadPersonAccountItemRole = {
+  Admin: 1,
+  FullAccess: 2,
+  Operator: 3,
+} as const;
+
 export type PersonDeletedWebhookPayloadPersonAccountItem = {
   /**
    * @maxLength 10
@@ -55200,6 +58050,11 @@ export type PersonDeletedWebhookPayloadPersonAccountItem = {
   Account?: PersonDeletedWebhookPayloadPersonAccountItemAccount;
   IsPrimary?: boolean;
   ReceiveInvoices?: boolean;
+  /**
+   * `1` - Admin, `2` - FullAccess, `3` - Operator
+   * @nullable
+   */
+  Role?: PersonDeletedWebhookPayloadPersonAccountItemRole;
 };
 
 export type PersonDeletedWebhookPayloadDealPeopleItem = {
@@ -55941,6 +58796,20 @@ export type PersonLoginWebhookPayloadPersonAccountItemPerson = {
   IsConnectedToDiscord?: boolean;
 } | null;
 
+/**
+ * `1` - Admin, `2` - FullAccess, `3` - Operator
+ * @nullable
+ */
+export type PersonLoginWebhookPayloadPersonAccountItemRole = typeof PersonLoginWebhookPayloadPersonAccountItemRole[keyof typeof PersonLoginWebhookPayloadPersonAccountItemRole] | null;
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const PersonLoginWebhookPayloadPersonAccountItemRole = {
+  Admin: 1,
+  FullAccess: 2,
+  Operator: 3,
+} as const;
+
 export type PersonLoginWebhookPayloadPersonAccountItem = {
   /**
    * @maxLength 10
@@ -55957,6 +58826,11 @@ export type PersonLoginWebhookPayloadPersonAccountItem = {
   Person?: PersonLoginWebhookPayloadPersonAccountItemPerson;
   IsPrimary?: boolean;
   ReceiveInvoices?: boolean;
+  /**
+   * `1` - Admin, `2` - FullAccess, `3` - Operator
+   * @nullable
+   */
+  Role?: PersonLoginWebhookPayloadPersonAccountItemRole;
 };
 
 export type PersonLoginWebhookPayloadStripeInvoicesItem = {
@@ -58041,6 +60915,20 @@ export type PersonListSubscribedWebhookPayloadPersonAccountItemAccount = {
   _objectType?: string | null;
 } | null;
 
+/**
+ * `1` - Admin, `2` - FullAccess, `3` - Operator
+ * @nullable
+ */
+export type PersonListSubscribedWebhookPayloadPersonAccountItemRole = typeof PersonListSubscribedWebhookPayloadPersonAccountItemRole[keyof typeof PersonListSubscribedWebhookPayloadPersonAccountItemRole] | null;
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const PersonListSubscribedWebhookPayloadPersonAccountItemRole = {
+  Admin: 1,
+  FullAccess: 2,
+  Operator: 3,
+} as const;
+
 export type PersonListSubscribedWebhookPayloadPersonAccountItem = {
   /**
    * @maxLength 10
@@ -58057,6 +60945,11 @@ export type PersonListSubscribedWebhookPayloadPersonAccountItem = {
   Account?: PersonListSubscribedWebhookPayloadPersonAccountItemAccount;
   IsPrimary?: boolean;
   ReceiveInvoices?: boolean;
+  /**
+   * `1` - Admin, `2` - FullAccess, `3` - Operator
+   * @nullable
+   */
+  Role?: PersonListSubscribedWebhookPayloadPersonAccountItemRole;
 };
 
 export type PersonListSubscribedWebhookPayloadDealPeopleItem = {
@@ -58552,6 +61445,20 @@ export type PersonListUnsubscribedWebhookPayloadPersonAccountItemAccount = {
   _objectType?: string | null;
 } | null;
 
+/**
+ * `1` - Admin, `2` - FullAccess, `3` - Operator
+ * @nullable
+ */
+export type PersonListUnsubscribedWebhookPayloadPersonAccountItemRole = typeof PersonListUnsubscribedWebhookPayloadPersonAccountItemRole[keyof typeof PersonListUnsubscribedWebhookPayloadPersonAccountItemRole] | null;
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const PersonListUnsubscribedWebhookPayloadPersonAccountItemRole = {
+  Admin: 1,
+  FullAccess: 2,
+  Operator: 3,
+} as const;
+
 export type PersonListUnsubscribedWebhookPayloadPersonAccountItem = {
   /**
    * @maxLength 10
@@ -58568,6 +61475,11 @@ export type PersonListUnsubscribedWebhookPayloadPersonAccountItem = {
   Account?: PersonListUnsubscribedWebhookPayloadPersonAccountItemAccount;
   IsPrimary?: boolean;
   ReceiveInvoices?: boolean;
+  /**
+   * `1` - Admin, `2` - FullAccess, `3` - Operator
+   * @nullable
+   */
+  Role?: PersonListUnsubscribedWebhookPayloadPersonAccountItemRole;
 };
 
 export type PersonListUnsubscribedWebhookPayloadDealPeopleItem = {
@@ -59061,6 +61973,20 @@ export type PersonSegmentAddedWebhookPayloadPersonAccountItemAccount = {
   _objectType?: string | null;
 } | null;
 
+/**
+ * `1` - Admin, `2` - FullAccess, `3` - Operator
+ * @nullable
+ */
+export type PersonSegmentAddedWebhookPayloadPersonAccountItemRole = typeof PersonSegmentAddedWebhookPayloadPersonAccountItemRole[keyof typeof PersonSegmentAddedWebhookPayloadPersonAccountItemRole] | null;
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const PersonSegmentAddedWebhookPayloadPersonAccountItemRole = {
+  Admin: 1,
+  FullAccess: 2,
+  Operator: 3,
+} as const;
+
 export type PersonSegmentAddedWebhookPayloadPersonAccountItem = {
   /**
    * @maxLength 10
@@ -59077,6 +62003,11 @@ export type PersonSegmentAddedWebhookPayloadPersonAccountItem = {
   Account?: PersonSegmentAddedWebhookPayloadPersonAccountItemAccount;
   IsPrimary?: boolean;
   ReceiveInvoices?: boolean;
+  /**
+   * `1` - Admin, `2` - FullAccess, `3` - Operator
+   * @nullable
+   */
+  Role?: PersonSegmentAddedWebhookPayloadPersonAccountItemRole;
 };
 
 export type PersonSegmentAddedWebhookPayloadDealPeopleItem = {
@@ -59570,6 +62501,20 @@ export type PersonSegmentRemovedWebhookPayloadPersonAccountItemAccount = {
   _objectType?: string | null;
 } | null;
 
+/**
+ * `1` - Admin, `2` - FullAccess, `3` - Operator
+ * @nullable
+ */
+export type PersonSegmentRemovedWebhookPayloadPersonAccountItemRole = typeof PersonSegmentRemovedWebhookPayloadPersonAccountItemRole[keyof typeof PersonSegmentRemovedWebhookPayloadPersonAccountItemRole] | null;
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const PersonSegmentRemovedWebhookPayloadPersonAccountItemRole = {
+  Admin: 1,
+  FullAccess: 2,
+  Operator: 3,
+} as const;
+
 export type PersonSegmentRemovedWebhookPayloadPersonAccountItem = {
   /**
    * @maxLength 10
@@ -59586,6 +62531,11 @@ export type PersonSegmentRemovedWebhookPayloadPersonAccountItem = {
   Account?: PersonSegmentRemovedWebhookPayloadPersonAccountItemAccount;
   IsPrimary?: boolean;
   ReceiveInvoices?: boolean;
+  /**
+   * `1` - Admin, `2` - FullAccess, `3` - Operator
+   * @nullable
+   */
+  Role?: PersonSegmentRemovedWebhookPayloadPersonAccountItemRole;
 };
 
 export type PersonSegmentRemovedWebhookPayloadDealPeopleItem = {
@@ -60069,6 +63019,20 @@ export type PersonEmailOpenedWebhookPayloadPersonAccountItemAccount = {
   _objectType?: string | null;
 } | null;
 
+/**
+ * `1` - Admin, `2` - FullAccess, `3` - Operator
+ * @nullable
+ */
+export type PersonEmailOpenedWebhookPayloadPersonAccountItemRole = typeof PersonEmailOpenedWebhookPayloadPersonAccountItemRole[keyof typeof PersonEmailOpenedWebhookPayloadPersonAccountItemRole] | null;
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const PersonEmailOpenedWebhookPayloadPersonAccountItemRole = {
+  Admin: 1,
+  FullAccess: 2,
+  Operator: 3,
+} as const;
+
 export type PersonEmailOpenedWebhookPayloadPersonAccountItem = {
   /**
    * @maxLength 10
@@ -60085,6 +63049,11 @@ export type PersonEmailOpenedWebhookPayloadPersonAccountItem = {
   Account?: PersonEmailOpenedWebhookPayloadPersonAccountItemAccount;
   IsPrimary?: boolean;
   ReceiveInvoices?: boolean;
+  /**
+   * `1` - Admin, `2` - FullAccess, `3` - Operator
+   * @nullable
+   */
+  Role?: PersonEmailOpenedWebhookPayloadPersonAccountItemRole;
 };
 
 export type PersonEmailOpenedWebhookPayloadDealPeopleItem = {
@@ -60567,6 +63536,20 @@ export type PersonEmailClickedWebhookPayloadPersonAccountItemAccount = {
   _objectType?: string | null;
 } | null;
 
+/**
+ * `1` - Admin, `2` - FullAccess, `3` - Operator
+ * @nullable
+ */
+export type PersonEmailClickedWebhookPayloadPersonAccountItemRole = typeof PersonEmailClickedWebhookPayloadPersonAccountItemRole[keyof typeof PersonEmailClickedWebhookPayloadPersonAccountItemRole] | null;
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const PersonEmailClickedWebhookPayloadPersonAccountItemRole = {
+  Admin: 1,
+  FullAccess: 2,
+  Operator: 3,
+} as const;
+
 export type PersonEmailClickedWebhookPayloadPersonAccountItem = {
   /**
    * @maxLength 10
@@ -60583,6 +63566,11 @@ export type PersonEmailClickedWebhookPayloadPersonAccountItem = {
   Account?: PersonEmailClickedWebhookPayloadPersonAccountItemAccount;
   IsPrimary?: boolean;
   ReceiveInvoices?: boolean;
+  /**
+   * `1` - Admin, `2` - FullAccess, `3` - Operator
+   * @nullable
+   */
+  Role?: PersonEmailClickedWebhookPayloadPersonAccountItemRole;
 };
 
 export type PersonEmailClickedWebhookPayloadDealPeopleItem = {
@@ -61065,6 +64053,20 @@ export type PersonEmailBounceWebhookPayloadPersonAccountItemAccount = {
   _objectType?: string | null;
 } | null;
 
+/**
+ * `1` - Admin, `2` - FullAccess, `3` - Operator
+ * @nullable
+ */
+export type PersonEmailBounceWebhookPayloadPersonAccountItemRole = typeof PersonEmailBounceWebhookPayloadPersonAccountItemRole[keyof typeof PersonEmailBounceWebhookPayloadPersonAccountItemRole] | null;
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const PersonEmailBounceWebhookPayloadPersonAccountItemRole = {
+  Admin: 1,
+  FullAccess: 2,
+  Operator: 3,
+} as const;
+
 export type PersonEmailBounceWebhookPayloadPersonAccountItem = {
   /**
    * @maxLength 10
@@ -61081,6 +64083,11 @@ export type PersonEmailBounceWebhookPayloadPersonAccountItem = {
   Account?: PersonEmailBounceWebhookPayloadPersonAccountItemAccount;
   IsPrimary?: boolean;
   ReceiveInvoices?: boolean;
+  /**
+   * `1` - Admin, `2` - FullAccess, `3` - Operator
+   * @nullable
+   */
+  Role?: PersonEmailBounceWebhookPayloadPersonAccountItemRole;
 };
 
 export type PersonEmailBounceWebhookPayloadDealPeopleItem = {
@@ -61563,6 +64570,20 @@ export type PersonEmailSpamWebhookPayloadPersonAccountItemAccount = {
   _objectType?: string | null;
 } | null;
 
+/**
+ * `1` - Admin, `2` - FullAccess, `3` - Operator
+ * @nullable
+ */
+export type PersonEmailSpamWebhookPayloadPersonAccountItemRole = typeof PersonEmailSpamWebhookPayloadPersonAccountItemRole[keyof typeof PersonEmailSpamWebhookPayloadPersonAccountItemRole] | null;
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const PersonEmailSpamWebhookPayloadPersonAccountItemRole = {
+  Admin: 1,
+  FullAccess: 2,
+  Operator: 3,
+} as const;
+
 export type PersonEmailSpamWebhookPayloadPersonAccountItem = {
   /**
    * @maxLength 10
@@ -61579,6 +64600,11 @@ export type PersonEmailSpamWebhookPayloadPersonAccountItem = {
   Account?: PersonEmailSpamWebhookPayloadPersonAccountItemAccount;
   IsPrimary?: boolean;
   ReceiveInvoices?: boolean;
+  /**
+   * `1` - Admin, `2` - FullAccess, `3` - Operator
+   * @nullable
+   */
+  Role?: PersonEmailSpamWebhookPayloadPersonAccountItemRole;
 };
 
 export type PersonEmailSpamWebhookPayloadDealPeopleItem = {
@@ -62066,6 +65092,20 @@ export type PersonSupportTicketCreatedWebhookPayloadPersonAccountItemAccount = {
   _objectType?: string | null;
 } | null;
 
+/**
+ * `1` - Admin, `2` - FullAccess, `3` - Operator
+ * @nullable
+ */
+export type PersonSupportTicketCreatedWebhookPayloadPersonAccountItemRole = typeof PersonSupportTicketCreatedWebhookPayloadPersonAccountItemRole[keyof typeof PersonSupportTicketCreatedWebhookPayloadPersonAccountItemRole] | null;
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const PersonSupportTicketCreatedWebhookPayloadPersonAccountItemRole = {
+  Admin: 1,
+  FullAccess: 2,
+  Operator: 3,
+} as const;
+
 export type PersonSupportTicketCreatedWebhookPayloadPersonAccountItem = {
   /**
    * @maxLength 10
@@ -62082,6 +65122,11 @@ export type PersonSupportTicketCreatedWebhookPayloadPersonAccountItem = {
   Account?: PersonSupportTicketCreatedWebhookPayloadPersonAccountItemAccount;
   IsPrimary?: boolean;
   ReceiveInvoices?: boolean;
+  /**
+   * `1` - Admin, `2` - FullAccess, `3` - Operator
+   * @nullable
+   */
+  Role?: PersonSupportTicketCreatedWebhookPayloadPersonAccountItemRole;
 };
 
 export type PersonSupportTicketCreatedWebhookPayloadDealPeopleItem = {
@@ -62570,6 +65615,20 @@ export type PersonSupportTicketUpdatedWebhookPayloadPersonAccountItemAccount = {
   _objectType?: string | null;
 } | null;
 
+/**
+ * `1` - Admin, `2` - FullAccess, `3` - Operator
+ * @nullable
+ */
+export type PersonSupportTicketUpdatedWebhookPayloadPersonAccountItemRole = typeof PersonSupportTicketUpdatedWebhookPayloadPersonAccountItemRole[keyof typeof PersonSupportTicketUpdatedWebhookPayloadPersonAccountItemRole] | null;
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const PersonSupportTicketUpdatedWebhookPayloadPersonAccountItemRole = {
+  Admin: 1,
+  FullAccess: 2,
+  Operator: 3,
+} as const;
+
 export type PersonSupportTicketUpdatedWebhookPayloadPersonAccountItem = {
   /**
    * @maxLength 10
@@ -62586,6 +65645,11 @@ export type PersonSupportTicketUpdatedWebhookPayloadPersonAccountItem = {
   Account?: PersonSupportTicketUpdatedWebhookPayloadPersonAccountItemAccount;
   IsPrimary?: boolean;
   ReceiveInvoices?: boolean;
+  /**
+   * `1` - Admin, `2` - FullAccess, `3` - Operator
+   * @nullable
+   */
+  Role?: PersonSupportTicketUpdatedWebhookPayloadPersonAccountItemRole;
 };
 
 export type PersonSupportTicketUpdatedWebhookPayloadDealPeopleItem = {
@@ -63076,6 +66140,20 @@ export type PersonLeadFormSubmittedWebhookPayloadPersonAccountItemAccount = {
   _objectType?: string | null;
 } | null;
 
+/**
+ * `1` - Admin, `2` - FullAccess, `3` - Operator
+ * @nullable
+ */
+export type PersonLeadFormSubmittedWebhookPayloadPersonAccountItemRole = typeof PersonLeadFormSubmittedWebhookPayloadPersonAccountItemRole[keyof typeof PersonLeadFormSubmittedWebhookPayloadPersonAccountItemRole] | null;
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const PersonLeadFormSubmittedWebhookPayloadPersonAccountItemRole = {
+  Admin: 1,
+  FullAccess: 2,
+  Operator: 3,
+} as const;
+
 export type PersonLeadFormSubmittedWebhookPayloadPersonAccountItem = {
   /**
    * @maxLength 10
@@ -63092,6 +66170,11 @@ export type PersonLeadFormSubmittedWebhookPayloadPersonAccountItem = {
   Account?: PersonLeadFormSubmittedWebhookPayloadPersonAccountItemAccount;
   IsPrimary?: boolean;
   ReceiveInvoices?: boolean;
+  /**
+   * `1` - Admin, `2` - FullAccess, `3` - Operator
+   * @nullable
+   */
+  Role?: PersonLeadFormSubmittedWebhookPayloadPersonAccountItemRole;
 };
 
 export type PersonLeadFormSubmittedWebhookPayloadDealPeopleItem = {
@@ -63585,6 +66668,20 @@ export type PersonListConfirmedWebhookPayloadPersonAccountItemAccount = {
   _objectType?: string | null;
 } | null;
 
+/**
+ * `1` - Admin, `2` - FullAccess, `3` - Operator
+ * @nullable
+ */
+export type PersonListConfirmedWebhookPayloadPersonAccountItemRole = typeof PersonListConfirmedWebhookPayloadPersonAccountItemRole[keyof typeof PersonListConfirmedWebhookPayloadPersonAccountItemRole] | null;
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const PersonListConfirmedWebhookPayloadPersonAccountItemRole = {
+  Admin: 1,
+  FullAccess: 2,
+  Operator: 3,
+} as const;
+
 export type PersonListConfirmedWebhookPayloadPersonAccountItem = {
   /**
    * @maxLength 10
@@ -63601,6 +66698,11 @@ export type PersonListConfirmedWebhookPayloadPersonAccountItem = {
   Account?: PersonListConfirmedWebhookPayloadPersonAccountItemAccount;
   IsPrimary?: boolean;
   ReceiveInvoices?: boolean;
+  /**
+   * `1` - Admin, `2` - FullAccess, `3` - Operator
+   * @nullable
+   */
+  Role?: PersonListConfirmedWebhookPayloadPersonAccountItemRole;
 };
 
 export type PersonListConfirmedWebhookPayloadDealPeopleItem = {
@@ -64084,6 +67186,20 @@ export type PersonEmailSubscribedWebhookPayloadPersonAccountItemAccount = {
   _objectType?: string | null;
 } | null;
 
+/**
+ * `1` - Admin, `2` - FullAccess, `3` - Operator
+ * @nullable
+ */
+export type PersonEmailSubscribedWebhookPayloadPersonAccountItemRole = typeof PersonEmailSubscribedWebhookPayloadPersonAccountItemRole[keyof typeof PersonEmailSubscribedWebhookPayloadPersonAccountItemRole] | null;
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const PersonEmailSubscribedWebhookPayloadPersonAccountItemRole = {
+  Admin: 1,
+  FullAccess: 2,
+  Operator: 3,
+} as const;
+
 export type PersonEmailSubscribedWebhookPayloadPersonAccountItem = {
   /**
    * @maxLength 10
@@ -64100,6 +67216,11 @@ export type PersonEmailSubscribedWebhookPayloadPersonAccountItem = {
   Account?: PersonEmailSubscribedWebhookPayloadPersonAccountItemAccount;
   IsPrimary?: boolean;
   ReceiveInvoices?: boolean;
+  /**
+   * `1` - Admin, `2` - FullAccess, `3` - Operator
+   * @nullable
+   */
+  Role?: PersonEmailSubscribedWebhookPayloadPersonAccountItemRole;
 };
 
 export type PersonEmailSubscribedWebhookPayloadDealPeopleItem = {
@@ -64587,6 +67708,20 @@ export type PersonEmailUnsubscribedWebhookPayloadPersonAccountItemAccount = {
   _objectType?: string | null;
 } | null;
 
+/**
+ * `1` - Admin, `2` - FullAccess, `3` - Operator
+ * @nullable
+ */
+export type PersonEmailUnsubscribedWebhookPayloadPersonAccountItemRole = typeof PersonEmailUnsubscribedWebhookPayloadPersonAccountItemRole[keyof typeof PersonEmailUnsubscribedWebhookPayloadPersonAccountItemRole] | null;
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const PersonEmailUnsubscribedWebhookPayloadPersonAccountItemRole = {
+  Admin: 1,
+  FullAccess: 2,
+  Operator: 3,
+} as const;
+
 export type PersonEmailUnsubscribedWebhookPayloadPersonAccountItem = {
   /**
    * @maxLength 10
@@ -64603,6 +67738,11 @@ export type PersonEmailUnsubscribedWebhookPayloadPersonAccountItem = {
   Account?: PersonEmailUnsubscribedWebhookPayloadPersonAccountItemAccount;
   IsPrimary?: boolean;
   ReceiveInvoices?: boolean;
+  /**
+   * `1` - Admin, `2` - FullAccess, `3` - Operator
+   * @nullable
+   */
+  Role?: PersonEmailUnsubscribedWebhookPayloadPersonAccountItemRole;
 };
 
 export type PersonEmailUnsubscribedWebhookPayloadDealPeopleItem = {
@@ -65086,6 +68226,20 @@ export type PersonTemporaryPasswordSetWebhookPayloadPersonAccountItemAccount = {
   _objectType?: string | null;
 } | null;
 
+/**
+ * `1` - Admin, `2` - FullAccess, `3` - Operator
+ * @nullable
+ */
+export type PersonTemporaryPasswordSetWebhookPayloadPersonAccountItemRole = typeof PersonTemporaryPasswordSetWebhookPayloadPersonAccountItemRole[keyof typeof PersonTemporaryPasswordSetWebhookPayloadPersonAccountItemRole] | null;
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const PersonTemporaryPasswordSetWebhookPayloadPersonAccountItemRole = {
+  Admin: 1,
+  FullAccess: 2,
+  Operator: 3,
+} as const;
+
 export type PersonTemporaryPasswordSetWebhookPayloadPersonAccountItem = {
   /**
    * @maxLength 10
@@ -65102,6 +68256,11 @@ export type PersonTemporaryPasswordSetWebhookPayloadPersonAccountItem = {
   Account?: PersonTemporaryPasswordSetWebhookPayloadPersonAccountItemAccount;
   IsPrimary?: boolean;
   ReceiveInvoices?: boolean;
+  /**
+   * `1` - Admin, `2` - FullAccess, `3` - Operator
+   * @nullable
+   */
+  Role?: PersonTemporaryPasswordSetWebhookPayloadPersonAccountItemRole;
 };
 
 export type PersonTemporaryPasswordSetWebhookPayloadDealPeopleItem = {
@@ -65591,6 +68750,20 @@ export type PersonSupportTicketClosedWebhookPayloadPersonAccountItemAccount = {
   _objectType?: string | null;
 } | null;
 
+/**
+ * `1` - Admin, `2` - FullAccess, `3` - Operator
+ * @nullable
+ */
+export type PersonSupportTicketClosedWebhookPayloadPersonAccountItemRole = typeof PersonSupportTicketClosedWebhookPayloadPersonAccountItemRole[keyof typeof PersonSupportTicketClosedWebhookPayloadPersonAccountItemRole] | null;
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const PersonSupportTicketClosedWebhookPayloadPersonAccountItemRole = {
+  Admin: 1,
+  FullAccess: 2,
+  Operator: 3,
+} as const;
+
 export type PersonSupportTicketClosedWebhookPayloadPersonAccountItem = {
   /**
    * @maxLength 10
@@ -65607,6 +68780,11 @@ export type PersonSupportTicketClosedWebhookPayloadPersonAccountItem = {
   Account?: PersonSupportTicketClosedWebhookPayloadPersonAccountItemAccount;
   IsPrimary?: boolean;
   ReceiveInvoices?: boolean;
+  /**
+   * `1` - Admin, `2` - FullAccess, `3` - Operator
+   * @nullable
+   */
+  Role?: PersonSupportTicketClosedWebhookPayloadPersonAccountItemRole;
 };
 
 export type PersonSupportTicketClosedWebhookPayloadDealPeopleItem = {
@@ -66090,6 +69268,20 @@ export type PersonTwoFactorRecoveryCodesRegeneratedWebhookPayloadPersonAccountIt
   _objectType?: string | null;
 } | null;
 
+/**
+ * `1` - Admin, `2` - FullAccess, `3` - Operator
+ * @nullable
+ */
+export type PersonTwoFactorRecoveryCodesRegeneratedWebhookPayloadPersonAccountItemRole = typeof PersonTwoFactorRecoveryCodesRegeneratedWebhookPayloadPersonAccountItemRole[keyof typeof PersonTwoFactorRecoveryCodesRegeneratedWebhookPayloadPersonAccountItemRole] | null;
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const PersonTwoFactorRecoveryCodesRegeneratedWebhookPayloadPersonAccountItemRole = {
+  Admin: 1,
+  FullAccess: 2,
+  Operator: 3,
+} as const;
+
 export type PersonTwoFactorRecoveryCodesRegeneratedWebhookPayloadPersonAccountItem = {
   /**
    * @maxLength 10
@@ -66106,6 +69298,11 @@ export type PersonTwoFactorRecoveryCodesRegeneratedWebhookPayloadPersonAccountIt
   Account?: PersonTwoFactorRecoveryCodesRegeneratedWebhookPayloadPersonAccountItemAccount;
   IsPrimary?: boolean;
   ReceiveInvoices?: boolean;
+  /**
+   * `1` - Admin, `2` - FullAccess, `3` - Operator
+   * @nullable
+   */
+  Role?: PersonTwoFactorRecoveryCodesRegeneratedWebhookPayloadPersonAccountItemRole;
 };
 
 export type PersonTwoFactorRecoveryCodesRegeneratedWebhookPayloadDealPeopleItem = {
@@ -68602,6 +71799,20 @@ export type DiscordUserLinkedWebhookPayloadPersonAccountItemAccount = {
   _objectType?: string | null;
 } | null;
 
+/**
+ * `1` - Admin, `2` - FullAccess, `3` - Operator
+ * @nullable
+ */
+export type DiscordUserLinkedWebhookPayloadPersonAccountItemRole = typeof DiscordUserLinkedWebhookPayloadPersonAccountItemRole[keyof typeof DiscordUserLinkedWebhookPayloadPersonAccountItemRole] | null;
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const DiscordUserLinkedWebhookPayloadPersonAccountItemRole = {
+  Admin: 1,
+  FullAccess: 2,
+  Operator: 3,
+} as const;
+
 export type DiscordUserLinkedWebhookPayloadPersonAccountItem = {
   /**
    * @maxLength 10
@@ -68618,6 +71829,11 @@ export type DiscordUserLinkedWebhookPayloadPersonAccountItem = {
   Account?: DiscordUserLinkedWebhookPayloadPersonAccountItemAccount;
   IsPrimary?: boolean;
   ReceiveInvoices?: boolean;
+  /**
+   * `1` - Admin, `2` - FullAccess, `3` - Operator
+   * @nullable
+   */
+  Role?: DiscordUserLinkedWebhookPayloadPersonAccountItemRole;
 };
 
 export type DiscordUserLinkedWebhookPayloadDealPeopleItem = {
@@ -69113,6 +72329,20 @@ export type DiscordUserAddedToServerWebhookPayloadPersonAccountItemAccount = {
   _objectType?: string | null;
 } | null;
 
+/**
+ * `1` - Admin, `2` - FullAccess, `3` - Operator
+ * @nullable
+ */
+export type DiscordUserAddedToServerWebhookPayloadPersonAccountItemRole = typeof DiscordUserAddedToServerWebhookPayloadPersonAccountItemRole[keyof typeof DiscordUserAddedToServerWebhookPayloadPersonAccountItemRole] | null;
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const DiscordUserAddedToServerWebhookPayloadPersonAccountItemRole = {
+  Admin: 1,
+  FullAccess: 2,
+  Operator: 3,
+} as const;
+
 export type DiscordUserAddedToServerWebhookPayloadPersonAccountItem = {
   /**
    * @maxLength 10
@@ -69129,6 +72359,11 @@ export type DiscordUserAddedToServerWebhookPayloadPersonAccountItem = {
   Account?: DiscordUserAddedToServerWebhookPayloadPersonAccountItemAccount;
   IsPrimary?: boolean;
   ReceiveInvoices?: boolean;
+  /**
+   * `1` - Admin, `2` - FullAccess, `3` - Operator
+   * @nullable
+   */
+  Role?: DiscordUserAddedToServerWebhookPayloadPersonAccountItemRole;
 };
 
 export type DiscordUserAddedToServerWebhookPayloadDealPeopleItem = {
@@ -69627,6 +72862,20 @@ export type DiscordUserRolesUpdatedWebhookPayloadPersonAccountItemAccount = {
   _objectType?: string | null;
 } | null;
 
+/**
+ * `1` - Admin, `2` - FullAccess, `3` - Operator
+ * @nullable
+ */
+export type DiscordUserRolesUpdatedWebhookPayloadPersonAccountItemRole = typeof DiscordUserRolesUpdatedWebhookPayloadPersonAccountItemRole[keyof typeof DiscordUserRolesUpdatedWebhookPayloadPersonAccountItemRole] | null;
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const DiscordUserRolesUpdatedWebhookPayloadPersonAccountItemRole = {
+  Admin: 1,
+  FullAccess: 2,
+  Operator: 3,
+} as const;
+
 export type DiscordUserRolesUpdatedWebhookPayloadPersonAccountItem = {
   /**
    * @maxLength 10
@@ -69643,6 +72892,11 @@ export type DiscordUserRolesUpdatedWebhookPayloadPersonAccountItem = {
   Account?: DiscordUserRolesUpdatedWebhookPayloadPersonAccountItemAccount;
   IsPrimary?: boolean;
   ReceiveInvoices?: boolean;
+  /**
+   * `1` - Admin, `2` - FullAccess, `3` - Operator
+   * @nullable
+   */
+  Role?: DiscordUserRolesUpdatedWebhookPayloadPersonAccountItemRole;
 };
 
 export type DiscordUserRolesUpdatedWebhookPayloadDealPeopleItem = {
@@ -70141,6 +73395,20 @@ export type DiscordUserRemovedFromServerWebhookPayloadPersonAccountItemAccount =
   _objectType?: string | null;
 } | null;
 
+/**
+ * `1` - Admin, `2` - FullAccess, `3` - Operator
+ * @nullable
+ */
+export type DiscordUserRemovedFromServerWebhookPayloadPersonAccountItemRole = typeof DiscordUserRemovedFromServerWebhookPayloadPersonAccountItemRole[keyof typeof DiscordUserRemovedFromServerWebhookPayloadPersonAccountItemRole] | null;
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const DiscordUserRemovedFromServerWebhookPayloadPersonAccountItemRole = {
+  Admin: 1,
+  FullAccess: 2,
+  Operator: 3,
+} as const;
+
 export type DiscordUserRemovedFromServerWebhookPayloadPersonAccountItem = {
   /**
    * @maxLength 10
@@ -70157,6 +73425,11 @@ export type DiscordUserRemovedFromServerWebhookPayloadPersonAccountItem = {
   Account?: DiscordUserRemovedFromServerWebhookPayloadPersonAccountItemAccount;
   IsPrimary?: boolean;
   ReceiveInvoices?: boolean;
+  /**
+   * `1` - Admin, `2` - FullAccess, `3` - Operator
+   * @nullable
+   */
+  Role?: DiscordUserRemovedFromServerWebhookPayloadPersonAccountItemRole;
 };
 
 export type DiscordUserRemovedFromServerWebhookPayloadDealPeopleItem = {
@@ -70659,6 +73932,11 @@ export type ArticleGetAllArticlesParams = {
  */
 q?: string | null;
 };
+
+/**
+ * @nullable
+ */
+export type ArticleAddArticleBody = Article | null;
 
 /**
  * @nullable

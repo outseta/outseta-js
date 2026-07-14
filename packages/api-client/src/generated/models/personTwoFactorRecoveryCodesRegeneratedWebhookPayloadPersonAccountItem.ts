@@ -1,5 +1,6 @@
 // @ts-nocheck
 import type { PersonTwoFactorRecoveryCodesRegeneratedWebhookPayloadPersonAccountItemAccount } from './personTwoFactorRecoveryCodesRegeneratedWebhookPayloadPersonAccountItemAccount';
+import type { PersonTwoFactorRecoveryCodesRegeneratedWebhookPayloadPersonAccountItemRole } from './personTwoFactorRecoveryCodesRegeneratedWebhookPayloadPersonAccountItemRole';
 
 export type PersonTwoFactorRecoveryCodesRegeneratedWebhookPayloadPersonAccountItem = {
   /**
@@ -17,4 +18,9 @@ export type PersonTwoFactorRecoveryCodesRegeneratedWebhookPayloadPersonAccountIt
   Account?: PersonTwoFactorRecoveryCodesRegeneratedWebhookPayloadPersonAccountItemAccount;
   IsPrimary?: boolean;
   ReceiveInvoices?: boolean;
+  /**
+   * `1` - Admin, `2` - FullAccess, `3` - Operator
+   * @nullable
+   */
+  Role?: PersonTwoFactorRecoveryCodesRegeneratedWebhookPayloadPersonAccountItemRole;
 };
