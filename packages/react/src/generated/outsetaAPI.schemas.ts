@@ -3824,6 +3824,7 @@ export type MessageAllOf = {
   CountTotalClick?: number;
   IgnoredSpamBounce?: number;
   IsBounceRatePaused?: boolean;
+  IsSpamScorePaused?: boolean;
   /** @nullable */
   EmailLinks?: EmailLink[] | null;
   SpamAssassinScore?: number;
