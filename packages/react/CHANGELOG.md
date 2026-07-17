@@ -1,5 +1,13 @@
 # @outseta/react
 
+## 0.4.8
+
+### Patch Changes
+
+- cc883ca: Update API spec.
+- Updated dependencies [cc883ca]
+  - @outseta/api-client@0.3.14
+
 ## 0.4.7
 
 ### Patch Changes

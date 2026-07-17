@@ -1,5 +1,11 @@
 # @outseta/api-client
 
+## 0.3.14
+
+### Patch Changes
+
+- cc883ca: Update API spec.
+
 ## 0.3.13
 
 ### Patch Changes
