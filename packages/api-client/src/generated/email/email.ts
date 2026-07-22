@@ -465,8 +465,8 @@ export const dripCampaignUpdateDripCampaignMessage = async (dripCampaignUid: str
 
 
 /**
- * If the drip campaign is active, the drip is rescheduled for its existing members after the
-message is removed.
+ * Deleting a message deactivates the drip campaign (like adding a message) so its schedule can be
+reviewed before it resumes. Reactivate the campaign to resume sending.
  * @summary Delete a message from a drip campaign.
  */
 export type dripCampaignDeleteDripCampaignMessageResponse200 = {

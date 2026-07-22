@@ -3723,6 +3723,7 @@ export type DripCampaignAllOf = {
   DripCampaignMessages?: DripCampaignMessage[] | null;
   AllowRepeatProcessing?: boolean;
   StartDripToExistingMembers?: boolean;
+  MarkExistingRecipientsDone?: boolean;
 };
 
 export type DripCampaign = AbstractQcountBean & DripCampaignAllOf;
@@ -3867,6 +3868,32 @@ export const SpamStatus = {
   NotSpam: 5,
   Ignored: 6,
 } as const;
+
+export interface SequenceState {
+  /** @nullable */
+  Freezes?: SequenceFreeze[] | null;
+  /** @nullable */
+  Versions?: SequenceVersion[] | null;
+}
+
+export interface SequenceFreeze {
+  FrozenAt?: string;
+  /** @nullable */
+  CreatedByUserId?: number | null;
+}
+
+export interface SequenceVersion {
+  EffectiveFrom?: string;
+  /** @nullable */
+  Messages?: SequenceVersionMessage[] | null;
+  /** @nullable */
+  CreatedByUserId?: number | null;
+}
+
+export interface SequenceVersionMessage {
+  MessageId?: number;
+  OffsetHours?: number;
+}
 
 /**
  * @nullable

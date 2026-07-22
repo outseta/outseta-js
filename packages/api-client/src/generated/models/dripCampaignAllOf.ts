@@ -15,4 +15,5 @@ export type DripCampaignAllOf = {
   DripCampaignMessages?: DripCampaignMessage[] | null;
   AllowRepeatProcessing?: boolean;
   StartDripToExistingMembers?: boolean;
+  MarkExistingRecipientsDone?: boolean;
 };
