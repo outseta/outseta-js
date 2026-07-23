@@ -1,5 +1,11 @@
 # @outseta/api-client
 
+## 0.3.16
+
+### Patch Changes
+
+- d81baac: Update API spec.
+
 ## 0.3.15
 
 ### Patch Changes
