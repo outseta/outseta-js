@@ -624,19 +624,27 @@ still be supplied directly (a JSON string of the form
 {"BroadcastRecipientsEmailLists":[{"Uid":"..."}],"BroadcastRecipientsSegments":[{"Uid":"..."}]});
 when both are present they are merged.
             
-Message.Body is the complete HTML email and is exactly what gets sent. It is rendered as a
-Liquid template, so it may include merge tags such as {{ Person.FirstName }}; unknown {{ }}
-tokens render as empty text. An inline-styled HTML fragment is recommended, though a full
-HTML document is also accepted. Message.Design (the drag-and-drop editor state) is optional —
-when omitted it is generated automatically from Body, so callers (including LLM tools) do not
-need to understand it. Use Message.PreviewText for inbox preview text rather than an in-body
+Message.Body is rendered as a Liquid template, so it may include merge tags such as
+{{ Person.FirstName }}; unknown {{ }} tokens render as empty text. An inline-styled HTML
+fragment is recommended. Message.Design (the drag-and-drop editor state) is optional — when
+omitted it is derived automatically, so callers (including LLM tools) do not need to
+understand it. Use Message.PreviewText for inbox preview text rather than an in-body
 preheader.
             
-You must include a visible unsubscribe link in the body yourself: add {{ UnsubscribeLink }}
-(a ready-made anchor) or {{ UnsubscribeUrl }} (the raw URL) where you want it. One is not
-inserted automatically, and its presence is not validated. A one-click List-Unsubscribe
-header is always added, but most anti-spam laws (e.g. CAN-SPAM) also require a visible
-unsubscribe link in the body.
+When Body is a bare content fragment (no Design and no unsubscribe token), it is composed
+into the account's API email layout — a branded header and footer that includes the
+unsubscribe and manage-subscriptions links — and the composed result is what is sent and
+opened in the editor. The layout is editable in the app; TemplateUid selects a specific
+layout template when the account has more than one.
+            
+The layout is NOT applied when the body already contains an unsubscribe token
+({{ UnsubscribeLink }}, {{ UnsubscribeUrl }} or {{ OneClickUnsubscribeUrl }}), when a
+Design is supplied, or when the body is a complex full HTML document (Outlook conditional
+comments, stylesheet links) — in those cases the body is sent exactly as supplied, and you
+must include a visible unsubscribe link in it yourself: add {{ UnsubscribeLink }} (a
+ready-made anchor) or {{ UnsubscribeUrl }} (the raw URL) where you want it. Its presence is
+not validated. A one-click List-Unsubscribe header is always added, but most anti-spam laws
+(e.g. CAN-SPAM) also require a visible unsubscribe link in the body.
  * @summary Create a new broadcast.
  */
 export type campaignAddBroadcastEmailResponse200 = {
@@ -742,8 +750,11 @@ set, send RecipientData directly.
             
 When changing Message.Body, omit Message.Design: it is regenerated from the new Body so the
 drag-and-drop editor stays in sync. Sending a Design that was captured from an earlier
-response alongside an edited Body would otherwise keep the stale design. See the create
-endpoint for how Body is rendered (Liquid) and the unsubscribe-token expectation.
+response alongside an edited Body would otherwise keep the stale design. A body that was
+composed into the API email layout keeps the layout on such updates without duplicating
+it — its content is re-composed into the layout — and a bare fragment is composed like on
+create. See the create endpoint for how Body is rendered (Liquid), when the layout
+applies, and the unsubscribe-token expectation when it does not.
  * @summary Update a broadcast.
  */
 export type campaignUpdateBroadcastEmailResponse200 = {

@@ -19,6 +19,8 @@ export type BroadcastCampaignAllOf = {
   EmailListUids?: string[] | null;
   /** @nullable */
   SegmentUids?: string[] | null;
+  /** @nullable */
+  TemplateUid?: string | null;
   Status?: BroadcastCampaignStatus;
   /**
    * @maxLength 500
