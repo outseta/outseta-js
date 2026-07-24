@@ -828,20 +828,20 @@ omitted it is derived automatically, so callers (including LLM tools) do not nee
 understand it. Use Message.PreviewText for inbox preview text rather than an in-body
 preheader.
             
-When Body is a bare content fragment (no Design and no unsubscribe token), it is composed
-into the account's API email layout — a branded header and footer that includes the
-unsubscribe and manage-subscriptions links — and the composed result is what is sent and
-opened in the editor. The layout is editable in the app; TemplateUid selects a specific
-layout template when the account has more than one.
+When Body is a content fragment with no Design, it is composed into the account's API
+email layout — a branded header and footer that includes the unsubscribe and
+manage-subscriptions links — and the composed result is what is sent and opened in the
+editor. Do not add your own unsubscribe link in this case; the layout provides one. The
+layout is editable in the app; TemplateUid selects a specific layout template when the
+account has more than one.
             
-The layout is NOT applied when the body already contains an unsubscribe token
-({{ UnsubscribeLink }}, {{ UnsubscribeUrl }} or {{ OneClickUnsubscribeUrl }}), when a
-Design is supplied, or when the body is a complex full HTML document (Outlook conditional
-comments, stylesheet links) — in those cases the body is sent exactly as supplied, and you
-must include a visible unsubscribe link in it yourself: add {{ UnsubscribeLink }} (a
-ready-made anchor) or {{ UnsubscribeUrl }} (the raw URL) where you want it. Its presence is
-not validated. A one-click List-Unsubscribe header is always added, but most anti-spam laws
-(e.g. CAN-SPAM) also require a visible unsubscribe link in the body.
+The layout is NOT applied when a Design is supplied or when the body is a complex full
+HTML document (Outlook conditional comments, stylesheet links) — in those cases the body
+is sent exactly as supplied, and you must include a visible unsubscribe link in it
+yourself: add {{ UnsubscribeLink }} (a ready-made anchor) or {{ UnsubscribeUrl }} (the raw
+URL) where you want it. Its presence is not validated. A one-click List-Unsubscribe header
+is always added, but most anti-spam laws (e.g. CAN-SPAM) also require a visible
+unsubscribe link in the body.
  * @summary Create a new broadcast.
  */
 export const campaignAddBroadcastEmail = (
