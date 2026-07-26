@@ -1,7 +1,7 @@
 // @ts-nocheck
 
 /**
- * `1` - Admin, `2` - FullAccess, `3` - Operator
+ * `1` - Admin, `2` - Member, `3` - Operator
  * @nullable
  */
 export type AccountWebhookEntityPersonAccountItemRole = typeof AccountWebhookEntityPersonAccountItemRole[keyof typeof AccountWebhookEntityPersonAccountItemRole] | null;
@@ -10,6 +10,6 @@ export type AccountWebhookEntityPersonAccountItemRole = typeof AccountWebhookEnt
 // eslint-disable-next-line @typescript-eslint/no-redeclare
 export const AccountWebhookEntityPersonAccountItemRole = {
   Admin: 1,
-  FullAccess: 2,
+  Member: 2,
   Operator: 3,
 } as const;

@@ -19,7 +19,7 @@ export type PersonWebhookEntityPersonAccountItem = {
   IsPrimary?: boolean;
   ReceiveInvoices?: boolean;
   /**
-   * `1` - Admin, `2` - FullAccess, `3` - Operator
+   * `1` - Admin, `2` - Member, `3` - Operator
    * @nullable
    */
   Role?: PersonWebhookEntityPersonAccountItemRole;
