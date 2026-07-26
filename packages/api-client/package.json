@@ -1,6 +1,6 @@
 {
   "name": "@outseta/api-client",
-  "version": "0.3.17",
+  "version": "0.3.18",
   "description": "Generated API client for the Outseta REST API",
   "license": "MIT",
   "repository": {
