@@ -1,5 +1,11 @@
 # @outseta/api-client
 
+## 0.3.19
+
+### Patch Changes
+
+- cdfce96: Update API spec.
+
 ## 0.3.18
 
 ### Patch Changes

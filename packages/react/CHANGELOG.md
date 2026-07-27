@@ -1,5 +1,13 @@
 # @outseta/react
 
+## 0.4.13
+
+### Patch Changes
+
+- cdfce96: Update API spec.
+- Updated dependencies [cdfce96]
+  - @outseta/api-client@0.3.19
+
 ## 0.4.12
 
 ### Patch Changes
