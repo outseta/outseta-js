@@ -23,7 +23,7 @@ export type CaseAllOf = {
   UserAgent?: string | null;
   /**
    * @minimum 1
-   * @maximum 2
+   * @maximum 3
    */
   Status: SupportCaseStatus;
   /**

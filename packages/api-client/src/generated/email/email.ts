@@ -741,7 +741,7 @@ export const campaignGetBroadcastEmail = async (broadcastCampaignUid: string | n
 
 /**
  * Setting SendDateTime to a future UTC date schedules the broadcast for sending and its status
-changes to Pending. An account may only have 20 broadcasts scheduled or sending at one time;
+changes to Pending. An account may only have 5 broadcasts scheduled or sending at one time;
 scheduling beyond that is rejected until one finishes sending or is unscheduled. There is no
 limit on the number of drafts. Clearing SendDateTime unschedules the broadcast. Recipients can be added
 with EmailListUids and SegmentUids (see the create endpoint): on update these are merged onto

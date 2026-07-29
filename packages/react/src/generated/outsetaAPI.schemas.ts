@@ -3031,7 +3031,7 @@ export type CaseAllOf = {
   UserAgent?: string | null;
   /**
    * @minimum 1
-   * @maximum 2
+   * @maximum 3
    */
   Status: SupportCaseStatus;
   /**
@@ -3059,7 +3059,7 @@ export type CaseAllOf = {
 export type Case = AbstractQcountBean & CaseAllOf;
 
 /**
- * `1` - Open, `2` - Closed
+ * `1` - Open, `2` - Closed, `3` - Spam
  */
 export type SupportCaseStatus = typeof SupportCaseStatus[keyof typeof SupportCaseStatus];
 
@@ -3068,6 +3068,7 @@ export type SupportCaseStatus = typeof SupportCaseStatus[keyof typeof SupportCas
 export const SupportCaseStatus = {
   Open: 1,
   Closed: 2,
+  Spam: 3,
 } as const;
 
 /**
