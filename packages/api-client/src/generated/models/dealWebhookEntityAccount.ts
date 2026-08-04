@@ -130,6 +130,8 @@ export type DealWebhookEntityAccount = {
   /** @nullable */
   StripePrice?: string[] | null;
   /** @nullable */
+  StripePriceIds?: string | null;
+  /** @nullable */
   StripePromotionCode?: string | null;
   /** @nullable */
   TaxId?: string | null;

@@ -616,6 +616,8 @@ export type AccountAllOf = {
   /** @nullable */
   StripePrice?: string[] | null;
   /** @nullable */
+  StripePriceIds?: string | null;
+  /** @nullable */
   StripePromotionCode?: string | null;
   /** @nullable */
   TaxId?: string | null;
@@ -7252,6 +7254,8 @@ export interface AccountWebhookEntity {
   /** @nullable */
   StripePrice?: string[] | null;
   /** @nullable */
+  StripePriceIds?: string | null;
+  /** @nullable */
   StripePromotionCode?: string | null;
   /** @nullable */
   TaxId?: string | null;
@@ -7783,6 +7787,8 @@ export type PersonWebhookEntityAccount = {
   StripeNextInvoiceSequence?: number | null;
   /** @nullable */
   StripePrice?: string[] | null;
+  /** @nullable */
+  StripePriceIds?: string | null;
   /** @nullable */
   StripePromotionCode?: string | null;
   /** @nullable */
@@ -8379,6 +8385,8 @@ export type DealWebhookEntityAccount = {
   StripeNextInvoiceSequence?: number | null;
   /** @nullable */
   StripePrice?: string[] | null;
+  /** @nullable */
+  StripePriceIds?: string | null;
   /** @nullable */
   StripePromotionCode?: string | null;
   /** @nullable */

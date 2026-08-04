@@ -154,6 +154,8 @@ export type AccountAllOf = {
   /** @nullable */
   StripePrice?: string[] | null;
   /** @nullable */
+  StripePriceIds?: string | null;
+  /** @nullable */
   StripePromotionCode?: string | null;
   /** @nullable */
   TaxId?: string | null;
