@@ -14,8 +14,8 @@ import type {
 } from '../../query';
 
 import type {
-  Activity,
   ActivityAddCustomActivityBody,
+  ActivityGetAll200,
   ActivityGetAllParams
 } from '../outsetaAPI.schemas';
 
@@ -67,7 +67,7 @@ export const activityGetAll = (
 ) => {
       
       
-      return customFetch<Activity[]>(
+      return customFetch<ActivityGetAll200>(
       {url: `/api/v1/activities`, method: 'GET',
         params, signal
     },

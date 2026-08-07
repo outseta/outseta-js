@@ -6,17 +6,20 @@ import type {
   AccountAddPersonToAccountBody,
   AccountCancelAccountBody,
   AccountExtendTrialBody,
+  AccountGetAllAccounts200,
   AccountGetAllAccountsParams,
   AccountUpdateAccountBody,
   AccountUpdateMembershipBody,
   Deal,
   DealAddDealBody,
+  DealGetAllDeals200,
   DealGetAllDealsParams,
   DealUpdateDealBody,
   Person,
   PersonAccount,
   PersonAddPersonBody,
   PersonForgotPasswordBody,
+  PersonGetAllPeople200,
   PersonGetAllPeopleParams,
   PersonSetTemporaryPasswordBody,
   PersonUpdatePersonBody
@@ -56,7 +59,7 @@ type NonReadonly<T> = [T] extends [UnionToIntersection<T>] ? {
  * @summary Retrieve all deals.
  */
 export type dealGetAllDealsResponse200 = {
-  data: Deal[]
+  data: DealGetAllDeals200
   status: 200
 }
 
@@ -354,7 +357,7 @@ export const registrationRegisterAccount = async (account: NonReadonly<Account>,
  * @summary Retrieve all accounts.
  */
 export type accountGetAllAccountsResponse200 = {
-  data: Account[]
+  data: AccountGetAllAccounts200
   status: 200
 }
 
@@ -1009,7 +1012,7 @@ export const accountSendConfirmationEmail = async (accountUid: string | null, op
  * @summary Retrieve all people.
  */
 export type personGetAllPeopleResponse200 = {
-  data: Person[]
+  data: PersonGetAllPeople200
   status: 200
 }
 

@@ -19,6 +19,8 @@ export type AccountWebhookEntityStripeSubscriptionsItem = {
   StripeId?: string | null;
   IsLivemode?: boolean;
   /** @nullable */
+  ApplicationFeePercent?: number | null;
+  /** @nullable */
   CancelAt?: string | null;
   CancelAtPeriodEnd?: boolean;
   /**

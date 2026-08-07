@@ -20,17 +20,20 @@ import type {
   AccountAddPersonToAccountBody,
   AccountCancelAccountBody,
   AccountExtendTrialBody,
+  AccountGetAllAccounts200,
   AccountGetAllAccountsParams,
   AccountUpdateAccountBody,
   AccountUpdateMembershipBody,
   Deal,
   DealAddDealBody,
+  DealGetAllDeals200,
   DealGetAllDealsParams,
   DealUpdateDealBody,
   Person,
   PersonAccount,
   PersonAddPersonBody,
   PersonForgotPasswordBody,
+  PersonGetAllPeople200,
   PersonGetAllPeopleParams,
   PersonSetTemporaryPasswordBody,
   PersonUpdatePersonBody
@@ -80,7 +83,7 @@ export const dealGetAllDeals = (
 ) => {
       
       
-      return customFetch<Deal[]>(
+      return customFetch<DealGetAllDeals200>(
       {url: `/api/v1/crm/deals`, method: 'GET',
         params, signal
     },
@@ -478,7 +481,7 @@ export const accountGetAllAccounts = (
 ) => {
       
       
-      return customFetch<Account[]>(
+      return customFetch<AccountGetAllAccounts200>(
       {url: `/api/v1/crm/accounts`, method: 'GET',
         params, signal
     },
@@ -1272,7 +1275,7 @@ export const personGetAllPeople = (
 ) => {
       
       
-      return customFetch<Person[]>(
+      return customFetch<PersonGetAllPeople200>(
       {url: `/api/v1/crm/people`, method: 'GET',
         params, signal
     },

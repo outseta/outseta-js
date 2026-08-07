@@ -16,16 +16,21 @@ import type {
 import type {
   BroadcastCampaign,
   CampaignAddBroadcastEmailBody,
+  CampaignGetAllBroadcastEmails200,
+  CampaignGetAllBroadcastEmailsParams,
   CampaignSendTestCampaignEmailBody,
   CampaignUpdateBroadcastEmailBody,
   DripCampaign,
   DripCampaignAddDripCampaignBody,
   DripCampaignAddDripCampaignMessageBody,
+  DripCampaignGetAllDripCampaigns200,
+  DripCampaignGetAllDripCampaignsParams,
   DripCampaignMessage,
   DripCampaignSendTestCampaignEmailBody,
   DripCampaignUpdateDripCampaignBody,
   DripCampaignUpdateDripCampaignMessageBody,
   EmailListAddSubscriptionBody,
+  EmailListGetAllSubscriptions200,
   EmailListGetAllSubscriptionsParams,
   EmailListPerson
 } from '../outsetaAPI.schemas';
@@ -68,13 +73,14 @@ type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
  * @summary Retrieve all drip campaigns.
  */
 export const dripCampaignGetAllDripCampaigns = (
-    
+    params?: DripCampaignGetAllDripCampaignsParams,
  options?: SecondParameter<typeof customFetch>,signal?: AbortSignal
 ) => {
       
       
-      return customFetch<DripCampaign[]>(
-      {url: `/api/v1/email/campaigns/drips`, method: 'GET', signal
+      return customFetch<DripCampaignGetAllDripCampaigns200>(
+      {url: `/api/v1/email/campaigns/drips`, method: 'GET',
+        params, signal
     },
       options);
     }
@@ -82,23 +88,23 @@ export const dripCampaignGetAllDripCampaigns = (
 
 
 
-export const getDripCampaignGetAllDripCampaignsQueryKey = () => {
+export const getDripCampaignGetAllDripCampaignsQueryKey = (params?: DripCampaignGetAllDripCampaignsParams,) => {
     return [
-    `/api/v1/email/campaigns/drips`
+    `/api/v1/email/campaigns/drips`, ...(params ? [params]: [])
     ] as const;
     }
 
     
-export const getDripCampaignGetAllDripCampaignsQueryOptions = <TData = Awaited<ReturnType<typeof dripCampaignGetAllDripCampaigns>>, TError = void>( options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof dripCampaignGetAllDripCampaigns>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
+export const getDripCampaignGetAllDripCampaignsQueryOptions = <TData = Awaited<ReturnType<typeof dripCampaignGetAllDripCampaigns>>, TError = void>(params?: DripCampaignGetAllDripCampaignsParams, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof dripCampaignGetAllDripCampaigns>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
 ) => {
 
 const {query: queryOptions, request: requestOptions} = options ?? {};
 
-  const queryKey =  queryOptions?.queryKey ?? getDripCampaignGetAllDripCampaignsQueryKey();
+  const queryKey =  queryOptions?.queryKey ?? getDripCampaignGetAllDripCampaignsQueryKey(params);
 
   
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof dripCampaignGetAllDripCampaigns>>> = ({ signal }) => dripCampaignGetAllDripCampaigns(requestOptions, signal);
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof dripCampaignGetAllDripCampaigns>>> = ({ signal }) => dripCampaignGetAllDripCampaigns(params, requestOptions, signal);
 
       
 
@@ -116,11 +122,11 @@ export type DripCampaignGetAllDripCampaignsQueryError = void
  */
 
 export function useDripCampaignGetAllDripCampaigns<TData = Awaited<ReturnType<typeof dripCampaignGetAllDripCampaigns>>, TError = void>(
-  options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof dripCampaignGetAllDripCampaigns>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
+ params?: DripCampaignGetAllDripCampaignsParams, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof dripCampaignGetAllDripCampaigns>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
   
  ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } {
 
-  const queryOptions = getDripCampaignGetAllDripCampaignsQueryOptions(options)
+  const queryOptions = getDripCampaignGetAllDripCampaignsQueryOptions(params,options)
 
   const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: QueryKey };
 
@@ -743,13 +749,14 @@ export const useDripCampaignSendTestCampaignEmail = <TError = void,
  * @summary Retrieve all broadcasts.
  */
 export const campaignGetAllBroadcastEmails = (
-    
+    params?: CampaignGetAllBroadcastEmailsParams,
  options?: SecondParameter<typeof customFetch>,signal?: AbortSignal
 ) => {
       
       
-      return customFetch<BroadcastCampaign[]>(
-      {url: `/api/v1/email/campaigns/broadcasts`, method: 'GET', signal
+      return customFetch<CampaignGetAllBroadcastEmails200>(
+      {url: `/api/v1/email/campaigns/broadcasts`, method: 'GET',
+        params, signal
     },
       options);
     }
@@ -757,23 +764,23 @@ export const campaignGetAllBroadcastEmails = (
 
 
 
-export const getCampaignGetAllBroadcastEmailsQueryKey = () => {
+export const getCampaignGetAllBroadcastEmailsQueryKey = (params?: CampaignGetAllBroadcastEmailsParams,) => {
     return [
-    `/api/v1/email/campaigns/broadcasts`
+    `/api/v1/email/campaigns/broadcasts`, ...(params ? [params]: [])
     ] as const;
     }
 
     
-export const getCampaignGetAllBroadcastEmailsQueryOptions = <TData = Awaited<ReturnType<typeof campaignGetAllBroadcastEmails>>, TError = void>( options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof campaignGetAllBroadcastEmails>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
+export const getCampaignGetAllBroadcastEmailsQueryOptions = <TData = Awaited<ReturnType<typeof campaignGetAllBroadcastEmails>>, TError = void>(params?: CampaignGetAllBroadcastEmailsParams, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof campaignGetAllBroadcastEmails>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
 ) => {
 
 const {query: queryOptions, request: requestOptions} = options ?? {};
 
-  const queryKey =  queryOptions?.queryKey ?? getCampaignGetAllBroadcastEmailsQueryKey();
+  const queryKey =  queryOptions?.queryKey ?? getCampaignGetAllBroadcastEmailsQueryKey(params);
 
   
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof campaignGetAllBroadcastEmails>>> = ({ signal }) => campaignGetAllBroadcastEmails(requestOptions, signal);
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof campaignGetAllBroadcastEmails>>> = ({ signal }) => campaignGetAllBroadcastEmails(params, requestOptions, signal);
 
       
 
@@ -791,11 +798,11 @@ export type CampaignGetAllBroadcastEmailsQueryError = void
  */
 
 export function useCampaignGetAllBroadcastEmails<TData = Awaited<ReturnType<typeof campaignGetAllBroadcastEmails>>, TError = void>(
-  options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof campaignGetAllBroadcastEmails>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
+ params?: CampaignGetAllBroadcastEmailsParams, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof campaignGetAllBroadcastEmails>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
   
  ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } {
 
-  const queryOptions = getCampaignGetAllBroadcastEmailsQueryOptions(options)
+  const queryOptions = getCampaignGetAllBroadcastEmailsQueryOptions(params,options)
 
   const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: QueryKey };
 
@@ -1321,7 +1328,7 @@ export const emailListGetAllSubscriptions = (
 ) => {
       
       
-      return customFetch<EmailListPerson[]>(
+      return customFetch<EmailListGetAllSubscriptions200>(
       {url: `/api/v1/email/lists/${emailListUid}/subscriptions`, method: 'GET',
         params, signal
     },

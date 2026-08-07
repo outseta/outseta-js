@@ -7,6 +7,13 @@ export type StripeChargeAllOf = {
   Amount?: number;
   AmountCaptured?: number;
   AmountRefunded?: number;
+  /** @nullable */
+  ApplicationFeeAmount?: number | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  ApplicationFeeId?: string | null;
   Captured?: boolean;
   /**
    * @maxLength 3

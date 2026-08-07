@@ -1,7 +1,7 @@
 // @ts-nocheck
 import type {
-  Activity,
   ActivityAddCustomActivityBody,
+  ActivityGetAll200,
   ActivityGetAllParams
 } from '.././models';
 
@@ -43,7 +43,7 @@ ActivityDateTime__lt/ActivityDateTime__lte.
  * @summary Retrieve all activities.
  */
 export type activityGetAllResponse200 = {
-  data: Activity[]
+  data: ActivityGetAll200
   status: 200
 }
 

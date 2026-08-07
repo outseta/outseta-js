@@ -16,13 +16,16 @@ import type {
 import type {
   DiscountCoupon,
   DiscountCouponAddDiscountCouponBody,
+  DiscountCouponGetAllDiscountCoupons200,
   DiscountCouponGetAllDiscountCouponsParams,
   DiscountCouponGetDiscountCouponByCodeParams,
+  DiscountCouponGetDiscountCouponRedemptions200,
   DiscountCouponGetDiscountCouponRedemptionsParams,
-  DiscountCouponSubscription,
   DiscountCouponUpdateDiscountCouponBody,
   Invoice,
   InvoiceAddInvoiceBody,
+  InvoiceGetAllInvoices200,
+  InvoiceGetAllInvoicesParams,
   InvoiceUpdateInvoiceBody,
   PaymentInformation,
   PaymentInformationSavePaymentInformationBody,
@@ -30,12 +33,17 @@ import type {
   PlanAddPlanBody,
   PlanFamily,
   PlanFamilyAddPlanFamilyBody,
+  PlanFamilyGetAllPlanFamilies200,
+  PlanFamilyGetAllPlanFamiliesParams,
   PlanFamilyUpdatePlanFamilyBody,
+  PlanGetAllPlans200,
+  PlanGetAllPlansParams,
   PlanUpdatePlanBody,
   Subscription,
   SubscriptionAddOn,
   SubscriptionAddOnAddSubscriptionAddOnBody,
   SubscriptionAddOnAddSubscriptionAddOnPreviewBody,
+  SubscriptionAddOnGetAllSubscriptionsAddOns200,
   SubscriptionAddOnGetAllSubscriptionsAddOnsParams,
   SubscriptionAddOnSetAddOnUpgradeRequiredBody,
   SubscriptionChangeSubscriptionBody,
@@ -45,10 +53,13 @@ import type {
   SubscriptionFirstTimeSubscriptionBody,
   SubscriptionFirstTimeSubscriptionPreviewBody,
   SubscriptionFirstTimeSubscriptionPreviewParams,
+  SubscriptionGetAllSubscriptions200,
   SubscriptionGetAllSubscriptionsParams,
   SubscriptionSetSubscriptionUpgradeRequiredBody,
   Transaction,
   TransactionsAddPaymentTransactionBody,
+  TransactionsGetAllTransactionsByAccountId200,
+  TransactionsGetAllTransactionsByAccountIdParams,
   Usage,
   UsageAddUsageBody
 } from '../outsetaAPI.schemas';
@@ -172,7 +183,7 @@ export const discountCouponGetAllDiscountCoupons = (
 ) => {
       
       
-      return customFetch<DiscountCoupon[]>(
+      return customFetch<DiscountCouponGetAllDiscountCoupons200>(
       {url: `/api/v1/billing/discountcoupons`, method: 'GET',
         params, signal
     },
@@ -502,7 +513,7 @@ export const discountCouponGetDiscountCouponRedemptions = (
 ) => {
       
       
-      return customFetch<DiscountCouponSubscription[]>(
+      return customFetch<DiscountCouponGetDiscountCouponRedemptions200>(
       {url: `/api/v1/billing/discountcoupons/${discountCouponUid}/redemptions`, method: 'GET',
         params, signal
     },
@@ -636,12 +647,14 @@ BillingTransactionType: Invoice = 1, Payment = 2, Credit = 3, Refund = 4, Charge
  */
 export const transactionsGetAllTransactionsByAccountId = (
     accountUid: string | null,
+    params?: TransactionsGetAllTransactionsByAccountIdParams,
  options?: SecondParameter<typeof customFetch>,signal?: AbortSignal
 ) => {
       
       
-      return customFetch<Transaction[]>(
-      {url: `/api/v1/billing/transactions/${accountUid}`, method: 'GET', signal
+      return customFetch<TransactionsGetAllTransactionsByAccountId200>(
+      {url: `/api/v1/billing/transactions/${accountUid}`, method: 'GET',
+        params, signal
     },
       options);
     }
@@ -649,23 +662,25 @@ export const transactionsGetAllTransactionsByAccountId = (
 
 
 
-export const getTransactionsGetAllTransactionsByAccountIdQueryKey = (accountUid?: string | null,) => {
+export const getTransactionsGetAllTransactionsByAccountIdQueryKey = (accountUid?: string | null,
+    params?: TransactionsGetAllTransactionsByAccountIdParams,) => {
     return [
-    `/api/v1/billing/transactions/${accountUid}`
+    `/api/v1/billing/transactions/${accountUid}`, ...(params ? [params]: [])
     ] as const;
     }
 
     
-export const getTransactionsGetAllTransactionsByAccountIdQueryOptions = <TData = Awaited<ReturnType<typeof transactionsGetAllTransactionsByAccountId>>, TError = void>(accountUid: string | null, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof transactionsGetAllTransactionsByAccountId>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
+export const getTransactionsGetAllTransactionsByAccountIdQueryOptions = <TData = Awaited<ReturnType<typeof transactionsGetAllTransactionsByAccountId>>, TError = void>(accountUid: string | null,
+    params?: TransactionsGetAllTransactionsByAccountIdParams, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof transactionsGetAllTransactionsByAccountId>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
 ) => {
 
 const {query: queryOptions, request: requestOptions} = options ?? {};
 
-  const queryKey =  queryOptions?.queryKey ?? getTransactionsGetAllTransactionsByAccountIdQueryKey(accountUid);
+  const queryKey =  queryOptions?.queryKey ?? getTransactionsGetAllTransactionsByAccountIdQueryKey(accountUid,params);
 
   
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof transactionsGetAllTransactionsByAccountId>>> = ({ signal }) => transactionsGetAllTransactionsByAccountId(accountUid, requestOptions, signal);
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof transactionsGetAllTransactionsByAccountId>>> = ({ signal }) => transactionsGetAllTransactionsByAccountId(accountUid,params, requestOptions, signal);
 
       
 
@@ -683,11 +698,12 @@ export type TransactionsGetAllTransactionsByAccountIdQueryError = void
  */
 
 export function useTransactionsGetAllTransactionsByAccountId<TData = Awaited<ReturnType<typeof transactionsGetAllTransactionsByAccountId>>, TError = void>(
- accountUid: string | null, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof transactionsGetAllTransactionsByAccountId>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
+ accountUid: string | null,
+    params?: TransactionsGetAllTransactionsByAccountIdParams, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof transactionsGetAllTransactionsByAccountId>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
   
  ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } {
 
-  const queryOptions = getTransactionsGetAllTransactionsByAccountIdQueryOptions(accountUid,options)
+  const queryOptions = getTransactionsGetAllTransactionsByAccountIdQueryOptions(accountUid,params,options)
 
   const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: QueryKey };
 
@@ -838,7 +854,7 @@ export const subscriptionAddOnGetAllSubscriptionsAddOns = (
 ) => {
       
       
-      return customFetch<SubscriptionAddOn[]>(
+      return customFetch<SubscriptionAddOnGetAllSubscriptionsAddOns200>(
       {url: `/api/v1/billing/subscriptionaddons`, method: 'GET',
         params, signal
     },
@@ -1295,13 +1311,14 @@ Pass excludeInvoiceUid as a query parameter to omit a specific invoice from the 
  * @summary Retrieve all invoices.
  */
 export const invoiceGetAllInvoices = (
-    
+    params?: InvoiceGetAllInvoicesParams,
  options?: SecondParameter<typeof customFetch>,signal?: AbortSignal
 ) => {
       
       
-      return customFetch<Invoice[]>(
-      {url: `/api/v1/billing/invoices`, method: 'GET', signal
+      return customFetch<InvoiceGetAllInvoices200>(
+      {url: `/api/v1/billing/invoices`, method: 'GET',
+        params, signal
     },
       options);
     }
@@ -1309,23 +1326,23 @@ export const invoiceGetAllInvoices = (
 
 
 
-export const getInvoiceGetAllInvoicesQueryKey = () => {
+export const getInvoiceGetAllInvoicesQueryKey = (params?: InvoiceGetAllInvoicesParams,) => {
     return [
-    `/api/v1/billing/invoices`
+    `/api/v1/billing/invoices`, ...(params ? [params]: [])
     ] as const;
     }
 
     
-export const getInvoiceGetAllInvoicesQueryOptions = <TData = Awaited<ReturnType<typeof invoiceGetAllInvoices>>, TError = void>( options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof invoiceGetAllInvoices>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
+export const getInvoiceGetAllInvoicesQueryOptions = <TData = Awaited<ReturnType<typeof invoiceGetAllInvoices>>, TError = void>(params?: InvoiceGetAllInvoicesParams, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof invoiceGetAllInvoices>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
 ) => {
 
 const {query: queryOptions, request: requestOptions} = options ?? {};
 
-  const queryKey =  queryOptions?.queryKey ?? getInvoiceGetAllInvoicesQueryKey();
+  const queryKey =  queryOptions?.queryKey ?? getInvoiceGetAllInvoicesQueryKey(params);
 
   
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof invoiceGetAllInvoices>>> = ({ signal }) => invoiceGetAllInvoices(requestOptions, signal);
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof invoiceGetAllInvoices>>> = ({ signal }) => invoiceGetAllInvoices(params, requestOptions, signal);
 
       
 
@@ -1343,11 +1360,11 @@ export type InvoiceGetAllInvoicesQueryError = void
  */
 
 export function useInvoiceGetAllInvoices<TData = Awaited<ReturnType<typeof invoiceGetAllInvoices>>, TError = void>(
-  options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof invoiceGetAllInvoices>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
+ params?: InvoiceGetAllInvoicesParams, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof invoiceGetAllInvoices>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
   
  ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } {
 
-  const queryOptions = getInvoiceGetAllInvoicesQueryOptions(options)
+  const queryOptions = getInvoiceGetAllInvoicesQueryOptions(params,options)
 
   const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: QueryKey };
 
@@ -1835,7 +1852,7 @@ export const subscriptionGetAllSubscriptions = (
 ) => {
       
       
-      return customFetch<Subscription[]>(
+      return customFetch<SubscriptionGetAllSubscriptions200>(
       {url: `/api/v1/billing/subscriptions`, method: 'GET',
         params, signal
     },
@@ -2494,13 +2511,14 @@ export const useSubscriptionChangeSubscription = <TError = void,
  * @summary Retrieve all plans.
  */
 export const planGetAllPlans = (
-    
+    params?: PlanGetAllPlansParams,
  options?: SecondParameter<typeof customFetch>,signal?: AbortSignal
 ) => {
       
       
-      return customFetch<Plan[]>(
-      {url: `/api/v1/billing/plans`, method: 'GET', signal
+      return customFetch<PlanGetAllPlans200>(
+      {url: `/api/v1/billing/plans`, method: 'GET',
+        params, signal
     },
       options);
     }
@@ -2508,23 +2526,23 @@ export const planGetAllPlans = (
 
 
 
-export const getPlanGetAllPlansQueryKey = () => {
+export const getPlanGetAllPlansQueryKey = (params?: PlanGetAllPlansParams,) => {
     return [
-    `/api/v1/billing/plans`
+    `/api/v1/billing/plans`, ...(params ? [params]: [])
     ] as const;
     }
 
     
-export const getPlanGetAllPlansQueryOptions = <TData = Awaited<ReturnType<typeof planGetAllPlans>>, TError = unknown>( options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof planGetAllPlans>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
+export const getPlanGetAllPlansQueryOptions = <TData = Awaited<ReturnType<typeof planGetAllPlans>>, TError = unknown>(params?: PlanGetAllPlansParams, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof planGetAllPlans>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
 ) => {
 
 const {query: queryOptions, request: requestOptions} = options ?? {};
 
-  const queryKey =  queryOptions?.queryKey ?? getPlanGetAllPlansQueryKey();
+  const queryKey =  queryOptions?.queryKey ?? getPlanGetAllPlansQueryKey(params);
 
   
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof planGetAllPlans>>> = ({ signal }) => planGetAllPlans(requestOptions, signal);
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof planGetAllPlans>>> = ({ signal }) => planGetAllPlans(params, requestOptions, signal);
 
       
 
@@ -2542,11 +2560,11 @@ export type PlanGetAllPlansQueryError = unknown
  */
 
 export function usePlanGetAllPlans<TData = Awaited<ReturnType<typeof planGetAllPlans>>, TError = unknown>(
-  options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof planGetAllPlans>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
+ params?: PlanGetAllPlansParams, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof planGetAllPlans>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
   
  ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } {
 
-  const queryOptions = getPlanGetAllPlansQueryOptions(options)
+  const queryOptions = getPlanGetAllPlansQueryOptions(params,options)
 
   const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: QueryKey };
 
@@ -2820,13 +2838,14 @@ export const usePlanDeletePlan = <TError = void,
  * @summary Retrieve all plan families.
  */
 export const planFamilyGetAllPlanFamilies = (
-    
+    params?: PlanFamilyGetAllPlanFamiliesParams,
  options?: SecondParameter<typeof customFetch>,signal?: AbortSignal
 ) => {
       
       
-      return customFetch<PlanFamily[]>(
-      {url: `/api/v1/billing/planfamilies`, method: 'GET', signal
+      return customFetch<PlanFamilyGetAllPlanFamilies200>(
+      {url: `/api/v1/billing/planfamilies`, method: 'GET',
+        params, signal
     },
       options);
     }
@@ -2834,23 +2853,23 @@ export const planFamilyGetAllPlanFamilies = (
 
 
 
-export const getPlanFamilyGetAllPlanFamiliesQueryKey = () => {
+export const getPlanFamilyGetAllPlanFamiliesQueryKey = (params?: PlanFamilyGetAllPlanFamiliesParams,) => {
     return [
-    `/api/v1/billing/planfamilies`
+    `/api/v1/billing/planfamilies`, ...(params ? [params]: [])
     ] as const;
     }
 
     
-export const getPlanFamilyGetAllPlanFamiliesQueryOptions = <TData = Awaited<ReturnType<typeof planFamilyGetAllPlanFamilies>>, TError = unknown>( options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof planFamilyGetAllPlanFamilies>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
+export const getPlanFamilyGetAllPlanFamiliesQueryOptions = <TData = Awaited<ReturnType<typeof planFamilyGetAllPlanFamilies>>, TError = unknown>(params?: PlanFamilyGetAllPlanFamiliesParams, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof planFamilyGetAllPlanFamilies>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
 ) => {
 
 const {query: queryOptions, request: requestOptions} = options ?? {};
 
-  const queryKey =  queryOptions?.queryKey ?? getPlanFamilyGetAllPlanFamiliesQueryKey();
+  const queryKey =  queryOptions?.queryKey ?? getPlanFamilyGetAllPlanFamiliesQueryKey(params);
 
   
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof planFamilyGetAllPlanFamilies>>> = ({ signal }) => planFamilyGetAllPlanFamilies(requestOptions, signal);
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof planFamilyGetAllPlanFamilies>>> = ({ signal }) => planFamilyGetAllPlanFamilies(params, requestOptions, signal);
 
       
 
@@ -2868,11 +2887,11 @@ export type PlanFamilyGetAllPlanFamiliesQueryError = unknown
  */
 
 export function usePlanFamilyGetAllPlanFamilies<TData = Awaited<ReturnType<typeof planFamilyGetAllPlanFamilies>>, TError = unknown>(
-  options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof planFamilyGetAllPlanFamilies>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
+ params?: PlanFamilyGetAllPlanFamiliesParams, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof planFamilyGetAllPlanFamilies>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
   
  ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } {
 
-  const queryOptions = getPlanFamilyGetAllPlanFamiliesQueryOptions(options)
+  const queryOptions = getPlanFamilyGetAllPlanFamiliesQueryOptions(params,options)
 
   const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: QueryKey };
 

@@ -1476,6 +1476,8 @@ export type StripeSubscriptionAllOfCurrentStripeSubscriptionSchedule = StripeSub
 
 export type StripeSubscriptionAllOf = {
   /** @nullable */
+  ApplicationFeePercent?: number | null;
+  /** @nullable */
   CancelAt?: string | null;
   CancelAtPeriodEnd?: boolean;
   /** @nullable */
@@ -1871,6 +1873,13 @@ export type StripeChargeAllOf = {
   Amount?: number;
   AmountCaptured?: number;
   AmountRefunded?: number;
+  /** @nullable */
+  ApplicationFeeAmount?: number | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  ApplicationFeeId?: string | null;
   Captured?: boolean;
   /**
    * @maxLength 3
@@ -4924,6 +4933,12 @@ export interface ActivityCriteria {
   ActivityTypes?: string[] | null;
 }
 
+export interface CollectionMetadata {
+  limit?: number;
+  offset?: number;
+  total?: number;
+}
+
 /**
  * @nullable
  */
@@ -5426,6 +5441,8 @@ export type AccountWebhookEntityStripeSubscriptionsItem = {
    */
   StripeId?: string | null;
   IsLivemode?: boolean;
+  /** @nullable */
+  ApplicationFeePercent?: number | null;
   /** @nullable */
   CancelAt?: string | null;
   CancelAtPeriodEnd?: boolean;
@@ -7072,6 +7089,8 @@ export type AccountWebhookEntityPrimaryStripeSubscription = {
    */
   StripeId?: string | null;
   IsLivemode?: boolean;
+  /** @nullable */
+  ApplicationFeePercent?: number | null;
   /** @nullable */
   CancelAt?: string | null;
   CancelAtPeriodEnd?: boolean;
@@ -8971,6 +8990,32 @@ export type DiscordUserRemovedFromServerWebhookPayloadAllOf = {
 
 export type DiscordUserRemovedFromServerWebhookPayload = PersonWebhookEntity & DiscordUserRemovedFromServerWebhookPayloadAllOf;
 
+/**
+ * Maximum number of records per page.
+ */
+export type LimitParameter = number;
+
+/**
+ * Zero-based page index.
+ */
+export type OffsetParameter = number;
+
+export type DefinitionGetAllDefinitionsParams = {
+/**
+ * Maximum number of records per page.
+ */
+limit?: LimitParameter;
+/**
+ * Zero-based page index.
+ */
+offset?: OffsetParameter;
+};
+
+export type DefinitionGetAllDefinitions200 = {
+  metadata?: CollectionMetadata;
+  items?: Definition[];
+};
+
 export type AuthGetTokenParams = {
 /**
  * @nullable
@@ -9040,6 +9085,11 @@ q?: string | null;
 tagUid?: string | null;
 };
 
+export type CaseGetAllCases200 = {
+  metadata?: CollectionMetadata;
+  items?: Case[];
+};
+
 export type CaseAddCaseParams = {
 /**
  * Indicates whether an automatic message is sent that the ticket has been created.
@@ -9061,10 +9111,47 @@ export type ArticleGetAllArticlesParams = {
 q?: string | null;
 };
 
+export type ArticleGetAllArticles200 = {
+  metadata?: CollectionMetadata;
+  items?: Article[];
+};
+
 /**
  * @nullable
  */
 export type ArticleAddArticleBody = Article | null;
+
+export type CategoryGetAllCategoriesParams = {
+/**
+ * Maximum number of records per page.
+ */
+limit?: LimitParameter;
+/**
+ * Zero-based page index.
+ */
+offset?: OffsetParameter;
+};
+
+export type CategoryGetAllCategories200 = {
+  metadata?: CollectionMetadata;
+  items?: Category[];
+};
+
+export type DripCampaignGetAllDripCampaignsParams = {
+/**
+ * Maximum number of records per page.
+ */
+limit?: LimitParameter;
+/**
+ * Zero-based page index.
+ */
+offset?: OffsetParameter;
+};
+
+export type DripCampaignGetAllDripCampaigns200 = {
+  metadata?: CollectionMetadata;
+  items?: DripCampaign[];
+};
 
 /**
  * @nullable
@@ -9091,6 +9178,22 @@ export type DripCampaignUpdateDripCampaignMessageBody = DripCampaignMessage | nu
  */
 export type DripCampaignSendTestCampaignEmailBody = SendTestEmailRequest | null;
 
+export type CampaignGetAllBroadcastEmailsParams = {
+/**
+ * Maximum number of records per page.
+ */
+limit?: LimitParameter;
+/**
+ * Zero-based page index.
+ */
+offset?: OffsetParameter;
+};
+
+export type CampaignGetAllBroadcastEmails200 = {
+  metadata?: CollectionMetadata;
+  items?: BroadcastCampaign[];
+};
+
 /**
  * @nullable
  */
@@ -9114,6 +9217,11 @@ export type EmailListGetAllSubscriptionsParams = {
 q?: string | null;
 };
 
+export type EmailListGetAllSubscriptions200 = {
+  metadata?: CollectionMetadata;
+  items?: EmailListPerson[];
+};
+
 /**
  * @nullable
  */
@@ -9130,6 +9238,11 @@ ownerUid?: string | null;
  * @nullable
  */
 q?: string | null;
+};
+
+export type DealGetAllDeals200 = {
+  metadata?: CollectionMetadata;
+  items?: Deal[];
 };
 
 /**
@@ -9153,6 +9266,11 @@ segmentUid?: string | null;
  * @nullable
  */
 q?: string | null;
+};
+
+export type AccountGetAllAccounts200 = {
+  metadata?: CollectionMetadata;
+  items?: Account[];
 };
 
 export type AccountAddAccountParams = {
@@ -9195,6 +9313,11 @@ export type PersonGetAllPeopleParams = {
  * @nullable
  */
 q?: string | null;
+};
+
+export type PersonGetAllPeople200 = {
+  metadata?: CollectionMetadata;
+  items?: Person[];
 };
 
 /**
@@ -9242,6 +9365,11 @@ q?: string | null;
 planUid?: string | null;
 };
 
+export type DiscountCouponGetAllDiscountCoupons200 = {
+  metadata?: CollectionMetadata;
+  items?: DiscountCoupon[];
+};
+
 /**
  * @nullable
  */
@@ -9265,10 +9393,31 @@ q?: string | null;
 isActive?: boolean | null;
 };
 
+export type DiscountCouponGetDiscountCouponRedemptions200 = {
+  metadata?: CollectionMetadata;
+  items?: DiscountCouponSubscription[];
+};
+
 /**
  * @nullable
  */
 export type UsageAddUsageBody = Usage | null;
+
+export type TransactionsGetAllTransactionsByAccountIdParams = {
+/**
+ * Maximum number of records per page.
+ */
+limit?: LimitParameter;
+/**
+ * Zero-based page index.
+ */
+offset?: OffsetParameter;
+};
+
+export type TransactionsGetAllTransactionsByAccountId200 = {
+  metadata?: CollectionMetadata;
+  items?: Transaction[];
+};
 
 /**
  * @nullable
@@ -9288,6 +9437,11 @@ export type SubscriptionAddOnGetAllSubscriptionsAddOnsParams = {
 status?: string | null;
 };
 
+export type SubscriptionAddOnGetAllSubscriptionsAddOns200 = {
+  metadata?: CollectionMetadata;
+  items?: SubscriptionAddOn[];
+};
+
 /**
  * @nullable
  */
@@ -9302,6 +9456,26 @@ export type SubscriptionAddOnAddSubscriptionAddOnPreviewBody = SubscriptionAddOn
  * @nullable
  */
 export type SubscriptionAddOnSetAddOnUpgradeRequiredBody = SubscriptionAddOn | null;
+
+export type InvoiceGetAllInvoicesParams = {
+/**
+ * Maximum number of records per page.
+ */
+limit?: LimitParameter;
+/**
+ * Zero-based page index.
+ */
+offset?: OffsetParameter;
+/**
+ * The invoice Uid to omit from the result set.
+ */
+excludeInvoiceUid?: string;
+};
+
+export type InvoiceGetAllInvoices200 = {
+  metadata?: CollectionMetadata;
+  items?: Invoice[];
+};
 
 /**
  * @nullable
@@ -9324,6 +9498,11 @@ current?: string | null;
  * @nullable
  */
 status?: string | null;
+};
+
+export type SubscriptionGetAllSubscriptions200 = {
+  metadata?: CollectionMetadata;
+  items?: Subscription[];
 };
 
 /**
@@ -9375,6 +9554,22 @@ startImmediately?: string | null;
  */
 export type SubscriptionChangeSubscriptionBody = Subscription | null;
 
+export type PlanGetAllPlansParams = {
+/**
+ * Maximum number of records per page.
+ */
+limit?: LimitParameter;
+/**
+ * Zero-based page index.
+ */
+offset?: OffsetParameter;
+};
+
+export type PlanGetAllPlans200 = {
+  metadata?: CollectionMetadata;
+  items?: Plan[];
+};
+
 /**
  * @nullable
  */
@@ -9384,6 +9579,22 @@ export type PlanAddPlanBody = Plan | null;
  * @nullable
  */
 export type PlanUpdatePlanBody = Plan | null;
+
+export type PlanFamilyGetAllPlanFamiliesParams = {
+/**
+ * Maximum number of records per page.
+ */
+limit?: LimitParameter;
+/**
+ * Zero-based page index.
+ */
+offset?: OffsetParameter;
+};
+
+export type PlanFamilyGetAllPlanFamilies200 = {
+  metadata?: CollectionMetadata;
+  items?: PlanFamily[];
+};
 
 /**
  * @nullable
@@ -9412,6 +9623,11 @@ EntityType?: string | null;
  * @nullable
  */
 EntityUid?: string | null;
+};
+
+export type ActivityGetAll200 = {
+  metadata?: CollectionMetadata;
+  items?: Activity[];
 };
 
 /**

@@ -2,13 +2,16 @@
 import type {
   Article,
   ArticleAddArticleBody,
+  ArticleGetAllArticles200,
   ArticleGetAllArticlesParams,
   Case,
   CaseAddCaseBody,
   CaseAddCaseParams,
+  CaseGetAllCases200,
   CaseGetAllCasesParams,
   CaseHistory,
-  Category
+  CategoryGetAllCategories200,
+  CategoryGetAllCategoriesParams
 } from '.././models';
 
 import { customFetch } from '../../client';
@@ -47,7 +50,7 @@ which is the Uid of the person the case is assigned to.
  * @summary Retrieve all cases.
  */
 export type caseGetAllCasesResponse200 = {
-  data: Case[]
+  data: CaseGetAllCases200
   status: 200
 }
 
@@ -310,7 +313,7 @@ export const caseAddClientResponse = async (caseUid: string | null,
  * @summary Retrieve all knowledge base articles.
  */
 export type articleGetAllArticlesResponse200 = {
-  data: Article[]
+  data: ArticleGetAllArticles200
   status: 200
 }
     
@@ -442,7 +445,7 @@ export const articleGetArticle = async (articleUid: string | null, options?: Req
  * @summary Retrieve all knowledge base categories.
  */
 export type categoryGetAllCategoriesResponse200 = {
-  data: Category[]
+  data: CategoryGetAllCategories200
   status: 200
 }
     
@@ -453,17 +456,24 @@ export type categoryGetAllCategoriesResponseSuccess = (categoryGetAllCategoriesR
 
 export type categoryGetAllCategoriesResponse = (categoryGetAllCategoriesResponseSuccess)
 
-export const getCategoryGetAllCategoriesUrl = () => {
+export const getCategoryGetAllCategoriesUrl = (params?: CategoryGetAllCategoriesParams,) => {
+  const normalizedParams = new URLSearchParams();
 
+  Object.entries(params || {}).forEach(([key, value]) => {
+    
+    if (value !== undefined) {
+      normalizedParams.append(key, value === null ? 'null' : value.toString())
+    }
+  });
 
-  
+  const stringifiedParams = normalizedParams.toString();
 
-  return `/api/v1/support/categories`
+  return stringifiedParams.length > 0 ? `/api/v1/support/categories?${stringifiedParams}` : `/api/v1/support/categories`
 }
 
-export const categoryGetAllCategories = async ( options?: RequestInit): Promise<categoryGetAllCategoriesResponse> => {
+export const categoryGetAllCategories = async (params?: CategoryGetAllCategoriesParams, options?: RequestInit): Promise<categoryGetAllCategoriesResponse> => {
   
-  return customFetch<categoryGetAllCategoriesResponse>(getCategoryGetAllCategoriesUrl(),
+  return customFetch<categoryGetAllCategoriesResponse>(getCategoryGetAllCategoriesUrl(params),
   {      
     ...options,
     method: 'GET'

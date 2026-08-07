@@ -1,6 +1,8 @@
 // @ts-nocheck
 import type {
-  Definition
+  Definition,
+  DefinitionGetAllDefinitions200,
+  DefinitionGetAllDefinitionsParams
 } from '.././models';
 
 import { customFetch } from '../../client';
@@ -12,7 +14,7 @@ the custom attributes that have been added to that entity.
  * @summary Retrieve all custom attribute definitions.
  */
 export type definitionGetAllDefinitionsResponse200 = {
-  data: Definition[]
+  data: DefinitionGetAllDefinitions200
   status: 200
 }
     
@@ -23,17 +25,26 @@ export type definitionGetAllDefinitionsResponseSuccess = (definitionGetAllDefini
 
 export type definitionGetAllDefinitionsResponse = (definitionGetAllDefinitionsResponseSuccess)
 
-export const getDefinitionGetAllDefinitionsUrl = (entityType: string | null,) => {
+export const getDefinitionGetAllDefinitionsUrl = (entityType: string | null,
+    params?: DefinitionGetAllDefinitionsParams,) => {
+  const normalizedParams = new URLSearchParams();
 
+  Object.entries(params || {}).forEach(([key, value]) => {
+    
+    if (value !== undefined) {
+      normalizedParams.append(key, value === null ? 'null' : value.toString())
+    }
+  });
 
-  
+  const stringifiedParams = normalizedParams.toString();
 
-  return `/api/v1/attributes/${entityType}/definitions`
+  return stringifiedParams.length > 0 ? `/api/v1/attributes/${entityType}/definitions?${stringifiedParams}` : `/api/v1/attributes/${entityType}/definitions`
 }
 
-export const definitionGetAllDefinitions = async (entityType: string | null, options?: RequestInit): Promise<definitionGetAllDefinitionsResponse> => {
+export const definitionGetAllDefinitions = async (entityType: string | null,
+    params?: DefinitionGetAllDefinitionsParams, options?: RequestInit): Promise<definitionGetAllDefinitionsResponse> => {
   
-  return customFetch<definitionGetAllDefinitionsResponse>(getDefinitionGetAllDefinitionsUrl(entityType),
+  return customFetch<definitionGetAllDefinitionsResponse>(getDefinitionGetAllDefinitionsUrl(entityType,params),
   {      
     ...options,
     method: 'GET'

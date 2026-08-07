@@ -8,6 +8,8 @@ import type { StripeSubscriptionAllOfCurrentStripeSubscriptionSchedule } from '.
 
 export type StripeSubscriptionAllOf = {
   /** @nullable */
+  ApplicationFeePercent?: number | null;
+  /** @nullable */
   CancelAt?: string | null;
   CancelAtPeriodEnd?: boolean;
   /** @nullable */

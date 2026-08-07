@@ -2,16 +2,21 @@
 import type {
   BroadcastCampaign,
   CampaignAddBroadcastEmailBody,
+  CampaignGetAllBroadcastEmails200,
+  CampaignGetAllBroadcastEmailsParams,
   CampaignSendTestCampaignEmailBody,
   CampaignUpdateBroadcastEmailBody,
   DripCampaign,
   DripCampaignAddDripCampaignBody,
   DripCampaignAddDripCampaignMessageBody,
+  DripCampaignGetAllDripCampaigns200,
+  DripCampaignGetAllDripCampaignsParams,
   DripCampaignMessage,
   DripCampaignSendTestCampaignEmailBody,
   DripCampaignUpdateDripCampaignBody,
   DripCampaignUpdateDripCampaignMessageBody,
   EmailListAddSubscriptionBody,
+  EmailListGetAllSubscriptions200,
   EmailListGetAllSubscriptionsParams,
   EmailListPerson
 } from '.././models';
@@ -49,7 +54,7 @@ type NonReadonly<T> = [T] extends [UnionToIntersection<T>] ? {
  * @summary Retrieve all drip campaigns.
  */
 export type dripCampaignGetAllDripCampaignsResponse200 = {
-  data: DripCampaign[]
+  data: DripCampaignGetAllDripCampaigns200
   status: 200
 }
 
@@ -67,17 +72,24 @@ export type dripCampaignGetAllDripCampaignsResponseError = (dripCampaignGetAllDr
 
 export type dripCampaignGetAllDripCampaignsResponse = (dripCampaignGetAllDripCampaignsResponseSuccess | dripCampaignGetAllDripCampaignsResponseError)
 
-export const getDripCampaignGetAllDripCampaignsUrl = () => {
+export const getDripCampaignGetAllDripCampaignsUrl = (params?: DripCampaignGetAllDripCampaignsParams,) => {
+  const normalizedParams = new URLSearchParams();
 
+  Object.entries(params || {}).forEach(([key, value]) => {
+    
+    if (value !== undefined) {
+      normalizedParams.append(key, value === null ? 'null' : value.toString())
+    }
+  });
 
-  
+  const stringifiedParams = normalizedParams.toString();
 
-  return `/api/v1/email/campaigns/drips`
+  return stringifiedParams.length > 0 ? `/api/v1/email/campaigns/drips?${stringifiedParams}` : `/api/v1/email/campaigns/drips`
 }
 
-export const dripCampaignGetAllDripCampaigns = async ( options?: RequestInit): Promise<dripCampaignGetAllDripCampaignsResponse> => {
+export const dripCampaignGetAllDripCampaigns = async (params?: DripCampaignGetAllDripCampaignsParams, options?: RequestInit): Promise<dripCampaignGetAllDripCampaignsResponse> => {
   
-  return customFetch<dripCampaignGetAllDripCampaignsResponse>(getDripCampaignGetAllDripCampaignsUrl(),
+  return customFetch<dripCampaignGetAllDripCampaignsResponse>(getDripCampaignGetAllDripCampaignsUrl(params),
   {      
     ...options,
     method: 'GET'
@@ -572,7 +584,7 @@ export const dripCampaignSendTestCampaignEmail = async (dripCampaignSendTestCamp
  * @summary Retrieve all broadcasts.
  */
 export type campaignGetAllBroadcastEmailsResponse200 = {
-  data: BroadcastCampaign[]
+  data: CampaignGetAllBroadcastEmails200
   status: 200
 }
 
@@ -590,17 +602,24 @@ export type campaignGetAllBroadcastEmailsResponseError = (campaignGetAllBroadcas
 
 export type campaignGetAllBroadcastEmailsResponse = (campaignGetAllBroadcastEmailsResponseSuccess | campaignGetAllBroadcastEmailsResponseError)
 
-export const getCampaignGetAllBroadcastEmailsUrl = () => {
+export const getCampaignGetAllBroadcastEmailsUrl = (params?: CampaignGetAllBroadcastEmailsParams,) => {
+  const normalizedParams = new URLSearchParams();
 
+  Object.entries(params || {}).forEach(([key, value]) => {
+    
+    if (value !== undefined) {
+      normalizedParams.append(key, value === null ? 'null' : value.toString())
+    }
+  });
 
-  
+  const stringifiedParams = normalizedParams.toString();
 
-  return `/api/v1/email/campaigns/broadcasts`
+  return stringifiedParams.length > 0 ? `/api/v1/email/campaigns/broadcasts?${stringifiedParams}` : `/api/v1/email/campaigns/broadcasts`
 }
 
-export const campaignGetAllBroadcastEmails = async ( options?: RequestInit): Promise<campaignGetAllBroadcastEmailsResponse> => {
+export const campaignGetAllBroadcastEmails = async (params?: CampaignGetAllBroadcastEmailsParams, options?: RequestInit): Promise<campaignGetAllBroadcastEmailsResponse> => {
   
-  return customFetch<campaignGetAllBroadcastEmailsResponse>(getCampaignGetAllBroadcastEmailsUrl(),
+  return customFetch<campaignGetAllBroadcastEmailsResponse>(getCampaignGetAllBroadcastEmailsUrl(params),
   {      
     ...options,
     method: 'GET'
@@ -1018,7 +1037,7 @@ export const campaignSendTestCampaignEmail = async (campaignSendTestCampaignEmai
  * @summary Retrieve all subscribers to an email list.
  */
 export type emailListGetAllSubscriptionsResponse200 = {
-  data: EmailListPerson[]
+  data: EmailListGetAllSubscriptions200
   status: 200
 }
 

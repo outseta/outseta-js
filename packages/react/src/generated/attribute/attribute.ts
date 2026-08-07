@@ -10,7 +10,9 @@ import type {
 } from '../../query';
 
 import type {
-  Definition
+  Definition,
+  DefinitionGetAllDefinitions200,
+  DefinitionGetAllDefinitionsParams
 } from '../outsetaAPI.schemas';
 
 import { customFetch } from '../../mutator';
@@ -28,12 +30,14 @@ the custom attributes that have been added to that entity.
  */
 export const definitionGetAllDefinitions = (
     entityType: string | null,
+    params?: DefinitionGetAllDefinitionsParams,
  options?: SecondParameter<typeof customFetch>,signal?: AbortSignal
 ) => {
       
       
-      return customFetch<Definition[]>(
-      {url: `/api/v1/attributes/${entityType}/definitions`, method: 'GET', signal
+      return customFetch<DefinitionGetAllDefinitions200>(
+      {url: `/api/v1/attributes/${entityType}/definitions`, method: 'GET',
+        params, signal
     },
       options);
     }
@@ -41,23 +45,25 @@ export const definitionGetAllDefinitions = (
 
 
 
-export const getDefinitionGetAllDefinitionsQueryKey = (entityType?: string | null,) => {
+export const getDefinitionGetAllDefinitionsQueryKey = (entityType?: string | null,
+    params?: DefinitionGetAllDefinitionsParams,) => {
     return [
-    `/api/v1/attributes/${entityType}/definitions`
+    `/api/v1/attributes/${entityType}/definitions`, ...(params ? [params]: [])
     ] as const;
     }
 
     
-export const getDefinitionGetAllDefinitionsQueryOptions = <TData = Awaited<ReturnType<typeof definitionGetAllDefinitions>>, TError = unknown>(entityType: string | null, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof definitionGetAllDefinitions>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
+export const getDefinitionGetAllDefinitionsQueryOptions = <TData = Awaited<ReturnType<typeof definitionGetAllDefinitions>>, TError = unknown>(entityType: string | null,
+    params?: DefinitionGetAllDefinitionsParams, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof definitionGetAllDefinitions>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
 ) => {
 
 const {query: queryOptions, request: requestOptions} = options ?? {};
 
-  const queryKey =  queryOptions?.queryKey ?? getDefinitionGetAllDefinitionsQueryKey(entityType);
+  const queryKey =  queryOptions?.queryKey ?? getDefinitionGetAllDefinitionsQueryKey(entityType,params);
 
   
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof definitionGetAllDefinitions>>> = ({ signal }) => definitionGetAllDefinitions(entityType, requestOptions, signal);
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof definitionGetAllDefinitions>>> = ({ signal }) => definitionGetAllDefinitions(entityType,params, requestOptions, signal);
 
       
 
@@ -75,11 +81,12 @@ export type DefinitionGetAllDefinitionsQueryError = unknown
  */
 
 export function useDefinitionGetAllDefinitions<TData = Awaited<ReturnType<typeof definitionGetAllDefinitions>>, TError = unknown>(
- entityType: string | null, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof definitionGetAllDefinitions>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
+ entityType: string | null,
+    params?: DefinitionGetAllDefinitionsParams, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof definitionGetAllDefinitions>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
   
  ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } {
 
-  const queryOptions = getDefinitionGetAllDefinitionsQueryOptions(entityType,options)
+  const queryOptions = getDefinitionGetAllDefinitionsQueryOptions(entityType,params,options)
 
   const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: QueryKey };
 

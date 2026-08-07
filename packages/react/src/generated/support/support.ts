@@ -16,13 +16,16 @@ import type {
 import type {
   Article,
   ArticleAddArticleBody,
+  ArticleGetAllArticles200,
   ArticleGetAllArticlesParams,
   Case,
   CaseAddCaseBody,
   CaseAddCaseParams,
+  CaseGetAllCases200,
   CaseGetAllCasesParams,
   CaseHistory,
-  Category
+  CategoryGetAllCategories200,
+  CategoryGetAllCategoriesParams
 } from '../outsetaAPI.schemas';
 
 import { customFetch } from '../../mutator';
@@ -71,7 +74,7 @@ export const caseGetAllCases = (
 ) => {
       
       
-      return customFetch<Case[]>(
+      return customFetch<CaseGetAllCases200>(
       {url: `/api/v1/support/cases`, method: 'GET',
         params, signal
     },
@@ -400,7 +403,7 @@ export const articleGetAllArticles = (
 ) => {
       
       
-      return customFetch<Article[]>(
+      return customFetch<ArticleGetAllArticles200>(
       {url: `/api/v1/support/articles`, method: 'GET',
         params, signal
     },
@@ -596,13 +599,14 @@ export function useArticleGetArticle<TData = Awaited<ReturnType<typeof articleGe
  * @summary Retrieve all knowledge base categories.
  */
 export const categoryGetAllCategories = (
-    
+    params?: CategoryGetAllCategoriesParams,
  options?: SecondParameter<typeof customFetch>,signal?: AbortSignal
 ) => {
       
       
-      return customFetch<Category[]>(
-      {url: `/api/v1/support/categories`, method: 'GET', signal
+      return customFetch<CategoryGetAllCategories200>(
+      {url: `/api/v1/support/categories`, method: 'GET',
+        params, signal
     },
       options);
     }
@@ -610,23 +614,23 @@ export const categoryGetAllCategories = (
 
 
 
-export const getCategoryGetAllCategoriesQueryKey = () => {
+export const getCategoryGetAllCategoriesQueryKey = (params?: CategoryGetAllCategoriesParams,) => {
     return [
-    `/api/v1/support/categories`
+    `/api/v1/support/categories`, ...(params ? [params]: [])
     ] as const;
     }
 
     
-export const getCategoryGetAllCategoriesQueryOptions = <TData = Awaited<ReturnType<typeof categoryGetAllCategories>>, TError = unknown>( options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof categoryGetAllCategories>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
+export const getCategoryGetAllCategoriesQueryOptions = <TData = Awaited<ReturnType<typeof categoryGetAllCategories>>, TError = unknown>(params?: CategoryGetAllCategoriesParams, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof categoryGetAllCategories>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
 ) => {
 
 const {query: queryOptions, request: requestOptions} = options ?? {};
 
-  const queryKey =  queryOptions?.queryKey ?? getCategoryGetAllCategoriesQueryKey();
+  const queryKey =  queryOptions?.queryKey ?? getCategoryGetAllCategoriesQueryKey(params);
 
   
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof categoryGetAllCategories>>> = ({ signal }) => categoryGetAllCategories(requestOptions, signal);
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof categoryGetAllCategories>>> = ({ signal }) => categoryGetAllCategories(params, requestOptions, signal);
 
       
 
@@ -644,11 +648,11 @@ export type CategoryGetAllCategoriesQueryError = unknown
  */
 
 export function useCategoryGetAllCategories<TData = Awaited<ReturnType<typeof categoryGetAllCategories>>, TError = unknown>(
-  options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof categoryGetAllCategories>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
+ params?: CategoryGetAllCategoriesParams, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof categoryGetAllCategories>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
   
  ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } {
 
-  const queryOptions = getCategoryGetAllCategoriesQueryOptions(options)
+  const queryOptions = getCategoryGetAllCategoriesQueryOptions(params,options)
 
   const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: QueryKey };
 

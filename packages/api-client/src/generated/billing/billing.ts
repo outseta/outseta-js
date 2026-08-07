@@ -2,13 +2,16 @@
 import type {
   DiscountCoupon,
   DiscountCouponAddDiscountCouponBody,
+  DiscountCouponGetAllDiscountCoupons200,
   DiscountCouponGetAllDiscountCouponsParams,
   DiscountCouponGetDiscountCouponByCodeParams,
+  DiscountCouponGetDiscountCouponRedemptions200,
   DiscountCouponGetDiscountCouponRedemptionsParams,
-  DiscountCouponSubscription,
   DiscountCouponUpdateDiscountCouponBody,
   Invoice,
   InvoiceAddInvoiceBody,
+  InvoiceGetAllInvoices200,
+  InvoiceGetAllInvoicesParams,
   InvoiceUpdateInvoiceBody,
   PaymentInformation,
   PaymentInformationSavePaymentInformationBody,
@@ -16,12 +19,17 @@ import type {
   PlanAddPlanBody,
   PlanFamily,
   PlanFamilyAddPlanFamilyBody,
+  PlanFamilyGetAllPlanFamilies200,
+  PlanFamilyGetAllPlanFamiliesParams,
   PlanFamilyUpdatePlanFamilyBody,
+  PlanGetAllPlans200,
+  PlanGetAllPlansParams,
   PlanUpdatePlanBody,
   Subscription,
   SubscriptionAddOn,
   SubscriptionAddOnAddSubscriptionAddOnBody,
   SubscriptionAddOnAddSubscriptionAddOnPreviewBody,
+  SubscriptionAddOnGetAllSubscriptionsAddOns200,
   SubscriptionAddOnGetAllSubscriptionsAddOnsParams,
   SubscriptionAddOnSetAddOnUpgradeRequiredBody,
   SubscriptionChangeSubscriptionBody,
@@ -31,10 +39,13 @@ import type {
   SubscriptionFirstTimeSubscriptionBody,
   SubscriptionFirstTimeSubscriptionPreviewBody,
   SubscriptionFirstTimeSubscriptionPreviewParams,
+  SubscriptionGetAllSubscriptions200,
   SubscriptionGetAllSubscriptionsParams,
   SubscriptionSetSubscriptionUpgradeRequiredBody,
   Transaction,
   TransactionsAddPaymentTransactionBody,
+  TransactionsGetAllTransactionsByAccountId200,
+  TransactionsGetAllTransactionsByAccountIdParams,
   Usage,
   UsageAddUsageBody
 } from '.././models';
@@ -131,7 +142,7 @@ export const discountCouponGetDiscountCouponByCode = async (code: string | null,
  * @summary Retrieve all discount coupons.
  */
 export type discountCouponGetAllDiscountCouponsResponse200 = {
-  data: DiscountCoupon[]
+  data: DiscountCouponGetAllDiscountCoupons200
   status: 200
 }
 
@@ -388,7 +399,7 @@ export const discountCouponDeleteDiscountCoupon = async (discountCouponUid: stri
  * @summary Retrieve the redemptions of a discount coupon.
  */
 export type discountCouponGetDiscountCouponRedemptionsResponse200 = {
-  data: DiscountCouponSubscription[]
+  data: DiscountCouponGetDiscountCouponRedemptions200
   status: 200
 }
 
@@ -489,7 +500,7 @@ BillingTransactionType: Invoice = 1, Payment = 2, Credit = 3, Refund = 4, Charge
  * @summary Retrieve all transactions.
  */
 export type transactionsGetAllTransactionsByAccountIdResponse200 = {
-  data: Transaction[]
+  data: TransactionsGetAllTransactionsByAccountId200
   status: 200
 }
 
@@ -512,17 +523,26 @@ export type transactionsGetAllTransactionsByAccountIdResponseError = (transactio
 
 export type transactionsGetAllTransactionsByAccountIdResponse = (transactionsGetAllTransactionsByAccountIdResponseSuccess | transactionsGetAllTransactionsByAccountIdResponseError)
 
-export const getTransactionsGetAllTransactionsByAccountIdUrl = (accountUid: string | null,) => {
+export const getTransactionsGetAllTransactionsByAccountIdUrl = (accountUid: string | null,
+    params?: TransactionsGetAllTransactionsByAccountIdParams,) => {
+  const normalizedParams = new URLSearchParams();
 
+  Object.entries(params || {}).forEach(([key, value]) => {
+    
+    if (value !== undefined) {
+      normalizedParams.append(key, value === null ? 'null' : value.toString())
+    }
+  });
 
-  
+  const stringifiedParams = normalizedParams.toString();
 
-  return `/api/v1/billing/transactions/${accountUid}`
+  return stringifiedParams.length > 0 ? `/api/v1/billing/transactions/${accountUid}?${stringifiedParams}` : `/api/v1/billing/transactions/${accountUid}`
 }
 
-export const transactionsGetAllTransactionsByAccountId = async (accountUid: string | null, options?: RequestInit): Promise<transactionsGetAllTransactionsByAccountIdResponse> => {
+export const transactionsGetAllTransactionsByAccountId = async (accountUid: string | null,
+    params?: TransactionsGetAllTransactionsByAccountIdParams, options?: RequestInit): Promise<transactionsGetAllTransactionsByAccountIdResponse> => {
   
-  return customFetch<transactionsGetAllTransactionsByAccountIdResponse>(getTransactionsGetAllTransactionsByAccountIdUrl(accountUid),
+  return customFetch<transactionsGetAllTransactionsByAccountIdResponse>(getTransactionsGetAllTransactionsByAccountIdUrl(accountUid,params),
   {      
     ...options,
     method: 'GET'
@@ -624,7 +644,7 @@ export const paymentInformationSavePaymentInformation = async (paymentInformatio
  * @summary Retrieve all subscription add-ons.
  */
 export type subscriptionAddOnGetAllSubscriptionsAddOnsResponse200 = {
-  data: SubscriptionAddOn[]
+  data: SubscriptionAddOnGetAllSubscriptionsAddOns200
   status: 200
 }
 
@@ -978,7 +998,7 @@ Pass excludeInvoiceUid as a query parameter to omit a specific invoice from the 
  * @summary Retrieve all invoices.
  */
 export type invoiceGetAllInvoicesResponse200 = {
-  data: Invoice[]
+  data: InvoiceGetAllInvoices200
   status: 200
 }
 
@@ -996,17 +1016,24 @@ export type invoiceGetAllInvoicesResponseError = (invoiceGetAllInvoicesResponse4
 
 export type invoiceGetAllInvoicesResponse = (invoiceGetAllInvoicesResponseSuccess | invoiceGetAllInvoicesResponseError)
 
-export const getInvoiceGetAllInvoicesUrl = () => {
+export const getInvoiceGetAllInvoicesUrl = (params?: InvoiceGetAllInvoicesParams,) => {
+  const normalizedParams = new URLSearchParams();
 
+  Object.entries(params || {}).forEach(([key, value]) => {
+    
+    if (value !== undefined) {
+      normalizedParams.append(key, value === null ? 'null' : value.toString())
+    }
+  });
 
-  
+  const stringifiedParams = normalizedParams.toString();
 
-  return `/api/v1/billing/invoices`
+  return stringifiedParams.length > 0 ? `/api/v1/billing/invoices?${stringifiedParams}` : `/api/v1/billing/invoices`
 }
 
-export const invoiceGetAllInvoices = async ( options?: RequestInit): Promise<invoiceGetAllInvoicesResponse> => {
+export const invoiceGetAllInvoices = async (params?: InvoiceGetAllInvoicesParams, options?: RequestInit): Promise<invoiceGetAllInvoicesResponse> => {
   
-  return customFetch<invoiceGetAllInvoicesResponse>(getInvoiceGetAllInvoicesUrl(),
+  return customFetch<invoiceGetAllInvoicesResponse>(getInvoiceGetAllInvoicesUrl(params),
   {      
     ...options,
     method: 'GET'
@@ -1391,7 +1418,7 @@ specific person.
  * @summary Retrieve all subscriptions.
  */
 export type subscriptionGetAllSubscriptionsResponse200 = {
-  data: Subscription[]
+  data: SubscriptionGetAllSubscriptions200
   status: 200
 }
 
@@ -1932,7 +1959,7 @@ export const subscriptionChangeSubscription = async (subscriptionUid: string | n
  * @summary Retrieve all plans.
  */
 export type planGetAllPlansResponse200 = {
-  data: Plan[]
+  data: PlanGetAllPlans200
   status: 200
 }
     
@@ -1943,17 +1970,24 @@ export type planGetAllPlansResponseSuccess = (planGetAllPlansResponse200) & {
 
 export type planGetAllPlansResponse = (planGetAllPlansResponseSuccess)
 
-export const getPlanGetAllPlansUrl = () => {
+export const getPlanGetAllPlansUrl = (params?: PlanGetAllPlansParams,) => {
+  const normalizedParams = new URLSearchParams();
 
+  Object.entries(params || {}).forEach(([key, value]) => {
+    
+    if (value !== undefined) {
+      normalizedParams.append(key, value === null ? 'null' : value.toString())
+    }
+  });
 
-  
+  const stringifiedParams = normalizedParams.toString();
 
-  return `/api/v1/billing/plans`
+  return stringifiedParams.length > 0 ? `/api/v1/billing/plans?${stringifiedParams}` : `/api/v1/billing/plans`
 }
 
-export const planGetAllPlans = async ( options?: RequestInit): Promise<planGetAllPlansResponse> => {
+export const planGetAllPlans = async (params?: PlanGetAllPlansParams, options?: RequestInit): Promise<planGetAllPlansResponse> => {
   
-  return customFetch<planGetAllPlansResponse>(getPlanGetAllPlansUrl(),
+  return customFetch<planGetAllPlansResponse>(getPlanGetAllPlansUrl(params),
   {      
     ...options,
     method: 'GET'
@@ -2163,7 +2197,7 @@ export const planDeletePlan = async (planUid: string | null, options?: RequestIn
  * @summary Retrieve all plan families.
  */
 export type planFamilyGetAllPlanFamiliesResponse200 = {
-  data: PlanFamily[]
+  data: PlanFamilyGetAllPlanFamilies200
   status: 200
 }
     
@@ -2174,17 +2208,24 @@ export type planFamilyGetAllPlanFamiliesResponseSuccess = (planFamilyGetAllPlanF
 
 export type planFamilyGetAllPlanFamiliesResponse = (planFamilyGetAllPlanFamiliesResponseSuccess)
 
-export const getPlanFamilyGetAllPlanFamiliesUrl = () => {
+export const getPlanFamilyGetAllPlanFamiliesUrl = (params?: PlanFamilyGetAllPlanFamiliesParams,) => {
+  const normalizedParams = new URLSearchParams();
 
+  Object.entries(params || {}).forEach(([key, value]) => {
+    
+    if (value !== undefined) {
+      normalizedParams.append(key, value === null ? 'null' : value.toString())
+    }
+  });
 
-  
+  const stringifiedParams = normalizedParams.toString();
 
-  return `/api/v1/billing/planfamilies`
+  return stringifiedParams.length > 0 ? `/api/v1/billing/planfamilies?${stringifiedParams}` : `/api/v1/billing/planfamilies`
 }
 
-export const planFamilyGetAllPlanFamilies = async ( options?: RequestInit): Promise<planFamilyGetAllPlanFamiliesResponse> => {
+export const planFamilyGetAllPlanFamilies = async (params?: PlanFamilyGetAllPlanFamiliesParams, options?: RequestInit): Promise<planFamilyGetAllPlanFamiliesResponse> => {
   
-  return customFetch<planFamilyGetAllPlanFamiliesResponse>(getPlanFamilyGetAllPlanFamiliesUrl(),
+  return customFetch<planFamilyGetAllPlanFamiliesResponse>(getPlanFamilyGetAllPlanFamiliesUrl(params),
   {      
     ...options,
     method: 'GET'
