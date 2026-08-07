@@ -1534,6 +1534,16 @@ export type StripeSubscriptionAllOf = {
 
 export type StripeSubscription = AbstractStripeBeanOfSubscription & StripeSubscriptionAllOf;
 
+/**
+ * @nullable
+ */
+export type StripeSubscriptionCancellationAllOfAccount = Account | null;
+
+/**
+ * @nullable
+ */
+export type StripeSubscriptionCancellationAllOfLastProduct = StripeProduct | null;
+
 export type StripeSubscriptionCancellationAllOf = {
   /**
    * @maxLength 1024
@@ -1550,6 +1560,14 @@ export type StripeSubscriptionCancellationAllOf = {
    * @nullable
    */
   Reason?: string | null;
+  /** @nullable */
+  Account?: StripeSubscriptionCancellationAllOfAccount;
+  /** @nullable */
+  CancelationReason?: string | null;
+  /** @nullable */
+  LastProduct?: StripeSubscriptionCancellationAllOfLastProduct;
+  SubmittedDateTime?: string;
+  SubscribingStartDate?: string;
 };
 
 export type StripeSubscriptionCancellation = AbstractQcountBean & StripeSubscriptionCancellationAllOf;

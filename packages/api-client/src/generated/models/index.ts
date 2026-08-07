@@ -620,6 +620,8 @@ export * from './stripeSubscriptionAllOfCurrentStripeSubscriptionSchedule';
 export * from './stripeSubscriptionAllOfStripeSubscriptionCancellation';
 export * from './stripeSubscriptionCancellation';
 export * from './stripeSubscriptionCancellationAllOf';
+export * from './stripeSubscriptionCancellationAllOfAccount';
+export * from './stripeSubscriptionCancellationAllOfLastProduct';
 export * from './stripeSubscriptionItem';
 export * from './stripeSubscriptionItemAllOf';
 export * from './stripeSubscriptionItemAllOfStripePrice';
