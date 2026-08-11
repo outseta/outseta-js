@@ -64,4 +64,5 @@ export type CrmSettingsAllOf = {
   /** @nullable */
   RegistrationCallbackUrlLocations?: string | null;
   TwoFactorAuthenticationAvailable?: boolean;
+  MagicLinkLoginOnly?: boolean;
 };

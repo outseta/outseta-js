@@ -4445,6 +4445,7 @@ export type CrmSettingsAllOf = {
   /** @nullable */
   RegistrationCallbackUrlLocations?: string | null;
   TwoFactorAuthenticationAvailable?: boolean;
+  MagicLinkLoginOnly?: boolean;
 };
 
 export type CrmSettings = AbstractQcountBean & CrmSettingsAllOf;
