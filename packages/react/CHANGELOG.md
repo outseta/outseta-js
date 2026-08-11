@@ -1,5 +1,13 @@
 # @outseta/react
 
+## 0.4.19
+
+### Patch Changes
+
+- eb6137d: Update API spec.
+- Updated dependencies [eb6137d]
+  - @outseta/api-client@0.3.25
+
 ## 0.4.18
 
 ### Patch Changes
