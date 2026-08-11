@@ -536,6 +536,7 @@ export * from './planWebhookEntityPlanAddOnsItemAddOn';
 export * from './planWebhookEntityPlanAddOnsItemAddOnBillingAddOnType';
 export * from './planWebhookEntityPlanFamily';
 export * from './processCodePayload';
+export * from './publicEmailListAddSubscriptionBody';
 export * from './qcount';
 export * from './qcountAllOf';
 export * from './qcountConfig';

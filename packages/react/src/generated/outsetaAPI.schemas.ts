@@ -9017,6 +9017,11 @@ export type DefinitionGetAllDefinitions200 = {
   items?: Definition[];
 };
 
+/**
+ * @nullable
+ */
+export type PublicEmailListAddSubscriptionBody = EmailListPerson | null;
+
 export type AuthGetTokenParams = {
 /**
  * @nullable

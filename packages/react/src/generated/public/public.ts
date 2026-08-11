@@ -13,6 +13,7 @@ import type {
   AuthResendTwoFactorParams,
   AuthSwitchTwoFactorMechanismParams,
   AuthVerifyTwoFactorRecoveryParams,
+  PublicEmailListAddSubscriptionBody,
   TokenPayload,
   TokenTwoFactorEnrollmentBeginEmailParams,
   TokenTwoFactorEnrollmentBeginTotpParams,
@@ -26,12 +27,107 @@ import type {
 
 import { customFetch } from '../../mutator';
 
+// https://stackoverflow.com/questions/49579094/typescript-conditional-types-filter-out-readonly-properties-pick-only-requir/49579497#49579497
+type IfEquals<X, Y, A = X, B = never> = (<T>() => T extends X ? 1 : 2) extends <
+T,
+>() => T extends Y ? 1 : 2
+? A
+: B;
+
+type WritableKeys<T> = {
+[P in keyof T]-?: IfEquals<
+  { [Q in P]: T[P] },
+  { -readonly [Q in P]: T[P] },
+  P
+>;
+}[keyof T];
+
+type UnionToIntersection<U> =
+  (U extends any ? (k: U)=>void : never) extends ((k: infer I)=>void) ? I : never;
+type DistributeReadOnlyOverUnions<T> = T extends any ? NonReadonly<T> : never;
+
+type Writable<T> = Pick<T, WritableKeys<T>>;
+type NonReadonly<T> = [T] extends [UnionToIntersection<T>] ? {
+  [P in keyof Writable<T>]: T[P] extends object
+    ? NonReadonly<NonNullable<T[P]>>
+    : T[P];
+} : DistributeReadOnlyOverUnions<T>;
+
+
 
 type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
 
 
 
 /**
+ * This endpoint does not require authentication. The email list must be public, and the
+subscription is subject to bot protection and the list's double opt-in settings.
+ * @summary Publicly subscribe a person to an email list.
+ */
+export const publicEmailListAddSubscription = (
+    emailListUid: string | null,
+    publicEmailListAddSubscriptionBody: NonReadonly<PublicEmailListAddSubscriptionBody>,
+ options?: SecondParameter<typeof customFetch>,signal?: AbortSignal
+) => {
+      
+      
+      return customFetch<Blob>(
+      {url: `/api/v1/public/email/lists/${emailListUid}/subscriptions`, method: 'POST',
+      headers: {'Content-Type': 'application/json', },
+      data: publicEmailListAddSubscriptionBody,
+        responseType: 'blob', signal
+    },
+      options);
+    }
+  
+
+
+export const getPublicEmailListAddSubscriptionMutationOptions = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof publicEmailListAddSubscription>>, TError,{emailListUid: string | null;data: NonReadonly<PublicEmailListAddSubscriptionBody>}, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof publicEmailListAddSubscription>>, TError,{emailListUid: string | null;data: NonReadonly<PublicEmailListAddSubscriptionBody>}, TContext> => {
+
+const mutationKey = ['publicEmailListAddSubscription'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof publicEmailListAddSubscription>>, {emailListUid: string | null;data: NonReadonly<PublicEmailListAddSubscriptionBody>}> = (props) => {
+          const {emailListUid,data} = props ?? {};
+
+          return  publicEmailListAddSubscription(emailListUid,data,requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type PublicEmailListAddSubscriptionMutationResult = NonNullable<Awaited<ReturnType<typeof publicEmailListAddSubscription>>>
+    export type PublicEmailListAddSubscriptionMutationBody = NonReadonly<PublicEmailListAddSubscriptionBody>
+    export type PublicEmailListAddSubscriptionMutationError = void
+
+    /**
+ * @summary Publicly subscribe a person to an email list.
+ */
+export const usePublicEmailListAddSubscription = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof publicEmailListAddSubscription>>, TError,{emailListUid: string | null;data: NonReadonly<PublicEmailListAddSubscriptionBody>}, TContext>, request?: SecondParameter<typeof customFetch>}
+ ): UseMutationResult<
+        Awaited<ReturnType<typeof publicEmailListAddSubscription>>,
+        TError,
+        {emailListUid: string | null;data: NonReadonly<PublicEmailListAddSubscriptionBody>},
+        TContext
+      > => {
+
+      const mutationOptions = getPublicEmailListAddSubscriptionMutationOptions(options);
+
+      return useMutation(mutationOptions);
+    }
+    /**
  * Authenticates a user and returns a JWT access token (plus a refresh token).
             
 Post a JSON body with the user's credentials:

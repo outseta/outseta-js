@@ -4,6 +4,7 @@ import type {
   AuthResendTwoFactorParams,
   AuthSwitchTwoFactorMechanismParams,
   AuthVerifyTwoFactorRecoveryParams,
+  PublicEmailListAddSubscriptionBody,
   TokenPayload,
   TokenTwoFactorEnrollmentBeginEmailParams,
   TokenTwoFactorEnrollmentBeginTotpParams,
@@ -16,6 +17,84 @@ import type {
 } from '.././models';
 
 import { customFetch } from '../../client';
+
+// https://stackoverflow.com/questions/49579094/typescript-conditional-types-filter-out-readonly-properties-pick-only-requir/49579497#49579497
+type IfEquals<X, Y, A = X, B = never> = (<T>() => T extends X ? 1 : 2) extends <
+T,
+>() => T extends Y ? 1 : 2
+? A
+: B;
+
+type WritableKeys<T> = {
+[P in keyof T]-?: IfEquals<
+  { [Q in P]: T[P] },
+  { -readonly [Q in P]: T[P] },
+  P
+>;
+}[keyof T];
+
+type UnionToIntersection<U> =
+  (U extends any ? (k: U)=>void : never) extends ((k: infer I)=>void) ? I : never;
+type DistributeReadOnlyOverUnions<T> = T extends any ? NonReadonly<T> : never;
+
+type Writable<T> = Pick<T, WritableKeys<T>>;
+type NonReadonly<T> = [T] extends [UnionToIntersection<T>] ? {
+  [P in keyof Writable<T>]: T[P] extends object
+    ? NonReadonly<NonNullable<T[P]>>
+    : T[P];
+} : DistributeReadOnlyOverUnions<T>;
+
+
+/**
+ * This endpoint does not require authentication. The email list must be public, and the
+subscription is subject to bot protection and the list's double opt-in settings.
+ * @summary Publicly subscribe a person to an email list.
+ */
+export type publicEmailListAddSubscriptionResponse200 = {
+  data: Blob
+  status: 200
+}
+
+export type publicEmailListAddSubscriptionResponse400 = {
+  data: void
+  status: 400
+}
+
+export type publicEmailListAddSubscriptionResponse404 = {
+  data: void
+  status: 404
+}
+    
+export type publicEmailListAddSubscriptionResponseSuccess = (publicEmailListAddSubscriptionResponse200) & {
+  headers: Headers;
+};
+export type publicEmailListAddSubscriptionResponseError = (publicEmailListAddSubscriptionResponse400 | publicEmailListAddSubscriptionResponse404) & {
+  headers: Headers;
+};
+
+export type publicEmailListAddSubscriptionResponse = (publicEmailListAddSubscriptionResponseSuccess | publicEmailListAddSubscriptionResponseError)
+
+export const getPublicEmailListAddSubscriptionUrl = (emailListUid: string | null,) => {
+
+
+  
+
+  return `/api/v1/public/email/lists/${emailListUid}/subscriptions`
+}
+
+export const publicEmailListAddSubscription = async (emailListUid: string | null,
+    publicEmailListAddSubscriptionBody: NonReadonly<PublicEmailListAddSubscriptionBody>, options?: RequestInit): Promise<publicEmailListAddSubscriptionResponse> => {
+  
+  return customFetch<publicEmailListAddSubscriptionResponse>(getPublicEmailListAddSubscriptionUrl(emailListUid),
+  {      
+    ...options,
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', ...options?.headers },
+    body: JSON.stringify(
+      publicEmailListAddSubscriptionBody,)
+  }
+);}
+
 
 /**
  * Authenticates a user and returns a JWT access token (plus a refresh token).
