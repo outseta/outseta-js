@@ -1,5 +1,13 @@
 # @outseta/react
 
+## 0.4.20
+
+### Patch Changes
+
+- 51ea4d3: Update API spec.
+- Updated dependencies [51ea4d3]
+  - @outseta/api-client@0.3.26
+
 ## 0.4.19
 
 ### Patch Changes
