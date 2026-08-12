@@ -13,6 +13,12 @@ export type StripePriceAllOf = {
    * @nullable
    */
   Currency?: string | null;
+  /** @nullable */
+  CustomUnitAmount_Maximum?: number | null;
+  /** @nullable */
+  CustomUnitAmount_Minimum?: number | null;
+  /** @nullable */
+  CustomUnitAmount_Preset?: number | null;
   IsActive?: boolean;
   /**
    * @maxLength 250
@@ -40,6 +46,11 @@ export type StripePriceAllOf = {
    * @nullable
    */
   TaxBehavior?: string | null;
+  /**
+   * @maxLength 36
+   * @nullable
+   */
+  TiersMode?: string | null;
   /** @nullable */
   TransformQuantity_DivideBy?: number | null;
   /**
