@@ -1,5 +1,13 @@
 # @outseta/react
 
+## 0.4.21
+
+### Patch Changes
+
+- f2761d8: Update API spec.
+- Updated dependencies [f2761d8]
+  - @outseta/api-client@0.3.27
+
 ## 0.4.20
 
 ### Patch Changes
