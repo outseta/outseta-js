@@ -9100,6 +9100,14 @@ q?: string | null;
  * @nullable
  */
 tagUid?: string | null;
+/**
+ * Requested page size. The server caps it at 100, or 25 when requested fields expand child objects or require additional queries; metadata.limit reports the applied value. Use offset=1 for the second page.
+ */
+limit?: LimitParameter;
+/**
+ * Zero-based page number, not a record offset. With limit=50, the second page is offset=1; offset=50 is page index 50 (records 2501-2550).
+ */
+offset?: OffsetParameter;
 };
 
 export type CaseGetAllCases200 = {
@@ -9126,6 +9134,14 @@ export type ArticleGetAllArticlesParams = {
  * @nullable
  */
 q?: string | null;
+/**
+ * Requested page size. The server caps it at 100, or 25 when requested fields expand child objects or require additional queries; metadata.limit reports the applied value. Use offset=1 for the second page.
+ */
+limit?: LimitParameter;
+/**
+ * Zero-based page number, not a record offset. With limit=50, the second page is offset=1; offset=50 is page index 50 (records 2501-2550).
+ */
+offset?: OffsetParameter;
 };
 
 export type ArticleGetAllArticles200 = {
@@ -9232,6 +9248,14 @@ export type EmailListGetAllSubscriptionsParams = {
  * @nullable
  */
 q?: string | null;
+/**
+ * Requested page size. The server caps it at 100, or 25 when requested fields expand child objects or require additional queries; metadata.limit reports the applied value. Use offset=1 for the second page.
+ */
+limit?: LimitParameter;
+/**
+ * Zero-based page number, not a record offset. With limit=50, the second page is offset=1; offset=50 is page index 50 (records 2501-2550).
+ */
+offset?: OffsetParameter;
 };
 
 export type EmailListGetAllSubscriptions200 = {
@@ -9255,6 +9279,14 @@ ownerUid?: string | null;
  * @nullable
  */
 q?: string | null;
+/**
+ * Requested page size. The server caps it at 100, or 25 when requested fields expand child objects or require additional queries; metadata.limit reports the applied value. Use offset=1 for the second page.
+ */
+limit?: LimitParameter;
+/**
+ * Zero-based page number, not a record offset. With limit=50, the second page is offset=1; offset=50 is page index 50 (records 2501-2550).
+ */
+offset?: OffsetParameter;
 };
 
 export type DealGetAllDeals200 = {
@@ -9283,6 +9315,14 @@ segmentUid?: string | null;
  * @nullable
  */
 q?: string | null;
+/**
+ * Requested page size. The server caps it at 100, or 25 when requested fields expand child objects or require additional queries; metadata.limit reports the applied value. Use offset=1 for the second page.
+ */
+limit?: LimitParameter;
+/**
+ * Zero-based page number, not a record offset. With limit=50, the second page is offset=1; offset=50 is page index 50 (records 2501-2550).
+ */
+offset?: OffsetParameter;
 };
 
 export type AccountGetAllAccounts200 = {
@@ -9330,6 +9370,14 @@ export type PersonGetAllPeopleParams = {
  * @nullable
  */
 q?: string | null;
+/**
+ * Requested page size. The server caps it at 100, or 25 when requested fields expand child objects or require additional queries; metadata.limit reports the applied value. Use offset=1 for the second page.
+ */
+limit?: LimitParameter;
+/**
+ * Zero-based page number, not a record offset. With limit=50, the second page is offset=1; offset=50 is page index 50 (records 2501-2550).
+ */
+offset?: OffsetParameter;
 };
 
 export type PersonGetAllPeople200 = {
@@ -9380,6 +9428,14 @@ q?: string | null;
  * @nullable
  */
 planUid?: string | null;
+/**
+ * Requested page size. The server caps it at 100, or 25 when requested fields expand child objects or require additional queries; metadata.limit reports the applied value. Use offset=1 for the second page.
+ */
+limit?: LimitParameter;
+/**
+ * Zero-based page number, not a record offset. With limit=50, the second page is offset=1; offset=50 is page index 50 (records 2501-2550).
+ */
+offset?: OffsetParameter;
 };
 
 export type DiscountCouponGetAllDiscountCoupons200 = {
@@ -9408,6 +9464,14 @@ q?: string | null;
  * @nullable
  */
 isActive?: boolean | null;
+/**
+ * Requested page size. The server caps it at 100, or 25 when requested fields expand child objects or require additional queries; metadata.limit reports the applied value. Use offset=1 for the second page.
+ */
+limit?: LimitParameter;
+/**
+ * Zero-based page number, not a record offset. With limit=50, the second page is offset=1; offset=50 is page index 50 (records 2501-2550).
+ */
+offset?: OffsetParameter;
 };
 
 export type DiscountCouponGetDiscountCouponRedemptions200 = {
@@ -9452,6 +9516,14 @@ export type SubscriptionAddOnGetAllSubscriptionsAddOnsParams = {
  * @nullable
  */
 status?: string | null;
+/**
+ * Requested page size. The server caps it at 100, or 25 when requested fields expand child objects or require additional queries; metadata.limit reports the applied value. Use offset=1 for the second page.
+ */
+limit?: LimitParameter;
+/**
+ * Zero-based page number, not a record offset. With limit=50, the second page is offset=1; offset=50 is page index 50 (records 2501-2550).
+ */
+offset?: OffsetParameter;
 };
 
 export type SubscriptionAddOnGetAllSubscriptionsAddOns200 = {
@@ -9515,6 +9587,14 @@ current?: string | null;
  * @nullable
  */
 status?: string | null;
+/**
+ * Requested page size. The server caps it at 100, or 25 when requested fields expand child objects or require additional queries; metadata.limit reports the applied value. Use offset=1 for the second page.
+ */
+limit?: LimitParameter;
+/**
+ * Zero-based page number, not a record offset. With limit=50, the second page is offset=1; offset=50 is page index 50 (records 2501-2550).
+ */
+offset?: OffsetParameter;
 };
 
 export type SubscriptionGetAllSubscriptions200 = {
@@ -9640,6 +9720,14 @@ EntityType?: string | null;
  * @nullable
  */
 EntityUid?: string | null;
+/**
+ * Requested page size. The server caps it at 100, or 25 when requested fields expand child objects or require additional queries; metadata.limit reports the applied value. Use offset=1 for the second page.
+ */
+limit?: LimitParameter;
+/**
+ * Zero-based page number, not a record offset. With limit=50, the second page is offset=1; offset=50 is page index 50 (records 2501-2550).
+ */
+offset?: OffsetParameter;
 };
 
 export type ActivityGetAll200 = {
