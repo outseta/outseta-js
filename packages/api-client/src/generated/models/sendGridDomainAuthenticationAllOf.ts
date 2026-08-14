@@ -14,6 +14,7 @@ export type SendGridDomainAuthenticationAllOf = {
   SendGridSubuser?: string | null;
   IsValid?: boolean;
   IsBrandedLinksDisabled?: boolean;
+  IsBrandedLinksValid?: boolean;
   IsLinkTrackingDnsValid?: boolean;
   /**
    * @maxLength 100

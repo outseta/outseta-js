@@ -8,6 +8,8 @@ export type BillSettingsAllOf = {
   PaymentsMode?: PaymentsMode;
   BillingSystem?: BillingSystem;
   RestrictSubscriptionActions?: boolean;
+  StripeCheckoutRequireBillingAddress?: boolean;
+  StripeCheckoutRequireConsentTermsOfService?: boolean;
   /** @nullable */
   StripeTaxCode?: string | null;
   StripeTaxEnabled?: boolean;
