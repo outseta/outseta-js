@@ -29,10 +29,15 @@ import type {
   DripCampaignSendTestCampaignEmailBody,
   DripCampaignUpdateDripCampaignBody,
   DripCampaignUpdateDripCampaignMessageBody,
+  EmailList,
+  EmailListAddEmailListBody,
   EmailListAddSubscriptionBody,
+  EmailListGetAllEmailLists200,
+  EmailListGetAllEmailListsParams,
   EmailListGetAllSubscriptions200,
   EmailListGetAllSubscriptionsParams,
-  EmailListPerson
+  EmailListPerson,
+  EmailListUpdateEmailListBody
 } from '../outsetaAPI.schemas';
 
 import { customFetch } from '../../mutator';
@@ -1315,6 +1320,338 @@ export const useCampaignSendTestCampaignEmail = <TError = void,
       > => {
 
       const mutationOptions = getCampaignSendTestCampaignEmailMutationOptions(options);
+
+      return useMutation(mutationOptions);
+    }
+    /**
+ * @summary Retrieve all email lists.
+ */
+export const emailListGetAllEmailLists = (
+    params?: EmailListGetAllEmailListsParams,
+ options?: SecondParameter<typeof customFetch>,signal?: AbortSignal
+) => {
+      
+      
+      return customFetch<EmailListGetAllEmailLists200>(
+      {url: `/api/v1/email/lists`, method: 'GET',
+        params, signal
+    },
+      options);
+    }
+  
+
+
+
+export const getEmailListGetAllEmailListsQueryKey = (params?: EmailListGetAllEmailListsParams,) => {
+    return [
+    `/api/v1/email/lists`, ...(params ? [params]: [])
+    ] as const;
+    }
+
+    
+export const getEmailListGetAllEmailListsQueryOptions = <TData = Awaited<ReturnType<typeof emailListGetAllEmailLists>>, TError = void>(params?: EmailListGetAllEmailListsParams, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof emailListGetAllEmailLists>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getEmailListGetAllEmailListsQueryKey(params);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof emailListGetAllEmailLists>>> = ({ signal }) => emailListGetAllEmailLists(params, requestOptions, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof emailListGetAllEmailLists>>, TError, TData> & { queryKey: QueryKey }
+}
+
+export type EmailListGetAllEmailListsQueryResult = NonNullable<Awaited<ReturnType<typeof emailListGetAllEmailLists>>>
+export type EmailListGetAllEmailListsQueryError = void
+
+
+/**
+ * @summary Retrieve all email lists.
+ */
+
+export function useEmailListGetAllEmailLists<TData = Awaited<ReturnType<typeof emailListGetAllEmailLists>>, TError = void>(
+ params?: EmailListGetAllEmailListsParams, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof emailListGetAllEmailLists>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
+  
+ ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } {
+
+  const queryOptions = getEmailListGetAllEmailListsQueryOptions(params,options)
+
+  const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: QueryKey };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+
+/**
+ * Name is required and must be unique. Set RequiresDoubleOptIn to true to require new
+subscribers to confirm their subscription. WelcomeSubject and WelcomeBody configure an
+optional welcome email; use WelcomeFromName and WelcomeFromEmail to set its sender.
+ * @summary Create an email list.
+ */
+export const emailListAddEmailList = (
+    emailListAddEmailListBody: NonReadonly<EmailListAddEmailListBody>,
+ options?: SecondParameter<typeof customFetch>,signal?: AbortSignal
+) => {
+      
+      
+      return customFetch<EmailList>(
+      {url: `/api/v1/email/lists`, method: 'POST',
+      headers: {'Content-Type': 'application/json', },
+      data: emailListAddEmailListBody, signal
+    },
+      options);
+    }
+  
+
+
+export const getEmailListAddEmailListMutationOptions = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof emailListAddEmailList>>, TError,{data: NonReadonly<EmailListAddEmailListBody>}, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof emailListAddEmailList>>, TError,{data: NonReadonly<EmailListAddEmailListBody>}, TContext> => {
+
+const mutationKey = ['emailListAddEmailList'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof emailListAddEmailList>>, {data: NonReadonly<EmailListAddEmailListBody>}> = (props) => {
+          const {data} = props ?? {};
+
+          return  emailListAddEmailList(data,requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type EmailListAddEmailListMutationResult = NonNullable<Awaited<ReturnType<typeof emailListAddEmailList>>>
+    export type EmailListAddEmailListMutationBody = NonReadonly<EmailListAddEmailListBody>
+    export type EmailListAddEmailListMutationError = void
+
+    /**
+ * @summary Create an email list.
+ */
+export const useEmailListAddEmailList = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof emailListAddEmailList>>, TError,{data: NonReadonly<EmailListAddEmailListBody>}, TContext>, request?: SecondParameter<typeof customFetch>}
+ ): UseMutationResult<
+        Awaited<ReturnType<typeof emailListAddEmailList>>,
+        TError,
+        {data: NonReadonly<EmailListAddEmailListBody>},
+        TContext
+      > => {
+
+      const mutationOptions = getEmailListAddEmailListMutationOptions(options);
+
+      return useMutation(mutationOptions);
+    }
+    /**
+ * @summary Retrieve an email list.
+ */
+export const emailListGetEmailList = (
+    emailListUid: string | null,
+ options?: SecondParameter<typeof customFetch>,signal?: AbortSignal
+) => {
+      
+      
+      return customFetch<EmailList>(
+      {url: `/api/v1/email/lists/${emailListUid}`, method: 'GET', signal
+    },
+      options);
+    }
+  
+
+
+
+export const getEmailListGetEmailListQueryKey = (emailListUid?: string | null,) => {
+    return [
+    `/api/v1/email/lists/${emailListUid}`
+    ] as const;
+    }
+
+    
+export const getEmailListGetEmailListQueryOptions = <TData = Awaited<ReturnType<typeof emailListGetEmailList>>, TError = void>(emailListUid: string | null, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof emailListGetEmailList>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getEmailListGetEmailListQueryKey(emailListUid);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof emailListGetEmailList>>> = ({ signal }) => emailListGetEmailList(emailListUid, requestOptions, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, enabled: !!(emailListUid), ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof emailListGetEmailList>>, TError, TData> & { queryKey: QueryKey }
+}
+
+export type EmailListGetEmailListQueryResult = NonNullable<Awaited<ReturnType<typeof emailListGetEmailList>>>
+export type EmailListGetEmailListQueryError = void
+
+
+/**
+ * @summary Retrieve an email list.
+ */
+
+export function useEmailListGetEmailList<TData = Awaited<ReturnType<typeof emailListGetEmailList>>, TError = void>(
+ emailListUid: string | null, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof emailListGetEmailList>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
+  
+ ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } {
+
+  const queryOptions = getEmailListGetEmailListQueryOptions(emailListUid,options)
+
+  const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: QueryKey };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+
+/**
+ * The Uid may be omitted from the request body. If supplied, it must match the Uid in the URL.
+ * @summary Update an email list.
+ */
+export const emailListUpdateEmailList = (
+    emailListUid: string | null,
+    emailListUpdateEmailListBody: NonReadonly<EmailListUpdateEmailListBody>,
+ options?: SecondParameter<typeof customFetch>,) => {
+      
+      
+      return customFetch<EmailList>(
+      {url: `/api/v1/email/lists/${emailListUid}`, method: 'PUT',
+      headers: {'Content-Type': 'application/json', },
+      data: emailListUpdateEmailListBody
+    },
+      options);
+    }
+  
+
+
+export const getEmailListUpdateEmailListMutationOptions = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof emailListUpdateEmailList>>, TError,{emailListUid: string | null;data: NonReadonly<EmailListUpdateEmailListBody>}, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof emailListUpdateEmailList>>, TError,{emailListUid: string | null;data: NonReadonly<EmailListUpdateEmailListBody>}, TContext> => {
+
+const mutationKey = ['emailListUpdateEmailList'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof emailListUpdateEmailList>>, {emailListUid: string | null;data: NonReadonly<EmailListUpdateEmailListBody>}> = (props) => {
+          const {emailListUid,data} = props ?? {};
+
+          return  emailListUpdateEmailList(emailListUid,data,requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type EmailListUpdateEmailListMutationResult = NonNullable<Awaited<ReturnType<typeof emailListUpdateEmailList>>>
+    export type EmailListUpdateEmailListMutationBody = NonReadonly<EmailListUpdateEmailListBody>
+    export type EmailListUpdateEmailListMutationError = void
+
+    /**
+ * @summary Update an email list.
+ */
+export const useEmailListUpdateEmailList = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof emailListUpdateEmailList>>, TError,{emailListUid: string | null;data: NonReadonly<EmailListUpdateEmailListBody>}, TContext>, request?: SecondParameter<typeof customFetch>}
+ ): UseMutationResult<
+        Awaited<ReturnType<typeof emailListUpdateEmailList>>,
+        TError,
+        {emailListUid: string | null;data: NonReadonly<EmailListUpdateEmailListBody>},
+        TContext
+      > => {
+
+      const mutationOptions = getEmailListUpdateEmailListMutationOptions(options);
+
+      return useMutation(mutationOptions);
+    }
+    /**
+ * Deleting a list also removes all of its subscriptions.
+ * @summary Delete an email list.
+ */
+export const emailListDeleteEmailList = (
+    emailListUid: string | null,
+ options?: SecondParameter<typeof customFetch>,) => {
+      
+      
+      return customFetch<Blob>(
+      {url: `/api/v1/email/lists/${emailListUid}`, method: 'DELETE',
+        responseType: 'blob'
+    },
+      options);
+    }
+  
+
+
+export const getEmailListDeleteEmailListMutationOptions = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof emailListDeleteEmailList>>, TError,{emailListUid: string | null}, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof emailListDeleteEmailList>>, TError,{emailListUid: string | null}, TContext> => {
+
+const mutationKey = ['emailListDeleteEmailList'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof emailListDeleteEmailList>>, {emailListUid: string | null}> = (props) => {
+          const {emailListUid} = props ?? {};
+
+          return  emailListDeleteEmailList(emailListUid,requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type EmailListDeleteEmailListMutationResult = NonNullable<Awaited<ReturnType<typeof emailListDeleteEmailList>>>
+    
+    export type EmailListDeleteEmailListMutationError = void
+
+    /**
+ * @summary Delete an email list.
+ */
+export const useEmailListDeleteEmailList = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof emailListDeleteEmailList>>, TError,{emailListUid: string | null}, TContext>, request?: SecondParameter<typeof customFetch>}
+ ): UseMutationResult<
+        Awaited<ReturnType<typeof emailListDeleteEmailList>>,
+        TError,
+        {emailListUid: string | null},
+        TContext
+      > => {
+
+      const mutationOptions = getEmailListDeleteEmailListMutationOptions(options);
 
       return useMutation(mutationOptions);
     }

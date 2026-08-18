@@ -15,10 +15,15 @@ import type {
   DripCampaignSendTestCampaignEmailBody,
   DripCampaignUpdateDripCampaignBody,
   DripCampaignUpdateDripCampaignMessageBody,
+  EmailList,
+  EmailListAddEmailListBody,
   EmailListAddSubscriptionBody,
+  EmailListGetAllEmailLists200,
+  EmailListGetAllEmailListsParams,
   EmailListGetAllSubscriptions200,
   EmailListGetAllSubscriptionsParams,
-  EmailListPerson
+  EmailListPerson,
+  EmailListUpdateEmailListBody
 } from '.././models';
 
 import { customFetch } from '../../client';
@@ -1029,6 +1034,261 @@ export const campaignSendTestCampaignEmail = async (campaignSendTestCampaignEmai
     headers: { 'Content-Type': 'application/json', ...options?.headers },
     body: JSON.stringify(
       campaignSendTestCampaignEmailBody,)
+  }
+);}
+
+
+/**
+ * @summary Retrieve all email lists.
+ */
+export type emailListGetAllEmailListsResponse200 = {
+  data: EmailListGetAllEmailLists200
+  status: 200
+}
+
+export type emailListGetAllEmailListsResponse401 = {
+  data: void
+  status: 401
+}
+    
+export type emailListGetAllEmailListsResponseSuccess = (emailListGetAllEmailListsResponse200) & {
+  headers: Headers;
+};
+export type emailListGetAllEmailListsResponseError = (emailListGetAllEmailListsResponse401) & {
+  headers: Headers;
+};
+
+export type emailListGetAllEmailListsResponse = (emailListGetAllEmailListsResponseSuccess | emailListGetAllEmailListsResponseError)
+
+export const getEmailListGetAllEmailListsUrl = (params?: EmailListGetAllEmailListsParams,) => {
+  const normalizedParams = new URLSearchParams();
+
+  Object.entries(params || {}).forEach(([key, value]) => {
+    
+    if (value !== undefined) {
+      normalizedParams.append(key, value === null ? 'null' : value.toString())
+    }
+  });
+
+  const stringifiedParams = normalizedParams.toString();
+
+  return stringifiedParams.length > 0 ? `/api/v1/email/lists?${stringifiedParams}` : `/api/v1/email/lists`
+}
+
+export const emailListGetAllEmailLists = async (params?: EmailListGetAllEmailListsParams, options?: RequestInit): Promise<emailListGetAllEmailListsResponse> => {
+  
+  return customFetch<emailListGetAllEmailListsResponse>(getEmailListGetAllEmailListsUrl(params),
+  {      
+    ...options,
+    method: 'GET'
+    
+    
+  }
+);}
+
+
+/**
+ * Name is required and must be unique. Set RequiresDoubleOptIn to true to require new
+subscribers to confirm their subscription. WelcomeSubject and WelcomeBody configure an
+optional welcome email; use WelcomeFromName and WelcomeFromEmail to set its sender.
+ * @summary Create an email list.
+ */
+export type emailListAddEmailListResponse200 = {
+  data: EmailList
+  status: 200
+}
+
+export type emailListAddEmailListResponse401 = {
+  data: void
+  status: 401
+}
+    
+export type emailListAddEmailListResponseSuccess = (emailListAddEmailListResponse200) & {
+  headers: Headers;
+};
+export type emailListAddEmailListResponseError = (emailListAddEmailListResponse401) & {
+  headers: Headers;
+};
+
+export type emailListAddEmailListResponse = (emailListAddEmailListResponseSuccess | emailListAddEmailListResponseError)
+
+export const getEmailListAddEmailListUrl = () => {
+
+
+  
+
+  return `/api/v1/email/lists`
+}
+
+export const emailListAddEmailList = async (emailListAddEmailListBody: NonReadonly<EmailListAddEmailListBody>, options?: RequestInit): Promise<emailListAddEmailListResponse> => {
+  
+  return customFetch<emailListAddEmailListResponse>(getEmailListAddEmailListUrl(),
+  {      
+    ...options,
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', ...options?.headers },
+    body: JSON.stringify(
+      emailListAddEmailListBody,)
+  }
+);}
+
+
+/**
+ * @summary Retrieve an email list.
+ */
+export type emailListGetEmailListResponse200 = {
+  data: EmailList
+  status: 200
+}
+
+export type emailListGetEmailListResponse400 = {
+  data: void
+  status: 400
+}
+
+export type emailListGetEmailListResponse401 = {
+  data: void
+  status: 401
+}
+
+export type emailListGetEmailListResponse404 = {
+  data: void
+  status: 404
+}
+    
+export type emailListGetEmailListResponseSuccess = (emailListGetEmailListResponse200) & {
+  headers: Headers;
+};
+export type emailListGetEmailListResponseError = (emailListGetEmailListResponse400 | emailListGetEmailListResponse401 | emailListGetEmailListResponse404) & {
+  headers: Headers;
+};
+
+export type emailListGetEmailListResponse = (emailListGetEmailListResponseSuccess | emailListGetEmailListResponseError)
+
+export const getEmailListGetEmailListUrl = (emailListUid: string | null,) => {
+
+
+  
+
+  return `/api/v1/email/lists/${emailListUid}`
+}
+
+export const emailListGetEmailList = async (emailListUid: string | null, options?: RequestInit): Promise<emailListGetEmailListResponse> => {
+  
+  return customFetch<emailListGetEmailListResponse>(getEmailListGetEmailListUrl(emailListUid),
+  {      
+    ...options,
+    method: 'GET'
+    
+    
+  }
+);}
+
+
+/**
+ * The Uid may be omitted from the request body. If supplied, it must match the Uid in the URL.
+ * @summary Update an email list.
+ */
+export type emailListUpdateEmailListResponse200 = {
+  data: EmailList
+  status: 200
+}
+
+export type emailListUpdateEmailListResponse400 = {
+  data: void
+  status: 400
+}
+
+export type emailListUpdateEmailListResponse401 = {
+  data: void
+  status: 401
+}
+
+export type emailListUpdateEmailListResponse404 = {
+  data: void
+  status: 404
+}
+    
+export type emailListUpdateEmailListResponseSuccess = (emailListUpdateEmailListResponse200) & {
+  headers: Headers;
+};
+export type emailListUpdateEmailListResponseError = (emailListUpdateEmailListResponse400 | emailListUpdateEmailListResponse401 | emailListUpdateEmailListResponse404) & {
+  headers: Headers;
+};
+
+export type emailListUpdateEmailListResponse = (emailListUpdateEmailListResponseSuccess | emailListUpdateEmailListResponseError)
+
+export const getEmailListUpdateEmailListUrl = (emailListUid: string | null,) => {
+
+
+  
+
+  return `/api/v1/email/lists/${emailListUid}`
+}
+
+export const emailListUpdateEmailList = async (emailListUid: string | null,
+    emailListUpdateEmailListBody: NonReadonly<EmailListUpdateEmailListBody>, options?: RequestInit): Promise<emailListUpdateEmailListResponse> => {
+  
+  return customFetch<emailListUpdateEmailListResponse>(getEmailListUpdateEmailListUrl(emailListUid),
+  {      
+    ...options,
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json', ...options?.headers },
+    body: JSON.stringify(
+      emailListUpdateEmailListBody,)
+  }
+);}
+
+
+/**
+ * Deleting a list also removes all of its subscriptions.
+ * @summary Delete an email list.
+ */
+export type emailListDeleteEmailListResponse200 = {
+  data: Blob
+  status: 200
+}
+
+export type emailListDeleteEmailListResponse400 = {
+  data: void
+  status: 400
+}
+
+export type emailListDeleteEmailListResponse401 = {
+  data: void
+  status: 401
+}
+
+export type emailListDeleteEmailListResponse404 = {
+  data: void
+  status: 404
+}
+    
+export type emailListDeleteEmailListResponseSuccess = (emailListDeleteEmailListResponse200) & {
+  headers: Headers;
+};
+export type emailListDeleteEmailListResponseError = (emailListDeleteEmailListResponse400 | emailListDeleteEmailListResponse401 | emailListDeleteEmailListResponse404) & {
+  headers: Headers;
+};
+
+export type emailListDeleteEmailListResponse = (emailListDeleteEmailListResponseSuccess | emailListDeleteEmailListResponseError)
+
+export const getEmailListDeleteEmailListUrl = (emailListUid: string | null,) => {
+
+
+  
+
+  return `/api/v1/email/lists/${emailListUid}`
+}
+
+export const emailListDeleteEmailList = async (emailListUid: string | null, options?: RequestInit): Promise<emailListDeleteEmailListResponse> => {
+  
+  return customFetch<emailListDeleteEmailListResponse>(getEmailListDeleteEmailListUrl(emailListUid),
+  {      
+    ...options,
+    method: 'DELETE'
+    
+    
   }
 );}
 
