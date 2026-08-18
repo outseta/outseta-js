@@ -1381,13 +1381,20 @@ export type personForgotPasswordResponse200 = {
   data: Blob
   status: 200
 }
+
+export type personForgotPasswordResponse401 = {
+  data: void
+  status: 401
+}
     
 export type personForgotPasswordResponseSuccess = (personForgotPasswordResponse200) & {
   headers: Headers;
 };
-;
+export type personForgotPasswordResponseError = (personForgotPasswordResponse401) & {
+  headers: Headers;
+};
 
-export type personForgotPasswordResponse = (personForgotPasswordResponseSuccess)
+export type personForgotPasswordResponse = (personForgotPasswordResponseSuccess | personForgotPasswordResponseError)
 
 export const getPersonForgotPasswordUrl = () => {
 

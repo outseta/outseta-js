@@ -1750,7 +1750,7 @@ export const personForgotPassword = (
   
 
 
-export const getPersonForgotPasswordMutationOptions = <TError = unknown,
+export const getPersonForgotPasswordMutationOptions = <TError = void,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof personForgotPassword>>, TError,{data: NonReadonly<PersonForgotPasswordBody>}, TContext>, request?: SecondParameter<typeof customFetch>}
 ): UseMutationOptions<Awaited<ReturnType<typeof personForgotPassword>>, TError,{data: NonReadonly<PersonForgotPasswordBody>}, TContext> => {
 
@@ -1777,12 +1777,12 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
 
     export type PersonForgotPasswordMutationResult = NonNullable<Awaited<ReturnType<typeof personForgotPassword>>>
     export type PersonForgotPasswordMutationBody = NonReadonly<PersonForgotPasswordBody>
-    export type PersonForgotPasswordMutationError = unknown
+    export type PersonForgotPasswordMutationError = void
 
     /**
  * @summary Initiate the forgot password flow.
  */
-export const usePersonForgotPassword = <TError = unknown,
+export const usePersonForgotPassword = <TError = void,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof personForgotPassword>>, TError,{data: NonReadonly<PersonForgotPasswordBody>}, TContext>, request?: SecondParameter<typeof customFetch>}
  ): UseMutationResult<
         Awaited<ReturnType<typeof personForgotPassword>>,

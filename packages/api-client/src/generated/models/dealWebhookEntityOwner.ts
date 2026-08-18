@@ -97,6 +97,8 @@ export type DealWebhookEntityOwner = {
   /** @nullable */
   Password?: string | null;
   /** @nullable */
+  RecaptchaToken?: string | null;
+  /** @nullable */
   UserAgentPlatformBrowser?: string | null;
   HasUnsubscribed?: boolean;
   IsConnectedToDiscord?: boolean;

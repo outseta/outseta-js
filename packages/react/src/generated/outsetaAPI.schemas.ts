@@ -355,6 +355,8 @@ export type PersonAllOf = {
   /** @nullable */
   Password?: string | null;
   /** @nullable */
+  RecaptchaToken?: string | null;
+  /** @nullable */
   UserAgentPlatformBrowser?: string | null;
   HasUnsubscribed?: boolean;
   /** @nullable */
@@ -5271,6 +5273,8 @@ export type AccountWebhookEntityPersonAccountItemPerson = {
   /** @nullable */
   Password?: string | null;
   /** @nullable */
+  RecaptchaToken?: string | null;
+  /** @nullable */
   UserAgentPlatformBrowser?: string | null;
   HasUnsubscribed?: boolean;
   IsConnectedToDiscord?: boolean;
@@ -7027,6 +7031,8 @@ export type AccountWebhookEntityPrimaryContact = {
   /** @nullable */
   Password?: string | null;
   /** @nullable */
+  RecaptchaToken?: string | null;
+  /** @nullable */
   UserAgentPlatformBrowser?: string | null;
   HasUnsubscribed?: boolean;
   IsConnectedToDiscord?: boolean;
@@ -8065,6 +8071,8 @@ export interface PersonWebhookEntity {
   /** @nullable */
   Password?: string | null;
   /** @nullable */
+  RecaptchaToken?: string | null;
+  /** @nullable */
   UserAgentPlatformBrowser?: string | null;
   HasUnsubscribed?: boolean;
   /** @nullable */
@@ -8573,6 +8581,8 @@ export type DealWebhookEntityOwner = {
   OptInToEmailList?: boolean;
   /** @nullable */
   Password?: string | null;
+  /** @nullable */
+  RecaptchaToken?: string | null;
   /** @nullable */
   UserAgentPlatformBrowser?: string | null;
   HasUnsubscribed?: boolean;

@@ -101,6 +101,8 @@ export type PersonAllOf = {
   /** @nullable */
   Password?: string | null;
   /** @nullable */
+  RecaptchaToken?: string | null;
+  /** @nullable */
   UserAgentPlatformBrowser?: string | null;
   HasUnsubscribed?: boolean;
   /** @nullable */
