@@ -3658,6 +3658,62 @@ export const ActivityType = {
   DiscordUserRemovedFromServer: 503,
 } as const;
 
+/**
+ * @nullable
+ */
+export type TemplateEmailInstanceAllOfTemplate = Template | null;
+
+/**
+ * @nullable
+ */
+export type TemplateEmailInstanceAllOfRecipient = Person | null;
+
+export type TemplateEmailInstanceAllOf = {
+  /** @nullable */
+  Template?: TemplateEmailInstanceAllOfTemplate;
+  /** @nullable */
+  Recipient?: TemplateEmailInstanceAllOfRecipient;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  UniqueMessageId?: string | null;
+  /**
+   * @maxLength 1000
+   * @nullable
+   */
+  Subject?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  FromEmail?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  FromName?: string | null;
+  SendDateTime?: string;
+  /** @nullable */
+  ProcessDateTime?: string | null;
+  /** @nullable */
+  DeliverDateTime?: string | null;
+  /** @nullable */
+  BounceDateTime?: string | null;
+  /** @nullable */
+  SpamDateTime?: string | null;
+  /** @nullable */
+  OpenDateTime?: string | null;
+  /** @nullable */
+  ClickDateTime?: string | null;
+  /** @nullable */
+  UnsubscribeDateTime?: string | null;
+  /** @nullable */
+  SendError?: string | null;
+};
+
+export type TemplateEmailInstance = AbstractQcountBean & TemplateEmailInstanceAllOf;
+
 export type TemplateAllOf = {
   /**
    * @minLength 1
@@ -3693,6 +3749,29 @@ export type TemplateAllOf = {
 };
 
 export type Template = AbstractQcountBean & TemplateAllOf;
+
+export interface SendTemplateEmailRequest {
+  /**
+   * The Uid of the person to send the email to. Required.
+   * @nullable
+   */
+  PersonUid?: string | null;
+  /**
+   * The from address. Defaults to the support email address for the account.
+   * @nullable
+   */
+  FromEmail?: string | null;
+  /**
+   * The from name. Defaults to the company name.
+   * @nullable
+   */
+  FromName?: string | null;
+  /**
+   * Overrides the subject of the template.
+   * @nullable
+   */
+  Subject?: string | null;
+}
 
 export type SendGridDomainAuthenticationAllOf = {
   /**
@@ -9184,6 +9263,43 @@ export type CategoryGetAllCategories200 = {
   metadata?: CollectionMetadata;
   items?: Category[];
 };
+
+export type TemplateGetAllTemplateEmailsParams = {
+/**
+ * Requested page size. The server caps it at 100, or 25 when requested fields expand child objects or require additional queries; metadata.limit reports the applied value. Use offset=1 for the second page.
+ */
+limit?: LimitParameter;
+/**
+ * Zero-based page number, not a record offset. With limit=50, the second page is offset=1; offset=50 is page index 50 (records 2501-2550).
+ */
+offset?: OffsetParameter;
+};
+
+export type TemplateGetAllTemplateEmails200 = {
+  metadata?: CollectionMetadata;
+  items?: TemplateEmailInstance[];
+};
+
+export type TemplateGetTemplateEmailsParams = {
+/**
+ * Requested page size. The server caps it at 100, or 25 when requested fields expand child objects or require additional queries; metadata.limit reports the applied value. Use offset=1 for the second page.
+ */
+limit?: LimitParameter;
+/**
+ * Zero-based page number, not a record offset. With limit=50, the second page is offset=1; offset=50 is page index 50 (records 2501-2550).
+ */
+offset?: OffsetParameter;
+};
+
+export type TemplateGetTemplateEmails200 = {
+  metadata?: CollectionMetadata;
+  items?: TemplateEmailInstance[];
+};
+
+/**
+ * @nullable
+ */
+export type TemplateSendTemplateEmailBody = SendTemplateEmailRequest | null;
 
 export type DripCampaignGetAllDripCampaignsParams = {
 /**
