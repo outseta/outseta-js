@@ -21,6 +21,7 @@ import type {
   PersonForgotPasswordBody,
   PersonGetAllPeople200,
   PersonGetAllPeopleParams,
+  PersonRequestMagicLinkBody,
   PersonSetTemporaryPasswordBody,
   PersonUpdatePersonBody
 } from '.././models';
@@ -1413,6 +1414,46 @@ export const personForgotPassword = async (personForgotPasswordBody: NonReadonly
     headers: { 'Content-Type': 'application/json', ...options?.headers },
     body: JSON.stringify(
       personForgotPasswordBody,)
+  }
+);}
+
+
+/**
+ * Sends an email containing a single-use, time-limited link that signs
+the recipient in without a password. Always responds 200 regardless
+of whether the email matches a known user or whether the feature is
+enabled, so the endpoint cannot be used to enumerate accounts.
+ * @summary Request a passwordless magic link to sign in.
+ */
+export type personRequestMagicLinkResponse200 = {
+  data: Blob
+  status: 200
+}
+    
+export type personRequestMagicLinkResponseSuccess = (personRequestMagicLinkResponse200) & {
+  headers: Headers;
+};
+;
+
+export type personRequestMagicLinkResponse = (personRequestMagicLinkResponseSuccess)
+
+export const getPersonRequestMagicLinkUrl = () => {
+
+
+  
+
+  return `/api/v1/crm/people/requestMagicLink`
+}
+
+export const personRequestMagicLink = async (personRequestMagicLinkBody: NonReadonly<PersonRequestMagicLinkBody>, options?: RequestInit): Promise<personRequestMagicLinkResponse> => {
+  
+  return customFetch<personRequestMagicLinkResponse>(getPersonRequestMagicLinkUrl(),
+  {      
+    ...options,
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', ...options?.headers },
+    body: JSON.stringify(
+      personRequestMagicLinkBody,)
   }
 );}
 

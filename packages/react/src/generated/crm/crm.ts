@@ -35,6 +35,7 @@ import type {
   PersonForgotPasswordBody,
   PersonGetAllPeople200,
   PersonGetAllPeopleParams,
+  PersonRequestMagicLinkBody,
   PersonSetTemporaryPasswordBody,
   PersonUpdatePersonBody
 } from '../outsetaAPI.schemas';
@@ -1792,6 +1793,75 @@ export const usePersonForgotPassword = <TError = void,
       > => {
 
       const mutationOptions = getPersonForgotPasswordMutationOptions(options);
+
+      return useMutation(mutationOptions);
+    }
+    /**
+ * Sends an email containing a single-use, time-limited link that signs
+the recipient in without a password. Always responds 200 regardless
+of whether the email matches a known user or whether the feature is
+enabled, so the endpoint cannot be used to enumerate accounts.
+ * @summary Request a passwordless magic link to sign in.
+ */
+export const personRequestMagicLink = (
+    personRequestMagicLinkBody: NonReadonly<PersonRequestMagicLinkBody>,
+ options?: SecondParameter<typeof customFetch>,signal?: AbortSignal
+) => {
+      
+      
+      return customFetch<Blob>(
+      {url: `/api/v1/crm/people/requestMagicLink`, method: 'POST',
+      headers: {'Content-Type': 'application/json', },
+      data: personRequestMagicLinkBody,
+        responseType: 'blob', signal
+    },
+      options);
+    }
+  
+
+
+export const getPersonRequestMagicLinkMutationOptions = <TError = unknown,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof personRequestMagicLink>>, TError,{data: NonReadonly<PersonRequestMagicLinkBody>}, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof personRequestMagicLink>>, TError,{data: NonReadonly<PersonRequestMagicLinkBody>}, TContext> => {
+
+const mutationKey = ['personRequestMagicLink'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof personRequestMagicLink>>, {data: NonReadonly<PersonRequestMagicLinkBody>}> = (props) => {
+          const {data} = props ?? {};
+
+          return  personRequestMagicLink(data,requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type PersonRequestMagicLinkMutationResult = NonNullable<Awaited<ReturnType<typeof personRequestMagicLink>>>
+    export type PersonRequestMagicLinkMutationBody = NonReadonly<PersonRequestMagicLinkBody>
+    export type PersonRequestMagicLinkMutationError = unknown
+
+    /**
+ * @summary Request a passwordless magic link to sign in.
+ */
+export const usePersonRequestMagicLink = <TError = unknown,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof personRequestMagicLink>>, TError,{data: NonReadonly<PersonRequestMagicLinkBody>}, TContext>, request?: SecondParameter<typeof customFetch>}
+ ): UseMutationResult<
+        Awaited<ReturnType<typeof personRequestMagicLink>>,
+        TError,
+        {data: NonReadonly<PersonRequestMagicLinkBody>},
+        TContext
+      > => {
+
+      const mutationOptions = getPersonRequestMagicLinkMutationOptions(options);
 
       return useMutation(mutationOptions);
     }

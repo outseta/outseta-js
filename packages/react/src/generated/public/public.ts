@@ -10,6 +10,7 @@ import type {
 
 import type {
   AuthGetTokenParams,
+  AuthMagicLinkTokenParams,
   AuthResendTwoFactorParams,
   AuthSwitchTwoFactorMechanismParams,
   AuthVerifyTwoFactorRecoveryParams,
@@ -224,6 +225,85 @@ export const useAuthGetToken = <TError = string,
       > => {
 
       const mutationOptions = getAuthGetTokenMutationOptions(options);
+
+      return useMutation(mutationOptions);
+    }
+    /**
+ * Call this with the magicToken carried by the link from a
+"magic link" email (requested via POST /api/v1/crm/people/requestMagicLink):
+            
+    { "magic_token": "eyJ..." }
+            
+The link proves control of the email inbox, which satisfies the first
+factor. The response then matches POST /api/v1/tokens:
+            
+ - 200 with an access token when no further factor is required;
+ - 202 with a two_factor_required challenge when the user
+   has a non-email second factor (e.g. an authenticator app) that must
+   still be cleared via POST /api/v1/tokens/two-factor. Email is
+   never offered as that second factor — it was already the first.
+            
+An invalid, expired, already-used token (or a tenant without magic-link
+login enabled) returns 400 (invalid_grant).
+ * @summary Exchange a magic-link token for an access token (passwordless login).
+ */
+export const authMagicLinkToken = (
+    params: AuthMagicLinkTokenParams,
+ options?: SecondParameter<typeof customFetch>,signal?: AbortSignal
+) => {
+      
+      
+      return customFetch<TokenPayload | TwoFactorChallengePayload>(
+      {url: `/api/v1/tokens/magic-link`, method: 'POST',
+        params, signal
+    },
+      options);
+    }
+  
+
+
+export const getAuthMagicLinkTokenMutationOptions = <TError = string,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof authMagicLinkToken>>, TError,{params: AuthMagicLinkTokenParams}, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof authMagicLinkToken>>, TError,{params: AuthMagicLinkTokenParams}, TContext> => {
+
+const mutationKey = ['authMagicLinkToken'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof authMagicLinkToken>>, {params: AuthMagicLinkTokenParams}> = (props) => {
+          const {params} = props ?? {};
+
+          return  authMagicLinkToken(params,requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type AuthMagicLinkTokenMutationResult = NonNullable<Awaited<ReturnType<typeof authMagicLinkToken>>>
+    
+    export type AuthMagicLinkTokenMutationError = string
+
+    /**
+ * @summary Exchange a magic-link token for an access token (passwordless login).
+ */
+export const useAuthMagicLinkToken = <TError = string,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof authMagicLinkToken>>, TError,{params: AuthMagicLinkTokenParams}, TContext>, request?: SecondParameter<typeof customFetch>}
+ ): UseMutationResult<
+        Awaited<ReturnType<typeof authMagicLinkToken>>,
+        TError,
+        {params: AuthMagicLinkTokenParams},
+        TContext
+      > => {
+
+      const mutationOptions = getAuthMagicLinkTokenMutationOptions(options);
 
       return useMutation(mutationOptions);
     }

@@ -1,6 +1,7 @@
 // @ts-nocheck
 import type {
   AuthGetTokenParams,
+  AuthMagicLinkTokenParams,
   AuthResendTwoFactorParams,
   AuthSwitchTwoFactorMechanismParams,
   AuthVerifyTwoFactorRecoveryParams,
@@ -178,6 +179,76 @@ export const getAuthGetTokenUrl = (params: AuthGetTokenParams,) => {
 export const authGetToken = async (params: AuthGetTokenParams, options?: RequestInit): Promise<authGetTokenResponse> => {
   
   return customFetch<authGetTokenResponse>(getAuthGetTokenUrl(params),
+  {      
+    ...options,
+    method: 'POST'
+    
+    
+  }
+);}
+
+
+/**
+ * Call this with the magicToken carried by the link from a
+"magic link" email (requested via POST /api/v1/crm/people/requestMagicLink):
+            
+    { "magic_token": "eyJ..." }
+            
+The link proves control of the email inbox, which satisfies the first
+factor. The response then matches POST /api/v1/tokens:
+            
+ - 200 with an access token when no further factor is required;
+ - 202 with a two_factor_required challenge when the user
+   has a non-email second factor (e.g. an authenticator app) that must
+   still be cleared via POST /api/v1/tokens/two-factor. Email is
+   never offered as that second factor — it was already the first.
+            
+An invalid, expired, already-used token (or a tenant without magic-link
+login enabled) returns 400 (invalid_grant).
+ * @summary Exchange a magic-link token for an access token (passwordless login).
+ */
+export type authMagicLinkTokenResponse200 = {
+  data: TokenPayload
+  status: 200
+}
+
+export type authMagicLinkTokenResponse202 = {
+  data: TwoFactorChallengePayload
+  status: 202
+}
+
+export type authMagicLinkTokenResponse400 = {
+  data: string
+  status: 400
+}
+    
+export type authMagicLinkTokenResponseSuccess = (authMagicLinkTokenResponse200 | authMagicLinkTokenResponse202) & {
+  headers: Headers;
+};
+export type authMagicLinkTokenResponseError = (authMagicLinkTokenResponse400) & {
+  headers: Headers;
+};
+
+export type authMagicLinkTokenResponse = (authMagicLinkTokenResponseSuccess | authMagicLinkTokenResponseError)
+
+export const getAuthMagicLinkTokenUrl = (params: AuthMagicLinkTokenParams,) => {
+  const normalizedParams = new URLSearchParams();
+
+  Object.entries(params || {}).forEach(([key, value]) => {
+    
+    if (value !== undefined) {
+      normalizedParams.append(key, value === null ? 'null' : value.toString())
+    }
+  });
+
+  const stringifiedParams = normalizedParams.toString();
+
+  return stringifiedParams.length > 0 ? `/api/v1/tokens/magic-link?${stringifiedParams}` : `/api/v1/tokens/magic-link`
+}
+
+export const authMagicLinkToken = async (params: AuthMagicLinkTokenParams, options?: RequestInit): Promise<authMagicLinkTokenResponse> => {
+  
+  return customFetch<authMagicLinkTokenResponse>(getAuthMagicLinkTokenUrl(params),
   {      
     ...options,
     method: 'POST'

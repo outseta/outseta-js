@@ -3432,7 +3432,7 @@ export type QcountConfigAllOf = {
 export type QcountConfig = AbstractQcountBean & QcountConfigAllOf;
 
 /**
- * `100` - Slack, `102` - MagicLinkApiKey, `103` - MagicLinkApiKeySecret, `104` - OAuth_HideCreateAccountLink, `105` - Chat_IsOffline, `106` - HostedPageCustomCode, `107` - RegistrationConfirmationEmailDelaySeconds, `108` - AccountCancellationReasons, `110` - WebhookSignatureKey, `111` - HostedProfileBackLink, `112` - AccountCancellationReasonRequired, `114` - Email_OutsetaBrandingDisabled, `119` - Email_BlacklistedInboundEmails, `121` - PasswordPolicy, `123` - CRM_FieldSortingEnabled, `124` - CRM_RegistrationCallbackLocations, `125` - KnowledgeBaseVersion, `126` - Support_SpamThreshold, `127` - Email_RestrictedPhrases, `128` - KnowledgeBaseLanguage, `130` - Billing_System, `131` - Billing_RestrictSubscriptionActions, `140` - TwoFactorAuthenticationEnabled, `142` - ForceTwoFactorAuthentication, `190` - Stripe_TaxEnabled, `192` - Stripe_TaxIdTypes, `193` - Stripe_ApplePayMerchantIdDomainAssociation, `194` - Stripe_WebhookSecret, `195` - Stripe_OnlySyncOutsetaCustomers, `196` - Stripe_Checkout_RequireBillingAddress, `197` - Stripe_Checkout_RequireConsentTermsOfService, `200` - Webflow_AccessToken, `201` - Webflow_SyncEnabled, `202` - Webflow_SyncConfiguration, `203` - Webflow_ApiVersion, `550` - CopyQcount_AddOnMap, `551` - CopyQcount_AccountMap, `552` - CopyQcount_DiscountCouponMap, `553` - CopyQcount_InvoiceMap, `554` - CopyQcount_PersonMap, `555` - CopyQcount_PlanMap, `556` - CopyQcount_PlanFamilyMap, `557` - CopyQcount_SubscriptionMap, `558` - CopyQcount_TransactionMap, `570` - StripeMigration_LastAccountId, `571` - StripeMigration_LastInvoiceId, `572` - StripeMigration_LastExpiredSubscriptionId, `573` - StripeMigration_LastPostExportSubscriptionId, `574` - StripeMigration_LastUsageId, `575` - StripeMigration_SubscriptionExportDate, `576` - StripeMigration_SubscriptionExportIds, `577` - StripeMigration_SubscriptionAddOnExportIds, `578` - StripeMigration_SubscriptionCutoverDate, `579` - StripeMigration_LastPreCutoverExportSubscriptionId
+ * `100` - Slack, `102` - MagicLinkApiKey, `103` - MagicLinkApiKeySecret, `104` - OAuth_HideCreateAccountLink, `105` - Chat_IsOffline, `106` - HostedPageCustomCode, `107` - RegistrationConfirmationEmailDelaySeconds, `108` - AccountCancellationReasons, `110` - WebhookSignatureKey, `111` - HostedProfileBackLink, `112` - AccountCancellationReasonRequired, `114` - Email_OutsetaBrandingDisabled, `119` - Email_BlacklistedInboundEmails, `121` - PasswordPolicy, `123` - CRM_FieldSortingEnabled, `124` - CRM_RegistrationCallbackLocations, `125` - KnowledgeBaseVersion, `126` - Support_SpamThreshold, `127` - Email_RestrictedPhrases, `128` - KnowledgeBaseLanguage, `130` - Billing_System, `131` - Billing_RestrictSubscriptionActions, `140` - TwoFactorAuthenticationEnabled, `142` - ForceTwoFactorAuthentication, `143` - MagicLinkLoginEnabled, `190` - Stripe_TaxEnabled, `192` - Stripe_TaxIdTypes, `193` - Stripe_ApplePayMerchantIdDomainAssociation, `194` - Stripe_WebhookSecret, `195` - Stripe_OnlySyncOutsetaCustomers, `196` - Stripe_Checkout_RequireBillingAddress, `197` - Stripe_Checkout_RequireConsentTermsOfService, `200` - Webflow_AccessToken, `201` - Webflow_SyncEnabled, `202` - Webflow_SyncConfiguration, `203` - Webflow_ApiVersion, `550` - CopyQcount_AddOnMap, `551` - CopyQcount_AccountMap, `552` - CopyQcount_DiscountCouponMap, `553` - CopyQcount_InvoiceMap, `554` - CopyQcount_PersonMap, `555` - CopyQcount_PlanMap, `556` - CopyQcount_PlanFamilyMap, `557` - CopyQcount_SubscriptionMap, `558` - CopyQcount_TransactionMap, `570` - StripeMigration_LastAccountId, `571` - StripeMigration_LastInvoiceId, `572` - StripeMigration_LastExpiredSubscriptionId, `573` - StripeMigration_LastPostExportSubscriptionId, `574` - StripeMigration_LastUsageId, `575` - StripeMigration_SubscriptionExportDate, `576` - StripeMigration_SubscriptionExportIds, `577` - StripeMigration_SubscriptionAddOnExportIds, `578` - StripeMigration_SubscriptionCutoverDate, `579` - StripeMigration_LastPreCutoverExportSubscriptionId
  */
 export type QcountConfigSettingType = typeof QcountConfigSettingType[keyof typeof QcountConfigSettingType];
 
@@ -3463,6 +3463,7 @@ export const QcountConfigSettingType = {
   Billing_RestrictSubscriptionActions: 131,
   TwoFactorAuthenticationEnabled: 140,
   ForceTwoFactorAuthentication: 142,
+  MagicLinkLoginEnabled: 143,
   Stripe_TaxEnabled: 190,
   Stripe_TaxIdTypes: 192,
   Stripe_ApplePayMerchantIdDomainAssociation: 193,
@@ -9134,6 +9135,13 @@ export type AuthGetTokenParams = {
 data: unknown | null;
 };
 
+export type AuthMagicLinkTokenParams = {
+/**
+ * @nullable
+ */
+data: unknown | null;
+};
+
 export type AuthResendTwoFactorParams = {
 /**
  * @nullable
@@ -9561,6 +9569,11 @@ export type PersonSetTemporaryPasswordBody = TemporaryPasswordModel | null;
  * @nullable
  */
 export type PersonForgotPasswordBody = Person | null;
+
+/**
+ * @nullable
+ */
+export type PersonRequestMagicLinkBody = Person | null;
 
 export type DiscountCouponGetDiscountCouponByCodeParams = {
 /**
