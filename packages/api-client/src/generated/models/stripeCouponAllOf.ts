@@ -33,6 +33,7 @@ export type StripeCouponAllOf = {
   Valid?: boolean;
   /** @nullable */
   AppliesToProductIds?: string[] | null;
+  CanDelete?: boolean;
   /** @nullable */
   CurrencySymbol?: string | null;
   /** @nullable */

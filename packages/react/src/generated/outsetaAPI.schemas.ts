@@ -920,6 +920,7 @@ export type StripeCouponAllOf = {
   Valid?: boolean;
   /** @nullable */
   AppliesToProductIds?: string[] | null;
+  CanDelete?: boolean;
   /** @nullable */
   CurrencySymbol?: string | null;
   /** @nullable */
@@ -998,6 +999,7 @@ export type StripeProductAllOf = {
   TrialPeriodDays?: number;
   /** @nullable */
   TrialUntilDate?: string | null;
+  CanDelete?: boolean;
   NumberOfPurchases?: number;
   NumberOfSubscriptions?: number;
   /** @nullable */

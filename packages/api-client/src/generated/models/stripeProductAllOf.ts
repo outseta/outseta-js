@@ -69,6 +69,7 @@ export type StripeProductAllOf = {
   TrialPeriodDays?: number;
   /** @nullable */
   TrialUntilDate?: string | null;
+  CanDelete?: boolean;
   NumberOfPurchases?: number;
   NumberOfSubscriptions?: number;
   /** @nullable */
