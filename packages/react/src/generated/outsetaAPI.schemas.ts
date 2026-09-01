@@ -4446,6 +4446,7 @@ export type SegmentAllOf = {
    */
   Description?: string | null;
   ContainsAccountConditions: boolean;
+  ContainsUnsupportedBillingConditions: boolean;
   /** @nullable */
   CriteriaData?: string | null;
   /** @nullable */
