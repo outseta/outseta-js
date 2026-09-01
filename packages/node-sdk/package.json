@@ -1,6 +1,6 @@
 {
   "name": "@outseta/node-sdk",
-  "version": "0.3.34",
+  "version": "0.3.35",
   "description": "Node.js SDK for the Outseta API",
   "license": "MIT",
   "repository": {
