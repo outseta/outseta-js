@@ -3554,6 +3554,8 @@ export type DiscordRoleAllOf = {
   DiscordServer?: DiscordRoleAllOfDiscordServer;
   /** @nullable */
   DiscordRolePlans?: DiscordRolePlan[] | null;
+  /** @nullable */
+  DiscordRoleProducts?: DiscordRoleProduct[] | null;
 };
 
 export type DiscordRole = AbstractQcountBean & DiscordRoleAllOf;
@@ -3577,6 +3579,25 @@ export type DiscordRolePlanAllOf = {
 
 export type DiscordRolePlan = AbstractQcountBean & DiscordRolePlanAllOf;
 
+/**
+ * @nullable
+ */
+export type DiscordRoleProductAllOfDiscordRole = DiscordRole | null;
+
+/**
+ * @nullable
+ */
+export type DiscordRoleProductAllOfStripeProduct = StripeProduct | null;
+
+export type DiscordRoleProductAllOf = {
+  /** @nullable */
+  DiscordRole?: DiscordRoleProductAllOfDiscordRole;
+  /** @nullable */
+  StripeProduct?: DiscordRoleProductAllOfStripeProduct;
+};
+
+export type DiscordRoleProduct = AbstractQcountBean & DiscordRoleProductAllOf;
+
 export interface SlackChannelSetting {
   /** @nullable */
   Channel?: string | null;
@@ -3589,7 +3610,7 @@ export interface SlackChannelSetting {
 }
 
 /**
- * `10` - Custom, `50` - Note, `51` - Email, `52` - PhoneCall, `53` - Meeting, `54` - Chat, `100` - AccountCreated, `101` - AccountUpdated, `102` - AccountAddPerson, `103` - AccountStageUpdated, `104` - AccountDeleted, `105` - AccountBillingInformationUpdated, `106` - AccountSubscriptionPlanUpdated, `107` - AccountSubscriptionPaymentCollected, `108` - AccountSubscriptionPaymentDeclined, `109` - AccountBillingInformationRequested, `110` - AccountBillingInvoiceEmailSent, `111` - AccountRemovePerson, `112` - AccountPaidSubscriptionCreated, `113` - AccountBillingInformationRemoved, `114` - AccountPrimaryPersonUpdated, `115` - AccountBillingInvoiceCreated, `116` - AccountSubscriptionStarted, `117` - AccountSubscriptionRenewalExtended, `118` - AccountSubscriptionAddOnsChanged, `119` - AccountSubscriptionCancellationRequested, `120` - AccountBillingInvoiceDeleted, `121` - AccountPersonRoleUpdated, `200` - PersonCreated, `201` - PersonUpdated, `202` - PersonDeleted, `203` - PersonLogin, `204` - PersonListSubscribed, `205` - PersonListUnsubscribed, `206` - PersonSegmentAdded, `207` - PersonSegmentRemoved, `208` - PersonEmailOpened, `209` - PersonEmailClicked, `210` - PersonEmailBounce, `211` - PersonEmailSpam, `212` - PersonSupportTicketCreated, `213` - PersonSupportTicketUpdated, `214` - PersonLeadFormSubmitted, `215` - PersonListConfirmed, `216` - PersonEmailSubscribed, `217` - PersonEmailUnsubscribed, `218` - PersonTemporaryPasswordSet, `219` - PersonSupportTicketClosed, `220` - PersonTwoFactorRecoveryCodesRegenerated, `300` - DealCreated, `301` - DealUpdated, `304` - DealDeleted, `305` - DealDueDate, `306` - TaskCreated, `307` - TaskUpdated, `400` - PlanCreated, `401` - PlanUpdated, `402` - AddOnCreated, `403` - AddOnUpdated, `500` - DiscordUserLinked, `501` - DiscordUserAddedToServer, `502` - DiscordUserRolesUpdated, `503` - DiscordUserRemovedFromServer
+ * `10` - Custom, `50` - Note, `51` - Email, `52` - PhoneCall, `53` - Meeting, `54` - Chat, `100` - AccountCreated, `101` - AccountUpdated, `102` - AccountAddPerson, `103` - AccountStageUpdated, `104` - AccountDeleted, `105` - AccountBillingInformationUpdated, `106` - AccountSubscriptionPlanUpdated, `107` - AccountSubscriptionPaymentCollected, `108` - AccountSubscriptionPaymentDeclined, `109` - AccountBillingInformationRequested, `110` - AccountBillingInvoiceEmailSent, `111` - AccountRemovePerson, `112` - AccountPaidSubscriptionCreated, `113` - AccountBillingInformationRemoved, `114` - AccountPrimaryPersonUpdated, `115` - AccountBillingInvoiceCreated, `116` - AccountSubscriptionStarted, `117` - AccountSubscriptionRenewalExtended, `118` - AccountSubscriptionAddOnsChanged, `119` - AccountSubscriptionCancellationRequested, `120` - AccountBillingInvoiceDeleted, `121` - AccountPersonRoleUpdated, `122` - AccountProductsChanged, `200` - PersonCreated, `201` - PersonUpdated, `202` - PersonDeleted, `203` - PersonLogin, `204` - PersonListSubscribed, `205` - PersonListUnsubscribed, `206` - PersonSegmentAdded, `207` - PersonSegmentRemoved, `208` - PersonEmailOpened, `209` - PersonEmailClicked, `210` - PersonEmailBounce, `211` - PersonEmailSpam, `212` - PersonSupportTicketCreated, `213` - PersonSupportTicketUpdated, `214` - PersonLeadFormSubmitted, `215` - PersonListConfirmed, `216` - PersonEmailSubscribed, `217` - PersonEmailUnsubscribed, `218` - PersonTemporaryPasswordSet, `219` - PersonSupportTicketClosed, `220` - PersonTwoFactorRecoveryCodesRegenerated, `300` - DealCreated, `301` - DealUpdated, `304` - DealDeleted, `305` - DealDueDate, `306` - TaskCreated, `307` - TaskUpdated, `400` - PlanCreated, `401` - PlanUpdated, `402` - AddOnCreated, `403` - AddOnUpdated, `500` - DiscordUserLinked, `501` - DiscordUserAddedToServer, `502` - DiscordUserRolesUpdated, `503` - DiscordUserRemovedFromServer
  */
 export type ActivityType = typeof ActivityType[keyof typeof ActivityType];
 
@@ -3624,6 +3645,7 @@ export const ActivityType = {
   AccountSubscriptionCancellationRequested: 119,
   AccountBillingInvoiceDeleted: 120,
   AccountPersonRoleUpdated: 121,
+  AccountProductsChanged: 122,
   PersonCreated: 200,
   PersonUpdated: 201,
   PersonDeleted: 202,
@@ -7642,6 +7664,19 @@ export type AccountPersonRoleUpdatedWebhookPayloadAllOf = {
 };
 
 export type AccountPersonRoleUpdatedWebhookPayload = AccountWebhookEntity & AccountPersonRoleUpdatedWebhookPayloadAllOf;
+
+export interface AccountProductsChangedActivityData {
+  /** @nullable */
+  AddedProductUids?: string[] | null;
+  /** @nullable */
+  RemovedProductUids?: string[] | null;
+}
+
+export type AccountProductsChangedWebhookPayloadAllOf = {
+  ActivityEventData?: AccountProductsChangedActivityData;
+};
+
+export type AccountProductsChangedWebhookPayload = AccountWebhookEntity & AccountProductsChangedWebhookPayloadAllOf;
 
 /**
  * @nullable

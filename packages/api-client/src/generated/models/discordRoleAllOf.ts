@@ -1,6 +1,7 @@
 // @ts-nocheck
 import type { DiscordRoleAllOfDiscordServer } from './discordRoleAllOfDiscordServer';
 import type { DiscordRolePlan } from './discordRolePlan';
+import type { DiscordRoleProduct } from './discordRoleProduct';
 
 export type DiscordRoleAllOf = {
   /**
@@ -28,4 +29,6 @@ export type DiscordRoleAllOf = {
   DiscordServer?: DiscordRoleAllOfDiscordServer;
   /** @nullable */
   DiscordRolePlans?: DiscordRolePlan[] | null;
+  /** @nullable */
+  DiscordRoleProducts?: DiscordRoleProduct[] | null;
 };
