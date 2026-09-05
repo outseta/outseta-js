@@ -1,5 +1,13 @@
 # @outseta/react
 
+## 0.4.31
+
+### Patch Changes
+
+- cc2ad47: Update API spec.
+- Updated dependencies [cc2ad47]
+  - @outseta/api-client@0.3.37
+
 ## 0.4.30
 
 ### Patch Changes
