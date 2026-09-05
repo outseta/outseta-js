@@ -8759,6 +8759,66 @@ export type DealDeletedWebhookPayload = DealWebhookEntity;
 export type DealDueDateWebhookPayload = DealWebhookEntity;
 
 /**
+ * `1` - Pending, `2` - InProgress, `3` - Done
+ */
+export type TaskWebhookEventDataStatus = typeof TaskWebhookEventDataStatus[keyof typeof TaskWebhookEventDataStatus];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const TaskWebhookEventDataStatus = {
+  Pending: 1,
+  InProgress: 2,
+  Done: 3,
+} as const;
+
+export interface TaskWebhookEventData {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Title?: string | null;
+  /** @nullable */
+  DueDate?: string | null;
+  /**
+   * @maxLength 5000
+   * @nullable
+   */
+  Notes?: string | null;
+  /** `1` - Pending, `2` - InProgress, `3` - Done */
+  Status?: TaskWebhookEventDataStatus;
+  CreatedDateTime?: string;
+  /** @nullable */
+  CompletedDateTime?: string | null;
+}
+
+export type TaskCreatedWebhookPayloadAllOf = DealWebhookEntity | PersonWebhookEntity | AccountWebhookEntity;
+
+export type TaskCreatedWebhookPayloadAllOfTwo = {
+  ActivityEventData?: TaskWebhookEventData;
+};
+
+export type TaskCreatedWebhookPayload = TaskCreatedWebhookPayloadAllOf & TaskCreatedWebhookPayloadAllOfTwo;
+
+export type TaskUpdatedWebhookPayloadAllOf = DealWebhookEntity | PersonWebhookEntity | AccountWebhookEntity;
+
+export type TaskUpdatedWebhookPayloadAllOfTwo = {
+  ActivityEventData?: TaskWebhookEventData;
+};
+
+export type TaskUpdatedWebhookPayload = TaskUpdatedWebhookPayloadAllOf & TaskUpdatedWebhookPayloadAllOfTwo;
+
+/**
  * @nullable
  */
 export type PlanWebhookEntityPlanFamily = {
