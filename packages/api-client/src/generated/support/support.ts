@@ -10,6 +10,7 @@ import type {
   CaseGetAllCases200,
   CaseGetAllCasesParams,
   CaseHistory,
+  CaseUpdateCaseBody,
   CategoryGetAllCategories200,
   CategoryGetAllCategoriesParams
 } from '.././models';
@@ -199,6 +200,78 @@ export const caseGetCase = async (caseUid: string | null, options?: RequestInit)
     method: 'GET'
     
     
+  }
+);}
+
+
+/**
+ * The Uid in the URL identifies the ticket, and a Uid in the request body is ignored.
+Any property that the body does not contain keeps its current value, so a request
+can send only the properties that change.
+            
+Tags are managed through the CaseTags collection. Send the full set of tags that
+the ticket must end with:
+            
+- To keep a tag, include its entry with the CaseTag Uid that GET returned.
+- To add a tag, include an entry that has no Uid and a Tag that holds the tag's Uid.
+- To remove a tag, leave its entry out.
+- To remove all tags, send an empty array.
+            
+If the body does not contain CaseTags, the current tags stay as they are. To read
+the current tags, request them with the fields parameter, for example
+fields=Uid,CaseTags.Uid,CaseTags.Tag.Uid,CaseTags.Tag.Name. To get the tags that are
+available for tickets, use GET /attribute/tags?entityType=Case.
+            
+Case history is kept. Add replies and notes with their own endpoints.
+ * @summary Update a support ticket.
+ */
+export type caseUpdateCaseResponse200 = {
+  data: Case
+  status: 200
+}
+
+export type caseUpdateCaseResponse400 = {
+  data: void
+  status: 400
+}
+
+export type caseUpdateCaseResponse401 = {
+  data: void
+  status: 401
+}
+
+export type caseUpdateCaseResponse404 = {
+  data: void
+  status: 404
+}
+    
+export type caseUpdateCaseResponseSuccess = (caseUpdateCaseResponse200) & {
+  headers: Headers;
+};
+export type caseUpdateCaseResponseError = (caseUpdateCaseResponse400 | caseUpdateCaseResponse401 | caseUpdateCaseResponse404) & {
+  headers: Headers;
+};
+
+export type caseUpdateCaseResponse = (caseUpdateCaseResponseSuccess | caseUpdateCaseResponseError)
+
+export const getCaseUpdateCaseUrl = (caseUid: string | null,) => {
+
+
+  
+
+  return `/api/v1/support/cases/${caseUid}`
+}
+
+export const caseUpdateCase = async (caseUid: string | null,
+    caseUpdateCaseBody: NonReadonly<CaseUpdateCaseBody>, options?: RequestInit): Promise<caseUpdateCaseResponse> => {
+  
+  return customFetch<caseUpdateCaseResponse>(getCaseUpdateCaseUrl(caseUid),
+  {      
+    ...options,
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json', ...options?.headers },
+    body: JSON.stringify(
+      caseUpdateCaseBody,)
   }
 );}
 

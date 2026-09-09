@@ -3176,16 +3176,9 @@ export const SupportCaseHistoryType = {
 /**
  * @nullable
  */
-export type CaseTagAllOfCase = Case | null;
-
-/**
- * @nullable
- */
 export type CaseTagAllOfTag = Tag | null;
 
 export type CaseTagAllOf = {
-  /** @nullable */
-  Case?: CaseTagAllOfCase;
   /** @nullable */
   Tag?: CaseTagAllOfTag;
 };
@@ -9206,6 +9199,37 @@ export type LimitParameter = number;
  */
 export type OffsetParameter = number;
 
+export type TagGetAllTagsParams = {
+/**
+ * The entity type whose tags to retrieve, as the name or the numeric value (for example Case or 4)
+ * @nullable
+ */
+entityType?: string | null;
+/**
+ * Requested page size. The server caps it at 100, or 25 when requested fields expand child objects or require additional queries; metadata.limit reports the applied value. Use offset=1 for the second page.
+ */
+limit?: LimitParameter;
+/**
+ * Zero-based page number, not a record offset. With limit=50, the second page is offset=1; offset=50 is page index 50 (records 2501-2550).
+ */
+offset?: OffsetParameter;
+};
+
+export type TagGetAllTags200 = {
+  metadata?: CollectionMetadata;
+  items?: Tag[];
+};
+
+/**
+ * @nullable
+ */
+export type TagAddTagBody = Tag | null;
+
+/**
+ * @nullable
+ */
+export type TagUpdateTagBody = Tag | null;
+
 export type DefinitionGetAllDefinitionsParams = {
 /**
  * Requested page size. The server caps it at 100, or 25 when requested fields expand child objects or require additional queries; metadata.limit reports the applied value. Use offset=1 for the second page.
@@ -9328,6 +9352,11 @@ sendautoresponder?: string | null;
  * @nullable
  */
 export type CaseAddCaseBody = Case | null;
+
+/**
+ * @nullable
+ */
+export type CaseUpdateCaseBody = Case | null;
 
 export type ArticleGetAllArticlesParams = {
 /**

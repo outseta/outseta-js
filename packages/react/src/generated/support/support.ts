@@ -24,6 +24,7 @@ import type {
   CaseGetAllCases200,
   CaseGetAllCasesParams,
   CaseHistory,
+  CaseUpdateCaseBody,
   CategoryGetAllCategories200,
   CategoryGetAllCategoriesParams
 } from '../outsetaAPI.schemas';
@@ -269,6 +270,88 @@ export function useCaseGetCase<TData = Awaited<ReturnType<typeof caseGetCase>>, 
 
 
 /**
+ * The Uid in the URL identifies the ticket, and a Uid in the request body is ignored.
+Any property that the body does not contain keeps its current value, so a request
+can send only the properties that change.
+            
+Tags are managed through the CaseTags collection. Send the full set of tags that
+the ticket must end with:
+            
+- To keep a tag, include its entry with the CaseTag Uid that GET returned.
+- To add a tag, include an entry that has no Uid and a Tag that holds the tag's Uid.
+- To remove a tag, leave its entry out.
+- To remove all tags, send an empty array.
+            
+If the body does not contain CaseTags, the current tags stay as they are. To read
+the current tags, request them with the fields parameter, for example
+fields=Uid,CaseTags.Uid,CaseTags.Tag.Uid,CaseTags.Tag.Name. To get the tags that are
+available for tickets, use GET /attribute/tags?entityType=Case.
+            
+Case history is kept. Add replies and notes with their own endpoints.
+ * @summary Update a support ticket.
+ */
+export const caseUpdateCase = (
+    caseUid: string | null,
+    caseUpdateCaseBody: NonReadonly<CaseUpdateCaseBody>,
+ options?: SecondParameter<typeof customFetch>,) => {
+      
+      
+      return customFetch<Case>(
+      {url: `/api/v1/support/cases/${caseUid}`, method: 'PUT',
+      headers: {'Content-Type': 'application/json', },
+      data: caseUpdateCaseBody
+    },
+      options);
+    }
+  
+
+
+export const getCaseUpdateCaseMutationOptions = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof caseUpdateCase>>, TError,{caseUid: string | null;data: NonReadonly<CaseUpdateCaseBody>}, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof caseUpdateCase>>, TError,{caseUid: string | null;data: NonReadonly<CaseUpdateCaseBody>}, TContext> => {
+
+const mutationKey = ['caseUpdateCase'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof caseUpdateCase>>, {caseUid: string | null;data: NonReadonly<CaseUpdateCaseBody>}> = (props) => {
+          const {caseUid,data} = props ?? {};
+
+          return  caseUpdateCase(caseUid,data,requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type CaseUpdateCaseMutationResult = NonNullable<Awaited<ReturnType<typeof caseUpdateCase>>>
+    export type CaseUpdateCaseMutationBody = NonReadonly<CaseUpdateCaseBody>
+    export type CaseUpdateCaseMutationError = void
+
+    /**
+ * @summary Update a support ticket.
+ */
+export const useCaseUpdateCase = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof caseUpdateCase>>, TError,{caseUid: string | null;data: NonReadonly<CaseUpdateCaseBody>}, TContext>, request?: SecondParameter<typeof customFetch>}
+ ): UseMutationResult<
+        Awaited<ReturnType<typeof caseUpdateCase>>,
+        TError,
+        {caseUid: string | null;data: NonReadonly<CaseUpdateCaseBody>},
+        TContext
+      > => {
+
+      const mutationOptions = getCaseUpdateCaseMutationOptions(options);
+
+      return useMutation(mutationOptions);
+    }
+    /**
  * @summary Adds a reply from an agent to a support case.
  */
 export const caseAddReply = (

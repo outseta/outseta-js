@@ -4,4 +4,4 @@ import type { Case } from './case';
 /**
  * @nullable
  */
-export type CaseTagAllOfCase = Case | null;
+export type CaseUpdateCaseBody = Case | null;
