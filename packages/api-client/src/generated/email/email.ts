@@ -655,6 +655,15 @@ omitted it is derived automatically, so callers (including LLM tools) do not nee
 understand it. Use Message.PreviewText for inbox preview text rather than an in-body
 preheader.
             
+The shape of the Body markup decides how editable the broadcast is in the app. Prose
+(headings, paragraphs, lists, links, emphasis, images, inline spans) goes into a text
+block, which the author edits on the editor canvas with the formatting toolbar and the
+merge-tag menu. Structural markup (tables, an embedded style block, document
+scaffolding) goes into an HTML block instead, because only that block renders such
+markup verbatim, and it is edited as raw HTML. Send prose when the email must stay easy
+to edit visually. The first save in the editor also replaces Body with the editor's
+export of the design, so this choice decides the markup that is sent from then on.
+            
 When Body is a content fragment with no Design, it is composed into the account's API
 email layout — a branded header and footer that includes the unsubscribe and
 manage-subscriptions links — and the composed result is what is sent and opened in the
