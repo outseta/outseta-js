@@ -16,8 +16,12 @@ import type {
 import type {
   Article,
   ArticleAddArticleBody,
+  ArticleAddTagToEntityBody,
   ArticleGetAllArticles200,
   ArticleGetAllArticlesParams,
+  ArticleGetTagsForEntity200,
+  ArticleGetTagsForEntityParams,
+  ArticleSetTagsForEntityBody,
   Case,
   CaseAddCaseBody,
   CaseAddCaseParams,
@@ -679,6 +683,291 @@ export function useArticleGetArticle<TData = Awaited<ReturnType<typeof articleGe
 
 
 /**
+ * Send the uids of the tags to add. Tags that the record already carries stay on it, and
+naming one of them again changes nothing, so the same request is safe to repeat. To
+replace the whole set instead, use PUT on this same path.
+            
+A tag belongs to one entity type, so use tags whose EntityType matches this record.
+List them with GET /attribute/tags. A uid in the list that names no tag is skipped.
+ * @summary Add tags to a record.
+ */
+export const articleAddTagToEntity = (
+    entityUid: string | null,
+    articleAddTagToEntityBody: ArticleAddTagToEntityBody,
+ options?: SecondParameter<typeof customFetch>,signal?: AbortSignal
+) => {
+      
+      
+      return customFetch<Blob>(
+      {url: `/api/v1/support/articles/${entityUid}/tags`, method: 'POST',
+      headers: {'Content-Type': 'application/json', },
+      data: articleAddTagToEntityBody,
+        responseType: 'blob', signal
+    },
+      options);
+    }
+  
+
+
+export const getArticleAddTagToEntityMutationOptions = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof articleAddTagToEntity>>, TError,{entityUid: string | null;data: ArticleAddTagToEntityBody}, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof articleAddTagToEntity>>, TError,{entityUid: string | null;data: ArticleAddTagToEntityBody}, TContext> => {
+
+const mutationKey = ['articleAddTagToEntity'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof articleAddTagToEntity>>, {entityUid: string | null;data: ArticleAddTagToEntityBody}> = (props) => {
+          const {entityUid,data} = props ?? {};
+
+          return  articleAddTagToEntity(entityUid,data,requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type ArticleAddTagToEntityMutationResult = NonNullable<Awaited<ReturnType<typeof articleAddTagToEntity>>>
+    export type ArticleAddTagToEntityMutationBody = ArticleAddTagToEntityBody
+    export type ArticleAddTagToEntityMutationError = void
+
+    /**
+ * @summary Add tags to a record.
+ */
+export const useArticleAddTagToEntity = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof articleAddTagToEntity>>, TError,{entityUid: string | null;data: ArticleAddTagToEntityBody}, TContext>, request?: SecondParameter<typeof customFetch>}
+ ): UseMutationResult<
+        Awaited<ReturnType<typeof articleAddTagToEntity>>,
+        TError,
+        {entityUid: string | null;data: ArticleAddTagToEntityBody},
+        TContext
+      > => {
+
+      const mutationOptions = getArticleAddTagToEntityMutationOptions(options);
+
+      return useMutation(mutationOptions);
+    }
+    /**
+ * Returns the tags themselves, not the links that hold them. The same tags are also
+available on the record: ask for them with the fields parameter, for example
+fields=Uid,Tags.Uid,Tags.Name,Tags.TagColor. Tags cost an extra query, so the record
+leaves them out unless fields names Tags or is a plain wildcard.
+ * @summary Retrieve the tags on a record.
+ */
+export const articleGetTagsForEntity = (
+    entityUid: string | null,
+    params?: ArticleGetTagsForEntityParams,
+ options?: SecondParameter<typeof customFetch>,signal?: AbortSignal
+) => {
+      
+      
+      return customFetch<ArticleGetTagsForEntity200>(
+      {url: `/api/v1/support/articles/${entityUid}/tags`, method: 'GET',
+        params, signal
+    },
+      options);
+    }
+  
+
+
+
+export const getArticleGetTagsForEntityQueryKey = (entityUid?: string | null,
+    params?: ArticleGetTagsForEntityParams,) => {
+    return [
+    `/api/v1/support/articles/${entityUid}/tags`, ...(params ? [params]: [])
+    ] as const;
+    }
+
+    
+export const getArticleGetTagsForEntityQueryOptions = <TData = Awaited<ReturnType<typeof articleGetTagsForEntity>>, TError = void>(entityUid: string | null,
+    params?: ArticleGetTagsForEntityParams, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof articleGetTagsForEntity>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getArticleGetTagsForEntityQueryKey(entityUid,params);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof articleGetTagsForEntity>>> = ({ signal }) => articleGetTagsForEntity(entityUid,params, requestOptions, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, enabled: !!(entityUid), ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof articleGetTagsForEntity>>, TError, TData> & { queryKey: QueryKey }
+}
+
+export type ArticleGetTagsForEntityQueryResult = NonNullable<Awaited<ReturnType<typeof articleGetTagsForEntity>>>
+export type ArticleGetTagsForEntityQueryError = void
+
+
+/**
+ * @summary Retrieve the tags on a record.
+ */
+
+export function useArticleGetTagsForEntity<TData = Awaited<ReturnType<typeof articleGetTagsForEntity>>, TError = void>(
+ entityUid: string | null,
+    params?: ArticleGetTagsForEntityParams, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof articleGetTagsForEntity>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
+  
+ ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } {
+
+  const queryOptions = getArticleGetTagsForEntityQueryOptions(entityUid,params,options)
+
+  const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: QueryKey };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+
+/**
+ * Send the full set of tags the record must end with. A tag that the list leaves out is
+taken off the record, and one that the list names is added. Send an empty list to take
+every tag off. To add tags without disturbing the others, use POST on this same path.
+            
+A tag belongs to one entity type, so use tags whose EntityType matches this record.
+List them with GET /attribute/tags. A uid in the list that names no tag is skipped.
+ * @summary Replace the tags on a record.
+ */
+export const articleSetTagsForEntity = (
+    entityUid: string | null,
+    articleSetTagsForEntityBody: ArticleSetTagsForEntityBody,
+ options?: SecondParameter<typeof customFetch>,) => {
+      
+      
+      return customFetch<Blob>(
+      {url: `/api/v1/support/articles/${entityUid}/tags`, method: 'PUT',
+      headers: {'Content-Type': 'application/json', },
+      data: articleSetTagsForEntityBody,
+        responseType: 'blob'
+    },
+      options);
+    }
+  
+
+
+export const getArticleSetTagsForEntityMutationOptions = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof articleSetTagsForEntity>>, TError,{entityUid: string | null;data: ArticleSetTagsForEntityBody}, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof articleSetTagsForEntity>>, TError,{entityUid: string | null;data: ArticleSetTagsForEntityBody}, TContext> => {
+
+const mutationKey = ['articleSetTagsForEntity'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof articleSetTagsForEntity>>, {entityUid: string | null;data: ArticleSetTagsForEntityBody}> = (props) => {
+          const {entityUid,data} = props ?? {};
+
+          return  articleSetTagsForEntity(entityUid,data,requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type ArticleSetTagsForEntityMutationResult = NonNullable<Awaited<ReturnType<typeof articleSetTagsForEntity>>>
+    export type ArticleSetTagsForEntityMutationBody = ArticleSetTagsForEntityBody
+    export type ArticleSetTagsForEntityMutationError = void
+
+    /**
+ * @summary Replace the tags on a record.
+ */
+export const useArticleSetTagsForEntity = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof articleSetTagsForEntity>>, TError,{entityUid: string | null;data: ArticleSetTagsForEntityBody}, TContext>, request?: SecondParameter<typeof customFetch>}
+ ): UseMutationResult<
+        Awaited<ReturnType<typeof articleSetTagsForEntity>>,
+        TError,
+        {entityUid: string | null;data: ArticleSetTagsForEntityBody},
+        TContext
+      > => {
+
+      const mutationOptions = getArticleSetTagsForEntityMutationOptions(options);
+
+      return useMutation(mutationOptions);
+    }
+    /**
+ * The tag itself is kept and stays available for other records. If the record does not
+carry the tag, nothing changes and the call still succeeds.
+ * @summary Remove one tag from a record.
+ */
+export const articleRemoveTagFromEntity = (
+    entityUid: string | null,
+    tagUid: string | null,
+ options?: SecondParameter<typeof customFetch>,) => {
+      
+      
+      return customFetch<Blob>(
+      {url: `/api/v1/support/articles/${entityUid}/tags/${tagUid}`, method: 'DELETE',
+        responseType: 'blob'
+    },
+      options);
+    }
+  
+
+
+export const getArticleRemoveTagFromEntityMutationOptions = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof articleRemoveTagFromEntity>>, TError,{entityUid: string | null;tagUid: string | null}, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof articleRemoveTagFromEntity>>, TError,{entityUid: string | null;tagUid: string | null}, TContext> => {
+
+const mutationKey = ['articleRemoveTagFromEntity'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof articleRemoveTagFromEntity>>, {entityUid: string | null;tagUid: string | null}> = (props) => {
+          const {entityUid,tagUid} = props ?? {};
+
+          return  articleRemoveTagFromEntity(entityUid,tagUid,requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type ArticleRemoveTagFromEntityMutationResult = NonNullable<Awaited<ReturnType<typeof articleRemoveTagFromEntity>>>
+    
+    export type ArticleRemoveTagFromEntityMutationError = void
+
+    /**
+ * @summary Remove one tag from a record.
+ */
+export const useArticleRemoveTagFromEntity = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof articleRemoveTagFromEntity>>, TError,{entityUid: string | null;tagUid: string | null}, TContext>, request?: SecondParameter<typeof customFetch>}
+ ): UseMutationResult<
+        Awaited<ReturnType<typeof articleRemoveTagFromEntity>>,
+        TError,
+        {entityUid: string | null;tagUid: string | null},
+        TContext
+      > => {
+
+      const mutationOptions = getArticleRemoveTagFromEntityMutationOptions(options);
+
+      return useMutation(mutationOptions);
+    }
+    /**
  * @summary Retrieve all knowledge base categories.
  */
 export const categoryGetAllCategories = (

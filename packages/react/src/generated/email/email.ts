@@ -16,9 +16,13 @@ import type {
 import type {
   BroadcastCampaign,
   CampaignAddBroadcastEmailBody,
+  CampaignAddTagToEntityBody,
   CampaignGetAllBroadcastEmails200,
   CampaignGetAllBroadcastEmailsParams,
+  CampaignGetTagsForEntity200,
+  CampaignGetTagsForEntityParams,
   CampaignSendTestCampaignEmailBody,
+  CampaignSetTagsForEntityBody,
   CampaignUpdateBroadcastEmailBody,
   DripCampaign,
   DripCampaignAddDripCampaignBody,
@@ -1329,6 +1333,291 @@ export const useCampaignSendTestCampaignEmail = <TError = void,
       > => {
 
       const mutationOptions = getCampaignSendTestCampaignEmailMutationOptions(options);
+
+      return useMutation(mutationOptions);
+    }
+    /**
+ * Send the uids of the tags to add. Tags that the record already carries stay on it, and
+naming one of them again changes nothing, so the same request is safe to repeat. To
+replace the whole set instead, use PUT on this same path.
+            
+A tag belongs to one entity type, so use tags whose EntityType matches this record.
+List them with GET /attribute/tags. A uid in the list that names no tag is skipped.
+ * @summary Add tags to a record.
+ */
+export const campaignAddTagToEntity = (
+    entityUid: string | null,
+    campaignAddTagToEntityBody: CampaignAddTagToEntityBody,
+ options?: SecondParameter<typeof customFetch>,signal?: AbortSignal
+) => {
+      
+      
+      return customFetch<Blob>(
+      {url: `/api/v1/email/campaigns/broadcasts/${entityUid}/tags`, method: 'POST',
+      headers: {'Content-Type': 'application/json', },
+      data: campaignAddTagToEntityBody,
+        responseType: 'blob', signal
+    },
+      options);
+    }
+  
+
+
+export const getCampaignAddTagToEntityMutationOptions = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof campaignAddTagToEntity>>, TError,{entityUid: string | null;data: CampaignAddTagToEntityBody}, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof campaignAddTagToEntity>>, TError,{entityUid: string | null;data: CampaignAddTagToEntityBody}, TContext> => {
+
+const mutationKey = ['campaignAddTagToEntity'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof campaignAddTagToEntity>>, {entityUid: string | null;data: CampaignAddTagToEntityBody}> = (props) => {
+          const {entityUid,data} = props ?? {};
+
+          return  campaignAddTagToEntity(entityUid,data,requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type CampaignAddTagToEntityMutationResult = NonNullable<Awaited<ReturnType<typeof campaignAddTagToEntity>>>
+    export type CampaignAddTagToEntityMutationBody = CampaignAddTagToEntityBody
+    export type CampaignAddTagToEntityMutationError = void
+
+    /**
+ * @summary Add tags to a record.
+ */
+export const useCampaignAddTagToEntity = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof campaignAddTagToEntity>>, TError,{entityUid: string | null;data: CampaignAddTagToEntityBody}, TContext>, request?: SecondParameter<typeof customFetch>}
+ ): UseMutationResult<
+        Awaited<ReturnType<typeof campaignAddTagToEntity>>,
+        TError,
+        {entityUid: string | null;data: CampaignAddTagToEntityBody},
+        TContext
+      > => {
+
+      const mutationOptions = getCampaignAddTagToEntityMutationOptions(options);
+
+      return useMutation(mutationOptions);
+    }
+    /**
+ * Returns the tags themselves, not the links that hold them. The same tags are also
+available on the record: ask for them with the fields parameter, for example
+fields=Uid,Tags.Uid,Tags.Name,Tags.TagColor. Tags cost an extra query, so the record
+leaves them out unless fields names Tags or is a plain wildcard.
+ * @summary Retrieve the tags on a record.
+ */
+export const campaignGetTagsForEntity = (
+    entityUid: string | null,
+    params?: CampaignGetTagsForEntityParams,
+ options?: SecondParameter<typeof customFetch>,signal?: AbortSignal
+) => {
+      
+      
+      return customFetch<CampaignGetTagsForEntity200>(
+      {url: `/api/v1/email/campaigns/broadcasts/${entityUid}/tags`, method: 'GET',
+        params, signal
+    },
+      options);
+    }
+  
+
+
+
+export const getCampaignGetTagsForEntityQueryKey = (entityUid?: string | null,
+    params?: CampaignGetTagsForEntityParams,) => {
+    return [
+    `/api/v1/email/campaigns/broadcasts/${entityUid}/tags`, ...(params ? [params]: [])
+    ] as const;
+    }
+
+    
+export const getCampaignGetTagsForEntityQueryOptions = <TData = Awaited<ReturnType<typeof campaignGetTagsForEntity>>, TError = void>(entityUid: string | null,
+    params?: CampaignGetTagsForEntityParams, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof campaignGetTagsForEntity>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getCampaignGetTagsForEntityQueryKey(entityUid,params);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof campaignGetTagsForEntity>>> = ({ signal }) => campaignGetTagsForEntity(entityUid,params, requestOptions, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, enabled: !!(entityUid), ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof campaignGetTagsForEntity>>, TError, TData> & { queryKey: QueryKey }
+}
+
+export type CampaignGetTagsForEntityQueryResult = NonNullable<Awaited<ReturnType<typeof campaignGetTagsForEntity>>>
+export type CampaignGetTagsForEntityQueryError = void
+
+
+/**
+ * @summary Retrieve the tags on a record.
+ */
+
+export function useCampaignGetTagsForEntity<TData = Awaited<ReturnType<typeof campaignGetTagsForEntity>>, TError = void>(
+ entityUid: string | null,
+    params?: CampaignGetTagsForEntityParams, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof campaignGetTagsForEntity>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
+  
+ ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } {
+
+  const queryOptions = getCampaignGetTagsForEntityQueryOptions(entityUid,params,options)
+
+  const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: QueryKey };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+
+/**
+ * Send the full set of tags the record must end with. A tag that the list leaves out is
+taken off the record, and one that the list names is added. Send an empty list to take
+every tag off. To add tags without disturbing the others, use POST on this same path.
+            
+A tag belongs to one entity type, so use tags whose EntityType matches this record.
+List them with GET /attribute/tags. A uid in the list that names no tag is skipped.
+ * @summary Replace the tags on a record.
+ */
+export const campaignSetTagsForEntity = (
+    entityUid: string | null,
+    campaignSetTagsForEntityBody: CampaignSetTagsForEntityBody,
+ options?: SecondParameter<typeof customFetch>,) => {
+      
+      
+      return customFetch<Blob>(
+      {url: `/api/v1/email/campaigns/broadcasts/${entityUid}/tags`, method: 'PUT',
+      headers: {'Content-Type': 'application/json', },
+      data: campaignSetTagsForEntityBody,
+        responseType: 'blob'
+    },
+      options);
+    }
+  
+
+
+export const getCampaignSetTagsForEntityMutationOptions = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof campaignSetTagsForEntity>>, TError,{entityUid: string | null;data: CampaignSetTagsForEntityBody}, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof campaignSetTagsForEntity>>, TError,{entityUid: string | null;data: CampaignSetTagsForEntityBody}, TContext> => {
+
+const mutationKey = ['campaignSetTagsForEntity'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof campaignSetTagsForEntity>>, {entityUid: string | null;data: CampaignSetTagsForEntityBody}> = (props) => {
+          const {entityUid,data} = props ?? {};
+
+          return  campaignSetTagsForEntity(entityUid,data,requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type CampaignSetTagsForEntityMutationResult = NonNullable<Awaited<ReturnType<typeof campaignSetTagsForEntity>>>
+    export type CampaignSetTagsForEntityMutationBody = CampaignSetTagsForEntityBody
+    export type CampaignSetTagsForEntityMutationError = void
+
+    /**
+ * @summary Replace the tags on a record.
+ */
+export const useCampaignSetTagsForEntity = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof campaignSetTagsForEntity>>, TError,{entityUid: string | null;data: CampaignSetTagsForEntityBody}, TContext>, request?: SecondParameter<typeof customFetch>}
+ ): UseMutationResult<
+        Awaited<ReturnType<typeof campaignSetTagsForEntity>>,
+        TError,
+        {entityUid: string | null;data: CampaignSetTagsForEntityBody},
+        TContext
+      > => {
+
+      const mutationOptions = getCampaignSetTagsForEntityMutationOptions(options);
+
+      return useMutation(mutationOptions);
+    }
+    /**
+ * The tag itself is kept and stays available for other records. If the record does not
+carry the tag, nothing changes and the call still succeeds.
+ * @summary Remove one tag from a record.
+ */
+export const campaignRemoveTagFromEntity = (
+    entityUid: string | null,
+    tagUid: string | null,
+ options?: SecondParameter<typeof customFetch>,) => {
+      
+      
+      return customFetch<Blob>(
+      {url: `/api/v1/email/campaigns/broadcasts/${entityUid}/tags/${tagUid}`, method: 'DELETE',
+        responseType: 'blob'
+    },
+      options);
+    }
+  
+
+
+export const getCampaignRemoveTagFromEntityMutationOptions = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof campaignRemoveTagFromEntity>>, TError,{entityUid: string | null;tagUid: string | null}, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof campaignRemoveTagFromEntity>>, TError,{entityUid: string | null;tagUid: string | null}, TContext> => {
+
+const mutationKey = ['campaignRemoveTagFromEntity'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof campaignRemoveTagFromEntity>>, {entityUid: string | null;tagUid: string | null}> = (props) => {
+          const {entityUid,tagUid} = props ?? {};
+
+          return  campaignRemoveTagFromEntity(entityUid,tagUid,requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type CampaignRemoveTagFromEntityMutationResult = NonNullable<Awaited<ReturnType<typeof campaignRemoveTagFromEntity>>>
+    
+    export type CampaignRemoveTagFromEntityMutationError = void
+
+    /**
+ * @summary Remove one tag from a record.
+ */
+export const useCampaignRemoveTagFromEntity = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof campaignRemoveTagFromEntity>>, TError,{entityUid: string | null;tagUid: string | null}, TContext>, request?: SecondParameter<typeof customFetch>}
+ ): UseMutationResult<
+        Awaited<ReturnType<typeof campaignRemoveTagFromEntity>>,
+        TError,
+        {entityUid: string | null;tagUid: string | null},
+        TContext
+      > => {
+
+      const mutationOptions = getCampaignRemoveTagFromEntityMutationOptions(options);
 
       return useMutation(mutationOptions);
     }

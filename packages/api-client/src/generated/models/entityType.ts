@@ -1,7 +1,7 @@
 // @ts-nocheck
 
 /**
- * `0` - None, `1` - Account, `2` - Person, `3` - Deal, `4` - Case, `5` - Invoice, `6` - EmailLog, `7` - Plan, `8` - DiscountCoupon, `9` - AddOn, `10` - Task, `11` - Segment, `12` - Broadcast
+ * `0` - None, `1` - Account, `2` - Person, `3` - Deal, `4` - Case, `5` - Invoice, `6` - EmailLog, `7` - Plan, `8` - DiscountCoupon, `9` - AddOn, `10` - Task, `11` - Segment, `12` - Broadcast, `13` - Article
  */
 export type EntityType = typeof EntityType[keyof typeof EntityType];
 
@@ -21,4 +21,5 @@ export const EntityType = {
   Task: 10,
   Segment: 11,
   Broadcast: 12,
+  Article: 13,
 } as const;

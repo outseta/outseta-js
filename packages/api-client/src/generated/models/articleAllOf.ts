@@ -1,6 +1,7 @@
 // @ts-nocheck
 import type { SupportArticleStatus } from './supportArticleStatus';
 import type { ArticleAllOfCategory } from './articleAllOfCategory';
+import type { Tag } from './tag';
 
 export type ArticleAllOf = {
   Weight?: number;
@@ -23,4 +24,6 @@ export type ArticleAllOf = {
    * @nullable
    */
   Keywords?: string | null;
+  /** @nullable */
+  Tags?: Tag[] | null;
 };

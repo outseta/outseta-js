@@ -2,8 +2,12 @@
 import type {
   Article,
   ArticleAddArticleBody,
+  ArticleAddTagToEntityBody,
   ArticleGetAllArticles200,
   ArticleGetAllArticlesParams,
+  ArticleGetTagsForEntity200,
+  ArticleGetTagsForEntityParams,
+  ArticleSetTagsForEntityBody,
   Case,
   CaseAddCaseBody,
   CaseAddCaseParams,
@@ -508,6 +512,242 @@ export const articleGetArticle = async (articleUid: string | null, options?: Req
   {      
     ...options,
     method: 'GET'
+    
+    
+  }
+);}
+
+
+/**
+ * Send the uids of the tags to add. Tags that the record already carries stay on it, and
+naming one of them again changes nothing, so the same request is safe to repeat. To
+replace the whole set instead, use PUT on this same path.
+            
+A tag belongs to one entity type, so use tags whose EntityType matches this record.
+List them with GET /attribute/tags. A uid in the list that names no tag is skipped.
+ * @summary Add tags to a record.
+ */
+export type articleAddTagToEntityResponse200 = {
+  data: Blob
+  status: 200
+}
+
+export type articleAddTagToEntityResponse400 = {
+  data: void
+  status: 400
+}
+
+export type articleAddTagToEntityResponse401 = {
+  data: void
+  status: 401
+}
+
+export type articleAddTagToEntityResponse404 = {
+  data: void
+  status: 404
+}
+    
+export type articleAddTagToEntityResponseSuccess = (articleAddTagToEntityResponse200) & {
+  headers: Headers;
+};
+export type articleAddTagToEntityResponseError = (articleAddTagToEntityResponse400 | articleAddTagToEntityResponse401 | articleAddTagToEntityResponse404) & {
+  headers: Headers;
+};
+
+export type articleAddTagToEntityResponse = (articleAddTagToEntityResponseSuccess | articleAddTagToEntityResponseError)
+
+export const getArticleAddTagToEntityUrl = (entityUid: string | null,) => {
+
+
+  
+
+  return `/api/v1/support/articles/${entityUid}/tags`
+}
+
+export const articleAddTagToEntity = async (entityUid: string | null,
+    articleAddTagToEntityBody: ArticleAddTagToEntityBody, options?: RequestInit): Promise<articleAddTagToEntityResponse> => {
+  
+  return customFetch<articleAddTagToEntityResponse>(getArticleAddTagToEntityUrl(entityUid),
+  {      
+    ...options,
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', ...options?.headers },
+    body: JSON.stringify(
+      articleAddTagToEntityBody,)
+  }
+);}
+
+
+/**
+ * Returns the tags themselves, not the links that hold them. The same tags are also
+available on the record: ask for them with the fields parameter, for example
+fields=Uid,Tags.Uid,Tags.Name,Tags.TagColor. Tags cost an extra query, so the record
+leaves them out unless fields names Tags or is a plain wildcard.
+ * @summary Retrieve the tags on a record.
+ */
+export type articleGetTagsForEntityResponse200 = {
+  data: ArticleGetTagsForEntity200
+  status: 200
+}
+
+export type articleGetTagsForEntityResponse400 = {
+  data: void
+  status: 400
+}
+
+export type articleGetTagsForEntityResponse401 = {
+  data: void
+  status: 401
+}
+    
+export type articleGetTagsForEntityResponseSuccess = (articleGetTagsForEntityResponse200) & {
+  headers: Headers;
+};
+export type articleGetTagsForEntityResponseError = (articleGetTagsForEntityResponse400 | articleGetTagsForEntityResponse401) & {
+  headers: Headers;
+};
+
+export type articleGetTagsForEntityResponse = (articleGetTagsForEntityResponseSuccess | articleGetTagsForEntityResponseError)
+
+export const getArticleGetTagsForEntityUrl = (entityUid: string | null,
+    params?: ArticleGetTagsForEntityParams,) => {
+  const normalizedParams = new URLSearchParams();
+
+  Object.entries(params || {}).forEach(([key, value]) => {
+    
+    if (value !== undefined) {
+      normalizedParams.append(key, value === null ? 'null' : value.toString())
+    }
+  });
+
+  const stringifiedParams = normalizedParams.toString();
+
+  return stringifiedParams.length > 0 ? `/api/v1/support/articles/${entityUid}/tags?${stringifiedParams}` : `/api/v1/support/articles/${entityUid}/tags`
+}
+
+export const articleGetTagsForEntity = async (entityUid: string | null,
+    params?: ArticleGetTagsForEntityParams, options?: RequestInit): Promise<articleGetTagsForEntityResponse> => {
+  
+  return customFetch<articleGetTagsForEntityResponse>(getArticleGetTagsForEntityUrl(entityUid,params),
+  {      
+    ...options,
+    method: 'GET'
+    
+    
+  }
+);}
+
+
+/**
+ * Send the full set of tags the record must end with. A tag that the list leaves out is
+taken off the record, and one that the list names is added. Send an empty list to take
+every tag off. To add tags without disturbing the others, use POST on this same path.
+            
+A tag belongs to one entity type, so use tags whose EntityType matches this record.
+List them with GET /attribute/tags. A uid in the list that names no tag is skipped.
+ * @summary Replace the tags on a record.
+ */
+export type articleSetTagsForEntityResponse200 = {
+  data: Blob
+  status: 200
+}
+
+export type articleSetTagsForEntityResponse400 = {
+  data: void
+  status: 400
+}
+
+export type articleSetTagsForEntityResponse401 = {
+  data: void
+  status: 401
+}
+
+export type articleSetTagsForEntityResponse404 = {
+  data: void
+  status: 404
+}
+    
+export type articleSetTagsForEntityResponseSuccess = (articleSetTagsForEntityResponse200) & {
+  headers: Headers;
+};
+export type articleSetTagsForEntityResponseError = (articleSetTagsForEntityResponse400 | articleSetTagsForEntityResponse401 | articleSetTagsForEntityResponse404) & {
+  headers: Headers;
+};
+
+export type articleSetTagsForEntityResponse = (articleSetTagsForEntityResponseSuccess | articleSetTagsForEntityResponseError)
+
+export const getArticleSetTagsForEntityUrl = (entityUid: string | null,) => {
+
+
+  
+
+  return `/api/v1/support/articles/${entityUid}/tags`
+}
+
+export const articleSetTagsForEntity = async (entityUid: string | null,
+    articleSetTagsForEntityBody: ArticleSetTagsForEntityBody, options?: RequestInit): Promise<articleSetTagsForEntityResponse> => {
+  
+  return customFetch<articleSetTagsForEntityResponse>(getArticleSetTagsForEntityUrl(entityUid),
+  {      
+    ...options,
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json', ...options?.headers },
+    body: JSON.stringify(
+      articleSetTagsForEntityBody,)
+  }
+);}
+
+
+/**
+ * The tag itself is kept and stays available for other records. If the record does not
+carry the tag, nothing changes and the call still succeeds.
+ * @summary Remove one tag from a record.
+ */
+export type articleRemoveTagFromEntityResponse200 = {
+  data: Blob
+  status: 200
+}
+
+export type articleRemoveTagFromEntityResponse400 = {
+  data: void
+  status: 400
+}
+
+export type articleRemoveTagFromEntityResponse401 = {
+  data: void
+  status: 401
+}
+
+export type articleRemoveTagFromEntityResponse404 = {
+  data: void
+  status: 404
+}
+    
+export type articleRemoveTagFromEntityResponseSuccess = (articleRemoveTagFromEntityResponse200) & {
+  headers: Headers;
+};
+export type articleRemoveTagFromEntityResponseError = (articleRemoveTagFromEntityResponse400 | articleRemoveTagFromEntityResponse401 | articleRemoveTagFromEntityResponse404) & {
+  headers: Headers;
+};
+
+export type articleRemoveTagFromEntityResponse = (articleRemoveTagFromEntityResponseSuccess | articleRemoveTagFromEntityResponseError)
+
+export const getArticleRemoveTagFromEntityUrl = (entityUid: string | null,
+    tagUid: string | null,) => {
+
+
+  
+
+  return `/api/v1/support/articles/${entityUid}/tags/${tagUid}`
+}
+
+export const articleRemoveTagFromEntity = async (entityUid: string | null,
+    tagUid: string | null, options?: RequestInit): Promise<articleRemoveTagFromEntityResponse> => {
+  
+  return customFetch<articleRemoveTagFromEntityResponse>(getArticleRemoveTagFromEntityUrl(entityUid,tagUid),
+  {      
+    ...options,
+    method: 'DELETE'
     
     
   }

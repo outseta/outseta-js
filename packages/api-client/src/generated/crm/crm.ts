@@ -23,7 +23,11 @@ import type {
   PersonGetAllPeopleParams,
   PersonRequestMagicLinkBody,
   PersonSetTemporaryPasswordBody,
-  PersonUpdatePersonBody
+  PersonUpdatePersonBody,
+  SegmentAddTagToEntityBody,
+  SegmentGetTagsForEntity200,
+  SegmentGetTagsForEntityParams,
+  SegmentSetTagsForEntityBody
 } from '.././models';
 
 import { customFetch } from '../../client';
@@ -349,6 +353,242 @@ export const registrationRegisterAccount = async (account: NonReadonly<Account>,
     headers: { 'Content-Type': 'application/json', ...options?.headers },
     body: JSON.stringify(
       account,)
+  }
+);}
+
+
+/**
+ * Send the uids of the tags to add. Tags that the record already carries stay on it, and
+naming one of them again changes nothing, so the same request is safe to repeat. To
+replace the whole set instead, use PUT on this same path.
+            
+A tag belongs to one entity type, so use tags whose EntityType matches this record.
+List them with GET /attribute/tags. A uid in the list that names no tag is skipped.
+ * @summary Add tags to a record.
+ */
+export type segmentAddTagToEntityResponse200 = {
+  data: Blob
+  status: 200
+}
+
+export type segmentAddTagToEntityResponse400 = {
+  data: void
+  status: 400
+}
+
+export type segmentAddTagToEntityResponse401 = {
+  data: void
+  status: 401
+}
+
+export type segmentAddTagToEntityResponse404 = {
+  data: void
+  status: 404
+}
+    
+export type segmentAddTagToEntityResponseSuccess = (segmentAddTagToEntityResponse200) & {
+  headers: Headers;
+};
+export type segmentAddTagToEntityResponseError = (segmentAddTagToEntityResponse400 | segmentAddTagToEntityResponse401 | segmentAddTagToEntityResponse404) & {
+  headers: Headers;
+};
+
+export type segmentAddTagToEntityResponse = (segmentAddTagToEntityResponseSuccess | segmentAddTagToEntityResponseError)
+
+export const getSegmentAddTagToEntityUrl = (entityUid: string | null,) => {
+
+
+  
+
+  return `/api/v1/crm/segments/${entityUid}/tags`
+}
+
+export const segmentAddTagToEntity = async (entityUid: string | null,
+    segmentAddTagToEntityBody: SegmentAddTagToEntityBody, options?: RequestInit): Promise<segmentAddTagToEntityResponse> => {
+  
+  return customFetch<segmentAddTagToEntityResponse>(getSegmentAddTagToEntityUrl(entityUid),
+  {      
+    ...options,
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', ...options?.headers },
+    body: JSON.stringify(
+      segmentAddTagToEntityBody,)
+  }
+);}
+
+
+/**
+ * Returns the tags themselves, not the links that hold them. The same tags are also
+available on the record: ask for them with the fields parameter, for example
+fields=Uid,Tags.Uid,Tags.Name,Tags.TagColor. Tags cost an extra query, so the record
+leaves them out unless fields names Tags or is a plain wildcard.
+ * @summary Retrieve the tags on a record.
+ */
+export type segmentGetTagsForEntityResponse200 = {
+  data: SegmentGetTagsForEntity200
+  status: 200
+}
+
+export type segmentGetTagsForEntityResponse400 = {
+  data: void
+  status: 400
+}
+
+export type segmentGetTagsForEntityResponse401 = {
+  data: void
+  status: 401
+}
+    
+export type segmentGetTagsForEntityResponseSuccess = (segmentGetTagsForEntityResponse200) & {
+  headers: Headers;
+};
+export type segmentGetTagsForEntityResponseError = (segmentGetTagsForEntityResponse400 | segmentGetTagsForEntityResponse401) & {
+  headers: Headers;
+};
+
+export type segmentGetTagsForEntityResponse = (segmentGetTagsForEntityResponseSuccess | segmentGetTagsForEntityResponseError)
+
+export const getSegmentGetTagsForEntityUrl = (entityUid: string | null,
+    params?: SegmentGetTagsForEntityParams,) => {
+  const normalizedParams = new URLSearchParams();
+
+  Object.entries(params || {}).forEach(([key, value]) => {
+    
+    if (value !== undefined) {
+      normalizedParams.append(key, value === null ? 'null' : value.toString())
+    }
+  });
+
+  const stringifiedParams = normalizedParams.toString();
+
+  return stringifiedParams.length > 0 ? `/api/v1/crm/segments/${entityUid}/tags?${stringifiedParams}` : `/api/v1/crm/segments/${entityUid}/tags`
+}
+
+export const segmentGetTagsForEntity = async (entityUid: string | null,
+    params?: SegmentGetTagsForEntityParams, options?: RequestInit): Promise<segmentGetTagsForEntityResponse> => {
+  
+  return customFetch<segmentGetTagsForEntityResponse>(getSegmentGetTagsForEntityUrl(entityUid,params),
+  {      
+    ...options,
+    method: 'GET'
+    
+    
+  }
+);}
+
+
+/**
+ * Send the full set of tags the record must end with. A tag that the list leaves out is
+taken off the record, and one that the list names is added. Send an empty list to take
+every tag off. To add tags without disturbing the others, use POST on this same path.
+            
+A tag belongs to one entity type, so use tags whose EntityType matches this record.
+List them with GET /attribute/tags. A uid in the list that names no tag is skipped.
+ * @summary Replace the tags on a record.
+ */
+export type segmentSetTagsForEntityResponse200 = {
+  data: Blob
+  status: 200
+}
+
+export type segmentSetTagsForEntityResponse400 = {
+  data: void
+  status: 400
+}
+
+export type segmentSetTagsForEntityResponse401 = {
+  data: void
+  status: 401
+}
+
+export type segmentSetTagsForEntityResponse404 = {
+  data: void
+  status: 404
+}
+    
+export type segmentSetTagsForEntityResponseSuccess = (segmentSetTagsForEntityResponse200) & {
+  headers: Headers;
+};
+export type segmentSetTagsForEntityResponseError = (segmentSetTagsForEntityResponse400 | segmentSetTagsForEntityResponse401 | segmentSetTagsForEntityResponse404) & {
+  headers: Headers;
+};
+
+export type segmentSetTagsForEntityResponse = (segmentSetTagsForEntityResponseSuccess | segmentSetTagsForEntityResponseError)
+
+export const getSegmentSetTagsForEntityUrl = (entityUid: string | null,) => {
+
+
+  
+
+  return `/api/v1/crm/segments/${entityUid}/tags`
+}
+
+export const segmentSetTagsForEntity = async (entityUid: string | null,
+    segmentSetTagsForEntityBody: SegmentSetTagsForEntityBody, options?: RequestInit): Promise<segmentSetTagsForEntityResponse> => {
+  
+  return customFetch<segmentSetTagsForEntityResponse>(getSegmentSetTagsForEntityUrl(entityUid),
+  {      
+    ...options,
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json', ...options?.headers },
+    body: JSON.stringify(
+      segmentSetTagsForEntityBody,)
+  }
+);}
+
+
+/**
+ * The tag itself is kept and stays available for other records. If the record does not
+carry the tag, nothing changes and the call still succeeds.
+ * @summary Remove one tag from a record.
+ */
+export type segmentRemoveTagFromEntityResponse200 = {
+  data: Blob
+  status: 200
+}
+
+export type segmentRemoveTagFromEntityResponse400 = {
+  data: void
+  status: 400
+}
+
+export type segmentRemoveTagFromEntityResponse401 = {
+  data: void
+  status: 401
+}
+
+export type segmentRemoveTagFromEntityResponse404 = {
+  data: void
+  status: 404
+}
+    
+export type segmentRemoveTagFromEntityResponseSuccess = (segmentRemoveTagFromEntityResponse200) & {
+  headers: Headers;
+};
+export type segmentRemoveTagFromEntityResponseError = (segmentRemoveTagFromEntityResponse400 | segmentRemoveTagFromEntityResponse401 | segmentRemoveTagFromEntityResponse404) & {
+  headers: Headers;
+};
+
+export type segmentRemoveTagFromEntityResponse = (segmentRemoveTagFromEntityResponseSuccess | segmentRemoveTagFromEntityResponseError)
+
+export const getSegmentRemoveTagFromEntityUrl = (entityUid: string | null,
+    tagUid: string | null,) => {
+
+
+  
+
+  return `/api/v1/crm/segments/${entityUid}/tags/${tagUid}`
+}
+
+export const segmentRemoveTagFromEntity = async (entityUid: string | null,
+    tagUid: string | null, options?: RequestInit): Promise<segmentRemoveTagFromEntityResponse> => {
+  
+  return customFetch<segmentRemoveTagFromEntityResponse>(getSegmentRemoveTagFromEntityUrl(entityUid,tagUid),
+  {      
+    ...options,
+    method: 'DELETE'
+    
+    
   }
 );}
 

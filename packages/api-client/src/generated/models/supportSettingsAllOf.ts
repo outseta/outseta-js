@@ -23,6 +23,8 @@ export type SupportSettingsAllOf = {
   /** @nullable */
   KnowledgeBaseFooterLinkJSON?: string | null;
   /** @nullable */
+  KnowledgeBaseFilterJSON?: string | null;
+  /** @nullable */
   OfficeHoursJSON?: string | null;
   /** @nullable */
   EmailNotificationForNewTickets?: string | null;

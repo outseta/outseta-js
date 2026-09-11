@@ -59,13 +59,18 @@ type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
 
 
 /**
- * Each tag applies to a single entity type. Pass entityType=Case to retrieve the tags
-that can be put on support tickets.
+ * Each tag applies to a single entity type. Pass entityType to retrieve the tags for one
+of them, for example entityType=Article for knowledge base article tags.
             
-How a tag goes onto a record depends on the entity type. A support ticket holds its
-tags in its own CaseTags collection, so you add and remove ticket tags with
-PUT /support/cases/{caseUid}. Other entity types store their tags differently. This
-documentation covers ticket tags only.
+How a tag goes onto a record depends on the entity type. Articles, broadcasts and
+segments each take tags on a tags sub-resource of the record:
+            
+- POST /support/articles/{entityUid}/tags and PUT, GET, DELETE on the same path
+- POST /email/campaigns/broadcasts/{entityUid}/tags and the same for the rest
+- POST /crm/segments/{entityUid}/tags and the same for the rest
+            
+A support ticket is the exception. It holds its tags in its own CaseTags collection, so
+you add and remove ticket tags with PUT /support/cases/{caseUid}.
             
 Name is unique within an entity type. SystemName and SystemDescription identify a
 built-in tag (for example Priority.Urgent) and are set by Outseta.
@@ -138,8 +143,9 @@ export function useTagGetAllTags<TData = Awaited<ReturnType<typeof tagGetAllTags
 
 
 /**
- * Name and EntityType are required. Use EntityType 4 (Case) for a tag that goes on
-support tickets. TagColor sets the color the tag shows in.
+ * Name and EntityType are required. EntityType fixes what the tag can go on: 4 (Case) for
+support tickets, 13 (Article) for knowledge base articles, 12 (Broadcast) for broadcast
+emails, 11 (Segment) for segments. TagColor sets the color the tag shows in.
             
 Name must be unique within an entity type. If the name already exists for that
 entity type, the existing tag is returned instead of a duplicate, and its color is
@@ -346,6 +352,9 @@ export const useTagUpdateTag = <TError = void,
     /**
  * The tag is also taken off every record that carries it. For a Case tag, it is
 removed from all support tickets that have it.
+            
+An Article tag that the knowledge base version filter names cannot be deleted. Take it
+out of the version filter first, then delete it.
  * @summary Delete a tag.
  */
 export const tagDeleteTag = (

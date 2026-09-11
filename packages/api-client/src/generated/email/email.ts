@@ -2,9 +2,13 @@
 import type {
   BroadcastCampaign,
   CampaignAddBroadcastEmailBody,
+  CampaignAddTagToEntityBody,
   CampaignGetAllBroadcastEmails200,
   CampaignGetAllBroadcastEmailsParams,
+  CampaignGetTagsForEntity200,
+  CampaignGetTagsForEntityParams,
   CampaignSendTestCampaignEmailBody,
+  CampaignSetTagsForEntityBody,
   CampaignUpdateBroadcastEmailBody,
   DripCampaign,
   DripCampaignAddDripCampaignBody,
@@ -1043,6 +1047,242 @@ export const campaignSendTestCampaignEmail = async (campaignSendTestCampaignEmai
     headers: { 'Content-Type': 'application/json', ...options?.headers },
     body: JSON.stringify(
       campaignSendTestCampaignEmailBody,)
+  }
+);}
+
+
+/**
+ * Send the uids of the tags to add. Tags that the record already carries stay on it, and
+naming one of them again changes nothing, so the same request is safe to repeat. To
+replace the whole set instead, use PUT on this same path.
+            
+A tag belongs to one entity type, so use tags whose EntityType matches this record.
+List them with GET /attribute/tags. A uid in the list that names no tag is skipped.
+ * @summary Add tags to a record.
+ */
+export type campaignAddTagToEntityResponse200 = {
+  data: Blob
+  status: 200
+}
+
+export type campaignAddTagToEntityResponse400 = {
+  data: void
+  status: 400
+}
+
+export type campaignAddTagToEntityResponse401 = {
+  data: void
+  status: 401
+}
+
+export type campaignAddTagToEntityResponse404 = {
+  data: void
+  status: 404
+}
+    
+export type campaignAddTagToEntityResponseSuccess = (campaignAddTagToEntityResponse200) & {
+  headers: Headers;
+};
+export type campaignAddTagToEntityResponseError = (campaignAddTagToEntityResponse400 | campaignAddTagToEntityResponse401 | campaignAddTagToEntityResponse404) & {
+  headers: Headers;
+};
+
+export type campaignAddTagToEntityResponse = (campaignAddTagToEntityResponseSuccess | campaignAddTagToEntityResponseError)
+
+export const getCampaignAddTagToEntityUrl = (entityUid: string | null,) => {
+
+
+  
+
+  return `/api/v1/email/campaigns/broadcasts/${entityUid}/tags`
+}
+
+export const campaignAddTagToEntity = async (entityUid: string | null,
+    campaignAddTagToEntityBody: CampaignAddTagToEntityBody, options?: RequestInit): Promise<campaignAddTagToEntityResponse> => {
+  
+  return customFetch<campaignAddTagToEntityResponse>(getCampaignAddTagToEntityUrl(entityUid),
+  {      
+    ...options,
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', ...options?.headers },
+    body: JSON.stringify(
+      campaignAddTagToEntityBody,)
+  }
+);}
+
+
+/**
+ * Returns the tags themselves, not the links that hold them. The same tags are also
+available on the record: ask for them with the fields parameter, for example
+fields=Uid,Tags.Uid,Tags.Name,Tags.TagColor. Tags cost an extra query, so the record
+leaves them out unless fields names Tags or is a plain wildcard.
+ * @summary Retrieve the tags on a record.
+ */
+export type campaignGetTagsForEntityResponse200 = {
+  data: CampaignGetTagsForEntity200
+  status: 200
+}
+
+export type campaignGetTagsForEntityResponse400 = {
+  data: void
+  status: 400
+}
+
+export type campaignGetTagsForEntityResponse401 = {
+  data: void
+  status: 401
+}
+    
+export type campaignGetTagsForEntityResponseSuccess = (campaignGetTagsForEntityResponse200) & {
+  headers: Headers;
+};
+export type campaignGetTagsForEntityResponseError = (campaignGetTagsForEntityResponse400 | campaignGetTagsForEntityResponse401) & {
+  headers: Headers;
+};
+
+export type campaignGetTagsForEntityResponse = (campaignGetTagsForEntityResponseSuccess | campaignGetTagsForEntityResponseError)
+
+export const getCampaignGetTagsForEntityUrl = (entityUid: string | null,
+    params?: CampaignGetTagsForEntityParams,) => {
+  const normalizedParams = new URLSearchParams();
+
+  Object.entries(params || {}).forEach(([key, value]) => {
+    
+    if (value !== undefined) {
+      normalizedParams.append(key, value === null ? 'null' : value.toString())
+    }
+  });
+
+  const stringifiedParams = normalizedParams.toString();
+
+  return stringifiedParams.length > 0 ? `/api/v1/email/campaigns/broadcasts/${entityUid}/tags?${stringifiedParams}` : `/api/v1/email/campaigns/broadcasts/${entityUid}/tags`
+}
+
+export const campaignGetTagsForEntity = async (entityUid: string | null,
+    params?: CampaignGetTagsForEntityParams, options?: RequestInit): Promise<campaignGetTagsForEntityResponse> => {
+  
+  return customFetch<campaignGetTagsForEntityResponse>(getCampaignGetTagsForEntityUrl(entityUid,params),
+  {      
+    ...options,
+    method: 'GET'
+    
+    
+  }
+);}
+
+
+/**
+ * Send the full set of tags the record must end with. A tag that the list leaves out is
+taken off the record, and one that the list names is added. Send an empty list to take
+every tag off. To add tags without disturbing the others, use POST on this same path.
+            
+A tag belongs to one entity type, so use tags whose EntityType matches this record.
+List them with GET /attribute/tags. A uid in the list that names no tag is skipped.
+ * @summary Replace the tags on a record.
+ */
+export type campaignSetTagsForEntityResponse200 = {
+  data: Blob
+  status: 200
+}
+
+export type campaignSetTagsForEntityResponse400 = {
+  data: void
+  status: 400
+}
+
+export type campaignSetTagsForEntityResponse401 = {
+  data: void
+  status: 401
+}
+
+export type campaignSetTagsForEntityResponse404 = {
+  data: void
+  status: 404
+}
+    
+export type campaignSetTagsForEntityResponseSuccess = (campaignSetTagsForEntityResponse200) & {
+  headers: Headers;
+};
+export type campaignSetTagsForEntityResponseError = (campaignSetTagsForEntityResponse400 | campaignSetTagsForEntityResponse401 | campaignSetTagsForEntityResponse404) & {
+  headers: Headers;
+};
+
+export type campaignSetTagsForEntityResponse = (campaignSetTagsForEntityResponseSuccess | campaignSetTagsForEntityResponseError)
+
+export const getCampaignSetTagsForEntityUrl = (entityUid: string | null,) => {
+
+
+  
+
+  return `/api/v1/email/campaigns/broadcasts/${entityUid}/tags`
+}
+
+export const campaignSetTagsForEntity = async (entityUid: string | null,
+    campaignSetTagsForEntityBody: CampaignSetTagsForEntityBody, options?: RequestInit): Promise<campaignSetTagsForEntityResponse> => {
+  
+  return customFetch<campaignSetTagsForEntityResponse>(getCampaignSetTagsForEntityUrl(entityUid),
+  {      
+    ...options,
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json', ...options?.headers },
+    body: JSON.stringify(
+      campaignSetTagsForEntityBody,)
+  }
+);}
+
+
+/**
+ * The tag itself is kept and stays available for other records. If the record does not
+carry the tag, nothing changes and the call still succeeds.
+ * @summary Remove one tag from a record.
+ */
+export type campaignRemoveTagFromEntityResponse200 = {
+  data: Blob
+  status: 200
+}
+
+export type campaignRemoveTagFromEntityResponse400 = {
+  data: void
+  status: 400
+}
+
+export type campaignRemoveTagFromEntityResponse401 = {
+  data: void
+  status: 401
+}
+
+export type campaignRemoveTagFromEntityResponse404 = {
+  data: void
+  status: 404
+}
+    
+export type campaignRemoveTagFromEntityResponseSuccess = (campaignRemoveTagFromEntityResponse200) & {
+  headers: Headers;
+};
+export type campaignRemoveTagFromEntityResponseError = (campaignRemoveTagFromEntityResponse400 | campaignRemoveTagFromEntityResponse401 | campaignRemoveTagFromEntityResponse404) & {
+  headers: Headers;
+};
+
+export type campaignRemoveTagFromEntityResponse = (campaignRemoveTagFromEntityResponseSuccess | campaignRemoveTagFromEntityResponseError)
+
+export const getCampaignRemoveTagFromEntityUrl = (entityUid: string | null,
+    tagUid: string | null,) => {
+
+
+  
+
+  return `/api/v1/email/campaigns/broadcasts/${entityUid}/tags/${tagUid}`
+}
+
+export const campaignRemoveTagFromEntity = async (entityUid: string | null,
+    tagUid: string | null, options?: RequestInit): Promise<campaignRemoveTagFromEntityResponse> => {
+  
+  return customFetch<campaignRemoveTagFromEntityResponse>(getCampaignRemoveTagFromEntityUrl(entityUid,tagUid),
+  {      
+    ...options,
+    method: 'DELETE'
+    
+    
   }
 );}
 

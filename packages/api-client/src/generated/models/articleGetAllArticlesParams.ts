@@ -9,6 +9,14 @@ export type ArticleGetAllArticlesParams = {
  */
 q?: string | null;
 /**
+ * Keep only the records that carry one of these tags. Separate several tag uids with commas. The value none keeps the records that carry no tag at all.
+ */
+tagUid?: string;
+/**
+ * Keep only the records that carry none of these tags. Separate several tag uids with commas. Combined with tagUid, the two widen the result instead of narrowing it: a record is kept when it matches either one.
+ */
+withoutTagUid?: string;
+/**
  * Requested page size. The server caps it at 100, or 25 when requested fields expand child objects or require additional queries; metadata.limit reports the applied value. Use offset=1 for the second page.
  */
 limit?: LimitParameter;

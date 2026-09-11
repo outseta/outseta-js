@@ -37,7 +37,11 @@ import type {
   PersonGetAllPeopleParams,
   PersonRequestMagicLinkBody,
   PersonSetTemporaryPasswordBody,
-  PersonUpdatePersonBody
+  PersonUpdatePersonBody,
+  SegmentAddTagToEntityBody,
+  SegmentGetTagsForEntity200,
+  SegmentGetTagsForEntityParams,
+  SegmentSetTagsForEntityBody
 } from '../outsetaAPI.schemas';
 
 import { customFetch } from '../../mutator';
@@ -469,6 +473,291 @@ export const useRegistrationRegisterAccount = <TError = unknown,
       > => {
 
       const mutationOptions = getRegistrationRegisterAccountMutationOptions(options);
+
+      return useMutation(mutationOptions);
+    }
+    /**
+ * Send the uids of the tags to add. Tags that the record already carries stay on it, and
+naming one of them again changes nothing, so the same request is safe to repeat. To
+replace the whole set instead, use PUT on this same path.
+            
+A tag belongs to one entity type, so use tags whose EntityType matches this record.
+List them with GET /attribute/tags. A uid in the list that names no tag is skipped.
+ * @summary Add tags to a record.
+ */
+export const segmentAddTagToEntity = (
+    entityUid: string | null,
+    segmentAddTagToEntityBody: SegmentAddTagToEntityBody,
+ options?: SecondParameter<typeof customFetch>,signal?: AbortSignal
+) => {
+      
+      
+      return customFetch<Blob>(
+      {url: `/api/v1/crm/segments/${entityUid}/tags`, method: 'POST',
+      headers: {'Content-Type': 'application/json', },
+      data: segmentAddTagToEntityBody,
+        responseType: 'blob', signal
+    },
+      options);
+    }
+  
+
+
+export const getSegmentAddTagToEntityMutationOptions = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof segmentAddTagToEntity>>, TError,{entityUid: string | null;data: SegmentAddTagToEntityBody}, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof segmentAddTagToEntity>>, TError,{entityUid: string | null;data: SegmentAddTagToEntityBody}, TContext> => {
+
+const mutationKey = ['segmentAddTagToEntity'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof segmentAddTagToEntity>>, {entityUid: string | null;data: SegmentAddTagToEntityBody}> = (props) => {
+          const {entityUid,data} = props ?? {};
+
+          return  segmentAddTagToEntity(entityUid,data,requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type SegmentAddTagToEntityMutationResult = NonNullable<Awaited<ReturnType<typeof segmentAddTagToEntity>>>
+    export type SegmentAddTagToEntityMutationBody = SegmentAddTagToEntityBody
+    export type SegmentAddTagToEntityMutationError = void
+
+    /**
+ * @summary Add tags to a record.
+ */
+export const useSegmentAddTagToEntity = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof segmentAddTagToEntity>>, TError,{entityUid: string | null;data: SegmentAddTagToEntityBody}, TContext>, request?: SecondParameter<typeof customFetch>}
+ ): UseMutationResult<
+        Awaited<ReturnType<typeof segmentAddTagToEntity>>,
+        TError,
+        {entityUid: string | null;data: SegmentAddTagToEntityBody},
+        TContext
+      > => {
+
+      const mutationOptions = getSegmentAddTagToEntityMutationOptions(options);
+
+      return useMutation(mutationOptions);
+    }
+    /**
+ * Returns the tags themselves, not the links that hold them. The same tags are also
+available on the record: ask for them with the fields parameter, for example
+fields=Uid,Tags.Uid,Tags.Name,Tags.TagColor. Tags cost an extra query, so the record
+leaves them out unless fields names Tags or is a plain wildcard.
+ * @summary Retrieve the tags on a record.
+ */
+export const segmentGetTagsForEntity = (
+    entityUid: string | null,
+    params?: SegmentGetTagsForEntityParams,
+ options?: SecondParameter<typeof customFetch>,signal?: AbortSignal
+) => {
+      
+      
+      return customFetch<SegmentGetTagsForEntity200>(
+      {url: `/api/v1/crm/segments/${entityUid}/tags`, method: 'GET',
+        params, signal
+    },
+      options);
+    }
+  
+
+
+
+export const getSegmentGetTagsForEntityQueryKey = (entityUid?: string | null,
+    params?: SegmentGetTagsForEntityParams,) => {
+    return [
+    `/api/v1/crm/segments/${entityUid}/tags`, ...(params ? [params]: [])
+    ] as const;
+    }
+
+    
+export const getSegmentGetTagsForEntityQueryOptions = <TData = Awaited<ReturnType<typeof segmentGetTagsForEntity>>, TError = void>(entityUid: string | null,
+    params?: SegmentGetTagsForEntityParams, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof segmentGetTagsForEntity>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getSegmentGetTagsForEntityQueryKey(entityUid,params);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof segmentGetTagsForEntity>>> = ({ signal }) => segmentGetTagsForEntity(entityUid,params, requestOptions, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, enabled: !!(entityUid), ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof segmentGetTagsForEntity>>, TError, TData> & { queryKey: QueryKey }
+}
+
+export type SegmentGetTagsForEntityQueryResult = NonNullable<Awaited<ReturnType<typeof segmentGetTagsForEntity>>>
+export type SegmentGetTagsForEntityQueryError = void
+
+
+/**
+ * @summary Retrieve the tags on a record.
+ */
+
+export function useSegmentGetTagsForEntity<TData = Awaited<ReturnType<typeof segmentGetTagsForEntity>>, TError = void>(
+ entityUid: string | null,
+    params?: SegmentGetTagsForEntityParams, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof segmentGetTagsForEntity>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
+  
+ ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } {
+
+  const queryOptions = getSegmentGetTagsForEntityQueryOptions(entityUid,params,options)
+
+  const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: QueryKey };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+
+/**
+ * Send the full set of tags the record must end with. A tag that the list leaves out is
+taken off the record, and one that the list names is added. Send an empty list to take
+every tag off. To add tags without disturbing the others, use POST on this same path.
+            
+A tag belongs to one entity type, so use tags whose EntityType matches this record.
+List them with GET /attribute/tags. A uid in the list that names no tag is skipped.
+ * @summary Replace the tags on a record.
+ */
+export const segmentSetTagsForEntity = (
+    entityUid: string | null,
+    segmentSetTagsForEntityBody: SegmentSetTagsForEntityBody,
+ options?: SecondParameter<typeof customFetch>,) => {
+      
+      
+      return customFetch<Blob>(
+      {url: `/api/v1/crm/segments/${entityUid}/tags`, method: 'PUT',
+      headers: {'Content-Type': 'application/json', },
+      data: segmentSetTagsForEntityBody,
+        responseType: 'blob'
+    },
+      options);
+    }
+  
+
+
+export const getSegmentSetTagsForEntityMutationOptions = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof segmentSetTagsForEntity>>, TError,{entityUid: string | null;data: SegmentSetTagsForEntityBody}, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof segmentSetTagsForEntity>>, TError,{entityUid: string | null;data: SegmentSetTagsForEntityBody}, TContext> => {
+
+const mutationKey = ['segmentSetTagsForEntity'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof segmentSetTagsForEntity>>, {entityUid: string | null;data: SegmentSetTagsForEntityBody}> = (props) => {
+          const {entityUid,data} = props ?? {};
+
+          return  segmentSetTagsForEntity(entityUid,data,requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type SegmentSetTagsForEntityMutationResult = NonNullable<Awaited<ReturnType<typeof segmentSetTagsForEntity>>>
+    export type SegmentSetTagsForEntityMutationBody = SegmentSetTagsForEntityBody
+    export type SegmentSetTagsForEntityMutationError = void
+
+    /**
+ * @summary Replace the tags on a record.
+ */
+export const useSegmentSetTagsForEntity = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof segmentSetTagsForEntity>>, TError,{entityUid: string | null;data: SegmentSetTagsForEntityBody}, TContext>, request?: SecondParameter<typeof customFetch>}
+ ): UseMutationResult<
+        Awaited<ReturnType<typeof segmentSetTagsForEntity>>,
+        TError,
+        {entityUid: string | null;data: SegmentSetTagsForEntityBody},
+        TContext
+      > => {
+
+      const mutationOptions = getSegmentSetTagsForEntityMutationOptions(options);
+
+      return useMutation(mutationOptions);
+    }
+    /**
+ * The tag itself is kept and stays available for other records. If the record does not
+carry the tag, nothing changes and the call still succeeds.
+ * @summary Remove one tag from a record.
+ */
+export const segmentRemoveTagFromEntity = (
+    entityUid: string | null,
+    tagUid: string | null,
+ options?: SecondParameter<typeof customFetch>,) => {
+      
+      
+      return customFetch<Blob>(
+      {url: `/api/v1/crm/segments/${entityUid}/tags/${tagUid}`, method: 'DELETE',
+        responseType: 'blob'
+    },
+      options);
+    }
+  
+
+
+export const getSegmentRemoveTagFromEntityMutationOptions = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof segmentRemoveTagFromEntity>>, TError,{entityUid: string | null;tagUid: string | null}, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof segmentRemoveTagFromEntity>>, TError,{entityUid: string | null;tagUid: string | null}, TContext> => {
+
+const mutationKey = ['segmentRemoveTagFromEntity'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof segmentRemoveTagFromEntity>>, {entityUid: string | null;tagUid: string | null}> = (props) => {
+          const {entityUid,tagUid} = props ?? {};
+
+          return  segmentRemoveTagFromEntity(entityUid,tagUid,requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type SegmentRemoveTagFromEntityMutationResult = NonNullable<Awaited<ReturnType<typeof segmentRemoveTagFromEntity>>>
+    
+    export type SegmentRemoveTagFromEntityMutationError = void
+
+    /**
+ * @summary Remove one tag from a record.
+ */
+export const useSegmentRemoveTagFromEntity = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof segmentRemoveTagFromEntity>>, TError,{entityUid: string | null;tagUid: string | null}, TContext>, request?: SecondParameter<typeof customFetch>}
+ ): UseMutationResult<
+        Awaited<ReturnType<typeof segmentRemoveTagFromEntity>>,
+        TError,
+        {entityUid: string | null;tagUid: string | null},
+        TContext
+      > => {
+
+      const mutationOptions = getSegmentRemoveTagFromEntityMutationOptions(options);
 
       return useMutation(mutationOptions);
     }

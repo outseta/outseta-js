@@ -101,7 +101,7 @@ export const TagColor = {
 } as const;
 
 /**
- * `0` - None, `1` - Account, `2` - Person, `3` - Deal, `4` - Case, `5` - Invoice, `6` - EmailLog, `7` - Plan, `8` - DiscountCoupon, `9` - AddOn, `10` - Task, `11` - Segment, `12` - Broadcast
+ * `0` - None, `1` - Account, `2` - Person, `3` - Deal, `4` - Case, `5` - Invoice, `6` - EmailLog, `7` - Plan, `8` - DiscountCoupon, `9` - AddOn, `10` - Task, `11` - Segment, `12` - Broadcast, `13` - Article
  */
 export type EntityType = typeof EntityType[keyof typeof EntityType];
 
@@ -121,6 +121,7 @@ export const EntityType = {
   Task: 10,
   Segment: 11,
   Broadcast: 12,
+  Article: 13,
 } as const;
 
 export type DefinitionAllOf = {
@@ -3211,6 +3212,8 @@ export type ArticleAllOf = {
    * @nullable
    */
   Keywords?: string | null;
+  /** @nullable */
+  Tags?: Tag[] | null;
 };
 
 export type Article = AbstractQcountBean & ArticleAllOf;
@@ -3243,6 +3246,11 @@ export type CategoryAllOf = {
 
 export type Category = AbstractQcountBean & CategoryAllOf;
 
+export interface TagUidList {
+  /** @nullable */
+  TagUids?: string[] | null;
+}
+
 export type SupportSettingsAllOf = {
   /** @nullable */
   EmailAddress?: string | null;
@@ -3265,6 +3273,8 @@ export type SupportSettingsAllOf = {
   KnowledgeBaseIntroduction?: string | null;
   /** @nullable */
   KnowledgeBaseFooterLinkJSON?: string | null;
+  /** @nullable */
+  KnowledgeBaseFilterJSON?: string | null;
   /** @nullable */
   OfficeHoursJSON?: string | null;
   /** @nullable */
@@ -4376,11 +4386,6 @@ export interface SendTestEmailRequest2 {
   BroadcastCampaign?: SendTestEmailRequest2BroadcastCampaign;
   /** @nullable */
   AdditionalRecipients?: string[] | null;
-}
-
-export interface TagUidList {
-  /** @nullable */
-  TagUids?: string[] | null;
 }
 
 /**
@@ -9365,6 +9370,14 @@ export type ArticleGetAllArticlesParams = {
  */
 q?: string | null;
 /**
+ * Keep only the records that carry one of these tags. Separate several tag uids with commas. The value none keeps the records that carry no tag at all.
+ */
+tagUid?: string;
+/**
+ * Keep only the records that carry none of these tags. Separate several tag uids with commas. Combined with tagUid, the two widen the result instead of narrowing it: a record is kept when it matches either one.
+ */
+withoutTagUid?: string;
+/**
  * Requested page size. The server caps it at 100, or 25 when requested fields expand child objects or require additional queries; metadata.limit reports the applied value. Use offset=1 for the second page.
  */
 limit?: LimitParameter;
@@ -9383,6 +9396,32 @@ export type ArticleGetAllArticles200 = {
  * @nullable
  */
 export type ArticleAddArticleBody = Article | null;
+
+/**
+ * @nullable
+ */
+export type ArticleAddTagToEntityBody = TagUidList | null;
+
+export type ArticleGetTagsForEntityParams = {
+/**
+ * Requested page size. The server caps it at 100, or 25 when requested fields expand child objects or require additional queries; metadata.limit reports the applied value. Use offset=1 for the second page.
+ */
+limit?: LimitParameter;
+/**
+ * Zero-based page number, not a record offset. With limit=50, the second page is offset=1; offset=50 is page index 50 (records 2501-2550).
+ */
+offset?: OffsetParameter;
+};
+
+export type ArticleGetTagsForEntity200 = {
+  metadata?: CollectionMetadata;
+  items?: Tag[];
+};
+
+/**
+ * @nullable
+ */
+export type ArticleSetTagsForEntityBody = TagUidList | null;
 
 export type CategoryGetAllCategoriesParams = {
 /**
@@ -9480,6 +9519,14 @@ export type DripCampaignSendTestCampaignEmailBody = SendTestEmailRequest | null;
 
 export type CampaignGetAllBroadcastEmailsParams = {
 /**
+ * Keep only the records that carry one of these tags. Separate several tag uids with commas. The value none keeps the records that carry no tag at all.
+ */
+tagUid?: string;
+/**
+ * Keep only the records that carry none of these tags. Separate several tag uids with commas. Combined with tagUid, the two widen the result instead of narrowing it: a record is kept when it matches either one.
+ */
+withoutTagUid?: string;
+/**
  * Requested page size. The server caps it at 100, or 25 when requested fields expand child objects or require additional queries; metadata.limit reports the applied value. Use offset=1 for the second page.
  */
 limit?: LimitParameter;
@@ -9508,6 +9555,32 @@ export type CampaignUpdateBroadcastEmailBody = BroadcastCampaign | null;
  * @nullable
  */
 export type CampaignSendTestCampaignEmailBody = SendTestEmailRequest2 | null;
+
+/**
+ * @nullable
+ */
+export type CampaignAddTagToEntityBody = TagUidList | null;
+
+export type CampaignGetTagsForEntityParams = {
+/**
+ * Requested page size. The server caps it at 100, or 25 when requested fields expand child objects or require additional queries; metadata.limit reports the applied value. Use offset=1 for the second page.
+ */
+limit?: LimitParameter;
+/**
+ * Zero-based page number, not a record offset. With limit=50, the second page is offset=1; offset=50 is page index 50 (records 2501-2550).
+ */
+offset?: OffsetParameter;
+};
+
+export type CampaignGetTagsForEntity200 = {
+  metadata?: CollectionMetadata;
+  items?: Tag[];
+};
+
+/**
+ * @nullable
+ */
+export type CampaignSetTagsForEntityBody = TagUidList | null;
 
 export type EmailListGetAllEmailListsParams = {
 /**
@@ -9596,6 +9669,32 @@ export type DealAddDealBody = Deal | null;
  * @nullable
  */
 export type DealUpdateDealBody = Deal | null;
+
+/**
+ * @nullable
+ */
+export type SegmentAddTagToEntityBody = TagUidList | null;
+
+export type SegmentGetTagsForEntityParams = {
+/**
+ * Requested page size. The server caps it at 100, or 25 when requested fields expand child objects or require additional queries; metadata.limit reports the applied value. Use offset=1 for the second page.
+ */
+limit?: LimitParameter;
+/**
+ * Zero-based page number, not a record offset. With limit=50, the second page is offset=1; offset=50 is page index 50 (records 2501-2550).
+ */
+offset?: OffsetParameter;
+};
+
+export type SegmentGetTagsForEntity200 = {
+  metadata?: CollectionMetadata;
+  items?: Tag[];
+};
+
+/**
+ * @nullable
+ */
+export type SegmentSetTagsForEntityBody = TagUidList | null;
 
 export type AccountGetAllAccountsParams = {
 /**
