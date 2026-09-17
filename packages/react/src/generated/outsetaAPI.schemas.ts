@@ -595,6 +595,8 @@ export type AccountAllOf = {
   /** @nullable */
   CurrentStripeProducts?: string | null;
   /** @nullable */
+  CurrentStripeProductInstances?: StripeProduct[] | null;
+  /** @nullable */
   CurrentSubscription?: AccountAllOfCurrentSubscription;
   /** @nullable */
   DomainName?: string | null;
@@ -1003,6 +1005,8 @@ export type StripeProductAllOf = {
   CanDelete?: boolean;
   NumberOfPurchases?: number;
   NumberOfSubscriptions?: number;
+  /** @nullable */
+  Quantity?: number | null;
   /** @nullable */
   StripeProductFamily?: StripeProductAllOfStripeProductFamily;
   [key: string]: unknown | null;
@@ -4564,7 +4568,6 @@ export type CrmSettingsAllOf = {
   RegistrationConfirmationEmailDelaySeconds?: number;
   /** @nullable */
   RegistrationCallbackUrlLocations?: string | null;
-  TwoFactorAuthenticationAvailable?: boolean;
   MagicLinkLoginOnly?: boolean;
 };
 
@@ -6126,6 +6129,101 @@ export type AccountWebhookEntityTaxIdsItem = {
 };
 
 /**
+ * `1` - Individual, `2` - Team
+ */
+export type AccountWebhookEntityCurrentStripeProductInstancesItemAccountRegistrationMode = typeof AccountWebhookEntityCurrentStripeProductInstancesItemAccountRegistrationMode[keyof typeof AccountWebhookEntityCurrentStripeProductInstancesItemAccountRegistrationMode];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountWebhookEntityCurrentStripeProductInstancesItemAccountRegistrationMode = {
+  Individual: 1,
+  Team: 2,
+} as const;
+
+export type AccountWebhookEntityCurrentStripeProductInstancesItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  StripeId?: string | null;
+  IsLivemode?: boolean;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  Name?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  DefaultPriceId?: string | null;
+  /** @nullable */
+  Description?: string | null;
+  IsActive?: boolean;
+  /**
+   * @maxLength 36
+   * @nullable
+   */
+  TaxCodeId?: string | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  UnitLabel?: string | null;
+  /** `1` - Individual, `2` - Team */
+  AccountRegistrationMode?: AccountWebhookEntityCurrentStripeProductInstancesItemAccountRegistrationMode;
+  ExpiresAfterMonths?: number;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  IsPerUser?: boolean;
+  IsQuantityEditable?: boolean;
+  /** @nullable */
+  MaximumPeople?: number | null;
+  /**
+   * @maxLength 8
+   * @nullable
+   */
+  MigratedAddOnUid?: string | null;
+  /**
+   * @maxLength 8
+   * @nullable
+   */
+  MigratedPlanUid?: string | null;
+  /** @nullable */
+  MinimumQuantity?: number | null;
+  /**
+   * @maxLength 250
+   * @nullable
+   */
+  PostLoginPath?: string | null;
+  /**
+   * @maxLength 500
+   * @nullable
+   */
+  PostPurchaseUrl?: string | null;
+  RequirePaymentInformation?: boolean;
+  TrialPeriodDays?: number;
+  /** @nullable */
+  TrialUntilDate?: string | null;
+  CanDelete?: boolean;
+  NumberOfPurchases?: number;
+  NumberOfSubscriptions?: number;
+  /** @nullable */
+  Quantity?: number | null;
+};
+
+/**
  * `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time
  */
 export type AccountWebhookEntityCurrentSubscriptionBillingRenewalTerm = typeof AccountWebhookEntityCurrentSubscriptionBillingRenewalTerm[keyof typeof AccountWebhookEntityCurrentSubscriptionBillingRenewalTerm];
@@ -7393,6 +7491,8 @@ export interface AccountWebhookEntity {
   AccountStageLabel?: string | null;
   /** @nullable */
   CurrentStripeProducts?: string | null;
+  /** @nullable */
+  CurrentStripeProductInstances?: AccountWebhookEntityCurrentStripeProductInstancesItem[] | null;
   /** @nullable */
   CurrentSubscription?: AccountWebhookEntityCurrentSubscription;
   /** @nullable */

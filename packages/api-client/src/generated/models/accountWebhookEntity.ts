@@ -10,6 +10,7 @@ import type { AccountWebhookEntityStripeSubscriptionsItem } from './accountWebho
 import type { AccountWebhookEntitySubscriptionsItem } from './accountWebhookEntitySubscriptionsItem';
 import type { AccountWebhookEntityDealsItem } from './accountWebhookEntityDealsItem';
 import type { AccountWebhookEntityTaxIdsItem } from './accountWebhookEntityTaxIdsItem';
+import type { AccountWebhookEntityCurrentStripeProductInstancesItem } from './accountWebhookEntityCurrentStripeProductInstancesItem';
 import type { AccountWebhookEntityCurrentSubscription } from './accountWebhookEntityCurrentSubscription';
 import type { AccountWebhookEntityLatestSubscription } from './accountWebhookEntityLatestSubscription';
 import type { AccountWebhookEntityPrimaryContact } from './accountWebhookEntityPrimaryContact';
@@ -147,6 +148,8 @@ export interface AccountWebhookEntity {
   AccountStageLabel?: string | null;
   /** @nullable */
   CurrentStripeProducts?: string | null;
+  /** @nullable */
+  CurrentStripeProductInstances?: AccountWebhookEntityCurrentStripeProductInstancesItem[] | null;
   /** @nullable */
   CurrentSubscription?: AccountWebhookEntityCurrentSubscription;
   /** @nullable */

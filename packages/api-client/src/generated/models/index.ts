@@ -133,6 +133,8 @@ export * from './accountUpdatedWebhookPayload';
 export * from './accountWebhookEntity';
 export * from './accountWebhookEntityAccountStage';
 export * from './accountWebhookEntityBillingAddress';
+export * from './accountWebhookEntityCurrentStripeProductInstancesItem';
+export * from './accountWebhookEntityCurrentStripeProductInstancesItemAccountRegistrationMode';
 export * from './accountWebhookEntityCurrentSubscription';
 export * from './accountWebhookEntityCurrentSubscriptionBillingRenewalTerm';
 export * from './accountWebhookEntityCurrentSubscriptionDiscountCouponSubscriptionsItem';

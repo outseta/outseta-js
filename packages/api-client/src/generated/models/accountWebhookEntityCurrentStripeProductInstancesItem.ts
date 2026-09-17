@@ -1,11 +1,24 @@
 // @ts-nocheck
-import type { ContentGroup } from './contentGroup';
-import type { StripePrice } from './stripePrice';
-import type { AccountRegistrationMode } from './accountRegistrationMode';
-import type { StripeProductCrossSell } from './stripeProductCrossSell';
-import type { StripeProductAllOfStripeProductFamily } from './stripeProductAllOfStripeProductFamily';
+import type { AccountWebhookEntityCurrentStripeProductInstancesItemAccountRegistrationMode } from './accountWebhookEntityCurrentStripeProductInstancesItemAccountRegistrationMode';
 
-export type StripeProductAllOf = {
+export type AccountWebhookEntityCurrentStripeProductInstancesItem = {
+  /**
+   * @maxLength 10
+   * @nullable
+   */
+  Uid?: string | null;
+  /** @nullable */
+  _objectType?: string | null;
+  /** @minLength 1 */
+  Created: string;
+  /** @minLength 1 */
+  Updated: string;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  StripeId?: string | null;
+  IsLivemode?: boolean;
   /**
    * @maxLength 250
    * @nullable
@@ -29,11 +42,8 @@ export type StripeProductAllOf = {
    * @nullable
    */
   UnitLabel?: string | null;
-  /** @nullable */
-  ContentGroups?: ContentGroup[] | null;
-  /** @nullable */
-  StripePrices?: StripePrice[] | null;
-  AccountRegistrationMode?: AccountRegistrationMode;
+  /** `1` - Individual, `2` - Team */
+  AccountRegistrationMode?: AccountWebhookEntityCurrentStripeProductInstancesItemAccountRegistrationMode;
   ExpiresAfterMonths?: number;
   /** @nullable */
   ExpirationDate?: string | null;
@@ -64,8 +74,6 @@ export type StripeProductAllOf = {
    */
   PostPurchaseUrl?: string | null;
   RequirePaymentInformation?: boolean;
-  /** @nullable */
-  StripeProductCrossSells?: StripeProductCrossSell[] | null;
   TrialPeriodDays?: number;
   /** @nullable */
   TrialUntilDate?: string | null;
@@ -74,7 +82,4 @@ export type StripeProductAllOf = {
   NumberOfSubscriptions?: number;
   /** @nullable */
   Quantity?: number | null;
-  /** @nullable */
-  StripeProductFamily?: StripeProductAllOfStripeProductFamily;
-  [key: string]: unknown | null;
 };

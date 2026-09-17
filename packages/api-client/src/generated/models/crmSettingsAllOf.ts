@@ -63,6 +63,5 @@ export type CrmSettingsAllOf = {
   RegistrationConfirmationEmailDelaySeconds?: number;
   /** @nullable */
   RegistrationCallbackUrlLocations?: string | null;
-  TwoFactorAuthenticationAvailable?: boolean;
   MagicLinkLoginOnly?: boolean;
 };

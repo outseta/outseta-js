@@ -10,6 +10,7 @@ import type { StripeSubscription } from './stripeSubscription';
 import type { Subscription } from './subscription';
 import type { Deal } from './deal';
 import type { AccountTaxId } from './accountTaxId';
+import type { StripeProduct } from './stripeProduct';
 import type { AccountAllOfCurrentSubscription } from './accountAllOfCurrentSubscription';
 import type { AccountAllOfLatestSubscription } from './accountAllOfLatestSubscription';
 import type { AccountAllOfPrimaryContact } from './accountAllOfPrimaryContact';
@@ -129,6 +130,8 @@ export type AccountAllOf = {
   AccountStageLabel?: string | null;
   /** @nullable */
   CurrentStripeProducts?: string | null;
+  /** @nullable */
+  CurrentStripeProductInstances?: StripeProduct[] | null;
   /** @nullable */
   CurrentSubscription?: AccountAllOfCurrentSubscription;
   /** @nullable */
