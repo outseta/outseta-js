@@ -30,6 +30,8 @@ import type {
   PaymentInformation,
   PaymentInformationSavePaymentInformationBody,
   Plan,
+  PlanAddOnGetAllPlanAddOns200,
+  PlanAddOnGetAllPlanAddOnsParams,
   PlanAddPlanBody,
   PlanFamily,
   PlanFamilyAddPlanFamilyBody,
@@ -2835,6 +2837,80 @@ export const usePlanDeletePlan = <TError = void,
       return useMutation(mutationOptions);
     }
     /**
+ * Standard filtering applies, so the associations of a single plan are retrieved
+with ?Plan.Uid={planUid} and those of a single add-on with ?AddOn.Uid={addOnUid}.
+A PlanAddOns collection nested inside a plan or an add-on holds at most 100
+entries, so a plan with more add-ons than that is read in full through this
+endpoint, which is paginated and has no such maximum.
+ * @summary Retrieve the associations between plans and add-ons.
+ */
+export const planAddOnGetAllPlanAddOns = (
+    params?: PlanAddOnGetAllPlanAddOnsParams,
+ options?: SecondParameter<typeof customFetch>,signal?: AbortSignal
+) => {
+      
+      
+      return customFetch<PlanAddOnGetAllPlanAddOns200>(
+      {url: `/api/v1/billing/planaddons`, method: 'GET',
+        params, signal
+    },
+      options);
+    }
+  
+
+
+
+export const getPlanAddOnGetAllPlanAddOnsQueryKey = (params?: PlanAddOnGetAllPlanAddOnsParams,) => {
+    return [
+    `/api/v1/billing/planaddons`, ...(params ? [params]: [])
+    ] as const;
+    }
+
+    
+export const getPlanAddOnGetAllPlanAddOnsQueryOptions = <TData = Awaited<ReturnType<typeof planAddOnGetAllPlanAddOns>>, TError = void>(params?: PlanAddOnGetAllPlanAddOnsParams, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof planAddOnGetAllPlanAddOns>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getPlanAddOnGetAllPlanAddOnsQueryKey(params);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof planAddOnGetAllPlanAddOns>>> = ({ signal }) => planAddOnGetAllPlanAddOns(params, requestOptions, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof planAddOnGetAllPlanAddOns>>, TError, TData> & { queryKey: QueryKey }
+}
+
+export type PlanAddOnGetAllPlanAddOnsQueryResult = NonNullable<Awaited<ReturnType<typeof planAddOnGetAllPlanAddOns>>>
+export type PlanAddOnGetAllPlanAddOnsQueryError = void
+
+
+/**
+ * @summary Retrieve the associations between plans and add-ons.
+ */
+
+export function usePlanAddOnGetAllPlanAddOns<TData = Awaited<ReturnType<typeof planAddOnGetAllPlanAddOns>>, TError = void>(
+ params?: PlanAddOnGetAllPlanAddOnsParams, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof planAddOnGetAllPlanAddOns>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
+  
+ ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } {
+
+  const queryOptions = getPlanAddOnGetAllPlanAddOnsQueryOptions(params,options)
+
+  const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: QueryKey };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+
+/**
  * @summary Retrieve all plan families.
  */
 export const planFamilyGetAllPlanFamilies = (

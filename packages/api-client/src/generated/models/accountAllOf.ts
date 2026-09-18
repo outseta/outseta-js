@@ -16,6 +16,7 @@ import type { AccountAllOfLatestSubscription } from './accountAllOfLatestSubscri
 import type { AccountAllOfPrimaryContact } from './accountAllOfPrimaryContact';
 import type { AccountAllOfPrimarySubscription } from './accountAllOfPrimarySubscription';
 import type { AccountAllOfPrimaryStripeSubscription } from './accountAllOfPrimaryStripeSubscription';
+import type { AccountAllOfStripeCheckoutMetadata } from './accountAllOfStripeCheckoutMetadata';
 
 export type AccountAllOf = {
   /**
@@ -152,6 +153,8 @@ export type AccountAllOf = {
   PrimaryStripeSubscription?: AccountAllOfPrimaryStripeSubscription;
   /** @nullable */
   RecaptchaToken?: string | null;
+  /** @nullable */
+  StripeCheckoutMetadata?: AccountAllOfStripeCheckoutMetadata;
   /** @nullable */
   StripeNextInvoiceSequence?: number | null;
   /** @nullable */

@@ -16,6 +16,8 @@ import type {
   PaymentInformation,
   PaymentInformationSavePaymentInformationBody,
   Plan,
+  PlanAddOnGetAllPlanAddOns200,
+  PlanAddOnGetAllPlanAddOnsParams,
   PlanAddPlanBody,
   PlanFamily,
   PlanFamilyAddPlanFamilyBody,
@@ -2187,6 +2189,60 @@ export const planDeletePlan = async (planUid: string | null, options?: RequestIn
   {      
     ...options,
     method: 'DELETE'
+    
+    
+  }
+);}
+
+
+/**
+ * Standard filtering applies, so the associations of a single plan are retrieved
+with ?Plan.Uid={planUid} and those of a single add-on with ?AddOn.Uid={addOnUid}.
+A PlanAddOns collection nested inside a plan or an add-on holds at most 100
+entries, so a plan with more add-ons than that is read in full through this
+endpoint, which is paginated and has no such maximum.
+ * @summary Retrieve the associations between plans and add-ons.
+ */
+export type planAddOnGetAllPlanAddOnsResponse200 = {
+  data: PlanAddOnGetAllPlanAddOns200
+  status: 200
+}
+
+export type planAddOnGetAllPlanAddOnsResponse401 = {
+  data: void
+  status: 401
+}
+    
+export type planAddOnGetAllPlanAddOnsResponseSuccess = (planAddOnGetAllPlanAddOnsResponse200) & {
+  headers: Headers;
+};
+export type planAddOnGetAllPlanAddOnsResponseError = (planAddOnGetAllPlanAddOnsResponse401) & {
+  headers: Headers;
+};
+
+export type planAddOnGetAllPlanAddOnsResponse = (planAddOnGetAllPlanAddOnsResponseSuccess | planAddOnGetAllPlanAddOnsResponseError)
+
+export const getPlanAddOnGetAllPlanAddOnsUrl = (params?: PlanAddOnGetAllPlanAddOnsParams,) => {
+  const normalizedParams = new URLSearchParams();
+
+  Object.entries(params || {}).forEach(([key, value]) => {
+    
+    if (value !== undefined) {
+      normalizedParams.append(key, value === null ? 'null' : value.toString())
+    }
+  });
+
+  const stringifiedParams = normalizedParams.toString();
+
+  return stringifiedParams.length > 0 ? `/api/v1/billing/planaddons?${stringifiedParams}` : `/api/v1/billing/planaddons`
+}
+
+export const planAddOnGetAllPlanAddOns = async (params?: PlanAddOnGetAllPlanAddOnsParams, options?: RequestInit): Promise<planAddOnGetAllPlanAddOnsResponse> => {
+  
+  return customFetch<planAddOnGetAllPlanAddOnsResponse>(getPlanAddOnGetAllPlanAddOnsUrl(params),
+  {      
+    ...options,
+    method: 'GET'
     
     
   }
