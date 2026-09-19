@@ -68,6 +68,7 @@ export type StripeInvoiceAllOf = {
   TotalExcludingTax?: number | null;
   /** @nullable */
   Account?: StripeInvoiceAllOfAccount;
+  IsImported?: boolean;
   IsRefunded?: boolean;
   CurrencyAmountCreditedPostPayment?: number;
   CurrencyAmountCreditedPrePayment?: number;

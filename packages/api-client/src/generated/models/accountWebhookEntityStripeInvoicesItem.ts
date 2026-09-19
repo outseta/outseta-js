@@ -69,6 +69,7 @@ export type AccountWebhookEntityStripeInvoicesItem = {
   Total?: number;
   /** @nullable */
   TotalExcludingTax?: number | null;
+  IsImported?: boolean;
   IsRefunded?: boolean;
   CurrencyAmountCreditedPostPayment?: number;
   CurrencyAmountCreditedPrePayment?: number;

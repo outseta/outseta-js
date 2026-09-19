@@ -795,6 +795,7 @@ export type StripeInvoiceAllOf = {
   TotalExcludingTax?: number | null;
   /** @nullable */
   Account?: StripeInvoiceAllOfAccount;
+  IsImported?: boolean;
   IsRefunded?: boolean;
   CurrencyAmountCreditedPostPayment?: number;
   CurrencyAmountCreditedPrePayment?: number;
@@ -5500,6 +5501,7 @@ export type AccountWebhookEntityStripeInvoicesItem = {
   Total?: number;
   /** @nullable */
   TotalExcludingTax?: number | null;
+  IsImported?: boolean;
   IsRefunded?: boolean;
   CurrencyAmountCreditedPostPayment?: number;
   CurrencyAmountCreditedPrePayment?: number;
