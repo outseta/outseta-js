@@ -464,6 +464,11 @@ export type AccountAllOfCurrentSubscription = Subscription | null;
 /**
  * @nullable
  */
+export type AccountAllOfTenantBillingSystem = BillingSystem | null;
+
+/**
+ * @nullable
+ */
 export type AccountAllOfLatestSubscription = Subscription | null;
 
 /**
@@ -605,6 +610,8 @@ export type AccountAllOf = {
   CurrentSubscription?: AccountAllOfCurrentSubscription;
   /** @nullable */
   DomainName?: string | null;
+  /** @nullable */
+  TenantBillingSystem?: AccountAllOfTenantBillingSystem;
   HasLoggedIn?: boolean;
   /** @nullable */
   LatestSubscription?: AccountAllOfLatestSubscription;
@@ -2638,6 +2645,18 @@ export type AbstractStripeBeanOfTaxIdAllOf = {
 
 export type AbstractStripeBeanOfTaxId = AbstractSchemaLessBean & AbstractStripeBeanOfTaxIdAllOf;
 
+/**
+ * `1` - Outseta, `2` - Stripe
+ */
+export type BillingSystem = typeof BillingSystem[keyof typeof BillingSystem];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const BillingSystem = {
+  Outseta: 1,
+  Stripe: 2,
+} as const;
+
 export type AbstractStripeBeanOfCustomerAllOf = {
   /**
    * @maxLength 255
@@ -2984,18 +3003,6 @@ export type NoCodeSettingsAllOf = {
 };
 
 export type NoCodeSettings = AbstractQcountBean & NoCodeSettingsAllOf;
-
-/**
- * `1` - Outseta, `2` - Stripe
- */
-export type BillingSystem = typeof BillingSystem[keyof typeof BillingSystem];
-
-
-// eslint-disable-next-line @typescript-eslint/no-redeclare
-export const BillingSystem = {
-  Outseta: 1,
-  Stripe: 2,
-} as const;
 
 export type ClientApplicationAllOf = {
   /**
@@ -4448,6 +4455,35 @@ export const BackGroundTaskType = {
   ResendTrialLimitEmailTask: 21,
   UpdateStripeSubscriptionApplicationFeePercentTask: 22,
 } as const;
+
+/**
+ * Request body for POST /api/v1/crm/registrations/complete: the client secret
+of the Stripe intent, from the setup_intent_client_secret or
+payment_intent_client_secret querystring value Stripe returns the user with.
+ */
+export interface RegistrationCompleteRequest {
+  /** @nullable */
+  ClientSecret?: string | null;
+}
+
+/**
+ * @nullable
+ */
+export type RegistrationStateRequestAccount = Account | null;
+
+/**
+ * Request body for POST /api/v1/crm/registrations/state: the account to
+register, the client secret of the Stripe intent the user is about to confirm,
+and optionally the primary contact's profile image as a PNG or JPEG data URL.
+ */
+export interface RegistrationStateRequest {
+  /** @nullable */
+  Account?: RegistrationStateRequestAccount;
+  /** @nullable */
+  ClientSecret?: string | null;
+  /** @nullable */
+  ProfileImage?: string | null;
+}
 
 /**
  * @nullable
@@ -6686,6 +6722,19 @@ export type AccountWebhookEntityCurrentSubscription = {
 } | null;
 
 /**
+ * `1` - Outseta, `2` - Stripe
+ * @nullable
+ */
+export type AccountWebhookEntityTenantBillingSystem = typeof AccountWebhookEntityTenantBillingSystem[keyof typeof AccountWebhookEntityTenantBillingSystem] | null;
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const AccountWebhookEntityTenantBillingSystem = {
+  Outseta: 1,
+  Stripe: 2,
+} as const;
+
+/**
  * `1` - Monthly, `2` - Yearly, `3` - Quarterly, `4` - One Time
  */
 export type AccountWebhookEntityLatestSubscriptionBillingRenewalTerm = typeof AccountWebhookEntityLatestSubscriptionBillingRenewalTerm[keyof typeof AccountWebhookEntityLatestSubscriptionBillingRenewalTerm];
@@ -7508,6 +7557,11 @@ export interface AccountWebhookEntity {
   CurrentSubscription?: AccountWebhookEntityCurrentSubscription;
   /** @nullable */
   DomainName?: string | null;
+  /**
+   * `1` - Outseta, `2` - Stripe
+   * @nullable
+   */
+  TenantBillingSystem?: AccountWebhookEntityTenantBillingSystem;
   HasLoggedIn?: boolean;
   /** @nullable */
   LatestSubscription?: AccountWebhookEntityLatestSubscription;
@@ -7948,6 +8002,19 @@ export const PersonWebhookEntityAccountAccountStage = {
 } as const;
 
 /**
+ * `1` - Outseta, `2` - Stripe
+ * @nullable
+ */
+export type PersonWebhookEntityAccountTenantBillingSystem = typeof PersonWebhookEntityAccountTenantBillingSystem[keyof typeof PersonWebhookEntityAccountTenantBillingSystem] | null;
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const PersonWebhookEntityAccountTenantBillingSystem = {
+  Outseta: 1,
+  Stripe: 2,
+} as const;
+
+/**
  * @nullable
  */
 export type PersonWebhookEntityAccount = {
@@ -8063,6 +8130,11 @@ export type PersonWebhookEntityAccount = {
   CurrentStripeProducts?: string | null;
   /** @nullable */
   DomainName?: string | null;
+  /**
+   * `1` - Outseta, `2` - Stripe
+   * @nullable
+   */
+  TenantBillingSystem?: PersonWebhookEntityAccountTenantBillingSystem;
   HasLoggedIn?: boolean;
   LifetimeRevenue?: number;
   /** @nullable */
@@ -8548,6 +8620,19 @@ export const DealWebhookEntityAccountAccountStage = {
 } as const;
 
 /**
+ * `1` - Outseta, `2` - Stripe
+ * @nullable
+ */
+export type DealWebhookEntityAccountTenantBillingSystem = typeof DealWebhookEntityAccountTenantBillingSystem[keyof typeof DealWebhookEntityAccountTenantBillingSystem] | null;
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const DealWebhookEntityAccountTenantBillingSystem = {
+  Outseta: 1,
+  Stripe: 2,
+} as const;
+
+/**
  * @nullable
  */
 export type DealWebhookEntityAccount = {
@@ -8663,6 +8748,11 @@ export type DealWebhookEntityAccount = {
   CurrentStripeProducts?: string | null;
   /** @nullable */
   DomainName?: string | null;
+  /**
+   * `1` - Outseta, `2` - Stripe
+   * @nullable
+   */
+  TenantBillingSystem?: DealWebhookEntityAccountTenantBillingSystem;
   HasLoggedIn?: boolean;
   LifetimeRevenue?: number;
   /** @nullable */

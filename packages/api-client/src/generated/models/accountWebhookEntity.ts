@@ -12,6 +12,7 @@ import type { AccountWebhookEntityDealsItem } from './accountWebhookEntityDealsI
 import type { AccountWebhookEntityTaxIdsItem } from './accountWebhookEntityTaxIdsItem';
 import type { AccountWebhookEntityCurrentStripeProductInstancesItem } from './accountWebhookEntityCurrentStripeProductInstancesItem';
 import type { AccountWebhookEntityCurrentSubscription } from './accountWebhookEntityCurrentSubscription';
+import type { AccountWebhookEntityTenantBillingSystem } from './accountWebhookEntityTenantBillingSystem';
 import type { AccountWebhookEntityLatestSubscription } from './accountWebhookEntityLatestSubscription';
 import type { AccountWebhookEntityPrimaryContact } from './accountWebhookEntityPrimaryContact';
 import type { AccountWebhookEntityPrimarySubscription } from './accountWebhookEntityPrimarySubscription';
@@ -154,6 +155,11 @@ export interface AccountWebhookEntity {
   CurrentSubscription?: AccountWebhookEntityCurrentSubscription;
   /** @nullable */
   DomainName?: string | null;
+  /**
+   * `1` - Outseta, `2` - Stripe
+   * @nullable
+   */
+  TenantBillingSystem?: AccountWebhookEntityTenantBillingSystem;
   HasLoggedIn?: boolean;
   /** @nullable */
   LatestSubscription?: AccountWebhookEntityLatestSubscription;

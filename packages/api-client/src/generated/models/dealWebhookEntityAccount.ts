@@ -1,5 +1,6 @@
 // @ts-nocheck
 import type { DealWebhookEntityAccountAccountStage } from './dealWebhookEntityAccountAccountStage';
+import type { DealWebhookEntityAccountTenantBillingSystem } from './dealWebhookEntityAccountTenantBillingSystem';
 
 /**
  * @nullable
@@ -117,6 +118,11 @@ export type DealWebhookEntityAccount = {
   CurrentStripeProducts?: string | null;
   /** @nullable */
   DomainName?: string | null;
+  /**
+   * `1` - Outseta, `2` - Stripe
+   * @nullable
+   */
+  TenantBillingSystem?: DealWebhookEntityAccountTenantBillingSystem;
   HasLoggedIn?: boolean;
   LifetimeRevenue?: number;
   /** @nullable */

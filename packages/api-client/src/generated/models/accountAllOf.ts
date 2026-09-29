@@ -12,6 +12,7 @@ import type { Deal } from './deal';
 import type { AccountTaxId } from './accountTaxId';
 import type { StripeProduct } from './stripeProduct';
 import type { AccountAllOfCurrentSubscription } from './accountAllOfCurrentSubscription';
+import type { AccountAllOfTenantBillingSystem } from './accountAllOfTenantBillingSystem';
 import type { AccountAllOfLatestSubscription } from './accountAllOfLatestSubscription';
 import type { AccountAllOfPrimaryContact } from './accountAllOfPrimaryContact';
 import type { AccountAllOfPrimarySubscription } from './accountAllOfPrimarySubscription';
@@ -137,6 +138,8 @@ export type AccountAllOf = {
   CurrentSubscription?: AccountAllOfCurrentSubscription;
   /** @nullable */
   DomainName?: string | null;
+  /** @nullable */
+  TenantBillingSystem?: AccountAllOfTenantBillingSystem;
   HasLoggedIn?: boolean;
   /** @nullable */
   LatestSubscription?: AccountAllOfLatestSubscription;
