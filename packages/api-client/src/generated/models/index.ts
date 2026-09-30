@@ -259,6 +259,8 @@ export * from './broadcastCampaignAllOf';
 export * from './broadcastCampaignAllOfCampaign';
 export * from './broadcastCampaignAllOfMessage';
 export * from './broadcastCampaignStatus';
+export * from './broadcastPreviewRequest';
+export * from './broadcastPreviewRequestBroadcastCampaign';
 export * from './campaign';
 export * from './campaignAddBroadcastEmailBody';
 export * from './campaignAddTagToEntityBody';
