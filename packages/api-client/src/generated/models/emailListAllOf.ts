@@ -37,6 +37,7 @@ export type EmailListAllOf = {
   FieldConfigurationDataJSON?: string | null;
   CountSubscriptionsActive?: number;
   CountSubscriptionsBounce?: number;
+  CountSubscriptionsIssues?: number;
   CountSubscriptionsNotConfirmed?: number;
   CountSubscriptionsSpam?: number;
   CountSubscriptionsUnsubscribed?: number;

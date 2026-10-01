@@ -241,6 +241,7 @@ export type EmailListAllOf = {
   FieldConfigurationDataJSON?: string | null;
   CountSubscriptionsActive?: number;
   CountSubscriptionsBounce?: number;
+  CountSubscriptionsIssues?: number;
   CountSubscriptionsNotConfirmed?: number;
   CountSubscriptionsSpam?: number;
   CountSubscriptionsUnsubscribed?: number;
@@ -4473,6 +4474,76 @@ export const BackGroundTaskType = {
   ResendTrialLimitEmailTask: 21,
   UpdateStripeSubscriptionApplicationFeePercentTask: 22,
 } as const;
+
+export type DirectoryAllOf = {
+  /**
+   * @minLength 1
+   * @maxLength 100
+   */
+  Name: string;
+  EntityType?: EntityType;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  ItemLabelSingular?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  ItemLabelPlural?: string | null;
+  RequiresSignIn?: boolean;
+  ListsAll?: boolean;
+  ShowSearch?: boolean;
+  /** @nullable */
+  ListedPlans?: Plan[] | null;
+  /** @nullable */
+  ListedAddOns?: AddOn[] | null;
+  /** @nullable */
+  ListedProducts?: StripeProduct[] | null;
+  /** @nullable */
+  CardFieldConfiguration?: DirectoryFieldConfiguration[] | null;
+  /** @nullable */
+  ProfileFieldConfiguration?: DirectoryFieldConfiguration[] | null;
+  /** @nullable */
+  FilterConfiguration?: DirectoryFilterConfiguration[] | null;
+  /** @nullable */
+  ActionConfiguration?: DirectoryActionConfiguration[] | null;
+};
+
+export type Directory = AbstractQcountBean & DirectoryAllOf;
+
+export interface DirectoryFieldConfiguration {
+  /** @nullable */
+  SystemName?: string | null;
+  /** @nullable */
+  Label?: string | null;
+  /** @nullable */
+  Type?: string | null;
+  /** @nullable */
+  Display?: string | null;
+  /** @nullable */
+  Icon?: string | null;
+  ShowLabel?: boolean;
+}
+
+export interface DirectoryFilterConfiguration {
+  /** @nullable */
+  SystemName?: string | null;
+  /** @nullable */
+  Label?: string | null;
+}
+
+export interface DirectoryActionConfiguration {
+  /** @nullable */
+  Label?: string | null;
+  /** @nullable */
+  SystemName?: string | null;
+  /** @nullable */
+  Type?: string | null;
+  /** @nullable */
+  Style?: string | null;
+}
 
 /**
  * Request body for POST /api/v1/crm/registrations/complete: the client secret
