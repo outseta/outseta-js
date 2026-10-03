@@ -5126,6 +5126,32 @@ export interface SetupIntent {
 }
 
 /**
+ * Request body for POST /api/v1/billing/subscriptions/changesubscription/complete:
+the client secret of the Stripe intent the user confirmed.
+ */
+export interface ChangeSubscriptionCompleteRequest {
+  /** @nullable */
+  ClientSecret?: string | null;
+}
+
+/**
+ * @nullable
+ */
+export type ChangeSubscriptionStateRequestSubscription = Subscription | null;
+
+/**
+ * Request body for POST /api/v1/billing/subscriptions/{subscriptionUid}/changesubscription/state:
+the new subscription and the client secret of the Stripe intent the user is about
+to confirm.
+ */
+export interface ChangeSubscriptionStateRequest {
+  /** @nullable */
+  ClientSecret?: string | null;
+  /** @nullable */
+  Subscription?: ChangeSubscriptionStateRequestSubscription;
+}
+
+/**
  * @nullable
  */
 export type ActivityCRMDealTriggerAllOfDealPipelineStage = DealPipelineStage | null;
