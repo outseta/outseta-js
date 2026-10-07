@@ -41,6 +41,10 @@ jobs:
             echo "has_changesets=false" >> "$GITHUB_OUTPUT"
           fi
 
+      - name: Record API client version
+        id: api_client
+        run: echo "version=$(node -p "require('./packages/api-client/package.json').version")" >> "$GITHUB_OUTPUT"
+
       - name: Version packages
         if: steps.changesets.outputs.has_changesets == 'true'
         run: pnpm exec changeset version
@@ -62,3 +66,24 @@ jobs:
       - name: Push version commits and tags
         if: steps.changesets.outputs.has_changesets == 'true'
         run: git push --follow-tags
+
+      # outseta-agent rebuilds its API docs against the newest client. Its own
+      # cron can start hours late and before this release, so tell it now.
+      - name: Trigger outseta-agent refresh
+        if: steps.changesets.outputs.has_changesets == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.OUTSETA_AGENT_DISPATCH_TOKEN }}
+          PREVIOUS_VERSION: ${{ steps.api_client.outputs.version }}
+        run: |
+          version=$(node -p "require('./packages/api-client/package.json').version")
+          if [ "$version" = "$PREVIOUS_VERSION" ]; then
+            echo "@outseta/api-client stays at $version; not triggering the outseta-agent refresh."
+            exit 0
+          fi
+          if [ -z "$GH_TOKEN" ]; then
+            echo "::warning::OUTSETA_AGENT_DISPATCH_TOKEN is not set; outseta-agent picks up @outseta/api-client@$version on its scheduled refresh."
+            exit 0
+          fi
+          gh api repos/outseta/outseta-agent/dispatches \
+            -f event_type=api-client-published \
+            -f "client_payload[version]=$version"

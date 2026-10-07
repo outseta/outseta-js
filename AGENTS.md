@@ -48,7 +48,7 @@ outseta-js/
 
 - **sync-spec** (`.github/workflows/sync-spec.yml`) — daily cron + manual trigger. Fetches spec from `https://go.outseta.com/swagger/v1/swagger.json`, regenerates clients, opens a PR if changed.
 - **ci** (`.github/workflows/ci.yml`) — runs on PRs. Regenerates clients, builds, tests, then commits generated code back if changed.
-- **release** (`.github/workflows/release.yml`) — runs on push to main. Versions and publishes packages via Changesets if pending changesets exist. Uses npm trusted publishers (OIDC) — no NPM_TOKEN needed.
+- **release** (`.github/workflows/release.yml`) — runs on push to main. Versions and publishes packages via Changesets if pending changesets exist. Uses npm trusted publishers (OIDC) — no NPM_TOKEN needed. When `@outseta/api-client` gets a new version, it sends an `api-client-published` repository dispatch to `outseta/outseta-agent` so its docs refresh runs against the new client (token: `OUTSETA_AGENT_DISPATCH_TOKEN`, a fine-grained PAT with Contents: write on outseta-agent).
 
 ## Contributor workflow
 
