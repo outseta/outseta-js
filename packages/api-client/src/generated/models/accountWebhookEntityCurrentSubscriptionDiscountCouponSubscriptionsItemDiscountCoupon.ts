@@ -36,5 +36,7 @@ export type AccountWebhookEntityCurrentSubscriptionDiscountCouponSubscriptionsIt
   MaxRedemptions?: number | null;
   ApplyToAddOns?: boolean;
   /** @nullable */
+  IsInUse?: boolean | null;
+  /** @nullable */
   PlanUids?: string | null;
 } | null;

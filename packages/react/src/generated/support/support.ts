@@ -356,6 +356,74 @@ export const useCaseUpdateCase = <TError = void,
       return useMutation(mutationOptions);
     }
     /**
+ * The ticket is deleted together with all its replies, notes, tags and attachments.
+This cannot be undone.
+            
+The ticket and its history are gone when the request returns. Its attachment files,
+its search entry, and the logs of the emails and activities that relate to it are
+removed in the background shortly after.
+ * @summary Permanently delete a support ticket.
+ */
+export const caseDeleteCase = (
+    caseUid: string | null,
+ options?: SecondParameter<typeof customFetch>,) => {
+      
+      
+      return customFetch<Blob>(
+      {url: `/api/v1/support/cases/${caseUid}`, method: 'DELETE',
+        responseType: 'blob'
+    },
+      options);
+    }
+  
+
+
+export const getCaseDeleteCaseMutationOptions = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof caseDeleteCase>>, TError,{caseUid: string | null}, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof caseDeleteCase>>, TError,{caseUid: string | null}, TContext> => {
+
+const mutationKey = ['caseDeleteCase'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof caseDeleteCase>>, {caseUid: string | null}> = (props) => {
+          const {caseUid} = props ?? {};
+
+          return  caseDeleteCase(caseUid,requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type CaseDeleteCaseMutationResult = NonNullable<Awaited<ReturnType<typeof caseDeleteCase>>>
+    
+    export type CaseDeleteCaseMutationError = void
+
+    /**
+ * @summary Permanently delete a support ticket.
+ */
+export const useCaseDeleteCase = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof caseDeleteCase>>, TError,{caseUid: string | null}, TContext>, request?: SecondParameter<typeof customFetch>}
+ ): UseMutationResult<
+        Awaited<ReturnType<typeof caseDeleteCase>>,
+        TError,
+        {caseUid: string | null},
+        TContext
+      > => {
+
+      const mutationOptions = getCaseDeleteCaseMutationOptions(options);
+
+      return useMutation(mutationOptions);
+    }
+    /**
  * @summary Adds a reply from an agent to a support case.
  */
 export const caseAddReply = (

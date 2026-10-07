@@ -281,6 +281,64 @@ export const caseUpdateCase = async (caseUid: string | null,
 
 
 /**
+ * The ticket is deleted together with all its replies, notes, tags and attachments.
+This cannot be undone.
+            
+The ticket and its history are gone when the request returns. Its attachment files,
+its search entry, and the logs of the emails and activities that relate to it are
+removed in the background shortly after.
+ * @summary Permanently delete a support ticket.
+ */
+export type caseDeleteCaseResponse200 = {
+  data: Blob
+  status: 200
+}
+
+export type caseDeleteCaseResponse400 = {
+  data: void
+  status: 400
+}
+
+export type caseDeleteCaseResponse401 = {
+  data: void
+  status: 401
+}
+
+export type caseDeleteCaseResponse404 = {
+  data: void
+  status: 404
+}
+    
+export type caseDeleteCaseResponseSuccess = (caseDeleteCaseResponse200) & {
+  headers: Headers;
+};
+export type caseDeleteCaseResponseError = (caseDeleteCaseResponse400 | caseDeleteCaseResponse401 | caseDeleteCaseResponse404) & {
+  headers: Headers;
+};
+
+export type caseDeleteCaseResponse = (caseDeleteCaseResponseSuccess | caseDeleteCaseResponseError)
+
+export const getCaseDeleteCaseUrl = (caseUid: string | null,) => {
+
+
+  
+
+  return `/api/v1/support/cases/${caseUid}`
+}
+
+export const caseDeleteCase = async (caseUid: string | null, options?: RequestInit): Promise<caseDeleteCaseResponse> => {
+  
+  return customFetch<caseDeleteCaseResponse>(getCaseDeleteCaseUrl(caseUid),
+  {      
+    ...options,
+    method: 'DELETE'
+    
+    
+  }
+);}
+
+
+/**
  * @summary Adds a reply from an agent to a support case.
  */
 export type caseAddReplyResponse200 = {

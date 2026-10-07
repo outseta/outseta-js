@@ -28,5 +28,7 @@ export type DiscountCouponAllOf = {
   DiscountCouponPlans?: DiscountCouponPlan[] | null;
   ApplyToAddOns?: boolean;
   /** @nullable */
+  IsInUse?: boolean | null;
+  /** @nullable */
   PlanUids?: string | null;
 };
