@@ -451,6 +451,8 @@ export * from './leadFormAllOf';
 export * from './leadFormAllOfDealPipelineStage';
 export * from './leadFormSubmission';
 export * from './leadFormSubmissionAllOf';
+export * from './leadFormSubmissionField';
+export * from './leadFormSubmissionFieldOutcome';
 export * from './limitParameter';
 export * from './lineItemType';
 export * from './message';

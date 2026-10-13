@@ -14,6 +14,7 @@ export type PersonWebhookEntityLeadFormSubmissionsItem = {
   Updated: string;
   /** @nullable */
   RefererURL?: string | null;
+  HasPendingFields?: boolean;
   /** @nullable */
   RecaptchaToken?: string | null;
   /** @nullable */

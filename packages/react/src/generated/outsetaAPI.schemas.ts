@@ -2690,6 +2690,9 @@ export type LeadFormSubmissionAllOf = {
   LeadForm: LeadForm;
   /** @nullable */
   RefererURL?: string | null;
+  HasPendingFields?: boolean;
+  /** @nullable */
+  Fields?: LeadFormSubmissionField[] | null;
   /** @nullable */
   RecaptchaToken?: string | null;
   /** @nullable */
@@ -2725,6 +2728,32 @@ export type LeadFormAllOf = {
 };
 
 export type LeadForm = AbstractQcountBean & LeadFormAllOf;
+
+export interface LeadFormSubmissionField {
+  /** @nullable */
+  SystemName?: string | null;
+  /** @nullable */
+  Value?: string | null;
+  Outcome?: LeadFormSubmissionFieldOutcome;
+  /** @nullable */
+  PersonValue?: string | null;
+}
+
+/**
+ * `Written` - Saved, `Unchanged` - Unchanged, `Skipped` - Not saved
+ */
+export type LeadFormSubmissionFieldOutcome = typeof LeadFormSubmissionFieldOutcome[keyof typeof LeadFormSubmissionFieldOutcome];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const LeadFormSubmissionFieldOutcome = {
+  /** Saved */
+  Written: 'Written',
+  /** Unchanged */
+  Unchanged: 'Unchanged',
+  /** Not saved */
+  Skipped: 'Skipped',
+} as const;
 
 /**
  * `0` - None, `1` - Gmail
@@ -8100,6 +8129,7 @@ export type PersonWebhookEntityLeadFormSubmissionsItem = {
   Updated: string;
   /** @nullable */
   RefererURL?: string | null;
+  HasPendingFields?: boolean;
   /** @nullable */
   RecaptchaToken?: string | null;
   /** @nullable */
@@ -8645,6 +8675,8 @@ export type PersonSupportTicketUpdatedWebhookPayload = PersonWebhookEntity & Per
 export interface PersonLeadFormSubmittedActivityData {
   /** @nullable */
   LeadFormUid?: string | null;
+  /** @nullable */
+  LeadFormSubmissionUid?: string | null;
   /** @nullable */
   RefererUrl?: string | null;
 }
