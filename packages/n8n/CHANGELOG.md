@@ -1,5 +1,12 @@
 # @outseta/n8n-nodes-outseta
 
+## 0.1.54
+
+### Patch Changes
+
+- Updated dependencies [0a2c9e1]
+  - @outseta/api-client@0.3.50
+
 ## 0.1.53
 
 ### Patch Changes
