@@ -9,4 +9,10 @@ export interface LeadFormSubmissionField {
   Outcome?: LeadFormSubmissionFieldOutcome;
   /** @nullable */
   PersonValue?: string | null;
+  /** @nullable */
+  ResolvedBy?: string | null;
+  /** @nullable */
+  ResolvedDate?: string | null;
+  /** @nullable */
+  CurrentValue?: string | null;
 }

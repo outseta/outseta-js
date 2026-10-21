@@ -590,6 +590,7 @@ export * from './registrationField';
 export * from './registrationStateRequest';
 export * from './registrationStateRequestAccount';
 export * from './resendEmailsRequest';
+export * from './resolveLeadFormSubmissionFieldsRequest';
 export * from './segment';
 export * from './segmentAddTagToEntityBody';
 export * from './segmentAllOf';

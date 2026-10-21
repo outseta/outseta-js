@@ -2737,10 +2737,16 @@ export interface LeadFormSubmissionField {
   Outcome?: LeadFormSubmissionFieldOutcome;
   /** @nullable */
   PersonValue?: string | null;
+  /** @nullable */
+  ResolvedBy?: string | null;
+  /** @nullable */
+  ResolvedDate?: string | null;
+  /** @nullable */
+  CurrentValue?: string | null;
 }
 
 /**
- * `Written` - Saved, `Unchanged` - Unchanged, `Skipped` - Not saved
+ * `Written` - Saved, `Unchanged` - Unchanged, `Skipped` - Not saved, `Applied` - Applied, `Dismissed` - Dismissed
  */
 export type LeadFormSubmissionFieldOutcome = typeof LeadFormSubmissionFieldOutcome[keyof typeof LeadFormSubmissionFieldOutcome];
 
@@ -2753,6 +2759,10 @@ export const LeadFormSubmissionFieldOutcome = {
   Unchanged: 'Unchanged',
   /** Not saved */
   Skipped: 'Skipped',
+  /** Applied */
+  Applied: 'Applied',
+  /** Dismissed */
+  Dismissed: 'Dismissed',
 } as const;
 
 /**
@@ -4507,6 +4517,13 @@ export const BackGroundTaskType = {
   UpdateStripeSubscriptionApplicationFeePercentTask: 22,
   DeleteSupportCaseContentTask: 23,
 } as const;
+
+export interface ResolveLeadFormSubmissionFieldsRequest {
+  /** @nullable */
+  Apply?: string[] | null;
+  /** @nullable */
+  Dismiss?: string[] | null;
+}
 
 export type DirectoryAllOf = {
   /**
