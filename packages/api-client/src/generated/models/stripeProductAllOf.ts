@@ -41,16 +41,6 @@ export type StripeProductAllOf = {
   IsQuantityEditable?: boolean;
   /** @nullable */
   MaximumPeople?: number | null;
-  /**
-   * @maxLength 8
-   * @nullable
-   */
-  MigratedAddOnUid?: string | null;
-  /**
-   * @maxLength 8
-   * @nullable
-   */
-  MigratedPlanUid?: string | null;
   /** @nullable */
   MinimumQuantity?: number | null;
   /**
@@ -69,7 +59,6 @@ export type StripeProductAllOf = {
   TrialPeriodDays?: number;
   /** @nullable */
   TrialUntilDate?: string | null;
-  CanDelete?: boolean;
   NumberOfPurchases?: number;
   NumberOfSubscriptions?: number;
   /** @nullable */

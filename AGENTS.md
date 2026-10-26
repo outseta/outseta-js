@@ -39,6 +39,7 @@ outseta-js/
 - **Generated code is committed** but marked `linguist-generated` in `.gitattributes`. `openapi.json` is NOT committed (fetched on demand via `npm run fetch-spec`)
 - **Build**: `bun build` for JS transpilation (fast, no type checking), source `.ts` files ship as types (`"types": "./src/index.ts"`)
 - **Spec quirks**: `scripts/post-generate.mjs` prepends `// @ts-nocheck` to generated files (upstream spec produces invalid TS intersections)
+- **Tag barrels**: `scripts/post-generate.mjs` also rewrites the `BEGIN/END generated tag exports` block in `packages/api-client/src/index.ts` and `packages/react/src/index.ts` from the generated tag folders. New tags are exported automatically; a tag that disappears (renamed or dropped in the spec) fails `generate` with a message, and you remove its line by hand after checking what the package loses. Tags the barrels deliberately skip are in `UNEXPORTED_TAGS`
 - **React mutator**: `packages/react/src/mutator.ts` — local mutator that imports from `@outseta/api-client` (avoids cross-package relative imports in generated code)
 - **Changesets** for versioning — never manually bump versions
 - Separate MCP server repo (`remote-mcp-server`) consumes `@outseta/api-client` as npm dependency

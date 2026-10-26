@@ -697,7 +697,33 @@ export const useTokenTwoFactorEnrollmentBeginEmail = <TError = string,
 
       return useMutation(mutationOptions);
     }
-    export const tokenTwoFactorEnrollmentBeginTotp = (
+    /**
+ * Call this when `POST /api/v1/tokens` returned
+`two_factor_enrollment_required` and the user chooses an authenticator
+app. Post the enrollment token from that response:
+            
+    { "enrollment_token": "eyJ..." }
+            
+A fresh shared secret is generated and returned in three forms so you
+can present it however suits your client:
+            
+    {
+      "challenge_token": "eyJ...",
+      "secret": "JBSWY3DPEHPK3PXP",
+      "otpauth_uri": "otpauth://totp/Acme:user@example.com?secret=...&issuer=Acme&...",
+      "qr_code_png_base64": "iVBORw0KGgo...",
+      "expires_in": 600
+    }
+            
+Have the user add the secret to their authenticator app (by scanning
+`qr_code_png_base64`, opening `otpauth_uri`, or typing `secret`), then
+confirm a code via `POST /api/v1/tokens/two-factor/enroll/totp/confirm`.
+Returns `401` if the enrollment token is invalid/expired and `403` if
+forced enrollment does not apply to this user. Rate limited to 5
+requests per minute (`429`).
+ * @summary Begin authenticator-app (TOTP) enrollment during a forced-2FA login.
+ */
+export const tokenTwoFactorEnrollmentBeginTotp = (
     params: TokenTwoFactorEnrollmentBeginTotpParams,
  options?: SecondParameter<typeof customFetch>,signal?: AbortSignal
 ) => {
@@ -741,7 +767,10 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
     
     export type TokenTwoFactorEnrollmentBeginTotpMutationError = string
 
-    export const useTokenTwoFactorEnrollmentBeginTotp = <TError = string,
+    /**
+ * @summary Begin authenticator-app (TOTP) enrollment during a forced-2FA login.
+ */
+export const useTokenTwoFactorEnrollmentBeginTotp = <TError = string,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof tokenTwoFactorEnrollmentBeginTotp>>, TError,{params: TokenTwoFactorEnrollmentBeginTotpParams}, TContext>, request?: SecondParameter<typeof customFetch>}
  ): UseMutationResult<
         Awaited<ReturnType<typeof tokenTwoFactorEnrollmentBeginTotp>>,

@@ -19,6 +19,8 @@ import type {
   AccountAddAccountParams,
   AccountAddPersonToAccountBody,
   AccountCancelAccountBody,
+  AccountExpireCurrentSubscriptionBody,
+  AccountExtendRenewalBody,
   AccountExtendTrialBody,
   AccountGetAllAccounts200,
   AccountGetAllAccountsParams,
@@ -1491,6 +1493,94 @@ export const useAccountExtendTrial = <TError = void,
       return useMutation(mutationOptions);
     }
     /**
+ * Acts on the account's current subscription. The account must be in the Subscribing,
+Cancelling, Trialing, CancellingTrial or PastDue stage, and the request is rejected when
+a future subscription (a scheduled plan change) is waiting to start on the account.
+            
+ToDate is the new renewal date. It must be after the subscription's start date, on or
+after the date of the subscription's latest invoice, and not later than ExpirationDate.
+Moving the renewal date earlier gives no credit for the rest of the current term.
+            
+ExpirationDate is the date the subscription ends. Outseta ends the subscription when it
+reaches this date and sets its EndDate to it. When only ExpirationDate is sent and it is
+before the current renewal date, the renewal date moves to the expiration date.
+            
+Every request sets the expiration date. If ExpirationDate is omitted, the subscription's
+existing expiration date is removed, except when ToDate is later than it: then the
+expiration date moves to ToDate. To remove the expiration date, send an empty body ({}).
+To keep an expiration date while changing the renewal date, send both.
+            
+Times of day: ExpirationDate is first set to the time of day of the subscription's start
+date, and the checks above compare ToDate with the time of day you send. For example, with
+a subscription that started at 12:00 UTC, ToDate 2027-03-31T18:00:00Z is later than
+ExpirationDate 2027-03-31T00:00:00Z and is rejected. Send ToDate with the time of day of the
+current RenewalDate to avoid this. The saved renewal date keeps the time of day of the
+current RenewalDate.
+ * @summary Set the renewal date or expiration date of the current subscription.
+ */
+export const accountExtendRenewal = (
+    accountUid: string | null,
+    accountExtendRenewalBody: AccountExtendRenewalBody,
+ options?: SecondParameter<typeof customFetch>,) => {
+      
+      
+      return customFetch<Blob>(
+      {url: `/api/v1/crm/accounts/${accountUid}/extend-renewal`, method: 'PUT',
+      headers: {'Content-Type': 'application/json', },
+      data: accountExtendRenewalBody,
+        responseType: 'blob'
+    },
+      options);
+    }
+  
+
+
+export const getAccountExtendRenewalMutationOptions = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof accountExtendRenewal>>, TError,{accountUid: string | null;data: AccountExtendRenewalBody}, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof accountExtendRenewal>>, TError,{accountUid: string | null;data: AccountExtendRenewalBody}, TContext> => {
+
+const mutationKey = ['accountExtendRenewal'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof accountExtendRenewal>>, {accountUid: string | null;data: AccountExtendRenewalBody}> = (props) => {
+          const {accountUid,data} = props ?? {};
+
+          return  accountExtendRenewal(accountUid,data,requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type AccountExtendRenewalMutationResult = NonNullable<Awaited<ReturnType<typeof accountExtendRenewal>>>
+    export type AccountExtendRenewalMutationBody = AccountExtendRenewalBody
+    export type AccountExtendRenewalMutationError = void
+
+    /**
+ * @summary Set the renewal date or expiration date of the current subscription.
+ */
+export const useAccountExtendRenewal = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof accountExtendRenewal>>, TError,{accountUid: string | null;data: AccountExtendRenewalBody}, TContext>, request?: SecondParameter<typeof customFetch>}
+ ): UseMutationResult<
+        Awaited<ReturnType<typeof accountExtendRenewal>>,
+        TError,
+        {accountUid: string | null;data: AccountExtendRenewalBody},
+        TContext
+      > => {
+
+      const mutationOptions = getAccountExtendRenewalMutationOptions(options);
+
+      return useMutation(mutationOptions);
+    }
+    /**
  * Pass personUid as a query parameter to send to a specific person, or personUid=* to send
 to all people on the account. If no personUid is provided, the email is sent to the
 primary contact.
@@ -1552,6 +1642,86 @@ export const useAccountSendConfirmationEmail = <TError = void,
       > => {
 
       const mutationOptions = getAccountSendConfirmationEmailMutationOptions(options);
+
+      return useMutation(mutationOptions);
+    }
+    /**
+ * Applies to Outseta billing (v2) only. With Stripe Billing (v3), cancel the Stripe
+subscription instead: POST /billing/stripe/subscriptions/{subscriptionUid}/cancel with
+cancelImmediately=true.
+            
+The subscription and its add-ons end now, and the account moves to the Expired stage
+(TrialExpired if it was in the Trialing stage). Any future subscription (a scheduled plan
+change) is deleted. Unpaid invoices on the subscription are marked uncollectible, so no
+more automatic payment attempts are made on them. You can still record a payment against
+them. No call is made to Stripe, and the payment method is not changed.
+            
+The request is rejected when the account is already in the Expired or TrialExpired stage,
+or when the subscription's renewal date is in the past.
+            
+The body is optional. Send CancelationReason and Comment to record why the account was
+cancelled. Without a body, the reason records who made the request.
+ * @summary Cancel an account's current subscription immediately.
+ */
+export const accountExpireCurrentSubscription = (
+    accountUid: string | null,
+    accountExpireCurrentSubscriptionBody: NonReadonly<AccountExpireCurrentSubscriptionBody>,
+ options?: SecondParameter<typeof customFetch>,) => {
+      
+      
+      return customFetch<Blob>(
+      {url: `/api/v1/crm/accounts/${accountUid}/expire-current-subscription`, method: 'PUT',
+      headers: {'Content-Type': 'application/json', },
+      data: accountExpireCurrentSubscriptionBody,
+        responseType: 'blob'
+    },
+      options);
+    }
+  
+
+
+export const getAccountExpireCurrentSubscriptionMutationOptions = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof accountExpireCurrentSubscription>>, TError,{accountUid: string | null;data: NonReadonly<AccountExpireCurrentSubscriptionBody>}, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof accountExpireCurrentSubscription>>, TError,{accountUid: string | null;data: NonReadonly<AccountExpireCurrentSubscriptionBody>}, TContext> => {
+
+const mutationKey = ['accountExpireCurrentSubscription'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof accountExpireCurrentSubscription>>, {accountUid: string | null;data: NonReadonly<AccountExpireCurrentSubscriptionBody>}> = (props) => {
+          const {accountUid,data} = props ?? {};
+
+          return  accountExpireCurrentSubscription(accountUid,data,requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type AccountExpireCurrentSubscriptionMutationResult = NonNullable<Awaited<ReturnType<typeof accountExpireCurrentSubscription>>>
+    export type AccountExpireCurrentSubscriptionMutationBody = NonReadonly<AccountExpireCurrentSubscriptionBody>
+    export type AccountExpireCurrentSubscriptionMutationError = void
+
+    /**
+ * @summary Cancel an account's current subscription immediately.
+ */
+export const useAccountExpireCurrentSubscription = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof accountExpireCurrentSubscription>>, TError,{accountUid: string | null;data: NonReadonly<AccountExpireCurrentSubscriptionBody>}, TContext>, request?: SecondParameter<typeof customFetch>}
+ ): UseMutationResult<
+        Awaited<ReturnType<typeof accountExpireCurrentSubscription>>,
+        TError,
+        {accountUid: string | null;data: NonReadonly<AccountExpireCurrentSubscriptionBody>},
+        TContext
+      > => {
+
+      const mutationOptions = getAccountExpireCurrentSubscriptionMutationOptions(options);
 
       return useMutation(mutationOptions);
     }
