@@ -46,7 +46,7 @@ remote-mcp-server/
 
 Three output targets from one `openapi.json`:
 
-1. **`outseta`** → `packages/api-client/src/generated/` — Typed fetch functions + TypeScript types, split by API tags (crm, billing, email). Uses a custom `ky` mutator for HTTP.
+1. **`outseta`** → `packages/api-client/src/generated/` — Typed fetch functions + TypeScript types, split by API tags (crm, billing-v2, billing-v3, email, …). Uses a custom `ky` mutator for HTTP.
 2. **`outsetaZod`** → `packages/api-client/src/generated/zod.ts` — Zod schemas from OpenAPI (reusable for validation in MCP and SDK).
 3. **`outsetaReactQuery`** → `packages/react/src/generated/` — React Query hooks (useQuery/useMutation), split by tags.
 

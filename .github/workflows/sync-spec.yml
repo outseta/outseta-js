@@ -37,8 +37,10 @@ jobs:
 
       - name: Check for changes
         id: diff
+        # post-generate also rewrites the tag exports in the package barrels.
+        # git status (not git diff) so new, untracked tag folders count too.
         run: |
-          if git diff --quiet packages/*/src/generated; then
+          if [ -z "$(git status --porcelain -- packages/*/src/generated packages/api-client/src/index.ts packages/react/src/index.ts)" ]; then
             echo "changed=false" >> "$GITHUB_OUTPUT"
           else
             echo "changed=true" >> "$GITHUB_OUTPUT"
@@ -57,17 +59,14 @@ jobs:
         run: |
           packages=""
 
-          if git diff --quiet -- packages/api-client/src/generated; then
-            :
-          else
-            packages="$packages\"@outseta/api-client\": patch\n"
-          fi
-
-          if git diff --quiet -- packages/react/src/generated; then
-            :
-          else
-            packages="$packages\"@outseta/react\": patch\n"
-          fi
+          # A changed barrel means a new API tag is exported: minor, otherwise patch.
+          for pkg in api-client react; do
+            if [ -n "$(git status --porcelain -- "packages/$pkg/src/index.ts")" ]; then
+              packages="$packages\"@outseta/$pkg\": minor\n"
+            elif [ -n "$(git status --porcelain -- "packages/$pkg/src/generated")" ]; then
+              packages="$packages\"@outseta/$pkg\": patch\n"
+            fi
+          done
 
           if [ -z "$packages" ]; then
             echo "No publishable package changes detected; skipping changeset creation."
@@ -81,6 +80,6 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add packages/*/src/generated .changeset/updated-api-spec.md
+          git add packages/*/src/generated packages/api-client/src/index.ts packages/react/src/index.ts .changeset/updated-api-spec.md
           git commit -m "chore: sync OpenAPI spec from upstream"
           git push origin main

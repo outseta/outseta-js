@@ -195,7 +195,11 @@ export const discountCouponGetAllDiscountCoupons = async (params?: DiscountCoupo
 
 
 /**
- * Only one of AmountOff or PercentOff should be set.
+ * Applies to Outseta billing (v2) only. With Stripe Billing (v3), use coupons and promotion
+codes: POST /billing/stripe/coupons and POST /billing/stripe/promotion-codes. With Stripe
+Billing the request is rejected.
+            
+Only one of AmountOff or PercentOff should be set.
 Duration values: 1 = Forever, 2 = Once, 3 = Repeating (DurationInMonths must be set).
  * @summary Add a new discount coupon.
  */
@@ -292,6 +296,9 @@ export const discountCouponGetDiscountCoupon = async (discountCouponUid: string 
 
 
 /**
+ * Applies to Outseta billing (v2) only. With Stripe Billing (v3), coupons are managed with
+the /billing/stripe/coupons and /billing/stripe/promotion-codes endpoints. With Stripe
+Billing the request is rejected.
  * @summary Update a discount coupon.
  */
 export type discountCouponUpdateDiscountCouponResponse200 = {
@@ -1785,11 +1792,26 @@ export const subscriptionFirstTimeSubscriptionPreview = async (subscriptionFirst
 
 
 /**
- * Returns an invoice object with information about the amount outstanding.
+ * Returns the new subscription.
+            
+Outseta sets the subscription's dates itself, except ExpirationDate:
+            
+- RenewalDate is calculated from the plan's trial and the BillingRenewalTerm. A value you send is ignored.
+- EndDate is set by Outseta when the subscription ends. Don't send it: a subscription with an EndDate is
+  rejected with "The renewal date has to be null if the end date is set."
+- ExpirationDate gives the subscription a fixed end. Outseta keeps the date you send, doesn't bill past it,
+  and ends the subscription on that date, setting EndDate to it. A free plan with BillingRenewalTerm 1
+  (monthly) renews monthly at no charge until then.
+- Without an ExpirationDate, the plan decides: its ExpirationDate if it has one, otherwise
+  Plan.ExpiresAfterMonths. 0 means the plan never expires subscriptions; a value N above 0 gives an
+  ExpirationDate of the start date plus the plan's trial days plus N months.
+            
+To set or remove the end date of a subscription that already exists, use
+PUT /api/v1/crm/accounts/{accountUid}/extend-renewal.
  * @summary Add a subscription to an account for the first time.
  */
 export type subscriptionFirstTimeSubscriptionResponse200 = {
-  data: Invoice
+  data: Subscription
   status: 200
 }
 
@@ -1894,7 +1916,23 @@ export const subscriptionChangeSubscriptionPreview = async (subscriptionUid: str
 
 
 /**
- * Returns an invoice object with information about the amount outstanding.
+ * Returns the new subscription; its StartDate is when the change takes effect. When only add-ons
+change, returns the existing subscription.
+            
+A change of plan, BillingRenewalTerm or quantity ends the current subscription and creates a new
+subscription record. An upgrade starts immediately. Any other change, for example from one free plan
+to another at the same price, is scheduled for the current renewal date, unless the account is in a
+trial or you pass startImmediately=true.
+            
+The dates work as on PUT /api/v1/billing/subscriptions/firsttimesubscription: RenewalDate is
+calculated by Outseta, EndDate is set by Outseta when the subscription ends and can't be sent, and
+ExpirationDate gives the new subscription a fixed end. Without an ExpirationDate, the new subscription
+keeps the current one's expiration date when the plan stays the same; otherwise the plan's
+ExpirationDate or ExpiresAfterMonths applies.
+            
+A request with the same plan, BillingRenewalTerm and quantity only changes add-ons; it does not change
+the subscription's dates. To set or remove the end date of the current subscription, use
+PUT /api/v1/crm/accounts/{accountUid}/extend-renewal.
  * @summary Change a subscription on an account.
  */
 export type subscriptionChangeSubscriptionResponse200 = {
@@ -2000,6 +2038,9 @@ export const planGetAllPlans = async (params?: PlanGetAllPlansParams, options?: 
 
 
 /**
+ * Applies to Outseta billing (v2) only. With Stripe Billing (v3), plans are Stripe products
+and prices: use POST /billing/stripe/products and PUT /billing/stripe/products/{uid}. With
+Stripe Billing the request is rejected.
  * @summary Add a new plan.
  */
 export type planAddPlanResponse200 = {
@@ -2090,6 +2131,9 @@ export const planGetPlan = async (planUid: string | null, options?: RequestInit)
 
 
 /**
+ * Applies to Outseta billing (v2) only. With Stripe Billing (v3), plans are Stripe products
+and prices: use POST /billing/stripe/products and PUT /billing/stripe/products/{uid}. With
+Stripe Billing the request is rejected.
  * @summary Update a plan.
  */
 export type planUpdatePlanResponse200 = {
@@ -2292,6 +2336,9 @@ export const planFamilyGetAllPlanFamilies = async (params?: PlanFamilyGetAllPlan
 
 
 /**
+ * Applies to Outseta billing (v2) only. With Stripe Billing (v3), use product families:
+POST /billing/stripe/product-families and PUT /billing/stripe/product-families/{productFamilyUid}.
+With Stripe Billing the request is rejected.
  * @summary Add a new plan family.
  */
 export type planFamilyAddPlanFamilyResponse200 = {
@@ -2387,6 +2434,9 @@ export const planFamilyGetPlanFamily = async (planFamilyUid: string | null, opti
 
 
 /**
+ * Applies to Outseta billing (v2) only. With Stripe Billing (v3), use product families:
+POST /billing/stripe/product-families and PUT /billing/stripe/product-families/{productFamilyUid}.
+With Stripe Billing the request is rejected.
  * @summary Update a plan family.
  */
 export type planFamilyUpdatePlanFamilyResponse200 = {

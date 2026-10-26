@@ -5,6 +5,8 @@ import type {
   AccountAddAccountParams,
   AccountAddPersonToAccountBody,
   AccountCancelAccountBody,
+  AccountExpireCurrentSubscriptionBody,
+  AccountExtendRenewalBody,
   AccountExtendTrialBody,
   AccountGetAllAccounts200,
   AccountGetAllAccountsParams,
@@ -1194,6 +1196,83 @@ export const accountExtendTrial = async (accountUid: string | null,
 
 
 /**
+ * Acts on the account's current subscription. The account must be in the Subscribing,
+Cancelling, Trialing, CancellingTrial or PastDue stage, and the request is rejected when
+a future subscription (a scheduled plan change) is waiting to start on the account.
+            
+ToDate is the new renewal date. It must be after the subscription's start date, on or
+after the date of the subscription's latest invoice, and not later than ExpirationDate.
+Moving the renewal date earlier gives no credit for the rest of the current term.
+            
+ExpirationDate is the date the subscription ends. Outseta ends the subscription when it
+reaches this date and sets its EndDate to it. When only ExpirationDate is sent and it is
+before the current renewal date, the renewal date moves to the expiration date.
+            
+Every request sets the expiration date. If ExpirationDate is omitted, the subscription's
+existing expiration date is removed, except when ToDate is later than it: then the
+expiration date moves to ToDate. To remove the expiration date, send an empty body ({}).
+To keep an expiration date while changing the renewal date, send both.
+            
+Times of day: ExpirationDate is first set to the time of day of the subscription's start
+date, and the checks above compare ToDate with the time of day you send. For example, with
+a subscription that started at 12:00 UTC, ToDate 2027-03-31T18:00:00Z is later than
+ExpirationDate 2027-03-31T00:00:00Z and is rejected. Send ToDate with the time of day of the
+current RenewalDate to avoid this. The saved renewal date keeps the time of day of the
+current RenewalDate.
+ * @summary Set the renewal date or expiration date of the current subscription.
+ */
+export type accountExtendRenewalResponse200 = {
+  data: Blob
+  status: 200
+}
+
+export type accountExtendRenewalResponse400 = {
+  data: void
+  status: 400
+}
+
+export type accountExtendRenewalResponse401 = {
+  data: void
+  status: 401
+}
+
+export type accountExtendRenewalResponse404 = {
+  data: void
+  status: 404
+}
+    
+export type accountExtendRenewalResponseSuccess = (accountExtendRenewalResponse200) & {
+  headers: Headers;
+};
+export type accountExtendRenewalResponseError = (accountExtendRenewalResponse400 | accountExtendRenewalResponse401 | accountExtendRenewalResponse404) & {
+  headers: Headers;
+};
+
+export type accountExtendRenewalResponse = (accountExtendRenewalResponseSuccess | accountExtendRenewalResponseError)
+
+export const getAccountExtendRenewalUrl = (accountUid: string | null,) => {
+
+
+  
+
+  return `/api/v1/crm/accounts/${accountUid}/extend-renewal`
+}
+
+export const accountExtendRenewal = async (accountUid: string | null,
+    accountExtendRenewalBody: AccountExtendRenewalBody, options?: RequestInit): Promise<accountExtendRenewalResponse> => {
+  
+  return customFetch<accountExtendRenewalResponse>(getAccountExtendRenewalUrl(accountUid),
+  {      
+    ...options,
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json', ...options?.headers },
+    body: JSON.stringify(
+      accountExtendRenewalBody,)
+  }
+);}
+
+
+/**
  * Pass personUid as a query parameter to send to a specific person, or personUid=* to send
 to all people on the account. If no personUid is provided, the email is sent to the
 primary contact.
@@ -1244,6 +1323,75 @@ export const accountSendConfirmationEmail = async (accountUid: string | null, op
     method: 'PUT'
     
     
+  }
+);}
+
+
+/**
+ * Applies to Outseta billing (v2) only. With Stripe Billing (v3), cancel the Stripe
+subscription instead: POST /billing/stripe/subscriptions/{subscriptionUid}/cancel with
+cancelImmediately=true.
+            
+The subscription and its add-ons end now, and the account moves to the Expired stage
+(TrialExpired if it was in the Trialing stage). Any future subscription (a scheduled plan
+change) is deleted. Unpaid invoices on the subscription are marked uncollectible, so no
+more automatic payment attempts are made on them. You can still record a payment against
+them. No call is made to Stripe, and the payment method is not changed.
+            
+The request is rejected when the account is already in the Expired or TrialExpired stage,
+or when the subscription's renewal date is in the past.
+            
+The body is optional. Send CancelationReason and Comment to record why the account was
+cancelled. Without a body, the reason records who made the request.
+ * @summary Cancel an account's current subscription immediately.
+ */
+export type accountExpireCurrentSubscriptionResponse200 = {
+  data: Blob
+  status: 200
+}
+
+export type accountExpireCurrentSubscriptionResponse400 = {
+  data: void
+  status: 400
+}
+
+export type accountExpireCurrentSubscriptionResponse401 = {
+  data: void
+  status: 401
+}
+
+export type accountExpireCurrentSubscriptionResponse404 = {
+  data: void
+  status: 404
+}
+    
+export type accountExpireCurrentSubscriptionResponseSuccess = (accountExpireCurrentSubscriptionResponse200) & {
+  headers: Headers;
+};
+export type accountExpireCurrentSubscriptionResponseError = (accountExpireCurrentSubscriptionResponse400 | accountExpireCurrentSubscriptionResponse401 | accountExpireCurrentSubscriptionResponse404) & {
+  headers: Headers;
+};
+
+export type accountExpireCurrentSubscriptionResponse = (accountExpireCurrentSubscriptionResponseSuccess | accountExpireCurrentSubscriptionResponseError)
+
+export const getAccountExpireCurrentSubscriptionUrl = (accountUid: string | null,) => {
+
+
+  
+
+  return `/api/v1/crm/accounts/${accountUid}/expire-current-subscription`
+}
+
+export const accountExpireCurrentSubscription = async (accountUid: string | null,
+    accountExpireCurrentSubscriptionBody: NonReadonly<AccountExpireCurrentSubscriptionBody>, options?: RequestInit): Promise<accountExpireCurrentSubscriptionResponse> => {
+  
+  return customFetch<accountExpireCurrentSubscriptionResponse>(getAccountExpireCurrentSubscriptionUrl(accountUid),
+  {      
+    ...options,
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json', ...options?.headers },
+    body: JSON.stringify(
+      accountExpireCurrentSubscriptionBody,)
   }
 );}
 

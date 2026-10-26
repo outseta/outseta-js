@@ -990,16 +990,6 @@ export type StripeProductAllOf = {
   IsQuantityEditable?: boolean;
   /** @nullable */
   MaximumPeople?: number | null;
-  /**
-   * @maxLength 8
-   * @nullable
-   */
-  MigratedAddOnUid?: string | null;
-  /**
-   * @maxLength 8
-   * @nullable
-   */
-  MigratedPlanUid?: string | null;
   /** @nullable */
   MinimumQuantity?: number | null;
   /**
@@ -1018,7 +1008,6 @@ export type StripeProductAllOf = {
   TrialPeriodDays?: number;
   /** @nullable */
   TrialUntilDate?: string | null;
-  CanDelete?: boolean;
   NumberOfPurchases?: number;
   NumberOfSubscriptions?: number;
   /** @nullable */
@@ -4875,9 +4864,17 @@ export interface ExtendTrialParams {
 }
 
 export interface ExtendRenewalParams {
-  /** @nullable */
+  /**
+   * The new renewal date of the subscription. Omit it to keep the current renewal date, unless
+ExpirationDate is earlier than it: then the renewal date moves to ExpirationDate.
+   * @nullable
+   */
   ToDate?: string | null;
-  /** @nullable */
+  /**
+   * The date the subscription ends. Omit it to remove the subscription's expiration date, unless
+ToDate is later than the existing expiration date: then the expiration date moves to ToDate.
+   * @nullable
+   */
   ExpirationDate?: string | null;
 }
 
@@ -5015,6 +5012,14 @@ export interface SessionFlowDataSubscriptionUpdateConfirmItemOptions {
   Price?: string | null;
   /** @nullable */
   Quantity?: number | null;
+}
+
+export interface ImportResult {
+  CountImported?: number;
+  CountError?: number;
+  CountTotal?: number;
+  /** @nullable */
+  ErrorMessages?: string[] | null;
 }
 
 export interface InvoiceStatusChangeOptions {
@@ -6405,16 +6410,6 @@ export type AccountWebhookEntityCurrentStripeProductInstancesItem = {
   IsQuantityEditable?: boolean;
   /** @nullable */
   MaximumPeople?: number | null;
-  /**
-   * @maxLength 8
-   * @nullable
-   */
-  MigratedAddOnUid?: string | null;
-  /**
-   * @maxLength 8
-   * @nullable
-   */
-  MigratedPlanUid?: string | null;
   /** @nullable */
   MinimumQuantity?: number | null;
   /**
@@ -6431,7 +6426,6 @@ export type AccountWebhookEntityCurrentStripeProductInstancesItem = {
   TrialPeriodDays?: number;
   /** @nullable */
   TrialUntilDate?: string | null;
-  CanDelete?: boolean;
   NumberOfPurchases?: number;
   NumberOfSubscriptions?: number;
   /** @nullable */
@@ -10132,6 +10126,16 @@ export type AccountCancelAccountBody = AccountCancelation | null;
  */
 export type AccountExtendTrialBody = ExtendTrialParams | null;
 
+/**
+ * @nullable
+ */
+export type AccountExtendRenewalBody = ExtendRenewalParams | null;
+
+/**
+ * @nullable
+ */
+export type AccountExpireCurrentSubscriptionBody = AccountCancelation | null;
+
 export type PersonGetAllPeopleParams = {
 /**
  * Match on the person's first or last name or email address
@@ -10177,6 +10181,241 @@ export type PersonForgotPasswordBody = Person | null;
  * @nullable
  */
 export type PersonRequestMagicLinkBody = Person | null;
+
+export type StripeInvoiceLineItemsGetAllParams = {
+/**
+ * Requested page size. The server caps it at 100, or 25 when requested fields expand child objects or require additional queries; metadata.limit reports the applied value. Use offset=1 for the second page.
+ */
+limit?: LimitParameter;
+/**
+ * Zero-based page number, not a record offset. With limit=50, the second page is offset=1; offset=50 is page index 50 (records 2501-2550).
+ */
+offset?: OffsetParameter;
+};
+
+export type StripeInvoiceLineItemsGetAll200 = {
+  metadata?: CollectionMetadata;
+  items?: StripeInvoiceLineItem[];
+};
+
+export type StripePaymentMethodsGetAllParams = {
+/**
+ * Requested page size. The server caps it at 100, or 25 when requested fields expand child objects or require additional queries; metadata.limit reports the applied value. Use offset=1 for the second page.
+ */
+limit?: LimitParameter;
+/**
+ * Zero-based page number, not a record offset. With limit=50, the second page is offset=1; offset=50 is page index 50 (records 2501-2550).
+ */
+offset?: OffsetParameter;
+};
+
+export type StripePaymentMethodsGetAll200 = {
+  metadata?: CollectionMetadata;
+  items?: StripePaymentMethod[];
+};
+
+export type StripePricesGetAllParams = {
+/**
+ * Requested page size. The server caps it at 100, or 25 when requested fields expand child objects or require additional queries; metadata.limit reports the applied value. Use offset=1 for the second page.
+ */
+limit?: LimitParameter;
+/**
+ * Zero-based page number, not a record offset. With limit=50, the second page is offset=1; offset=50 is page index 50 (records 2501-2550).
+ */
+offset?: OffsetParameter;
+};
+
+export type StripePricesGetAll200 = {
+  metadata?: CollectionMetadata;
+  items?: StripePrice[];
+};
+
+export type StripePromotionCodesGetAllParams = {
+/**
+ * Requested page size. The server caps it at 100, or 25 when requested fields expand child objects or require additional queries; metadata.limit reports the applied value. Use offset=1 for the second page.
+ */
+limit?: LimitParameter;
+/**
+ * Zero-based page number, not a record offset. With limit=50, the second page is offset=1; offset=50 is page index 50 (records 2501-2550).
+ */
+offset?: OffsetParameter;
+};
+
+export type StripePromotionCodesGetAll200 = {
+  metadata?: CollectionMetadata;
+  items?: StripePromotionCode[];
+};
+
+/**
+ * @nullable
+ */
+export type StripePromotionCodesCreateBody = StripePromotionCode | null;
+
+/**
+ * @nullable
+ */
+export type StripePromotionCodesUpdateBody = StripePromotionCode | null;
+
+export type StripeProductFamiliesGetAllParams = {
+/**
+ * Requested page size. The server caps it at 100, or 25 when requested fields expand child objects or require additional queries; metadata.limit reports the applied value. Use offset=1 for the second page.
+ */
+limit?: LimitParameter;
+/**
+ * Zero-based page number, not a record offset. With limit=50, the second page is offset=1; offset=50 is page index 50 (records 2501-2550).
+ */
+offset?: OffsetParameter;
+};
+
+export type StripeProductFamiliesGetAll200 = {
+  metadata?: CollectionMetadata;
+  items?: StripeProductFamily[];
+};
+
+/**
+ * @nullable
+ */
+export type StripeProductFamiliesPostBody = StripeProductFamily | null;
+
+/**
+ * @nullable
+ */
+export type StripeProductFamiliesPutBody = StripeProductFamily | null;
+
+export type StripeCouponsGetAllParams = {
+/**
+ * Requested page size. The server caps it at 100, or 25 when requested fields expand child objects or require additional queries; metadata.limit reports the applied value. Use offset=1 for the second page.
+ */
+limit?: LimitParameter;
+/**
+ * Zero-based page number, not a record offset. With limit=50, the second page is offset=1; offset=50 is page index 50 (records 2501-2550).
+ */
+offset?: OffsetParameter;
+};
+
+export type StripeCouponsGetAll200 = {
+  metadata?: CollectionMetadata;
+  items?: StripeCoupon[];
+};
+
+/**
+ * @nullable
+ */
+export type StripeCouponsCreateBody = StripeCoupon | null;
+
+export type StripeCouponsGetRedemptionsParams = {
+/**
+ * Requested page size. The server caps it at 100, or 25 when requested fields expand child objects or require additional queries; metadata.limit reports the applied value. Use offset=1 for the second page.
+ */
+limit?: LimitParameter;
+/**
+ * Zero-based page number, not a record offset. With limit=50, the second page is offset=1; offset=50 is page index 50 (records 2501-2550).
+ */
+offset?: OffsetParameter;
+};
+
+export type StripeCouponsGetRedemptions200 = {
+  metadata?: CollectionMetadata;
+  items?: StripeDiscount[];
+};
+
+export type StripeInvoicesGetAllParams = {
+/**
+ * Requested page size. The server caps it at 100, or 25 when requested fields expand child objects or require additional queries; metadata.limit reports the applied value. Use offset=1 for the second page.
+ */
+limit?: LimitParameter;
+/**
+ * Zero-based page number, not a record offset. With limit=50, the second page is offset=1; offset=50 is page index 50 (records 2501-2550).
+ */
+offset?: OffsetParameter;
+};
+
+export type StripeInvoicesGetAll200 = {
+  metadata?: CollectionMetadata;
+  items?: StripeInvoice[];
+};
+
+/**
+ * @nullable
+ */
+export type StripeInvoicesPostBody = StripeInvoice | null;
+
+/**
+ * @nullable
+ */
+export type StripeInvoicesChangeInvoiceStatusBody = InvoiceStatusChangeOptions | null;
+
+/**
+ * @nullable
+ */
+export type StripeInvoicesIssueInvoiceCreditBody = InvoiceCreditOptions | null;
+
+export type StripeSubscriptionsGetAllParams = {
+/**
+ * Requested page size. The server caps it at 100, or 25 when requested fields expand child objects or require additional queries; metadata.limit reports the applied value. Use offset=1 for the second page.
+ */
+limit?: LimitParameter;
+/**
+ * Zero-based page number, not a record offset. With limit=50, the second page is offset=1; offset=50 is page index 50 (records 2501-2550).
+ */
+offset?: OffsetParameter;
+};
+
+export type StripeSubscriptionsGetAll200 = {
+  metadata?: CollectionMetadata;
+  items?: StripeSubscription[];
+};
+
+/**
+ * @nullable
+ */
+export type StripeSubscriptionsCreateBody = StripeSubscription | null;
+
+/**
+ * @nullable
+ */
+export type StripeSubscriptionsPauseCollectionBody = PauseCollectionOptions | null;
+
+/**
+ * @nullable
+ */
+export type StripeSubscriptionsChangeBody = StripeSubscription | null;
+
+/**
+ * @nullable
+ */
+export type StripeSubscriptionsPreviewChangeBody = StripeSubscription | null;
+
+/**
+ * @nullable
+ */
+export type StripeSubscriptionsExtendTrialBody = ExtendSubscriptionOptions | null;
+
+export type StripeProductsGetAllParams = {
+/**
+ * Requested page size. The server caps it at 100, or 25 when requested fields expand child objects or require additional queries; metadata.limit reports the applied value. Use offset=1 for the second page.
+ */
+limit?: LimitParameter;
+/**
+ * Zero-based page number, not a record offset. With limit=50, the second page is offset=1; offset=50 is page index 50 (records 2501-2550).
+ */
+offset?: OffsetParameter;
+};
+
+export type StripeProductsGetAll200 = {
+  metadata?: CollectionMetadata;
+  items?: StripeProduct[];
+};
+
+/**
+ * @nullable
+ */
+export type StripeProductsPostBody = StripeProduct | null;
+
+/**
+ * @nullable
+ */
+export type StripeProductsPutBody = StripeProduct | null;
 
 export type DiscountCouponGetDiscountCouponByCodeParams = {
 /**
