@@ -1,5 +1,12 @@
 # @outseta/node-sdk
 
+## 0.3.54
+
+### Patch Changes
+
+- Updated dependencies [5f6864e]
+  - @outseta/api-client@0.4.0
+
 ## 0.3.53
 
 ### Patch Changes
