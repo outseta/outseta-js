@@ -1,5 +1,11 @@
 # @outseta/api-client
 
+## 0.4.1
+
+### Patch Changes
+
+- e9cd077: Update API spec.
+
 ## 0.4.0
 
 ### Minor Changes
