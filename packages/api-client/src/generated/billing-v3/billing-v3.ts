@@ -128,7 +128,9 @@ export const stripeInvoiceLineItemsGetAll = async (params?: StripeInvoiceLineIte
 
 
 /**
- * Access ends now. This sets the line item's EndDate and updates the account's products
+ * Applies to Stripe Billing (v3) only. With Outseta billing (v2) the request is rejected.
+            
+Access ends now. This sets the line item's EndDate and updates the account's products
 and stage. The invoice is not changed.
  * @summary End the product access that a line item gives.
  */
@@ -417,7 +419,10 @@ export const stripePromotionCodesGetAll = async (params?: StripePromotionCodesGe
 
 
 /**
- * A promotion code belongs to a coupon. The code is also created in the connected Stripe
+ * Applies to Stripe Billing (v3) only. With Outseta billing (v2) the request is rejected;
+use POST /billing/discountcoupons instead.
+            
+A promotion code belongs to a coupon. The code is also created in the connected Stripe
 account.
  * @summary Add a new promotion code.
  */
@@ -514,7 +519,9 @@ export const stripePromotionCodesGet = async (promotionCodeUid: string | null, o
 
 
 /**
- * The code can no longer be redeemed. It is also ended in the connected Stripe account.
+ * Applies to Stripe Billing (v3) only. With Outseta billing (v2) the request is rejected.
+            
+The code can no longer be redeemed. It is also ended in the connected Stripe account.
 No other change is made. The promotion code to end is identified by the Uid in the
 request body.
  * @summary End a promotion code.
@@ -651,7 +658,10 @@ export const stripeProductFamiliesGetAll = async (params?: StripeProductFamilies
 
 
 /**
- * A product added to this family is removed from any other family.
+ * Applies to Stripe Billing (v3) only. With Outseta billing (v2) the request is rejected;
+use POST /billing/planfamilies instead.
+            
+A product added to this family is removed from any other family.
  * @summary Add a new product family.
  */
 export type stripeProductFamiliesPostResponse200 = {
@@ -730,7 +740,10 @@ export const stripeProductFamiliesGet = async (uid: string | null, options?: Req
 
 
 /**
- * A product added to this family is removed from any other family.
+ * Applies to Stripe Billing (v3) only. With Outseta billing (v2) the request is rejected;
+use PUT /billing/planfamilies/{planFamilyUid} instead.
+            
+A product added to this family is removed from any other family.
  * @summary Update a product family.
  */
 export type stripeProductFamiliesPutResponse200 = {
@@ -886,7 +899,10 @@ export const stripeCouponsGetAll = async (params?: StripeCouponsGetAllParams, op
 
 
 /**
- * Set exactly one of PercentOff or CurrencyAmountOff. The coupon is also created in the
+ * Applies to Stripe Billing (v3) only. With Outseta billing (v2) the request is rejected;
+use POST /billing/discountcoupons instead.
+            
+Set exactly one of PercentOff or CurrencyAmountOff. The coupon is also created in the
 connected Stripe account.
  * @summary Add a new coupon.
  */
@@ -1095,6 +1111,7 @@ export const stripeCouponsGetRedemptions = async (couponUid: string | null,
 
 
 /**
+ * Applies to Stripe Billing (v3) only. With Outseta billing (v2) the request is rejected.
  * @summary Import all coupons and promotion codes from the connected Stripe account.
  */
 export type stripeCouponsSyncCouponsFromStripeResponse200 = {
@@ -1137,6 +1154,7 @@ export const stripeCouponsSyncCouponsFromStripe = async ( options?: RequestInit)
 
 
 /**
+ * Applies to Stripe Billing (v3) only. With Outseta billing (v2) the request is rejected.
  * @summary Import a coupon from the connected Stripe account.
  */
 export type stripeCouponsSyncCouponFromStripeResponse200 = {
@@ -1231,7 +1249,10 @@ export const stripeInvoicesGetAll = async (params?: StripeInvoicesGetAllParams, 
 
 
 /**
- * The invoice is created for an account, and also in the connected Stripe account.
+ * Applies to Stripe Billing (v3) only. With Outseta billing (v2) the request is rejected;
+use POST /billing/invoices instead.
+            
+The invoice is created for an account, and also in the connected Stripe account.
  * @summary Add a new invoice.
  */
 export type stripeInvoicesPostResponse200 = {
@@ -1381,7 +1402,9 @@ export const stripeInvoicesGetInvoiceAsPdf = async (invoiceUid: string | null, o
 
 
 /**
- * NewStatus is one of paid (paid outside Stripe), uncollectible or void. The change is
+ * Applies to Stripe Billing (v3) only. With Outseta billing (v2) the request is rejected.
+            
+NewStatus is one of paid (paid outside Stripe), uncollectible or void. The change is
 also made in the connected Stripe account.
  * @summary Change the status of an invoice.
  */
@@ -1437,7 +1460,9 @@ export const stripeInvoicesChangeInvoiceStatus = async (invoiceUid: string | nul
 
 
 /**
- * CreditType is one of account_balance, payment_method (refund to the payment method) or
+ * Applies to Stripe Billing (v3) only. With Outseta billing (v2) the request is rejected.
+            
+CreditType is one of account_balance, payment_method (refund to the payment method) or
 out_of_band. The credit note is created in the connected Stripe account.
  * @summary Issue a credit note against an invoice.
  */
@@ -1493,6 +1518,7 @@ export const stripeInvoicesIssueInvoiceCredit = async (invoiceUid: string | null
 
 
 /**
+ * Applies to Stripe Billing (v3) only. With Outseta billing (v2) the request is rejected.
  * @summary Email an invoice to the account.
  */
 export type stripeInvoicesSendInvoiceEmailResponse200 = {
@@ -1545,6 +1571,7 @@ export const stripeInvoicesSendInvoiceEmail = async (invoiceUid: string | null, 
 
 
 /**
+ * Applies to Stripe Billing (v3) only. With Outseta billing (v2) the request is rejected.
  * @summary Import all invoices from the connected Stripe account.
  */
 export type stripeInvoicesSyncInvoicesFromStripeResponse200 = {
@@ -1636,7 +1663,10 @@ export const stripeSubscriptionsGetAll = async (params?: StripeSubscriptionsGetA
 
 
 /**
- * The subscription is created for an account, and also in the connected Stripe account.
+ * Applies to Stripe Billing (v3) only. With Outseta billing (v2) the request is rejected;
+use PUT /billing/subscriptions/firsttimesubscription instead.
+            
+The subscription is created for an account, and also in the connected Stripe account.
 Identify each item's StripePrice by Uid or StripeId. A discount can name a
 StripePromotionCode, or a StripeCoupon, in which case the first promotion code of
 that coupon that the account can redeem is used.
@@ -1683,7 +1713,9 @@ export const stripeSubscriptionsCreate = async (stripeSubscriptionsCreateBody: N
 
 
 /**
- * By default the subscription ends at the end of the current billing period. Pass
+ * Applies to Stripe Billing (v3) only. With Outseta billing (v2) the request is rejected.
+            
+By default the subscription ends at the end of the current billing period. Pass
 cancelImmediately=true in the query string to end it now.
  * @summary Cancel a subscription.
  */
@@ -1737,7 +1769,9 @@ export const stripeSubscriptionsCancel = async (subscriptionUid: string | null, 
 
 
 /**
- * Behavior is one of Stripe's pause_collection behaviors: keep_as_draft,
+ * Applies to Stripe Billing (v3) only. With Outseta billing (v2) the request is rejected.
+            
+Behavior is one of Stripe's pause_collection behaviors: keep_as_draft,
 mark_uncollectible or void. ResumesAt is optional; without it, collection stays paused
 until resumed.
  * @summary Pause payment collection on a subscription.
@@ -1794,7 +1828,10 @@ export const stripeSubscriptionsPauseCollection = async (subscriptionUid: string
 
 
 /**
- * Use this, for example, to move a subscription to another price. Identify each item's
+ * Applies to Stripe Billing (v3) only. With Outseta billing (v2) the request is rejected;
+use PUT /billing/subscriptions/{subscriptionUid}/changesubscription instead.
+            
+Use this, for example, to move a subscription to another price. Identify each item's
 StripePrice by Uid or StripeId. A user token can only change a subscription on its own
 account, and only as the account's primary contact.
  * @summary Change the items of a subscription.
@@ -1909,7 +1946,9 @@ export const stripeSubscriptionsPreviewChange = async (subscriptionUid: string |
 
 
 /**
- * This sets the subscription's trial end to ToDate, without proration.
+ * Applies to Stripe Billing (v3) only. With Outseta billing (v2) the request is rejected.
+            
+This sets the subscription's trial end to ToDate, without proration.
  * @summary Extend the date of a subscription's next invoice.
  */
 export type stripeSubscriptionsExtendTrialResponse200 = {
@@ -1964,7 +2003,9 @@ export const stripeSubscriptionsExtendTrial = async (subscriptionUid: string | n
 
 
 /**
- * The scheduled changes no longer happen, and the subscription keeps its current items.
+ * Applies to Stripe Billing (v3) only. With Outseta billing (v2) the request is rejected.
+            
+The scheduled changes no longer happen, and the subscription keeps its current items.
 Nothing happens when there is no active schedule.
  * @summary Release a subscription's active schedule.
  */
@@ -2018,6 +2059,7 @@ export const stripeSubscriptionsReleaseSchedule = async (subscriptionUid: string
 
 
 /**
+ * Applies to Stripe Billing (v3) only. With Outseta billing (v2) the request is rejected.
  * @summary Resume payment collection on a paused subscription.
  */
 export type stripeSubscriptionsResumeCollectionResponse200 = {
@@ -2070,7 +2112,9 @@ export const stripeSubscriptionsResumeCollection = async (subscriptionUid: strin
 
 
 /**
- * The trial ends now, so that the subscription starts and is invoiced.
+ * Applies to Stripe Billing (v3) only. With Outseta billing (v2) the request is rejected.
+            
+The trial ends now, so that the subscription starts and is invoiced.
  * @summary Start a trialing subscription.
  */
 export type stripeSubscriptionsStartResponse200 = {
@@ -2123,7 +2167,9 @@ export const stripeSubscriptionsStart = async (subscriptionUid: string | null, o
 
 
 /**
- * Pass productUid in the query string to import only the subscriptions to that
+ * Applies to Stripe Billing (v3) only. With Outseta billing (v2) the request is rejected.
+            
+Pass productUid in the query string to import only the subscriptions to that
 product's prices. The response is an import result wrapped in a Count property.
  * @summary Import subscriptions from the connected Stripe account.
  */
@@ -2167,7 +2213,9 @@ export const stripeSubscriptionsSyncSubscriptionsFromStripe = async ( options?: 
 
 
 /**
- * A subscription set to end at the end of its billing period renews instead.
+ * Applies to Stripe Billing (v3) only. With Outseta billing (v2) the request is rejected.
+            
+A subscription set to end at the end of its billing period renews instead.
  * @summary Remove a subscription's pending cancellation.
  */
 export type stripeSubscriptionsUncancelResponse200 = {
@@ -2269,7 +2317,10 @@ export const stripeProductsGetAll = async (params?: StripeProductsGetAllParams, 
 
 
 /**
- * The product is also created in the connected Stripe account.
+ * Applies to Stripe Billing (v3) only. With Outseta billing (v2) the request is rejected;
+use POST /billing/plans or POST /billing/addons instead.
+            
+The product is also created in the connected Stripe account.
  * @summary Add a new product.
  */
 export type stripeProductsPostResponse200 = {
@@ -2313,6 +2364,7 @@ export const stripeProductsPost = async (stripeProductsPostBody: NonReadonly<Str
 
 
 /**
+ * Applies to Stripe Billing (v3) only. With Outseta billing (v2) the request is rejected.
  * @summary Import all products and their prices from the connected Stripe account.
  */
 export type stripeProductsSyncProductsFromStripeResponse200 = {
@@ -2397,7 +2449,10 @@ export const stripeProductsGet = async (uid: string | null, options?: RequestIni
 
 
 /**
- * The changes are also sent to the connected Stripe account.
+ * Applies to Stripe Billing (v3) only. With Outseta billing (v2) the request is rejected;
+use PUT /billing/plans/{planUid} or PUT /billing/addons/{addOnUid} instead.
+            
+The changes are also sent to the connected Stripe account.
  * @summary Update a product.
  */
 export type stripeProductsPutResponse200 = {
@@ -2442,6 +2497,7 @@ export const stripeProductsPut = async (uid: string | null,
 
 
 /**
+ * Applies to Stripe Billing (v3) only. With Outseta billing (v2) the request is rejected.
  * @summary Import a product and its prices from the connected Stripe account.
  */
 export type stripeProductsSyncProductFromStripeResponse200 = {

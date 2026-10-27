@@ -3555,6 +3555,11 @@ export const QcountConfigSettingType = {
   StripeMigration_LastPreCutoverExportSubscriptionId: 579,
 } as const;
 
+export interface TeamTwoFactorSettings {
+  Enabled?: boolean;
+  Required?: boolean;
+}
+
 export type DiscordServerAllOf = {
   /**
    * @maxLength 250

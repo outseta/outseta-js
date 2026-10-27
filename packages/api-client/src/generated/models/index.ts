@@ -810,6 +810,7 @@ export * from './taskWebhookEventDataStatus';
 export * from './taxRate';
 export * from './taxRateAllOf';
 export * from './teamRole';
+export * from './teamTwoFactorSettings';
 export * from './template';
 export * from './templateAllOf';
 export * from './templateEmailInstance';

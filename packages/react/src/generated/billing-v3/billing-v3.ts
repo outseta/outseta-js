@@ -167,7 +167,9 @@ export function useStripeInvoiceLineItemsGetAll<TData = Awaited<ReturnType<typeo
 
 
 /**
- * Access ends now. This sets the line item's EndDate and updates the account's products
+ * Applies to Stripe Billing (v3) only. With Outseta billing (v2) the request is rejected.
+            
+Access ends now. This sets the line item's EndDate and updates the account's products
 and stage. The invoice is not changed.
  * @summary End the product access that a line item gives.
  */
@@ -577,7 +579,10 @@ export function useStripePromotionCodesGetAll<TData = Awaited<ReturnType<typeof 
 
 
 /**
- * A promotion code belongs to a coupon. The code is also created in the connected Stripe
+ * Applies to Stripe Billing (v3) only. With Outseta billing (v2) the request is rejected;
+use POST /billing/discountcoupons instead.
+            
+A promotion code belongs to a coupon. The code is also created in the connected Stripe
 account.
  * @summary Add a new promotion code.
  */
@@ -711,7 +716,9 @@ export function useStripePromotionCodesGet<TData = Awaited<ReturnType<typeof str
 
 
 /**
- * The code can no longer be redeemed. It is also ended in the connected Stripe account.
+ * Applies to Stripe Billing (v3) only. With Outseta billing (v2) the request is rejected.
+            
+The code can no longer be redeemed. It is also ended in the connected Stripe account.
 No other change is made. The promotion code to end is identified by the Uid in the
 request body.
  * @summary End a promotion code.
@@ -919,7 +926,10 @@ export function useStripeProductFamiliesGetAll<TData = Awaited<ReturnType<typeof
 
 
 /**
- * A product added to this family is removed from any other family.
+ * Applies to Stripe Billing (v3) only. With Outseta billing (v2) the request is rejected;
+use POST /billing/planfamilies instead.
+            
+A product added to this family is removed from any other family.
  * @summary Add a new product family.
  */
 export const stripeProductFamiliesPost = (
@@ -1052,7 +1062,10 @@ export function useStripeProductFamiliesGet<TData = Awaited<ReturnType<typeof st
 
 
 /**
- * A product added to this family is removed from any other family.
+ * Applies to Stripe Billing (v3) only. With Outseta billing (v2) the request is rejected;
+use PUT /billing/planfamilies/{planFamilyUid} instead.
+            
+A product added to this family is removed from any other family.
  * @summary Update a product family.
  */
 export const stripeProductFamiliesPut = (
@@ -1248,7 +1261,10 @@ export function useStripeCouponsGetAll<TData = Awaited<ReturnType<typeof stripeC
 
 
 /**
- * Set exactly one of PercentOff or CurrencyAmountOff. The coupon is also created in the
+ * Applies to Stripe Billing (v3) only. With Outseta billing (v2) the request is rejected;
+use POST /billing/discountcoupons instead.
+            
+Set exactly one of PercentOff or CurrencyAmountOff. The coupon is also created in the
 connected Stripe account.
  * @summary Add a new coupon.
  */
@@ -1521,6 +1537,7 @@ export function useStripeCouponsGetRedemptions<TData = Awaited<ReturnType<typeof
 
 
 /**
+ * Applies to Stripe Billing (v3) only. With Outseta billing (v2) the request is rejected.
  * @summary Import all coupons and promotion codes from the connected Stripe account.
  */
 export const stripeCouponsSyncCouponsFromStripe = (
@@ -1583,6 +1600,7 @@ export const useStripeCouponsSyncCouponsFromStripe = <TError = void,
       return useMutation(mutationOptions);
     }
     /**
+ * Applies to Stripe Billing (v3) only. With Outseta billing (v2) the request is rejected.
  * @summary Import a coupon from the connected Stripe account.
  */
 export const stripeCouponsSyncCouponFromStripe = (
@@ -1718,7 +1736,10 @@ export function useStripeInvoicesGetAll<TData = Awaited<ReturnType<typeof stripe
 
 
 /**
- * The invoice is created for an account, and also in the connected Stripe account.
+ * Applies to Stripe Billing (v3) only. With Outseta billing (v2) the request is rejected;
+use POST /billing/invoices instead.
+            
+The invoice is created for an account, and also in the connected Stripe account.
  * @summary Add a new invoice.
  */
 export const stripeInvoicesPost = (
@@ -1922,7 +1943,9 @@ export function useStripeInvoicesGetInvoiceAsPdf<TData = Awaited<ReturnType<type
 
 
 /**
- * NewStatus is one of paid (paid outside Stripe), uncollectible or void. The change is
+ * Applies to Stripe Billing (v3) only. With Outseta billing (v2) the request is rejected.
+            
+NewStatus is one of paid (paid outside Stripe), uncollectible or void. The change is
 also made in the connected Stripe account.
  * @summary Change the status of an invoice.
  */
@@ -1990,7 +2013,9 @@ export const useStripeInvoicesChangeInvoiceStatus = <TError = void,
       return useMutation(mutationOptions);
     }
     /**
- * CreditType is one of account_balance, payment_method (refund to the payment method) or
+ * Applies to Stripe Billing (v3) only. With Outseta billing (v2) the request is rejected.
+            
+CreditType is one of account_balance, payment_method (refund to the payment method) or
 out_of_band. The credit note is created in the connected Stripe account.
  * @summary Issue a credit note against an invoice.
  */
@@ -2058,6 +2083,7 @@ export const useStripeInvoicesIssueInvoiceCredit = <TError = void,
       return useMutation(mutationOptions);
     }
     /**
+ * Applies to Stripe Billing (v3) only. With Outseta billing (v2) the request is rejected.
  * @summary Email an invoice to the account.
  */
 export const stripeInvoicesSendInvoiceEmail = (
@@ -2121,6 +2147,7 @@ export const useStripeInvoicesSendInvoiceEmail = <TError = void,
       return useMutation(mutationOptions);
     }
     /**
+ * Applies to Stripe Billing (v3) only. With Outseta billing (v2) the request is rejected.
  * @summary Import all invoices from the connected Stripe account.
  */
 export const stripeInvoicesSyncInvoicesFromStripe = (
@@ -2252,7 +2279,10 @@ export function useStripeSubscriptionsGetAll<TData = Awaited<ReturnType<typeof s
 
 
 /**
- * The subscription is created for an account, and also in the connected Stripe account.
+ * Applies to Stripe Billing (v3) only. With Outseta billing (v2) the request is rejected;
+use PUT /billing/subscriptions/firsttimesubscription instead.
+            
+The subscription is created for an account, and also in the connected Stripe account.
 Identify each item's StripePrice by Uid or StripeId. A discount can name a
 StripePromotionCode, or a StripeCoupon, in which case the first promotion code of
 that coupon that the account can redeem is used.
@@ -2320,7 +2350,9 @@ export const useStripeSubscriptionsCreate = <TError = void,
       return useMutation(mutationOptions);
     }
     /**
- * By default the subscription ends at the end of the current billing period. Pass
+ * Applies to Stripe Billing (v3) only. With Outseta billing (v2) the request is rejected.
+            
+By default the subscription ends at the end of the current billing period. Pass
 cancelImmediately=true in the query string to end it now.
  * @summary Cancel a subscription.
  */
@@ -2384,7 +2416,9 @@ export const useStripeSubscriptionsCancel = <TError = void,
       return useMutation(mutationOptions);
     }
     /**
- * Behavior is one of Stripe's pause_collection behaviors: keep_as_draft,
+ * Applies to Stripe Billing (v3) only. With Outseta billing (v2) the request is rejected.
+            
+Behavior is one of Stripe's pause_collection behaviors: keep_as_draft,
 mark_uncollectible or void. ResumesAt is optional; without it, collection stays paused
 until resumed.
  * @summary Pause payment collection on a subscription.
@@ -2452,7 +2486,10 @@ export const useStripeSubscriptionsPauseCollection = <TError = void,
       return useMutation(mutationOptions);
     }
     /**
- * Use this, for example, to move a subscription to another price. Identify each item's
+ * Applies to Stripe Billing (v3) only. With Outseta billing (v2) the request is rejected;
+use PUT /billing/subscriptions/{subscriptionUid}/changesubscription instead.
+            
+Use this, for example, to move a subscription to another price. Identify each item's
 StripePrice by Uid or StripeId. A user token can only change a subscription on its own
 account, and only as the account's primary contact.
  * @summary Change the items of a subscription.
@@ -2588,7 +2625,9 @@ export const useStripeSubscriptionsPreviewChange = <TError = void,
       return useMutation(mutationOptions);
     }
     /**
- * This sets the subscription's trial end to ToDate, without proration.
+ * Applies to Stripe Billing (v3) only. With Outseta billing (v2) the request is rejected.
+            
+This sets the subscription's trial end to ToDate, without proration.
  * @summary Extend the date of a subscription's next invoice.
  */
 export const stripeSubscriptionsExtendTrial = (
@@ -2654,7 +2693,9 @@ export const useStripeSubscriptionsExtendTrial = <TError = void,
       return useMutation(mutationOptions);
     }
     /**
- * The scheduled changes no longer happen, and the subscription keeps its current items.
+ * Applies to Stripe Billing (v3) only. With Outseta billing (v2) the request is rejected.
+            
+The scheduled changes no longer happen, and the subscription keeps its current items.
 Nothing happens when there is no active schedule.
  * @summary Release a subscription's active schedule.
  */
@@ -2718,6 +2759,7 @@ export const useStripeSubscriptionsReleaseSchedule = <TError = void,
       return useMutation(mutationOptions);
     }
     /**
+ * Applies to Stripe Billing (v3) only. With Outseta billing (v2) the request is rejected.
  * @summary Resume payment collection on a paused subscription.
  */
 export const stripeSubscriptionsResumeCollection = (
@@ -2780,7 +2822,9 @@ export const useStripeSubscriptionsResumeCollection = <TError = void,
       return useMutation(mutationOptions);
     }
     /**
- * The trial ends now, so that the subscription starts and is invoiced.
+ * Applies to Stripe Billing (v3) only. With Outseta billing (v2) the request is rejected.
+            
+The trial ends now, so that the subscription starts and is invoiced.
  * @summary Start a trialing subscription.
  */
 export const stripeSubscriptionsStart = (
@@ -2843,7 +2887,9 @@ export const useStripeSubscriptionsStart = <TError = void,
       return useMutation(mutationOptions);
     }
     /**
- * Pass productUid in the query string to import only the subscriptions to that
+ * Applies to Stripe Billing (v3) only. With Outseta billing (v2) the request is rejected.
+            
+Pass productUid in the query string to import only the subscriptions to that
 product's prices. The response is an import result wrapped in a Count property.
  * @summary Import subscriptions from the connected Stripe account.
  */
@@ -2908,7 +2954,9 @@ export const useStripeSubscriptionsSyncSubscriptionsFromStripe = <TError = void,
       return useMutation(mutationOptions);
     }
     /**
- * A subscription set to end at the end of its billing period renews instead.
+ * Applies to Stripe Billing (v3) only. With Outseta billing (v2) the request is rejected.
+            
+A subscription set to end at the end of its billing period renews instead.
  * @summary Remove a subscription's pending cancellation.
  */
 export const stripeSubscriptionsUncancel = (
@@ -3040,7 +3088,10 @@ export function useStripeProductsGetAll<TData = Awaited<ReturnType<typeof stripe
 
 
 /**
- * The product is also created in the connected Stripe account.
+ * Applies to Stripe Billing (v3) only. With Outseta billing (v2) the request is rejected;
+use POST /billing/plans or POST /billing/addons instead.
+            
+The product is also created in the connected Stripe account.
  * @summary Add a new product.
  */
 export const stripeProductsPost = (
@@ -3105,6 +3156,7 @@ export const useStripeProductsPost = <TError = void,
       return useMutation(mutationOptions);
     }
     /**
+ * Applies to Stripe Billing (v3) only. With Outseta billing (v2) the request is rejected.
  * @summary Import all products and their prices from the connected Stripe account.
  */
 export const stripeProductsSyncProductsFromStripe = (
@@ -3235,7 +3287,10 @@ export function useStripeProductsGet<TData = Awaited<ReturnType<typeof stripePro
 
 
 /**
- * The changes are also sent to the connected Stripe account.
+ * Applies to Stripe Billing (v3) only. With Outseta billing (v2) the request is rejected;
+use PUT /billing/plans/{planUid} or PUT /billing/addons/{addOnUid} instead.
+            
+The changes are also sent to the connected Stripe account.
  * @summary Update a product.
  */
 export const stripeProductsPut = (
@@ -3300,6 +3355,7 @@ export const useStripeProductsPut = <TError = void,
       return useMutation(mutationOptions);
     }
     /**
+ * Applies to Stripe Billing (v3) only. With Outseta billing (v2) the request is rejected.
  * @summary Import a product and its prices from the connected Stripe account.
  */
 export const stripeProductsSyncProductFromStripe = (
