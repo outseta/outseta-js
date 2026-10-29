@@ -3755,6 +3755,42 @@ export const ActivityType = {
   DiscordUserRemovedFromServer: 503,
 } as const;
 
+export type TemplateAllOf = {
+  /**
+   * @minLength 1
+   * @maxLength 250
+   */
+  Name: string;
+  /**
+   * @maxLength 1000
+   * @nullable
+   */
+  Subject?: string | null;
+  /** @minLength 1 */
+  Body: string;
+  /** @nullable */
+  Design?: string | null;
+  /**
+   * @maxLength 1000
+   * @nullable
+   */
+  Description?: string | null;
+  /**
+   * @maxLength 50
+   * @nullable
+   */
+  SystemName?: string | null;
+  IsInternal?: boolean;
+  /** @nullable */
+  AvailableTokens?: string | null;
+  /** @nullable */
+  RequiredTokens?: string | null;
+  /** @nullable */
+  Tag?: string | null;
+};
+
+export type Template = AbstractQcountBean & TemplateAllOf;
+
 /**
  * @nullable
  */
@@ -3811,41 +3847,34 @@ export type TemplateEmailInstanceAllOf = {
 
 export type TemplateEmailInstance = AbstractQcountBean & TemplateEmailInstanceAllOf;
 
-export type TemplateAllOf = {
+/**
+ * The fields of an email template that an update may change. Every field is optional:
+a field left out keeps its current value.
+ */
+export interface UpdateTemplateRequest {
+  /** The HTML of the template. May use Liquid tokens, for example {{ Person.FirstName }},
+and must keep every token in the template's RequiredTokens. Cannot be null. */
+  Body?: string;
   /**
-   * @minLength 1
-   * @maxLength 250
-   */
-  Name: string;
-  /**
-   * @maxLength 1000
-   * @nullable
-   */
-  Subject?: string | null;
-  /** @minLength 1 */
-  Body: string;
-  /** @nullable */
-  Design?: string | null;
-  /**
-   * @maxLength 1000
+   * What the template is for. Cannot be changed for a system email.
    * @nullable
    */
   Description?: string | null;
   /**
-   * @maxLength 50
+   * The design of the template in the drag-and-drop editor, as JSON. Send null with a new
+Body so the editor opens the new Body as HTML instead of the old design.
    * @nullable
    */
-  SystemName?: string | null;
-  IsInternal?: boolean;
-  /** @nullable */
-  AvailableTokens?: string | null;
-  /** @nullable */
-  RequiredTokens?: string | null;
-  /** @nullable */
-  Tag?: string | null;
-};
-
-export type Template = AbstractQcountBean & TemplateAllOf;
+  Design?: string | null;
+  /** The name of the template, shown in the Outseta app. Cannot be changed for a system
+email. Cannot be null. */
+  Name?: string;
+  /**
+   * The subject line of the email. May use Liquid tokens, for example {{ CompanyName }}.
+   * @nullable
+   */
+  Subject?: string | null;
+}
 
 export interface SendTemplateEmailRequest {
   /**
@@ -9828,6 +9857,22 @@ offset?: OffsetParameter;
 export type CategoryGetAllCategories200 = {
   metadata?: CollectionMetadata;
   items?: Category[];
+};
+
+export type TemplateGetAllTemplatesParams = {
+/**
+ * Requested page size. The server caps it at 100, or 25 when requested fields expand child objects or require additional queries; metadata.limit reports the applied value. Use offset=1 for the second page.
+ */
+limit?: LimitParameter;
+/**
+ * Zero-based page number, not a record offset. With limit=50, the second page is offset=1; offset=50 is page index 50 (records 2501-2550).
+ */
+offset?: OffsetParameter;
+};
+
+export type TemplateGetAllTemplates200 = {
+  metadata?: CollectionMetadata;
+  items?: Template[];
 };
 
 export type TemplateGetAllTemplateEmailsParams = {

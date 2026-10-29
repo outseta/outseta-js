@@ -1,14 +1,83 @@
 // @ts-nocheck
 import type {
+  Template,
   TemplateEmailInstance,
   TemplateGetAllTemplateEmails200,
   TemplateGetAllTemplateEmailsParams,
+  TemplateGetAllTemplates200,
+  TemplateGetAllTemplatesParams,
   TemplateGetTemplateEmails200,
   TemplateGetTemplateEmailsParams,
-  TemplateSendTemplateEmailBody
+  TemplateSendTemplateEmailBody,
+  UpdateTemplateRequest
 } from '.././models';
 
 import { customFetch } from '../../client';
+
+/**
+ * The list holds the templates from Email > Email templates (Tag template), the email
+layouts (Tag layout), the broadcast wrapper (Tag wrapper), the saved support replies
+(Tag savedReply) and the system emails Outseta sends, such as the registration
+confirmation (Tag email). A system email has a SystemName, which never changes. Filter
+with Tag=email or SystemName to find one.
+            
+Body and Design are left out to keep the list small, except that a system email the
+account never edited carries its default Body. Read a template with the get endpoint to
+see its Body and Design.
+            
+A system email the account never edited is not stored yet. It is listed with a Uid
+that starts with int_, which can be used like any other Uid. Saving the system email
+stores the account's own copy, which has a regular Uid from then on. An int_ Uid can
+change when Outseta adds system emails, so keep the SystemName rather than the int_ Uid.
+            
+Internal system emails that accounts cannot change are not listed.
+ * @summary The email templates, layouts and system emails of the account.
+ */
+export type templateGetAllTemplatesResponse200 = {
+  data: TemplateGetAllTemplates200
+  status: 200
+}
+
+export type templateGetAllTemplatesResponse401 = {
+  data: void
+  status: 401
+}
+    
+export type templateGetAllTemplatesResponseSuccess = (templateGetAllTemplatesResponse200) & {
+  headers: Headers;
+};
+export type templateGetAllTemplatesResponseError = (templateGetAllTemplatesResponse401) & {
+  headers: Headers;
+};
+
+export type templateGetAllTemplatesResponse = (templateGetAllTemplatesResponseSuccess | templateGetAllTemplatesResponseError)
+
+export const getTemplateGetAllTemplatesUrl = (params?: TemplateGetAllTemplatesParams,) => {
+  const normalizedParams = new URLSearchParams();
+
+  Object.entries(params || {}).forEach(([key, value]) => {
+    
+    if (value !== undefined) {
+      normalizedParams.append(key, value === null ? 'null' : value.toString())
+    }
+  });
+
+  const stringifiedParams = normalizedParams.toString();
+
+  return stringifiedParams.length > 0 ? `/api/v1/templates?${stringifiedParams}` : `/api/v1/templates`
+}
+
+export const templateGetAllTemplates = async (params?: TemplateGetAllTemplatesParams, options?: RequestInit): Promise<templateGetAllTemplatesResponse> => {
+  
+  return customFetch<templateGetAllTemplatesResponse>(getTemplateGetAllTemplatesUrl(params),
+  {      
+    ...options,
+    method: 'GET'
+    
+    
+  }
+);}
+
 
 /**
  * Filter with personUid to see what one person was sent, or with templateUid to
@@ -120,6 +189,144 @@ export const templateGetTemplateEmails = async (templateUid: string | null,
     method: 'GET'
     
     
+  }
+);}
+
+
+/**
+ * Body is the HTML of the email; Subject and Body may use Liquid tokens such as
+{{ Person.FirstName }}. AvailableTokens lists the tokens Outseta fills in for a system
+email, and RequiredTokens the ones its Body must keep (for example ConfirmationUrl in the
+registration confirmation).
+            
+Design is the drag-and-drop editor's design of the template as JSON, or null for a
+template that is plain HTML. System emails have no Design.
+            
+A system email the account never edited returns its default content under its int_ Uid
+from the list endpoint.
+ * @summary Get an email template, layout or system email, with its Body and Design.
+ */
+export type templateGetTemplateResponse200 = {
+  data: Template
+  status: 200
+}
+
+export type templateGetTemplateResponse400 = {
+  data: void
+  status: 400
+}
+
+export type templateGetTemplateResponse401 = {
+  data: void
+  status: 401
+}
+
+export type templateGetTemplateResponse404 = {
+  data: void
+  status: 404
+}
+    
+export type templateGetTemplateResponseSuccess = (templateGetTemplateResponse200) & {
+  headers: Headers;
+};
+export type templateGetTemplateResponseError = (templateGetTemplateResponse400 | templateGetTemplateResponse401 | templateGetTemplateResponse404) & {
+  headers: Headers;
+};
+
+export type templateGetTemplateResponse = (templateGetTemplateResponseSuccess | templateGetTemplateResponseError)
+
+export const getTemplateGetTemplateUrl = (templateUid: string | null,) => {
+
+
+  
+
+  return `/api/v1/templates/${templateUid}`
+}
+
+export const templateGetTemplate = async (templateUid: string | null, options?: RequestInit): Promise<templateGetTemplateResponse> => {
+  
+  return customFetch<templateGetTemplateResponse>(getTemplateGetTemplateUrl(templateUid),
+  {      
+    ...options,
+    method: 'GET'
+    
+    
+  }
+);}
+
+
+/**
+ * Send only the fields to change, usually Subject and Body. Fields left out of the request
+keep their current values; a field sent as null is cleared. The Uid in the request body
+is ignored.
+            
+Subject and Body must be valid Liquid, and Body must keep every token in RequiredTokens
+(for example ConfirmationUrl in the registration confirmation); otherwise the update is
+rejected with a validation error. The Name, Description and SystemName of a system email
+cannot be changed.
+            
+A template with a Design (made in the drag-and-drop editor of Email > Email templates)
+opens in the editor from its Design, not its Body. To change the Body of such a
+template, send Design as null as well: the editor then opens the new Body as HTML.
+Otherwise the editor keeps showing the old design, and saving the template there
+replaces the new Body. System emails have no Design.
+            
+A system email the account never edited has a Uid that starts with int_. Updating it
+stores the account's own copy, with the default content for the fields left out, and
+returns it with its new Uid. From then on Outseta sends the copy; the int_ Uid
+returns 404.
+            
+On an Outseta account that is not verified yet, updating a system email pauses all email
+sending of the account, as it does in the Outseta app.
+ * @summary Update an email template, layout or system email.
+ */
+export type templateUpdateTemplateResponse200 = {
+  data: Template
+  status: 200
+}
+
+export type templateUpdateTemplateResponse400 = {
+  data: void
+  status: 400
+}
+
+export type templateUpdateTemplateResponse401 = {
+  data: void
+  status: 401
+}
+
+export type templateUpdateTemplateResponse404 = {
+  data: void
+  status: 404
+}
+    
+export type templateUpdateTemplateResponseSuccess = (templateUpdateTemplateResponse200) & {
+  headers: Headers;
+};
+export type templateUpdateTemplateResponseError = (templateUpdateTemplateResponse400 | templateUpdateTemplateResponse401 | templateUpdateTemplateResponse404) & {
+  headers: Headers;
+};
+
+export type templateUpdateTemplateResponse = (templateUpdateTemplateResponseSuccess | templateUpdateTemplateResponseError)
+
+export const getTemplateUpdateTemplateUrl = (templateUid: string | null,) => {
+
+
+  
+
+  return `/api/v1/templates/${templateUid}`
+}
+
+export const templateUpdateTemplate = async (templateUid: string | null,
+    updateTemplateRequest: UpdateTemplateRequest, options?: RequestInit): Promise<templateUpdateTemplateResponse> => {
+  
+  return customFetch<templateUpdateTemplateResponse>(getTemplateUpdateTemplateUrl(templateUid),
+  {      
+    ...options,
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json', ...options?.headers },
+    body: JSON.stringify(
+      updateTemplateRequest,)
   }
 );}
 
