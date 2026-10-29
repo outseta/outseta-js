@@ -87,6 +87,8 @@ export type AccountWebhookEntityStripeInvoicesItem = {
   /** @nullable */
   CustomerId?: string | null;
   /** @nullable */
+  EffectiveDate?: string | null;
+  /** @nullable */
   PaymentStatus?: string | null;
   /** @nullable */
   StripePaymentMethodId?: string | null;

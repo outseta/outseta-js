@@ -10,6 +10,8 @@ export type StripeSubscriptionAllOf = {
   /** @nullable */
   ApplicationFeePercent?: number | null;
   /** @nullable */
+  BillingCycleAnchor?: string | null;
+  /** @nullable */
   CancelAt?: string | null;
   CancelAtPeriodEnd?: boolean;
   /** @nullable */
@@ -47,13 +49,13 @@ export type StripeSubscriptionAllOf = {
   /** @nullable */
   AccountUid?: string | null;
   /** @nullable */
-  BillingCycleAnchor?: string | null;
-  /** @nullable */
   CollectionMethod?: string | null;
   /** @nullable */
   CustomerId?: string | null;
   /** @nullable */
   DaysUntilDue?: number | null;
+  /** @nullable */
+  PaymentUrl?: string | null;
   /** @nullable */
   ScheduleId?: string | null;
   /** @nullable */

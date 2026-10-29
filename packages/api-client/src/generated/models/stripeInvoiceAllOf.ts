@@ -86,6 +86,8 @@ export type StripeInvoiceAllOf = {
   /** @nullable */
   CustomerId?: string | null;
   /** @nullable */
+  EffectiveDate?: string | null;
+  /** @nullable */
   PaymentStatus?: string | null;
   /** @nullable */
   StripeCreditNotes?: StripeCreditNote[] | null;

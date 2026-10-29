@@ -10,6 +10,12 @@ export type StripeProductFamilyAllOf = {
   IsActive?: boolean;
   IsDefault?: boolean;
   /** @nullable */
+  BillingCycleAnchorDayOfMonth?: number | null;
+  /** @nullable */
+  BillingCycleAnchorHour?: number | null;
+  /** @nullable */
+  BillingCycleAnchorMonth?: number | null;
+  /** @nullable */
   StripeProducts?: StripeProduct[] | null;
   [key: string]: unknown | null;
 };

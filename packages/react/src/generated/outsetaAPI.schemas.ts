@@ -821,6 +821,8 @@ export type StripeInvoiceAllOf = {
   /** @nullable */
   CustomerId?: string | null;
   /** @nullable */
+  EffectiveDate?: string | null;
+  /** @nullable */
   PaymentStatus?: string | null;
   /** @nullable */
   StripeCreditNotes?: StripeCreditNote[] | null;
@@ -1405,6 +1407,12 @@ export type StripeProductFamilyAllOf = {
   IsActive?: boolean;
   IsDefault?: boolean;
   /** @nullable */
+  BillingCycleAnchorDayOfMonth?: number | null;
+  /** @nullable */
+  BillingCycleAnchorHour?: number | null;
+  /** @nullable */
+  BillingCycleAnchorMonth?: number | null;
+  /** @nullable */
   StripeProducts?: StripeProduct[] | null;
   [key: string]: unknown | null;
 };
@@ -1503,6 +1511,8 @@ export type StripeSubscriptionAllOf = {
   /** @nullable */
   ApplicationFeePercent?: number | null;
   /** @nullable */
+  BillingCycleAnchor?: string | null;
+  /** @nullable */
   CancelAt?: string | null;
   CancelAtPeriodEnd?: boolean;
   /** @nullable */
@@ -1540,13 +1550,13 @@ export type StripeSubscriptionAllOf = {
   /** @nullable */
   AccountUid?: string | null;
   /** @nullable */
-  BillingCycleAnchor?: string | null;
-  /** @nullable */
   CollectionMethod?: string | null;
   /** @nullable */
   CustomerId?: string | null;
   /** @nullable */
   DaysUntilDue?: number | null;
+  /** @nullable */
+  PaymentUrl?: string | null;
   /** @nullable */
   ScheduleId?: string | null;
   /** @nullable */
@@ -5733,6 +5743,8 @@ export type AccountWebhookEntityStripeInvoicesItem = {
   /** @nullable */
   CustomerId?: string | null;
   /** @nullable */
+  EffectiveDate?: string | null;
+  /** @nullable */
   PaymentStatus?: string | null;
   /** @nullable */
   StripePaymentMethodId?: string | null;
@@ -5795,6 +5807,8 @@ export type AccountWebhookEntityStripeSubscriptionsItem = {
   /** @nullable */
   ApplicationFeePercent?: number | null;
   /** @nullable */
+  BillingCycleAnchor?: string | null;
+  /** @nullable */
   CancelAt?: string | null;
   CancelAtPeriodEnd?: boolean;
   /**
@@ -5822,13 +5836,13 @@ export type AccountWebhookEntityStripeSubscriptionsItem = {
   /** @nullable */
   AccountUid?: string | null;
   /** @nullable */
-  BillingCycleAnchor?: string | null;
-  /** @nullable */
   CollectionMethod?: string | null;
   /** @nullable */
   CustomerId?: string | null;
   /** @nullable */
   DaysUntilDue?: number | null;
+  /** @nullable */
+  PaymentUrl?: string | null;
   /** @nullable */
   ScheduleId?: string | null;
   /** @nullable */
@@ -7548,6 +7562,8 @@ export type AccountWebhookEntityPrimaryStripeSubscription = {
   /** @nullable */
   ApplicationFeePercent?: number | null;
   /** @nullable */
+  BillingCycleAnchor?: string | null;
+  /** @nullable */
   CancelAt?: string | null;
   CancelAtPeriodEnd?: boolean;
   /**
@@ -7575,13 +7591,13 @@ export type AccountWebhookEntityPrimaryStripeSubscription = {
   /** @nullable */
   AccountUid?: string | null;
   /** @nullable */
-  BillingCycleAnchor?: string | null;
-  /** @nullable */
   CollectionMethod?: string | null;
   /** @nullable */
   CustomerId?: string | null;
   /** @nullable */
   DaysUntilDue?: number | null;
+  /** @nullable */
+  PaymentUrl?: string | null;
   /** @nullable */
   ScheduleId?: string | null;
   /** @nullable */

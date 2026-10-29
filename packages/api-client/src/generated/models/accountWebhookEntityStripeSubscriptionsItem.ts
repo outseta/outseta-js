@@ -21,6 +21,8 @@ export type AccountWebhookEntityStripeSubscriptionsItem = {
   /** @nullable */
   ApplicationFeePercent?: number | null;
   /** @nullable */
+  BillingCycleAnchor?: string | null;
+  /** @nullable */
   CancelAt?: string | null;
   CancelAtPeriodEnd?: boolean;
   /**
@@ -48,13 +50,13 @@ export type AccountWebhookEntityStripeSubscriptionsItem = {
   /** @nullable */
   AccountUid?: string | null;
   /** @nullable */
-  BillingCycleAnchor?: string | null;
-  /** @nullable */
   CollectionMethod?: string | null;
   /** @nullable */
   CustomerId?: string | null;
   /** @nullable */
   DaysUntilDue?: number | null;
+  /** @nullable */
+  PaymentUrl?: string | null;
   /** @nullable */
   ScheduleId?: string | null;
   /** @nullable */
