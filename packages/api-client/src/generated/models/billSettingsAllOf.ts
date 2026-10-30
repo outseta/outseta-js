@@ -5,6 +5,9 @@ import type { BillingSystem } from './billingSystem';
 export type BillSettingsAllOf = {
   DaysPastDueToSetAccountToCanceling?: number;
   IsInvoicePaymentEmailDisabled: boolean;
+  IsInvoiceReminderEmailDisabled: boolean;
+  IsPaymentProblemEmailDisabled: boolean;
+  IsPaymentInfoUpdatedEmailDisabled: boolean;
   PaymentsMode?: PaymentsMode;
   BillingSystem?: BillingSystem;
   RestrictSubscriptionActions?: boolean;

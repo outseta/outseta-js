@@ -3497,7 +3497,7 @@ export type QcountConfigAllOf = {
 export type QcountConfig = AbstractQcountBean & QcountConfigAllOf;
 
 /**
- * `100` - Slack, `102` - MagicLinkApiKey, `103` - MagicLinkApiKeySecret, `104` - OAuth_HideCreateAccountLink, `105` - Chat_IsOffline, `106` - HostedPageCustomCode, `107` - RegistrationConfirmationEmailDelaySeconds, `108` - AccountCancellationReasons, `110` - WebhookSignatureKey, `111` - HostedProfileBackLink, `112` - AccountCancellationReasonRequired, `114` - Email_OutsetaBrandingDisabled, `119` - Email_BlacklistedInboundEmails, `121` - PasswordPolicy, `123` - CRM_FieldSortingEnabled, `124` - CRM_RegistrationCallbackLocations, `125` - KnowledgeBaseVersion, `126` - Support_SpamThreshold, `127` - Email_RestrictedPhrases, `128` - KnowledgeBaseLanguage, `130` - Billing_System, `131` - Billing_RestrictSubscriptionActions, `140` - TwoFactorAuthenticationEnabled, `142` - ForceTwoFactorAuthentication, `143` - MagicLinkLoginEnabled, `148` - Support_DeleteClosedTicketsAfterMonths, `149` - SingleSessionLogin, `170` - GoogleAnalyticsMeasurementId, `171` - GoogleAnalyticsApiSecret, `190` - Stripe_TaxEnabled, `192` - Stripe_TaxIdTypes, `193` - Stripe_ApplePayMerchantIdDomainAssociation, `194` - Stripe_WebhookSecret, `195` - Stripe_OnlySyncOutsetaCustomers, `196` - Stripe_Checkout_RequireBillingAddress, `197` - Stripe_Checkout_RequireConsentTermsOfService, `200` - Webflow_AccessToken, `201` - Webflow_SyncEnabled, `202` - Webflow_SyncConfiguration, `203` - Webflow_ApiVersion, `550` - CopyQcount_AddOnMap, `551` - CopyQcount_AccountMap, `552` - CopyQcount_DiscountCouponMap, `553` - CopyQcount_InvoiceMap, `554` - CopyQcount_PersonMap, `555` - CopyQcount_PlanMap, `556` - CopyQcount_PlanFamilyMap, `557` - CopyQcount_SubscriptionMap, `558` - CopyQcount_TransactionMap, `570` - StripeMigration_LastAccountId, `571` - StripeMigration_LastInvoiceId, `572` - StripeMigration_LastExpiredSubscriptionId, `573` - StripeMigration_LastPostExportSubscriptionId, `574` - StripeMigration_LastUsageId, `575` - StripeMigration_SubscriptionExportDate, `576` - StripeMigration_SubscriptionExportIds, `577` - StripeMigration_SubscriptionAddOnExportIds, `578` - StripeMigration_SubscriptionCutoverDate, `579` - StripeMigration_LastPreCutoverExportSubscriptionId
+ * `100` - Slack, `102` - MagicLinkApiKey, `103` - MagicLinkApiKeySecret, `104` - OAuth_HideCreateAccountLink, `105` - Chat_IsOffline, `106` - HostedPageCustomCode, `107` - RegistrationConfirmationEmailDelaySeconds, `108` - AccountCancellationReasons, `110` - WebhookSignatureKey, `111` - HostedProfileBackLink, `112` - AccountCancellationReasonRequired, `114` - Email_OutsetaBrandingDisabled, `119` - Email_BlacklistedInboundEmails, `121` - PasswordPolicy, `123` - CRM_FieldSortingEnabled, `124` - CRM_RegistrationCallbackLocations, `125` - KnowledgeBaseVersion, `126` - Support_SpamThreshold, `127` - Email_RestrictedPhrases, `128` - KnowledgeBaseLanguage, `130` - Billing_System, `131` - Billing_RestrictSubscriptionActions, `140` - TwoFactorAuthenticationEnabled, `142` - ForceTwoFactorAuthentication, `143` - MagicLinkLoginEnabled, `148` - Support_DeleteClosedTicketsAfterMonths, `149` - SingleSessionLogin, `152` - CRM_PasswordChangedEmailDisabled, `170` - GoogleAnalyticsMeasurementId, `171` - GoogleAnalyticsApiSecret, `190` - Stripe_TaxEnabled, `192` - Stripe_TaxIdTypes, `193` - Stripe_ApplePayMerchantIdDomainAssociation, `194` - Stripe_WebhookSecret, `195` - Stripe_OnlySyncOutsetaCustomers, `196` - Stripe_Checkout_RequireBillingAddress, `197` - Stripe_Checkout_RequireConsentTermsOfService, `200` - Webflow_AccessToken, `201` - Webflow_SyncEnabled, `202` - Webflow_SyncConfiguration, `203` - Webflow_ApiVersion, `550` - CopyQcount_AddOnMap, `551` - CopyQcount_AccountMap, `552` - CopyQcount_DiscountCouponMap, `553` - CopyQcount_InvoiceMap, `554` - CopyQcount_PersonMap, `555` - CopyQcount_PlanMap, `556` - CopyQcount_PlanFamilyMap, `557` - CopyQcount_SubscriptionMap, `558` - CopyQcount_TransactionMap, `570` - StripeMigration_LastAccountId, `571` - StripeMigration_LastInvoiceId, `572` - StripeMigration_LastExpiredSubscriptionId, `573` - StripeMigration_LastPostExportSubscriptionId, `574` - StripeMigration_LastUsageId, `575` - StripeMigration_SubscriptionExportDate, `576` - StripeMigration_SubscriptionExportIds, `577` - StripeMigration_SubscriptionAddOnExportIds, `578` - StripeMigration_SubscriptionCutoverDate, `579` - StripeMigration_LastPreCutoverExportSubscriptionId
  */
 export type QcountConfigSettingType = typeof QcountConfigSettingType[keyof typeof QcountConfigSettingType];
 
@@ -3531,6 +3531,7 @@ export const QcountConfigSettingType = {
   MagicLinkLoginEnabled: 143,
   Support_DeleteClosedTicketsAfterMonths: 148,
   SingleSessionLogin: 149,
+  CRM_PasswordChangedEmailDisabled: 152,
   GoogleAnalyticsMeasurementId: 170,
   GoogleAnalyticsApiSecret: 171,
   Stripe_TaxEnabled: 190,
@@ -3682,7 +3683,7 @@ export interface SlackChannelSetting {
 }
 
 /**
- * `10` - Custom, `50` - Note, `51` - Email, `52` - PhoneCall, `53` - Meeting, `54` - Chat, `100` - AccountCreated, `101` - AccountUpdated, `102` - AccountAddPerson, `103` - AccountStageUpdated, `104` - AccountDeleted, `105` - AccountBillingInformationUpdated, `106` - AccountSubscriptionPlanUpdated, `107` - AccountSubscriptionPaymentCollected, `108` - AccountSubscriptionPaymentDeclined, `109` - AccountBillingInformationRequested, `110` - AccountBillingInvoiceEmailSent, `111` - AccountRemovePerson, `112` - AccountPaidSubscriptionCreated, `113` - AccountBillingInformationRemoved, `114` - AccountPrimaryPersonUpdated, `115` - AccountBillingInvoiceCreated, `116` - AccountSubscriptionStarted, `117` - AccountSubscriptionRenewalExtended, `118` - AccountSubscriptionAddOnsChanged, `119` - AccountSubscriptionCancellationRequested, `120` - AccountBillingInvoiceDeleted, `121` - AccountPersonRoleUpdated, `122` - AccountProductsChanged, `200` - PersonCreated, `201` - PersonUpdated, `202` - PersonDeleted, `203` - PersonLogin, `204` - PersonListSubscribed, `205` - PersonListUnsubscribed, `206` - PersonSegmentAdded, `207` - PersonSegmentRemoved, `208` - PersonEmailOpened, `209` - PersonEmailClicked, `210` - PersonEmailBounce, `211` - PersonEmailSpam, `212` - PersonSupportTicketCreated, `213` - PersonSupportTicketUpdated, `214` - PersonLeadFormSubmitted, `215` - PersonListConfirmed, `216` - PersonEmailSubscribed, `217` - PersonEmailUnsubscribed, `218` - PersonTemporaryPasswordSet, `219` - PersonSupportTicketClosed, `220` - PersonTwoFactorRecoveryCodesRegenerated, `300` - DealCreated, `301` - DealUpdated, `304` - DealDeleted, `305` - DealDueDate, `306` - TaskCreated, `307` - TaskUpdated, `400` - PlanCreated, `401` - PlanUpdated, `402` - AddOnCreated, `403` - AddOnUpdated, `500` - DiscordUserLinked, `501` - DiscordUserAddedToServer, `502` - DiscordUserRolesUpdated, `503` - DiscordUserRemovedFromServer
+ * `10` - Custom, `50` - Note, `51` - Email, `52` - PhoneCall, `53` - Meeting, `54` - Chat, `100` - AccountCreated, `101` - AccountUpdated, `102` - AccountAddPerson, `103` - AccountStageUpdated, `104` - AccountDeleted, `105` - AccountBillingInformationUpdated, `106` - AccountSubscriptionPlanUpdated, `107` - AccountSubscriptionPaymentCollected, `108` - AccountSubscriptionPaymentDeclined, `109` - AccountBillingInformationRequested, `110` - AccountBillingInvoiceEmailSent, `111` - AccountRemovePerson, `112` - AccountPaidSubscriptionCreated, `113` - AccountBillingInformationRemoved, `114` - AccountPrimaryPersonUpdated, `115` - AccountBillingInvoiceCreated, `116` - AccountSubscriptionStarted, `117` - AccountSubscriptionRenewalExtended, `118` - AccountSubscriptionAddOnsChanged, `119` - AccountSubscriptionCancellationRequested, `120` - AccountBillingInvoiceDeleted, `121` - AccountPersonRoleUpdated, `122` - AccountProductsChanged, `200` - PersonCreated, `201` - PersonUpdated, `202` - PersonDeleted, `203` - PersonLogin, `204` - PersonListSubscribed, `205` - PersonListUnsubscribed, `206` - PersonSegmentAdded, `207` - PersonSegmentRemoved, `208` - PersonEmailOpened, `209` - PersonEmailClicked, `210` - PersonEmailBounce, `211` - PersonEmailSpam, `212` - PersonSupportTicketCreated, `213` - PersonSupportTicketUpdated, `214` - PersonLeadFormSubmitted, `215` - PersonListConfirmed, `216` - PersonEmailSubscribed, `217` - PersonEmailUnsubscribed, `218` - PersonTemporaryPasswordSet, `219` - PersonSupportTicketClosed, `220` - PersonTwoFactorRecoveryCodesRegenerated, `300` - DealCreated, `301` - DealUpdated, `304` - DealDeleted, `305` - DealDueDate, `306` - TaskCreated, `307` - TaskUpdated, `400` - PlanCreated, `401` - PlanUpdated, `402` - AddOnCreated, `403` - AddOnUpdated, `404` - TransactionalEmailSettingUpdated, `500` - DiscordUserLinked, `501` - DiscordUserAddedToServer, `502` - DiscordUserRolesUpdated, `503` - DiscordUserRemovedFromServer
  */
 export type ActivityType = typeof ActivityType[keyof typeof ActivityType];
 
@@ -3749,6 +3750,7 @@ export const ActivityType = {
   PlanUpdated: 401,
   AddOnCreated: 402,
   AddOnUpdated: 403,
+  TransactionalEmailSettingUpdated: 404,
   DiscordUserLinked: 500,
   DiscordUserAddedToServer: 501,
   DiscordUserRolesUpdated: 502,
@@ -3846,6 +3848,29 @@ export type TemplateEmailInstanceAllOf = {
 };
 
 export type TemplateEmailInstance = AbstractQcountBean & TemplateEmailInstanceAllOf;
+
+export interface TransactionalEmailSetting {
+  /** @nullable */
+  Key?: string | null;
+  /** @nullable */
+  Name?: string | null;
+  /** @nullable */
+  SentWhen?: string | null;
+  /** @nullable */
+  TemplateSystemNames?: string[] | null;
+  IsEnabled?: boolean;
+}
+
+export interface TransactionalEmailSettingUpdateRequest {
+  /** @nullable */
+  Settings?: TransactionalEmailSettingUpdate[] | null;
+}
+
+export interface TransactionalEmailSettingUpdate {
+  /** @nullable */
+  Key?: string | null;
+  IsEnabled?: boolean;
+}
 
 /**
  * The fields of an email template that an update may change. Every field is optional:
@@ -5093,6 +5118,9 @@ export interface ExtendSubscriptionOptions {
 export type BillSettingsAllOf = {
   DaysPastDueToSetAccountToCanceling?: number;
   IsInvoicePaymentEmailDisabled: boolean;
+  IsInvoiceReminderEmailDisabled: boolean;
+  IsPaymentProblemEmailDisabled: boolean;
+  IsPaymentInfoUpdatedEmailDisabled: boolean;
   PaymentsMode?: PaymentsMode;
   BillingSystem?: BillingSystem;
   RestrictSubscriptionActions?: boolean;
@@ -9889,6 +9917,32 @@ offset?: OffsetParameter;
 export type TemplateGetAllTemplateEmails200 = {
   metadata?: CollectionMetadata;
   items?: TemplateEmailInstance[];
+};
+
+export type TemplateGetTransactionalEmailSettingsParams = {
+/**
+ * Requested page size. The server caps it at 100, or 25 when requested fields expand child objects or require additional queries; metadata.limit reports the applied value. Use offset=1 for the second page.
+ */
+limit?: LimitParameter;
+/**
+ * Zero-based page number, not a record offset. With limit=50, the second page is offset=1; offset=50 is page index 50 (records 2501-2550).
+ */
+offset?: OffsetParameter;
+};
+
+export type TemplateGetTransactionalEmailSettings200 = {
+  metadata?: CollectionMetadata;
+  items?: TransactionalEmailSetting[];
+};
+
+/**
+ * @nullable
+ */
+export type TemplateUpdateTransactionalEmailSettingsBody = TransactionalEmailSettingUpdateRequest | null;
+
+export type TemplateUpdateTransactionalEmailSettings200 = {
+  metadata?: CollectionMetadata;
+  items?: TransactionalEmailSetting[];
 };
 
 export type TemplateGetTemplateEmailsParams = {

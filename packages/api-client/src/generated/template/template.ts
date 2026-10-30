@@ -8,7 +8,11 @@ import type {
   TemplateGetAllTemplatesParams,
   TemplateGetTemplateEmails200,
   TemplateGetTemplateEmailsParams,
+  TemplateGetTransactionalEmailSettings200,
+  TemplateGetTransactionalEmailSettingsParams,
   TemplateSendTemplateEmailBody,
+  TemplateUpdateTransactionalEmailSettings200,
+  TemplateUpdateTransactionalEmailSettingsBody,
   UpdateTemplateRequest
 } from '.././models';
 
@@ -126,6 +130,104 @@ export const templateGetAllTemplateEmails = async (params?: TemplateGetAllTempla
     method: 'GET'
     
     
+  }
+);}
+
+
+/**
+ * Each setting names the email templates it covers. A setting that is off stops the
+automatic email only; an email sent by hand, such as the send invoice button, is
+still sent.
+ * @summary The on/off settings for the transactional emails that Outseta sends to your customers.
+ */
+export type templateGetTransactionalEmailSettingsResponse200 = {
+  data: TemplateGetTransactionalEmailSettings200
+  status: 200
+}
+
+export type templateGetTransactionalEmailSettingsResponse401 = {
+  data: void
+  status: 401
+}
+    
+export type templateGetTransactionalEmailSettingsResponseSuccess = (templateGetTransactionalEmailSettingsResponse200) & {
+  headers: Headers;
+};
+export type templateGetTransactionalEmailSettingsResponseError = (templateGetTransactionalEmailSettingsResponse401) & {
+  headers: Headers;
+};
+
+export type templateGetTransactionalEmailSettingsResponse = (templateGetTransactionalEmailSettingsResponseSuccess | templateGetTransactionalEmailSettingsResponseError)
+
+export const getTemplateGetTransactionalEmailSettingsUrl = (params?: TemplateGetTransactionalEmailSettingsParams,) => {
+  const normalizedParams = new URLSearchParams();
+
+  Object.entries(params || {}).forEach(([key, value]) => {
+    
+    if (value !== undefined) {
+      normalizedParams.append(key, value === null ? 'null' : value.toString())
+    }
+  });
+
+  const stringifiedParams = normalizedParams.toString();
+
+  return stringifiedParams.length > 0 ? `/api/v1/templates/transactional-email-settings?${stringifiedParams}` : `/api/v1/templates/transactional-email-settings`
+}
+
+export const templateGetTransactionalEmailSettings = async (params?: TemplateGetTransactionalEmailSettingsParams, options?: RequestInit): Promise<templateGetTransactionalEmailSettingsResponse> => {
+  
+  return customFetch<templateGetTransactionalEmailSettingsResponse>(getTemplateGetTransactionalEmailSettingsUrl(params),
+  {      
+    ...options,
+    method: 'GET'
+    
+    
+  }
+);}
+
+
+/**
+ * Send an object with a Settings list. Each item has Key and IsEnabled. A setting that
+is not in the list keeps its state. Each change is recorded in the activity log.
+Returns all settings.
+ * @summary Turns transactional emails on or off.
+ */
+export type templateUpdateTransactionalEmailSettingsResponse200 = {
+  data: TemplateUpdateTransactionalEmailSettings200
+  status: 200
+}
+
+export type templateUpdateTransactionalEmailSettingsResponse401 = {
+  data: void
+  status: 401
+}
+    
+export type templateUpdateTransactionalEmailSettingsResponseSuccess = (templateUpdateTransactionalEmailSettingsResponse200) & {
+  headers: Headers;
+};
+export type templateUpdateTransactionalEmailSettingsResponseError = (templateUpdateTransactionalEmailSettingsResponse401) & {
+  headers: Headers;
+};
+
+export type templateUpdateTransactionalEmailSettingsResponse = (templateUpdateTransactionalEmailSettingsResponseSuccess | templateUpdateTransactionalEmailSettingsResponseError)
+
+export const getTemplateUpdateTransactionalEmailSettingsUrl = () => {
+
+
+  
+
+  return `/api/v1/templates/transactional-email-settings`
+}
+
+export const templateUpdateTransactionalEmailSettings = async (templateUpdateTransactionalEmailSettingsBody: TemplateUpdateTransactionalEmailSettingsBody, options?: RequestInit): Promise<templateUpdateTransactionalEmailSettingsResponse> => {
+  
+  return customFetch<templateUpdateTransactionalEmailSettingsResponse>(getTemplateUpdateTransactionalEmailSettingsUrl(),
+  {      
+    ...options,
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json', ...options?.headers },
+    body: JSON.stringify(
+      templateUpdateTransactionalEmailSettingsBody,)
   }
 );}
 

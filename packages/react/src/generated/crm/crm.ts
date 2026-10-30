@@ -1583,7 +1583,8 @@ export const useAccountExtendRenewal = <TError = void,
     /**
  * Pass personUid as a query parameter to send to a specific person, or personUid=* to send
 to all people on the account. If no personUid is provided, the email is sent to the
-primary contact.
+primary contact. The email is sent even when the Registration confirmation email is
+turned off under Email > Transactional emails.
  * @summary Send a confirmation email to people on an account.
  */
 export const accountSendConfirmationEmail = (

@@ -22,7 +22,11 @@ import type {
   TemplateGetAllTemplatesParams,
   TemplateGetTemplateEmails200,
   TemplateGetTemplateEmailsParams,
+  TemplateGetTransactionalEmailSettings200,
+  TemplateGetTransactionalEmailSettingsParams,
   TemplateSendTemplateEmailBody,
+  TemplateUpdateTransactionalEmailSettings200,
+  TemplateUpdateTransactionalEmailSettingsBody,
   UpdateTemplateRequest
 } from '../outsetaAPI.schemas';
 
@@ -190,6 +194,144 @@ export function useTemplateGetAllTemplateEmails<TData = Awaited<ReturnType<typeo
 
 
 /**
+ * Each setting names the email templates it covers. A setting that is off stops the
+automatic email only; an email sent by hand, such as the send invoice button, is
+still sent.
+ * @summary The on/off settings for the transactional emails that Outseta sends to your customers.
+ */
+export const templateGetTransactionalEmailSettings = (
+    params?: TemplateGetTransactionalEmailSettingsParams,
+ options?: SecondParameter<typeof customFetch>,signal?: AbortSignal
+) => {
+      
+      
+      return customFetch<TemplateGetTransactionalEmailSettings200>(
+      {url: `/api/v1/templates/transactional-email-settings`, method: 'GET',
+        params, signal
+    },
+      options);
+    }
+  
+
+
+
+export const getTemplateGetTransactionalEmailSettingsQueryKey = (params?: TemplateGetTransactionalEmailSettingsParams,) => {
+    return [
+    `/api/v1/templates/transactional-email-settings`, ...(params ? [params]: [])
+    ] as const;
+    }
+
+    
+export const getTemplateGetTransactionalEmailSettingsQueryOptions = <TData = Awaited<ReturnType<typeof templateGetTransactionalEmailSettings>>, TError = void>(params?: TemplateGetTransactionalEmailSettingsParams, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof templateGetTransactionalEmailSettings>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getTemplateGetTransactionalEmailSettingsQueryKey(params);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof templateGetTransactionalEmailSettings>>> = ({ signal }) => templateGetTransactionalEmailSettings(params, requestOptions, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof templateGetTransactionalEmailSettings>>, TError, TData> & { queryKey: QueryKey }
+}
+
+export type TemplateGetTransactionalEmailSettingsQueryResult = NonNullable<Awaited<ReturnType<typeof templateGetTransactionalEmailSettings>>>
+export type TemplateGetTransactionalEmailSettingsQueryError = void
+
+
+/**
+ * @summary The on/off settings for the transactional emails that Outseta sends to your customers.
+ */
+
+export function useTemplateGetTransactionalEmailSettings<TData = Awaited<ReturnType<typeof templateGetTransactionalEmailSettings>>, TError = void>(
+ params?: TemplateGetTransactionalEmailSettingsParams, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof templateGetTransactionalEmailSettings>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
+  
+ ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } {
+
+  const queryOptions = getTemplateGetTransactionalEmailSettingsQueryOptions(params,options)
+
+  const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: QueryKey };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+
+/**
+ * Send an object with a Settings list. Each item has Key and IsEnabled. A setting that
+is not in the list keeps its state. Each change is recorded in the activity log.
+Returns all settings.
+ * @summary Turns transactional emails on or off.
+ */
+export const templateUpdateTransactionalEmailSettings = (
+    templateUpdateTransactionalEmailSettingsBody: TemplateUpdateTransactionalEmailSettingsBody,
+ options?: SecondParameter<typeof customFetch>,) => {
+      
+      
+      return customFetch<TemplateUpdateTransactionalEmailSettings200>(
+      {url: `/api/v1/templates/transactional-email-settings`, method: 'PUT',
+      headers: {'Content-Type': 'application/json', },
+      data: templateUpdateTransactionalEmailSettingsBody
+    },
+      options);
+    }
+  
+
+
+export const getTemplateUpdateTransactionalEmailSettingsMutationOptions = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof templateUpdateTransactionalEmailSettings>>, TError,{data: TemplateUpdateTransactionalEmailSettingsBody}, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof templateUpdateTransactionalEmailSettings>>, TError,{data: TemplateUpdateTransactionalEmailSettingsBody}, TContext> => {
+
+const mutationKey = ['templateUpdateTransactionalEmailSettings'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof templateUpdateTransactionalEmailSettings>>, {data: TemplateUpdateTransactionalEmailSettingsBody}> = (props) => {
+          const {data} = props ?? {};
+
+          return  templateUpdateTransactionalEmailSettings(data,requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type TemplateUpdateTransactionalEmailSettingsMutationResult = NonNullable<Awaited<ReturnType<typeof templateUpdateTransactionalEmailSettings>>>
+    export type TemplateUpdateTransactionalEmailSettingsMutationBody = TemplateUpdateTransactionalEmailSettingsBody
+    export type TemplateUpdateTransactionalEmailSettingsMutationError = void
+
+    /**
+ * @summary Turns transactional emails on or off.
+ */
+export const useTemplateUpdateTransactionalEmailSettings = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof templateUpdateTransactionalEmailSettings>>, TError,{data: TemplateUpdateTransactionalEmailSettingsBody}, TContext>, request?: SecondParameter<typeof customFetch>}
+ ): UseMutationResult<
+        Awaited<ReturnType<typeof templateUpdateTransactionalEmailSettings>>,
+        TError,
+        {data: TemplateUpdateTransactionalEmailSettingsBody},
+        TContext
+      > => {
+
+      const mutationOptions = getTemplateUpdateTransactionalEmailSettingsMutationOptions(options);
+
+      return useMutation(mutationOptions);
+    }
+    /**
  * Add personUid to the query string to see what one person was sent from this
 template.
  * @summary The one-off emails that were sent from this email template.
