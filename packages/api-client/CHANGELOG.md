@@ -1,5 +1,11 @@
 # @outseta/api-client
 
+## 0.4.4
+
+### Patch Changes
+
+- 410bbc2: Update API spec.
+
 ## 0.4.3
 
 ### Patch Changes
