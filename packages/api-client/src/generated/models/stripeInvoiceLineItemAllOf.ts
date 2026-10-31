@@ -12,6 +12,8 @@ export type StripeInvoiceLineItemAllOf = {
    * @nullable
    */
   Currency?: string | null;
+  /** @nullable */
+  Description?: string | null;
   PeriodStart?: string;
   PeriodEnd?: string;
   /** @nullable */
@@ -22,6 +24,11 @@ export type StripeInvoiceLineItemAllOf = {
   StripePrice?: StripeInvoiceLineItemAllOfStripePrice;
   /** @nullable */
   EndDate?: string | null;
+  /**
+   * @maxLength 20
+   * @nullable
+   */
+  LineType?: string | null;
   /** @nullable */
   CurrencyAmount?: number | null;
   /** @nullable */
