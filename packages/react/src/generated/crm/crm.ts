@@ -2191,7 +2191,7 @@ export const usePersonRegenerateTwoFactorRecoveryCodes = <TError = void,
     }
     /**
  * Sends an email to the user with a link to a page where they can reset their password.
-The reset password token in the link is valid for 30 minutes.
+The reset password token in the link is valid for 24 hours.
  * @summary Initiate the forgot password flow.
  */
 export const personForgotPassword = (

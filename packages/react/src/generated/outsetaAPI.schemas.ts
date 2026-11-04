@@ -5317,6 +5317,9 @@ export type ActivityNotificationAllOf = {
    * @nullable
    */
   CallbackErrorDescription?: string | null;
+  /** @nullable */
+  CallbackFailingSinceDateTime?: string | null;
+  IsCallbackDisabled?: boolean;
 };
 
 export type ActivityNotification = AbstractQcountBean & ActivityNotificationAllOf;
