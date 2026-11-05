@@ -14,6 +14,7 @@ import type {
 } from '../../query';
 
 import type {
+  AddDefinitionRequest,
   Definition,
   DefinitionGetAllDefinitions200,
   DefinitionGetAllDefinitionsParams,
@@ -21,7 +22,9 @@ import type {
   TagAddTagBody,
   TagGetAllTags200,
   TagGetAllTagsParams,
-  TagUpdateTagBody
+  TagUpdateTagBody,
+  UpdateDefinitionRequest,
+  ValidationError
 } from '../outsetaAPI.schemas';
 
 import { customFetch } from '../../mutator';
@@ -493,18 +496,106 @@ export function useDefinitionGetAllDefinitions<TData = Awaited<ReturnType<typeof
 
 
 /**
- * The entityType segment of the URL must match the type the definition belongs to
-(e.g. Account, Person, Deal).
+ * Adds the definition of a custom property: its label, its system name and the control
+used to fill it in. Only Account, Person and Deal have custom properties; any other
+entityType returns 404. Once added, the property's values are read and written under
+its SystemName on the accounts, people or deals themselves.
+            
+- **Label** (required): the name shown in Outseta. It must be unique among the entity
+  type's custom properties and must not be the label of a standard property (for
+  example Email on a person).
+- **SystemName**: the property's name in the API, webhooks and forms. It must start
+  with a letter, contain only letters, numbers and _, be unique for the entity type and
+  not be the name of a standard property. When left out it is derived from Label the way
+  the Outseta app does: Label "Favorite color" gives FavoriteColor.
+- **ControlType**: one of Text, TextArea, Number, Date, Checkbox, Select, RadioList,
+  CheckboxList. Defaults to Text. Select is a dropdown with one choice, RadioList shows
+  the same choice as radio buttons, CheckboxList allows several choices, and Checkbox is
+  a single yes/no whose value is True or False.
+- **ControlParams**: the control's settings as a JSON object serialized into a string,
+  not a nested object. Select, RadioList and CheckboxList need at least one option:
+  "{\"Options\":[\"Small\",\"Medium\",\"Large\"]}". Number may set a Step
+  ("{\"Step\":0.01}"); Text may set HintText and a Pattern (a regular expression the value
+  must match). Other controls need no ControlParams.
+            
+EntityType comes from the URL; a Uid or EntityType in the request body is ignored.
+ * @summary Add a custom property to accounts, people or deals.
+ */
+export const definitionAddDefinition = (
+    entityType: string | null,
+    addDefinitionRequest: AddDefinitionRequest,
+ options?: SecondParameter<typeof customFetch>,signal?: AbortSignal
+) => {
+      
+      
+      return customFetch<Definition>(
+      {url: `/api/v1/attributes/${entityType}/definitions`, method: 'POST',
+      headers: {'Content-Type': 'application/json', },
+      data: addDefinitionRequest, signal
+    },
+      options);
+    }
+  
+
+
+export const getDefinitionAddDefinitionMutationOptions = <TError = ValidationError | void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof definitionAddDefinition>>, TError,{entityType: string | null;data: AddDefinitionRequest}, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof definitionAddDefinition>>, TError,{entityType: string | null;data: AddDefinitionRequest}, TContext> => {
+
+const mutationKey = ['definitionAddDefinition'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof definitionAddDefinition>>, {entityType: string | null;data: AddDefinitionRequest}> = (props) => {
+          const {entityType,data} = props ?? {};
+
+          return  definitionAddDefinition(entityType,data,requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type DefinitionAddDefinitionMutationResult = NonNullable<Awaited<ReturnType<typeof definitionAddDefinition>>>
+    export type DefinitionAddDefinitionMutationBody = AddDefinitionRequest
+    export type DefinitionAddDefinitionMutationError = ValidationError | void
+
+    /**
+ * @summary Add a custom property to accounts, people or deals.
+ */
+export const useDefinitionAddDefinition = <TError = ValidationError | void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof definitionAddDefinition>>, TError,{entityType: string | null;data: AddDefinitionRequest}, TContext>, request?: SecondParameter<typeof customFetch>}
+ ): UseMutationResult<
+        Awaited<ReturnType<typeof definitionAddDefinition>>,
+        TError,
+        {entityType: string | null;data: AddDefinitionRequest},
+        TContext
+      > => {
+
+      const mutationOptions = getDefinitionAddDefinitionMutationOptions(options);
+
+      return useMutation(mutationOptions);
+    }
+    /**
+ * Use the entity type the definition belongs to (Account, Person or Deal) in the URL.
  * @summary Retrieve a custom attribute definition.
  */
 export const definitionGetDefinition = (
+    entityType: string | null,
     definitionUid: string | null,
  options?: SecondParameter<typeof customFetch>,signal?: AbortSignal
 ) => {
       
       
       return customFetch<Definition>(
-      {url: `/api/v1/attributes/definitions/${definitionUid}`, method: 'GET', signal
+      {url: `/api/v1/attributes/${entityType}/definitions/${definitionUid}`, method: 'GET', signal
     },
       options);
     }
@@ -512,29 +603,31 @@ export const definitionGetDefinition = (
 
 
 
-export const getDefinitionGetDefinitionQueryKey = (definitionUid?: string | null,) => {
+export const getDefinitionGetDefinitionQueryKey = (entityType?: string | null,
+    definitionUid?: string | null,) => {
     return [
-    `/api/v1/attributes/definitions/${definitionUid}`
+    `/api/v1/attributes/${entityType}/definitions/${definitionUid}`
     ] as const;
     }
 
     
-export const getDefinitionGetDefinitionQueryOptions = <TData = Awaited<ReturnType<typeof definitionGetDefinition>>, TError = void>(definitionUid: string | null, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof definitionGetDefinition>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
+export const getDefinitionGetDefinitionQueryOptions = <TData = Awaited<ReturnType<typeof definitionGetDefinition>>, TError = void>(entityType: string | null,
+    definitionUid: string | null, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof definitionGetDefinition>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
 ) => {
 
 const {query: queryOptions, request: requestOptions} = options ?? {};
 
-  const queryKey =  queryOptions?.queryKey ?? getDefinitionGetDefinitionQueryKey(definitionUid);
+  const queryKey =  queryOptions?.queryKey ?? getDefinitionGetDefinitionQueryKey(entityType,definitionUid);
 
   
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof definitionGetDefinition>>> = ({ signal }) => definitionGetDefinition(definitionUid, requestOptions, signal);
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof definitionGetDefinition>>> = ({ signal }) => definitionGetDefinition(entityType,definitionUid, requestOptions, signal);
 
       
 
       
 
-   return  { queryKey, queryFn, enabled: !!(definitionUid), ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof definitionGetDefinition>>, TError, TData> & { queryKey: QueryKey }
+   return  { queryKey, queryFn, enabled: !!(entityType && definitionUid), ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof definitionGetDefinition>>, TError, TData> & { queryKey: QueryKey }
 }
 
 export type DefinitionGetDefinitionQueryResult = NonNullable<Awaited<ReturnType<typeof definitionGetDefinition>>>
@@ -546,11 +639,12 @@ export type DefinitionGetDefinitionQueryError = void
  */
 
 export function useDefinitionGetDefinition<TData = Awaited<ReturnType<typeof definitionGetDefinition>>, TError = void>(
- definitionUid: string | null, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof definitionGetDefinition>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
+ entityType: string | null,
+    definitionUid: string | null, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof definitionGetDefinition>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
   
  ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } {
 
-  const queryOptions = getDefinitionGetDefinitionQueryOptions(definitionUid,options)
+  const queryOptions = getDefinitionGetDefinitionQueryOptions(entityType,definitionUid,options)
 
   const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: QueryKey };
 
@@ -562,3 +656,83 @@ export function useDefinitionGetDefinition<TData = Awaited<ReturnType<typeof def
 
 
 
+/**
+ * Send only the fields to change: fields left out keep their current values. The rules
+for Label, SystemName, ControlType and ControlParams are those of adding a definition.
+The Uid and EntityType in the request body are ignored; the definition must belong to
+the entityType in the URL, otherwise 404.
+            
+ControlParams is replaced as a whole. To add an option to a Select, RadioList or
+CheckboxList, read the definition, add the option to its Options and send the full
+list: "{\"Options\":[\"Small\",\"Medium\",\"Large\",\"X-Large\"]}". Values already
+stored on accounts, people or deals are not changed when an option is renamed or
+removed.
+            
+Changing SystemName keeps the stored values, which are returned under the new name
+from then on. Anything that uses the old name (API clients, sign-up and profile forms,
+segments, Zapier or other integrations) has to be updated to the new name.
+ * @summary Update a custom property of accounts, people or deals.
+ */
+export const definitionUpdateDefinition = (
+    entityType: string | null,
+    definitionUid: string | null,
+    updateDefinitionRequest: UpdateDefinitionRequest,
+ options?: SecondParameter<typeof customFetch>,) => {
+      
+      
+      return customFetch<Definition>(
+      {url: `/api/v1/attributes/${entityType}/definitions/${definitionUid}`, method: 'PUT',
+      headers: {'Content-Type': 'application/json', },
+      data: updateDefinitionRequest
+    },
+      options);
+    }
+  
+
+
+export const getDefinitionUpdateDefinitionMutationOptions = <TError = ValidationError | void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof definitionUpdateDefinition>>, TError,{entityType: string | null;definitionUid: string | null;data: UpdateDefinitionRequest}, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof definitionUpdateDefinition>>, TError,{entityType: string | null;definitionUid: string | null;data: UpdateDefinitionRequest}, TContext> => {
+
+const mutationKey = ['definitionUpdateDefinition'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof definitionUpdateDefinition>>, {entityType: string | null;definitionUid: string | null;data: UpdateDefinitionRequest}> = (props) => {
+          const {entityType,definitionUid,data} = props ?? {};
+
+          return  definitionUpdateDefinition(entityType,definitionUid,data,requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type DefinitionUpdateDefinitionMutationResult = NonNullable<Awaited<ReturnType<typeof definitionUpdateDefinition>>>
+    export type DefinitionUpdateDefinitionMutationBody = UpdateDefinitionRequest
+    export type DefinitionUpdateDefinitionMutationError = ValidationError | void
+
+    /**
+ * @summary Update a custom property of accounts, people or deals.
+ */
+export const useDefinitionUpdateDefinition = <TError = ValidationError | void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof definitionUpdateDefinition>>, TError,{entityType: string | null;definitionUid: string | null;data: UpdateDefinitionRequest}, TContext>, request?: SecondParameter<typeof customFetch>}
+ ): UseMutationResult<
+        Awaited<ReturnType<typeof definitionUpdateDefinition>>,
+        TError,
+        {entityType: string | null;definitionUid: string | null;data: UpdateDefinitionRequest},
+        TContext
+      > => {
+
+      const mutationOptions = getDefinitionUpdateDefinitionMutationOptions(options);
+
+      return useMutation(mutationOptions);
+    }
+    

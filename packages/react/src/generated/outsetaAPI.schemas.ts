@@ -144,6 +144,98 @@ export type DefinitionAllOf = {
 
 export type Definition = AbstractQcountBean & DefinitionAllOf;
 
+export interface ValidationError {
+  /** @nullable */
+  ErrorMessage?: string | null;
+  /** @nullable */
+  EntityValidationErrors?: EntityValidationError[] | null;
+}
+
+/**
+ * @nullable
+ */
+export type EntityValidationErrorEntity = unknown | null;
+
+export interface EntityValidationError {
+  /** @nullable */
+  Entity?: EntityValidationErrorEntity;
+  /** @nullable */
+  TypeName?: string | null;
+  /** @nullable */
+  ValidationErrors?: FieldValidationError[] | null;
+}
+
+export interface FieldValidationError {
+  /** @nullable */
+  ErrorCode?: string | null;
+  /** @nullable */
+  ErrorMessage?: string | null;
+  /** @nullable */
+  PropertyName?: string | null;
+}
+
+/**
+ * A custom property to add to accounts, people or deals. Only Label is required.
+ */
+export interface AddDefinitionRequest {
+  /**
+   * The name of the property shown in Outseta, for example "T-shirt size". Unique among the
+entity type's custom properties, and not the label of a standard property.
+   * @minLength 1
+   */
+  Label: string;
+  /**
+   * The name of the property in the API, webhooks and forms, for example TShirtSize. Starts
+with a letter and holds only letters, numbers and _. Unique for the entity type, and not
+the name of a standard property. Derived from Label when left out.
+   * @nullable
+   * @pattern ^[A-Za-z][A-Za-z0-9_]*$
+   */
+  SystemName?: string | null;
+  /**
+   * The control used to fill in the property: Text (the default), TextArea, Number, Date,
+Checkbox (True or False), Select (a dropdown with one choice), RadioList (one choice) or
+CheckboxList (several choices).
+   * @nullable
+   */
+  ControlType?: string | null;
+  /**
+   * The control's settings: a JSON object serialized into a string, not a nested object.
+Select, RadioList and CheckboxList need their options, for example
+"{\"Options\":[\"Small\",\"Medium\",\"Large\"]}". Number may set a Step, for example
+"{\"Step\":0.01}"; Text may set HintText and Pattern (a regular expression).
+   * @nullable
+   */
+  ControlParams?: string | null;
+}
+
+/**
+ * The fields of a custom property that an update may change. Every field is optional:
+a field left out keeps its current value.
+ */
+export interface UpdateDefinitionRequest {
+  /** The name of the property shown in Outseta. Unique among the entity type's custom
+properties, and not the label of a standard property. Cannot be null. */
+  Label?: string;
+  /**
+   * The name of the property in the API, webhooks and forms. Starts with a letter and holds
+only letters, numbers and _. Changing it keeps the stored values under the new name;
+anything that uses the old name has to be updated. Cannot be null.
+   * @pattern ^[A-Za-z][A-Za-z0-9_]*$
+   */
+  SystemName?: string;
+  /** The control used to fill in the property: Text, TextArea, Number, Date, Checkbox, Select,
+RadioList or CheckboxList. Cannot be null. */
+  ControlType?: string;
+  /**
+   * The control's settings: a JSON object serialized into a string, replaced as a whole.
+To add an option, send the full list, for example
+"{\"Options\":[\"Small\",\"Medium\",\"Large\",\"X-Large\"]}".
+   * @nullable
+   */
+  ControlParams?: string | null;
+}
+
 export interface EmailSubscriptionsPayload {
   /** @nullable */
   ActiveSubscriptions?: EmailListPerson[] | null;

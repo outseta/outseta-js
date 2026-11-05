@@ -1,5 +1,6 @@
 // @ts-nocheck
 import type {
+  AddDefinitionRequest,
   Definition,
   DefinitionGetAllDefinitions200,
   DefinitionGetAllDefinitionsParams,
@@ -7,7 +8,9 @@ import type {
   TagAddTagBody,
   TagGetAllTags200,
   TagGetAllTagsParams,
-  TagUpdateTagBody
+  TagUpdateTagBody,
+  UpdateDefinitionRequest,
+  ValidationError
 } from '.././models';
 
 import { customFetch } from '../../client';
@@ -368,8 +371,84 @@ export const definitionGetAllDefinitions = async (entityType: string | null,
 
 
 /**
- * The entityType segment of the URL must match the type the definition belongs to
-(e.g. Account, Person, Deal).
+ * Adds the definition of a custom property: its label, its system name and the control
+used to fill it in. Only Account, Person and Deal have custom properties; any other
+entityType returns 404. Once added, the property's values are read and written under
+its SystemName on the accounts, people or deals themselves.
+            
+- **Label** (required): the name shown in Outseta. It must be unique among the entity
+  type's custom properties and must not be the label of a standard property (for
+  example Email on a person).
+- **SystemName**: the property's name in the API, webhooks and forms. It must start
+  with a letter, contain only letters, numbers and _, be unique for the entity type and
+  not be the name of a standard property. When left out it is derived from Label the way
+  the Outseta app does: Label "Favorite color" gives FavoriteColor.
+- **ControlType**: one of Text, TextArea, Number, Date, Checkbox, Select, RadioList,
+  CheckboxList. Defaults to Text. Select is a dropdown with one choice, RadioList shows
+  the same choice as radio buttons, CheckboxList allows several choices, and Checkbox is
+  a single yes/no whose value is True or False.
+- **ControlParams**: the control's settings as a JSON object serialized into a string,
+  not a nested object. Select, RadioList and CheckboxList need at least one option:
+  "{\"Options\":[\"Small\",\"Medium\",\"Large\"]}". Number may set a Step
+  ("{\"Step\":0.01}"); Text may set HintText and a Pattern (a regular expression the value
+  must match). Other controls need no ControlParams.
+            
+EntityType comes from the URL; a Uid or EntityType in the request body is ignored.
+ * @summary Add a custom property to accounts, people or deals.
+ */
+export type definitionAddDefinitionResponse200 = {
+  data: Definition
+  status: 200
+}
+
+export type definitionAddDefinitionResponse400 = {
+  data: ValidationError
+  status: 400
+}
+
+export type definitionAddDefinitionResponse401 = {
+  data: void
+  status: 401
+}
+
+export type definitionAddDefinitionResponse404 = {
+  data: void
+  status: 404
+}
+    
+export type definitionAddDefinitionResponseSuccess = (definitionAddDefinitionResponse200) & {
+  headers: Headers;
+};
+export type definitionAddDefinitionResponseError = (definitionAddDefinitionResponse400 | definitionAddDefinitionResponse401 | definitionAddDefinitionResponse404) & {
+  headers: Headers;
+};
+
+export type definitionAddDefinitionResponse = (definitionAddDefinitionResponseSuccess | definitionAddDefinitionResponseError)
+
+export const getDefinitionAddDefinitionUrl = (entityType: string | null,) => {
+
+
+  
+
+  return `/api/v1/attributes/${entityType}/definitions`
+}
+
+export const definitionAddDefinition = async (entityType: string | null,
+    addDefinitionRequest: AddDefinitionRequest, options?: RequestInit): Promise<definitionAddDefinitionResponse> => {
+  
+  return customFetch<definitionAddDefinitionResponse>(getDefinitionAddDefinitionUrl(entityType),
+  {      
+    ...options,
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', ...options?.headers },
+    body: JSON.stringify(
+      addDefinitionRequest,)
+  }
+);}
+
+
+/**
+ * Use the entity type the definition belongs to (Account, Person or Deal) in the URL.
  * @summary Retrieve a custom attribute definition.
  */
 export type definitionGetDefinitionResponse200 = {
@@ -396,22 +475,94 @@ export type definitionGetDefinitionResponseError = (definitionGetDefinitionRespo
 
 export type definitionGetDefinitionResponse = (definitionGetDefinitionResponseSuccess | definitionGetDefinitionResponseError)
 
-export const getDefinitionGetDefinitionUrl = (definitionUid: string | null,) => {
+export const getDefinitionGetDefinitionUrl = (entityType: string | null,
+    definitionUid: string | null,) => {
 
 
   
 
-  return `/api/v1/attributes/definitions/${definitionUid}`
+  return `/api/v1/attributes/${entityType}/definitions/${definitionUid}`
 }
 
-export const definitionGetDefinition = async (definitionUid: string | null, options?: RequestInit): Promise<definitionGetDefinitionResponse> => {
+export const definitionGetDefinition = async (entityType: string | null,
+    definitionUid: string | null, options?: RequestInit): Promise<definitionGetDefinitionResponse> => {
   
-  return customFetch<definitionGetDefinitionResponse>(getDefinitionGetDefinitionUrl(definitionUid),
+  return customFetch<definitionGetDefinitionResponse>(getDefinitionGetDefinitionUrl(entityType,definitionUid),
   {      
     ...options,
     method: 'GET'
     
     
+  }
+);}
+
+
+/**
+ * Send only the fields to change: fields left out keep their current values. The rules
+for Label, SystemName, ControlType and ControlParams are those of adding a definition.
+The Uid and EntityType in the request body are ignored; the definition must belong to
+the entityType in the URL, otherwise 404.
+            
+ControlParams is replaced as a whole. To add an option to a Select, RadioList or
+CheckboxList, read the definition, add the option to its Options and send the full
+list: "{\"Options\":[\"Small\",\"Medium\",\"Large\",\"X-Large\"]}". Values already
+stored on accounts, people or deals are not changed when an option is renamed or
+removed.
+            
+Changing SystemName keeps the stored values, which are returned under the new name
+from then on. Anything that uses the old name (API clients, sign-up and profile forms,
+segments, Zapier or other integrations) has to be updated to the new name.
+ * @summary Update a custom property of accounts, people or deals.
+ */
+export type definitionUpdateDefinitionResponse200 = {
+  data: Definition
+  status: 200
+}
+
+export type definitionUpdateDefinitionResponse400 = {
+  data: ValidationError
+  status: 400
+}
+
+export type definitionUpdateDefinitionResponse401 = {
+  data: void
+  status: 401
+}
+
+export type definitionUpdateDefinitionResponse404 = {
+  data: void
+  status: 404
+}
+    
+export type definitionUpdateDefinitionResponseSuccess = (definitionUpdateDefinitionResponse200) & {
+  headers: Headers;
+};
+export type definitionUpdateDefinitionResponseError = (definitionUpdateDefinitionResponse400 | definitionUpdateDefinitionResponse401 | definitionUpdateDefinitionResponse404) & {
+  headers: Headers;
+};
+
+export type definitionUpdateDefinitionResponse = (definitionUpdateDefinitionResponseSuccess | definitionUpdateDefinitionResponseError)
+
+export const getDefinitionUpdateDefinitionUrl = (entityType: string | null,
+    definitionUid: string | null,) => {
+
+
+  
+
+  return `/api/v1/attributes/${entityType}/definitions/${definitionUid}`
+}
+
+export const definitionUpdateDefinition = async (entityType: string | null,
+    definitionUid: string | null,
+    updateDefinitionRequest: UpdateDefinitionRequest, options?: RequestInit): Promise<definitionUpdateDefinitionResponse> => {
+  
+  return customFetch<definitionUpdateDefinitionResponse>(getDefinitionUpdateDefinitionUrl(entityType,definitionUid),
+  {      
+    ...options,
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json', ...options?.headers },
+    body: JSON.stringify(
+      updateDefinitionRequest,)
   }
 );}
 
