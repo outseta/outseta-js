@@ -5354,6 +5354,27 @@ export interface SetupIntent {
 }
 
 /**
+ * Request body for POST /api/v1/billing/paymentinformation/complete: the client
+secret of the Stripe intent the user confirmed.
+ */
+export interface PaymentInformationCompleteRequest {
+  /** @nullable */
+  ClientSecret?: string | null;
+}
+
+/**
+ * Request body for POST /api/v1/billing/paymentinformation/state: the account
+whose payment information is being updated, and the client secret of the Stripe
+intent the user is about to confirm.
+ */
+export interface PaymentInformationStateRequest {
+  /** @nullable */
+  AccountUid?: string | null;
+  /** @nullable */
+  ClientSecret?: string | null;
+}
+
+/**
  * Request body for POST /api/v1/billing/subscriptions/changesubscription/complete:
 the client secret of the Stripe intent the user confirmed.
  */
