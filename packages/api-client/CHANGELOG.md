@@ -1,5 +1,11 @@
 # @outseta/api-client
 
+## 0.4.9
+
+### Patch Changes
+
+- b4010aa: Update API spec.
+
 ## 0.4.8
 
 ### Patch Changes

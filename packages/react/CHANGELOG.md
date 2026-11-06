@@ -1,5 +1,13 @@
 # @outseta/react
 
+## 0.5.9
+
+### Patch Changes
+
+- b4010aa: Update API spec.
+- Updated dependencies [b4010aa]
+  - @outseta/api-client@0.4.9
+
 ## 0.5.8
 
 ### Patch Changes
