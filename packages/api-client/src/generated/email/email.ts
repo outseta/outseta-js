@@ -589,7 +589,7 @@ export const dripCampaignSendTestCampaignEmail = async (dripCampaignSendTestCamp
 
 
 /**
- * Archived broadcasts are excluded.
+ * Archived broadcasts are excluded unless the Status filter asks for them (Status=10).
  * @summary Retrieve all broadcasts.
  */
 export type campaignGetAllBroadcastEmailsResponse200 = {
@@ -996,6 +996,60 @@ export const getCampaignArchiveBroadcastCampaignUrl = (broadcastCampaignUid: str
 export const campaignArchiveBroadcastCampaign = async (broadcastCampaignUid: string | null, options?: RequestInit): Promise<campaignArchiveBroadcastCampaignResponse> => {
   
   return customFetch<campaignArchiveBroadcastCampaignResponse>(getCampaignArchiveBroadcastCampaignUrl(broadcastCampaignUid),
+  {      
+    ...options,
+    method: 'POST'
+    
+    
+  }
+);}
+
+
+/**
+ * The broadcast's status becomes Sent if it sent any emails, and Draft otherwise.
+Unarchiving never resumes sending.
+ * @summary Unarchive a broadcast.
+ */
+export type campaignUnarchiveBroadcastCampaignResponse200 = {
+  data: BroadcastCampaign
+  status: 200
+}
+
+export type campaignUnarchiveBroadcastCampaignResponse400 = {
+  data: void
+  status: 400
+}
+
+export type campaignUnarchiveBroadcastCampaignResponse401 = {
+  data: void
+  status: 401
+}
+
+export type campaignUnarchiveBroadcastCampaignResponse404 = {
+  data: void
+  status: 404
+}
+    
+export type campaignUnarchiveBroadcastCampaignResponseSuccess = (campaignUnarchiveBroadcastCampaignResponse200) & {
+  headers: Headers;
+};
+export type campaignUnarchiveBroadcastCampaignResponseError = (campaignUnarchiveBroadcastCampaignResponse400 | campaignUnarchiveBroadcastCampaignResponse401 | campaignUnarchiveBroadcastCampaignResponse404) & {
+  headers: Headers;
+};
+
+export type campaignUnarchiveBroadcastCampaignResponse = (campaignUnarchiveBroadcastCampaignResponseSuccess | campaignUnarchiveBroadcastCampaignResponseError)
+
+export const getCampaignUnarchiveBroadcastCampaignUrl = (broadcastCampaignUid: string | null,) => {
+
+
+  
+
+  return `/api/v1/email/campaigns/broadcasts/${broadcastCampaignUid}/unarchive`
+}
+
+export const campaignUnarchiveBroadcastCampaign = async (broadcastCampaignUid: string | null, options?: RequestInit): Promise<campaignUnarchiveBroadcastCampaignResponse> => {
+  
+  return customFetch<campaignUnarchiveBroadcastCampaignResponse>(getCampaignUnarchiveBroadcastCampaignUrl(broadcastCampaignUid),
   {      
     ...options,
     method: 'POST'

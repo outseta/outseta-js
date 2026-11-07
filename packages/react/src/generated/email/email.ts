@@ -754,7 +754,7 @@ export const useDripCampaignSendTestCampaignEmail = <TError = void,
       return useMutation(mutationOptions);
     }
     /**
- * Archived broadcasts are excluded.
+ * Archived broadcasts are excluded unless the Status filter asks for them (Status=10).
  * @summary Retrieve all broadcasts.
  */
 export const campaignGetAllBroadcastEmails = (
@@ -1265,6 +1265,70 @@ export const useCampaignArchiveBroadcastCampaign = <TError = void,
       > => {
 
       const mutationOptions = getCampaignArchiveBroadcastCampaignMutationOptions(options);
+
+      return useMutation(mutationOptions);
+    }
+    /**
+ * The broadcast's status becomes Sent if it sent any emails, and Draft otherwise.
+Unarchiving never resumes sending.
+ * @summary Unarchive a broadcast.
+ */
+export const campaignUnarchiveBroadcastCampaign = (
+    broadcastCampaignUid: string | null,
+ options?: SecondParameter<typeof customFetch>,signal?: AbortSignal
+) => {
+      
+      
+      return customFetch<BroadcastCampaign>(
+      {url: `/api/v1/email/campaigns/broadcasts/${broadcastCampaignUid}/unarchive`, method: 'POST', signal
+    },
+      options);
+    }
+  
+
+
+export const getCampaignUnarchiveBroadcastCampaignMutationOptions = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof campaignUnarchiveBroadcastCampaign>>, TError,{broadcastCampaignUid: string | null}, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof campaignUnarchiveBroadcastCampaign>>, TError,{broadcastCampaignUid: string | null}, TContext> => {
+
+const mutationKey = ['campaignUnarchiveBroadcastCampaign'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof campaignUnarchiveBroadcastCampaign>>, {broadcastCampaignUid: string | null}> = (props) => {
+          const {broadcastCampaignUid} = props ?? {};
+
+          return  campaignUnarchiveBroadcastCampaign(broadcastCampaignUid,requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type CampaignUnarchiveBroadcastCampaignMutationResult = NonNullable<Awaited<ReturnType<typeof campaignUnarchiveBroadcastCampaign>>>
+    
+    export type CampaignUnarchiveBroadcastCampaignMutationError = void
+
+    /**
+ * @summary Unarchive a broadcast.
+ */
+export const useCampaignUnarchiveBroadcastCampaign = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof campaignUnarchiveBroadcastCampaign>>, TError,{broadcastCampaignUid: string | null}, TContext>, request?: SecondParameter<typeof customFetch>}
+ ): UseMutationResult<
+        Awaited<ReturnType<typeof campaignUnarchiveBroadcastCampaign>>,
+        TError,
+        {broadcastCampaignUid: string | null},
+        TContext
+      > => {
+
+      const mutationOptions = getCampaignUnarchiveBroadcastCampaignMutationOptions(options);
 
       return useMutation(mutationOptions);
     }
