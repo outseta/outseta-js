@@ -17,4 +17,6 @@ export type ActivityAllOf = {
   EntityType?: EntityType;
   /** @nullable */
   EntityUid?: string | null;
+  /** @nullable */
+  Message?: string | null;
 };

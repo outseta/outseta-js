@@ -47,6 +47,9 @@ export type StripeSubscriptionAllOf = {
   /** @nullable */
   Account?: StripeSubscriptionAllOfAccount;
   /** @nullable */
+  ExpirationDate?: string | null;
+  IsCancelling?: boolean;
+  /** @nullable */
   AccountUid?: string | null;
   /** @nullable */
   CollectionMethod?: string | null;

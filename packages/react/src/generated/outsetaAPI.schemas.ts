@@ -1505,6 +1505,9 @@ export type StripeProductFamilyAllOf = {
   /** @nullable */
   BillingCycleAnchorMonth?: number | null;
   /** @nullable */
+  ExpirationDate?: string | null;
+  ExpiresAfterMonths?: number;
+  /** @nullable */
   StripeProducts?: StripeProduct[] | null;
   [key: string]: unknown | null;
 };
@@ -1639,6 +1642,9 @@ export type StripeSubscriptionAllOf = {
   StripeSubscriptionSchedules?: StripeSubscriptionSchedule[] | null;
   /** @nullable */
   Account?: StripeSubscriptionAllOfAccount;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  IsCancelling?: boolean;
   /** @nullable */
   AccountUid?: string | null;
   /** @nullable */
@@ -5452,6 +5458,8 @@ export type ActivityAllOf = {
   EntityType?: EntityType;
   /** @nullable */
   EntityUid?: string | null;
+  /** @nullable */
+  Message?: string | null;
 };
 
 export type Activity = AbstractQcountBean & ActivityAllOf;
@@ -6014,6 +6022,9 @@ export type AccountWebhookEntityStripeSubscriptionsItem = {
   Status?: string | null;
   /** @nullable */
   TrialEnd?: string | null;
+  /** @nullable */
+  ExpirationDate?: string | null;
+  IsCancelling?: boolean;
   /** @nullable */
   AccountUid?: string | null;
   /** @nullable */
@@ -7770,6 +7781,9 @@ export type AccountWebhookEntityPrimaryStripeSubscription = {
   /** @nullable */
   TrialEnd?: string | null;
   /** @nullable */
+  ExpirationDate?: string | null;
+  IsCancelling?: boolean;
+  /** @nullable */
   AccountUid?: string | null;
   /** @nullable */
   CollectionMethod?: string | null;
@@ -8879,6 +8893,8 @@ export type PersonSupportTicketCreatedWebhookPayload = PersonWebhookEntity & Per
 export interface PersonSupportTicketUpdatedActivityData {
   /** @nullable */
   CaseUid?: string | null;
+  /** @nullable */
+  CaseHistoryUid?: string | null;
 }
 
 export type PersonSupportTicketUpdatedWebhookPayloadAllOf = {

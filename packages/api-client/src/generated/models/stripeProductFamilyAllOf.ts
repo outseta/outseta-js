@@ -16,6 +16,9 @@ export type StripeProductFamilyAllOf = {
   /** @nullable */
   BillingCycleAnchorMonth?: number | null;
   /** @nullable */
+  ExpirationDate?: string | null;
+  ExpiresAfterMonths?: number;
+  /** @nullable */
   StripeProducts?: StripeProduct[] | null;
   [key: string]: unknown | null;
 };
