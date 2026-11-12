@@ -19,6 +19,7 @@ export interface SetupIntent {
   FirstName?: string | null;
   /** @nullable */
   InvoiceUid?: string | null;
+  IsNewPaymentMethod?: boolean;
   IsSetupIntent?: boolean;
   IsPaymentAuthentication?: boolean;
   /** @nullable */

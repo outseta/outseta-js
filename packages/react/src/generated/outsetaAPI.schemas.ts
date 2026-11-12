@@ -2292,7 +2292,7 @@ export type SubscriptionAllOf = {
   /** @nullable */
   DiscountCouponSubscriptions?: DiscountCouponSubscription[] | null;
   /** @nullable */
-  DiscountCode?: string | null;
+  readonly DiscountCode?: string | null;
   /** @nullable */
   DiscountCouponExpirationDate?: string | null;
   /** @nullable */
@@ -5345,6 +5345,7 @@ export interface SetupIntent {
   FirstName?: string | null;
   /** @nullable */
   InvoiceUid?: string | null;
+  IsNewPaymentMethod?: boolean;
   IsSetupIntent?: boolean;
   IsPaymentAuthentication?: boolean;
   /** @nullable */

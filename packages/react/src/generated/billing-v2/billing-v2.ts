@@ -2268,6 +2268,11 @@ export const useSubscriptionSetSubscriptionUpgradeRequired = <TError = void,
 were to register with this subscription. BillingRenewalTerm values: 1 = Monthly,
 2 = Yearly, 3 = Quarterly, 4 = OneTime. Pass asOf=renewal to see the renewal invoice
 instead of the initial invoice.
+            
+To redeem a coupon, send its code in DiscountCouponSubscriptions:
+"DiscountCouponSubscriptions": [{ "DiscountCoupon": { "UniqueIdentifier": "CODE" } }].
+DiscountCoupon.UniqueIdentifier is the coupon's code, not its Uid. The invoice then shows the
+discount. Subscription.DiscountCode is read-only and ignored here.
  * @summary Preview the initial or renewal invoice for a hypothetical subscription.
  */
 export const subscriptionFirstTimeSubscriptionPreview = (
@@ -2353,6 +2358,14 @@ Outseta sets the subscription's dates itself, except ExpirationDate:
             
 To set or remove the end date of a subscription that already exists, use
 PUT /api/v1/crm/accounts/{accountUid}/extend-renewal.
+            
+To redeem a coupon, send its code in DiscountCouponSubscriptions:
+"DiscountCouponSubscriptions": [{ "DiscountCoupon": { "UniqueIdentifier": "CODE" } }].
+DiscountCoupon.UniqueIdentifier is the coupon's code, not its Uid. An unknown code, or a
+DiscountCoupon sent with only a Uid, is rejected with "No discount coupon found for code [...]". The
+coupon must be active, within its redeem-by date and maximum redemptions, apply to the plan, and not
+have been redeemed by the account before. Subscription.DiscountCode is read-only: it is ignored on
+writes, so a coupon sent there is not applied.
  * @summary Add a subscription to an account for the first time.
  */
 export const subscriptionFirstTimeSubscription = (
@@ -2418,6 +2431,15 @@ export const useSubscriptionFirstTimeSubscription = <TError = void,
     /**
  * Returns an invoice object with information about the amount outstanding. This method
 does not commit the subscription change.
+            
+Takes the same body as PUT /api/v1/billing/subscriptions/{subscriptionUid}/changesubscription. A coupon
+sent in DiscountCouponSubscriptions[].DiscountCoupon.UniqueIdentifier (the coupon's code, not its Uid)
+shows on the invoice as a discount, together with the credit for the unused part of the current plan,
+capped as described there. Subscription.DiscountCode is read-only and ignored here. Like
+changesubscription, the preview rejects a coupon that is inactive, past its redeem-by date or maximum
+redemptions, or doesn't apply to the new plan. It doesn't reject a coupon the account has redeemed
+before (a one-time coupon the account was already invoiced for is left off the invoice), while
+changesubscription rejects it when the plan changes.
  * @summary Preview the invoice for a subscription change.
  */
 export const subscriptionChangeSubscriptionPreview = (
@@ -2504,6 +2526,21 @@ ExpirationDate or ExpiresAfterMonths applies.
 A request with the same plan, BillingRenewalTerm and quantity only changes add-ons; it does not change
 the subscription's dates. To set or remove the end date of the current subscription, use
 PUT /api/v1/crm/accounts/{accountUid}/extend-renewal.
+            
+To redeem a coupon, send its code in DiscountCouponSubscriptions:
+"DiscountCouponSubscriptions": [{ "DiscountCoupon": { "UniqueIdentifier": "CODE" } }].
+DiscountCoupon.UniqueIdentifier is the coupon's code, not its Uid. A DiscountCoupon sent with
+only a Uid is rejected with "Each DiscountCouponSubscription requires DiscountCoupon.UniqueIdentifier.",
+an unknown code with "No discount coupon found for code [CODE]". Subscription.DiscountCode is read-only:
+it is ignored on writes, so a coupon sent there is not applied and the new plan is billed in full.
+The coupon must be active, within its redeem-by date and maximum redemptions, and apply to the new
+plan; when the plan changes, the account must not have redeemed it before ("This discount code has
+already been redeemed.").
+            
+When the new plan is billed right away, the invoice credits the unused part of the current plan. That
+credit is capped at the amount due on the invoice after the discount; the rest is not carried over.
+Send the same body to PUT /api/v1/billing/subscriptions/{subscriptionUid}/changesubscriptionpreview to
+see the invoice first.
  * @summary Change a subscription on an account.
  */
 export const subscriptionChangeSubscription = (

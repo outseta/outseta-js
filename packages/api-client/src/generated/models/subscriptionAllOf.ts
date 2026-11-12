@@ -35,7 +35,7 @@ export type SubscriptionAllOf = {
   /** @nullable */
   DiscountCouponSubscriptions?: DiscountCouponSubscription[] | null;
   /** @nullable */
-  DiscountCode?: string | null;
+  readonly DiscountCode?: string | null;
   /** @nullable */
   DiscountCouponExpirationDate?: string | null;
   /** @nullable */
