@@ -447,8 +447,6 @@ export type PersonAllOf = {
   OAuthIntegrationStatus?: OAuthService;
   OptInToEmailList?: boolean;
   /** @nullable */
-  Password?: string | null;
-  /** @nullable */
   RecaptchaToken?: string | null;
   /** @nullable */
   UserAgentPlatformBrowser?: string | null;
@@ -5800,8 +5798,6 @@ export type AccountWebhookEntityPersonAccountItemPerson = {
   OAuthIntegrationStatus?: AccountWebhookEntityPersonAccountItemPersonOAuthIntegrationStatus;
   OptInToEmailList?: boolean;
   /** @nullable */
-  Password?: string | null;
-  /** @nullable */
   RecaptchaToken?: string | null;
   /** @nullable */
   UserAgentPlatformBrowser?: string | null;
@@ -7669,8 +7665,6 @@ export type AccountWebhookEntityPrimaryContact = {
   OAuthIntegrationStatus?: AccountWebhookEntityPrimaryContactOAuthIntegrationStatus;
   OptInToEmailList?: boolean;
   /** @nullable */
-  Password?: string | null;
-  /** @nullable */
   RecaptchaToken?: string | null;
   /** @nullable */
   UserAgentPlatformBrowser?: string | null;
@@ -8753,8 +8747,6 @@ export interface PersonWebhookEntity {
   OAuthIntegrationStatus?: PersonWebhookEntityOAuthIntegrationStatus;
   OptInToEmailList?: boolean;
   /** @nullable */
-  Password?: string | null;
-  /** @nullable */
   RecaptchaToken?: string | null;
   /** @nullable */
   UserAgentPlatformBrowser?: string | null;
@@ -9285,8 +9277,6 @@ export type DealWebhookEntityOwner = {
   /** `0` - None, `1` - Gmail */
   OAuthIntegrationStatus?: DealWebhookEntityOwnerOAuthIntegrationStatus;
   OptInToEmailList?: boolean;
-  /** @nullable */
-  Password?: string | null;
   /** @nullable */
   RecaptchaToken?: string | null;
   /** @nullable */

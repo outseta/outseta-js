@@ -111,8 +111,6 @@ export interface PersonWebhookEntity {
   OAuthIntegrationStatus?: PersonWebhookEntityOAuthIntegrationStatus;
   OptInToEmailList?: boolean;
   /** @nullable */
-  Password?: string | null;
-  /** @nullable */
   RecaptchaToken?: string | null;
   /** @nullable */
   UserAgentPlatformBrowser?: string | null;

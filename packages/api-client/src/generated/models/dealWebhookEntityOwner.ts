@@ -95,8 +95,6 @@ export type DealWebhookEntityOwner = {
   OAuthIntegrationStatus?: DealWebhookEntityOwnerOAuthIntegrationStatus;
   OptInToEmailList?: boolean;
   /** @nullable */
-  Password?: string | null;
-  /** @nullable */
   RecaptchaToken?: string | null;
   /** @nullable */
   UserAgentPlatformBrowser?: string | null;

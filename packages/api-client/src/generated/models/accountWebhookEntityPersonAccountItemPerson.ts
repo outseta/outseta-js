@@ -95,8 +95,6 @@ export type AccountWebhookEntityPersonAccountItemPerson = {
   OAuthIntegrationStatus?: AccountWebhookEntityPersonAccountItemPersonOAuthIntegrationStatus;
   OptInToEmailList?: boolean;
   /** @nullable */
-  Password?: string | null;
-  /** @nullable */
   RecaptchaToken?: string | null;
   /** @nullable */
   UserAgentPlatformBrowser?: string | null;
