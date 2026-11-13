@@ -1,5 +1,13 @@
 # @outseta/react
 
+## 0.5.13
+
+### Patch Changes
+
+- c9014ab: Update API spec.
+- Updated dependencies [c9014ab]
+  - @outseta/api-client@0.4.13
+
 ## 0.5.12
 
 ### Patch Changes

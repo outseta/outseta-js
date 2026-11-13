@@ -1,5 +1,11 @@
 # @outseta/api-client
 
+## 0.4.13
+
+### Patch Changes
+
+- c9014ab: Update API spec.
+
 ## 0.4.12
 
 ### Patch Changes
