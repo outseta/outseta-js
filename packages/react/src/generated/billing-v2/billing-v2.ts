@@ -792,6 +792,84 @@ export const useTransactionsAddPaymentTransaction = <TError = void,
       return useMutation(mutationOptions);
     }
     /**
+ * Applies to Outseta billing (v2) only. With Stripe Billing (v3) the request is rejected.
+            
+Charges the outstanding amount of the invoice to the payment method on file for the
+account. Without this call, the scheduled payment job charges an unpaid invoice no
+sooner than 6 hours after its invoice date.
+            
+When the payment succeeds, the invoice status changes to Paid. For a payment method
+that settles later, such as a bank debit, the status changes to Processing.
+            
+The request is rejected when the invoice is not unpaid, has no outstanding amount,
+is already being processed, or the account has no payment method or is Expired.
+            
+When the payment is declined, the request returns a validation error. The decline
+counts as a failed payment attempt for the account, the same as a failed renewal.
+After the third failed attempt, the account moves to Past Due.
+ * @summary Charge an unpaid invoice now.
+ */
+export const paymentProcessOutstandingInvoice = (
+    invoiceUid: string | null,
+ options?: SecondParameter<typeof customFetch>,signal?: AbortSignal
+) => {
+      
+      
+      return customFetch<Blob>(
+      {url: `/api/v1/billing/payments/${invoiceUid}/processpayment`, method: 'POST',
+        responseType: 'blob', signal
+    },
+      options);
+    }
+  
+
+
+export const getPaymentProcessOutstandingInvoiceMutationOptions = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof paymentProcessOutstandingInvoice>>, TError,{invoiceUid: string | null}, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof paymentProcessOutstandingInvoice>>, TError,{invoiceUid: string | null}, TContext> => {
+
+const mutationKey = ['paymentProcessOutstandingInvoice'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof paymentProcessOutstandingInvoice>>, {invoiceUid: string | null}> = (props) => {
+          const {invoiceUid} = props ?? {};
+
+          return  paymentProcessOutstandingInvoice(invoiceUid,requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type PaymentProcessOutstandingInvoiceMutationResult = NonNullable<Awaited<ReturnType<typeof paymentProcessOutstandingInvoice>>>
+    
+    export type PaymentProcessOutstandingInvoiceMutationError = void
+
+    /**
+ * @summary Charge an unpaid invoice now.
+ */
+export const usePaymentProcessOutstandingInvoice = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof paymentProcessOutstandingInvoice>>, TError,{invoiceUid: string | null}, TContext>, request?: SecondParameter<typeof customFetch>}
+ ): UseMutationResult<
+        Awaited<ReturnType<typeof paymentProcessOutstandingInvoice>>,
+        TError,
+        {invoiceUid: string | null},
+        TContext
+      > => {
+
+      const mutationOptions = getPaymentProcessOutstandingInvoiceMutationOptions(options);
+
+      return useMutation(mutationOptions);
+    }
+    /**
  * @summary Update payment information for an account.
  */
 export const paymentInformationSavePaymentInformation = (

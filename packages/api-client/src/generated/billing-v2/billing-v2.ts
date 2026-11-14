@@ -608,6 +608,73 @@ export const transactionsAddPaymentTransaction = async (transactionsAddPaymentTr
 
 
 /**
+ * Applies to Outseta billing (v2) only. With Stripe Billing (v3) the request is rejected.
+            
+Charges the outstanding amount of the invoice to the payment method on file for the
+account. Without this call, the scheduled payment job charges an unpaid invoice no
+sooner than 6 hours after its invoice date.
+            
+When the payment succeeds, the invoice status changes to Paid. For a payment method
+that settles later, such as a bank debit, the status changes to Processing.
+            
+The request is rejected when the invoice is not unpaid, has no outstanding amount,
+is already being processed, or the account has no payment method or is Expired.
+            
+When the payment is declined, the request returns a validation error. The decline
+counts as a failed payment attempt for the account, the same as a failed renewal.
+After the third failed attempt, the account moves to Past Due.
+ * @summary Charge an unpaid invoice now.
+ */
+export type paymentProcessOutstandingInvoiceResponse200 = {
+  data: Blob
+  status: 200
+}
+
+export type paymentProcessOutstandingInvoiceResponse400 = {
+  data: void
+  status: 400
+}
+
+export type paymentProcessOutstandingInvoiceResponse401 = {
+  data: void
+  status: 401
+}
+
+export type paymentProcessOutstandingInvoiceResponse404 = {
+  data: void
+  status: 404
+}
+    
+export type paymentProcessOutstandingInvoiceResponseSuccess = (paymentProcessOutstandingInvoiceResponse200) & {
+  headers: Headers;
+};
+export type paymentProcessOutstandingInvoiceResponseError = (paymentProcessOutstandingInvoiceResponse400 | paymentProcessOutstandingInvoiceResponse401 | paymentProcessOutstandingInvoiceResponse404) & {
+  headers: Headers;
+};
+
+export type paymentProcessOutstandingInvoiceResponse = (paymentProcessOutstandingInvoiceResponseSuccess | paymentProcessOutstandingInvoiceResponseError)
+
+export const getPaymentProcessOutstandingInvoiceUrl = (invoiceUid: string | null,) => {
+
+
+  
+
+  return `/api/v1/billing/payments/${invoiceUid}/processpayment`
+}
+
+export const paymentProcessOutstandingInvoice = async (invoiceUid: string | null, options?: RequestInit): Promise<paymentProcessOutstandingInvoiceResponse> => {
+  
+  return customFetch<paymentProcessOutstandingInvoiceResponse>(getPaymentProcessOutstandingInvoiceUrl(invoiceUid),
+  {      
+    ...options,
+    method: 'POST'
+    
+    
+  }
+);}
+
+
+/**
  * @summary Update payment information for an account.
  */
 export type paymentInformationSavePaymentInformationResponse200 = {
