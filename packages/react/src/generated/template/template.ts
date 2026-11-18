@@ -15,16 +15,20 @@ import type {
 
 import type {
   Template,
+  TemplateAddTagToEntityBody,
   TemplateEmailInstance,
   TemplateGetAllTemplateEmails200,
   TemplateGetAllTemplateEmailsParams,
   TemplateGetAllTemplates200,
   TemplateGetAllTemplatesParams,
+  TemplateGetTagsForEntity200,
+  TemplateGetTagsForEntityParams,
   TemplateGetTemplateEmails200,
   TemplateGetTemplateEmailsParams,
   TemplateGetTransactionalEmailSettings200,
   TemplateGetTransactionalEmailSettingsParams,
   TemplateSendTemplateEmailBody,
+  TemplateSetTagsForEntityBody,
   TemplateUpdateTransactionalEmailSettings200,
   TemplateUpdateTransactionalEmailSettingsBody,
   UpdateTemplateRequest
@@ -640,6 +644,291 @@ export const useTemplateSendTemplateEmail = <TError = void,
       > => {
 
       const mutationOptions = getTemplateSendTemplateEmailMutationOptions(options);
+
+      return useMutation(mutationOptions);
+    }
+    /**
+ * Send the uids of the tags to add. Tags that the record already carries stay on it, and
+naming one of them again changes nothing, so the same request is safe to repeat. To
+replace the whole set instead, use PUT on this same path.
+            
+A tag belongs to one entity type, so use tags whose EntityType matches this record.
+List them with GET /attribute/tags. A uid in the list that names no tag is skipped.
+ * @summary Add tags to a record.
+ */
+export const templateAddTagToEntity = (
+    entityUid: string | null,
+    templateAddTagToEntityBody: TemplateAddTagToEntityBody,
+ options?: SecondParameter<typeof customFetch>,signal?: AbortSignal
+) => {
+      
+      
+      return customFetch<Blob>(
+      {url: `/api/v1/templates/${entityUid}/tags`, method: 'POST',
+      headers: {'Content-Type': 'application/json', },
+      data: templateAddTagToEntityBody,
+        responseType: 'blob', signal
+    },
+      options);
+    }
+  
+
+
+export const getTemplateAddTagToEntityMutationOptions = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof templateAddTagToEntity>>, TError,{entityUid: string | null;data: TemplateAddTagToEntityBody}, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof templateAddTagToEntity>>, TError,{entityUid: string | null;data: TemplateAddTagToEntityBody}, TContext> => {
+
+const mutationKey = ['templateAddTagToEntity'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof templateAddTagToEntity>>, {entityUid: string | null;data: TemplateAddTagToEntityBody}> = (props) => {
+          const {entityUid,data} = props ?? {};
+
+          return  templateAddTagToEntity(entityUid,data,requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type TemplateAddTagToEntityMutationResult = NonNullable<Awaited<ReturnType<typeof templateAddTagToEntity>>>
+    export type TemplateAddTagToEntityMutationBody = TemplateAddTagToEntityBody
+    export type TemplateAddTagToEntityMutationError = void
+
+    /**
+ * @summary Add tags to a record.
+ */
+export const useTemplateAddTagToEntity = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof templateAddTagToEntity>>, TError,{entityUid: string | null;data: TemplateAddTagToEntityBody}, TContext>, request?: SecondParameter<typeof customFetch>}
+ ): UseMutationResult<
+        Awaited<ReturnType<typeof templateAddTagToEntity>>,
+        TError,
+        {entityUid: string | null;data: TemplateAddTagToEntityBody},
+        TContext
+      > => {
+
+      const mutationOptions = getTemplateAddTagToEntityMutationOptions(options);
+
+      return useMutation(mutationOptions);
+    }
+    /**
+ * Returns the tags themselves, not the links that hold them. The same tags are also
+available on the record: ask for them with the fields parameter, for example
+fields=Uid,Tags.Uid,Tags.Name,Tags.TagColor. Tags cost an extra query, so the record
+leaves them out unless fields names Tags or is a plain wildcard.
+ * @summary Retrieve the tags on a record.
+ */
+export const templateGetTagsForEntity = (
+    entityUid: string | null,
+    params?: TemplateGetTagsForEntityParams,
+ options?: SecondParameter<typeof customFetch>,signal?: AbortSignal
+) => {
+      
+      
+      return customFetch<TemplateGetTagsForEntity200>(
+      {url: `/api/v1/templates/${entityUid}/tags`, method: 'GET',
+        params, signal
+    },
+      options);
+    }
+  
+
+
+
+export const getTemplateGetTagsForEntityQueryKey = (entityUid?: string | null,
+    params?: TemplateGetTagsForEntityParams,) => {
+    return [
+    `/api/v1/templates/${entityUid}/tags`, ...(params ? [params]: [])
+    ] as const;
+    }
+
+    
+export const getTemplateGetTagsForEntityQueryOptions = <TData = Awaited<ReturnType<typeof templateGetTagsForEntity>>, TError = void>(entityUid: string | null,
+    params?: TemplateGetTagsForEntityParams, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof templateGetTagsForEntity>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getTemplateGetTagsForEntityQueryKey(entityUid,params);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof templateGetTagsForEntity>>> = ({ signal }) => templateGetTagsForEntity(entityUid,params, requestOptions, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, enabled: !!(entityUid), ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof templateGetTagsForEntity>>, TError, TData> & { queryKey: QueryKey }
+}
+
+export type TemplateGetTagsForEntityQueryResult = NonNullable<Awaited<ReturnType<typeof templateGetTagsForEntity>>>
+export type TemplateGetTagsForEntityQueryError = void
+
+
+/**
+ * @summary Retrieve the tags on a record.
+ */
+
+export function useTemplateGetTagsForEntity<TData = Awaited<ReturnType<typeof templateGetTagsForEntity>>, TError = void>(
+ entityUid: string | null,
+    params?: TemplateGetTagsForEntityParams, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof templateGetTagsForEntity>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
+  
+ ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } {
+
+  const queryOptions = getTemplateGetTagsForEntityQueryOptions(entityUid,params,options)
+
+  const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: QueryKey };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+
+/**
+ * Send the full set of tags the record must end with. A tag that the list leaves out is
+taken off the record, and one that the list names is added. Send an empty list to take
+every tag off. To add tags without disturbing the others, use POST on this same path.
+            
+A tag belongs to one entity type, so use tags whose EntityType matches this record.
+List them with GET /attribute/tags. A uid in the list that names no tag is skipped.
+ * @summary Replace the tags on a record.
+ */
+export const templateSetTagsForEntity = (
+    entityUid: string | null,
+    templateSetTagsForEntityBody: TemplateSetTagsForEntityBody,
+ options?: SecondParameter<typeof customFetch>,) => {
+      
+      
+      return customFetch<Blob>(
+      {url: `/api/v1/templates/${entityUid}/tags`, method: 'PUT',
+      headers: {'Content-Type': 'application/json', },
+      data: templateSetTagsForEntityBody,
+        responseType: 'blob'
+    },
+      options);
+    }
+  
+
+
+export const getTemplateSetTagsForEntityMutationOptions = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof templateSetTagsForEntity>>, TError,{entityUid: string | null;data: TemplateSetTagsForEntityBody}, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof templateSetTagsForEntity>>, TError,{entityUid: string | null;data: TemplateSetTagsForEntityBody}, TContext> => {
+
+const mutationKey = ['templateSetTagsForEntity'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof templateSetTagsForEntity>>, {entityUid: string | null;data: TemplateSetTagsForEntityBody}> = (props) => {
+          const {entityUid,data} = props ?? {};
+
+          return  templateSetTagsForEntity(entityUid,data,requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type TemplateSetTagsForEntityMutationResult = NonNullable<Awaited<ReturnType<typeof templateSetTagsForEntity>>>
+    export type TemplateSetTagsForEntityMutationBody = TemplateSetTagsForEntityBody
+    export type TemplateSetTagsForEntityMutationError = void
+
+    /**
+ * @summary Replace the tags on a record.
+ */
+export const useTemplateSetTagsForEntity = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof templateSetTagsForEntity>>, TError,{entityUid: string | null;data: TemplateSetTagsForEntityBody}, TContext>, request?: SecondParameter<typeof customFetch>}
+ ): UseMutationResult<
+        Awaited<ReturnType<typeof templateSetTagsForEntity>>,
+        TError,
+        {entityUid: string | null;data: TemplateSetTagsForEntityBody},
+        TContext
+      > => {
+
+      const mutationOptions = getTemplateSetTagsForEntityMutationOptions(options);
+
+      return useMutation(mutationOptions);
+    }
+    /**
+ * The tag itself is kept and stays available for other records. If the record does not
+carry the tag, nothing changes and the call still succeeds.
+ * @summary Remove one tag from a record.
+ */
+export const templateRemoveTagFromEntity = (
+    entityUid: string | null,
+    tagUid: string | null,
+ options?: SecondParameter<typeof customFetch>,) => {
+      
+      
+      return customFetch<Blob>(
+      {url: `/api/v1/templates/${entityUid}/tags/${tagUid}`, method: 'DELETE',
+        responseType: 'blob'
+    },
+      options);
+    }
+  
+
+
+export const getTemplateRemoveTagFromEntityMutationOptions = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof templateRemoveTagFromEntity>>, TError,{entityUid: string | null;tagUid: string | null}, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof templateRemoveTagFromEntity>>, TError,{entityUid: string | null;tagUid: string | null}, TContext> => {
+
+const mutationKey = ['templateRemoveTagFromEntity'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof templateRemoveTagFromEntity>>, {entityUid: string | null;tagUid: string | null}> = (props) => {
+          const {entityUid,tagUid} = props ?? {};
+
+          return  templateRemoveTagFromEntity(entityUid,tagUid,requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type TemplateRemoveTagFromEntityMutationResult = NonNullable<Awaited<ReturnType<typeof templateRemoveTagFromEntity>>>
+    
+    export type TemplateRemoveTagFromEntityMutationError = void
+
+    /**
+ * @summary Remove one tag from a record.
+ */
+export const useTemplateRemoveTagFromEntity = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof templateRemoveTagFromEntity>>, TError,{entityUid: string | null;tagUid: string | null}, TContext>, request?: SecondParameter<typeof customFetch>}
+ ): UseMutationResult<
+        Awaited<ReturnType<typeof templateRemoveTagFromEntity>>,
+        TError,
+        {entityUid: string | null;tagUid: string | null},
+        TContext
+      > => {
+
+      const mutationOptions = getTemplateRemoveTagFromEntityMutationOptions(options);
 
       return useMutation(mutationOptions);
     }

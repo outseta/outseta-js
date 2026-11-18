@@ -1,4 +1,5 @@
 // @ts-nocheck
+import type { Tag } from './tag';
 
 export type TemplateAllOf = {
   /**
@@ -32,4 +33,6 @@ export type TemplateAllOf = {
   RequiredTokens?: string | null;
   /** @nullable */
   Tag?: string | null;
+  /** @nullable */
+  Tags?: Tag[] | null;
 };

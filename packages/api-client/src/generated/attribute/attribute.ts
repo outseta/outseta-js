@@ -46,12 +46,13 @@ type NonReadonly<T> = [T] extends [UnionToIntersection<T>] ? {
  * Each tag applies to a single entity type. Pass entityType to retrieve the tags for one
 of them, for example entityType=Article for knowledge base article tags.
             
-How a tag goes onto a record depends on the entity type. Articles, broadcasts and
-segments each take tags on a tags sub-resource of the record:
+How a tag goes onto a record depends on the entity type. Articles, broadcasts,
+segments, and email templates each take tags on a tags sub-resource of the record:
             
 - POST /support/articles/{entityUid}/tags and PUT, GET, DELETE on the same path
 - POST /email/campaigns/broadcasts/{entityUid}/tags and the same for the rest
 - POST /crm/segments/{entityUid}/tags and the same for the rest
+- POST /templates/{entityUid}/tags and the same for the rest
             
 A support ticket is the exception. It holds its tags in its own CaseTags collection, so
 you add and remove ticket tags with PUT /support/cases/{caseUid}.
@@ -109,7 +110,8 @@ export const tagGetAllTags = async (params?: TagGetAllTagsParams, options?: Requ
 /**
  * Name and EntityType are required. EntityType fixes what the tag can go on: 4 (Case) for
 support tickets, 13 (Article) for knowledge base articles, 12 (Broadcast) for broadcast
-emails, 11 (Segment) for segments. TagColor sets the color the tag shows in.
+emails, 11 (Segment) for segments, 14 (Template) for email templates. TagColor sets
+the color the tag shows in.
             
 Name must be unique within an entity type. If the name already exists for that
 entity type, the existing tag is returned instead of a duplicate, and its color is

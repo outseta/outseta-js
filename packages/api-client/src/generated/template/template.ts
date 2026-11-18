@@ -1,16 +1,20 @@
 // @ts-nocheck
 import type {
   Template,
+  TemplateAddTagToEntityBody,
   TemplateEmailInstance,
   TemplateGetAllTemplateEmails200,
   TemplateGetAllTemplateEmailsParams,
   TemplateGetAllTemplates200,
   TemplateGetAllTemplatesParams,
+  TemplateGetTagsForEntity200,
+  TemplateGetTagsForEntityParams,
   TemplateGetTemplateEmails200,
   TemplateGetTemplateEmailsParams,
   TemplateGetTransactionalEmailSettings200,
   TemplateGetTransactionalEmailSettingsParams,
   TemplateSendTemplateEmailBody,
+  TemplateSetTagsForEntityBody,
   TemplateUpdateTransactionalEmailSettings200,
   TemplateUpdateTransactionalEmailSettingsBody,
   UpdateTemplateRequest
@@ -491,6 +495,242 @@ export const templateSendTemplateEmail = async (templateUid: string | null,
     headers: { 'Content-Type': 'application/json', ...options?.headers },
     body: JSON.stringify(
       templateSendTemplateEmailBody,)
+  }
+);}
+
+
+/**
+ * Send the uids of the tags to add. Tags that the record already carries stay on it, and
+naming one of them again changes nothing, so the same request is safe to repeat. To
+replace the whole set instead, use PUT on this same path.
+            
+A tag belongs to one entity type, so use tags whose EntityType matches this record.
+List them with GET /attribute/tags. A uid in the list that names no tag is skipped.
+ * @summary Add tags to a record.
+ */
+export type templateAddTagToEntityResponse200 = {
+  data: Blob
+  status: 200
+}
+
+export type templateAddTagToEntityResponse400 = {
+  data: void
+  status: 400
+}
+
+export type templateAddTagToEntityResponse401 = {
+  data: void
+  status: 401
+}
+
+export type templateAddTagToEntityResponse404 = {
+  data: void
+  status: 404
+}
+    
+export type templateAddTagToEntityResponseSuccess = (templateAddTagToEntityResponse200) & {
+  headers: Headers;
+};
+export type templateAddTagToEntityResponseError = (templateAddTagToEntityResponse400 | templateAddTagToEntityResponse401 | templateAddTagToEntityResponse404) & {
+  headers: Headers;
+};
+
+export type templateAddTagToEntityResponse = (templateAddTagToEntityResponseSuccess | templateAddTagToEntityResponseError)
+
+export const getTemplateAddTagToEntityUrl = (entityUid: string | null,) => {
+
+
+  
+
+  return `/api/v1/templates/${entityUid}/tags`
+}
+
+export const templateAddTagToEntity = async (entityUid: string | null,
+    templateAddTagToEntityBody: TemplateAddTagToEntityBody, options?: RequestInit): Promise<templateAddTagToEntityResponse> => {
+  
+  return customFetch<templateAddTagToEntityResponse>(getTemplateAddTagToEntityUrl(entityUid),
+  {      
+    ...options,
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', ...options?.headers },
+    body: JSON.stringify(
+      templateAddTagToEntityBody,)
+  }
+);}
+
+
+/**
+ * Returns the tags themselves, not the links that hold them. The same tags are also
+available on the record: ask for them with the fields parameter, for example
+fields=Uid,Tags.Uid,Tags.Name,Tags.TagColor. Tags cost an extra query, so the record
+leaves them out unless fields names Tags or is a plain wildcard.
+ * @summary Retrieve the tags on a record.
+ */
+export type templateGetTagsForEntityResponse200 = {
+  data: TemplateGetTagsForEntity200
+  status: 200
+}
+
+export type templateGetTagsForEntityResponse400 = {
+  data: void
+  status: 400
+}
+
+export type templateGetTagsForEntityResponse401 = {
+  data: void
+  status: 401
+}
+    
+export type templateGetTagsForEntityResponseSuccess = (templateGetTagsForEntityResponse200) & {
+  headers: Headers;
+};
+export type templateGetTagsForEntityResponseError = (templateGetTagsForEntityResponse400 | templateGetTagsForEntityResponse401) & {
+  headers: Headers;
+};
+
+export type templateGetTagsForEntityResponse = (templateGetTagsForEntityResponseSuccess | templateGetTagsForEntityResponseError)
+
+export const getTemplateGetTagsForEntityUrl = (entityUid: string | null,
+    params?: TemplateGetTagsForEntityParams,) => {
+  const normalizedParams = new URLSearchParams();
+
+  Object.entries(params || {}).forEach(([key, value]) => {
+    
+    if (value !== undefined) {
+      normalizedParams.append(key, value === null ? 'null' : value.toString())
+    }
+  });
+
+  const stringifiedParams = normalizedParams.toString();
+
+  return stringifiedParams.length > 0 ? `/api/v1/templates/${entityUid}/tags?${stringifiedParams}` : `/api/v1/templates/${entityUid}/tags`
+}
+
+export const templateGetTagsForEntity = async (entityUid: string | null,
+    params?: TemplateGetTagsForEntityParams, options?: RequestInit): Promise<templateGetTagsForEntityResponse> => {
+  
+  return customFetch<templateGetTagsForEntityResponse>(getTemplateGetTagsForEntityUrl(entityUid,params),
+  {      
+    ...options,
+    method: 'GET'
+    
+    
+  }
+);}
+
+
+/**
+ * Send the full set of tags the record must end with. A tag that the list leaves out is
+taken off the record, and one that the list names is added. Send an empty list to take
+every tag off. To add tags without disturbing the others, use POST on this same path.
+            
+A tag belongs to one entity type, so use tags whose EntityType matches this record.
+List them with GET /attribute/tags. A uid in the list that names no tag is skipped.
+ * @summary Replace the tags on a record.
+ */
+export type templateSetTagsForEntityResponse200 = {
+  data: Blob
+  status: 200
+}
+
+export type templateSetTagsForEntityResponse400 = {
+  data: void
+  status: 400
+}
+
+export type templateSetTagsForEntityResponse401 = {
+  data: void
+  status: 401
+}
+
+export type templateSetTagsForEntityResponse404 = {
+  data: void
+  status: 404
+}
+    
+export type templateSetTagsForEntityResponseSuccess = (templateSetTagsForEntityResponse200) & {
+  headers: Headers;
+};
+export type templateSetTagsForEntityResponseError = (templateSetTagsForEntityResponse400 | templateSetTagsForEntityResponse401 | templateSetTagsForEntityResponse404) & {
+  headers: Headers;
+};
+
+export type templateSetTagsForEntityResponse = (templateSetTagsForEntityResponseSuccess | templateSetTagsForEntityResponseError)
+
+export const getTemplateSetTagsForEntityUrl = (entityUid: string | null,) => {
+
+
+  
+
+  return `/api/v1/templates/${entityUid}/tags`
+}
+
+export const templateSetTagsForEntity = async (entityUid: string | null,
+    templateSetTagsForEntityBody: TemplateSetTagsForEntityBody, options?: RequestInit): Promise<templateSetTagsForEntityResponse> => {
+  
+  return customFetch<templateSetTagsForEntityResponse>(getTemplateSetTagsForEntityUrl(entityUid),
+  {      
+    ...options,
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json', ...options?.headers },
+    body: JSON.stringify(
+      templateSetTagsForEntityBody,)
+  }
+);}
+
+
+/**
+ * The tag itself is kept and stays available for other records. If the record does not
+carry the tag, nothing changes and the call still succeeds.
+ * @summary Remove one tag from a record.
+ */
+export type templateRemoveTagFromEntityResponse200 = {
+  data: Blob
+  status: 200
+}
+
+export type templateRemoveTagFromEntityResponse400 = {
+  data: void
+  status: 400
+}
+
+export type templateRemoveTagFromEntityResponse401 = {
+  data: void
+  status: 401
+}
+
+export type templateRemoveTagFromEntityResponse404 = {
+  data: void
+  status: 404
+}
+    
+export type templateRemoveTagFromEntityResponseSuccess = (templateRemoveTagFromEntityResponse200) & {
+  headers: Headers;
+};
+export type templateRemoveTagFromEntityResponseError = (templateRemoveTagFromEntityResponse400 | templateRemoveTagFromEntityResponse401 | templateRemoveTagFromEntityResponse404) & {
+  headers: Headers;
+};
+
+export type templateRemoveTagFromEntityResponse = (templateRemoveTagFromEntityResponseSuccess | templateRemoveTagFromEntityResponseError)
+
+export const getTemplateRemoveTagFromEntityUrl = (entityUid: string | null,
+    tagUid: string | null,) => {
+
+
+  
+
+  return `/api/v1/templates/${entityUid}/tags/${tagUid}`
+}
+
+export const templateRemoveTagFromEntity = async (entityUid: string | null,
+    tagUid: string | null, options?: RequestInit): Promise<templateRemoveTagFromEntityResponse> => {
+  
+  return customFetch<templateRemoveTagFromEntityResponse>(getTemplateRemoveTagFromEntityUrl(entityUid,tagUid),
+  {      
+    ...options,
+    method: 'DELETE'
+    
+    
   }
 );}
 
