@@ -411,7 +411,8 @@ export const useDealDeleteDeal = <TError = void,
     /**
  * This is the same endpoint the sign up embed uses to create accounts. At a minimum you
 must pass one Primary Contact with an Email address and one Subscription record with a
-reference to a Plan. Other fields (e.g. Account Name, Billing Address, Payment
+reference to a Plan and a BillingRenewalTerm (1 = Monthly, 2 = Yearly, 3 = Quarterly,
+4 = One Time). Other fields (e.g. Account Name, Billing Address, Payment
 Information, etc.) can be passed as desired. A confirmation email will be sent to the
 user unless you've specifically toggled this option off on the AUTH > SIGN UP AND LOGIN
 page.

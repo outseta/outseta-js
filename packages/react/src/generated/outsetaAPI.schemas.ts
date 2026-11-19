@@ -823,6 +823,8 @@ export type PaymentInformationAllOf = {
   RecaptchaToken?: string | null;
   /** @nullable */
   SetupIntent?: string | null;
+  /** @nullable */
+  SetupIntentClientSecret?: string | null;
 };
 
 export type PaymentInformation = AbstractQcountBean & PaymentInformationAllOf;
@@ -4829,6 +4831,12 @@ export type SegmentAllOf = {
   /** @nullable */
   People?: SegmentPerson[] | null;
   PendingProcessing?: boolean;
+  /** @nullable */
+  ProcessingStartedDateTime?: string | null;
+  /** @nullable */
+  ProcessingCheckedCount?: number | null;
+  /** @nullable */
+  ProcessingTotalCount?: number | null;
   PersonCount?: number;
   /** @nullable */
   Tags?: Tag[] | null;
@@ -5693,6 +5701,8 @@ export type AccountWebhookEntityPaymentInformation = {
   RecaptchaToken?: string | null;
   /** @nullable */
   SetupIntent?: string | null;
+  /** @nullable */
+  SetupIntentClientSecret?: string | null;
 } | null;
 
 /**

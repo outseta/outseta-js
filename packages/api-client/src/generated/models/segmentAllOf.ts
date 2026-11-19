@@ -22,6 +22,12 @@ export type SegmentAllOf = {
   /** @nullable */
   People?: SegmentPerson[] | null;
   PendingProcessing?: boolean;
+  /** @nullable */
+  ProcessingStartedDateTime?: string | null;
+  /** @nullable */
+  ProcessingCheckedCount?: number | null;
+  /** @nullable */
+  ProcessingTotalCount?: number | null;
   PersonCount?: number;
   /** @nullable */
   Tags?: Tag[] | null;

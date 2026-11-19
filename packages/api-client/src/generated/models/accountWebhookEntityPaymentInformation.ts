@@ -72,4 +72,6 @@ export type AccountWebhookEntityPaymentInformation = {
   RecaptchaToken?: string | null;
   /** @nullable */
   SetupIntent?: string | null;
+  /** @nullable */
+  SetupIntentClientSecret?: string | null;
 } | null;

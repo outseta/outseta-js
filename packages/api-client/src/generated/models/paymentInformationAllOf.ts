@@ -60,4 +60,6 @@ export type PaymentInformationAllOf = {
   RecaptchaToken?: string | null;
   /** @nullable */
   SetupIntent?: string | null;
+  /** @nullable */
+  SetupIntentClientSecret?: string | null;
 };
