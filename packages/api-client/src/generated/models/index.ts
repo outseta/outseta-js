@@ -347,6 +347,7 @@ export * from './definition';
 export * from './definitionAllOf';
 export * from './definitionGetAllDefinitions200';
 export * from './definitionGetAllDefinitionsParams';
+export * from './definitionUserAccess';
 export * from './deserializationStatus';
 export * from './directory';
 export * from './directoryActionConfiguration';

@@ -1,5 +1,6 @@
 // @ts-nocheck
 import type { EntityType } from './entityType';
+import type { DefinitionUserAccess } from './definitionUserAccess';
 
 export type DefinitionAllOf = {
   /**
@@ -14,6 +15,7 @@ export type DefinitionAllOf = {
   /** @nullable */
   SystemName?: string | null;
   EntityType?: EntityType;
+  UserAccess?: DefinitionUserAccess;
   /** @nullable */
   Position?: number | null;
   Hidden?: boolean;

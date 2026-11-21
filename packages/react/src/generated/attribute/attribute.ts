@@ -519,6 +519,18 @@ its SystemName on the accounts, people or deals themselves.
   "{\"Options\":[\"Small\",\"Medium\",\"Large\"]}". Number may set a Step
   ("{\"Step\":0.01}"); Text may set HintText and a Pattern (a regular expression the value
   must match). Other controls need no ControlParams.
+- **UserAccess**: what a user can do with the property on their own person and
+  account. A user is each caller that is not an admin: a logged-in person (a bearer
+  token without the admin role), a sign up, and a public form (lead form, email list,
+  support ticket). 0 (ReadWrite, the default): users read and change the value.
+  1 (ReadOnly): users read the value. A profile update that changes it returns a
+  validation error, and a sign up or public form that sends it saves the other fields
+  and ignores the value. 2 (None): the value is left out of all responses to users,
+  and a value that a user sends is ignored. An admin (API key and secret, or the
+  Outseta app) always reads and changes the value. POST /crm/registrations is a user,
+  also when it is called with an API key: to create an account with ReadOnly or None
+  values, use POST /crm/accounts, or set the values afterwards with PUT /crm/accounts
+  or PUT /crm/people. Must be 0 for a Deal property.
             
 EntityType comes from the URL; a Uid or EntityType in the request body is ignored.
  * @summary Add a custom property to accounts, people or deals.
@@ -660,7 +672,8 @@ export function useDefinitionGetDefinition<TData = Awaited<ReturnType<typeof def
 
 /**
  * Send only the fields to change: fields left out keep their current values. The rules
-for Label, SystemName, ControlType and ControlParams are those of adding a definition.
+for Label, SystemName, ControlType, ControlParams and UserAccess are those of adding a
+definition.
 The Uid and EntityType in the request body are ignored; the definition must belong to
 the entityType in the URL, otherwise 404.
             

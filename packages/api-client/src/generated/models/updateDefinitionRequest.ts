@@ -25,4 +25,10 @@ To add an option, send the full list, for example
    * @nullable
    */
   ControlParams?: string | null;
+  /**
+   * What a user can do with the property on their own person and account: 0 (ReadWrite),
+1 (ReadOnly) or 2 (None). Must be 0 for a Deal property.
+   * @nullable
+   */
+  UserAccess?: number | null;
 }

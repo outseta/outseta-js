@@ -33,4 +33,7 @@ Select, RadioList and CheckboxList need their options, for example
    * @nullable
    */
   ControlParams?: string | null;
+  /** What a user can do with the property on their own person and account: 0 (ReadWrite,
+the default), 1 (ReadOnly) or 2 (None). Must be 0 for a Deal property. */
+  UserAccess?: number;
 }

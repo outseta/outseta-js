@@ -138,12 +138,26 @@ export type DefinitionAllOf = {
   /** @nullable */
   SystemName?: string | null;
   EntityType?: EntityType;
+  UserAccess?: DefinitionUserAccess;
   /** @nullable */
   Position?: number | null;
   Hidden?: boolean;
 };
 
 export type Definition = AbstractQcountBean & DefinitionAllOf;
+
+/**
+ * `0` - ReadWrite, `1` - ReadOnly, `2` - None
+ */
+export type DefinitionUserAccess = typeof DefinitionUserAccess[keyof typeof DefinitionUserAccess];
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const DefinitionUserAccess = {
+  ReadWrite: 0,
+  ReadOnly: 1,
+  None: 2,
+} as const;
 
 export interface ValidationError {
   /** @nullable */
@@ -208,6 +222,9 @@ Select, RadioList and CheckboxList need their options, for example
    * @nullable
    */
   ControlParams?: string | null;
+  /** What a user can do with the property on their own person and account: 0 (ReadWrite,
+the default), 1 (ReadOnly) or 2 (None). Must be 0 for a Deal property. */
+  UserAccess?: number;
 }
 
 /**
@@ -235,6 +252,12 @@ To add an option, send the full list, for example
    * @nullable
    */
   ControlParams?: string | null;
+  /**
+   * What a user can do with the property on their own person and account: 0 (ReadWrite),
+1 (ReadOnly) or 2 (None). Must be 0 for a Deal property.
+   * @nullable
+   */
+  UserAccess?: number | null;
 }
 
 export interface EmailSubscriptionsPayload {
