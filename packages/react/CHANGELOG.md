@@ -1,5 +1,13 @@
 # @outseta/react
 
+## 0.5.17
+
+### Patch Changes
+
+- cd936c5: Update API spec.
+- Updated dependencies [cd936c5]
+  - @outseta/api-client@0.4.17
+
 ## 0.5.16
 
 ### Patch Changes

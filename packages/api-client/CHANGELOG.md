@@ -1,5 +1,11 @@
 # @outseta/api-client
 
+## 0.4.17
+
+### Patch Changes
+
+- cd936c5: Update API spec.
+
 ## 0.4.16
 
 ### Patch Changes
