@@ -3151,21 +3151,6 @@ export type NoCodeSettingsAllOf = {
   MagicLinkApiKey?: string | null;
   /** @nullable */
   OidcClients?: ClientApplication[] | null;
-  /**
-   * @deprecated
-   * @nullable
-   */
-  OidcClientId?: string | null;
-  /**
-   * @deprecated
-   * @nullable
-   */
-  OidcRedirectUri?: string | null;
-  /**
-   * @deprecated
-   * @nullable
-   */
-  OidcPostLogoutRedirectUri?: string | null;
   /** @nullable */
   Plans?: Plan[] | null;
   /** @nullable */
@@ -4005,6 +3990,52 @@ export interface TransactionalEmailSettingUpdate {
 }
 
 /**
+ * The fields of a new email template. Name and Body are required.
+ */
+export interface AddTemplateRequest {
+  /**
+   * The tokens that the editor in the Outseta app offers for the template, comma-separated.
+   * @nullable
+   */
+  AvailableTokens?: string | null;
+  /** The HTML of the template. May use Liquid tokens, for example {{ Person.FirstName }}.
+Required. */
+  Body?: string;
+  /**
+   * What the template is for.
+   * @nullable
+   */
+  Description?: string | null;
+  /**
+   * The design of the template in the drag-and-drop editor, as JSON. Leave it out for a
+template that is plain HTML.
+   * @nullable
+   */
+  Design?: string | null;
+  /** The name of the template, shown in the Outseta app. Required. */
+  Name?: string;
+  /**
+   * The tokens the Body must keep, comma-separated, for example Body,SenderInfo for an
+email layout. The template is rejected if its Body does not have them, and so is a
+later update that removes one.
+   * @nullable
+   */
+  RequiredTokens?: string | null;
+  /**
+   * The subject line of the email. May use Liquid tokens, for example {{ CompanyName }}.
+   * @nullable
+   */
+  Subject?: string | null;
+  /**
+   * The kind of template: template (Email > Email templates), layout (email layout) or
+savedReply (saved support reply). Send template for a template that shows in Email >
+Email templates and can be sent with the send endpoint.
+   * @nullable
+   */
+  Tag?: string | null;
+}
+
+/**
  * The fields of an email template that an update may change. Every field is optional:
 a field left out keeps its current value.
  */
@@ -4677,7 +4708,7 @@ export interface FlatfileImportData {
 }
 
 /**
- * `1` - UpdateSegmentBackGroundTask, `2` - ImportPeopleTask, `3` - ImportAccountTask, `4` - ImportDealTask, `5` - ImportEmailList, `6` - RescheduleDripCampaignTask, `7` - DeleteSegmentPeopleTask, `8` - StartDripCampaignTask, `9` - WebflowSyncTask, `10` - UpdatePersonSegmentsTask, `11` - ImportDiscountCouponTask, `12` - RemoveDiscordUserFromAllServersTask, `13` - SendInvoiceEmailTask, `14` - UpdateDiscordUserRolesTask, `15` - StripeBillingSyncTask, `16` - UpdateStripeDefaultSourceTask, `17` - DeleteScheduledCampaignMessagesTask, `18` - SendSpamCheckEmailTask, `19` - UpdateDiscordMemberRolesTask, `20` - SendInvoicePaidEmailTask, `21` - ResendTrialLimitEmailTask, `22` - UpdateStripeSubscriptionApplicationFeePercentTask, `23` - DeleteSupportCaseContentTask
+ * `1` - UpdateSegmentBackGroundTask, `2` - ImportPeopleTask, `3` - ImportAccountTask, `4` - ImportDealTask, `5` - ImportEmailList, `6` - RescheduleDripCampaignTask, `7` - DeleteSegmentPeopleTask, `8` - StartDripCampaignTask, `9` - WebflowSyncTask, `11` - ImportDiscountCouponTask, `12` - RemoveDiscordUserFromAllServersTask, `13` - SendInvoiceEmailTask, `14` - UpdateDiscordUserRolesTask, `15` - StripeBillingSyncTask, `16` - UpdateStripeDefaultSourceTask, `17` - DeleteScheduledCampaignMessagesTask, `18` - SendSpamCheckEmailTask, `19` - UpdateDiscordMemberRolesTask, `20` - SendInvoicePaidEmailTask, `21` - ResendTrialLimitEmailTask, `22` - UpdateStripeSubscriptionApplicationFeePercentTask, `23` - DeleteSupportCaseContentTask, `24` - RepopulateDailySegmentTask
  */
 export type BackGroundTaskType = typeof BackGroundTaskType[keyof typeof BackGroundTaskType];
 
@@ -4693,7 +4724,6 @@ export const BackGroundTaskType = {
   DeleteSegmentPeopleTask: 7,
   StartDripCampaignTask: 8,
   WebflowSyncTask: 9,
-  UpdatePersonSegmentsTask: 10,
   ImportDiscountCouponTask: 11,
   RemoveDiscordUserFromAllServersTask: 12,
   SendInvoiceEmailTask: 13,
@@ -4707,6 +4737,7 @@ export const BackGroundTaskType = {
   ResendTrialLimitEmailTask: 21,
   UpdateStripeSubscriptionApplicationFeePercentTask: 22,
   DeleteSupportCaseContentTask: 23,
+  RepopulateDailySegmentTask: 24,
 } as const;
 
 export interface ResolveLeadFormSubmissionFieldsRequest {

@@ -14,6 +14,7 @@ import type {
 } from '../../query';
 
 import type {
+  AddTemplateRequest,
   Template,
   TemplateAddTagToEntityBody,
   TemplateEmailInstance,
@@ -127,6 +128,77 @@ export function useTemplateGetAllTemplates<TData = Awaited<ReturnType<typeof tem
 
 
 /**
+ * Name and Body are required. Send Tag template for a template that shows in Email >
+Email templates and can be sent with the send endpoint.
+            
+Subject and Body must be valid Liquid; otherwise the template is rejected with a
+validation error.
+            
+To change a system email, update it with the update endpoint instead.
+ * @summary Create an email template, layout or saved reply.
+ */
+export const templateAddTemplate = (
+    addTemplateRequest: AddTemplateRequest,
+ options?: SecondParameter<typeof customFetch>,signal?: AbortSignal
+) => {
+      
+      
+      return customFetch<Template>(
+      {url: `/api/v1/templates`, method: 'POST',
+      headers: {'Content-Type': 'application/json', },
+      data: addTemplateRequest, signal
+    },
+      options);
+    }
+  
+
+
+export const getTemplateAddTemplateMutationOptions = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof templateAddTemplate>>, TError,{data: AddTemplateRequest}, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof templateAddTemplate>>, TError,{data: AddTemplateRequest}, TContext> => {
+
+const mutationKey = ['templateAddTemplate'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof templateAddTemplate>>, {data: AddTemplateRequest}> = (props) => {
+          const {data} = props ?? {};
+
+          return  templateAddTemplate(data,requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type TemplateAddTemplateMutationResult = NonNullable<Awaited<ReturnType<typeof templateAddTemplate>>>
+    export type TemplateAddTemplateMutationBody = AddTemplateRequest
+    export type TemplateAddTemplateMutationError = void
+
+    /**
+ * @summary Create an email template, layout or saved reply.
+ */
+export const useTemplateAddTemplate = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof templateAddTemplate>>, TError,{data: AddTemplateRequest}, TContext>, request?: SecondParameter<typeof customFetch>}
+ ): UseMutationResult<
+        Awaited<ReturnType<typeof templateAddTemplate>>,
+        TError,
+        {data: AddTemplateRequest},
+        TContext
+      > => {
+
+      const mutationOptions = getTemplateAddTemplateMutationOptions(options);
+
+      return useMutation(mutationOptions);
+    }
+    /**
  * Filter with personUid to see what one person was sent, or with templateUid to
 restrict the results to a single template.
  * @summary The one-off emails that were sent from any email template.
@@ -571,6 +643,73 @@ export const useTemplateUpdateTemplate = <TError = void,
       > => {
 
       const mutationOptions = getTemplateUpdateTemplateMutationOptions(options);
+
+      return useMutation(mutationOptions);
+    }
+    /**
+ * The template is also taken off every tag that it carries.
+            
+System emails cannot be deleted. A template that was used for a broadcast or drip
+email, or that was sent with the send endpoint, cannot be deleted either. These
+requests are rejected with a validation error.
+ * @summary Delete an email template, layout or saved reply.
+ */
+export const templateDeleteTemplate = (
+    templateUid: string | null,
+ options?: SecondParameter<typeof customFetch>,) => {
+      
+      
+      return customFetch<Blob>(
+      {url: `/api/v1/templates/${templateUid}`, method: 'DELETE',
+        responseType: 'blob'
+    },
+      options);
+    }
+  
+
+
+export const getTemplateDeleteTemplateMutationOptions = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof templateDeleteTemplate>>, TError,{templateUid: string | null}, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof templateDeleteTemplate>>, TError,{templateUid: string | null}, TContext> => {
+
+const mutationKey = ['templateDeleteTemplate'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof templateDeleteTemplate>>, {templateUid: string | null}> = (props) => {
+          const {templateUid} = props ?? {};
+
+          return  templateDeleteTemplate(templateUid,requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type TemplateDeleteTemplateMutationResult = NonNullable<Awaited<ReturnType<typeof templateDeleteTemplate>>>
+    
+    export type TemplateDeleteTemplateMutationError = void
+
+    /**
+ * @summary Delete an email template, layout or saved reply.
+ */
+export const useTemplateDeleteTemplate = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof templateDeleteTemplate>>, TError,{templateUid: string | null}, TContext>, request?: SecondParameter<typeof customFetch>}
+ ): UseMutationResult<
+        Awaited<ReturnType<typeof templateDeleteTemplate>>,
+        TError,
+        {templateUid: string | null},
+        TContext
+      > => {
+
+      const mutationOptions = getTemplateDeleteTemplateMutationOptions(options);
 
       return useMutation(mutationOptions);
     }

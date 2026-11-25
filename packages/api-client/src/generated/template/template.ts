@@ -1,5 +1,6 @@
 // @ts-nocheck
 import type {
+  AddTemplateRequest,
   Template,
   TemplateAddTagToEntityBody,
   TemplateEmailInstance,
@@ -83,6 +84,56 @@ export const templateGetAllTemplates = async (params?: TemplateGetAllTemplatesPa
     method: 'GET'
     
     
+  }
+);}
+
+
+/**
+ * Name and Body are required. Send Tag template for a template that shows in Email >
+Email templates and can be sent with the send endpoint.
+            
+Subject and Body must be valid Liquid; otherwise the template is rejected with a
+validation error.
+            
+To change a system email, update it with the update endpoint instead.
+ * @summary Create an email template, layout or saved reply.
+ */
+export type templateAddTemplateResponse200 = {
+  data: Template
+  status: 200
+}
+
+export type templateAddTemplateResponse401 = {
+  data: void
+  status: 401
+}
+    
+export type templateAddTemplateResponseSuccess = (templateAddTemplateResponse200) & {
+  headers: Headers;
+};
+export type templateAddTemplateResponseError = (templateAddTemplateResponse401) & {
+  headers: Headers;
+};
+
+export type templateAddTemplateResponse = (templateAddTemplateResponseSuccess | templateAddTemplateResponseError)
+
+export const getTemplateAddTemplateUrl = () => {
+
+
+  
+
+  return `/api/v1/templates`
+}
+
+export const templateAddTemplate = async (addTemplateRequest: AddTemplateRequest, options?: RequestInit): Promise<templateAddTemplateResponse> => {
+  
+  return customFetch<templateAddTemplateResponse>(getTemplateAddTemplateUrl(),
+  {      
+    ...options,
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', ...options?.headers },
+    body: JSON.stringify(
+      addTemplateRequest,)
   }
 );}
 
@@ -433,6 +484,63 @@ export const templateUpdateTemplate = async (templateUid: string | null,
     headers: { 'Content-Type': 'application/json', ...options?.headers },
     body: JSON.stringify(
       updateTemplateRequest,)
+  }
+);}
+
+
+/**
+ * The template is also taken off every tag that it carries.
+            
+System emails cannot be deleted. A template that was used for a broadcast or drip
+email, or that was sent with the send endpoint, cannot be deleted either. These
+requests are rejected with a validation error.
+ * @summary Delete an email template, layout or saved reply.
+ */
+export type templateDeleteTemplateResponse200 = {
+  data: Blob
+  status: 200
+}
+
+export type templateDeleteTemplateResponse400 = {
+  data: void
+  status: 400
+}
+
+export type templateDeleteTemplateResponse401 = {
+  data: void
+  status: 401
+}
+
+export type templateDeleteTemplateResponse404 = {
+  data: void
+  status: 404
+}
+    
+export type templateDeleteTemplateResponseSuccess = (templateDeleteTemplateResponse200) & {
+  headers: Headers;
+};
+export type templateDeleteTemplateResponseError = (templateDeleteTemplateResponse400 | templateDeleteTemplateResponse401 | templateDeleteTemplateResponse404) & {
+  headers: Headers;
+};
+
+export type templateDeleteTemplateResponse = (templateDeleteTemplateResponseSuccess | templateDeleteTemplateResponseError)
+
+export const getTemplateDeleteTemplateUrl = (templateUid: string | null,) => {
+
+
+  
+
+  return `/api/v1/templates/${templateUid}`
+}
+
+export const templateDeleteTemplate = async (templateUid: string | null, options?: RequestInit): Promise<templateDeleteTemplateResponse> => {
+  
+  return customFetch<templateDeleteTemplateResponse>(getTemplateDeleteTemplateUrl(templateUid),
+  {      
+    ...options,
+    method: 'DELETE'
+    
+    
   }
 );}
 

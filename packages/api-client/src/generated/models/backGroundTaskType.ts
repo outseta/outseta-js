@@ -1,7 +1,7 @@
 // @ts-nocheck
 
 /**
- * `1` - UpdateSegmentBackGroundTask, `2` - ImportPeopleTask, `3` - ImportAccountTask, `4` - ImportDealTask, `5` - ImportEmailList, `6` - RescheduleDripCampaignTask, `7` - DeleteSegmentPeopleTask, `8` - StartDripCampaignTask, `9` - WebflowSyncTask, `10` - UpdatePersonSegmentsTask, `11` - ImportDiscountCouponTask, `12` - RemoveDiscordUserFromAllServersTask, `13` - SendInvoiceEmailTask, `14` - UpdateDiscordUserRolesTask, `15` - StripeBillingSyncTask, `16` - UpdateStripeDefaultSourceTask, `17` - DeleteScheduledCampaignMessagesTask, `18` - SendSpamCheckEmailTask, `19` - UpdateDiscordMemberRolesTask, `20` - SendInvoicePaidEmailTask, `21` - ResendTrialLimitEmailTask, `22` - UpdateStripeSubscriptionApplicationFeePercentTask, `23` - DeleteSupportCaseContentTask
+ * `1` - UpdateSegmentBackGroundTask, `2` - ImportPeopleTask, `3` - ImportAccountTask, `4` - ImportDealTask, `5` - ImportEmailList, `6` - RescheduleDripCampaignTask, `7` - DeleteSegmentPeopleTask, `8` - StartDripCampaignTask, `9` - WebflowSyncTask, `11` - ImportDiscountCouponTask, `12` - RemoveDiscordUserFromAllServersTask, `13` - SendInvoiceEmailTask, `14` - UpdateDiscordUserRolesTask, `15` - StripeBillingSyncTask, `16` - UpdateStripeDefaultSourceTask, `17` - DeleteScheduledCampaignMessagesTask, `18` - SendSpamCheckEmailTask, `19` - UpdateDiscordMemberRolesTask, `20` - SendInvoicePaidEmailTask, `21` - ResendTrialLimitEmailTask, `22` - UpdateStripeSubscriptionApplicationFeePercentTask, `23` - DeleteSupportCaseContentTask, `24` - RepopulateDailySegmentTask
  */
 export type BackGroundTaskType = typeof BackGroundTaskType[keyof typeof BackGroundTaskType];
 
@@ -17,7 +17,6 @@ export const BackGroundTaskType = {
   DeleteSegmentPeopleTask: 7,
   StartDripCampaignTask: 8,
   WebflowSyncTask: 9,
-  UpdatePersonSegmentsTask: 10,
   ImportDiscountCouponTask: 11,
   RemoveDiscordUserFromAllServersTask: 12,
   SendInvoiceEmailTask: 13,
@@ -31,4 +30,5 @@ export const BackGroundTaskType = {
   ResendTrialLimitEmailTask: 21,
   UpdateStripeSubscriptionApplicationFeePercentTask: 22,
   DeleteSupportCaseContentTask: 23,
+  RepopulateDailySegmentTask: 24,
 } as const;

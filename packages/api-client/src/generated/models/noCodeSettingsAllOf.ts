@@ -28,21 +28,6 @@ export type NoCodeSettingsAllOf = {
   MagicLinkApiKey?: string | null;
   /** @nullable */
   OidcClients?: ClientApplication[] | null;
-  /**
-   * @deprecated
-   * @nullable
-   */
-  OidcClientId?: string | null;
-  /**
-   * @deprecated
-   * @nullable
-   */
-  OidcRedirectUri?: string | null;
-  /**
-   * @deprecated
-   * @nullable
-   */
-  OidcPostLogoutRedirectUri?: string | null;
   /** @nullable */
   Plans?: Plan[] | null;
   /** @nullable */

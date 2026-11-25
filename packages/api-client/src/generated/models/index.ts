@@ -227,6 +227,7 @@ export * from './addOnWebhookEntity';
 export * from './addOnWebhookEntityBillingAddOnType';
 export * from './addOnWebhookEntityContentGroupsItem';
 export * from './addOnWebhookEntityPlanAddOnsItem';
+export * from './addTemplateRequest';
 export * from './address';
 export * from './addressAllOf';
 export * from './apiKey';
